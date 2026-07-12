@@ -1480,6 +1480,11 @@ body::after {
   font-size: 18px;
 }
 
+.topbar-inner.is-reader .quick {
+  flex: 0 0 220px;
+  max-width: 220px;
+}
+
 .btn,
 .icon-btn,
 .chip,
@@ -1501,6 +1506,11 @@ select.sel,
 .page-head {
   max-width: 760px;
   margin-bottom: 18px;
+}
+
+.container.page {
+  padding-right: 16px;
+  padding-left: 16px;
 }
 
 .eyebrow {
@@ -1904,6 +1914,15 @@ select.sel,
 }
 
 @media (width <= 920px) {
+  .topbar-inner.is-reader .brand-name {
+    display: none;
+  }
+
+  .topbar-inner.is-reader .quick {
+    flex-basis: 150px;
+    max-width: 150px;
+  }
+
   .search-form {
     grid-template-columns: 1fr 1fr;
   }
@@ -1971,10 +1990,6 @@ select.sel,
 
   .topbar-inner.is-search > a.icon-btn[aria-label='Поиск'] {
     display: none;
-  }
-
-  .quick input::placeholder {
-    color: transparent;
   }
 
   .quick input {
