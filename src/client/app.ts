@@ -1,6 +1,7 @@
 // Клиентская логика Корана онлайн. Ванильный TS, бандлится Astro.
 // Отвечает за: тему, настройки чтения, режимы отображения, перевод/чтец,
 // аудиоплеер, закладки, «Продолжить», прогресс, хоткеи, быстрый переход, меню.
+import { openAyahEditor } from './imgeditor';
 
 type Dict<T> = Record<string, T>;
 
@@ -530,6 +531,31 @@ function ayahText(el: Element): { ar: string; ru: string; s: number; a: number }
   const [s, a] = (el.getAttribute('data-ayah-key') || '0:0').split(':').map(Number);
   return { ar, ru, s, a };
 }
+// извлечь все тексты аята из DOM (для редактора картинки) — работает на стр. суры и аята
+function extractAyah(el: Element, s: number, a: number) {
+  const clean = (t?: string | null) => (t || '').replace(/\s+/g, ' ').trim();
+  const strip = (t?: string | null) =>
+    clean(t).replace(/^(Перевод\s·\s)?(Эльмир\sКулиев|Абу\sАдель|Кулиев|Транслитерация)\s*/, '');
+  const ar = clean($('.ar', el)?.textContent);
+  const tl = $('.translit', el) ? strip($('.translit', el)!.textContent) : '';
+  let ru = '',
+    aa = '';
+  const k = $('.tr-kuliev', el),
+    ab = $('.tr-abuadel', el);
+  if (k || ab) {
+    ru = k ? strip(k.textContent) : '';
+    aa = ab ? strip(ab.textContent) : '';
+  } else {
+    $$('.translation', el).forEach((t) => {
+      const txt = t.textContent || '';
+      if (/Абу\sАдель/.test(txt)) aa = strip(txt);
+      else if (/Кулиев/.test(txt)) ru = strip(txt);
+      else if (!ru) ru = strip(txt);
+    });
+  }
+  const surahName = surahIndex.find((x) => x.n === s)?.nr || 'Сура ' + s;
+  return { s, a, ar, tl, ru, aa, surahName };
+}
 async function shareAyah(s: number, a: number, ar: string, ru: string) {
   const url = `${location.origin}/${s}:${a}`;
   const text = `Коран ${s}:${a}\n${ar}\n${ru}\n${url}`;
@@ -542,133 +568,6 @@ async function shareAyah(s: number, a: number, ar: string, ru: string) {
   copy(text);
 }
 
-// перенос текста по ширине холста
-function wrapText(ctx: CanvasRenderingContext2D, text: string, maxW: number): string[] {
-  const words = text.split(/\s+/);
-  const lines: string[] = [];
-  let line = '';
-  for (const w of words) {
-    const test = line ? line + ' ' + w : w;
-    if (ctx.measureText(test).width > maxW && line) {
-      lines.push(line);
-      line = w;
-    } else line = test;
-  }
-  if (line) lines.push(line);
-  return lines;
-}
-
-// поделиться аятом как картинкой (canvas → PNG)
-async function shareAyahImage(s: number, a: number, ar: string, ru: string) {
-  toast('Готовим картинку…');
-  try {
-    if (document.fonts && (document.fonts as any).ready) await (document.fonts as any).ready;
-    const meta = surahIndex.find((x) => x.n === s);
-    const W = 1080,
-      H = 1080,
-      pad = 96;
-    const cv = document.createElement('canvas');
-    cv.width = W;
-    cv.height = H;
-    const ctx = cv.getContext('2d')!;
-    const dark = document.documentElement.getAttribute('data-theme') === 'dark';
-    const ink = dark ? '#e9f0eb' : '#12201a';
-    const soft = dark ? '#a6b4ab' : '#43524b';
-    const acc = dark ? '#34d99f' : '#0e9d6b';
-    const g = ctx.createLinearGradient(0, 0, W, H);
-    if (dark) {
-      g.addColorStop(0, '#0a1210');
-      g.addColorStop(1, '#123027');
-    } else {
-      g.addColorStop(0, '#eef3f0');
-      g.addColorStop(1, '#d6ebe0');
-    }
-    ctx.fillStyle = g;
-    ctx.fillRect(0, 0, W, H);
-    // мягкое свечение-орб
-    const orb = ctx.createRadialGradient(W * 0.8, H * 0.15, 0, W * 0.8, H * 0.15, W * 0.5);
-    orb.addColorStop(0, dark ? 'rgba(52,217,159,0.18)' : 'rgba(14,157,107,0.14)');
-    orb.addColorStop(1, 'rgba(0,0,0,0)');
-    ctx.fillStyle = orb;
-    ctx.fillRect(0, 0, W, H);
-
-    // заголовок
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'alphabetic';
-    ctx.fillStyle = acc;
-    ctx.font = "700 34px system-ui, -apple-system, sans-serif";
-    ctx.fillText(`Сура ${meta ? meta.nr : s} · аят ${s}:${a}`, W / 2, 140);
-
-    // арабский (RTL, Мусхаф) — подбираем размер
-    ctx.direction = 'rtl' as CanvasDirection;
-    ctx.fillStyle = ink;
-    let arSize = 70;
-    let arLines: string[] = [];
-    for (; arSize >= 40; arSize -= 4) {
-      ctx.font = `${arSize}px Mushaf, 'AmiriQuran', serif`;
-      arLines = wrapText(ctx, ar, W - 2 * pad);
-      if (arLines.length <= 4) break;
-    }
-    const arLh = arSize * 1.8;
-
-    // русский
-    ctx.direction = 'ltr' as CanvasDirection;
-    ctx.font = "34px system-ui, -apple-system, sans-serif";
-    const ruClean = ru.replace(/^Перевод[^\n]*\n?/i, '').replace(/\s+/g, ' ').trim();
-    const ruLines = wrapText(ctx, ruClean, W - 2 * pad);
-    const ruLh = 46;
-
-    // вертикальное центрирование блока (араб + разрыв + рус)
-    const gap = 60;
-    const blockH = arLines.length * arLh + gap + ruLines.length * ruLh;
-    let y = (H - blockH) / 2 + arSize;
-    ctx.fillStyle = ink;
-    ctx.direction = 'rtl' as CanvasDirection;
-    ctx.font = `${arSize}px Mushaf, 'AmiriQuran', serif`;
-    for (const l of arLines) {
-      ctx.fillText(l, W / 2, y);
-      y += arLh;
-    }
-    y += gap - arLh + ruLh;
-    ctx.fillStyle = soft;
-    ctx.direction = 'ltr' as CanvasDirection;
-    ctx.font = "34px system-ui, -apple-system, sans-serif";
-    for (const l of ruLines) {
-      ctx.fillText(l, W / 2, y);
-      y += ruLh;
-    }
-
-    // подвал
-    ctx.fillStyle = acc;
-    ctx.font = "600 28px system-ui, sans-serif";
-    ctx.fillText('quran.nurtech.dev', W / 2, H - 80);
-
-    const blob: Blob = await new Promise((res) => cv.toBlob((b) => res(b!), 'image/png'));
-    const file = new File([blob], `quran-${s}-${a}.png`, { type: 'image/png' });
-    const download = () => {
-      const u = URL.createObjectURL(blob);
-      const link = document.createElement('a');
-      link.href = u;
-      link.download = file.name;
-      link.click();
-      setTimeout(() => URL.revokeObjectURL(u), 1500);
-      toast('Картинка сохранена');
-    };
-    const canShareFiles = !!(navigator.canShare && navigator.canShare({ files: [file] }));
-    // мобила → системное «поделиться»; десктоп → скачивание
-    if (canShareFiles && matchMedia('(pointer: coarse)').matches) {
-      try {
-        await navigator.share({ files: [file], title: `Коран ${s}:${a}` });
-      } catch (e: any) {
-        if (e && e.name !== 'AbortError') download(); // отмену не считаем ошибкой
-      }
-    } else {
-      download();
-    }
-  } catch {
-    toast('Не удалось создать картинку');
-  }
-}
 function copy(text: string) {
   navigator.clipboard?.writeText(text).then(
     () => toast('Скопировано'),
@@ -685,9 +584,9 @@ function initAyahActions() {
     $('[data-act="copy-link"]', el)?.addEventListener('click', () =>
       copy(`${location.origin}/${s}:${a}`)
     );
-    $('[data-act="share"]', el)?.addEventListener('click', () => {
-      const t = ayahText(el);
-      shareAyahImage(s, a, t.ar, t.ru);
+    $('[data-act="share"]', el)?.addEventListener('click', async () => {
+      await loadIndex(); // surahName для редактора
+      openAyahEditor(extractAyah(el, s, a));
     });
     $('[data-act="share-text"]', el)?.addEventListener('click', () => {
       const t = ayahText(el);
