@@ -113,6 +113,7 @@ function applyTheme(t: string) {
 }
 function initTheme() {
   const cur = LS.get<string>(K.theme, 'system');
+  applyTheme(cur); // подстраховка, если anti-flash не отработал
   markMenu('theme', 'theme-set', cur);
   $$('[data-theme-set]').forEach((b) =>
     b.addEventListener('click', () => {

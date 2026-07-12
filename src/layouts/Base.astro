@@ -41,7 +41,15 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
     <script is:inline>
       (function () {
         try {
-          var t = localStorage.getItem('q_theme') || 'system';
+          var raw = localStorage.getItem('q_theme');
+          var t = 'system';
+          if (raw) {
+            try {
+              t = JSON.parse(raw);
+            } catch (e) {
+              t = raw;
+            }
+          }
           var eff = t;
           if (t === 'system')
             eff = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
