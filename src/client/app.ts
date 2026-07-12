@@ -30,6 +30,8 @@ const K = {
   bookmarks: 'q_bookmarks',
   last: 'q_last',
   progress: 'q_progress',
+  memorize: 'q_memorize',
+  memrep: 'q_memrep',
 };
 
 const $ = <T extends Element = HTMLElement>(s: string, r: ParentNode = document) =>
@@ -718,6 +720,9 @@ const player = new (class {
   reciterId = LS.get<string>(K.reciter, DEFAULT_RECITER_ID);
   triedFallback = false;
   currentReciter: Reciter | null = null;
+  memorize = LS.get<boolean>(K.memorize, false); // режим заучивания
+  memRep = LS.get<number>(K.memrep, 3); // повторов аята (0 = бесконечно)
+  memCount = 0;
 
   async reciter(): Promise<Reciter> {
     const rs = await loadReciters();
@@ -789,6 +794,7 @@ const player = new (class {
   playKey(s: number, a: number) {
     const cur = this.idx >= 0 ? this.playlist[this.idx] : null;
     if (cur && cur.s === s && cur.a === a) return this.toggle(); // тот же аят — пауза/продолжить
+    this.memCount = 0; // новый аят — сброс счётчика заучивания
     let i = this.keyIdx(s, a);
     if (i < 0) {
       this.playlist = [{ s, a }];
@@ -827,10 +833,12 @@ const player = new (class {
     else this.audio.pause();
   }
   next() {
+    this.memCount = 0;
     if (this.range && this.idx >= this.range.to) return this.playIdx(this.range.from);
     this.playIdx(Math.min(this.idx + 1, this.playlist.length - 1));
   }
   prev() {
+    this.memCount = 0;
     this.playIdx(Math.max(this.idx - 1, 0));
   }
   stop() {
@@ -842,6 +850,11 @@ const player = new (class {
   onEnded() {
     if (this.repeatOne) return this.playIdx(this.idx);
     if (this.currentReciter?.type === 'surah') return this.setIcon(false); // сура целиком — не перескакиваем по аятам
+    if (this.memorize) {
+      this.memCount++;
+      if (this.memRep === 0 || this.memCount < this.memRep) return this.playIdx(this.idx); // повторяем аят
+      this.memCount = 0; // повторили N раз → следующий аят
+    }
     if (this.range) {
       if (this.idx >= this.range.to) return this.playIdx(this.range.from);
       return this.playIdx(this.idx + 1);
@@ -1057,10 +1070,42 @@ function initHomeFilter() {
 }
 
 /* ==========================================================================
+   Заучивание (скрыть перевод + повтор аята N раз)
+   ========================================================================== */
+function initMemorize() {
+  const applyMem = () => {
+    $$('[data-memorize]').forEach((b) => b.classList.toggle('on', player.memorize));
+    $$('[data-memrep]').forEach((b) =>
+      b.classList.toggle('on', +b.getAttribute('data-memrep')! === player.memRep)
+    );
+    document.body.classList.toggle('memorize-on', player.memorize);
+  };
+  $$('[data-memorize]').forEach((b) =>
+    b.addEventListener('click', () => {
+      player.memorize = !player.memorize;
+      player.memCount = 0;
+      LS.set(K.memorize, player.memorize);
+      applyMem();
+      toast(player.memorize ? 'Заучивание вкл: перевод скрыт, аят повторяется' : 'Заучивание выкл');
+    })
+  );
+  $$('[data-memrep]').forEach((b) =>
+    b.addEventListener('click', () => {
+      player.memRep = +b.getAttribute('data-memrep')!;
+      player.memCount = 0;
+      LS.set(K.memrep, player.memRep);
+      applyMem();
+    })
+  );
+  applyMem();
+}
+
+/* ==========================================================================
    Старт
    ========================================================================== */
 function boot() {
   initHomeFilter();
+  initMemorize();
   initTheme();
   initReading();
   initView();

@@ -8,6 +8,7 @@ const views = [
   { id: 'translation', label: 'Перевод' },
   { id: 'translit', label: 'Транслит' },
   { id: 'tafsir', label: 'Тафсир' },
+  { id: 'compare', label: 'Сравн.' },
   { id: 'all', label: 'Всё' },
 ];
 const fonts = [
@@ -159,6 +160,18 @@ const showQuick = !isSearch;
           Скрыть скобки-пояснения
           <span class="tick">✓</span>
         </button>
+
+        <h4>Заучивание</h4>
+        <button class="item" type="button" data-memorize>
+          Режим заучивания<span style="color:var(--ink-faint);font-size:12px">&nbsp;· скрыть перевод, повтор аята</span>
+          <span class="tick">✓</span>
+        </button>
+        <div class="seg" style="width:100%" data-memrep-seg>
+          <button type="button" data-memrep="2">×2</button>
+          <button type="button" data-memrep="3">×3</button>
+          <button type="button" data-memrep="5">×5</button>
+          <button type="button" data-memrep="0">∞</button>
+        </div>
       </div>
     </div>
 

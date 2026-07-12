@@ -981,6 +981,58 @@ input[type='range'] {
   display: none;
 }
 
+/* ---- Сравнение переводов ---- */
+.tr-lbl {
+  display: none; /* метка источника только в режиме «Сравн.» */
+}
+/* обычные режимы: показываем только основной перевод (по маршруту) */
+.ayahs[data-primary='kuliev'] .tr-abuadel {
+  display: none;
+}
+.ayahs[data-primary='abuadel'] .tr-kuliev {
+  display: none;
+}
+/* режим «Сравн.»: арабский + оба перевода в колонках */
+.ayahs[data-view='compare'] .translit,
+.ayahs[data-view='compare'] .tafsir,
+.ayahs[data-view='compare'] .tafsir-passage,
+.ayahs[data-view='compare'] .tafsir-details {
+  display: none;
+}
+.ayahs[data-view='compare'] .tr-block {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px 20px;
+  margin-top: 12px;
+}
+.ayahs[data-view='compare'] .tr-block .translation {
+  display: block !important;
+  margin-top: 0;
+}
+.ayahs[data-view='compare'] .tr-lbl {
+  display: block;
+  font: 800 11px/1 var(--sans);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 6px;
+}
+@media (max-width: 640px) {
+  .ayahs[data-view='compare'] .tr-block {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+}
+
+/* ---- Заучивание: показываем только арабский ---- */
+body.memorize-on .ayahs .translit,
+body.memorize-on .ayahs .tr-block,
+body.memorize-on .ayahs .tafsir,
+body.memorize-on .ayahs .tafsir-passage,
+body.memorize-on .ayahs .tafsir-details {
+  display: none !important;
+}
+
 /* поиск: подсветка */
 mark.hit {
   background: var(--hl);

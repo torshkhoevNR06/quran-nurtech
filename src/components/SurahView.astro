@@ -58,7 +58,13 @@ const arName = surah.na.replace('سُورَةُ ', '');
     </p>
   </details>
 
-  <div class="ayahs" data-ayahs data-view="all" data-surah-name={surah.nr}>
+  <div
+    class="ayahs"
+    data-ayahs
+    data-view="all"
+    data-primary={isAbuAdel ? 'abuadel' : 'kuliev'}
+    data-surah-name={surah.nr}
+  >
     {surah.bism && <div class="bism">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>}
 
     {
@@ -66,7 +72,6 @@ const arName = surah.na.replace('سُورَةُ ', '');
         const blk = blockFor(ayah.n);
         const isRangeEnd = isSaadi && blk && ayah.n === blk.t;
         const ikBlk = isIbnKathir ? ikFor(ayah.n) : undefined;
-        const text = isAbuAdel ? ayah.aa || ayah.ru : ayah.ru;
         return (
           <>
             <article class="ayah" id={`ayah-${ayah.n}`} data-ayah-key={ref(surah.n, ayah.n)}>
@@ -82,7 +87,12 @@ const arName = surah.na.replace('سُورَةُ ', '');
               </div>
               <div class="ar" set:html={ayah.ar} />
               {ayah.tl && <div class="translit">{ayah.tl}</div>}
-              <div class="translation">{text}</div>
+              <div class="tr-block">
+                <div class="translation tr-kuliev"><span class="tr-lbl">Кулиев</span>{ayah.ru}</div>
+                {ayah.aa && (
+                  <div class="translation tr-abuadel"><span class="tr-lbl">Абу Адель</span>{ayah.aa}</div>
+                )}
+              </div>
               {ikBlk && (
                 <details class="tafsir-details">
                   <summary>Тафсир Ибн Касира · аят {surah.n}:{ayah.n}</summary>
