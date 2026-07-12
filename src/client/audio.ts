@@ -3,9 +3,12 @@
 interface Reciter {
   id: string;
   name: string;
-  ed: string;
-  br: number;
-  ea: string;
+  ed?: string;
+  br?: number;
+  ea?: string;
+  type?: 'ayah' | 'surah';
+  srv?: string;
+  skip?: number[];
 }
 interface Meta {
   n: number;
@@ -51,6 +54,8 @@ const cdnUrl = (r: Reciter, s: number, a: number) =>
   `https://cdn.islamic.network/quran/audio/${r.br}/${r.ed}/${globalAyah(s, a)}.mp3`;
 const eaUrl = (r: Reciter, s: number, a: number) =>
   `https://everyayah.com/data/${r.ea}/${pad3(s)}${pad3(a)}.mp3`;
+const surahUrl = (r: Reciter, s: number) => `${r.srv}${pad3(s)}.mp3`;
+const surahHas = (r: Reciter, s: number) => !(r.skip || []).includes(s);
 
 async function init() {
   [reciters, metas] = await Promise.all([
@@ -105,7 +110,7 @@ function renderSurah() {
     html += `<div class="ayah" data-row="${a}" style="display:flex;align-items:center;gap:10px;padding:10px 4px">
       <button type="button" class="icon-btn" data-play="${a}" aria-label="Слушать аят ${a}">${ICON_PLAY}</button>
       <span style="flex:1"><b>${m.nr}</b> · аят ${m.n}:${a}</span>
-      <a class="icon-btn" href="${cdnUrl(r, m.n, a)}" download aria-label="Скачать аят ${a}">${ICON_DL}</a>
+      <a class="icon-btn" href="${r.type === 'surah' ? surahUrl(r, m.n) : cdnUrl(r, m.n, a)}" download aria-label="Скачать">${ICON_DL}</a>
     </div>`;
   }
   rowsBox!.innerHTML = html;
@@ -116,14 +121,27 @@ function renderSurah() {
 
 function play(i: number) {
   if (i < 0 || i >= cur.c || !audio) return;
-  idx = i;
-  triedFallback = false;
-  audio.src = cdnUrl(reciter(), cur.s, i + 1);
-  audio.playbackRate = speed;
-  audio.play().catch(() => {});
+  const r = reciter();
   const m = metas.find((x) => x.n === cur.s)!;
-  titleEl && (titleEl.textContent = `${m.nr} · аят ${cur.s}:${i + 1}`);
-  subEl && (subEl.textContent = reciter().name);
+  if (r.type === 'surah') {
+    if (!surahHas(r, cur.s)) {
+      subEl && (subEl.textContent = `${r.name.split('·')[0].trim()} не читал эту суру`);
+      return;
+    }
+    idx = i;
+    audio.src = surahUrl(r, cur.s);
+    audio.playbackRate = speed;
+    audio.play().catch(() => {});
+    titleEl && (titleEl.textContent = `Сура ${m.nr}`);
+  } else {
+    idx = i;
+    triedFallback = false;
+    audio.src = cdnUrl(r, cur.s, i + 1);
+    audio.playbackRate = speed;
+    audio.play().catch(() => {});
+    titleEl && (titleEl.textContent = `${m.nr} · аят ${cur.s}:${i + 1}`);
+  }
+  subEl && (subEl.textContent = r.name);
   rowsBox?.querySelectorAll('.ayah.active').forEach((e) => e.classList.remove('active'));
   const row = rowsBox?.querySelector(`[data-row="${i + 1}"]`);
   row?.classList.add('active');
@@ -136,6 +154,7 @@ function toggle() {
 }
 function onEnded() {
   if (repeatOne) return play(idx);
+  if (reciter().type === 'surah') return setIcon(false); // сура целиком
   if (idx < cur.c - 1) play(idx + 1);
   else setIcon(false);
 }

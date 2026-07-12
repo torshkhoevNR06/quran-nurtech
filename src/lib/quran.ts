@@ -81,9 +81,12 @@ export function getTafsirForAyah(surahN: number, ayahN: number): TafsirBlock | u
 export interface Reciter {
   id: string;
   name: string;
-  ed: string; // редакция islamic.network (напр. ar.alafasy)
-  br: number; // битрейт islamic.network
-  ea: string; // папка EveryAyah (фолбэк)
+  ed?: string; // редакция islamic.network (напр. ar.alafasy) — для type 'ayah'
+  br?: number; // битрейт islamic.network
+  ea?: string; // папка EveryAyah (фолбэк) — для type 'ayah'
+  type?: 'ayah' | 'surah'; // по умолчанию 'ayah'
+  srv?: string; // базовый URL по-суровых файлов (mp3quran) — для type 'surah'
+  skip?: number[]; // суры, которых нет у по-сурового чтеца
 }
 let _reciters: Reciter[] | null = null;
 export function getReciters(): Reciter[] {

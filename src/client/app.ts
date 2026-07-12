@@ -52,9 +52,12 @@ function toast(msg: string) {
 interface Reciter {
   id: string;
   name: string;
-  ed: string; // редакция islamic.network
-  br: number; // битрейт
-  ea: string; // папка EveryAyah (фолбэк)
+  ed?: string; // редакция islamic.network
+  br?: number; // битрейт
+  ea?: string; // папка EveryAyah (фолбэк)
+  type?: 'ayah' | 'surah';
+  srv?: string; // база по-суровых файлов (mp3quran)
+  skip?: number[]; // недоступные суры у по-сурового чтеца
 }
 interface SurahMeta {
   n: number;
@@ -98,6 +101,10 @@ const cdnUrl = (r: Reciter, s: number, a: number) =>
 // фолбэк — EveryAyah
 const eaUrl = (r: Reciter, s: number, a: number) =>
   `https://everyayah.com/data/${r.ea}/${pad3(s)}${pad3(a)}.mp3`;
+// по-суровый чтец (mp3quran): целая сура одним файлом
+const surahUrl = (r: Reciter, s: number) => `${r.srv}${pad3(s)}.mp3`;
+const surahHas = (r: Reciter, s: number) => !(r.skip || []).includes(s);
+const DEFAULT_RECITER_ID = 'alafasy';
 
 /* ==========================================================================
    Тема
@@ -605,10 +612,26 @@ const player = new (class {
     this.setTitle(t);
     this.setLoading(true);
     this.triedFallback = false;
-    const [r] = await Promise.all([this.reciter(), loadIndex()]); // loadIndex → ayahOffset для глобального номера
+    const [r0] = await Promise.all([this.reciter(), loadIndex()]); // loadIndex → ayahOffset для глобального номера
     if (this.idx !== i || !this.audio) return; // трек сменился, пока грузили данные
+    let r = r0;
+    let src: string;
+    if (r.type === 'surah') {
+      if (surahHas(r, t.s)) {
+        src = surahUrl(r, t.s); // целая сура одним файлом
+      } else {
+        // у по-сурового чтеца нет этой суры → фолбэк на чтеца по умолчанию (по аятам)
+        const def = reciters.find((x) => x.id === DEFAULT_RECITER_ID) || reciters[0];
+        toast(`${r.name.split('·')[0].trim()} не читал эту суру — включён чтец по умолчанию`);
+        r = def;
+        src = cdnUrl(def, t.s, t.a);
+      }
+    } else {
+      src = cdnUrl(r, t.s, t.a);
+    }
     this.currentReciter = r;
-    this.audio.src = cdnUrl(r, t.s, t.a);
+    this.setTitle(t);
+    this.audio.src = src;
     this.audio.playbackRate = this.speed;
     try {
       await this.audio.play();
@@ -635,6 +658,7 @@ const player = new (class {
   }
   onEnded() {
     if (this.repeatOne) return this.playIdx(this.idx);
+    if (this.currentReciter?.type === 'surah') return this.setIcon(false); // сура целиком — не перескакиваем по аятам
     if (this.range) {
       if (this.idx >= this.range.to) return this.playIdx(this.range.from);
       return this.playIdx(this.idx + 1);
@@ -718,8 +742,10 @@ const player = new (class {
     const title = $('[data-player-title]');
     const sub = $('[data-player-sub]');
     const meta = surahIndex.find((s) => s.n === t.s);
-    if (title) title.textContent = `${meta ? meta.nr : 'Сура ' + t.s} · аят ${t.a}`;
-    if (sub) sub.textContent = await this.reciterName();
+    const nr = meta ? meta.nr : 'Сура ' + t.s;
+    const isSurah = this.currentReciter?.type === 'surah';
+    if (title) title.textContent = isSurah ? `Сура ${nr}` : `${nr} · аят ${t.a}`;
+    if (sub) sub.textContent = this.currentReciter ? this.currentReciter.name : await this.reciterName();
     if (!meta) loadIndex().then(() => this.setTitle(t));
   }
   highlight(t: Track) {

@@ -66,6 +66,26 @@ const reciters = [
   { id: 'maher', name: 'Махер аль-Муайкли', ed: 'ar.mahermuaiqly', br: 128, ea: 'MaherAlMuaiqly128kbps' },
   { id: 'hudhaify', name: 'Али аль-Хузейфи', ed: 'ar.hudhaify', br: 128, ea: 'Hudhaify_128kbps' },
   { id: 'ayyoub', name: 'Мухаммад Айюб', ed: 'ar.muhammadayyoub', br: 128, ea: 'Muhammad_Ayyoub_128kbps' },
+  // По-суровые чтецы (mp3quran.net): целая сура одним файлом <srv>/<NNN>.mp3.
+  // skip — суры, которых у чтеца нет (не читал/не записаны) → фолбэк на чтеца по умолчанию.
+  {
+    id: 'binhumaid',
+    name: 'Ахмад Талиб бин Хумайд',
+    type: 'surah',
+    srv: 'https://server16.mp3quran.net/a_binhameed/Rewayat-Hafs-A-n-Assem/',
+    skip: [9, 14, 16, 17, 23, 24, 33],
+  },
+  {
+    id: 'souilass',
+    name: 'Юнус ас-Сувейлис · Марокко (Варш)',
+    type: 'surah',
+    srv: 'https://server16.mp3quran.net/souilass/Rewayat-Warsh-A-n-Nafi/',
+    skip: [
+      3, 4, 5, 6, 7, 8, 9, 44, 49, 55, 58, 59, 60, 61, 62, 63, 64, 65, 66, 68, 69, 70, 72, 74, 75,
+      83, 84, 85, 87, 88, 92, 94, 96, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110,
+      111, 113, 114,
+    ],
+  },
 ];
 writeFileSync(join(OUT, 'reciters.json'), JSON.stringify(reciters));
 
