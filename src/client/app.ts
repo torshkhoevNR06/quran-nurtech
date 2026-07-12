@@ -173,8 +173,8 @@ function applyBrackets(on: boolean) {
     // подпись «Перевод · …» отделена <br>: обрабатываем только текстовый хвост
     if (on) {
       if (e.dataset.full == null) e.dataset.full = e.innerHTML;
-      const parts = e.innerHTML.split('<br>');
-      const tail = parts.length > 1 ? parts.pop()! : e.innerHTML;
+      const parts = e.dataset.full.split('<br>'); // всегда из оригинала
+      const tail = parts.pop()!; // последний сегмент = сам текст перевода
       const head = parts.length ? parts.join('<br>') + '<br>' : '';
       e.innerHTML = head + stripBrackets(tail);
     } else if (e.dataset.full != null) {
@@ -643,16 +643,25 @@ async function shareAyahImage(s: number, a: number, ar: string, ru: string) {
 
     const blob: Blob = await new Promise((res) => cv.toBlob((b) => res(b!), 'image/png'));
     const file = new File([blob], `quran-${s}-${a}.png`, { type: 'image/png' });
-    if (navigator.canShare && navigator.canShare({ files: [file] })) {
-      await navigator.share({ files: [file], title: `Коран ${s}:${a}`, text: `${location.origin}/${s}:${a}` });
-    } else {
+    const download = () => {
       const u = URL.createObjectURL(blob);
       const link = document.createElement('a');
       link.href = u;
       link.download = file.name;
       link.click();
-      URL.revokeObjectURL(u);
+      setTimeout(() => URL.revokeObjectURL(u), 1500);
       toast('Картинка сохранена');
+    };
+    const canShareFiles = !!(navigator.canShare && navigator.canShare({ files: [file] }));
+    // мобила → системное «поделиться»; десктоп → скачивание
+    if (canShareFiles && matchMedia('(pointer: coarse)').matches) {
+      try {
+        await navigator.share({ files: [file], title: `Коран ${s}:${a}` });
+      } catch (e: any) {
+        if (e && e.name !== 'AbortError') download(); // отмену не считаем ошибкой
+      }
+    } else {
+      download();
     }
   } catch {
     toast('Не удалось создать картинку');
