@@ -308,11 +308,11 @@ h3 {
 .brand {
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 3px 9px 3px 3px;
-  border-radius: 17px;
-  background: color-mix(in srgb, var(--surface) 74%, transparent);
-  font-weight: 900;
+  gap: 11px;
+  padding: 2px 8px 2px 2px;
+  border-radius: 16px;
+  background: color-mix(in srgb, var(--surface) 64%, transparent);
+  font-weight: 800;
   letter-spacing: 0;
   white-space: nowrap;
   min-width: 0;
@@ -326,24 +326,14 @@ h3 {
   height: 42px;
   place-items: center;
   flex: none;
-  border-radius: 15px;
-  box-shadow: 0 10px 24px -12px color-mix(in srgb, var(--accent) 70%, transparent);
-}
-
-.brand-mark::after {
-  content: '';
-  position: absolute;
-  inset: 1px;
-  border-radius: inherit;
-  border: 1px solid rgba(255, 255, 255, 0.38);
-  pointer-events: none;
+  border-radius: 999px;
+  box-shadow: none;
 }
 
 .brand-mark img {
   display: block;
   width: 42px;
   height: 42px;
-  border-radius: inherit;
 }
 
 .brand-copy {
@@ -354,16 +344,17 @@ h3 {
 }
 .brand .brand-name {
   color: var(--ink);
-  font-size: 15.5px;
+  font-size: 15px;
+  font-weight: 850;
   letter-spacing: 0;
 }
 
 .brand-domain {
-  color: var(--accent);
-  font-size: 10px;
-  font-weight: 900;
-  letter-spacing: 0.13em;
-  text-transform: uppercase;
+  color: var(--ink-muted);
+  font-size: 10.5px;
+  font-weight: 650;
+  letter-spacing: 0.02em;
+  text-transform: none;
 }
 .topbar .grow {
   flex: 1;
