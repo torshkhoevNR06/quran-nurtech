@@ -35,8 +35,14 @@ const showQuick = !isSearch;
   <div class={`topbar-inner ${isReader ? 'is-reader' : ''} ${isSearch ? 'is-search' : ''} ${isAudio ? 'is-audio' : ''}`}>
     <button class="icon-btn only-mobile" data-act="drawer" aria-label="Список сур" set:html={icons.menu} />
 
-    <a href="/" class="brand">
-      <span class="logo">ق</span><span class="brand-name">Коран&nbsp;онлайн</span>
+    <a href="/" class="brand" aria-label="Коран онлайн — главная">
+      <span class="brand-mark" aria-hidden="true">
+        <img src="/brand-mark.svg" width="42" height="42" alt="" />
+      </span>
+      <span class="brand-copy">
+        <span class="brand-name">Коран онлайн</span>
+        <span class="brand-domain">quran.nurtech.dev</span>
+      </span>
     </a>
 
     {
