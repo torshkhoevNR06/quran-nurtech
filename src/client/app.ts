@@ -106,7 +106,20 @@ const eaUrl = (r: Reciter, s: number, a: number) =>
 // по-суровый чтец (mp3quran): целая сура одним файлом
 const surahUrl = (r: Reciter, s: number) => `${r.srv}${pad3(s)}.mp3`;
 const surahHas = (r: Reciter, s: number) => !(r.skip || []).includes(s);
-const DEFAULT_RECITER_ID = 'alafasy';
+const DEFAULT_RECITER_ID = 'binhumaid';
+// цепочка фолбэка для по-суровых чтецов: где нет Ахмада Талиба → Сувейлис → (где нет обоих) Алафаси
+const FALLBACK_CHAIN = ['binhumaid', 'souilass', 'alafasy'];
+const shortName = (r: Reciter) => r.name.split('·')[0].trim();
+// вернуть чтеца, который реально прочитал эту суру (если у выбранного её нет — идём по цепочке)
+function pickReciterForSurah(r: Reciter, s: number): Reciter {
+  if (r.type !== 'surah' || surahHas(r, s)) return r;
+  for (const id of FALLBACK_CHAIN) {
+    if (id === r.id) continue;
+    const c = reciters.find((x) => x.id === id);
+    if (c && (c.type !== 'surah' || surahHas(c, s))) return c;
+  }
+  return reciters.find((x) => x.id === 'alafasy') || reciters[0];
+}
 
 /* ==========================================================================
    Тема
@@ -522,7 +535,7 @@ const player = new (class {
   range: { from: number; to: number } | null = null;
   rangeArm: number | null = null;
   speed = LS.get<number>(K.speed, 1);
-  reciterId = LS.get<string>(K.reciter, 'alafasy');
+  reciterId = LS.get<string>(K.reciter, DEFAULT_RECITER_ID);
   triedFallback = false;
   currentReciter: Reciter | null = null;
 
@@ -616,21 +629,9 @@ const player = new (class {
     this.triedFallback = false;
     const [r0] = await Promise.all([this.reciter(), loadIndex()]); // loadIndex → ayahOffset для глобального номера
     if (this.idx !== i || !this.audio) return; // трек сменился, пока грузили данные
-    let r = r0;
-    let src: string;
-    if (r.type === 'surah') {
-      if (surahHas(r, t.s)) {
-        src = surahUrl(r, t.s); // целая сура одним файлом
-      } else {
-        // у по-сурового чтеца нет этой суры → фолбэк на чтеца по умолчанию (по аятам)
-        const def = reciters.find((x) => x.id === DEFAULT_RECITER_ID) || reciters[0];
-        toast(`${r.name.split('·')[0].trim()} не читал эту суру — включён чтец по умолчанию`);
-        r = def;
-        src = cdnUrl(def, t.s, t.a);
-      }
-    } else {
-      src = cdnUrl(r, t.s, t.a);
-    }
+    let r = pickReciterForSurah(r0, t.s); // если у выбранного нет суры — идём по цепочке
+    if (r.id !== r0.id) toast(`${shortName(r0)} не читал суру — включён ${shortName(r)}`);
+    const src = r.type === 'surah' ? surahUrl(r, t.s) : cdnUrl(r, t.s, t.a);
     this.currentReciter = r;
     this.setTitle(t);
     this.audio.src = src;

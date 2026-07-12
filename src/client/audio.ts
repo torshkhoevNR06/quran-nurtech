@@ -38,6 +38,7 @@ let idx = -1;
 let repeatOne = false;
 let speed = 1;
 let triedFallback = false;
+let curEff: Reciter | null = null; // реально играющий чтец (после фолбэка)
 
 const params = new URLSearchParams(location.search);
 const savedReciter = (() => {
@@ -56,6 +57,18 @@ const eaUrl = (r: Reciter, s: number, a: number) =>
   `https://everyayah.com/data/${r.ea}/${pad3(s)}${pad3(a)}.mp3`;
 const surahUrl = (r: Reciter, s: number) => `${r.srv}${pad3(s)}.mp3`;
 const surahHas = (r: Reciter, s: number) => !(r.skip || []).includes(s);
+const DEFAULT_RECITER_ID = 'binhumaid';
+const FALLBACK_CHAIN = ['binhumaid', 'souilass', 'alafasy'];
+const shortName = (r: Reciter) => r.name.split('·')[0].trim();
+function pickReciter(r: Reciter, s: number): Reciter {
+  if (r.type !== 'surah' || surahHas(r, s)) return r;
+  for (const id of FALLBACK_CHAIN) {
+    if (id === r.id) continue;
+    const c = reciters.find((x) => x.id === id);
+    if (c && (c.type !== 'surah' || surahHas(c, s))) return c;
+  }
+  return reciters.find((x) => x.id === 'alafasy') || reciters[0];
+}
 
 async function init() {
   [reciters, metas] = await Promise.all([
@@ -71,6 +84,7 @@ async function init() {
     reciterSel.innerHTML = reciters.map((r) => `<option value="${r.id}">${r.name}</option>`).join('');
     if (savedReciter && reciters.some((r) => r.id === savedReciter)) reciterSel.value = savedReciter;
     else if (params.get('reciter')) reciterSel.value = params.get('reciter')!;
+    else reciterSel.value = DEFAULT_RECITER_ID; // по умолчанию — Ахмад Талиб
   }
   if (surahSel) {
     surahSel.innerHTML = metas.map((m) => `<option value="${m.n}">${m.n}. ${m.nr} (${m.c})</option>`).join('');
@@ -121,27 +135,23 @@ function renderSurah() {
 
 function play(i: number) {
   if (i < 0 || i >= cur.c || !audio) return;
-  const r = reciter();
+  const r0 = reciter();
   const m = metas.find((x) => x.n === cur.s)!;
+  const r = pickReciter(r0, cur.s); // если у выбранного нет суры — идём по цепочке
+  curEff = r;
+  idx = i;
   if (r.type === 'surah') {
-    if (!surahHas(r, cur.s)) {
-      subEl && (subEl.textContent = `${r.name.split('·')[0].trim()} не читал эту суру`);
-      return;
-    }
-    idx = i;
     audio.src = surahUrl(r, cur.s);
-    audio.playbackRate = speed;
-    audio.play().catch(() => {});
     titleEl && (titleEl.textContent = `Сура ${m.nr}`);
   } else {
-    idx = i;
     triedFallback = false;
     audio.src = cdnUrl(r, cur.s, i + 1);
-    audio.playbackRate = speed;
-    audio.play().catch(() => {});
     titleEl && (titleEl.textContent = `${m.nr} · аят ${cur.s}:${i + 1}`);
   }
-  subEl && (subEl.textContent = r.name);
+  audio.playbackRate = speed;
+  audio.play().catch(() => {});
+  subEl &&
+    (subEl.textContent = r.id === r0.id ? r.name : `${r.name} · у ${shortName(r0)} нет суры`);
   rowsBox?.querySelectorAll('.ayah.active').forEach((e) => e.classList.remove('active'));
   const row = rowsBox?.querySelector(`[data-row="${i + 1}"]`);
   row?.classList.add('active');
@@ -154,13 +164,13 @@ function toggle() {
 }
 function onEnded() {
   if (repeatOne) return play(idx);
-  if (reciter().type === 'surah') return setIcon(false); // сура целиком
+  if (curEff?.type === 'surah') return setIcon(false); // сура целиком
   if (idx < cur.c - 1) play(idx + 1);
   else setIcon(false);
 }
 function onError() {
   if (idx < 0 || !audio) return;
-  const r = reciter();
+  const r = curEff || reciter();
   if (r.ea && !triedFallback) {
     triedFallback = true;
     audio.src = eaUrl(r, cur.s, idx + 1);
