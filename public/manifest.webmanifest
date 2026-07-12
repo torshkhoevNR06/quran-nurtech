@@ -1,0 +1,19 @@
+{
+  "name": "Коран онлайн — quran.nurtech.dev",
+  "short_name": "Коран",
+  "description": "Чтение, изучение, прослушивание и заучивание Корана на русском языке.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#0a1210",
+  "theme_color": "#0e9d6b",
+  "lang": "ru",
+  "dir": "ltr",
+  "categories": ["books", "education", "lifestyle"],
+  "icons": [
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "/icon-maskable.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

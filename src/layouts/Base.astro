@@ -34,8 +34,13 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
     <meta property="og:title" content={title} />
     <meta property="og:description" content={desc} />
     <meta property="og:url" content={canonical} />
-    <meta name="theme-color" content="#1f7a5c" />
+    <meta name="theme-color" content="#0e9d6b" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="Коран" />
     <link rel="preload" href="/fonts/kfgqpc-hafs.woff2" as="font" type="font/woff2" crossorigin />
     <!-- анти-flash: тема и настройки чтения до первой отрисовки -->
     <script is:inline>
@@ -62,6 +67,14 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
           if (r.font) el.setProperty('--ar-font', r.font);
         } catch (e) {}
       })();
+    </script>
+    <!-- PWA: офлайн-доступ -->
+    <script is:inline>
+      if ('serviceWorker' in navigator) {
+        addEventListener('load', function () {
+          navigator.serviceWorker.register('/sw.js').catch(function () {});
+        });
+      }
     </script>
   </head>
   <body data-surah={surahId ?? ''} data-ayah={ayahId ?? ''} data-tr={tr ?? ''}>
