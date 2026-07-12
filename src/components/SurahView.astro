@@ -54,7 +54,7 @@ const arName = surah.na.replace('سُورَةُ ', '');
           <>
             <article class="ayah" id={`ayah-${ayah.n}`} data-ayah-key={ref(surah.n, ayah.n)}>
               <div class="ayah-top">
-                <span class="ayah-no">{surah.n}:{ayah.n}</span>
+                <a class="ayah-no" href={`/ayah/${surah.n}/${ayah.n}`} title="Открыть аят">{surah.n}:{ayah.n}</a>
                 <div class="ayah-acts">
                   <button type="button" data-act="play" aria-label="Слушать аят" title="Слушать" set:html={icons.play} />
                   <button type="button" data-bm={ref(surah.n, ayah.n)} aria-label="В закладки" title="Закладка" set:html={icons.bookmark} />

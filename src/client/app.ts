@@ -210,7 +210,9 @@ function initTranslation() {
   if (label) label.textContent = names[cur] || 'Перевод';
   markMenu('tr', 'tr', cur);
   markMenu('settings', 'tr', cur);
-  $$('[data-tr]').forEach((b) =>
+  // ВАЖНО: только кнопки перевода — НЕ body (у body есть data-tr для чтения настроек,
+  // иначе клик по любому месту страницы всплывал бы к body и навигировал на /surah/:id/:tr)
+  $$('button[data-tr]').forEach((b) =>
     b.addEventListener('click', () => {
       if ((b as HTMLButtonElement).disabled) return;
       const v = b.getAttribute('data-tr')!;

@@ -825,6 +825,12 @@ input[type='range'] {
   padding: 6px 12px;
   border-radius: 999px;
   border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent);
+  cursor: pointer;
+  transition: filter 0.15s, transform 0.12s;
+}
+.ayah-no:hover {
+  filter: brightness(1.08);
+  transform: translateY(-1px);
 }
 .ayah-acts {
   margin-left: auto;
