@@ -25,6 +25,7 @@ export interface Ayah {
   ar: string; // арабский текст (Усмани)
   tj: string; // арабский с таджвид-разметкой
   ru: string; // перевод Кулиева
+  aa?: string; // перевод Абу Аделя
 }
 
 export interface Surah {
@@ -78,6 +79,26 @@ export function getTafsirForAyah(surahN: number, ayahN: number): TafsirBlock | u
   return getTafsir(surahN).find((b) => ayahN >= b.f && ayahN <= b.t);
 }
 
+// Тафсир Ибн Касира — по аятам: [{ a, x }].
+export interface IbnKathirBlock {
+  a: number; // номер аята
+  x: string; // текст тафсира
+}
+const _ikCache = new Map<number, IbnKathirBlock[]>();
+export function getIbnKathir(n: number): IbnKathirBlock[] {
+  if (!_ikCache.has(n)) {
+    try {
+      _ikCache.set(n, readJson<IbnKathirBlock[]>(join(DATA, 'tafsir-ibnkathir', `${n}.json`)));
+    } catch {
+      _ikCache.set(n, []);
+    }
+  }
+  return _ikCache.get(n)!;
+}
+export function getIbnKathirForAyah(surahN: number, ayahN: number): IbnKathirBlock | undefined {
+  return getIbnKathir(surahN).find((b) => b.a === ayahN);
+}
+
 export interface Reciter {
   id: string;
   name: string;
@@ -104,9 +125,9 @@ export interface Translation {
 }
 export const TRANSLATIONS: Translation[] = [
   { id: 'kuliev', name: 'Эльмир Кулиев', short: 'Кулиев', kind: 'translation', available: true },
+  { id: 'abuadel', name: 'Абу Адель', short: 'Абу Адель', kind: 'translation', available: true },
   { id: 'saadi', name: 'Тафсир ас-Саади', short: 'ас-Саади', kind: 'tafsir', available: true },
-  { id: 'abuadel', name: 'Абу Адель', short: 'Абу Адель', kind: 'translation', available: false },
-  { id: 'ibn-kathir', name: 'Тафсир Ибн Касира', short: 'Ибн Касир', kind: 'tafsir', available: false },
+  { id: 'ibn-kathir', name: 'Тафсир Ибн Касира', short: 'Ибн Касир', kind: 'tafsir', available: true },
 ];
 export const DEFAULT_TRANSLATION = 'saadi';
 export const isTranslation = (id: string) => TRANSLATIONS.some((t) => t.id === id && t.available);

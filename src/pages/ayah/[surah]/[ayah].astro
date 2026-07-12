@@ -1,6 +1,6 @@
 ---
 import Base from '../../../layouts/Base.astro';
-import { getSurahs, getSurah, getSurahMeta, getTafsirForAyah, TRANSLATIONS, ref } from '../../../lib/quran';
+import { getSurahs, getSurah, getSurahMeta, getTafsirForAyah, getIbnKathirForAyah, ref } from '../../../lib/quran';
 import { icons } from '../../../lib/icons';
 
 export function getStaticPaths() {
@@ -19,7 +19,7 @@ const surah = getSurah(sN);
 const meta = getSurahMeta(sN)!;
 const ayah = surah.a.find((x) => x.n === aN)!;
 const taf = getTafsirForAyah(sN, aN);
-const unavailable = TRANSLATIONS.filter((t) => !t.available);
+const ikTaf = getIbnKathirForAyah(sN, aN);
 
 const prev = aN > 1 ? { s: sN, a: aN - 1 } : sN > 1 ? { s: sN - 1, a: getSurah(sN - 1).c } : null;
 const next = aN < surah.c ? { s: sN, a: aN + 1 } : sN < 114 ? { s: sN + 1, a: 1 } : null;
@@ -61,6 +61,13 @@ const description = `${ayah.ru} — Коран, сура «${meta.nr}» аят $
           {ayah.ru}
         </div>
 
+        {ayah.aa && (
+          <div class="translation">
+            <span class="tafsir-label">Перевод · Абу Адель</span><br />
+            {ayah.aa}
+          </div>
+        )}
+
         {taf && (
           <div class="tafsir">
             <span class="tafsir-label">Тафсир ас-Саади · аяты {taf.f}–{taf.t}</span>
@@ -68,12 +75,12 @@ const description = `${ayah.ru} — Коран, сура «${meta.nr}» аят $
           </div>
         )}
 
-        {unavailable.map((t) => (
-          <div class="tafsir" style="opacity:.6">
-            <span class="tafsir-label">{t.name}</span><br />
-            <span style="color:var(--ink-faint)">Будет добавлено в следующей версии.</span>
-          </div>
-        ))}
+        {ikTaf && (
+          <details class="tafsir-details" open>
+            <summary>Тафсир Ибн Касира · аят {sN}:{aN}</summary>
+            <div class="tafsir">{ikTaf.x}</div>
+          </details>
+        )}
       </article>
     </div>
 

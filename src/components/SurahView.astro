@@ -1,19 +1,32 @@
 ---
-import { getSurah, getTafsir, getSurahMeta, ref } from '../lib/quran';
+import { getSurah, getTafsir, getIbnKathir, getSurahMeta, ref } from '../lib/quran';
 import { icons } from '../lib/icons';
 
+export type TranslationId = 'kuliev' | 'abuadel' | 'saadi' | 'ibn-kathir';
 export interface Props {
   surahId: number;
-  translation: 'saadi' | 'kuliev';
+  translation: TranslationId;
 }
 const { surahId, translation } = Astro.props;
 const surah = getSurah(surahId);
 const meta = getSurahMeta(surahId)!;
-const includeTafsir = translation === 'saadi';
-const tafsir = includeTafsir ? getTafsir(surahId) : [];
-const blockFor = (a: number) => tafsir.find((b) => a >= b.f && a <= b.t);
-const isMecca = meta.t === 'мекканская';
 
+const isAbuAdel = translation === 'abuadel';
+const isSaadi = translation === 'saadi';
+const isIbnKathir = translation === 'ibn-kathir';
+
+const tafsir = isSaadi ? getTafsir(surahId) : []; // ас-Саади по диапазонам
+const ik = isIbnKathir ? getIbnKathir(surahId) : []; // Ибн Касир по аятам
+const blockFor = (a: number) => tafsir.find((b) => a >= b.f && a <= b.t);
+const ikFor = (a: number) => ik.find((b) => b.a === a);
+
+const labels: Record<TranslationId, string> = {
+  kuliev: 'Перевод Кулиева',
+  abuadel: 'Перевод Абу Аделя',
+  saadi: 'Тафсир ас-Саади',
+  'ibn-kathir': 'Тафсир Ибн Касира',
+};
+const isMecca = meta.t === 'мекканская';
 const prevN = surahId > 1 ? surahId - 1 : null;
 const nextN = surahId < 114 ? surahId + 1 : null;
 const arName = surah.na.replace('سُورَةُ ', '');
@@ -32,15 +45,14 @@ const arName = surah.na.replace('سُورَةُ ', '');
     <div class="meta">
       <span class={`chip ${isMecca ? 'mecca' : 'medina'}`}>{meta.t}</span>
       <span class="chip">{surah.c} аятов</span>
-      <span class="chip">{includeTafsir ? 'Тафсир ас-Саади' : 'Перевод Кулиева'}</span>
+      <span class="chip">{labels[translation]}</span>
     </div>
   </header>
 
   <p class="surah-desc">
     <strong>{surah.nr}</strong> ({surah.nm}) — {meta.t} сура Корана под номером {surah.n},
-    состоит из {surah.c} аятов. Ниже приведён арабский текст (Усмани), перевод смыслов
-    Э. Кулиева{includeTafsir ? ' и толкование ас-Саади' : ''}. Переключить перевод, чтеца,
-    размер шрифта и тему можно в верхней панели.
+    состоит из {surah.c} аятов. Ниже приведён арабский текст (Усмани) и {labels[translation].toLowerCase()}.
+    Переключить перевод/тафсир, чтеца, размер шрифта и тему можно в верхней панели.
   </p>
 
   <div class="ayahs" data-ayahs data-view="all" data-surah-name={surah.nr}>
@@ -49,7 +61,9 @@ const arName = surah.na.replace('سُورَةُ ', '');
     {
       surah.a.map((ayah) => {
         const blk = blockFor(ayah.n);
-        const isRangeEnd = includeTafsir && blk && ayah.n === blk.t;
+        const isRangeEnd = isSaadi && blk && ayah.n === blk.t;
+        const ikBlk = isIbnKathir ? ikFor(ayah.n) : undefined;
+        const text = isAbuAdel ? ayah.aa || ayah.ru : ayah.ru;
         return (
           <>
             <article class="ayah" id={`ayah-${ayah.n}`} data-ayah-key={ref(surah.n, ayah.n)}>
@@ -64,7 +78,13 @@ const arName = surah.na.replace('سُورَةُ ', '');
                 </div>
               </div>
               <div class="ar" set:html={ayah.ar} />
-              <div class="translation">{ayah.ru}</div>
+              <div class="translation">{text}</div>
+              {ikBlk && (
+                <details class="tafsir-details">
+                  <summary>Тафсир Ибн Касира · аят {surah.n}:{ayah.n}</summary>
+                  <div class="tafsir">{ikBlk.x}</div>
+                </details>
+              )}
             </article>
             {isRangeEnd && (
               <div class="ayah tafsir-passage">

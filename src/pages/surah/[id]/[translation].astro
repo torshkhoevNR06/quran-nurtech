@@ -1,10 +1,11 @@
 ---
 import Base from '../../../layouts/Base.astro';
 import SurahView from '../../../components/SurahView.astro';
+import type { TranslationId } from '../../../components/SurahView.astro';
 import { getSurahs, getSurahMeta, TRANSLATIONS } from '../../../lib/quran';
 
 export function getStaticPaths() {
-  const avail = TRANSLATIONS.filter((t) => t.available).map((t) => t.id); // saadi, kuliev
+  const avail = TRANSLATIONS.filter((t) => t.available).map((t) => t.id); // kuliev, abuadel, saadi, ibn-kathir
   const paths = [];
   for (const s of getSurahs()) {
     for (const tr of avail) {
@@ -15,9 +16,9 @@ export function getStaticPaths() {
 }
 
 const id = Number(Astro.params.id);
-const translation = Astro.params.translation as 'saadi' | 'kuliev';
+const translation = Astro.params.translation as TranslationId;
 const meta = getSurahMeta(id)!;
-const trName = translation === 'saadi' ? 'тафсир ас-Саади' : 'перевод Кулиева';
+const trName = (TRANSLATIONS.find((t) => t.id === translation)?.name || 'перевод').toLowerCase();
 const title = `Сура ${id}: ${meta.nr} — ${trName}`;
 const description = `Сура «${meta.nr}» (${meta.nm}), ${meta.c} аятов. Арабский текст и ${trName}. Аудио, поиск, закладки.`;
 ---

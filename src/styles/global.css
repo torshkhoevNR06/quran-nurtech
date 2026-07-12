@@ -921,22 +921,57 @@ input[type='range'] {
   margin-bottom: 8px;
 }
 
+/* сворачиваемый тафсир (Ибн Касир — объёмный) */
+.tafsir-details {
+  margin-top: 12px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: color-mix(in srgb, var(--accent-soft) 45%, transparent);
+  overflow: hidden;
+}
+.tafsir-details > summary {
+  cursor: pointer;
+  padding: 12px 16px;
+  font: 800 11px/1.2 var(--sans);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--accent);
+  list-style: none;
+  user-select: none;
+}
+.tafsir-details > summary::-webkit-details-marker {
+  display: none;
+}
+.tafsir-details > summary::before {
+  content: '▸  ';
+}
+.tafsir-details[open] > summary::before {
+  content: '▾  ';
+}
+.tafsir-details > .tafsir {
+  padding: 0 16px 16px;
+  margin-top: 0;
+}
+
 /* режимы отображения */
 .ayahs[data-view='arabic'] .translit,
 .ayahs[data-view='arabic'] .translation,
 .ayahs[data-view='arabic'] .tafsir,
-.ayahs[data-view='arabic'] .tafsir-passage {
+.ayahs[data-view='arabic'] .tafsir-passage,
+.ayahs[data-view='arabic'] .tafsir-details {
   display: none;
 }
 .ayahs[data-view='translation'] .ar,
 .ayahs[data-view='translation'] .translit,
 .ayahs[data-view='translation'] .tafsir,
-.ayahs[data-view='translation'] .tafsir-passage {
+.ayahs[data-view='translation'] .tafsir-passage,
+.ayahs[data-view='translation'] .tafsir-details {
   display: none;
 }
 .ayahs[data-view='translit'] .translation,
 .ayahs[data-view='translit'] .tafsir,
-.ayahs[data-view='translit'] .tafsir-passage {
+.ayahs[data-view='translit'] .tafsir-passage,
+.ayahs[data-view='translit'] .tafsir-details {
   display: none;
 }
 .ayahs[data-view='tafsir'] .translit {
