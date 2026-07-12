@@ -809,6 +809,31 @@ mark.hit {
   width: 22px;
   height: 22px;
 }
+.player .play.loading {
+  pointer-events: none;
+}
+.player .play.loading svg {
+  display: none;
+}
+.player .play.loading::after {
+  content: '';
+  width: 20px;
+  height: 20px;
+  border: 2px solid color-mix(in srgb, var(--accent-ink) 35%, transparent);
+  border-top-color: var(--accent-ink);
+  border-radius: 50%;
+  animation: qspin 0.7s linear infinite;
+}
+@keyframes qspin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+/* активная (играющая/выбранная) кнопка аята */
+.ayah-acts button.on {
+  background: var(--accent-soft);
+  color: var(--accent);
+}
 .player .extra {
   display: flex;
   align-items: center;

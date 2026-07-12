@@ -52,7 +52,9 @@ function toast(msg: string) {
 interface Reciter {
   id: string;
   name: string;
-  folder: string;
+  ed: string; // редакция islamic.network
+  br: number; // битрейт
+  ea: string; // папка EveryAyah (фолбэк)
 }
 interface SurahMeta {
   n: number;
@@ -66,18 +68,36 @@ interface SurahMeta {
 }
 let reciters: Reciter[] = [];
 let surahIndex: SurahMeta[] = [];
+let ayahOffset: number[] = []; // ayahOffset[s] = число аятов до суры s (для глобального номера)
+function computeOffsets(idx: SurahMeta[]) {
+  ayahOffset = [];
+  let acc = 0;
+  for (const s of idx) {
+    ayahOffset[s.n] = acc;
+    acc += s.c;
+  }
+}
 const loadReciters = async () => {
   if (!reciters.length) reciters = await fetch('/data/reciters.json').then((r) => r.json());
   return reciters;
 };
 const loadIndex = async () => {
-  if (!surahIndex.length) surahIndex = await fetch('/data/index.json').then((r) => r.json());
+  if (!surahIndex.length) {
+    surahIndex = await fetch('/data/index.json').then((r) => r.json());
+    computeOffsets(surahIndex);
+  }
   return surahIndex;
 };
 
 const pad3 = (x: number) => String(x).padStart(3, '0');
-const audioUrl = (folder: string, s: number, a: number) =>
-  `https://everyayah.com/data/${folder}/${pad3(s)}${pad3(a)}.mp3`;
+// глобальный номер аята 1..6236
+const globalAyah = (s: number, a: number) => (ayahOffset[s] || 0) + a;
+// основной источник — Cloudflare CDN islamic.network (быстрый глобально, вкл. РФ)
+const cdnUrl = (r: Reciter, s: number, a: number) =>
+  `https://cdn.islamic.network/quran/audio/${r.br}/${r.ed}/${globalAyah(s, a)}.mp3`;
+// фолбэк — EveryAyah
+const eaUrl = (r: Reciter, s: number, a: number) =>
+  `https://everyayah.com/data/${r.ea}/${pad3(s)}${pad3(a)}.mp3`;
 
 /* ==========================================================================
    Тема
@@ -491,14 +511,15 @@ const player = new (class {
   rangeArm: number | null = null;
   speed = LS.get<number>(K.speed, 1);
   reciterId = LS.get<string>(K.reciter, 'alafasy');
+  triedFallback = false;
+  currentReciter: Reciter | null = null;
 
-  async folder() {
+  async reciter(): Promise<Reciter> {
     const rs = await loadReciters();
-    return (rs.find((r) => r.id === this.reciterId) || rs[0]).folder;
+    return rs.find((r) => r.id === this.reciterId) || rs[0];
   }
   async reciterName() {
-    const rs = await loadReciters();
-    return (rs.find((r) => r.id === this.reciterId) || rs[0]).name;
+    return (await this.reciter()).name;
   }
 
   init() {
@@ -525,10 +546,14 @@ const player = new (class {
 
     this.audio.addEventListener('ended', () => this.onEnded());
     this.audio.addEventListener('play', () => this.setIcon(true));
-    this.audio.addEventListener('pause', () => this.setIcon(false));
-    this.audio.addEventListener('error', () => {
-      if (this.idx >= 0) toast('Аудио этого аята недоступно');
+    this.audio.addEventListener('playing', () => {
+      this.setLoading(false);
+      this.setIcon(true);
     });
+    this.audio.addEventListener('waiting', () => this.setLoading(true));
+    this.audio.addEventListener('canplay', () => this.setLoading(false));
+    this.audio.addEventListener('pause', () => this.setIcon(false));
+    this.audio.addEventListener('error', () => this.onError());
 
     // выбор чтеца
     $$('[data-reciter]').forEach((b) =>
@@ -557,6 +582,8 @@ const player = new (class {
     return this.playlist.findIndex((t) => t.s === s && t.a === a);
   }
   playKey(s: number, a: number) {
+    const cur = this.idx >= 0 ? this.playlist[this.idx] : null;
+    if (cur && cur.s === s && cur.a === a) return this.toggle(); // тот же аят — пауза/продолжить
     let i = this.keyIdx(s, a);
     if (i < 0) {
       this.playlist = [{ s, a }];
@@ -569,14 +596,20 @@ const player = new (class {
     this.idx = i;
     const t = this.playlist[i];
     if (this.rangeArm != null) this.setRange(i);
-    this.audio.src = audioUrl(await this.folder(), t.s, t.a);
+    // мгновенный отклик UI — не ждём сеть
+    this.el?.classList.add('show');
+    this.highlight(t);
+    this.setTitle(t);
+    this.setLoading(true);
+    this.triedFallback = false;
+    const [r] = await Promise.all([this.reciter(), loadIndex()]); // loadIndex → ayahOffset для глобального номера
+    if (this.idx !== i || !this.audio) return; // трек сменился, пока грузили данные
+    this.currentReciter = r;
+    this.audio.src = cdnUrl(r, t.s, t.a);
     this.audio.playbackRate = this.speed;
     try {
       await this.audio.play();
     } catch {}
-    this.el?.classList.add('show');
-    this.highlight(t);
-    this.setTitle(t);
   }
   toggle() {
     if (!this.audio) return;
@@ -642,7 +675,41 @@ const player = new (class {
   }
   setIcon(playing: boolean) {
     const btn = $('[data-player-toggle]');
-    if (btn) btn.innerHTML = playing ? ICON_PAUSE : ICON_PLAY;
+    if (btn && !btn.classList.contains('loading')) btn.innerHTML = playing ? ICON_PAUSE : ICON_PLAY;
+    this.updateAyahButtons();
+  }
+  setLoading(on: boolean) {
+    const btn = $('[data-player-toggle]');
+    if (btn) {
+      btn.classList.toggle('loading', on);
+      if (!on) btn.innerHTML = this.audio && !this.audio.paused ? ICON_PAUSE : ICON_PLAY;
+    }
+    this.updateAyahButtons();
+  }
+  updateAyahButtons() {
+    const cur = this.idx >= 0 ? this.playlist[this.idx] : null;
+    const playing = !!(this.audio && !this.audio.paused);
+    $$('[data-ayah-key] [data-act="play"]').forEach((btn) => {
+      const key = (btn.closest('[data-ayah-key]') as Element)?.getAttribute('data-ayah-key');
+      const isCur = !!cur && key === `${cur.s}:${cur.a}`;
+      btn.classList.toggle('on', isCur);
+      btn.innerHTML = isCur && playing ? ICON_PAUSE : ICON_PLAY;
+    });
+  }
+  onError() {
+    if (this.idx < 0 || !this.audio) return;
+    const r = this.currentReciter;
+    const t = this.playlist[this.idx];
+    if (r && r.ea && !this.triedFallback) {
+      // основной CDN не отдал — пробуем EveryAyah
+      this.triedFallback = true;
+      this.audio.src = eaUrl(r, t.s, t.a);
+      this.audio.playbackRate = this.speed;
+      this.audio.play().catch(() => {});
+      return;
+    }
+    this.setLoading(false);
+    toast('Аудио недоступно — попробуйте другого чтеца');
   }
   async setTitle(t: Track) {
     const title = $('[data-player-title]');

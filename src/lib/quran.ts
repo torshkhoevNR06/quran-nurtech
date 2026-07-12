@@ -81,18 +81,14 @@ export function getTafsirForAyah(surahN: number, ayahN: number): TafsirBlock | u
 export interface Reciter {
   id: string;
   name: string;
-  folder: string;
+  ed: string; // редакция islamic.network (напр. ar.alafasy)
+  br: number; // битрейт islamic.network
+  ea: string; // папка EveryAyah (фолбэк)
 }
 let _reciters: Reciter[] | null = null;
 export function getReciters(): Reciter[] {
   if (!_reciters) _reciters = readJson<Reciter[]>(join(PUBLIC_DATA, 'reciters.json'));
   return _reciters;
-}
-
-const pad3 = (x: number) => String(x).padStart(3, '0');
-// URL аудио аята у выбранного чтеца (EveryAyah).
-export function audioUrl(folder: string, surahN: number, ayahN: number): string {
-  return `https://everyayah.com/data/${folder}/${pad3(surahN)}${pad3(ayahN)}.mp3`;
 }
 
 // Список переводов/тафсиров (для верхней панели и роутов). MVP: Кулиев + ас-Саади.

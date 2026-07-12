@@ -50,19 +50,22 @@ for (const s of surahs) {
 }
 writeFileSync(join(OUT, 'search-index.json'), JSON.stringify(searchIndex));
 
-// ---- 3. чтецы (EveryAyah) ----
-// Аудио строится как https://everyayah.com/data/<folder>/<SSS><AAA>.mp3
+// ---- 3. чтецы ----
+// Аудио: основной источник — Cloudflare CDN islamic.network (надёжен глобально, вкл. РФ):
+//   https://cdn.islamic.network/quran/audio/<br>/<ed>/<globalAyah 1..6236>.mp3
+// Фолбэк при ошибке — EveryAyah: https://everyayah.com/data/<ea>/<SSS><AAA>.mp3
+// Битрейт (br) у каждой редакции свой — проверено, что файлы существуют.
 const reciters = [
-  { id: 'alafasy', name: 'Мишари Рашид аль-Афаси', folder: 'Alafasy_128kbps' },
-  { id: 'qatami', name: 'Нассир аль-Катами', folder: 'Nasser_Alqatami_128kbps' },
-  { id: 'ghamdi', name: 'Саад аль-Гамиди', folder: 'Ghamadi_40kbps' },
-  { id: 'shuraim', name: 'Сауд аш-Шурейм', folder: 'Saood_ash-Shuraym_128kbps' },
-  { id: 'shatri', name: 'Абубакр аш-Шатри', folder: 'Abu_Bakr_Ash-Shaatree_128kbps' },
-  { id: 'luhaidan', name: 'Мухаммад аль-Люхайдан', folder: 'Muhammad_al_Luhaidan_128kbps' },
-  { id: 'minshawi', name: 'Мухаммад Сиддик аль-Миншави', folder: 'Minshawy_Murattal_128kbps' },
-  { id: 'hudhaify', name: 'Али аль-Хузейфи', folder: 'Hudhaify_128kbps' },
-  { id: 'dossari', name: 'Ясир ад-Даусари', folder: 'Yasser_Ad-Dussary_128kbps' },
-  { id: 'husary', name: 'Махмуд Халиль аль-Хусари', folder: 'Husary_128kbps' },
+  { id: 'alafasy', name: 'Мишари Рашид аль-Афаси', ed: 'ar.alafasy', br: 128, ea: 'Alafasy_128kbps' },
+  { id: 'husary', name: 'Махмуд Халиль аль-Хусари', ed: 'ar.husary', br: 128, ea: 'Husary_128kbps' },
+  { id: 'minshawi', name: 'Мухаммад Сиддик аль-Миншави', ed: 'ar.minshawi', br: 128, ea: 'Minshawy_Murattal_128kbps' },
+  { id: 'sudais', name: 'Абдуррахман ас-Судайс', ed: 'ar.abdurrahmaansudais', br: 192, ea: 'Abdurrahmaan_As-Sudais_192kbps' },
+  { id: 'abdulbasit', name: 'Абдуль-Басит Абдус-Самад', ed: 'ar.abdulbasitmurattal', br: 192, ea: 'Abdul_Basit_Murattal_192kbps' },
+  { id: 'shuraim', name: 'Сауд аш-Шурейм', ed: 'ar.saoodshuraym', br: 64, ea: 'Saood_ash-Shuraym_128kbps' },
+  { id: 'shatri', name: 'Абубакр аш-Шатри', ed: 'ar.shaatree', br: 128, ea: 'Abu_Bakr_Ash-Shaatree_128kbps' },
+  { id: 'maher', name: 'Махер аль-Муайкли', ed: 'ar.mahermuaiqly', br: 128, ea: 'MaherAlMuaiqly128kbps' },
+  { id: 'hudhaify', name: 'Али аль-Хузейфи', ed: 'ar.hudhaify', br: 128, ea: 'Hudhaify_128kbps' },
+  { id: 'ayyoub', name: 'Мухаммад Айюб', ed: 'ar.muhammadayyoub', br: 128, ea: 'Muhammad_Ayyoub_128kbps' },
 ];
 writeFileSync(join(OUT, 'reciters.json'), JSON.stringify(reciters));
 
