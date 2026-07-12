@@ -2412,6 +2412,9 @@ select.sel,
   border-color: var(--accent);
   box-shadow: 0 0 0 2px var(--accent);
 }
+.ie-foot {
+  flex: none;
+}
 .ie-actions {
   display: flex;
   gap: 8px;
@@ -2420,6 +2423,39 @@ select.sel,
 }
 .ie-actions .btn {
   flex: 1;
+}
+.ie-hint {
+  padding: 0 18px 14px;
+  font: 500 12px/1.4 var(--sans);
+  color: var(--ink-faint);
+  text-align: center;
+}
+.ie-hint b {
+  color: var(--ink);
+  font-weight: 700;
+  white-space: nowrap;
+}
+.ie-toast {
+  position: absolute;
+  left: 50%;
+  bottom: 84px;
+  z-index: 5;
+  max-width: 82%;
+  padding: 10px 16px;
+  border-radius: 12px;
+  background: rgba(18, 26, 22, 0.95);
+  color: #eafff5;
+  font: 600 13px/1.35 var(--sans);
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  opacity: 0;
+  transform: translate(-50%, 10px);
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+.ie-toast.show {
+  opacity: 1;
+  transform: translate(-50%, 0);
 }
 @media (max-width: 760px) {
   .ie-modal {

@@ -273,10 +273,7 @@ function build() {
       <div class="ie-preview"><canvas data-ie-canvas></canvas></div>
       <div class="ie-panel">
         <div class="ie-controls" data-ie-controls>${controlsHtml()}</div>
-        <div class="ie-actions">
-          <button class="btn primary" data-ie-share>Поделиться</button>
-          <button class="btn" data-ie-download>Скачать</button>
-        </div>
+        <div class="ie-foot" data-ie-foot></div>
       </div>
     </div>`;
   document.body.appendChild(overlay);
@@ -298,8 +295,14 @@ function build() {
     else return;
     refresh();
   });
-  overlay.querySelector('[data-ie-download]')!.addEventListener('click', () => exportImg(false));
-  overlay.querySelector('[data-ie-share]')!.addEventListener('click', () => exportImg(true));
+  renderFoot();
+  overlay.querySelector('[data-ie-foot]')!.addEventListener('click', (e) => {
+    const b = (e.target as Element).closest('button');
+    if (!b) return;
+    if (b.hasAttribute('data-ie-share')) shareImg();
+    else if (b.hasAttribute('data-ie-copy')) copyImg();
+    else if (b.hasAttribute('data-ie-download')) downloadImg();
+  });
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && overlay.classList.contains('show')) close();
   });
@@ -310,24 +313,108 @@ function refresh() {
   render();
 }
 
-async function exportImg(share: boolean) {
+const isTouch = () => matchMedia('(pointer: coarse)').matches;
+const canCopyImg = () =>
+  !!(navigator.clipboard && (navigator.clipboard as any).write && 'ClipboardItem' in window);
+function canShareFiles() {
+  try {
+    const f = new File([new Blob([''], { type: 'image/png' })], 'q.png', { type: 'image/png' });
+    return !!(navigator.canShare && navigator.canShare({ files: [f] }));
+  } catch {
+    return false;
+  }
+}
+
+// набор кнопок зависит от платформы: на мобиле системный «Поделиться» прикрепляет
+// картинку; на десктопе он часто отдаёт в Telegram/Instagram только текст, теряя файл,
+// поэтому там надёжнее «Копировать» в буфер (⌘/Ctrl+V) или «Скачать».
+function renderFoot() {
+  const foot = overlay.querySelector('[data-ie-foot]') as HTMLElement;
+  let buttons: string;
+  let hint = '';
+  if (isTouch() && canShareFiles()) {
+    buttons =
+      `<button class="btn primary" data-ie-share>Поделиться</button>` +
+      `<button class="btn" data-ie-download>Скачать</button>`;
+  } else if (canCopyImg()) {
+    buttons =
+      `<button class="btn primary" data-ie-copy>Копировать</button>` +
+      `<button class="btn" data-ie-download>Скачать</button>`;
+    hint = `<div class="ie-hint">Вставьте картинку в Telegram или Instagram: <b>⌘/Ctrl + V</b></div>`;
+  } else {
+    buttons = `<button class="btn primary" data-ie-download>Скачать картинку</button>`;
+  }
+  foot.innerHTML = `<div class="ie-actions">${buttons}</div>${hint}`;
+}
+
+const fileName = () => `quran-${data.s}-${data.a}.png`;
+const toBlob = (): Promise<Blob> =>
+  new Promise((res) => canvas.toBlob((b) => res(b!), 'image/png', 0.95));
+
+function download(blob: Blob) {
+  const u = URL.createObjectURL(blob);
+  const link = document.createElement('a');
+  link.href = u;
+  link.download = fileName();
+  link.click();
+  setTimeout(() => URL.revokeObjectURL(u), 1500);
+}
+
+async function downloadImg() {
   render();
-  const blob: Blob = await new Promise((res) => canvas.toBlob((b) => res(b!), 'image/png', 0.95));
-  const file = new File([blob], `quran-${data.s}-${data.a}.png`, { type: 'image/png' });
-  if (share && navigator.canShare && navigator.canShare({ files: [file] })) {
+  download(await toBlob());
+  toastIE('Картинка сохранена');
+}
+
+async function shareImg() {
+  render();
+  const blob = await toBlob();
+  const file = new File([blob], fileName(), { type: 'image/png' });
+  if (navigator.canShare && navigator.canShare({ files: [file] })) {
     try {
-      await navigator.share({ files: [file], title: `Коран ${data.s}:${data.a}` });
+      // без title/text — иначе часть таргетов (Telegram на десктопе) шлёт только текст
+      await navigator.share({ files: [file] });
       return;
     } catch (e: any) {
       if (e && e.name === 'AbortError') return;
     }
   }
-  const u = URL.createObjectURL(blob);
-  const link = document.createElement('a');
-  link.href = u;
-  link.download = file.name;
-  link.click();
-  setTimeout(() => URL.revokeObjectURL(u), 1500);
+  download(blob);
+}
+
+async function copyFallback() {
+  render();
+  download(await toBlob());
+  toastIE('Скопировать не вышло — картинка скачана');
+}
+
+function copyImg() {
+  // ClipboardItem принимает Promise<Blob>, а clipboard.write вызывается синхронно в
+  // пользовательском жесте — так копирование картинки работает несмотря на async-рендер.
+  render();
+  try {
+    const item = new ClipboardItem({ 'image/png': toBlob() });
+    navigator.clipboard.write([item]).then(
+      () => toastIE('Картинка скопирована — вставьте в Telegram (⌘/Ctrl + V)'),
+      () => copyFallback()
+    );
+  } catch {
+    copyFallback();
+  }
+}
+
+let toastTimer: ReturnType<typeof setTimeout> | undefined;
+function toastIE(msg: string) {
+  let t = overlay.querySelector('.ie-toast') as HTMLElement | null;
+  if (!t) {
+    t = document.createElement('div');
+    t.className = 'ie-toast';
+    overlay.querySelector('.ie-modal')!.appendChild(t);
+  }
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t!.classList.remove('show'), 2800);
 }
 
 function close() {
