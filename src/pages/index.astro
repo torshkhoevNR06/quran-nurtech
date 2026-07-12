@@ -4,18 +4,22 @@ import { getSurahs } from '../lib/quran';
 import { icons } from '../lib/icons';
 
 const surahs = getSurahs();
+const quickSurahs = [1, 2, 18, 36, 67].map((n) => surahs.find((s) => s.n === n)).filter(Boolean);
 const title = 'Коран онлайн на русском — читать, слушать, изучать';
 const description =
   'Читайте Коран онлайн на русском: 114 сур, 6236 аятов. Арабский текст, перевод Кулиева, тафсир ас-Саади, аудио известных чтецов, поиск и закладки.';
 ---
 
 <Base {title} {description} wide>
-  <section class="hero container">
-    <h1>Коран онлайн</h1>
-    <div class="verse">رَبِّ زِدْنِي عِلْمًا</div>
-    <p class="verse-tr">«Господи! Приумножь мои знания» — сура Та Ха, аят 114</p>
-    <div class="cta">
-      <a class="btn primary" href="/surah/1">
+  <section class="home-head container">
+    <div class="home-copy">
+      <p class="eyebrow">quran.nurtech.dev</p>
+      <h1>Коран онлайн</h1>
+      <div class="verse">رَبِّ زِدْنِي عِلْمًا</div>
+      <p class="verse-tr">«Господи! Приумножь мои знания» — сура Та Ха, аят 114</p>
+    </div>
+    <div class="home-actions">
+      <a class="btn primary" href="/surah/1" data-continue-home>
         <span set:html={icons.book} style="width:18px;height:18px" /> Начать чтение
       </a>
       <a class="btn" href="/search">
@@ -28,6 +32,20 @@ const description =
   </section>
 
   <div class="container">
+    <section class="quick-surahs" aria-label="Быстрые суры">
+      {
+        quickSurahs.map((s) => (
+          <a class="quick-surah" href={`/surah/${s!.n}`}>
+            <span class="quick-surah-num">{s!.n}</span>
+            <span>
+              <strong>{s!.nr}</strong>
+              <small>{s!.nm} · {s!.c} аят.</small>
+            </span>
+          </a>
+        ))
+      }
+    </section>
+
     <div class="list-tools">
       <input
         class="filter"
@@ -57,9 +75,9 @@ const description =
               <div class="row2">
                 <span class="m">{s.nm} · {s.c} аят.</span>
                 <span class="acts">
-                  <a href={`/surah/${s.n}/kuliev`} title="Читать" set:html={icons.book} />
-                  <a href={`/audio?s=${s.n}`} title="Слушать" set:html={icons.headphones} />
-                  <a href={`/surah/${s.n}/saadi`} title="Изучать (тафсир)" set:html={icons.study} />
+                  <a href={`/surah/${s.n}/kuliev`} aria-label={`Читать суру ${s.nr}`} title="Читать" set:html={icons.book} />
+                  <a href={`/audio?s=${s.n}`} aria-label={`Слушать суру ${s.nr}`} title="Слушать" set:html={icons.headphones} />
+                  <a href={`/surah/${s.n}/saadi`} aria-label={`Изучать тафсир суры ${s.nr}`} title="Изучать (тафсир)" set:html={icons.study} />
                 </span>
               </div>
             </div>

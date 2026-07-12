@@ -39,13 +39,21 @@ const surahs = index.map((s) => ({
 writeFileSync(join(OUT, 'index.json'), JSON.stringify(surahs));
 
 // ---- 2. поисковый индекс (русский текст) ----
+// Полный поиск: по Кулиеву(r), Абу Аделю(aa), транслиту(tl), арабскому(ar).
 const searchIndex = [];
 let totalAyahs = 0;
 for (const s of surahs) {
   const surah = readJson(join(DATA, 'quran', `${s.n}.json`));
   for (const ayah of surah.a) {
     totalAyahs++;
-    searchIndex.push({ s: s.n, a: ayah.n, r: ayah.ru });
+    searchIndex.push({
+      s: s.n,
+      a: ayah.n,
+      r: ayah.ru,
+      aa: ayah.aa || '',
+      tl: ayah.tl || '',
+      ar: ayah.ar || '',
+    });
   }
 }
 writeFileSync(join(OUT, 'search-index.json'), JSON.stringify(searchIndex));

@@ -70,7 +70,7 @@ interface SurahMeta {
   slug: string;
 }
 // версия данных — сбивает кэш браузера при изменении public/data/* (напр. новые чтецы)
-const DV = '3';
+const DV = '4';
 let reciters: Reciter[] = [];
 let surahIndex: SurahMeta[] = [];
 let ayahOffset: number[] = []; // ayahOffset[s] = число аятов до суры s (для глобального номера)
@@ -354,7 +354,7 @@ async function resolveQuick(raw: string): Promise<string | null> {
   if (m) {
     const s = +m[1],
       a = +m[2];
-    if (s >= 1 && s <= 114) return `/ayah/${s}/${Math.max(1, a)}`;
+    if (s >= 1 && s <= 114) return `/${s}:${Math.max(1, a)}`;
   }
   // просто число суры
   if (/^\d{1,3}$/.test(q)) {
@@ -420,7 +420,7 @@ function renderBookmarks() {
     const [s, a] = k.split(':');
     const el = document.createElement('a');
     el.className = 'item';
-    el.href = `/ayah/${s}/${a}`;
+    el.href = `/${s}:${a}`;
     el.innerHTML = `<span>Аят ${s}:${a}</span>`;
     box.appendChild(el);
   }
@@ -481,7 +481,7 @@ function ayahText(el: Element): { ar: string; ru: string; s: number; a: number }
   return { ar, ru, s, a };
 }
 async function shareAyah(s: number, a: number, ar: string, ru: string) {
-  const url = `${location.origin}/ayah/${s}/${a}`;
+  const url = `${location.origin}/${s}:${a}`;
   const text = `Коран ${s}:${a}\n${ar}\n${ru}\n${url}`;
   if (navigator.share) {
     try {
@@ -505,7 +505,7 @@ function initAyahActions() {
       copy(`Коран ${s}:${a}\n${t.ar}\n${t.ru}`);
     });
     $('[data-act="copy-link"]', el)?.addEventListener('click', () =>
-      copy(`${location.origin}/ayah/${s}/${a}`)
+      copy(`${location.origin}/${s}:${a}`)
     );
     $('[data-act="share"]', el)?.addEventListener('click', () => {
       const t = ayahText(el);

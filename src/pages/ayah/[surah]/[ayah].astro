@@ -1,7 +1,6 @@
 ---
-import Base from '../../../layouts/Base.astro';
-import { getSurahs, getSurah, getSurahMeta, getTafsirForAyah, getIbnKathirForAyah, ref } from '../../../lib/quran';
-import { icons } from '../../../lib/icons';
+// Старая форма /ayah/54/42 → редирект на короткую /54:42 (основную).
+import { getSurahs } from '../../../lib/quran';
 
 export function getStaticPaths() {
   const paths = [];
@@ -15,89 +14,22 @@ export function getStaticPaths() {
 
 const sN = Number(Astro.params.surah);
 const aN = Number(Astro.params.ayah);
-const surah = getSurah(sN);
-const meta = getSurahMeta(sN)!;
-const ayah = surah.a.find((x) => x.n === aN)!;
-const taf = getTafsirForAyah(sN, aN);
-const ikTaf = getIbnKathirForAyah(sN, aN);
-
-const prev = aN > 1 ? { s: sN, a: aN - 1 } : sN > 1 ? { s: sN - 1, a: getSurah(sN - 1).c } : null;
-const next = aN < surah.c ? { s: sN, a: aN + 1 } : sN < 114 ? { s: sN + 1, a: 1 } : null;
-
-const title = `Аят ${sN}:${aN} — сура ${meta.nr} · Коран онлайн`;
-const description = `${ayah.ru} — Коран, сура «${meta.nr}» аят ${aN}. Арабский текст, перевод Кулиева, тафсир ас-Саади, аудио.`;
+const target = `/${sN}:${aN}`;
+const canonical = new URL(target, Astro.site).href;
 ---
 
-<Base {title} {description} surahId={sN} ayahId={aN} tr="saadi">
-  <div class="container">
-    <nav class="crumb">
-      <a href="/">Главная</a><span>›</span>
-      <a href={`/surah/${sN}`}>{meta.nr}</a><span>›</span>
-      <span>Аят {sN}:{aN}</span>
-    </nav>
-
-    <header class="surah-head">
-      <div class="kicker">Сура {sN} «{meta.nr}» · {meta.nm}</div>
-      <h1>Аят {sN}:{aN}</h1>
-    </header>
-
-    <div class="ayahs" data-ayahs data-view="all">
-      <article class="ayah active" data-ayah-key={ref(sN, aN)}>
-        <div class="ayah-top">
-          <span class="ayah-no">{sN}:{aN}</span>
-          <div class="ayah-acts">
-            <button data-act="play" aria-label="Слушать" title="Слушать" set:html={icons.play} />
-            <button data-bm={ref(sN, aN)} aria-label="Закладка" title="Закладка" set:html={icons.bookmark} />
-            <button data-act="copy" aria-label="Копировать" title="Копировать" set:html={icons.copy} />
-            <button data-act="copy-link" aria-label="Копировать ссылку" title="Ссылка" set:html={icons.share} />
-            <a href={`/surah/${sN}#ayah-${aN}`} aria-label="Открыть в суре" title="Открыть в суре" set:html={icons.book} />
-          </div>
-        </div>
-
-        <div class="ar" set:html={ayah.ar} />
-
-        <div class="translation">
-          <span class="tafsir-label">Перевод · Эльмир Кулиев</span><br />
-          {ayah.ru}
-        </div>
-
-        {ayah.aa && (
-          <div class="translation">
-            <span class="tafsir-label">Перевод · Абу Адель</span><br />
-            {ayah.aa}
-          </div>
-        )}
-
-        {taf && (
-          <div class="tafsir">
-            <span class="tafsir-label">Тафсир ас-Саади · аяты {taf.f}–{taf.t}</span>
-            {taf.x}
-          </div>
-        )}
-
-        {ikTaf && (
-          <details class="tafsir-details" open>
-            <summary>Тафсир Ибн Касира · аят {sN}:{aN}</summary>
-            <div class="tafsir">{ikTaf.x}</div>
-          </details>
-        )}
-      </article>
-    </div>
-
-    <nav class="ayah-nav">
-      {prev ? (
-        <a class="btn" href={`/ayah/${prev.s}/${prev.a}`}>
-          <span set:html={icons.arrowLeft} style="width:16px;height:16px" /> {prev.s}:{prev.a}
-        </a>
-      ) : (
-        <span />
-      )}
-      <a class="btn" href={`/surah/${sN}#ayah-${aN}`}>Открыть в суре</a>
-      {next && (
-        <a class="btn" href={`/ayah/${next.s}/${next.a}`}>
-          {next.s}:{next.a} <span set:html={icons.arrowRight} style="width:16px;height:16px" />
-        </a>
-      )}
-    </nav>
-  </div>
-</Base>
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="refresh" content={`0; url=${target}`} />
+    <link rel="canonical" href={canonical} />
+    <title>Аят {sN}:{aN}</title>
+    <script is:inline define:vars={{ target }}>
+      location.replace(target);
+    </script>
+  </head>
+  <body>
+    <a href={target}>Аят {sN}:{aN}</a>
+  </body>
+</html>

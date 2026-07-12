@@ -40,8 +40,8 @@ const arName = surah.na.replace('سُورَةُ ', '');
 
   <header class="surah-head">
     <div class="kicker">Сура №{surah.n} · {surah.nm}</div>
-    <div class="ar">{arName}</div>
     <h1>{surah.nr}</h1>
+    <div class="ar">{arName}</div>
     <div class="meta">
       <span class={`chip ${isMecca ? 'mecca' : 'medina'}`}>{meta.t}</span>
       <span class="chip">{surah.c} аятов</span>
@@ -49,11 +49,14 @@ const arName = surah.na.replace('سُورَةُ ', '');
     </div>
   </header>
 
-  <p class="surah-desc">
-    <strong>{surah.nr}</strong> ({surah.nm}) — {meta.t} сура Корана под номером {surah.n},
-    состоит из {surah.c} аятов. Ниже приведён арабский текст (Усмани) и {labels[translation].toLowerCase()}.
-    Переключить перевод/тафсир, чтеца, размер шрифта и тему можно в верхней панели.
-  </p>
+  <details class="surah-desc">
+    <summary>Описание суры и режима чтения</summary>
+    <p>
+      <strong>{surah.nr}</strong> ({surah.nm}) — {meta.t} сура Корана под номером {surah.n},
+      состоит из {surah.c} аятов. Ниже приведён арабский текст (Усмани) и {labels[translation].toLowerCase()}.
+      Перевод, чтец, размер шрифта и тему можно изменить в верхней панели.
+    </p>
+  </details>
 
   <div class="ayahs" data-ayahs data-view="all" data-surah-name={surah.nr}>
     {surah.bism && <div class="bism">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>}
@@ -68,16 +71,17 @@ const arName = surah.na.replace('سُورَةُ ', '');
           <>
             <article class="ayah" id={`ayah-${ayah.n}`} data-ayah-key={ref(surah.n, ayah.n)}>
               <div class="ayah-top">
-                <a class="ayah-no" href={`/ayah/${surah.n}/${ayah.n}`} title="Открыть аят">{surah.n}:{ayah.n}</a>
+                <a class="ayah-no" href={`/${surah.n}:${ayah.n}`} title="Открыть аят">{surah.n}:{ayah.n}</a>
                 <div class="ayah-acts">
                   <button type="button" data-act="play" aria-label="Слушать аят" title="Слушать" set:html={icons.play} />
                   <button type="button" data-bm={ref(surah.n, ayah.n)} aria-label="В закладки" title="Закладка" set:html={icons.bookmark} />
-                  <button type="button" data-act="copy" aria-label="Копировать" title="Копировать" set:html={icons.copy} />
-                  <button type="button" data-act="share" aria-label="Поделиться" title="Поделиться" set:html={icons.share} />
-                  <a href={`/ayah/${surah.n}/${ayah.n}`} aria-label="Открыть аят" title="Открыть аят" set:html={icons.details} />
+                  <button class="secondary-action" type="button" data-act="copy" aria-label="Копировать" title="Копировать" set:html={icons.copy} />
+                  <button class="secondary-action" type="button" data-act="share" aria-label="Поделиться" title="Поделиться" set:html={icons.share} />
+                  <a href={`/${surah.n}:${ayah.n}`} aria-label="Открыть аят" title="Открыть аят" set:html={icons.details} />
                 </div>
               </div>
               <div class="ar" set:html={ayah.ar} />
+              {ayah.tl && <div class="translit">{ayah.tl}</div>}
               <div class="translation">{text}</div>
               {ikBlk && (
                 <details class="tafsir-details">

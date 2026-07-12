@@ -26,6 +26,7 @@ export interface Ayah {
   tj: string; // арабский с таджвид-разметкой
   ru: string; // перевод Кулиева
   aa?: string; // перевод Абу Аделя
+  tl?: string; // транслитерация (латиница)
 }
 
 export interface Surah {

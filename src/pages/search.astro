@@ -6,12 +6,15 @@ const description = 'Поиск по Корану на русском языке
 ---
 
 <Base {title} {description}>
-  <div class="container page">
-    <h1>Поиск по Корану</h1>
-    <p>Поиск по русскому переводу (Эльмир Кулиев). Введите слово или фразу.</p>
+  <div class="container page search-page">
+    <header class="page-head">
+      <p class="eyebrow">Поиск</p>
+      <h1>Поиск по Корану</h1>
+      <p>Ищите по переводам, транслитерации и арабскому тексту. Верхнее поле на других страницах только переходит к суре или аяту, а здесь работает полноценный поиск.</p>
+    </header>
 
-    <form data-search-form style="display:flex;gap:8px;flex-wrap:wrap;margin:16px 0">
-      <div style="flex:1;min-width:220px;display:flex;gap:8px;align-items:center;border:1px solid var(--line);border-radius:var(--r-md);background:var(--surface);padding:0 12px">
+    <form data-search-form class="search-form">
+      <div class="search-input-wrap">
         <span set:html={icons.search} style="width:18px;height:18px;color:var(--ink-faint)" />
         <input
           type="search"
@@ -19,9 +22,15 @@ const description = 'Поиск по Корану на русском языке
           placeholder="Например: терпение, прощение, свет…"
           autocomplete="off"
           data-search-input
-          style="flex:1;height:44px;border:0;background:transparent;color:var(--ink);font-size:16px;outline:none"
         />
       </div>
+      <select class="sel" data-search-source aria-label="Где искать">
+        <option value="all">Везде</option>
+        <option value="r">Кулиев</option>
+        <option value="aa">Абу Адель</option>
+        <option value="tl">Транслит</option>
+        <option value="ar">Арабский</option>
+      </select>
       <select class="sel" data-search-surah aria-label="Сура">
         <option value="">Все суры</option>
       </select>
@@ -31,8 +40,20 @@ const description = 'Поиск по Корану на русском языке
       <button class="btn primary" type="submit">Найти</button>
     </form>
 
+    <div class="search-empty" data-search-empty>
+      <div>
+        <h2>Попробуйте частые запросы</h2>
+        <p>Начните с одного слова. Поиск покажет аят, источник совпадения и фрагмент с подсветкой.</p>
+      </div>
+      <div class="example-row">
+        {['милость', 'терпение', 'прощение', 'свет', 'намаз', 'рай'].map((q) => (
+          <button type="button" class="chip search-example" data-search-example={q}>{q}</button>
+        ))}
+      </div>
+    </div>
+
     <div data-search-status style="color:var(--ink-faint);font-size:14px;margin-bottom:12px"></div>
-    <div data-search-results></div>
+    <div data-search-results class="search-results"></div>
   </div>
 
   <script>

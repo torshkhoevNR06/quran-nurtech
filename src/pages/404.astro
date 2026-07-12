@@ -21,7 +21,7 @@ import Base from '../layouts/Base.astro';
         var s = +m[1],
           a = +m[2];
         if (s >= 1 && s <= 114) {
-          location.replace('/ayah/' + s + '/' + a);
+          location.replace('/' + s + ':' + a);
           return;
         }
       }

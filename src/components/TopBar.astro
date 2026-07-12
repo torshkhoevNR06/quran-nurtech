@@ -6,6 +6,7 @@ const reciters = getReciters();
 const views = [
   { id: 'arabic', label: 'Араб' },
   { id: 'translation', label: 'Перевод' },
+  { id: 'translit', label: 'Транслит' },
   { id: 'tafsir', label: 'Тафсир' },
   { id: 'all', label: 'Всё' },
 ];
@@ -20,78 +21,96 @@ const themes = [
   { id: 'sepia', label: 'Сепия' },
   { id: 'system', label: 'Системная' },
 ];
+const pathname = Astro.url.pathname;
+const isReader =
+  pathname.startsWith('/surah') || pathname.startsWith('/ayah') || /^\/\d+:\d+/.test(pathname);
+const isSearch = pathname.startsWith('/search');
+const isAudio = pathname.startsWith('/audio');
+const showReaderTools = isReader;
+const showQuick = !isSearch;
 ---
 
 <header class="topbar">
-  <div class="topbar-inner">
+  <div class={`topbar-inner ${isReader ? 'is-reader' : ''} ${isSearch ? 'is-search' : ''} ${isAudio ? 'is-audio' : ''}`}>
     <button class="icon-btn only-mobile" data-act="drawer" aria-label="Список сур" set:html={icons.menu} />
 
     <a href="/" class="brand">
       <span class="logo">ق</span><span class="brand-name">Коран&nbsp;онлайн</span>
     </a>
 
-    <!-- быстрый переход + поиск -->
-    <form class="quick" data-quick>
-      <input
-        type="text"
-        name="q"
-        placeholder="Сура, аят или 2:255…"
-        autocomplete="off"
-        spellcheck="false"
-        aria-label="Быстрый переход"
-        data-quick-input
-      />
-      <button class="btn primary" type="submit" aria-label="Перейти">→</button>
-    </form>
+    {
+      showQuick ? (
+        <form class="quick" data-quick role="search">
+          <input
+            type="text"
+            name="q"
+            placeholder="Сура или 2:255"
+            autocomplete="off"
+            spellcheck="false"
+            aria-label="Перейти к суре или аяту"
+            data-quick-input
+          />
+          <button class="btn primary quick-submit" type="submit" aria-label="Перейти">→</button>
+        </form>
+      ) : (
+        <div class="topbar-title">Поиск по Корану</div>
+      )
+    }
 
     <a class="icon-btn" href="/search" aria-label="Поиск" title="Поиск (/)" set:html={icons.search} />
 
     <!-- режимы отображения (десктоп) -->
-    <div class="seg desktop-only" data-view-seg>
-      {views.map((v) => <button data-view={v.id} type="button">{v.label}</button>)}
-    </div>
+    {showReaderTools && (
+      <div class="seg desktop-only reader-tool" data-view-seg>
+        {views.map((v) => <button data-view={v.id} type="button">{v.label}</button>)}
+      </div>
+    )}
 
     <!-- Перевод -->
-    <div class="menu-wrap desktop-only" data-menu-wrap>
-      <button class="btn" data-menu-toggle aria-haspopup="true">
-        <span data-tr-current>Тафсир</span>
-        <span set:html={icons.chevron} style="width:14px;height:14px" />
-      </button>
-      <div class="menu" data-menu="tr">
-        <h4>Перевод / тафсир</h4>
-        {
-          TRANSLATIONS.map((t) => (
-            <button
-              class="item"
-              type="button"
-              data-tr={t.id}
-              disabled={!t.available}
-              title={t.available ? '' : 'Скоро'}
-            >
-              {t.name}
-              {!t.available && <span style="color:var(--ink-faint);font-size:12px"> · скоро</span>}
-              <span class="tick">✓</span>
-            </button>
-          ))
-        }
+    {showReaderTools && (
+      <div class="menu-wrap desktop-only reader-tool" data-menu-wrap>
+        <button class="btn" data-menu-toggle aria-haspopup="true">
+          <span data-tr-current>Тафсир</span>
+          <span set:html={icons.chevron} style="width:14px;height:14px" />
+        </button>
+        <div class="menu" data-menu="tr">
+          <h4>Перевод / тафсир</h4>
+          {
+            TRANSLATIONS.map((t) => (
+              <button
+                class="item"
+                type="button"
+                data-tr={t.id}
+                disabled={!t.available}
+                title={t.available ? '' : 'Скоро'}
+              >
+                {t.name}
+                {!t.available && <span style="color:var(--ink-faint);font-size:12px"> · скоро</span>}
+                <span class="tick">✓</span>
+              </button>
+            ))
+          }
+        </div>
       </div>
-    </div>
+    )}
 
     <!-- Чтец -->
-    <div class="menu-wrap desktop-only" data-menu-wrap>
-      <button class="icon-btn" data-menu-toggle aria-label="Чтец" title="Чтец" set:html={icons.headphones} />
-      <div class="menu" data-menu="reciter">
-        <h4>Чтец</h4>
-        {
-          reciters.map((r) => (
-            <button class="item" type="button" data-reciter={r.id}>
-              {r.name}
-              <span class="tick">✓</span>
-            </button>
-          ))
-        }
+    {showReaderTools && (
+      <div class="menu-wrap desktop-only reader-tool" data-menu-wrap>
+        <button class="icon-btn" data-menu-toggle aria-label="Чтец" title="Чтец" set:html={icons.headphones} />
+        <div class="menu" data-menu="reciter">
+          <h4>Чтец</h4>
+          {
+            reciters.map((r) => (
+              <button class="item" type="button" data-reciter={r.id}>
+                {r.name}
+                <span class="tick">✓</span>
+              </button>
+            ))
+          }
+        </div>
       </div>
-    </div>
+    )}
 
     <!-- Настройки чтения -->
     <div class="menu-wrap" data-menu-wrap>
@@ -138,7 +157,7 @@ const themes = [
     </div>
 
     <!-- Тема (отдельная кнопка — прячется на мобиле, тема доступна в настройках) -->
-    <div class="menu-wrap t-opt" data-menu-wrap>
+    <div class="menu-wrap t-opt desktop-comfort" data-menu-wrap>
       <button class="icon-btn" data-menu-toggle aria-label="Тема" title="Тема" set:html={icons.theme} />
       <div class="menu" data-menu="theme">
         <h4>Тема</h4>

@@ -29,6 +29,7 @@ const audio = $<HTMLAudioElement>('[data-a-audio]');
 const titleEl = $('[data-a-title]');
 const subEl = $('[data-a-sub]');
 const toggleBtn = $('[data-a-toggle]');
+const progressEl = $('[data-a-progress]');
 
 let reciters: Reciter[] = [];
 let metas: Meta[] = [];
@@ -72,8 +73,8 @@ function pickReciter(r: Reciter, s: number): Reciter {
 
 async function init() {
   [reciters, metas] = await Promise.all([
-    fetch('/data/reciters.json?v=3').then((r) => r.json()),
-    fetch('/data/index.json?v=3').then((r) => r.json()),
+    fetch('/data/reciters.json?v=4').then((r) => r.json()),
+    fetch('/data/index.json?v=4').then((r) => r.json()),
   ]);
   let acc = 0;
   for (const m of metas) {
@@ -121,9 +122,9 @@ function renderSurah() {
   const r = reciter();
   let html = '';
   for (let a = 1; a <= m.c; a++) {
-    html += `<div class="ayah" data-row="${a}" style="display:flex;align-items:center;gap:10px;padding:10px 4px">
+    html += `<div class="audio-row" data-row="${a}">
       <button type="button" class="icon-btn" data-play="${a}" aria-label="Слушать аят ${a}">${ICON_PLAY}</button>
-      <span style="flex:1"><b>${m.nr}</b> · аят ${m.n}:${a}</span>
+      <span class="audio-row-text"><b>${m.nr}</b><small>аят ${m.n}:${a}</small></span>
       <a class="icon-btn" href="${r.type === 'surah' ? surahUrl(r, m.n) : cdnUrl(r, m.n, a)}" download aria-label="Скачать">${ICON_DL}</a>
     </div>`;
   }
@@ -143,10 +144,12 @@ function play(i: number) {
   if (r.type === 'surah') {
     audio.src = surahUrl(r, cur.s);
     titleEl && (titleEl.textContent = `Сура ${m.nr}`);
+    progressEl && (progressEl.textContent = 'Сура целиком');
   } else {
     triedFallback = false;
     audio.src = cdnUrl(r, cur.s, i + 1);
     titleEl && (titleEl.textContent = `${m.nr} · аят ${cur.s}:${i + 1}`);
+    progressEl && (progressEl.textContent = `${i + 1} / ${cur.c}`);
   }
   audio.playbackRate = speed;
   audio.play().catch(() => {});
@@ -189,6 +192,12 @@ function cycleSpeed() {
 }
 function setIcon(playing: boolean) {
   if (toggleBtn) toggleBtn.innerHTML = playing ? ICON_PAUSE : ICON_PLAY;
+  rowsBox?.querySelectorAll('[data-play]').forEach((btn) => {
+    const row = btn.closest('[data-row]');
+    const isCurrent = row?.getAttribute('data-row') === String(idx + 1);
+    if (isCurrent) btn.innerHTML = playing ? ICON_PAUSE : ICON_PLAY;
+    else btn.innerHTML = ICON_PLAY;
+  });
 }
 
 init();

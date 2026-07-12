@@ -14,6 +14,7 @@ cd "$(dirname "$0")/.."
 
 echo "▶ build (data + astro)"
 npm ci --no-audit --no-fund >/dev/null 2>&1 || npm install --no-audit --no-fund >/dev/null
+rm -rf .astro node_modules/.astro dist  # чистая сборка: иначе кэш Astro может отдать устаревшие компоненты (напр. старое меню)
 npm run build
 
 PAGES=$(find dist -name index.html | wc -l | tr -d ' ')
