@@ -175,7 +175,9 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: calc(var(--topbar-h) + 24px);
-  overflow-x: hidden;
+  /* clip (а не hidden) убирает горизонтальный скролл, НЕ создавая скролл-контейнер,
+     иначе position:sticky у топбара перестаёт прилипать на длинных сурах */
+  overflow-x: clip;
   max-width: 100%;
 }
 @media (prefers-reduced-motion: reduce) {
@@ -193,7 +195,7 @@ body {
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 /* ---- Амбиентный цветной фон (под стеклом), фиксированный ---- */
@@ -876,6 +878,12 @@ input[type='range'] {
   scroll-margin-top: calc(var(--topbar-h) + 24px);
   border-radius: 16px;
   transition: background 0.3s;
+  /* Длинные суры (Аль-Бакара — 286 аятов, ~190 000px): не рендерим аяты за пределами
+     экрана, пока до них не долистаешь. Контент ОСТАЁТСЯ в DOM — поиск/индексация,
+     Ctrl+F и якоря #ayah-N работают, страдает только рендер за экраном. auto-размер
+     запоминается после первого показа, так что скролл не «прыгает». */
+  content-visibility: auto;
+  contain-intrinsic-size: auto 640px;
 }
 .ayah:last-child {
   border-bottom: 0;
