@@ -59,8 +59,8 @@ const surahHas = (r: Reciter, s: number) => !(r.skip || []).includes(s);
 
 async function init() {
   [reciters, metas] = await Promise.all([
-    fetch('/data/reciters.json').then((r) => r.json()),
-    fetch('/data/index.json').then((r) => r.json()),
+    fetch('/data/reciters.json?v=3').then((r) => r.json()),
+    fetch('/data/index.json?v=3').then((r) => r.json()),
   ]);
   let acc = 0;
   for (const m of metas) {

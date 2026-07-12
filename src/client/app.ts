@@ -69,6 +69,8 @@ interface SurahMeta {
   c: number;
   slug: string;
 }
+// версия данных — сбивает кэш браузера при изменении public/data/* (напр. новые чтецы)
+const DV = '3';
 let reciters: Reciter[] = [];
 let surahIndex: SurahMeta[] = [];
 let ayahOffset: number[] = []; // ayahOffset[s] = число аятов до суры s (для глобального номера)
@@ -81,12 +83,12 @@ function computeOffsets(idx: SurahMeta[]) {
   }
 }
 const loadReciters = async () => {
-  if (!reciters.length) reciters = await fetch('/data/reciters.json').then((r) => r.json());
+  if (!reciters.length) reciters = await fetch(`/data/reciters.json?v=${DV}`).then((r) => r.json());
   return reciters;
 };
 const loadIndex = async () => {
   if (!surahIndex.length) {
-    surahIndex = await fetch('/data/index.json').then((r) => r.json());
+    surahIndex = await fetch(`/data/index.json?v=${DV}`).then((r) => r.json());
     computeOffsets(surahIndex);
   }
   return surahIndex;

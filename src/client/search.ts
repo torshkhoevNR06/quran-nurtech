@@ -30,8 +30,8 @@ async function ensureData() {
   if (loaded) return;
   status && (status.textContent = 'Загрузка индекса…');
   const [idx, mt] = await Promise.all([
-    fetch('/data/search-index.json').then((r) => r.json()),
-    fetch('/data/index.json').then((r) => r.json()),
+    fetch('/data/search-index.json?v=3').then((r) => r.json()),
+    fetch('/data/index.json?v=3').then((r) => r.json()),
   ]);
   index = idx;
   metas = mt;
