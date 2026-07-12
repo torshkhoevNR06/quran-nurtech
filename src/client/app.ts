@@ -97,6 +97,27 @@ const loadIndex = async () => {
   return surahIndex;
 };
 
+// Ленивая подгрузка тафсиров по суре (кэш в памяти на сессию). При ошибке НЕ кэшируем,
+// чтобы повторный клик мог попробовать заново.
+const saadiCache: Record<string, any[]> = {};
+const ikCache: Record<string, any[]> = {};
+const loadSaadi = async (s: number): Promise<any[]> => {
+  if (!saadiCache[s]) {
+    const r = await fetch(`/data/tafsir/${s}.json?v=${DV}`);
+    if (!r.ok) throw new Error('saadi ' + r.status);
+    saadiCache[s] = await r.json();
+  }
+  return saadiCache[s];
+};
+const loadIbnKathir = async (s: number): Promise<any[]> => {
+  if (!ikCache[s]) {
+    const r = await fetch(`/data/tafsir-ibnkathir/${s}.json?v=${DV}`);
+    if (!r.ok) throw new Error('ibnkathir ' + r.status);
+    ikCache[s] = await r.json();
+  }
+  return ikCache[s];
+};
+
 const pad3 = (x: number) => String(x).padStart(3, '0');
 // глобальный номер аята 1..6236
 const globalAyah = (s: number, a: number) => (ayahOffset[s] || 0) + a;
@@ -597,7 +618,72 @@ function initAyahActions() {
       toast(on ? 'В закладках' : 'Убрано');
     });
     $('[data-act="play"]', el)?.addEventListener('click', () => player.playKey(s, a));
+    $('[data-act="tafsir"]', el)?.addEventListener('click', (e) =>
+      toggleTafsir(el, s, a, e.currentTarget as HTMLElement)
+    );
   });
+}
+
+// одна секция тафсира (заголовок + текст). text — из данных, поэтому только textContent.
+function tafsirSectionEl(title: string, sub: string, text: string): HTMLElement {
+  const wrap = document.createElement('div');
+  wrap.className = 'tafsir-src';
+  const h = document.createElement('div');
+  h.className = 'tafsir-src-h';
+  const t = document.createElement('b');
+  t.textContent = title;
+  const su = document.createElement('span');
+  su.className = 'tafsir-src-sub';
+  su.textContent = ' · ' + sub;
+  h.append(t, su);
+  const b = document.createElement('div');
+  b.className = 'tafsir-src-b';
+  b.textContent = text;
+  wrap.append(h, b);
+  return wrap;
+}
+
+// раскрыть/свернуть тафсир под аятом; первый показ — ленивая загрузка обоих источников
+async function toggleTafsir(el: Element, s: number, a: number, btn: HTMLElement) {
+  const existing = $('.ayah-tafsir', el) as HTMLElement | null;
+  if (existing) {
+    const open = existing.classList.toggle('open');
+    btn.setAttribute('aria-expanded', String(open));
+    btn.classList.toggle('on', open);
+    return;
+  }
+  const panel = document.createElement('div');
+  panel.className = 'ayah-tafsir open';
+  const loading = document.createElement('div');
+  loading.className = 'tafsir-loading';
+  loading.textContent = 'Загружаю тафсир…';
+  panel.appendChild(loading);
+  el.appendChild(panel);
+  btn.setAttribute('aria-expanded', 'true');
+  btn.classList.add('on');
+  try {
+    const [saadi, ik] = await Promise.all([loadSaadi(s), loadIbnKathir(s)]);
+    const sBlk = saadi.find((b: any) => a >= b.f && a <= b.t);
+    const iBlk = ik.find((b: any) => b.a === a);
+    panel.replaceChildren();
+    if (sBlk) {
+      const sub = sBlk.f === sBlk.t ? `аят ${s}:${sBlk.t}` : `аяты ${s}:${sBlk.f}–${sBlk.t}`;
+      panel.appendChild(tafsirSectionEl('Тафсир ас-Саади', sub, sBlk.x));
+    }
+    if (iBlk) panel.appendChild(tafsirSectionEl('Тафсир Ибн Касира', `аят ${s}:${a}`, iBlk.x));
+    if (!sBlk && !iBlk) {
+      const empty = document.createElement('div');
+      empty.className = 'tafsir-empty';
+      empty.textContent = 'Для этого аята тафсир не найден.';
+      panel.appendChild(empty);
+    }
+  } catch {
+    // сбрасываем панель целиком — повторный клик попробует загрузить заново
+    panel.remove();
+    btn.classList.remove('on');
+    btn.setAttribute('aria-expanded', 'false');
+    toast('Не удалось загрузить тафсир');
+  }
 }
 
 /* ==========================================================================

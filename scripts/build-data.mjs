@@ -4,7 +4,7 @@
 //   - search-index.json — {s,a,r} по всем 6236 аятам (русский текст Кулиева) для клиентского поиска
 //   - reciters.json    — список чтецов (EveryAyah folders)
 // Источник текста/тафсира: data/quran/*.json, data/tafsir/*.json (см. /about — источники).
-import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'node:fs';
+import { readFileSync, writeFileSync, mkdirSync, existsSync, copyFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 
@@ -97,6 +97,27 @@ const reciters = [
 ];
 writeFileSync(join(OUT, 'reciters.json'), JSON.stringify(reciters));
 
+// ---- 4. тафсиры для ленивой подгрузки на клиенте (по одной суре за запрос) ----
+// Тексты объёмные (ас-Саади ~14МБ, Ибн Касир ~15МБ), поэтому НЕ инлайним в HTML,
+// а отдаём по /data/tafsir/<n>.json и /data/tafsir-ibnkathir/<n>.json (nginx их гзипит).
+const tafsirOut = join(OUT, 'tafsir');
+const ikOut = join(OUT, 'tafsir-ibnkathir');
+if (!existsSync(tafsirOut)) mkdirSync(tafsirOut, { recursive: true });
+if (!existsSync(ikOut)) mkdirSync(ikOut, { recursive: true });
+let tafsirFiles = 0;
+for (const s of surahs) {
+  const sd = join(DATA, 'tafsir', `${s.n}.json`);
+  if (existsSync(sd)) {
+    copyFileSync(sd, join(tafsirOut, `${s.n}.json`));
+    tafsirFiles++;
+  }
+  const ikp = join(DATA, 'tafsir-ibnkathir', `${s.n}.json`);
+  if (existsSync(ikp)) {
+    copyFileSync(ikp, join(ikOut, `${s.n}.json`));
+    tafsirFiles++;
+  }
+}
+
 console.log(
-  `[build-data] сур: ${surahs.length}, аятов: ${totalAyahs}, чтецов: ${reciters.length} -> public/data/`
+  `[build-data] сур: ${surahs.length}, аятов: ${totalAyahs}, чтецов: ${reciters.length}, файлов тафсира: ${tafsirFiles} -> public/data/`
 );

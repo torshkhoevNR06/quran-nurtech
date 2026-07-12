@@ -21,8 +21,11 @@ const meta = getSurahMeta(id)!;
 const trName = (TRANSLATIONS.find((t) => t.id === translation)?.name || 'перевод').toLowerCase();
 const title = `Сура ${id}: ${meta.nr} — ${trName}`;
 const description = `Сура «${meta.nr}» (${meta.nm}), ${meta.c} аятов. Арабский текст и ${trName}. Аудио, поиск, закладки.`;
+// Переводы (Кулиев/Абу Адель) — с ленивым тафсиром под аятом; тафсиры (ас-Саади/
+// Ибн Касир) как выделенные роуты печатаются сплошным «полным чтением».
+const inlineTafsir = translation !== 'saadi' && translation !== 'ibn-kathir';
 ---
 
 <Base {title} {description} surahId={id} tr={translation}>
-  <SurahView surahId={id} {translation} />
+  <SurahView surahId={id} {translation} inlineTafsir={inlineTafsir} />
 </Base>

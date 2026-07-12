@@ -13,6 +13,6 @@ const title = `Сура ${id}: ${meta.nr} (${meta.nm}) — читать с та�
 const description = `Сура «${meta.nr}» (${meta.nm}) — ${meta.t}, ${meta.c} аятов. Арабский текст, перевод Кулиева и тафсир ас-Саади, аудио.`;
 ---
 
-<Base {title} {description} surahId={id} tr="saadi">
-  <SurahView surahId={id} translation="saadi" />
+<Base {title} {description} surahId={id} tr="kuliev">
+  <SurahView surahId={id} translation="kuliev" inlineTafsir={true} />
 </Base>

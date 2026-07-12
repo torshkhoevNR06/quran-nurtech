@@ -6,8 +6,9 @@ export type TranslationId = 'kuliev' | 'abuadel' | 'saadi' | 'ibn-kathir';
 export interface Props {
   surahId: number;
   translation: TranslationId;
+  inlineTafsir?: boolean;
 }
-const { surahId, translation } = Astro.props;
+const { surahId, translation, inlineTafsir = false } = Astro.props;
 const surah = getSurah(surahId);
 const meta = getSurahMeta(surahId)!;
 
@@ -15,8 +16,15 @@ const isAbuAdel = translation === 'abuadel';
 const isSaadi = translation === 'saadi';
 const isIbnKathir = translation === 'ibn-kathir';
 
-const tafsir = isSaadi ? getTafsir(surahId) : []; // ас-Саади по диапазонам
-const ik = isIbnKathir ? getIbnKathir(surahId) : []; // Ибн Касир по аятам
+// inlineTafsir=true — тафсир под каждым аятом лениво по клику (без «стены текста»):
+// это дефолтная страница чтения и режимы Кулиев/Абу Адель. На роутах /saadi и
+// /ibn-kathir (inlineTafsir=false) тафсир печатается сплошняком — полное чтение.
+const showTafsirToggle = inlineTafsir;
+const showSaadiWall = isSaadi && !inlineTafsir;
+const showIkWall = isIbnKathir && !inlineTafsir;
+
+const tafsir = showSaadiWall ? getTafsir(surahId) : []; // ас-Саади по диапазонам
+const ik = showIkWall ? getIbnKathir(surahId) : []; // Ибн Касир по аятам
 const blockFor = (a: number) => tafsir.find((b) => a >= b.f && a <= b.t);
 const ikFor = (a: number) => ik.find((b) => b.a === a);
 
@@ -70,8 +78,8 @@ const arName = surah.na.replace('سُورَةُ ', '');
     {
       surah.a.map((ayah) => {
         const blk = blockFor(ayah.n);
-        const isRangeEnd = isSaadi && blk && ayah.n === blk.t;
-        const ikBlk = isIbnKathir ? ikFor(ayah.n) : undefined;
+        const isRangeEnd = showSaadiWall && blk && ayah.n === blk.t;
+        const ikBlk = showIkWall ? ikFor(ayah.n) : undefined;
         return (
           <>
             <article class="ayah" id={`ayah-${ayah.n}`} data-ayah-key={ref(surah.n, ayah.n)}>
@@ -93,6 +101,14 @@ const arName = surah.na.replace('سُورَةُ ', '');
                   <div class="translation tr-abuadel"><span class="tr-lbl">Абу Адель</span>{ayah.aa}</div>
                 )}
               </div>
+              {showTafsirToggle && (
+                <button class="tafsir-toggle" type="button" data-act="tafsir" aria-expanded="false" title="Показать тафсир ас-Саади и Ибн Касира">
+                  <span class="tt-ic" set:html={icons.book} />
+                  <span class="tt-tx">Тафсир</span>
+                  <span class="tt-sub">ас-Саади · Ибн Касир</span>
+                  <span class="tt-caret" set:html={icons.chevron} />
+                </button>
+              )}
               {ikBlk && (
                 <details class="tafsir-details">
                   <summary>Тафсир Ибн Касира · аят {surah.n}:{ayah.n}</summary>
