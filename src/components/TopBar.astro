@@ -129,11 +129,16 @@ const themes = [
         <div class="seg" style="width:100%">
           {fonts.map((f) => <button type="button" data-font={f.id}>{f.label}</button>)}
         </div>
+
+        <h4>Тема</h4>
+        <div class="seg" style="width:100%;flex-wrap:wrap">
+          {themes.map((t) => <button type="button" data-theme-set={t.id}>{t.label}</button>)}
+        </div>
       </div>
     </div>
 
-    <!-- Тема -->
-    <div class="menu-wrap" data-menu-wrap>
+    <!-- Тема (отдельная кнопка — прячется на мобиле, тема доступна в настройках) -->
+    <div class="menu-wrap t-opt" data-menu-wrap>
       <button class="icon-btn" data-menu-toggle aria-label="Тема" title="Тема" set:html={icons.theme} />
       <div class="menu" data-menu="theme">
         <h4>Тема</h4>
@@ -164,8 +169,8 @@ const themes = [
       </div>
     </div>
 
-    <!-- Продолжить -->
-    <a class="btn ghost hide" data-continue href="#" title="Последнее место чтения">
+    <!-- Продолжить (прячется на мобиле) -->
+    <a class="btn ghost hide t-opt" data-continue href="#" title="Последнее место чтения">
       <span set:html={icons.continue} style="width:18px;height:18px" />
       <span class="desktop-only">Продолжить</span>
     </a>
