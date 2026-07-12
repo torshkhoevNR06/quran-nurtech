@@ -42,9 +42,8 @@ export interface Surah {
 }
 
 export interface TafsirBlock {
-  f: number; // от аята
-  t: number; // до аята (включительно)
-  x: string; // текст тафсира ас-Саади
+  a: number; // номер аята
+  x: string; // текст тафсира ас-Саади (по-аятно)
 }
 
 let _surahs: SurahMeta[] | null = null;
@@ -67,7 +66,7 @@ const _tafsirCache = new Map<number, TafsirBlock[]>();
 export function getTafsir(n: number): TafsirBlock[] {
   if (!_tafsirCache.has(n)) {
     try {
-      _tafsirCache.set(n, readJson<TafsirBlock[]>(join(DATA, 'tafsir', `${n}.json`)));
+      _tafsirCache.set(n, readJson<TafsirBlock[]>(join(DATA, 'tafsir-saadi', `${n}.json`)));
     } catch {
       _tafsirCache.set(n, []);
     }
@@ -75,9 +74,9 @@ export function getTafsir(n: number): TafsirBlock[] {
   return _tafsirCache.get(n)!;
 }
 
-// Тафсир ас-Саади для конкретного аята (находим блок, покрывающий аят).
+// Тафсир ас-Саади для конкретного аята (по-аятно).
 export function getTafsirForAyah(surahN: number, ayahN: number): TafsirBlock | undefined {
-  return getTafsir(surahN).find((b) => ayahN >= b.f && ayahN <= b.t);
+  return getTafsir(surahN).find((b) => b.a === ayahN);
 }
 
 // Тафсир Ибн Касира — по аятам: [{ a, x }].

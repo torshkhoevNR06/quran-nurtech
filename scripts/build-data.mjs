@@ -100,13 +100,13 @@ writeFileSync(join(OUT, 'reciters.json'), JSON.stringify(reciters));
 // ---- 4. тафсиры для ленивой подгрузки на клиенте (по одной суре за запрос) ----
 // Тексты объёмные (ас-Саади ~14МБ, Ибн Касир ~15МБ), поэтому НЕ инлайним в HTML,
 // а отдаём по /data/tafsir/<n>.json и /data/tafsir-ibnkathir/<n>.json (nginx их гзипит).
-const tafsirOut = join(OUT, 'tafsir');
+const tafsirOut = join(OUT, 'tafsir-saadi');
 const ikOut = join(OUT, 'tafsir-ibnkathir');
 if (!existsSync(tafsirOut)) mkdirSync(tafsirOut, { recursive: true });
 if (!existsSync(ikOut)) mkdirSync(ikOut, { recursive: true });
 let tafsirFiles = 0;
 for (const s of surahs) {
-  const sd = join(DATA, 'tafsir', `${s.n}.json`);
+  const sd = join(DATA, 'tafsir-saadi', `${s.n}.json`); // ас-Саади по-аятно [{a,x}]
   if (existsSync(sd)) {
     copyFileSync(sd, join(tafsirOut, `${s.n}.json`));
     tafsirFiles++;

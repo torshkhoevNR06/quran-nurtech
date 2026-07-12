@@ -73,7 +73,7 @@ interface SurahMeta {
   slug: string;
 }
 // версия данных — сбивает кэш браузера при изменении public/data/* (напр. новые чтецы)
-const DV = '4';
+const DV = '5';
 let reciters: Reciter[] = [];
 let surahIndex: SurahMeta[] = [];
 let ayahOffset: number[] = []; // ayahOffset[s] = число аятов до суры s (для глобального номера)
@@ -103,7 +103,7 @@ const saadiCache: Record<string, any[]> = {};
 const ikCache: Record<string, any[]> = {};
 const loadSaadi = async (s: number): Promise<any[]> => {
   if (!saadiCache[s]) {
-    const r = await fetch(`/data/tafsir/${s}.json?v=${DV}`);
+    const r = await fetch(`/data/tafsir-saadi/${s}.json?v=${DV}`);
     if (!r.ok) throw new Error('saadi ' + r.status);
     saadiCache[s] = await r.json();
   }
@@ -663,12 +663,11 @@ async function toggleTafsir(el: Element, s: number, a: number, btn: HTMLElement)
   btn.classList.add('on');
   try {
     const [saadi, ik] = await Promise.all([loadSaadi(s), loadIbnKathir(s)]);
-    const sBlk = saadi.find((b: any) => a >= b.f && a <= b.t);
+    const sBlk = saadi.find((b: any) => b.a === a);
     const iBlk = ik.find((b: any) => b.a === a);
     panel.replaceChildren();
     if (sBlk) {
-      const sub = sBlk.f === sBlk.t ? `аят ${s}:${sBlk.t}` : `аяты ${s}:${sBlk.f}–${sBlk.t}`;
-      panel.appendChild(tafsirSectionEl('Тафсир ас-Саади', sub, sBlk.x));
+      panel.appendChild(tafsirSectionEl('Тафсир ас-Саади', `аят ${s}:${a}`, sBlk.x));
     }
     if (iBlk) panel.appendChild(tafsirSectionEl('Тафсир Ибн Касира', `аят ${s}:${a}`, iBlk.x));
     if (!sBlk && !iBlk) {

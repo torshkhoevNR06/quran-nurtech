@@ -23,9 +23,9 @@ const showTafsirToggle = inlineTafsir;
 const showSaadiWall = isSaadi && !inlineTafsir;
 const showIkWall = isIbnKathir && !inlineTafsir;
 
-const tafsir = showSaadiWall ? getTafsir(surahId) : []; // ас-Саади по диапазонам
+const tafsir = showSaadiWall ? getTafsir(surahId) : []; // ас-Саади по аятам
 const ik = showIkWall ? getIbnKathir(surahId) : []; // Ибн Касир по аятам
-const blockFor = (a: number) => tafsir.find((b) => a >= b.f && a <= b.t);
+const blockFor = (a: number) => tafsir.find((b) => b.a === a);
 const ikFor = (a: number) => ik.find((b) => b.a === a);
 
 const labels: Record<TranslationId, string> = {
@@ -77,8 +77,7 @@ const arName = surah.na.replace('سُورَةُ ', '');
 
     {
       surah.a.map((ayah) => {
-        const blk = blockFor(ayah.n);
-        const isRangeEnd = showSaadiWall && blk && ayah.n === blk.t;
+        const saadiBlk = showSaadiWall ? blockFor(ayah.n) : undefined;
         const ikBlk = showIkWall ? ikFor(ayah.n) : undefined;
         return (
           <>
@@ -109,6 +108,12 @@ const arName = surah.na.replace('سُورَةُ ', '');
                   <span class="tt-caret" set:html={icons.chevron} />
                 </button>
               )}
+              {saadiBlk && (
+                <div class="tafsir-passage">
+                  <span class="tafsir-label">Тафсир ас-Саади · аят {surah.n}:{ayah.n}</span>
+                  <div class="tafsir">{saadiBlk.x}</div>
+                </div>
+              )}
               {ikBlk && (
                 <details class="tafsir-details">
                   <summary>Тафсир Ибн Касира · аят {surah.n}:{ayah.n}</summary>
@@ -116,12 +121,6 @@ const arName = surah.na.replace('سُورَةُ ', '');
                 </details>
               )}
             </article>
-            {isRangeEnd && (
-              <div class="ayah tafsir-passage">
-                <span class="tafsir-label">Тафсир ас-Саади · аяты {blk!.f}–{blk!.t}</span>
-                <div class="tafsir">{blk!.x}</div>
-              </div>
-            )}
           </>
         );
       })
