@@ -1,4 +1,5 @@
 import { defineConfig } from 'astro/config';
+import sitemap from '@astrojs/sitemap';
 
 // Статический сайт (SSG): индексируемые URL, максимум SEO/перфа.
 // CSS выносим во внешний файл (inlineStylesheets:'auto') — сайт большой (~6.6k страниц),
@@ -10,4 +11,5 @@ export default defineConfig({
   compressHTML: true,
   devToolbar: { enabled: false },
   trailingSlash: 'ignore',
+  integrations: [sitemap()],
 });
