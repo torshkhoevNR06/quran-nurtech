@@ -1,0 +1,173 @@
+---
+import { icons } from '../lib/icons';
+import { getReciters, TRANSLATIONS } from '../lib/quran';
+
+const reciters = getReciters();
+const views = [
+  { id: 'arabic', label: 'Араб' },
+  { id: 'translation', label: 'Перевод' },
+  { id: 'tafsir', label: 'Тафсир' },
+  { id: 'all', label: 'Всё' },
+];
+const fonts = [
+  { id: 'Mushaf', label: 'Мусхаф' },
+  { id: 'AmiriQuran', label: 'Амири' },
+  { id: 'NaskhAr', label: 'Насх' },
+];
+const themes = [
+  { id: 'light', label: 'Светлая' },
+  { id: 'dark', label: 'Тёмная' },
+  { id: 'sepia', label: 'Сепия' },
+  { id: 'system', label: 'Системная' },
+];
+---
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <button class="icon-btn only-mobile" data-act="drawer" aria-label="Список сур" set:html={icons.menu} />
+
+    <a href="/" class="brand">
+      <span class="logo">ق</span><span class="brand-name">Коран&nbsp;онлайн</span>
+    </a>
+
+    <!-- быстрый переход + поиск -->
+    <form class="quick" data-quick>
+      <input
+        type="text"
+        name="q"
+        placeholder="Сура, аят или 2:255…"
+        autocomplete="off"
+        spellcheck="false"
+        aria-label="Быстрый переход"
+        data-quick-input
+      />
+      <button class="btn primary" type="submit" aria-label="Перейти">→</button>
+    </form>
+
+    <a class="icon-btn" href="/search" aria-label="Поиск" title="Поиск (/)" set:html={icons.search} />
+
+    <!-- режимы отображения (десктоп) -->
+    <div class="seg desktop-only" data-view-seg>
+      {views.map((v) => <button data-view={v.id} type="button">{v.label}</button>)}
+    </div>
+
+    <!-- Перевод -->
+    <div class="menu-wrap desktop-only" data-menu-wrap>
+      <button class="btn" data-menu-toggle aria-haspopup="true">
+        <span data-tr-current>Тафсир</span>
+        <span set:html={icons.chevron} style="width:14px;height:14px" />
+      </button>
+      <div class="menu" data-menu="tr">
+        <h4>Перевод / тафсир</h4>
+        {
+          TRANSLATIONS.map((t) => (
+            <button
+              class="item"
+              type="button"
+              data-tr={t.id}
+              disabled={!t.available}
+              title={t.available ? '' : 'Скоро'}
+            >
+              {t.name}
+              {!t.available && <span style="color:var(--ink-faint);font-size:12px"> · скоро</span>}
+              <span class="tick">✓</span>
+            </button>
+          ))
+        }
+      </div>
+    </div>
+
+    <!-- Чтец -->
+    <div class="menu-wrap desktop-only" data-menu-wrap>
+      <button class="icon-btn" data-menu-toggle aria-label="Чтец" title="Чтец" set:html={icons.headphones} />
+      <div class="menu" data-menu="reciter">
+        <h4>Чтец</h4>
+        {
+          reciters.map((r) => (
+            <button class="item" type="button" data-reciter={r.id}>
+              {r.name}
+              <span class="tick">✓</span>
+            </button>
+          ))
+        }
+      </div>
+    </div>
+
+    <!-- Настройки чтения -->
+    <div class="menu-wrap" data-menu-wrap>
+      <button class="icon-btn" data-menu-toggle aria-label="Настройки чтения" title="Настройки" set:html={icons.settings} />
+      <div class="menu" data-menu="settings">
+        <h4>Отображение</h4>
+        <div class="seg" data-view-seg style="width:100%;flex-wrap:wrap">
+          {views.map((v) => <button data-view={v.id} type="button">{v.label}</button>)}
+        </div>
+
+        <h4>Перевод / тафсир</h4>
+        {
+          TRANSLATIONS.map((t) => (
+            <button class="item" type="button" data-tr={t.id} disabled={!t.available}>
+              {t.name}
+              {!t.available && <span style="color:var(--ink-faint);font-size:12px"> · скоро</span>}
+              <span class="tick">✓</span>
+            </button>
+          ))
+        }
+
+        <h4>Чтец</h4>
+        <select class="sel" data-reciter-sel style="width:100%">
+          {reciters.map((r) => <option value={r.id}>{r.name}</option>)}
+        </select>
+
+        <h4>Размер арабского</h4>
+        <input type="range" min="22" max="52" step="2" data-set="ar" />
+        <h4>Размер перевода</h4>
+        <input type="range" min="14" max="26" step="1" data-set="ru" />
+        <h4>Межстрочный интервал</h4>
+        <input type="range" min="1.5" max="2.6" step="0.1" data-set="lh" />
+
+        <h4>Шрифт арабского</h4>
+        <div class="seg" style="width:100%">
+          {fonts.map((f) => <button type="button" data-font={f.id}>{f.label}</button>)}
+        </div>
+      </div>
+    </div>
+
+    <!-- Тема -->
+    <div class="menu-wrap" data-menu-wrap>
+      <button class="icon-btn" data-menu-toggle aria-label="Тема" title="Тема" set:html={icons.theme} />
+      <div class="menu" data-menu="theme">
+        <h4>Тема</h4>
+        {
+          themes.map((t) => (
+            <button class="item" type="button" data-theme-set={t.id}>
+              {t.label}
+              <span class="tick">✓</span>
+            </button>
+          ))
+        }
+      </div>
+    </div>
+
+    <!-- Закладки -->
+    <div class="menu-wrap" data-menu-wrap>
+      <button class="icon-btn" data-menu-toggle aria-label="Закладки" title="Закладки (B)" set:html={icons.bookmark} />
+      <div class="menu" data-menu="bookmarks">
+        <h4>Закладки</h4>
+        <button class="item hide" type="button" data-bookmark-add>
+          <span set:html={icons.bookmark} style="width:18px;height:18px" /> Добавить текущий аят
+        </button>
+        <div data-bookmark-list>
+          <div style="padding:10px;color:var(--ink-faint);font-size:13px" data-bookmark-empty>
+            Пока пусто. Открой аят и нажми на «флажок» или клавишу B.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Продолжить -->
+    <a class="btn ghost hide" data-continue href="#" title="Последнее место чтения">
+      <span set:html={icons.continue} style="width:18px;height:18px" />
+      <span class="desktop-only">Продолжить</span>
+    </a>
+  </div>
+</header>

@@ -1,0 +1,14 @@
+---
+// Список сур в боковом меню строится на клиенте из /data/index.json (app.ts initDrawer),
+// чтобы не дублировать 114 ссылок в каждой из ~6.6k страниц.
+import { icons } from '../lib/icons';
+---
+
+<div class="drawer-backdrop" data-drawer-backdrop></div>
+<aside class="drawer" data-drawer aria-label="Список сур">
+  <div class="dh">
+    <input type="text" placeholder="Поиск суры…" data-drawer-filter aria-label="Поиск суры" />
+    <button type="button" class="icon-btn" data-act="drawer-close" aria-label="Закрыть" set:html={icons.close} />
+  </div>
+  <nav class="dlist" data-drawer-list></nav>
+</aside>

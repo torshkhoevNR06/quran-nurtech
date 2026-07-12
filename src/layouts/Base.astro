@@ -1,0 +1,93 @@
+---
+import '../styles/global.css';
+import TopBar from '../components/TopBar.astro';
+import Drawer from '../components/Drawer.astro';
+import Player from '../components/Player.astro';
+
+export interface Props {
+  title: string;
+  description?: string;
+  wide?: boolean;
+  /** для страниц суры/аята — чтобы плеер знал контекст */
+  surahId?: number;
+  ayahId?: number;
+  tr?: string;
+}
+
+const { title, description, wide = false, surahId, ayahId, tr } = Astro.props;
+const desc =
+  description ??
+  'Коран онлайн на русском языке: чтение, перевод, тафсир ас-Саади, аудио чтецов, поиск и заучивание. 114 сур, 6236 аятов.';
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+---
+
+<!doctype html>
+<html lang="ru" data-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>{title}</title>
+    <meta name="description" content={desc} />
+    <link rel="canonical" href={canonical} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Коран онлайн" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={desc} />
+    <meta property="og:url" content={canonical} />
+    <meta name="theme-color" content="#1f7a5c" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="preload" href="/fonts/kfgqpc-hafs.woff2" as="font" type="font/woff2" crossorigin />
+    <!-- анти-flash: тема и настройки чтения до первой отрисовки -->
+    <script is:inline>
+      (function () {
+        try {
+          var t = localStorage.getItem('q_theme') || 'system';
+          var eff = t;
+          if (t === 'system')
+            eff = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+          document.documentElement.setAttribute('data-theme', eff);
+          var r = JSON.parse(localStorage.getItem('q_read') || '{}');
+          var el = document.documentElement.style;
+          if (r.ar) el.setProperty('--ar-size', r.ar + 'px');
+          if (r.ru) el.setProperty('--ru-size', r.ru + 'px');
+          if (r.lh) el.setProperty('--lh', r.lh);
+          if (r.font) el.setProperty('--ar-font', r.font);
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body data-surah={surahId ?? ''} data-ayah={ayahId ?? ''} data-tr={tr ?? ''}>
+    <TopBar />
+    <main class={wide ? 'wide' : ''}>
+      <slot />
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="fnav">
+          <a href="/">Главная</a>
+          <a href="/search">Поиск</a>
+          <a href="/audio">Аудио</a>
+          <a href="/videos">Видео</a>
+          <a href="/download">Скачать</a>
+          <a href="/howto">Как работать</a>
+          <a href="/about">О проекте</a>
+          <a href="/translators">Переводчики</a>
+          <a href="/privacy">Конфиденциальность</a>
+        </div>
+        <div>
+          Коран онлайн — quran.nurtech.dev. Тексты и аудио из открытых источников (см.
+          <a class="link" href="/about" style="color:var(--accent)">О проекте</a>).
+        </div>
+      </div>
+    </footer>
+
+    <Drawer />
+    <Player />
+    <div class="toast" id="toast"></div>
+
+    <script>
+      import '../client/app';
+    </script>
+  </body>
+</html>

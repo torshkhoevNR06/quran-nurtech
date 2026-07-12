@@ -1,0 +1,63 @@
+---
+import Base from '../layouts/Base.astro';
+const title = 'Скачать Коран — тексты и аудио';
+const description = 'Скачать данные Корана: перевод в JSON и CSV, аудио по сурам и аятам. Источники и форматы.';
+---
+
+<Base {title} {description}>
+  <div class="container page">
+    <h1>Скачать</h1>
+    <p>Тексты и аудио доступны для скачивания. Данные — из открытых источников (см. <a class="link" href="/about" style="color:var(--accent)">О проекте</a>).</p>
+
+    <h2>Тексты</h2>
+    <ul>
+      <li>
+        <a class="link" href="/data/search-index.json" download style="color:var(--accent)">Перевод Кулиева — JSON</a>
+        — все 6236 аятов (сура, аят, текст).
+      </li>
+      <li>
+        <button class="btn" data-csv style="margin:6px 0">Перевод Кулиева — CSV</button>
+        — генерируется в браузере.
+      </li>
+      <li>
+        <a class="link" href="/data/index.json" download style="color:var(--accent)">Список сур — JSON</a>
+        — метаданные 114 сур.
+      </li>
+      <li>PDF / EPUB — в подготовке.</li>
+    </ul>
+
+    <h2>Аудио</h2>
+    <p>
+      Аудио по сурам и аятам скачивается на странице <a class="link" href="/audio" style="color:var(--accent)">Аудио</a>:
+      выберите чтеца и суру, у каждого аята есть кнопка загрузки mp3. Источник — EveryAyah.
+    </p>
+
+    <h2>Источники и лицензии</h2>
+    <p>
+      Арабский текст (Усмани) и перевод Э. Кулиева, тафсир ас-Саади — из открытых наборов
+      данных. Аудио — публичные записи чтецов через EveryAyah. Подробнее — на странице
+      <a class="link" href="/about" style="color:var(--accent)">О проекте</a>.
+    </p>
+
+    <div class="toast" data-dl-toast style="display:none"></div>
+  </div>
+
+  <script is:inline>
+    document.querySelector('[data-csv]')?.addEventListener('click', async function () {
+      var btn = this;
+      btn.textContent = 'Готовим…';
+      try {
+        var rows = await fetch('/data/search-index.json').then((r) => r.json());
+        var esc = (s) => '"' + String(s).replace(/"/g, '""') + '"';
+        var csv = 'surah,ayah,translation_kuliev\n' + rows.map((r) => r.s + ',' + r.a + ',' + esc(r.r)).join('\n');
+        var blob = new Blob(['﻿' + csv], { type: 'text/csv;charset=utf-8' });
+        var a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = 'quran-kuliev.csv';
+        a.click();
+        URL.revokeObjectURL(a.href);
+      } catch (e) {}
+      btn.textContent = 'Перевод Кулиева — CSV';
+    });
+  </script>
+</Base>

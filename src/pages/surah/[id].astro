@@ -1,0 +1,18 @@
+---
+import Base from '../../layouts/Base.astro';
+import SurahView from '../../components/SurahView.astro';
+import { getSurahs, getSurahMeta } from '../../lib/quran';
+
+export function getStaticPaths() {
+  return getSurahs().map((s) => ({ params: { id: String(s.n) } }));
+}
+
+const id = Number(Astro.params.id);
+const meta = getSurahMeta(id)!;
+const title = `Сура ${id}: ${meta.nr} (${meta.nm}) — читать с тафсиром ас-Саади`;
+const description = `Сура «${meta.nr}» (${meta.nm}) — ${meta.t}, ${meta.c} аятов. Арабский текст, перевод Кулиева и тафсир ас-Саади, аудио.`;
+---
+
+<Base {title} {description} surahId={id} tr="saadi">
+  <SurahView surahId={id} translation="saadi" />
+</Base>

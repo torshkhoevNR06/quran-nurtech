@@ -1,0 +1,71 @@
+---
+import Base from '../layouts/Base.astro';
+import { getSurahs } from '../lib/quran';
+import { icons } from '../lib/icons';
+
+const surahs = getSurahs();
+const title = 'Коран онлайн на русском — читать, слушать, изучать';
+const description =
+  'Читайте Коран онлайн на русском: 114 сур, 6236 аятов. Арабский текст, перевод Кулиева, тафсир ас-Саади, аудио известных чтецов, поиск и закладки.';
+---
+
+<Base {title} {description} wide>
+  <section class="hero container">
+    <h1>Коран онлайн</h1>
+    <div class="verse">رَبِّ زِدْنِي عِلْمًا</div>
+    <p class="verse-tr">«Господи! Приумножь мои знания» — сура Та Ха, аят 114</p>
+    <div class="cta">
+      <a class="btn primary" href="/surah/1">
+        <span set:html={icons.book} style="width:18px;height:18px" /> Начать чтение
+      </a>
+      <a class="btn" href="/search">
+        <span set:html={icons.search} style="width:18px;height:18px" /> Поиск
+      </a>
+      <a class="btn" href="/audio">
+        <span set:html={icons.headphones} style="width:18px;height:18px" /> Аудио
+      </a>
+    </div>
+  </section>
+
+  <div class="container">
+    <div class="list-tools">
+      <input
+        class="filter"
+        type="text"
+        placeholder="Найти суру по названию или номеру…"
+        data-home-filter
+        aria-label="Фильтр сур"
+      />
+    </div>
+
+    <div class="surah-grid" data-surah-grid>
+      {
+        surahs.map((s) => (
+          <div
+            class="surah-card"
+            data-card
+            data-name={`${s.nr} ${s.ne} ${s.nm} ${s.n}`.toLowerCase()}
+          >
+            <a href={`/surah/${s.n}`} class="num" aria-label={`Сура ${s.n}`}>
+              <span>{s.n}</span>
+            </a>
+            <div class="card-body">
+              <div class="row1">
+                <a href={`/surah/${s.n}`} class="r">{s.nr}</a>
+                <span class="ar-name">{s.na.replace('سُورَةُ ', '')}</span>
+              </div>
+              <div class="row2">
+                <span class="m">{s.nm} · {s.c} аят.</span>
+                <span class="acts">
+                  <a href={`/surah/${s.n}/kuliev`} title="Читать" set:html={icons.book} />
+                  <a href={`/audio?s=${s.n}`} title="Слушать" set:html={icons.headphones} />
+                  <a href={`/surah/${s.n}/saadi`} title="Изучать (тафсир)" set:html={icons.study} />
+                </span>
+              </div>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</Base>

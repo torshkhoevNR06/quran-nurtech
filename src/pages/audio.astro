@@ -1,0 +1,37 @@
+---
+import Base from '../layouts/Base.astro';
+import { icons } from '../lib/icons';
+const title = 'Аудио Корана — чтецы, суры, скачивание';
+const description = 'Слушайте и скачивайте аудио Корана: чтецы (Мишари Рашид, аль-Хусари, аль-Катами и другие), выбор суры и аята, повтор, скорость.';
+---
+
+<Base {title} {description}>
+  <div class="container page">
+    <h1>Аудио Корана</h1>
+    <p>Выберите чтеца и суру. Можно слушать аят за аятом, повторять и скачивать mp3. Источник аудио: EveryAyah.</p>
+
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin:16px 0">
+      <select class="sel" data-audio-reciter aria-label="Чтец" style="min-width:220px"></select>
+      <select class="sel" data-audio-surah aria-label="Сура" style="min-width:200px"></select>
+    </div>
+
+    <div class="player-inline" style="display:flex;align-items:center;gap:8px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);padding:10px;position:sticky;top:calc(var(--topbar-h) + 8px);z-index:10">
+      <div class="now" style="flex:1;min-width:0">
+        <div class="t" data-a-title style="font-weight:700;font-size:14px">Аят не выбран</div>
+        <div class="s" data-a-sub style="font-size:12px;color:var(--ink-faint)"></div>
+      </div>
+      <button class="icon-btn" data-a-prev aria-label="Предыдущий" set:html={icons.prev} />
+      <button class="play" data-a-toggle aria-label="Play/pause" style="width:42px;height:42px;background:var(--accent);color:var(--accent-ink);border:0;border-radius:50%" set:html={icons.play} />
+      <button class="icon-btn" data-a-next aria-label="Следующий" set:html={icons.next} />
+      <button class="icon-btn" data-a-repeat aria-label="Повтор аята" title="Повтор аята" set:html={icons.repeat} />
+      <button class="icon-btn" data-a-speed aria-label="Скорость"><span class="speed" data-a-speed-label style="font:700 12px/1 var(--sans)">1×</span></button>
+      <audio data-a-audio preload="none"></audio>
+    </div>
+
+    <div data-a-rows style="margin-top:14px"></div>
+  </div>
+
+  <script>
+    import '../client/audio';
+  </script>
+</Base>

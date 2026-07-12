@@ -1,0 +1,14 @@
+# build output
+dist/
+.astro/
+node_modules/
+
+# generated (rebuilt by scripts/build-data.mjs on prebuild/predev)
+public/data/
+
+# os / editor
+.DS_Store
+*.log
+npm-debug.log*
+.vscode/
+.idea/

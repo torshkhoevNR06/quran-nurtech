@@ -1,0 +1,77 @@
+---
+import Base from '../layouts/Base.astro';
+import { getSurahs, getReciters } from '../lib/quran';
+const surahs = getSurahs();
+const reciters = getReciters();
+const title = 'Видео-рецитации Корана — по сурам и чтецам';
+const description = 'Видео-рецитации Корана: подборки по суре, диапазону аятов и чтецу. YouTube-рецитации известных чтецов.';
+---
+
+<Base {title} {description} wide>
+  <div class="container page">
+    <h1>Видео-рецитации</h1>
+    <p>Выберите суру и чтеца — откроется подборка видео на YouTube. Раздел с встроенным плеером пополняется.</p>
+
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin:16px 0">
+      <select class="sel" data-v-reciter aria-label="Чтец" style="min-width:220px">
+        <option value="">Любой чтец</option>
+        {reciters.map((r) => <option value={r.name}>{r.name}</option>)}
+      </select>
+      <input
+        class="filter"
+        type="text"
+        placeholder="Фильтр сур…"
+        data-v-filter
+        aria-label="Фильтр сур"
+        style="min-width:200px"
+      />
+    </div>
+
+    <div class="surah-grid" data-v-grid>
+      {
+        surahs.map((s) => (
+          <a
+            class="surah-card"
+            data-v-card
+            data-name={`${s.nr} ${s.ne} ${s.nm} ${s.n}`.toLowerCase()}
+            data-surah={s.nr}
+            data-n={s.n}
+            target="_blank"
+            rel="noopener"
+            href={`https://www.youtube.com/results?search_query=${encodeURIComponent('сура ' + s.nr + ' чтение Корана')}`}
+          >
+            <span class="num"><span>{s.n}</span></span>
+            <span class="info">
+              <span class="r">{s.nr}</span>
+              <span class="m"><span>{s.nm}</span>·<span>{s.c} аятов</span></span>
+            </span>
+            <span class="ar-name">▶</span>
+          </a>
+        ))
+      }
+    </div>
+  </div>
+
+  <script is:inline>
+    (function () {
+      var rec = document.querySelector('[data-v-reciter]');
+      var flt = document.querySelector('[data-v-filter]');
+      var cards = Array.prototype.slice.call(document.querySelectorAll('[data-v-card]'));
+      function upd() {
+        var r = rec && rec.value ? ' ' + rec.value : '';
+        var q = (flt && flt.value ? flt.value : '').trim().toLowerCase();
+        cards.forEach(function (c) {
+          var surah = c.getAttribute('data-surah');
+          c.href =
+            'https://www.youtube.com/results?search_query=' +
+            encodeURIComponent('сура ' + surah + ' чтение Корана' + r);
+          var hit = !q || (c.getAttribute('data-name') || '').indexOf(q) >= 0;
+          c.style.display = hit ? '' : 'none';
+        });
+      }
+      rec && rec.addEventListener('change', upd);
+      flt && flt.addEventListener('input', upd);
+      upd();
+    })();
+  </script>
+</Base>

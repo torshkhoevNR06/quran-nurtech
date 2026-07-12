@@ -1,0 +1,28 @@
+---
+import { icons } from '../lib/icons';
+---
+
+<div class="player" data-player aria-label="Аудиоплеер">
+  <div class="player-inner">
+    <div class="now">
+      <div class="t" data-player-title>Аят не выбран</div>
+      <div class="s" data-player-sub>Выберите аят кнопкой ▶</div>
+    </div>
+
+    <div class="ctrls">
+      <button class="icon-btn" data-player-prev aria-label="Предыдущий аят" title="Пред. ([)" set:html={icons.prev} />
+      <button class="play" data-player-toggle aria-label="Воспроизвести/пауза" title="Play/pause (P)" set:html={icons.play} />
+      <button class="icon-btn" data-player-next aria-label="Следующий аят" title="След. (])" set:html={icons.next} />
+    </div>
+
+    <div class="extra">
+      <button class="icon-btn" data-player-repeat aria-label="Повтор аята" title="Повтор аята" set:html={icons.repeat} />
+      <button class="icon-btn desktop-only" data-player-range aria-label="Повтор диапазона" title="Повтор диапазона" set:html={icons.repeatRange} />
+      <button class="icon-btn" data-player-speed aria-label="Скорость" title="Скорость воспроизведения">
+        <span class="speed" data-player-speed-label>1×</span>
+      </button>
+      <button class="icon-btn desktop-only" data-player-close aria-label="Скрыть плеер" set:html={icons.close} />
+    </div>
+  </div>
+  <audio data-player-audio preload="none"></audio>
+</div>
