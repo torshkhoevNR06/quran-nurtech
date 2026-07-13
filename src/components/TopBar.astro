@@ -70,13 +70,6 @@ const showQuick = !isSearch;
     <a class="icon-btn" href="/search" aria-label="Поиск" title="Поиск (/)" set:html={icons.search} />
     <a class="icon-btn desktop-comfort" href="/mushaf/1" aria-label="Мусхаф" title="Мусхаф" set:html={icons.book} />
 
-    <!-- режимы отображения (десктоп) -->
-    {showReaderTools && (
-      <div class="seg desktop-only reader-tool" data-view-seg>
-        {views.map((v) => <button data-view={v.id} type="button">{v.label}</button>)}
-      </div>
-    )}
-
     <!-- Перевод -->
     {showReaderTools && (
       <div class="menu-wrap desktop-only reader-tool" data-menu-wrap>
@@ -136,9 +129,18 @@ const showQuick = !isSearch;
         </div>
 
         <h4>Отображение</h4>
-        <div class="seg seg-grid3" data-view-seg>
-          {views.map((v) => <button data-view={v.id} type="button">{v.label}</button>)}
-        </div>
+        <button class="item item-toggle" type="button" data-layer="ar">
+          <span class="it-label">Арабский текст</span>
+          <span class="switch" aria-hidden="true"></span>
+        </button>
+        <button class="item item-toggle" type="button" data-layer="tl">
+          <span class="it-label">Транслитерация</span>
+          <span class="switch" aria-hidden="true"></span>
+        </button>
+        <button class="item item-toggle" type="button" data-layer="tr">
+          <span class="it-label">Перевод</span>
+          <span class="switch" aria-hidden="true"></span>
+        </button>
 
         <h4>Перевод / тафсир</h4>
         {

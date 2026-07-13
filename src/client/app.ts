@@ -25,6 +25,7 @@ const K = {
   theme: 'q_theme',
   read: 'q_read',
   view: 'q_view',
+  layers: 'q_layers',
   tr: 'q_tr',
   reciter: 'q_reciter',
   speed: 'q_speed',
@@ -559,21 +560,36 @@ function initReading() {
 /* ==========================================================================
    Режим отображения (араб / перевод / транслит / тафсир / всё)
    ========================================================================== */
-function applyView(v: string) {
+// Независимые слои отображения (араб / транслит / перевод — каждый вкл/выкл).
+// Дефолт: арабский + перевод (транслит выключен).
+interface Layers {
+  ar: boolean;
+  tl: boolean;
+  tr: boolean;
+}
+let layersState: Layers = { ar: true, tl: false, tr: true };
+function applyLayers(l: Layers) {
+  // подстраховка: хотя бы один слой должен быть включён
+  if (!l.ar && !l.tl && !l.tr) l.ar = true;
   const box = $('[data-ayahs]');
-  if (box) box.setAttribute('data-view', v);
-  $$('[data-view-seg] [data-view]').forEach((b) =>
-    b.classList.toggle('on', b.getAttribute('data-view') === v)
+  if (box) {
+    box.classList.toggle('hide-ar', !l.ar);
+    box.classList.toggle('hide-tl', !l.tl);
+    box.classList.toggle('hide-tr', !l.tr);
+  }
+  $$('[data-layer]').forEach((b) =>
+    b.classList.toggle('on', !!(l as any)[b.getAttribute('data-layer')!])
   );
 }
 function initView() {
-  const cur = LS.get<string>(K.view, 'all');
-  applyView(cur);
-  $$('[data-view-seg] [data-view]').forEach((b) =>
+  layersState = LS.get<Layers>(K.layers, { ar: true, tl: false, tr: true });
+  applyLayers(layersState);
+  $$('[data-layer]').forEach((b) =>
     b.addEventListener('click', () => {
-      const v = b.getAttribute('data-view')!;
-      LS.set(K.view, v);
-      applyView(v);
+      const k = b.getAttribute('data-layer') as keyof Layers;
+      layersState[k] = !layersState[k];
+      LS.set(K.layers, layersState);
+      applyLayers(layersState);
     })
   );
 }
@@ -1790,9 +1806,15 @@ function initHotkeys() {
   });
 }
 function setViewHotkey(v: string) {
-  LS.set(K.view, v);
-  applyView(v);
-  toast('Режим: ' + v);
+  // хоткеи тумблят слои: a — арабский, s — перевод, d — транслит
+  const map: Dict<keyof Layers> = { arabic: 'ar', translation: 'tr', translit: 'tl' };
+  const k = map[v];
+  if (!k) return;
+  layersState[k] = !layersState[k];
+  LS.set(K.layers, layersState);
+  applyLayers(layersState);
+  const names: Dict<string> = { ar: 'Арабский', tr: 'Перевод', tl: 'Транслитерация' };
+  toast(`${names[k]}: ${layersState[k] ? 'вкл' : 'выкл'}`);
 }
 function jumpAyah(delta: number) {
   const box = $('[data-ayahs]');

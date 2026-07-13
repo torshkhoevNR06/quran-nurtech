@@ -1551,7 +1551,19 @@ body.memorize-on .ayahs .ayah-tafsir {
   display: none;
 }
 
-/* режимы отображения */
+/* Независимые слои отображения — прячем выключенный слой (араб/транслит/перевод) */
+.ayahs.hide-ar .ar {
+  display: none;
+}
+.ayahs.hide-tl .translit {
+  display: none;
+}
+.ayahs.hide-tr .tr-block,
+.ayahs.hide-tr .translation {
+  display: none;
+}
+
+/* режимы отображения (устар. радио — контейнер в режиме "all", не матчатся) */
 .ayahs[data-view='arabic'] .translit,
 .ayahs[data-view='arabic'] .translation,
 .ayahs[data-view='arabic'] .tafsir,
