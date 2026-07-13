@@ -2908,18 +2908,33 @@ select:focus-visible,
 /* ==========================================================================
    Десктоп-сайдбар (macOS source list): drawer → постоянная левая колонка
    ========================================================================== */
-@media (min-width: 821px) and (max-width: 1023px) {
+@media (min-width: 821px) and (max-width: 1119px) {
   /* планшетная «дыра»: сайдбара ещё нет — возвращаем кнопку-гамбургер */
   [data-act='drawer'].only-mobile {
     display: inline-flex;
   }
 }
-@media (min-width: 1024px) {
+@media (min-width: 1120px) {
   :root {
     --sidebar-w: 300px;
   }
   body {
     padding-left: var(--sidebar-w);
+  }
+  /* тулбар в контент-панели: пилюля в размер содержимого по центру (не 1080px cap,
+     иначе пункты вылезали за край и обрезались). Инлайн-переключатель видов убираем —
+     он есть в «Настройках». */
+  .topbar-inner {
+    max-width: 100%;
+    width: -moz-fit-content;
+    width: fit-content;
+    margin-inline: auto;
+  }
+  .topbar .seg.desktop-only[data-view-seg] {
+    display: none;
+  }
+  .quick {
+    flex: none;
   }
   .drawer {
     top: 0;
