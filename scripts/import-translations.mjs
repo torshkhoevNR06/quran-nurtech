@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 // Импорт: перевод Абу Аделя (alquran.cloud ru.abuadel) → поле `aa` у каждого аята;
 // тафсир Ибн Касира рус. (spa5k ru-tafsir-ibne-kahtir, по-суровые бандлы) → data/tafsir-ibnkathir/;
-// тафсир ас-Саади рус. ПО-АЯТНО (spa5k ru-tafseer-al-saddi) → data/tafsir-saadi/.
+// тафсир ас-Саади НЕ импортируем из spa5k: у ru-tafseer-al-saddi системный сдвиг
+// привязки к аятам. Для ас-Саади используйте scripts/import-saadi-quran-online.mjs.
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -81,28 +82,5 @@ async function worker() {
 await Promise.all(Array.from({ length: 8 }, worker));
 console.log(`  Ибн Касир: сур ${ikSurahs}, аятов с тафсиром ${ikAyahs}`);
 
-// ---- 3. ас-Саади ПО-АЯТНО (по-суровые бандлы) ----
-// Раньше ас-Саади был по диапазонам (один блок на группу аятов → «батч»).
-// ru-tafseer-al-saddi даёт тафсир на каждый аят отдельно (где ас-Саади реально
-// комментировал группу вместе — текст у соседних аятов совпадает, это верно).
-console.log('→ ас-Саади по-аятно (ru-tafseer-al-saddi)…');
-const sbase = 'https://cdn.jsdelivr.net/gh/spa5k/tafsir_api@main/tafsir/ru-tafseer-al-saddi';
-let sAyahs = 0,
-  sSurahs = 0;
-let snext = 1;
-async function sworker() {
-  while (snext <= 114) {
-    const n = snext++;
-    const arr = await getJson(`${sbase}/${n}.json`);
-    const out = arr
-      .map((x) => ({ a: Number(x.ayah), x: cleanTafsir(x.text) }))
-      .filter((x) => x.x && x.a > 0)
-      .sort((p, q) => p.a - q.a);
-    writeFileSync(join(SDIR, `${n}.json`), JSON.stringify(out));
-    sAyahs += out.length;
-    sSurahs++;
-  }
-}
-await Promise.all(Array.from({ length: 8 }, sworker));
-console.log(`  ас-Саади: сур ${sSurahs}, аятов с тафсиром ${sAyahs}`);
+console.log('→ ас-Саади пропущен: используйте npm run import:saadi (quran-online.ru, верная привязка).');
 console.log('Готово.');

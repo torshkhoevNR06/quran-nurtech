@@ -10,7 +10,8 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "data": "node scripts/build-data.mjs"
+    "data": "node scripts/build-data.mjs",
+    "import:saadi": "node scripts/import-saadi-quran-online.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.3",
