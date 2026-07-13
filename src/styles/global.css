@@ -2097,6 +2097,24 @@ mark.hit {
   text-align: center;
 }
 
+/* селекторы «Сура…» / «Джуз…» в тулбаре мусхафа */
+.mushaf-nav-sel {
+  height: 42px;
+  max-width: 168px;
+  padding: 0 10px;
+  border: 1px solid var(--glass-border);
+  border-radius: 14px;
+  background: var(--glass-bg-strong);
+  color: var(--ink);
+  font: 700 13px / 1 var(--sans);
+  box-shadow: var(--glass-elev-sm);
+  cursor: pointer;
+}
+.mushaf-nav-sel:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
 .mushaf-sheet {
   position: relative;
   width: min(640px, calc(100vw - var(--sidebar-current-w, var(--sidebar-w, 0px)) - 72px), 62dvh);

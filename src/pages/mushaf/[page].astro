@@ -53,6 +53,14 @@ const surahLabel = starts.length
       .join(' · ');
 const fontCss = mushafTajweedFontCss(pageNum);
 const fontFamily = mushafTajweedFontFamily(pageNum);
+
+// навигация по сурам/джузам: текущие сура и джуз для предвыбора + список джузов→страниц
+const currentSurah = starts[0]?.s ?? Number(page.lines[0]?.w[0]?.k.split(':')[0]) ?? 1;
+const currentJuz = meta.pageJuz[String(pageNum)] ?? null;
+const juzList = Array.from({ length: 30 }, (_, i) => i + 1).map((n) => ({
+  n,
+  p: meta.juzStart[String(n)] ?? 1,
+}));
 ---
 
 <Base {title} {description} wide pageMode="mushaf">
@@ -118,9 +126,30 @@ const fontFamily = mushafTajweedFontFamily(pageNum);
     <nav class="mushaf-toolbar container" aria-label="Навигация по мусхафу">
       <a class={`icon-btn ${prevPage ? '' : 'disabled'}`} href={prevPage ? `/mushaf/${prevPage}` : undefined} aria-label="Предыдущая страница" title="Предыдущая страница" set:html={icons.arrowLeft} />
 
+      <select class="mushaf-nav-sel" data-mushaf-goto aria-label="Перейти к суре">
+        <option value="">Сура…</option>
+        {
+          meta.suraPages.map((s) => (
+            <option value={s.p} selected={s.n === currentSurah ? true : undefined}>
+              {s.n}. {s.nr}
+            </option>
+          ))
+        }
+      </select>
+
+      <select class="mushaf-nav-sel" data-mushaf-goto aria-label="Перейти к джузу">
+        <option value="">Джуз…</option>
+        {
+          juzList.map((j) => (
+            <option value={j.p} selected={j.n === currentJuz ? true : undefined}>
+              Джуз {j.n}
+            </option>
+          ))
+        }
+      </select>
+
       <form class="mushaf-jump" action="/mushaf/1" data-mushaf-jump>
-        <label for="mushaf-page">Страница</label>
-        <input id="mushaf-page" name="page" type="number" inputmode="numeric" min="1" max={MUSHAF_TOTAL_PAGES} value={pageNum} />
+        <input id="mushaf-page" name="page" type="number" inputmode="numeric" min="1" max={MUSHAF_TOTAL_PAGES} value={pageNum} aria-label="Номер страницы" />
         <span>/ {MUSHAF_TOTAL_PAGES}</span>
       </form>
 
@@ -216,6 +245,14 @@ const fontFamily = mushafTajweedFontFamily(pageNum);
       event.preventDefault();
       var input = form.querySelector('input[name="page"]');
       var page = Math.max(1, Math.min(604, parseInt(input && input.value, 10) || 1));
+      location.href = '/mushaf/' + page;
+    });
+
+    // селекторы «Сура…» / «Джуз…» — переход на страницу мусхафа
+    document.addEventListener('change', function (event) {
+      var sel = event.target && event.target.closest && event.target.closest('[data-mushaf-goto]');
+      if (!sel || !sel.value) return;
+      var page = Math.max(1, Math.min(604, parseInt(sel.value, 10) || 1));
       location.href = '/mushaf/' + page;
     });
 
