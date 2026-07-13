@@ -122,9 +122,17 @@ const showQuick = !isSearch;
     )}
 
     <!-- Настройки чтения -->
-    <div class="menu-wrap" data-menu-wrap>
+    <div class="menu-wrap settings-menu-wrap" data-menu-wrap data-settings-menu-wrap>
       <button class="icon-btn" data-menu-toggle aria-label="Настройки чтения" title="Настройки" set:html={icons.settings} />
       <div class="menu" data-menu="settings">
+        <div class="settings-panel-head">
+          <div>
+            <strong>Настройки чтения</strong>
+            <span>Вид, перевод, чтец и тема</span>
+          </div>
+          <button class="settings-panel-close" type="button" data-menu-close aria-label="Закрыть настройки" set:html={icons.close} />
+        </div>
+
         <h4>Отображение</h4>
         <div class="seg seg-grid3" data-view-seg>
           {views.map((v) => <button data-view={v.id} type="button">{v.label}</button>)}
@@ -205,6 +213,7 @@ const showQuick = !isSearch;
           <button type="button" data-memrep="0">∞</button>
         </div>
       </div>
+      <button class="settings-panel-backdrop" type="button" data-settings-panel-backdrop aria-label="Закрыть настройки"></button>
     </div>
 
     <!-- Тема (отдельная кнопка — прячется на мобиле, тема доступна в настройках) -->

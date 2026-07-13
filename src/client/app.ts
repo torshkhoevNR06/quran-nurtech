@@ -608,19 +608,42 @@ function initMenus() {
     const toggle = $('[data-menu-toggle]', wrap);
     const menu = $('.menu', wrap);
     if (!toggle || !menu) return;
+    const isSettings = menu.getAttribute('data-menu') === 'settings';
+    const backdrop = isSettings ? $('[data-settings-panel-backdrop]', wrap) : null;
+    if (isSettings) {
+      document.body.append(menu);
+      if (backdrop) document.body.append(backdrop);
+    }
+    menu.addEventListener('click', (e) => e.stopPropagation());
+    toggle.setAttribute('aria-expanded', 'false');
     toggle.addEventListener('click', (e) => {
       e.stopPropagation();
       const open = menu.classList.contains('open');
       closeMenus();
-      if (!open) menu.classList.add('open');
+      if (!open) {
+        menu.classList.add('open');
+        toggle.setAttribute('aria-expanded', 'true');
+        if (isSettings) document.body.classList.add('settings-panel-open');
+      }
     });
   });
+  $$('[data-menu-close], [data-settings-panel-backdrop]').forEach((el) =>
+    el.addEventListener('click', (e) => {
+      e.stopPropagation();
+      closeMenus();
+    })
+  );
   document.addEventListener('click', (e) => {
     if (!(e.target as Element).closest('[data-menu-wrap]')) closeMenus();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeMenus();
   });
 }
 function closeMenus() {
   $$('.menu.open').forEach((m) => m.classList.remove('open'));
+  $$('[data-menu-toggle][aria-expanded="true"]').forEach((t) => t.setAttribute('aria-expanded', 'false'));
+  document.body.classList.remove('settings-panel-open');
 }
 
 /* ==========================================================================
