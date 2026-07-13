@@ -1,0 +1,90 @@
+---
+import Base from '../layouts/Base.astro';
+const title = 'Статистика чтения — Коран онлайн';
+const description = 'Анонимная статистика чтения: устройства, прочитанные аяты, время и стрики.';
+---
+
+<Base {title} {description}>
+  <div class="container page stats-page">
+    <h1>Статистика чтения</h1>
+    <p>
+      Здесь показаны анонимные устройства, а не люди: сайт не требует входа и различает читателей
+      только по локальному идентификатору браузера.
+    </p>
+
+    <section class="stats-grid" data-stats-root>
+      <div class="stat-tile">
+        <span>Устройств</span>
+        <b data-stat="devices">—</b>
+      </div>
+      <div class="stat-tile">
+        <span>Активны сегодня</span>
+        <b data-stat="active">—</b>
+      </div>
+      <div class="stat-tile">
+        <span>Прочитано аятов</span>
+        <b data-stat="ayahs">—</b>
+      </div>
+      <div class="stat-tile">
+        <span>Время чтения</span>
+        <b data-stat="time">—</b>
+      </div>
+    </section>
+
+    <h2>Топ устройств</h2>
+    <div class="stats-table-wrap">
+      <table class="stats-table">
+        <thead>
+          <tr>
+            <th>Устройство</th>
+            <th>Аяты</th>
+            <th>Охват</th>
+            <th>Время</th>
+            <th>Стрик</th>
+          </tr>
+        </thead>
+        <tbody data-stats-top>
+          <tr><td colspan="5">Загружаю…</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <script is:inline>
+    (function () {
+      function fmt(sec) {
+        var m = Math.round((Number(sec) || 0) / 60);
+        if (m < 1) return sec > 0 ? '<1 мин' : '0 мин';
+        if (m < 60) return m + ' мин';
+        var h = Math.floor(m / 60), mm = m % 60;
+        return h + ' ч' + (mm ? ' ' + mm + ' мин' : '');
+      }
+      function set(name, value) {
+        var el = document.querySelector('[data-stat="' + name + '"]');
+        if (el) el.textContent = value;
+      }
+      fetch('/api/read/summary', { headers: { Accept: 'application/json' } })
+        .then(function (r) {
+          if (!r.ok) throw new Error('api');
+          return r.json();
+        })
+        .then(function (data) {
+          set('devices', data.devices || 0);
+          set('active', data.activeToday || 0);
+          set('ayahs', data.totalUnitsRead || 0);
+          set('time', fmt(data.totalSeconds || 0));
+          var top = document.querySelector('[data-stats-top]');
+          if (!top) return;
+          var rows = (data.top || []).map(function (r) {
+            var pct = Math.round((Number(r.coverage) || 0) * 100);
+            return '<tr><td>' + r.device + '</td><td>' + (r.unitsRead || 0) + '</td><td>' + pct + '%</td><td>' + fmt(r.totalSeconds || 0) + '</td><td>' + (r.streak || 0) + ' дн.</td></tr>';
+          });
+          top.innerHTML = rows.length ? rows.join('') : '<tr><td colspan="5">Данных пока нет</td></tr>';
+        })
+        .catch(function () {
+          var top = document.querySelector('[data-stats-top]');
+          if (top) top.innerHTML = '<tr><td colspan="5">Сборщик статистики пока не отвечает</td></tr>';
+        });
+    })();
+  </script>
+</Base>

@@ -31,4 +31,11 @@ rsync -az -e "$SSH" --delete dist/ "$VPS":"${STAGING}/"
 echo "▶ backup + swap"
 $SSH "$VPS" "set -e; mkdir -p ${WR}; rm -rf ${WR}.bak; cp -a ${WR} ${WR}.bak 2>/dev/null || true; rsync -a --delete ${STAGING}/ ${WR}/; echo pages=\$(find ${WR} -name index.html | wc -l)"
 
+echo "▶ read analytics api + nginx"
+$SSH "$VPS" "mkdir -p /srv/quran-read-api /var/lib/quran-read-api"
+rsync -az -e "$SSH" ops/read-api/server.mjs "$VPS":/srv/quran-read-api/server.mjs
+rsync -az -e "$SSH" ops/read-api/quran-read-api.service "$VPS":/etc/systemd/system/quran-read-api.service
+rsync -az -e "$SSH" ops/nginx-quran.conf "$VPS":/etc/nginx/sites-available/quran.nurtech.dev
+$SSH "$VPS" "systemctl daemon-reload && systemctl enable --now quran-read-api && systemctl restart quran-read-api && nginx -t && systemctl reload nginx && curl -fsS http://127.0.0.1:4317/api/health >/dev/null"
+
 echo "✓ deployed https://${DOMAIN}  (откат: rsync ${WR}.bak/ -> ${WR}/)"

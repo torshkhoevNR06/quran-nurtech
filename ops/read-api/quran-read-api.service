@@ -1,0 +1,17 @@
+[Unit]
+Description=quran.nurtech.dev anonymous reading analytics API
+After=network.target
+
+[Service]
+Type=simple
+Environment=NODE_ENV=production
+Environment=PORT=4317
+Environment=READ_API_DATA=/var/lib/quran-read-api/readers.json
+WorkingDirectory=/srv/quran-read-api
+ExecStart=/usr/bin/node /srv/quran-read-api/server.mjs
+Restart=always
+RestartSec=3
+User=root
+
+[Install]
+WantedBy=multi-user.target

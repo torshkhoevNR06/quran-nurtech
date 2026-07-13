@@ -21,6 +21,29 @@ bash ops/deploy.sh
 
 Откат: `ssh root@85.239.36.234 'rsync -a --delete /var/www/quran.nurtech.dev.bak/ /var/www/quran.nurtech.dev/'`
 
+## Сборщик статистики чтения
+
+Сайт остаётся статическим, но для агрегатов «кто сколько прочитал» нужен отдельный
+локальный API за nginx. Он не знает имён и логинов: только анонимный `q_uid` устройства.
+
+```bash
+# с локальной машины из корня репо
+ssh root@85.239.36.234 'mkdir -p /srv/quran-read-api /var/lib/quran-read-api'
+scp ops/read-api/server.mjs root@85.239.36.234:/srv/quran-read-api/server.mjs
+scp ops/read-api/quran-read-api.service root@85.239.36.234:/etc/systemd/system/quran-read-api.service
+scp ops/nginx-quran.conf root@85.239.36.234:/etc/nginx/sites-available/quran.nurtech.dev
+ssh root@85.239.36.234 'systemctl daemon-reload \
+  && systemctl enable --now quran-read-api \
+  && nginx -t \
+  && systemctl reload nginx \
+  && curl -fsS http://127.0.0.1:4317/api/health'
+```
+
+Публичные эндпоинты:
+
+- `POST /api/read` — beacon с `{ uid, unitsRead, totalSeconds, coverage, lastActiveAt, tz }`.
+- `GET /api/read/summary` — агрегаты для страницы `/stats`.
+
 ## Первичная настройка (уже выполнена; для воспроизведения на новом сервере)
 
 ```bash
