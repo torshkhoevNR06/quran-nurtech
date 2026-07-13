@@ -166,3 +166,61 @@ const arName = surah.na.replace('سُورَةُ ', '');
     )}
   </nav>
 </div>
+
+<script>
+  import '../client/reader-extras';
+</script>
+
+<style is:global>
+  /* Заметки к аяту */
+  .ayah-note-btn.has {
+    color: var(--accent);
+    opacity: 1 !important;
+  }
+  .ayah-note {
+    margin-top: 12px;
+    display: grid;
+    gap: 6px;
+    animation: ayahNoteIn 0.18s ease;
+  }
+  @keyframes ayahNoteIn {
+    from {
+      opacity: 0;
+      transform: translateY(-4px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+  .ayah-note textarea {
+    width: 100%;
+    border: 1px solid var(--hairline);
+    border-radius: var(--radius-md);
+    background: color-mix(in srgb, var(--accent) 5%, var(--panel-bg));
+    color: var(--ink);
+    padding: 11px 13px;
+    font: 400 var(--fs-15) / 1.55 var(--sans);
+    resize: vertical;
+    min-height: 64px;
+  }
+  .ayah-note textarea:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 1px;
+  }
+  .ayah-note-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: var(--fs-12);
+    color: var(--ink-faint);
+  }
+  .ayah-note-del {
+    border: 0;
+    background: transparent;
+    color: var(--low);
+    font: 600 var(--fs-12) / 1 var(--sans);
+    cursor: pointer;
+    padding: 4px 6px;
+  }
+</style>
