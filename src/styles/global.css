@@ -2225,7 +2225,7 @@ mark.hit {
   transform: none;
 }
 
-@media (width <= 900px) {
+@media (max-width: 900px) {
   .qcf-page {
     font-size: 30px;
   }
@@ -2235,7 +2235,7 @@ mark.hit {
   }
 }
 
-@media (width <= 650px) {
+@media (max-width: 650px) {
   .mushaf-reader {
     padding-top: 10px;
   }
@@ -2269,7 +2269,7 @@ mark.hit {
   }
 }
 
-@media (width <= 420px) {
+@media (max-width: 420px) {
   .qcf-page {
     font-size: 18px;
   }
@@ -2974,7 +2974,7 @@ select.sel,
   color: var(--ink-faint);
 }
 
-@media (width <= 920px) {
+@media (max-width: 920px) {
   .brand-domain {
     display: none;
   }
@@ -2997,7 +2997,7 @@ select.sel,
   }
 }
 
-@media (width <= 820px) {
+@media (max-width: 820px) {
   .topbar-inner {
     gap: 6px;
   }
@@ -3041,7 +3041,7 @@ select.sel,
   }
 }
 
-@media (width <= 560px) {
+@media (max-width: 560px) {
   :root {
     --ar-size: 26px;
     --ru-size: 17px;
@@ -4021,7 +4021,7 @@ main[role='main'] {
 }
 
 /* ---- Mobile reading polish: меньше «карточек в карточках» ---- */
-@media (width <= 650px) {
+@media (max-width: 650px) {
   .ayahs {
     margin-inline: 0;
     padding: 2px 16px 110px;
@@ -4092,7 +4092,7 @@ main[role='main'] {
 }
 
 /* ---- Mobile Mushaf: отдельный app-like reader без плавающего скролла ---- */
-@media (width <= 650px) {
+@media (max-width: 650px) {
   body[data-page-mode='mushaf'] {
     height: 100dvh;
     overflow: hidden;

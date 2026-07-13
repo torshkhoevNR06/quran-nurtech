@@ -76,7 +76,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
     <script is:inline>
       if ('serviceWorker' in navigator) {
         addEventListener('load', function () {
-          navigator.serviceWorker.register('/sw.js').catch(function () {});
+          navigator.serviceWorker.register('/sw.js?v=mobile-mushaf-2').catch(function () {});
         });
       }
     </script>

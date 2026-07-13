@@ -1,7 +1,7 @@
 // Service worker: офлайн-доступ к прочитанным страницам + шелл/шрифты/данные.
 // Стратегия: ассеты/шрифты — cache-first; данные — stale-while-revalidate;
 // HTML/навигация — network-first (свежесть онлайн, кэш офлайн). Внешние (аудио CDN) не трогаем.
-const V = 'quran-v1';
+const V = 'quran-v2-mobile-mushaf';
 const ASSET = /\/(assets|fonts)\//;
 const DATA = /\/data\//;
 
