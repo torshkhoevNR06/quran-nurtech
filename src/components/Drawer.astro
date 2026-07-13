@@ -19,7 +19,15 @@ const svgTasbih =
 <div class="drawer-backdrop" data-drawer-backdrop></div>
 <aside class="drawer sidebar" role="navigation" data-drawer data-dtab-active="surah" aria-label="Меню">
   <div class="dh">
-    <input type="text" placeholder="Поиск суры…" data-drawer-filter aria-label="Поиск суры" />
+    <input
+      type="text"
+      placeholder="Поиск суры…"
+      data-drawer-filter
+      aria-label="Поиск суры"
+      inputmode="search"
+      enterkeyhint="search"
+      autocomplete="off"
+    />
     <button type="button" class="icon-btn" data-act="drawer-close" aria-label="Закрыть" set:html={icons.close} />
   </div>
 
@@ -180,6 +188,9 @@ const svgTasbih =
     display: none;
   }
   .drawer .dscroll .dlist {
+    flex: none;
+    min-height: 0;
+    overflow: visible;
     padding: 2px 6px 6px;
   }
   .drawer .dgroup a:focus-visible,
@@ -196,6 +207,62 @@ const svgTasbih =
     }
     .drawer .dh {
       gap: 0;
+    }
+  }
+
+  @media (max-width: 820px) {
+    .drawer {
+      top: auto;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      width: min(100%, 440px);
+      height: auto;
+      max-height: min(86dvh, calc(100dvh - max(18px, env(safe-area-inset-top))));
+      margin-inline: auto;
+      border-radius: 24px 24px 0 0;
+      transform: translateY(105%);
+      transition: transform 0.28s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+    .drawer.show {
+      transform: translateY(0);
+    }
+    .drawer::before {
+      content: '';
+      flex: none;
+      width: 42px;
+      height: 4px;
+      border-radius: 999px;
+      background: var(--line);
+      margin: 10px auto 2px;
+      opacity: 0.9;
+    }
+    .drawer .dh {
+      flex: none;
+      padding: 10px 14px 12px;
+      border-bottom: 1px solid var(--hairline);
+    }
+    .drawer .dh input {
+      height: 44px;
+      border-radius: 14px;
+    }
+    .drawer .dscroll {
+      flex: 1 1 auto;
+      min-height: 0;
+      max-height: calc(86dvh - 154px - env(safe-area-inset-bottom));
+      overflow-y: auto;
+      overscroll-behavior: contain;
+      -webkit-overflow-scrolling: touch;
+      padding-bottom: 10px;
+      touch-action: pan-y;
+    }
+    .drawer .dgroup {
+      padding-inline: 12px;
+    }
+    .drawer .dfoot {
+      flex: none;
+      padding: 8px 14px calc(12px + env(safe-area-inset-bottom));
+      background: color-mix(in srgb, var(--panel-bg) 92%, transparent);
     }
   }
 </style>

@@ -720,7 +720,6 @@ async function initDrawer() {
     backdrop?.classList.add('show');
     document.body.classList.add('drawer-open');
     updateMobileScrollLock();
-    $<HTMLInputElement>('[data-drawer-filter]')?.focus();
   };
   const close = () => {
     if (desktopMq.matches) {
