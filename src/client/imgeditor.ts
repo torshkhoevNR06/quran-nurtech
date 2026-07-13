@@ -64,7 +64,7 @@ interface State {
 
 const S: State = {
   format: '4:5',
-  bg: 'emerald',
+  bg: 'charcoal',
   arabic: true,
   arFont: 'Mushaf',
   translit: false,
