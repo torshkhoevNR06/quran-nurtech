@@ -82,7 +82,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
   </head>
   <body data-surah={surahId ?? ''} data-ayah={ayahId ?? ''} data-tr={tr ?? ''}>
     <TopBar />
-    <main class={wide ? 'wide' : ''}>
+    <main role="main" class={wide ? 'wide' : ''}>
       <slot />
     </main>
 
