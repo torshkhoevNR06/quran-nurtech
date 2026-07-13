@@ -603,6 +603,33 @@ function markMenu(menu: string, attr: string, val: string) {
     b.classList.toggle('on', b.getAttribute(`data-${attr}`) === val)
   );
 }
+let mobileScrollY = 0;
+let mobileScrollLocked = false;
+function updateMobileScrollLock() {
+  const viewportWidth = Math.min(window.innerWidth || 0, document.documentElement.clientWidth || Infinity);
+  const shouldLock =
+    viewportWidth <= 1023 &&
+    (document.body.classList.contains('settings-panel-open') || document.body.classList.contains('drawer-open'));
+  if (shouldLock && !mobileScrollLocked) {
+    mobileScrollY = window.scrollY || 0;
+    document.body.style.position = 'fixed';
+    document.body.style.top = `-${mobileScrollY}px`;
+    document.body.style.left = '0';
+    document.body.style.right = '0';
+    document.body.style.width = '100%';
+    mobileScrollLocked = true;
+  } else if (!shouldLock && mobileScrollLocked) {
+    document.body.style.position = '';
+    document.body.style.top = '';
+    document.body.style.left = '';
+    document.body.style.right = '';
+    document.body.style.width = '';
+    window.scrollTo(0, mobileScrollY);
+    mobileScrollLocked = false;
+  }
+}
+window.addEventListener('resize', updateMobileScrollLock);
+window.addEventListener('orientationchange', updateMobileScrollLock);
 function initMenus() {
   $$('[data-menu-wrap]').forEach((wrap) => {
     const toggle = $('[data-menu-toggle]', wrap);
@@ -623,7 +650,10 @@ function initMenus() {
       if (!open) {
         menu.classList.add('open');
         toggle.setAttribute('aria-expanded', 'true');
-        if (isSettings) document.body.classList.add('settings-panel-open');
+        if (isSettings) {
+          document.body.classList.add('settings-panel-open');
+          updateMobileScrollLock();
+        }
       }
     });
   });
@@ -644,6 +674,7 @@ function closeMenus() {
   $$('.menu.open').forEach((m) => m.classList.remove('open'));
   $$('[data-menu-toggle][aria-expanded="true"]').forEach((t) => t.setAttribute('aria-expanded', 'false'));
   document.body.classList.remove('settings-panel-open');
+  updateMobileScrollLock();
 }
 
 /* ==========================================================================
@@ -656,11 +687,15 @@ async function initDrawer() {
   const open = () => {
     drawer?.classList.add('show');
     backdrop?.classList.add('show');
+    document.body.classList.add('drawer-open');
+    updateMobileScrollLock();
     $<HTMLInputElement>('[data-drawer-filter]')?.focus();
   };
   const close = () => {
     drawer?.classList.remove('show');
     backdrop?.classList.remove('show');
+    document.body.classList.remove('drawer-open');
+    updateMobileScrollLock();
   };
   $$('[data-act="drawer"]').forEach((b) => b.addEventListener('click', open));
   $$('[data-act="drawer-close"]').forEach((b) => b.addEventListener('click', close));

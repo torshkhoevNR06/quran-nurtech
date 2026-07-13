@@ -868,6 +868,9 @@ input[type='range'] {
 }
 
 @media (max-width: 1023px) {
+  body.settings-panel-open {
+    overflow: hidden;
+  }
   .settings-panel-backdrop {
     position: fixed;
     inset: calc(var(--topbar-h) + 8px) 0 0;
@@ -888,12 +891,34 @@ input[type='range'] {
   .menu[data-menu='settings'] {
     position: fixed;
     top: calc(var(--topbar-h) + 8px);
+    bottom: max(10px, env(safe-area-inset-bottom));
     right: 12px;
     left: 12px;
     width: auto;
     min-width: 0;
-    max-height: calc(100dvh - var(--topbar-h) - 24px);
+    max-height: none;
+    display: block;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: max(18px, env(safe-area-inset-bottom));
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(8px) scale(0.98);
+    visibility: hidden;
+    transition:
+      transform 0.18s cubic-bezier(0.2, 0, 0, 1),
+      opacity 0.16s ease,
+      visibility 0.16s ease;
+    touch-action: pan-y;
     z-index: 70;
+  }
+  .menu[data-menu='settings'].open {
+    animation: none;
+    opacity: 1;
+    pointer-events: auto;
+    transform: none;
+    visibility: visible;
   }
 }
 
@@ -1203,6 +1228,8 @@ input[type='range'] {
 .ayahs {
   position: relative;
   isolation: isolate;
+  min-width: 0;
+  max-width: 100%;
   margin: 6px 0 130px;
   padding: 8px 20px;
   border-radius: 26px;
@@ -1223,6 +1250,8 @@ input[type='range'] {
   background: linear-gradient(180deg, var(--glass-gloss) 0%, transparent 100%);
 }
 .ayah {
+  min-width: 0;
+  max-width: 100%;
   padding: 22px 4px 20px;
   border-bottom: 1px solid var(--line);
   scroll-margin-top: calc(var(--topbar-h) + 24px);
@@ -1315,19 +1344,29 @@ input[type='range'] {
   line-height: 1.6;
 }
 .translation {
+  min-width: 0;
+  max-width: 100%;
   font-size: var(--ru-size);
   color: var(--ink-soft);
   line-height: 1.72;
   margin-top: 12px;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 .tafsir {
+  min-width: 0;
+  max-width: 100%;
   font-size: var(--ru-size);
   color: var(--ink-soft);
   line-height: 1.78;
   margin-top: 14px;
   white-space: pre-line;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 .tafsir-passage {
+  min-width: 0;
+  max-width: 100%;
   background: color-mix(in srgb, var(--accent-soft) 55%, transparent);
   border-radius: 16px;
   padding: 16px 16px 18px;
@@ -1449,6 +1488,8 @@ input[type='range'] {
   }
 }
 .tafsir-src {
+  min-width: 0;
+  max-width: 100%;
   border: 1px solid var(--line);
   border-left: 3px solid var(--accent);
   border-radius: 14px;
@@ -1470,10 +1511,14 @@ input[type='range'] {
   font-weight: 700;
 }
 .tafsir-src-b {
+  min-width: 0;
+  max-width: 100%;
   font-size: var(--ru-size);
   color: var(--ink-soft);
   line-height: 1.8;
   white-space: pre-line;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 .tafsir-loading {
   padding: 12px 4px;
@@ -1786,8 +1831,13 @@ mark.hit {
   color: var(--ink);
 }
 .drawer .dlist {
+  flex: 1 1 auto;
+  min-height: 0;
   overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
   padding: 8px;
+  touch-action: pan-y;
 }
 .drawer .dlist a {
   display: flex;
@@ -1830,8 +1880,9 @@ mark.hit {
 }
 /* прогресс чтения в drawer */
 .drawer-progress {
-  padding: 10px 14px 12px;
+  padding: 10px 14px 10px;
   border-bottom: 1px solid var(--line);
+  flex: none;
 }
 .drawer-progress:empty {
   display: none;
@@ -2997,8 +3048,24 @@ select.sel,
     --topbar-h: 54px;
   }
 
+  .topbar {
+    padding-inline: 6px;
+  }
+
   .topbar-inner {
+    gap: 4px;
+    padding-inline: 6px;
     border-radius: 17px;
+  }
+
+  .topbar-inner .brand {
+    padding: 0;
+  }
+
+  .topbar-inner .brand-mark,
+  .topbar-inner .brand-mark img {
+    width: 30px;
+    height: 30px;
   }
 
   .topbar-title {
@@ -3716,6 +3783,9 @@ html {
 }
 body {
   overscroll-behavior-y: none; /* без «резинки»/pull-to-refresh — ощущение приложения */
+}
+body.drawer-open {
+  overflow: hidden;
 }
 
 /* Безопасные зоны (вырез/динамик-айленд/home-indicator). env()=0 на десктопе → max() безопасен. */
