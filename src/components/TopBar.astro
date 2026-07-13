@@ -162,15 +162,15 @@ const showQuick = !isSearch;
         </div>
 
         <h4>Пояснения</h4>
-        <button class="item" type="button" data-hide-brackets>
-          Скрыть скобки-пояснения
-          <span class="tick">✓</span>
+        <button class="item item-toggle" type="button" data-hide-brackets>
+          <span class="it-label">Скрыть скобки-пояснения</span>
+          <span class="switch" aria-hidden="true"></span>
         </button>
 
         <h4>Заучивание</h4>
-        <button class="item" type="button" data-memorize>
-          Режим заучивания<span style="color:var(--ink-faint);font-size:12px">&nbsp;· скрыть перевод, повтор аята</span>
-          <span class="tick">✓</span>
+        <button class="item item-toggle" type="button" data-memorize>
+          <span class="it-label">Режим заучивания<small>Скрыть перевод, повтор аята</small></span>
+          <span class="switch" aria-hidden="true"></span>
         </button>
         <div class="seg" data-memrep-seg>
           <button type="button" data-memrep="2">×2</button>
