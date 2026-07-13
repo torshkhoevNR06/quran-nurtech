@@ -1,0 +1,288 @@
+---
+import Base from '../layouts/Base.astro';
+const title = 'Закладки и коллекции — сохранённые аяты';
+const description =
+  'Ваши закладки Корана с группировкой по именованным коллекциям: соберите аяты по темам (для заучивания, дуа, важное) — всё на этом устройстве, без входа.';
+---
+
+<Base {title} {description}>
+  <div class="container page bmp" data-bmp>
+    <header class="bmp-head">
+      <h1>Закладки</h1>
+      <p>Сохранённые аяты. Группируйте их в коллекции по темам.</p>
+      <form class="bmp-new" data-new-form>
+        <input type="text" placeholder="Новая коллекция…" data-new-name maxlength="40" aria-label="Название коллекции" />
+        <button type="submit" class="btn primary">Создать</button>
+      </form>
+    </header>
+
+    <div class="bmp-body" data-body>
+      <p class="bmp-empty" data-loading>Загрузка…</p>
+    </div>
+  </div>
+</Base>
+
+<style is:global>
+  .bmp {
+    max-width: 760px;
+    padding-bottom: 90px;
+  }
+  .bmp-head h1 {
+    margin: 0 0 6px;
+  }
+  .bmp-head > p {
+    color: var(--ink-faint);
+    font-size: var(--fs-13);
+    margin: 0 0 14px;
+  }
+  .bmp-new {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 22px;
+  }
+  .bmp-new input {
+    flex: 1;
+    height: 38px;
+    border: 1px solid var(--hairline);
+    border-radius: var(--radius-md);
+    background: var(--seg-thumb);
+    color: var(--ink);
+    padding: 0 12px;
+    font: 500 16px / 1 var(--sans);
+  }
+  .bmp-col {
+    margin-bottom: 20px;
+  }
+  .bmp-col-h {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0 2px 8px;
+  }
+  .bmp-col-h h2 {
+    margin: 0;
+    font-size: var(--fs-15);
+    font-weight: 700;
+  }
+  .bmp-col-h .cnt {
+    color: var(--ink-faint);
+    font-size: var(--fs-13);
+    font-variant-numeric: tabular-nums;
+  }
+  .bmp-col-h .del {
+    margin-left: auto;
+    border: 0;
+    background: transparent;
+    color: var(--low);
+    font: 600 var(--fs-12) / 1 var(--sans);
+    cursor: pointer;
+  }
+  .bmp-items {
+    display: grid;
+    gap: 8px;
+  }
+  .bmp-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--panel-bg);
+    border: 1px solid var(--hairline);
+    border-radius: var(--radius-md);
+    padding: 10px 12px;
+  }
+  .bmp-item .ref {
+    font: 800 var(--fs-14) / 1 var(--sans);
+    color: var(--accent);
+    font-variant-numeric: tabular-nums;
+    text-decoration: none;
+    flex: none;
+    min-width: 52px;
+  }
+  .bmp-item .nm {
+    flex: 1;
+    min-width: 0;
+    font-size: var(--fs-14);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .bmp-item select {
+    border: 1px solid var(--hairline);
+    border-radius: var(--radius-s);
+    background: var(--seg-thumb);
+    color: var(--ink);
+    font: 500 var(--fs-13) / 1 var(--sans);
+    height: 30px;
+    padding: 0 6px;
+    max-width: 140px;
+  }
+  .bmp-item .rm {
+    border: 0;
+    background: transparent;
+    color: var(--ink-faint);
+    cursor: pointer;
+    font-size: 16px;
+    line-height: 1;
+    padding: 4px;
+  }
+  .bmp-empty {
+    text-align: center;
+    color: var(--ink-faint);
+    padding: 30px 0;
+  }
+</style>
+
+<script is:inline>
+  (function () {
+    var KB = 'q_bookmarks',
+      KC = 'q_collections',
+      KM = 'q_bmcol';
+    var body = document.querySelector('[data-body]');
+    function get(k, d) {
+      try {
+        var v = localStorage.getItem(k);
+        return v == null ? d : JSON.parse(v);
+      } catch (e) {
+        return d;
+      }
+    }
+    function set(k, v) {
+      try {
+        localStorage.setItem(k, JSON.stringify(v));
+      } catch (e) {}
+    }
+    var bms = get(KB, []); // ["s:a"]
+    var cols = get(KC, []); // ["Название", ...]
+    var map = get(KM, {}); // {"s:a": "Название"|""}
+    var names = {};
+
+    fetch('/data/index.json?v=5')
+      .then(function (r) {
+        return r.json();
+      })
+      .then(function (idx) {
+        idx.forEach(function (s) {
+          names[s.n] = s.nr;
+        });
+        render();
+      })
+      .catch(function () {
+        render();
+      });
+
+    document.querySelector('[data-new-form]').addEventListener('submit', function (e) {
+      e.preventDefault();
+      var inp = document.querySelector('[data-new-name]');
+      var n = (inp.value || '').trim();
+      if (!n || cols.indexOf(n) !== -1) {
+        inp.value = '';
+        return;
+      }
+      cols.push(n);
+      set(KC, cols);
+      inp.value = '';
+      render();
+    });
+
+    function optionsHtml(cur) {
+      var o = '<option value="">Без коллекции</option>';
+      cols.forEach(function (c) {
+        o += '<option value="' + esc(c) + '"' + (c === cur ? ' selected' : '') + '>' + esc(c) + '</option>';
+      });
+      return o;
+    }
+    function esc(s) {
+      return String(s).replace(/[&<>"]/g, function (m) {
+        return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[m];
+      });
+    }
+
+    function render() {
+      if (!bms.length) {
+        body.innerHTML =
+          '<p class="bmp-empty">Пока нет закладок. Откройте аят и нажмите на «флажок».</p>';
+        return;
+      }
+      // группируем
+      var groups = { '': [] };
+      cols.forEach(function (c) {
+        groups[c] = [];
+      });
+      bms.forEach(function (key) {
+        var c = map[key] || '';
+        if (!(c in groups)) c = '';
+        groups[c].push(key);
+      });
+      var order = cols.slice();
+      order.push(''); // «без коллекции» — в конце
+      var html = '';
+      order.forEach(function (c) {
+        var items = groups[c] || [];
+        if (c === '' && !items.length) return;
+        html +=
+          '<section class="bmp-col"><div class="bmp-col-h"><h2>' +
+          (c ? esc(c) : 'Без коллекции') +
+          '</h2><span class="cnt">' +
+          items.length +
+          '</span>' +
+          (c ? '<button class="del" data-del-col="' + esc(c) + '">Удалить коллекцию</button>' : '') +
+          '</div><div class="bmp-items">';
+        if (!items.length) html += '<p class="bmp-empty" style="padding:10px">Пусто</p>';
+        items.forEach(function (key) {
+          var sp = key.split(':');
+          var nm = (names[+sp[0]] || 'Сура ' + sp[0]) + ' · аят ' + sp[1];
+          html +=
+            '<div class="bmp-item"><a class="ref" href="/' +
+            key +
+            '">' +
+            key +
+            '</a><span class="nm">' +
+            esc(nm) +
+            '</span><select data-move="' +
+            key +
+            '">' +
+            optionsHtml(map[key] || '') +
+            '</select><button class="rm" data-rm="' +
+            key +
+            '" title="Убрать из закладок" aria-label="Убрать">✕</button></div>';
+        });
+        html += '</div></section>';
+      });
+      body.innerHTML = html;
+    }
+
+    body.addEventListener('change', function (e) {
+      var sel = e.target.closest('[data-move]');
+      if (!sel) return;
+      map[sel.getAttribute('data-move')] = sel.value;
+      set(KM, map);
+      render();
+    });
+    body.addEventListener('click', function (e) {
+      var rm = e.target.closest('[data-rm]');
+      if (rm) {
+        var key = rm.getAttribute('data-rm');
+        bms = bms.filter(function (k) {
+          return k !== key;
+        });
+        delete map[key];
+        set(KB, bms);
+        set(KM, map);
+        render();
+        return;
+      }
+      var dc = e.target.closest('[data-del-col]');
+      if (dc) {
+        var name = dc.getAttribute('data-del-col');
+        if (!confirm('Удалить коллекцию «' + name + '»? Закладки останутся (перейдут в «Без коллекции»).')) return;
+        cols = cols.filter(function (c) {
+          return c !== name;
+        });
+        for (var k in map) if (map[k] === name) map[k] = '';
+        set(KC, cols);
+        set(KM, map);
+        render();
+      }
+    });
+  })();
+</script>
