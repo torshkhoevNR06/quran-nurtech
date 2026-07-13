@@ -957,9 +957,11 @@ function initQuick() {
   const input = $<HTMLInputElement>('[data-quick-input]');
   form?.addEventListener('submit', async (e) => {
     e.preventDefault();
-    const dest = await resolveQuick(input?.value || '');
-    if (dest) location.href = dest;
-    else toast('Не нашёл суру. Попробуйте номер, «2:255» или название.');
+    const val = (input?.value || '').trim();
+    if (!val) return;
+    const dest = await resolveQuick(val);
+    // ссылка/сура → переход; произвольный текст → полнотекстовый поиск по Корану
+    location.href = dest || '/search?q=' + encodeURIComponent(val);
   });
 }
 

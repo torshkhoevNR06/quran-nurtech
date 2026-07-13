@@ -2625,6 +2625,8 @@ mark.hit {
   }
   .only-mobile {
     display: inline-flex;
+    align-items: center;
+    justify-content: center;
   }
   .quick {
     max-width: none;
