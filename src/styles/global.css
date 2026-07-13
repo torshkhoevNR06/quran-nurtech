@@ -1826,6 +1826,22 @@ mark.hit {
   border-radius: 4px;
 }
 
+/* Мусхаф — фикс. страница-факсимиле. Инспектор справа: НЕ жмём через body-padding
+   (на fixed-раскладке это ненадёжно и «выезжает криво»), а детерминированно сдвигаем
+   сам контейнер мусхафа на ширину инспектора, без анимации сдвига. */
+@media (min-width: 1024px) {
+  body[data-page-mode='mushaf'].settings-panel-open {
+    padding-right: 0 !important;
+  }
+  body[data-page-mode='mushaf'] .mushaf-reader {
+    transition: padding-right 0.16s ease;
+  }
+  body[data-page-mode='mushaf'].settings-panel-open .mushaf-reader {
+    padding-right: var(--inspector-w);
+    box-sizing: border-box;
+  }
+}
+
 /* ==========================================================================
    Нижний аудиоплеер (плавающее жидкое стекло)
    ========================================================================== */
