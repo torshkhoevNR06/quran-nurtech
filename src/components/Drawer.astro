@@ -5,7 +5,7 @@ import { icons } from '../lib/icons';
 ---
 
 <div class="drawer-backdrop" data-drawer-backdrop></div>
-<aside class="drawer" data-drawer data-dtab-active="surah" aria-label="Список сур и джузов">
+<aside class="drawer" role="navigation" data-drawer data-dtab-active="surah" aria-label="Список сур и джузов">
   <div class="dh">
     <input type="text" placeholder="Поиск суры…" data-drawer-filter aria-label="Поиск суры" />
     <button type="button" class="icon-btn" data-act="drawer-close" aria-label="Закрыть" set:html={icons.close} />

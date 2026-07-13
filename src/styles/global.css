@@ -3873,3 +3873,78 @@ main {
   outline-offset: 2px;
   border-radius: var(--radius-s);
 }
+
+/* ==========================================================================
+   macOS App Shell — Wave 2: docked toolbar / mushaf viewer / player accessory /
+   motion / sepia / a11y  (Phase 2/5/7/9/10/11) — feat/macos-desktop
+   ========================================================================== */
+
+/* ---- Phase 2: docked toolbar (не плавающая пилюля) на десктопе ---- */
+@media (min-width: 1120px) {
+  .topbar {
+    padding: 0;
+  }
+  .topbar-inner {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    border-radius: 0;
+    border: 0;
+    border-bottom: 1px solid var(--hairline);
+    box-shadow: none;
+    min-height: var(--toolbar-h);
+    padding: 0 16px;
+    gap: 10px;
+  }
+  .topbar-inner::before {
+    display: none; /* убрать глянец-«пилюли» */
+  }
+}
+
+/* ---- Phase 5: mushaf как документ Preview/Books ---- */
+@media (min-width: 1120px) {
+  .mushaf-reader {
+    max-width: 940px;
+    margin: 0 auto;
+  }
+}
+.mushaf-sheet {
+  border: 1px solid var(--hairline);
+  box-shadow: var(--shadow-card);
+}
+.mushaf-toolbar .icon-btn.disabled,
+.mushaf-bottom .btn.disabled {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+/* ---- Phase 7: плеер как нижний accessory-bar (компактный, не «пузырь») ---- */
+@media (min-width: 1120px) {
+  .player-inner {
+    max-width: 760px;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-pop);
+    border: 1px solid var(--hairline);
+  }
+}
+
+/* ---- Phase 9: a11y-роли/состояния ---- */
+main[role='main'] {
+  min-width: 0;
+}
+.drawer[role='navigation'] {
+  outline: none;
+}
+
+/* ---- Phase 11: движение (инспектор — плавный слайд; уважать reduced-motion) ---- */
+@media (prefers-reduced-motion: no-preference) {
+  .settings-panel-backdrop {
+    transition: opacity 0.22s ease;
+  }
+}
+
+/* ---- Phase 10: сепия — тёплый документ, но не «весь бежевый» ---- */
+:root[data-theme='sepia'] .ayahs,
+:root[data-theme='sepia'] .mushaf-sheet {
+  background: var(--panel-bg);
+}
