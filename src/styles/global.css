@@ -951,7 +951,7 @@ input[type='range'] {
   }
   .menu[data-menu='settings'] {
     position: fixed;
-    top: calc(var(--topbar-h) + 10px);
+    top: 0;
     right: 0;
     bottom: 0;
     width: var(--inspector-w);
@@ -960,10 +960,10 @@ input[type='range'] {
     display: block;
     overflow-y: auto;
     padding: 0 16px 18px;
-    border-width: 1px 0 0 1px;
-    border-radius: 22px 0 0 0;
+    border-width: 0 0 0 1px;
+    border-radius: 0;
     background: var(--panel-bg);
-    box-shadow: -1px 0 0 0 var(--hairline);
+    box-shadow: none;
     opacity: 0;
     pointer-events: none;
     transform: translateX(102%);
@@ -1824,22 +1824,6 @@ mark.hit {
 .qcf-word.qcf-ayah-active {
   background: color-mix(in srgb, var(--accent) 22%, transparent);
   border-radius: 4px;
-}
-
-/* Мусхаф — фикс. страница-факсимиле. Инспектор справа: НЕ жмём через body-padding
-   (на fixed-раскладке это ненадёжно и «выезжает криво»), а детерминированно сдвигаем
-   сам контейнер мусхафа на ширину инспектора, без анимации сдвига. */
-@media (min-width: 1024px) {
-  body[data-page-mode='mushaf'].settings-panel-open {
-    padding-right: 0 !important;
-  }
-  body[data-page-mode='mushaf'] .mushaf-reader {
-    transition: padding-right 0.16s ease;
-  }
-  body[data-page-mode='mushaf'].settings-panel-open .mushaf-reader {
-    padding-right: var(--inspector-w);
-    box-sizing: border-box;
-  }
 }
 
 /* ==========================================================================
