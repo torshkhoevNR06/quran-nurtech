@@ -158,11 +158,14 @@ function render() {
   const sizeK = W / 1080;
 
   if (S.arabic && data.ar) {
+    // значок-конца аята с номером (U+06DD ۝ + арабские цифры) — рисуется мусхаф-шрифтом
+    const arIndic = String(data.a).replace(/\d/g, (d) => '٠١٢٣٤٥٦٧٨٩'[+d]);
+    const arText = `${data.ar} ۝${arIndic}`;
     let sz = 74 * sizeK;
     let lines: string[] = [];
     for (; sz >= 42 * sizeK; sz -= 4 * sizeK) {
       ctx.font = `${sz}px ${S.arFont}, 'AmiriQuran', serif`;
-      lines = wrap(ctx, data.ar, maxW);
+      lines = wrap(ctx, arText, maxW);
       if (lines.length <= (S.format === '9:16' ? 6 : 4)) break;
     }
     blocks.push({ lines, size: sz, lh: sz * 1.85, color: ink, font: `${sz}px ${S.arFont}, 'AmiriQuran', serif`, rtl: true, gapTop: 0 });
