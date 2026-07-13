@@ -106,13 +106,54 @@
   --r-md: 15px;
   --r-sm: 11px;
 
+  /* ---- macOS-шкалы (канон EasyBot): отступы / радиусы / кегли / тени ---- */
+  --sp-1: 4px;
+  --sp-2: 8px;
+  --sp-3: 12px;
+  --sp-4: 16px;
+  --sp-5: 20px;
+  --sp-6: 24px;
+  --sp-8: 32px;
+  --sp-10: 40px;
+  --radius-xs: 6px;
+  --radius-s: 8px;
+  --radius-sm: 10px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-pill: 999px;
+  --fs-11: 11px;
+  --fs-12: 12px;
+  --fs-13: 13px;
+  --fs-14: 14px;
+  --fs-15: 15px;
+  --fs-16: 16px;
+  --fs-17: 17px;
+  --fs-18: 18px;
+  --fs-20: 20px;
+  --fs-22: 22px;
+  --fs-26: 26px;
+  --fs-30: 30px;
+  --fs-34: 34px;
+  --hairline: rgba(20, 24, 30, 0.08);
+  --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.1);
+  --shadow-pop: 0 12px 32px rgba(0, 0, 0, 0.18);
+  --panel-2: #ffffff;
+  --good: #3a9d6b;
+  --mid: #c9973f;
+  --low: #d4585f;
+  --ease: 0.18s cubic-bezier(0.32, 0.72, 0, 1);
+
   /* настройки чтения (перекрываются клиентом) */
   --ar-font: 'Mushaf';
   --ar-size: 30px;
   --ru-size: 18px;
   --lh: 1.95;
 
-  --sans: 'Manrope', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  /* Системный шрифт интерфейса (нативный macOS/iOS = SF). Арабский и переводы —
+     на своих шрифтах через --ar-font / .translation. */
+  --sans: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display', 'Segoe UI',
+    system-ui, Roboto, 'Helvetica Neue', Arial, sans-serif;
   --serif: 'Georgia', 'Iowan Old Style', 'Times New Roman', serif;
 }
 
@@ -130,6 +171,10 @@
   --seg-thumb: rgba(255, 255, 255, 0.16);
   --seg-thumb-bd: rgba(255, 255, 255, 0.05);
   --knob: #f2f4f7;
+  --hairline: rgba(255, 255, 255, 0.08);
+  --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.3);
+  --shadow-pop: 0 14px 36px rgba(0, 0, 0, 0.45);
+  --panel-2: #1f232a;
 
   --orb-1: rgba(90, 105, 125, 0.2);
   --orb-2: rgba(70, 82, 100, 0.2);
@@ -166,6 +211,8 @@
   --seg-thumb: #fffaf0;
   --seg-thumb-bd: rgba(90, 70, 30, 0.08);
   --knob: #fffaf0;
+  --hairline: rgba(90, 70, 30, 0.1);
+  --panel-2: #fffaf0;
 
   --orb-1: rgba(190, 160, 110, 0.24);
   --orb-2: rgba(170, 150, 120, 0.18);
@@ -2772,5 +2819,163 @@ select.sel,
   }
   .ie-bgs {
     grid-template-columns: repeat(8, 1fr);
+  }
+}
+
+/* ==========================================================================
+   macOS-фундамент: фокус-кольца, отклик нажатия, доступность, числа, тумблер
+   ========================================================================== */
+/* клавиатурный фокус как в macOS — кольцо акцента (только клавиатура) */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+[tabindex]:focus-visible,
+.icon-btn:focus-visible,
+.btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: var(--radius-s);
+}
+/* тактильный отклик нажатия */
+.btn:active,
+.icon-btn:active,
+.seg button:active,
+.tafsir-toggle:active,
+.chip:active {
+  transform: scale(0.96);
+}
+/* моноширинные цифры (аят-номера, тайминги, счётчики) — как в нативных приложениях */
+.ayah-no,
+.drawer .dlist .n,
+.chip {
+  font-variant-numeric: tabular-nums;
+}
+
+/* iOS/macOS-тумблер (замена «галкам») */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 24px;
+  flex: none;
+  border-radius: 999px;
+  background: var(--seg-track);
+  border: 1px solid var(--seg-thumb-bd);
+  cursor: pointer;
+  transition: background var(--ease);
+}
+.switch::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--knob);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  transition: transform var(--ease);
+}
+.switch.on {
+  background: var(--accent);
+  border-color: transparent;
+}
+.switch.on::after {
+  transform: translateX(16px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+@media (prefers-reduced-transparency: reduce) {
+  .topbar-inner,
+  .menu,
+  .drawer,
+  .player-inner,
+  .ie-modal {
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+    background: var(--panel-bg) !important;
+  }
+}
+
+/* ==========================================================================
+   Десктоп-сайдбар (macOS source list): drawer → постоянная левая колонка
+   ========================================================================== */
+@media (min-width: 821px) and (max-width: 1023px) {
+  /* планшетная «дыра»: сайдбара ещё нет — возвращаем кнопку-гамбургер */
+  [data-act='drawer'].only-mobile {
+    display: inline-flex;
+  }
+}
+@media (min-width: 1024px) {
+  :root {
+    --sidebar-w: 300px;
+  }
+  body {
+    padding-left: var(--sidebar-w);
+  }
+  .drawer {
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: var(--sidebar-w);
+    border: 0;
+    border-right: 1px solid var(--hairline);
+    border-radius: 0;
+    box-shadow: none;
+    transform: none !important;
+    z-index: 30;
+    background: var(--panel-bg);
+  }
+  .drawer-backdrop {
+    display: none !important;
+  }
+  .drawer .dh {
+    padding: 12px;
+    border-bottom: 1px solid var(--hairline);
+  }
+  .drawer .dh [data-act='drawer-close'] {
+    display: none;
+  }
+  .drawer .dh input {
+    height: 30px;
+    border-radius: var(--radius-s);
+    font-size: var(--fs-13);
+  }
+  .drawer-progress {
+    border-bottom: 1px solid var(--hairline);
+  }
+  .drawer .dlist {
+    padding: 6px;
+  }
+  .drawer .dlist a {
+    padding: 7px 9px;
+    border-radius: var(--radius-s);
+    gap: 8px;
+  }
+  .drawer .dlist .nm {
+    font-size: var(--fs-14);
+  }
+  .drawer .dlist a:hover {
+    background: color-mix(in srgb, var(--ink) 6%, transparent);
+  }
+  .drawer .dlist a.on {
+    background: var(--accent);
+    box-shadow: none;
+  }
+  .drawer .dlist a.on .n,
+  .drawer .dlist a.on .nm,
+  .drawer .dlist a.on .ar-name {
+    color: var(--accent-ink);
+  }
+  .drawer .dlist a.on .nm span {
+    color: color-mix(in srgb, var(--accent-ink) 72%, transparent) !important;
   }
 }
