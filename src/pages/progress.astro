@@ -567,6 +567,11 @@ const description =
   .map a:hover::after {
     opacity: 1;
   }
+  @media (hover: none), (max-width: 760px) {
+    .map a::after {
+      display: none;
+    }
+  }
 
   /* Джузы */
   .juz {

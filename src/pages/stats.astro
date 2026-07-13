@@ -77,7 +77,7 @@ const description = 'Анонимная статистика чтения: ус�
           if (!top) return;
           var rows = (data.top || []).map(function (r) {
             var pct = Math.round((Number(r.coverage) || 0) * 100);
-            return '<tr><td>' + r.device + '</td><td>' + (r.unitsRead || 0) + '</td><td>' + pct + '%</td><td>' + fmt(r.totalSeconds || 0) + '</td><td>' + (r.streak || 0) + ' дн.</td></tr>';
+            return '<tr><td data-label="Устройство">' + r.device + '</td><td data-label="Аяты">' + (r.unitsRead || 0) + '</td><td data-label="Охват">' + pct + '%</td><td data-label="Время">' + fmt(r.totalSeconds || 0) + '</td><td data-label="Стрик">' + (r.streak || 0) + ' дн.</td></tr>';
           });
           top.innerHTML = rows.length ? rows.join('') : '<tr><td colspan="5">Данных пока нет</td></tr>';
         })

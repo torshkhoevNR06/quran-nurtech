@@ -925,6 +925,16 @@ input[type='range'] {
     touch-action: pan-y;
     z-index: 70;
   }
+  .menu[data-menu='settings'] .settings-panel-head {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    margin: -8px -10px 10px;
+    padding: 12px 10px 10px;
+    background: color-mix(in srgb, var(--panel-bg) 96%, transparent);
+    -webkit-backdrop-filter: var(--glass-blur);
+    backdrop-filter: var(--glass-blur);
+  }
   .menu[data-menu='settings'].open {
     animation: none;
     opacity: 1;
@@ -2194,6 +2204,74 @@ mark.hit {
   .stats-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+  .stats-table-wrap {
+    overflow: visible;
+    border: 0;
+    border-radius: 0;
+  }
+  .stats-table,
+  .stats-table thead,
+  .stats-table tbody,
+  .stats-table tr,
+  .stats-table td {
+    display: block;
+    width: 100%;
+    min-width: 0;
+  }
+  .stats-table {
+    background: transparent;
+    border-collapse: separate;
+  }
+  .stats-table thead {
+    display: none;
+  }
+  .stats-table tr {
+    margin-bottom: 10px;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: var(--surface);
+    box-shadow: var(--shadow-card);
+    overflow: hidden;
+  }
+  .stats-table td {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--line);
+    text-align: right;
+    font-size: 14px;
+  }
+  .stats-table td::before {
+    content: attr(data-label);
+    flex: none;
+    color: var(--ink-faint);
+    font-weight: 700;
+    text-align: left;
+  }
+  .stats-table td:first-child {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 4px;
+    text-align: left;
+    font-weight: 700;
+  }
+  .stats-table td:first-child::before {
+    font-size: 11px;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+  }
+  .stats-table td:last-child {
+    border-bottom: 0;
+  }
+  .stats-table td[colspan] {
+    display: block;
+    text-align: left;
+  }
+  .stats-table td[colspan]::before {
+    content: none;
+  }
 }
 
 /* ==========================================================================
@@ -3314,6 +3392,10 @@ select.sel,
   }
 
   .topbar-inner.is-search > a.icon-btn[aria-label='Поиск'] {
+    display: none;
+  }
+
+  .topbar-inner.is-reader > .menu-wrap:not(.settings-menu-wrap) {
     display: none;
   }
 
