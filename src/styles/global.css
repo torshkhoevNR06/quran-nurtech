@@ -2026,7 +2026,7 @@ mark.hit {
 
 .mushaf-sheet {
   position: relative;
-  width: min(640px, calc(100vw - var(--sidebar-w, 0px) - 72px), 62dvh);
+  width: min(640px, calc(100vw - var(--sidebar-current-w, var(--sidebar-w, 0px)) - 72px), 62dvh);
   aspect-ratio: 704 / 1000;
   margin: 18px auto 0;
   padding: 30px 44px 42px;
@@ -3498,9 +3498,14 @@ select:focus-visible,
 @media (min-width: 1120px) {
   :root {
     --sidebar-w: 300px;
+    --sidebar-current-w: var(--sidebar-w);
+  }
+  :root[data-sidebar='closed'] {
+    --sidebar-current-w: 0px;
   }
   body {
-    padding-left: var(--sidebar-w);
+    padding-left: var(--sidebar-current-w);
+    transition: padding-left 0.28s cubic-bezier(0.2, 0, 0, 1);
   }
   /* тулбар в контент-панели: пилюля в размер содержимого по центру (не 1080px cap,
      иначе пункты вылезали за край и обрезались). Инлайн-переключатель видов убираем —
@@ -3514,6 +3519,9 @@ select:focus-visible,
   .topbar .seg.desktop-only[data-view-seg] {
     display: none;
   }
+  .topbar-inner [data-act='drawer'].only-mobile {
+    display: inline-grid;
+  }
   .quick {
     flex: none;
   }
@@ -3526,9 +3534,17 @@ select:focus-visible,
     border-right: 1px solid var(--hairline);
     border-radius: 0;
     box-shadow: none;
-    transform: none !important;
+    transform: translateX(0) !important;
+    visibility: visible;
+    transition:
+      transform 0.28s cubic-bezier(0.2, 0, 0, 1),
+      visibility 0.28s ease;
     z-index: 30;
     background: var(--panel-bg);
+  }
+  :root[data-sidebar='closed'] .drawer {
+    transform: translateX(calc(-100% - 1px)) !important;
+    visibility: hidden;
   }
   .drawer-backdrop {
     display: none !important;
@@ -3538,7 +3554,10 @@ select:focus-visible,
     border-bottom: 1px solid var(--hairline);
   }
   .drawer .dh [data-act='drawer-close'] {
-    display: none;
+    display: grid;
+    width: 30px;
+    height: 30px;
+    border-radius: var(--radius-s);
   }
   .drawer .dh input {
     height: 30px;
@@ -3549,6 +3568,9 @@ select:focus-visible,
     border-bottom: 1px solid var(--hairline);
   }
   .drawer .dlist {
+    flex: none;
+    min-height: 0;
+    overflow: visible;
     padding: 6px;
   }
   .drawer .dlist a {
@@ -3987,6 +4009,51 @@ main {
 .mushaf-bottom .btn.disabled {
   opacity: 0.4;
   pointer-events: none;
+}
+
+/* ---- Desktop Mushaf: viewport-reader без footer и случайного body-scroll ---- */
+@media (min-width: 1120px) {
+  body[data-page-mode='mushaf'] {
+    height: 100dvh;
+    overflow: hidden;
+  }
+
+  body[data-page-mode='mushaf'] .footer,
+  body[data-page-mode='mushaf'] .player {
+    display: none;
+  }
+
+  body[data-page-mode='mushaf'] main.wide {
+    height: calc(100dvh - var(--toolbar-h));
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  body[data-page-mode='mushaf'] .mushaf-reader {
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    min-height: 0;
+    padding: 16px 24px 22px;
+    display: grid;
+    grid-template-rows: auto minmax(0, 1fr) auto;
+    align-items: center;
+    justify-items: center;
+  }
+
+  body[data-page-mode='mushaf'] .mushaf-toolbar,
+  body[data-page-mode='mushaf'] .mushaf-bottom {
+    flex: none;
+  }
+
+  body[data-page-mode='mushaf'] .mushaf-sheet {
+    width: min(
+      640px,
+      calc(100vw - var(--sidebar-current-w, var(--sidebar-w, 0px)) - 96px),
+      calc((100dvh - var(--toolbar-h) - 136px) * 0.704)
+    );
+    margin: 12px auto;
+  }
 }
 
 /* ---- Phase 7: плеер как нижний accessory-bar (компактный, не «пузырь») ---- */

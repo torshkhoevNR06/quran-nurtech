@@ -684,7 +684,26 @@ async function initDrawer() {
   const drawer = $('[data-drawer]');
   const backdrop = $('[data-drawer-backdrop]');
   const listEl = $('[data-drawer-list]');
+  const desktopMq = window.matchMedia('(min-width: 1120px)');
+  const setDesktopSidebar = (open: boolean, persist = true) => {
+    document.documentElement.setAttribute('data-sidebar', open ? 'open' : 'closed');
+    drawer?.classList.toggle('show', open);
+    document.body.classList.remove('drawer-open');
+    backdrop?.classList.remove('show');
+    if (persist) localStorage.setItem('q_sidebar', open ? 'open' : 'closed');
+    updateMobileScrollLock();
+  };
+  const syncDesktopSidebar = () => {
+    if (!desktopMq.matches) return;
+    const saved = localStorage.getItem('q_sidebar');
+    setDesktopSidebar(saved !== 'closed', false);
+  };
   const open = () => {
+    if (desktopMq.matches) {
+      const next = document.documentElement.getAttribute('data-sidebar') === 'closed';
+      setDesktopSidebar(next);
+      return;
+    }
     drawer?.classList.add('show');
     backdrop?.classList.add('show');
     document.body.classList.add('drawer-open');
@@ -692,11 +711,17 @@ async function initDrawer() {
     $<HTMLInputElement>('[data-drawer-filter]')?.focus();
   };
   const close = () => {
+    if (desktopMq.matches) {
+      setDesktopSidebar(false);
+      return;
+    }
     drawer?.classList.remove('show');
     backdrop?.classList.remove('show');
     document.body.classList.remove('drawer-open');
     updateMobileScrollLock();
   };
+  syncDesktopSidebar();
+  desktopMq.addEventListener?.('change', syncDesktopSidebar);
   $$('[data-act="drawer"]').forEach((b) => b.addEventListener('click', open));
   $$('[data-act="drawer-close"]').forEach((b) => b.addEventListener('click', close));
   backdrop?.addEventListener('click', close);

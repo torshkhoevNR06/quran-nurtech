@@ -69,6 +69,9 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
           if (r.ru) el.setProperty('--ru-size', r.ru + 'px');
           if (r.lh) el.setProperty('--lh', r.lh);
           if (r.font) el.setProperty('--ar-font', r.font);
+          var sidebar = localStorage.getItem('q_sidebar');
+          if (sidebar === 'closed' || sidebar === 'open')
+            document.documentElement.setAttribute('data-sidebar', sidebar);
         } catch (e) {}
       })();
     </script>
