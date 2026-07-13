@@ -15,6 +15,23 @@ import { icons } from '../lib/icons';
     <button type="button" data-dtab="juz">Джузы</button>
   </div>
   <div class="drawer-progress" data-drawer-progress aria-label="Прогресс чтения"></div>
+  <a class="drawer-progress-link" href="/progress">Мой прогресс: хатм, стрик, статистика →</a>
   <nav class="dlist" data-drawer-list></nav>
   <nav class="dlist djuz" data-drawer-juz aria-label="Джузы"></nav>
 </aside>
+
+<style>
+  .drawer-progress-link {
+    display: block;
+    margin: -2px 12px 4px;
+    padding: 8px 10px;
+    border-radius: var(--radius-s, 8px);
+    background: color-mix(in srgb, var(--accent) 10%, transparent);
+    color: var(--accent);
+    font: 600 var(--fs-13, 13px) / 1.2 var(--sans);
+    text-align: center;
+  }
+  .drawer[data-dtab-active='juz'] .drawer-progress-link {
+    display: none;
+  }
+</style>

@@ -1,0 +1,1000 @@
+---
+import Base from '../layouts/Base.astro';
+const title = 'Мой прогресс чтения Корана — хатм, стрик, статистика';
+const description =
+  'Личный прогресс: хатм (сколько прочитано из 6236 аятов), план «дочитать за N дней», стрик, календарь активности, карта 114 сур и разбивка по джузам. Всё локально, без входа.';
+---
+
+<Base {title} {description}>
+  <div class="container page prog" data-prog>
+    <header class="prog-head">
+      <h1>Мой прогресс</h1>
+      <p class="prog-note">
+        Считается локально на этом устройстве (без входа). Аят засчитывается прочитанным, если
+        задержаться на нём ≥3 секунд.
+      </p>
+    </header>
+
+    <!-- Хатм: кольцо + сводка -->
+    <section class="prog-hero">
+      <div class="ring-wrap">
+        <svg viewBox="0 0 120 120" class="ring" aria-hidden="true">
+          <circle cx="60" cy="60" r="52" class="ring-track"></circle>
+          <circle cx="60" cy="60" r="52" class="ring-fill" data-ring pathLength="100"></circle>
+        </svg>
+        <div class="ring-c">
+          <b data-pct>0%</b>
+          <span>хатм</span>
+        </div>
+      </div>
+      <div class="hero-info">
+        <div class="hero-read"><b data-read>0</b> из 6236 аятов</div>
+        <div class="hero-khatm" data-khatm-line>Хатмов завершено: <b data-khatm>0</b></div>
+        <button type="button" class="btn primary hero-finish" data-finish hidden>
+          🎉 Хатм пройден — начать новый
+        </button>
+        <a class="btn ghost hero-continue" data-continue href="#">Продолжить чтение</a>
+      </div>
+    </section>
+
+    <!-- План хатма -->
+    <section class="prog-card" data-plan-card>
+      <div class="card-h">
+        <h2>План хатма</h2>
+        <button type="button" class="mini-btn" data-plan-edit hidden>Изменить</button>
+      </div>
+      <div data-plan-view hidden></div>
+      <form class="plan-set" data-plan-form>
+        <label>Дочитать хатм за</label>
+        <div class="plan-row">
+          <input type="number" min="1" max="365" value="30" data-plan-days inputmode="numeric" />
+          <span>дней</span>
+          <button type="submit" class="btn primary">Поставить цель</button>
+        </div>
+        <div class="plan-presets">
+          <button type="button" data-preset="30">за месяц</button>
+          <button type="button" data-preset="7">за неделю</button>
+          <button type="button" data-preset="90">за 3 месяца</button>
+        </div>
+      </form>
+    </section>
+
+    <!-- Плитки -->
+    <section class="tiles">
+      <div class="tile"><span>Прочитано аятов</span><b data-t-ayahs>0</b></div>
+      <div class="tile"><span>Время чтения</span><b data-t-time>0 мин</b></div>
+      <div class="tile"><span>Дней активно</span><b data-t-days>0</b></div>
+      <div class="tile"><span>Стрик</span><b data-t-streak>0 дн.</b></div>
+      <div class="tile"><span>Лучший стрик</span><b data-t-best>0 дн.</b></div>
+      <div class="tile"><span>В среднем/день</span><b data-t-avg>0</b></div>
+    </section>
+
+    <!-- Дневная цель -->
+    <section class="prog-card goal-card">
+      <div class="card-h"><h2>Дневная цель</h2></div>
+      <div class="goal-row">
+        <div class="goal-ring">
+          <svg viewBox="0 0 80 80" aria-hidden="true">
+            <circle cx="40" cy="40" r="34" class="ring-track"></circle>
+            <circle cx="40" cy="40" r="34" class="ring-fill" data-goal-ring pathLength="100"></circle>
+          </svg>
+          <b data-goal-today>0</b>
+        </div>
+        <div class="goal-info">
+          <div>Сегодня: <b data-goal-cur>0</b> из <b data-goal-target>20</b> аятов</div>
+          <div class="goal-set">
+            Цель:
+            <input type="number" min="1" max="500" value="20" data-goal-input inputmode="numeric" />
+            аятов/день
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Календарь активности -->
+    <section class="prog-card">
+      <div class="card-h"><h2>Активность</h2></div>
+      <div class="cal-wrap">
+        <div class="cal" data-cal></div>
+      </div>
+      <div class="cal-legend">
+        меньше
+        <i class="lv lv0"></i><i class="lv lv1"></i><i class="lv lv2"></i><i class="lv lv3"></i><i class="lv lv4"></i>
+        больше
+      </div>
+    </section>
+
+    <!-- Карта сур -->
+    <section class="prog-card">
+      <div class="card-h"><h2>Карта сур</h2></div>
+      <div class="map-legend">
+        <span><i class="sw sw0"></i>не начата</span>
+        <span><i class="sw sw1"></i>частично</span>
+        <span><i class="sw sw2"></i>прочитана</span>
+      </div>
+      <div class="map" data-map></div>
+    </section>
+
+    <!-- По джузам -->
+    <section class="prog-card">
+      <div class="card-h"><h2>По джузам</h2></div>
+      <div class="juz" data-juz></div>
+    </section>
+  </div>
+</Base>
+
+<style is:global>
+  .prog [hidden] {
+    display: none !important;
+  }
+  .prog {
+    padding-bottom: 90px;
+  }
+  .prog-head h1 {
+    margin: 0 0 6px;
+  }
+  .prog-note {
+    color: var(--ink-faint);
+    font-size: var(--fs-13);
+    max-width: 640px;
+    margin: 0 0 20px;
+  }
+  .prog-card {
+    background: var(--panel-bg);
+    border: 1px solid var(--hairline);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-card);
+    padding: var(--sp-5);
+    margin-bottom: var(--sp-4);
+  }
+  .card-h {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--sp-3);
+  }
+  .card-h h2 {
+    margin: 0;
+    font-size: var(--fs-16);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+  .mini-btn {
+    border: 1px solid var(--hairline);
+    background: transparent;
+    color: var(--accent);
+    border-radius: var(--radius-pill);
+    padding: 5px 12px;
+    font: 600 var(--fs-13) / 1 var(--sans);
+    cursor: pointer;
+  }
+
+  /* Хатм-герой */
+  .prog-hero {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-5);
+    background: var(--panel-bg);
+    border: 1px solid var(--hairline);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-card);
+    padding: var(--sp-5);
+    margin-bottom: var(--sp-4);
+  }
+  .ring-wrap {
+    position: relative;
+    width: 132px;
+    height: 132px;
+    flex: none;
+  }
+  .ring {
+    width: 100%;
+    height: 100%;
+    transform: rotate(-90deg);
+  }
+  .ring-track {
+    fill: none;
+    stroke: var(--seg-track);
+    stroke-width: 9;
+  }
+  .ring-fill {
+    fill: none;
+    stroke: var(--accent);
+    stroke-width: 9;
+    stroke-linecap: round;
+    stroke-dasharray: 100;
+    stroke-dashoffset: 100;
+    transition: stroke-dashoffset 0.8s cubic-bezier(0.32, 0.72, 0, 1);
+  }
+  .ring-c {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-content: center;
+    text-align: center;
+  }
+  .ring-c b {
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+  }
+  .ring-c span {
+    font-size: var(--fs-12);
+    color: var(--ink-faint);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .hero-info {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .hero-read {
+    font-size: var(--fs-18);
+  }
+  .hero-read b {
+    font-size: 22px;
+    font-weight: 800;
+  }
+  .hero-khatm {
+    color: var(--ink-soft);
+    font-size: var(--fs-14);
+  }
+  .hero-finish {
+    margin-top: 8px;
+    align-self: flex-start;
+  }
+  .hero-continue {
+    align-self: flex-start;
+    margin-top: 2px;
+  }
+
+  /* План */
+  .plan-set label {
+    display: block;
+    color: var(--ink-soft);
+    font-size: var(--fs-13);
+    margin-bottom: 8px;
+  }
+  .plan-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .plan-row input {
+    width: 84px;
+    height: 34px;
+    border: 1px solid var(--hairline);
+    border-radius: var(--radius-s);
+    background: var(--seg-thumb);
+    color: var(--ink);
+    padding: 0 10px;
+    font: 600 var(--fs-15) / 1 var(--sans);
+    text-align: center;
+  }
+  .plan-presets {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-top: 12px;
+  }
+  .plan-presets button {
+    border: 1px solid var(--hairline);
+    background: transparent;
+    color: var(--ink-soft);
+    border-radius: var(--radius-pill);
+    padding: 6px 12px;
+    font: 600 var(--fs-13) / 1 var(--sans);
+    cursor: pointer;
+  }
+  .plan-view {
+    display: grid;
+    gap: 12px;
+  }
+  .plan-target {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .plan-target b {
+    font-size: 22px;
+    font-weight: 800;
+  }
+  .plan-bar {
+    height: 8px;
+    border-radius: 999px;
+    background: var(--seg-track);
+    overflow: hidden;
+  }
+  .plan-bar > span {
+    display: block;
+    height: 100%;
+    background: var(--accent);
+    border-radius: 999px;
+    transition: width 0.6s ease;
+  }
+  .plan-bar.expected {
+    position: relative;
+  }
+  .plan-facts {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 10px;
+  }
+  .plan-fact {
+    background: var(--seg-track);
+    border-radius: var(--radius-md);
+    padding: 10px 12px;
+  }
+  .plan-fact span {
+    display: block;
+    color: var(--ink-faint);
+    font-size: var(--fs-12);
+    margin-bottom: 3px;
+  }
+  .plan-fact b {
+    font-size: var(--fs-16);
+    font-weight: 700;
+  }
+  .plan-fact.ok b {
+    color: var(--good);
+  }
+  .plan-fact.behind b {
+    color: var(--low);
+  }
+
+  /* Плитки */
+  .tiles {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: var(--sp-3);
+    margin-bottom: var(--sp-4);
+  }
+  .tile {
+    background: var(--panel-bg);
+    border: 1px solid var(--hairline);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-card);
+    padding: 14px 16px;
+  }
+  .tile span {
+    display: block;
+    color: var(--ink-faint);
+    font-size: var(--fs-12);
+    margin-bottom: 6px;
+  }
+  .tile b {
+    font-size: 24px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Дневная цель */
+  .goal-row {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-4);
+  }
+  .goal-ring {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    flex: none;
+  }
+  .goal-ring svg {
+    width: 100%;
+    height: 100%;
+    transform: rotate(-90deg);
+  }
+  .goal-ring .ring-track {
+    stroke-width: 7;
+  }
+  .goal-ring .ring-fill {
+    stroke-width: 7;
+    stroke: var(--good);
+  }
+  .goal-ring b {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-content: center;
+    font-size: 20px;
+    font-weight: 800;
+    font-variant-numeric: tabular-nums;
+  }
+  .goal-info {
+    font-size: var(--fs-15);
+  }
+  .goal-set {
+    color: var(--ink-soft);
+    font-size: var(--fs-13);
+    margin-top: 8px;
+  }
+  .goal-set input {
+    width: 64px;
+    height: 30px;
+    border: 1px solid var(--hairline);
+    border-radius: var(--radius-s);
+    background: var(--seg-thumb);
+    color: var(--ink);
+    padding: 0 8px;
+    text-align: center;
+    font: 600 var(--fs-14) / 1 var(--sans);
+  }
+
+  /* Календарь-heatmap */
+  .cal-wrap {
+    overflow-x: auto;
+  }
+  .cal {
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-rows: repeat(7, 1fr);
+    gap: 3px;
+    min-width: min-content;
+  }
+  .cal i {
+    width: 13px;
+    height: 13px;
+    border-radius: 3px;
+    background: var(--cal0);
+  }
+  .cal i.l1 {
+    background: var(--cal1);
+  }
+  .cal i.l2 {
+    background: var(--cal2);
+  }
+  .cal i.l3 {
+    background: var(--cal3);
+  }
+  .cal i.l4 {
+    background: var(--cal4);
+  }
+  .cal-legend {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    justify-content: flex-end;
+    margin-top: 10px;
+    font-size: var(--fs-12);
+    color: var(--ink-faint);
+  }
+  .cal-legend .lv {
+    width: 12px;
+    height: 12px;
+    border-radius: 3px;
+  }
+  .lv0 {
+    background: var(--cal0);
+  }
+  .lv1 {
+    background: var(--cal1);
+  }
+  .lv2 {
+    background: var(--cal2);
+  }
+  .lv3 {
+    background: var(--cal3);
+  }
+  .lv4 {
+    background: var(--cal4);
+  }
+  :root {
+    --cal0: color-mix(in srgb, var(--ink) 8%, transparent);
+    --cal1: color-mix(in srgb, var(--accent) 28%, transparent);
+    --cal2: color-mix(in srgb, var(--accent) 50%, transparent);
+    --cal3: color-mix(in srgb, var(--accent) 74%, transparent);
+    --cal4: var(--accent);
+  }
+
+  /* Карта сур */
+  .map-legend {
+    display: flex;
+    gap: 14px;
+    margin-bottom: 12px;
+    font-size: var(--fs-12);
+    color: var(--ink-soft);
+    flex-wrap: wrap;
+  }
+  .map-legend span {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .map-legend .sw {
+    width: 12px;
+    height: 12px;
+    border-radius: 3px;
+  }
+  .sw0 {
+    background: var(--cal0);
+  }
+  .sw1 {
+    background: var(--cal2);
+  }
+  .sw2 {
+    background: var(--accent);
+  }
+  .map {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(44px, 1fr));
+    gap: 6px;
+  }
+  .map a {
+    aspect-ratio: 1;
+    border-radius: var(--radius-s);
+    display: grid;
+    place-content: center;
+    font: 700 var(--fs-13) / 1 var(--sans);
+    color: var(--ink-soft);
+    background: var(--cal0);
+    position: relative;
+    text-decoration: none;
+    font-variant-numeric: tabular-nums;
+  }
+  .map a.p {
+    background: var(--cal2);
+    color: var(--ink);
+  }
+  .map a.f {
+    background: var(--accent);
+    color: var(--accent-ink);
+  }
+  .map a::after {
+    content: attr(data-nm);
+    position: absolute;
+    bottom: calc(100% + 6px);
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--panel-2, #222);
+    color: var(--ink);
+    border: 1px solid var(--hairline);
+    padding: 4px 8px;
+    border-radius: 8px;
+    font: 500 var(--fs-12) / 1.2 var(--sans);
+    white-space: nowrap;
+    box-shadow: var(--shadow-pop);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.12s;
+    z-index: 5;
+  }
+  .map a:hover::after {
+    opacity: 1;
+  }
+
+  /* Джузы */
+  .juz {
+    display: grid;
+    gap: 8px;
+  }
+  .juz-row {
+    display: grid;
+    grid-template-columns: 54px 1fr 44px;
+    align-items: center;
+    gap: 10px;
+  }
+  .juz-row .jn {
+    font-size: var(--fs-13);
+    color: var(--ink-soft);
+    font-weight: 600;
+  }
+  .juz-bar {
+    height: 9px;
+    border-radius: 999px;
+    background: var(--seg-track);
+    overflow: hidden;
+  }
+  .juz-bar > span {
+    display: block;
+    height: 100%;
+    background: var(--accent);
+    border-radius: 999px;
+  }
+  .juz-row .jp {
+    text-align: right;
+    font-size: var(--fs-12);
+    color: var(--ink-faint);
+    font-variant-numeric: tabular-nums;
+  }
+
+  @media (max-width: 560px) {
+    .prog-hero {
+      flex-direction: column;
+      text-align: center;
+    }
+    .hero-info {
+      align-items: center;
+    }
+    .hero-finish,
+    .hero-continue {
+      align-self: center;
+    }
+  }
+</style>
+
+<script is:inline>
+  (function () {
+    var TOTAL = 6236;
+    var K = {
+      progress: 'q_progress',
+      days: 'q_days',
+      streak: 'q_streak',
+      time: 'q_time',
+      last: 'q_last',
+      khatm: 'q_khatm',
+      plan: 'q_khatm_plan',
+      goal: 'q_goal',
+    };
+    var $ = function (s) {
+      return document.querySelector(s);
+    };
+    var LS = {
+      get: function (k, d) {
+        try {
+          var v = localStorage.getItem(k);
+          return v == null ? d : JSON.parse(v);
+        } catch (e) {
+          return d;
+        }
+      },
+      set: function (k, v) {
+        try {
+          localStorage.setItem(k, JSON.stringify(v));
+        } catch (e) {}
+      },
+    };
+    var ayahKey = /^\d{1,3}:\d{1,3}$/;
+    function fmtTime(sec) {
+      var s = Math.max(0, Math.round(sec || 0));
+      var m = Math.round(s / 60);
+      if (m < 1) return s > 0 ? '<1 мин' : '0 мин';
+      if (m < 60) return m + ' мин';
+      var h = Math.floor(m / 60),
+        mm = m % 60;
+      return h + ' ч' + (mm ? ' ' + mm + ' мин' : '');
+    }
+    function dayKey(d) {
+      d = d || new Date();
+      return (
+        d.getFullYear() +
+        '-' +
+        String(d.getMonth() + 1).padStart(2, '0') +
+        '-' +
+        String(d.getDate()).padStart(2, '0')
+      );
+    }
+    function dayNum(key) {
+      var p = key.split('-').map(Number);
+      if (!p[0]) return 0;
+      return Math.floor(new Date(p[0], p[1] - 1, p[2]).getTime() / 86400000);
+    }
+    function fmtDate(dn) {
+      var d = new Date(dn * 86400000);
+      var mm = ['янв', 'фев', 'мар', 'апр', 'мая', 'июн', 'июл', 'авг', 'сен', 'окт', 'ноя', 'дек'];
+      return d.getDate() + ' ' + mm[d.getMonth()];
+    }
+    function plural(n, one, few, many) {
+      var a = Math.abs(n) % 100,
+        b = a % 10;
+      if (a > 10 && a < 20) return many;
+      if (b > 1 && b < 5) return few;
+      if (b === 1) return one;
+      return many;
+    }
+
+    var progress = LS.get(K.progress, {});
+    var days = LS.get(K.days, {});
+    var streak = LS.get(K.streak, { current: 0, best: 0, lastDay: '' });
+    var time = LS.get(K.time, 0) || 0;
+    var khatm = LS.get(K.khatm, 0) || 0;
+
+    function readAyahs() {
+      var c = 0;
+      for (var k in progress) if (progress[k] === true && ayahKey.test(k)) c++;
+      return c;
+    }
+
+    Promise.all([
+      fetch('/data/index.json?v=5').then(function (r) {
+        return r.json();
+      }),
+      fetch('/data/juz.json?v=5')
+        .then(function (r) {
+          return r.json();
+        })
+        .catch(function () {
+          return [];
+        }),
+    ])
+      .then(function (res) {
+        render(res[0], res[1]);
+      })
+      .catch(function () {
+        $('[data-prog]').insertAdjacentHTML(
+          'beforeend',
+          '<p style="color:var(--ink-faint)">Не удалось загрузить данные сур.</p>'
+        );
+      });
+
+    function render(surahs, juz) {
+      // офсеты глобального номера аята
+      var offset = {};
+      var acc = 0;
+      surahs.forEach(function (s) {
+        offset[s.n] = acc;
+        acc += s.c;
+      });
+      var read = readAyahs();
+      var pct = read / TOTAL;
+      var pctR = Math.round(pct * 100);
+
+      // ---- кольцо хатма ----
+      $('[data-pct]').textContent = pctR + '%';
+      $('[data-read]').textContent = read.toLocaleString('ru');
+      $('[data-khatm]').textContent = khatm;
+      if (!khatm) $('[data-khatm-line]').style.display = 'none';
+      requestAnimationFrame(function () {
+        $('[data-ring]').style.strokeDashoffset = 100 - pctR;
+      });
+      if (read >= TOTAL) $('[data-finish]').hidden = false;
+
+      // Продолжить чтение
+      var last = LS.get(K.last, null);
+      var cont = $('[data-continue]');
+      if (last && last.s) cont.href = '/surah/' + last.s + (last.a ? '#ayah-' + last.a : '');
+      else cont.href = '/surah/1';
+
+      // ---- статистика ----
+      var activeDays = Object.keys(days).filter(function (d) {
+        return (days[d] && (days[d].ayahs > 0 || days[d].sec > 0));
+      });
+      var lifetime = khatm * TOTAL + read;
+      $('[data-t-ayahs]').textContent = lifetime.toLocaleString('ru');
+      $('[data-t-time]').textContent = fmtTime(time);
+      $('[data-t-days]').textContent = activeDays.length;
+      $('[data-t-streak]').textContent = (streak.current || 0) + ' дн.';
+      $('[data-t-best]').textContent = (streak.best || 0) + ' дн.';
+      $('[data-t-avg]').textContent = activeDays.length
+        ? Math.round(
+            activeDays.reduce(function (a, d) {
+              return a + (days[d].ayahs || 0);
+            }, 0) / activeDays.length
+          )
+        : 0;
+
+      renderPlan(read);
+      renderGoal();
+      renderCalendar();
+      renderMap(surahs);
+      renderJuz(surahs, juz, offset);
+    }
+
+    // ================= ПЛАН ХАТМА =================
+    function renderPlan(read) {
+      var plan = LS.get(K.plan, null);
+      var form = $('[data-plan-form]');
+      var view = $('[data-plan-view]');
+      var editBtn = $('[data-plan-edit]');
+      if (!plan) {
+        form.hidden = false;
+        view.hidden = true;
+        editBtn.hidden = true;
+        return;
+      }
+      form.hidden = true;
+      view.hidden = false;
+      editBtn.hidden = false;
+
+      var today = dayNum(dayKey());
+      var start = dayNum(plan.start);
+      var elapsed = Math.max(1, today - start + 1);
+      var startRead = plan.startRead || 0;
+      var remaining0 = Math.max(1, TOTAL - startRead);
+      var daily = Math.ceil(remaining0 / plan.days);
+      var doneSince = Math.max(0, read - startRead);
+      var expected = Math.min(remaining0, daily * elapsed);
+      var diff = doneSince - expected; // >0 опережаешь
+      var todayAyahs = (days[dayKey()] && days[dayKey()].ayahs) || 0;
+      var todayLeft = Math.max(0, daily - todayAyahs);
+      var pace = doneSince / elapsed;
+      var leftAyahs = TOTAL - read;
+      var projDaysLeft = pace > 0.01 ? Math.ceil(leftAyahs / pace) : null;
+      var planFinish = start + plan.days - 1;
+      var daysLeftPlan = planFinish - today + 1;
+      var progressPct = Math.min(100, Math.round((doneSince / remaining0) * 100));
+
+      var ok = diff >= 0;
+      view.className = 'plan-view';
+      view.innerHTML =
+        '<div class="plan-target"><b>' +
+        daily +
+        '</b> ' +
+        plural(daily, 'аят', 'аята', 'аятов') +
+        ' в день · хатм за ' +
+        plan.days +
+        ' ' +
+        plural(plan.days, 'день', 'дня', 'дней') +
+        ' (до ' +
+        fmtDate(planFinish) +
+        ')</div>' +
+        '<div class="plan-bar"><span style="width:' +
+        progressPct +
+        '%"></span></div>' +
+        '<div class="plan-facts">' +
+        '<div class="plan-fact"><span>Сегодня осталось</span><b>' +
+        todayLeft +
+        ' ' +
+        plural(todayLeft, 'аят', 'аята', 'аятов') +
+        '</b></div>' +
+        '<div class="plan-fact ' +
+        (ok ? 'ok' : 'behind') +
+        '"><span>' +
+        (ok ? 'Опережаешь план' : 'Отстаёшь от плана') +
+        '</span><b>' +
+        (ok ? '+' : '') +
+        Math.round(diff) +
+        ' ' +
+        plural(Math.round(diff), 'аят', 'аята', 'аятов') +
+        '</b></div>' +
+        '<div class="plan-fact"><span>Дней по плану</span><b>' +
+        Math.max(0, daysLeftPlan) +
+        '</b></div>' +
+        '<div class="plan-fact"><span>Прогноз (текущий темп)</span><b>' +
+        (projDaysLeft == null
+          ? '—'
+          : leftAyahs <= 0
+            ? 'готово 🎉'
+            : '~' + fmtDate(today + projDaysLeft)) +
+        '</b></div>' +
+        '</div>';
+    }
+
+    function savePlan(daysN) {
+      LS.set(K.plan, { days: daysN, start: dayKey(), startRead: readAyahs() });
+      location.reload();
+    }
+    $('[data-plan-form]').addEventListener('submit', function (e) {
+      e.preventDefault();
+      var d = Math.max(1, Math.min(365, parseInt($('[data-plan-days]').value, 10) || 30));
+      savePlan(d);
+    });
+    document.querySelectorAll('[data-preset]').forEach(function (b) {
+      b.addEventListener('click', function () {
+        savePlan(parseInt(b.getAttribute('data-preset'), 10));
+      });
+    });
+    $('[data-plan-edit]').addEventListener('click', function () {
+      LS.set(K.plan, null);
+      location.reload();
+    });
+
+    // ================= ДНЕВНАЯ ЦЕЛЬ =================
+    function renderGoal() {
+      var goal = LS.get(K.goal, 20) || 20;
+      var todayAyahs = (days[dayKey()] && days[dayKey()].ayahs) || 0;
+      var p = Math.min(100, Math.round((todayAyahs / goal) * 100));
+      $('[data-goal-cur]').textContent = todayAyahs;
+      $('[data-goal-target]').textContent = goal;
+      $('[data-goal-today]').textContent = todayAyahs;
+      $('[data-goal-input]').value = goal;
+      requestAnimationFrame(function () {
+        $('[data-goal-ring]').style.strokeDashoffset = 100 - p;
+      });
+    }
+    $('[data-goal-input]').addEventListener('change', function () {
+      var v = Math.max(1, Math.min(500, parseInt(this.value, 10) || 20));
+      LS.set(K.goal, v);
+      renderGoal();
+    });
+
+    // ================= КАЛЕНДАРЬ =================
+    function renderCalendar() {
+      var cal = $('[data-cal]');
+      var end = dayNum(dayKey());
+      // выравниваем к неделе: заканчиваем сегодня, показываем 18 недель
+      var weeks = 18;
+      var dow = new Date(end * 86400000).getDay(); // 0=вс
+      var startDn = end - (weeks * 7 - 1 - (6 - dow));
+      var html = '';
+      for (var dn = startDn; dn <= end; dn++) {
+        var key = dayKey(new Date(dn * 86400000));
+        var a = (days[key] && days[key].ayahs) || 0;
+        var lv = a === 0 ? 0 : a < 5 ? 1 : a < 15 ? 2 : a < 40 ? 3 : 4;
+        html +=
+          '<i class="l' +
+          lv +
+          '" title="' +
+          fmtDate(dn) +
+          ': ' +
+          a +
+          ' ' +
+          plural(a, 'аят', 'аята', 'аятов') +
+          '"></i>';
+      }
+      cal.innerHTML = html;
+    }
+
+    // ================= КАРТА СУР =================
+    function renderMap(surahs) {
+      var map = $('[data-map]');
+      var html = '';
+      surahs.forEach(function (s) {
+        var r = 0;
+        for (var a = 1; a <= s.c; a++) if (progress[s.n + ':' + a] === true) r++;
+        var cls = r === 0 ? '' : r >= s.c ? 'f' : 'p';
+        html +=
+          '<a class="' +
+          cls +
+          '" href="/surah/' +
+          s.n +
+          '" data-nm="' +
+          s.nr +
+          ' · ' +
+          r +
+          '/' +
+          s.c +
+          '">' +
+          s.n +
+          '</a>';
+      });
+      map.innerHTML = html;
+    }
+
+    // ================= ДЖУЗЫ =================
+    function renderJuz(surahs, juz, offset) {
+      if (!juz || !juz.length) {
+        $('[data-juz]').parentElement.style.display = 'none';
+        return;
+      }
+      // границы джузов в глобальной нумерации
+      var starts = juz.map(function (z) {
+        return { j: z.j, g: offset[z.s] + z.a };
+      });
+      starts.sort(function (a, b) {
+        return a.g - b.g;
+      });
+      // читанные глобальные номера
+      var readSet = {};
+      for (var k in progress) {
+        if (progress[k] === true && ayahKey.test(k)) {
+          var sp = k.split(':');
+          readSet[offset[+sp[0]] + +sp[1]] = 1;
+        }
+      }
+      var html = '';
+      for (var i = 0; i < starts.length; i++) {
+        var from = starts[i].g;
+        var to = i + 1 < starts.length ? starts[i + 1].g - 1 : TOTAL;
+        var tot = to - from + 1;
+        var r = 0;
+        for (var g = from; g <= to; g++) if (readSet[g]) r++;
+        var p = Math.round((r / tot) * 100);
+        html +=
+          '<div class="juz-row"><span class="jn">Джуз ' +
+          starts[i].j +
+          '</span><div class="juz-bar"><span style="width:' +
+          p +
+          '%"></span></div><span class="jp">' +
+          p +
+          '%</span></div>';
+      }
+      $('[data-juz]').innerHTML = html;
+    }
+
+    // ================= НОВЫЙ ХАТМ =================
+    $('[data-finish]').addEventListener('click', function () {
+      if (!confirm('Засчитать пройденный хатм и начать новый? Карта прочитанного обнулится, счётчик хатмов вырастет.'))
+        return;
+      LS.set(K.khatm, (LS.get(K.khatm, 0) || 0) + 1);
+      LS.set(K.progress, {});
+      if (navigator.vibrate) navigator.vibrate([12, 30, 14]);
+      location.reload();
+    });
+  })();
+</script>
