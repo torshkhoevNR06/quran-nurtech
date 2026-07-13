@@ -224,6 +224,20 @@ const juzList = Array.from({ length: 30 }, (_, i) => i + 1).map((n) => ({
         font-size: clamp(15.8px, 4.85cqw, 18.6px);
       }
     }
+    /* Мобильный режим чтения (fullscreen): страница заполняет ВЕСЬ вьюпорт по
+       аспекту, без вычета скрытых топбара/тулбара — иначе аяты обрезались снизу. */
+    @media (max-width: 650px) {
+      body.mushaf-immersive .mushaf-reader {
+        height: 100dvh;
+        padding: 0;
+      }
+      body.mushaf-immersive .mushaf-sheet {
+        width: min(calc(100vw - 8px), calc((100dvh - 12px) * 0.66));
+        max-width: none;
+        margin: 0 auto;
+        padding: 8px 6px;
+      }
+    }
   </style>
 
   <div class="mushaf-reader">
