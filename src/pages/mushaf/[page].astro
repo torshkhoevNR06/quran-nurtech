@@ -189,14 +189,30 @@ const juzList = Array.from({ length: 30 }, (_, i) => i + 1).map((n) => ({
       }
       body[data-page-mode='mushaf'] .mushaf-toolbar {
         position: fixed;
-        left: max(10px, env(safe-area-inset-left));
-        right: max(10px, env(safe-area-inset-right));
-        bottom: max(10px, env(safe-area-inset-bottom));
+        left: max(8px, env(safe-area-inset-left));
+        right: max(8px, env(safe-area-inset-right));
+        bottom: max(8px, env(safe-area-inset-bottom));
         z-index: 58;
         width: auto;
-        padding: 8px;
-        gap: 8px;
-        border-radius: 22px;
+        padding: 7px;
+        gap: 6px;
+        border-radius: 20px;
+        flex-wrap: nowrap;
+      }
+      /* на мобиле навигация мусхафа = стрелки + селекты Сура/Джуз; поле «страница» прячем */
+      body[data-page-mode='mushaf'] .mushaf-jump {
+        display: none;
+      }
+      body[data-page-mode='mushaf'] .mushaf-nav-sel {
+        flex: 1 1 0;
+        min-width: 0;
+        max-width: none;
+        height: 40px;
+        padding: 0 8px;
+        font-size: 12px;
+      }
+      body[data-page-mode='mushaf'] .mushaf-toolbar .icon-btn {
+        flex: none;
       }
       body[data-page-mode='mushaf'] .mushaf-sheet {
         width: min(calc(100vw - 12px), calc((var(--mushaf-vvh) - var(--topbar-h) - 128px) * 0.704));
