@@ -1570,6 +1570,15 @@ const player = new (class {
         if (this.idx >= 0) this.playIdx(this.idx);
       })
     );
+    // поиск по чтецам — фильтр списка в меню по имени
+    const rf = $<HTMLInputElement>('[data-reciter-filter]');
+    rf?.addEventListener('input', () => {
+      const q = rf.value.trim().toLowerCase();
+      $$('[data-reciter-list] [data-reciter]').forEach((b) => {
+        const hit = !q || (b.getAttribute('data-name') || '').includes(q);
+        (b as HTMLElement).style.display = hit ? '' : 'none';
+      });
+    });
     const sel = $<HTMLSelectElement>('[data-reciter-sel]');
     if (sel) {
       sel.value = this.reciterId;

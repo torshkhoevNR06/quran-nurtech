@@ -102,16 +102,26 @@ const showQuick = !isSearch;
     {showReaderTools && (
       <div class="menu-wrap desktop-only reader-tool" data-menu-wrap>
         <button class="icon-btn" data-menu-toggle aria-label="Чтец" title="Чтец" set:html={icons.headphones} />
-        <div class="menu" data-menu="reciter">
+        <div class="menu menu-reciter" data-menu="reciter">
           <h4>Чтец</h4>
-          {
-            reciters.map((r) => (
-              <button class="item" type="button" data-reciter={r.id}>
-                {r.name}
-                <span class="tick">✓</span>
-              </button>
-            ))
-          }
+          <input
+            class="reciter-filter"
+            type="text"
+            placeholder="Поиск чтеца…"
+            autocomplete="off"
+            data-reciter-filter
+            aria-label="Поиск чтеца по имени"
+          />
+          <div class="reciter-list" data-reciter-list>
+            {
+              reciters.map((r) => (
+                <button class="item" type="button" data-reciter={r.id} data-name={r.name.toLowerCase()}>
+                  {r.name}
+                  <span class="tick">✓</span>
+                </button>
+              ))
+            }
+          </div>
         </div>
       </div>
     )}
@@ -123,98 +133,155 @@ const showQuick = !isSearch;
         <div class="settings-panel-head">
           <div>
             <strong>Настройки чтения</strong>
-            <span>Вид, перевод, чтец и тема</span>
+            <span>Текст, перевод, звук и оформление</span>
           </div>
           <button class="settings-panel-close" type="button" data-menu-close aria-label="Закрыть настройки" set:html={icons.close} />
         </div>
 
-        <h4>Отображение</h4>
-        <button class="item item-toggle" type="button" data-layer="ar">
-          <span class="it-label">Арабский текст</span>
-          <span class="switch" aria-hidden="true"></span>
-        </button>
-        <button class="item item-toggle" type="button" data-layer="tl">
-          <span class="it-label">Транслитерация</span>
-          <span class="switch" aria-hidden="true"></span>
-        </button>
-        <button class="item item-toggle" type="button" data-layer="tr">
-          <span class="it-label">Перевод</span>
-          <span class="switch" aria-hidden="true"></span>
-        </button>
+        <div class="settings-panel-body">
+          <section class="settings-section">
+            <div class="settings-section-head">
+              <span>Содержание</span>
+              <small>Слои текста в аяте</small>
+            </div>
+            <div class="settings-group">
+              <button class="item item-toggle settings-row" type="button" data-layer="ar">
+                <span class="it-label">Арабский текст</span>
+                <span class="switch" aria-hidden="true"></span>
+              </button>
+              <button class="item item-toggle settings-row" type="button" data-layer="tr">
+                <span class="it-label">Перевод</span>
+                <span class="switch" aria-hidden="true"></span>
+              </button>
+              <button class="item item-toggle settings-row" type="button" data-layer="tl">
+                <span class="it-label">Транслитерация</span>
+                <span class="switch" aria-hidden="true"></span>
+              </button>
+            </div>
+          </section>
 
-        <h4>Перевод / тафсир</h4>
-        {
-          TRANSLATIONS.map((t) => (
-            <button class="item" type="button" data-tr={t.id} disabled={!t.available}>
-              {t.name}
-              {!t.available && <span style="color:var(--ink-faint);font-size:12px"> · скоро</span>}
-              <span class="tick">✓</span>
-            </button>
-          ))
-        }
+          <section class="settings-section">
+            <div class="settings-section-head">
+              <span>Перевод и тафсир</span>
+              <small>Основной источник</small>
+            </div>
+            <div class="settings-choice-list">
+              {
+                TRANSLATIONS.map((t) => (
+                  <button class="item settings-choice" type="button" data-tr={t.id} disabled={!t.available}>
+                    <span class="settings-choice-label">
+                      {t.name}
+                      {!t.available && <small>скоро</small>}
+                    </span>
+                    <span class="tick">✓</span>
+                  </button>
+                ))
+              }
+            </div>
+            <div class="settings-group settings-group-compact">
+              <button class="item item-toggle settings-row" type="button" data-tr-show="kuliev">
+                <span class="it-label">Показывать Кулиева</span>
+                <span class="switch" aria-hidden="true"></span>
+              </button>
+              <button class="item item-toggle settings-row" type="button" data-tr-show="abuadel">
+                <span class="it-label">Показывать Абу Аделя</span>
+                <span class="switch" aria-hidden="true"></span>
+              </button>
+            </div>
+          </section>
 
-        <h4>Показывать перевод</h4>
-        <button class="item item-toggle" type="button" data-tr-show="kuliev">
-          <span class="it-label">Эльмир Кулиев</span>
-          <span class="switch" aria-hidden="true"></span>
-        </button>
-        <button class="item item-toggle" type="button" data-tr-show="abuadel">
-          <span class="it-label">Абу Адель</span>
-          <span class="switch" aria-hidden="true"></span>
-        </button>
+          <section class="settings-section">
+            <div class="settings-section-head">
+              <span>Аудио</span>
+              <small>Голос для прослушивания</small>
+            </div>
+            <label class="settings-field settings-field-select">
+              <span>Чтец</span>
+              <select class="sel" data-reciter-sel>
+                {reciters.map((r) => <option value={r.id}>{r.name}</option>)}
+              </select>
+            </label>
+          </section>
 
-        <h4>Чтец</h4>
-        <select class="sel" data-reciter-sel style="width:100%">
-          {reciters.map((r) => <option value={r.id}>{r.name}</option>)}
-        </select>
+          <section class="settings-section">
+            <div class="settings-section-head">
+              <span>Типографика</span>
+              <small>Размеры и арабский шрифт</small>
+            </div>
+            <div class="settings-group settings-sliders">
+              <label class="settings-field settings-field-range">
+                <span>Арабский</span>
+                <input type="range" min="22" max="52" step="2" data-set="ar" />
+              </label>
+              <label class="settings-field settings-field-range">
+                <span>Перевод</span>
+                <input type="range" min="14" max="26" step="1" data-set="ru" />
+              </label>
+              <label class="settings-field settings-field-range">
+                <span>Интервал</span>
+                <input type="range" min="1.5" max="2.6" step="0.1" data-set="lh" />
+              </label>
+            </div>
+            <div class="settings-field settings-field-stack">
+              <span>Шрифт арабского</span>
+              <div class="seg">
+                {fonts.map((f) => <button type="button" data-font={f.id}>{f.label}</button>)}
+              </div>
+            </div>
+          </section>
 
-        <h4>Размер арабского</h4>
-        <input type="range" min="22" max="52" step="2" data-set="ar" />
-        <h4>Размер перевода</h4>
-        <input type="range" min="14" max="26" step="1" data-set="ru" />
-        <h4>Межстрочный интервал</h4>
-        <input type="range" min="1.5" max="2.6" step="0.1" data-set="lh" />
+          <section class="settings-section">
+            <div class="settings-section-head">
+              <span>Оформление</span>
+              <small>Тема и правила чтения</small>
+            </div>
+            <div class="settings-group">
+              <button class="item item-toggle settings-row" type="button" data-tajweed>
+                <span class="it-label">Таджвид<small>Цветные правила чтения</small></span>
+                <span class="switch" aria-hidden="true"></span>
+              </button>
+              <div class="tj-legend">
+                <span><i class="tj-dot d-madd"></i>Мадд</span>
+                <span><i class="tj-dot d-ghunna"></i>Гунна</span>
+                <span><i class="tj-dot d-ikhfa"></i>Ихфа</span>
+                <span><i class="tj-dot d-iqlab"></i>Икляб</span>
+                <span><i class="tj-dot d-qalqala"></i>Калькаля</span>
+                <span><i class="tj-dot d-silent"></i>Беззвучные</span>
+              </div>
+            </div>
+            <div class="settings-field settings-field-stack">
+              <span>Тема</span>
+              <div class="seg seg-grid2" data-theme-seg>
+                {themes.map((t) => <button type="button" data-theme-set={t.id}>{t.label}</button>)}
+              </div>
+            </div>
+          </section>
 
-        <h4>Шрифт арабского</h4>
-        <div class="seg">
-          {fonts.map((f) => <button type="button" data-font={f.id}>{f.label}</button>)}
-        </div>
-
-        <h4>Таджвид</h4>
-        <button class="item item-toggle" type="button" data-tajweed>
-          <span class="it-label">Цветные правила<small>Подсветка правил чтения (мадд, гунна, ихфа…)</small></span>
-          <span class="switch" aria-hidden="true"></span>
-        </button>
-        <div class="tj-legend">
-          <span><i class="tj-dot d-madd"></i>Мадд</span>
-          <span><i class="tj-dot d-ghunna"></i>Гунна/идгам</span>
-          <span><i class="tj-dot d-ikhfa"></i>Ихфа</span>
-          <span><i class="tj-dot d-iqlab"></i>Икляб</span>
-          <span><i class="tj-dot d-qalqala"></i>Калькаля</span>
-          <span><i class="tj-dot d-silent"></i>Беззвучные</span>
-        </div>
-
-        <h4>Тема</h4>
-        <div class="seg seg-grid2" data-theme-seg>
-          {themes.map((t) => <button type="button" data-theme-set={t.id}>{t.label}</button>)}
-        </div>
-
-        <h4>Пояснения</h4>
-        <button class="item item-toggle" type="button" data-hide-brackets>
-          <span class="it-label">Скрыть скобки-пояснения</span>
-          <span class="switch" aria-hidden="true"></span>
-        </button>
-
-        <h4>Заучивание</h4>
-        <button class="item item-toggle" type="button" data-memorize>
-          <span class="it-label">Режим заучивания<small>Скрыть перевод, повтор аята</small></span>
-          <span class="switch" aria-hidden="true"></span>
-        </button>
-        <div class="seg" data-memrep-seg>
-          <button type="button" data-memrep="2">×2</button>
-          <button type="button" data-memrep="3">×3</button>
-          <button type="button" data-memrep="5">×5</button>
-          <button type="button" data-memrep="0">∞</button>
+          <section class="settings-section">
+            <div class="settings-section-head">
+              <span>Режимы чтения</span>
+              <small>Поведение текста</small>
+            </div>
+            <div class="settings-group">
+              <button class="item item-toggle settings-row" type="button" data-hide-brackets>
+                <span class="it-label">Скрыть пояснения в скобках</span>
+                <span class="switch" aria-hidden="true"></span>
+              </button>
+              <button class="item item-toggle settings-row" type="button" data-memorize>
+                <span class="it-label">Заучивание<small>Скрыть перевод и повторять аят</small></span>
+                <span class="switch" aria-hidden="true"></span>
+              </button>
+            </div>
+            <div class="settings-field settings-field-stack">
+              <span>Повтор аята</span>
+              <div class="seg" data-memrep-seg>
+                <button type="button" data-memrep="2">×2</button>
+                <button type="button" data-memrep="3">×3</button>
+                <button type="button" data-memrep="5">×5</button>
+                <button type="button" data-memrep="0">∞</button>
+              </div>
+            </div>
+          </section>
         </div>
       </div>
       <button class="settings-panel-backdrop" type="button" data-settings-panel-backdrop aria-label="Закрыть настройки"></button>
@@ -326,5 +393,32 @@ const showQuick = !isSearch;
   html[data-theme='light'] .theme-toggle .th-moon,
   html[data-theme='sepia'] .theme-toggle .th-moon {
     display: inline-flex;
+  }
+
+  /* Меню чтеца: поиск + прокручиваемый список (44 чтеца) */
+  .menu-reciter {
+    display: flex;
+    flex-direction: column;
+    max-height: min(72vh, 500px);
+  }
+  .reciter-filter {
+    width: 100%;
+    height: 34px;
+    margin: 2px 0 6px;
+    padding: 0 11px;
+    border: 1px solid var(--hairline);
+    border-radius: var(--radius-s);
+    background: var(--panel-bg);
+    color: var(--ink);
+    font: 400 var(--fs-14) / 1 var(--sans);
+  }
+  .reciter-filter:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 1px;
+  }
+  .reciter-list {
+    overflow-y: auto;
+    min-height: 0;
+    overscroll-behavior: contain;
   }
 </style>
