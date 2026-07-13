@@ -218,21 +218,18 @@ const showQuick = !isSearch;
       <button class="settings-panel-backdrop" type="button" data-settings-panel-backdrop aria-label="Закрыть настройки"></button>
     </div>
 
-    <!-- Тема (отдельная кнопка — прячется на мобиле, тема доступна в настройках) -->
-    <div class="menu-wrap t-opt desktop-comfort" data-menu-wrap>
-      <button class="icon-btn" data-menu-toggle aria-label="Тема" title="Тема" set:html={icons.theme} />
-      <div class="menu" data-menu="theme">
-        <h4>Тема</h4>
-        {
-          themes.map((t) => (
-            <button class="item" type="button" data-theme-set={t.id}>
-              {t.label}
-              <span class="tick">✓</span>
-            </button>
-          ))
-        }
-      </div>
-    </div>
+    <!-- Тема: быстрый тумблер светлая/тёмная прямо в хедере (как в easybot).
+         Полный выбор (сепия/системная) остаётся в панели «Настройки». -->
+    <button
+      class="icon-btn theme-toggle t-opt"
+      type="button"
+      data-theme-toggle
+      aria-label="Переключить светлую и тёмную тему"
+      title="Светлая / тёмная тема"
+    >
+      <span class="th-ic th-sun" set:html={icons.theme} />
+      <span class="th-ic th-moon" set:html={'<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z\"/></svg>'} />
+    </button>
 
     <!-- Закладки -->
     <div class="menu-wrap" data-menu-wrap>
@@ -293,6 +290,7 @@ const showQuick = !isSearch;
     document.addEventListener('DOMContentLoaded', qFillContext);
   else qFillContext();
 
+
   // ⌘, / Ctrl+, — открыть инспектор настроек (как в macOS-приложениях)
   document.addEventListener('keydown', function (e) {
     if ((e.metaKey || e.ctrlKey) && e.key === ',') {
@@ -304,3 +302,27 @@ const showQuick = !isSearch;
     }
   });
 </script>
+
+<style is:global>
+  /* Тумблер темы в хедере: показываем иконку целевого режима —
+     в тёмной теме солнце (клик → светлая), в светлой/сепии луну (клик → тёмная). */
+  .theme-toggle {
+    position: relative;
+  }
+  .theme-toggle .th-ic {
+    display: none;
+    align-items: center;
+    justify-content: center;
+  }
+  .theme-toggle .th-ic svg {
+    width: 20px;
+    height: 20px;
+  }
+  html[data-theme='dark'] .theme-toggle .th-sun {
+    display: inline-flex;
+  }
+  html[data-theme='light'] .theme-toggle .th-moon,
+  html[data-theme='sepia'] .theme-toggle .th-moon {
+    display: inline-flex;
+  }
+</style>

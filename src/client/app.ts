@@ -457,6 +457,17 @@ function initTheme() {
       markMenu('theme', 'theme-set', v);
     })
   );
+  // Быстрый тумблер в хедере: флип светлая↔тёмная от ТЕКУЩЕЙ отрисованной темы
+  // (работает и когда выбрана «системная» — берём фактический data-theme).
+  $$('[data-theme-toggle]').forEach((b) =>
+    b.addEventListener('click', () => {
+      const effNow = document.documentElement.getAttribute('data-theme');
+      const next = effNow === 'dark' ? 'light' : 'dark';
+      LS.set(K.theme, next);
+      applyTheme(next);
+      markMenu('theme', 'theme-set', next);
+    })
+  );
   matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
     if (LS.get<string>(K.theme, 'system') === 'system') applyTheme('system');
   });
@@ -1517,9 +1528,17 @@ async function navSurah(delta: number) {
    Фильтр сур на главной
    ========================================================================== */
 function initHomeFilter() {
+  const cards = $$('[data-surah-grid] [data-card]');
+  // вся карточка кликабельна → открыть суру (клики по вложенным ссылкам-действиям не перехватываем)
+  cards.forEach((c) => {
+    c.addEventListener('click', (e) => {
+      if ((e.target as Element).closest('a')) return;
+      const href = c.getAttribute('data-href');
+      if (href) location.href = href;
+    });
+  });
   const inp = $<HTMLInputElement>('[data-home-filter]');
   if (!inp) return;
-  const cards = $$('[data-surah-grid] [data-card]');
   inp.addEventListener('input', () => {
     const q = inp.value.trim().toLowerCase();
     cards.forEach((c) => {
