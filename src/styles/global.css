@@ -1471,6 +1471,19 @@ input[type='range'] {
 .tafsir-toggle.on .tt-caret {
   transform: rotate(180deg);
 }
+/* две независимые кнопки тафсира (ас-Саади / Ибн Касир) */
+.tafsir-toggles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 14px;
+}
+.tafsir-toggles .tafsir-toggle {
+  margin-top: 0;
+}
+.taf-src + .taf-src {
+  margin-top: 12px;
+}
 
 .ayah-tafsir {
   margin-top: 12px;

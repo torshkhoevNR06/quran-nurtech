@@ -125,12 +125,18 @@ const arName = surah.na.replace('سُورَةُ ', '');
                 )}
               </div>
               {showTafsirToggle && (
-                <button class="tafsir-toggle" type="button" data-act="tafsir" aria-expanded="false" title="Показать тафсир ас-Саади и Ибн Касира">
-                  <span class="tt-ic" set:html={icons.book} />
-                  <span class="tt-tx">Тафсир</span>
-                  <span class="tt-sub">ас-Саади · Ибн Касир</span>
-                  <span class="tt-caret" set:html={icons.chevron} />
-                </button>
+                <div class="tafsir-toggles">
+                  <button class="tafsir-toggle" type="button" data-act="tafsir" data-src="saadi" aria-expanded="false" title="Тафсир ас-Саади">
+                    <span class="tt-ic" set:html={icons.book} />
+                    <span class="tt-tx">Тафсир ас-Саади</span>
+                    <span class="tt-caret" set:html={icons.chevron} />
+                  </button>
+                  <button class="tafsir-toggle" type="button" data-act="tafsir" data-src="ik" aria-expanded="false" title="Тафсир Ибн Касира">
+                    <span class="tt-ic" set:html={icons.book} />
+                    <span class="tt-tx">Тафсир Ибн Касира</span>
+                    <span class="tt-caret" set:html={icons.chevron} />
+                  </button>
+                </div>
               )}
               {saadiBlk && (
                 <div class="tafsir-passage">

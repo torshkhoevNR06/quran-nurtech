@@ -1141,8 +1141,16 @@ function initAyahActions() {
       toast(on ? 'В закладках' : 'Убрано');
     });
     $('[data-act="play"]', el)?.addEventListener('click', () => player.playKey(s, a));
-    $('[data-act="tafsir"]', el)?.addEventListener('click', (e) =>
-      toggleTafsir(el, s, a, e.currentTarget as HTMLElement)
+    $$('[data-act="tafsir"]', el).forEach((btn) =>
+      btn.addEventListener('click', (e) =>
+        toggleTafsir(
+          el,
+          s,
+          a,
+          e.currentTarget as HTMLElement,
+          (btn.getAttribute('data-src') as 'saadi' | 'ik') || undefined
+        )
+      )
     );
   });
 }
@@ -1438,45 +1446,52 @@ function tafsirSectionEl(title: string, sub: string, text: string): HTMLElement 
 }
 
 // раскрыть/свернуть тафсир под аятом; первый показ — ленивая загрузка обоих источников
-async function toggleTafsir(el: Element, s: number, a: number, btn?: HTMLElement | null) {
-  const existing = $('.ayah-tafsir', el) as HTMLElement | null;
-  if (existing) {
-    const open = existing.classList.toggle('open');
-    btn?.setAttribute('aria-expanded', String(open));
-    btn?.classList.toggle('on', open);
-    return;
-  }
-  const panel = document.createElement('div');
-  panel.className = 'ayah-tafsir open';
-  const loading = document.createElement('div');
-  loading.className = 'tafsir-loading';
-  loading.textContent = 'Загружаю тафсир…';
-  panel.appendChild(loading);
-  el.appendChild(panel);
-  btn?.setAttribute('aria-expanded', 'true');
-  btn?.classList.add('on');
-  try {
-    const [saadi, ik] = await Promise.all([loadSaadi(s), loadIbnKathir(s)]);
-    const sBlk = saadi.find((b: any) => b.a === a);
-    const iBlk = ik.find((b: any) => b.a === a);
-    panel.replaceChildren();
-    if (sBlk) {
-      panel.appendChild(tafsirSectionEl('Тафсир ас-Саади', `аят ${s}:${a}`, sBlk.x));
+// Раскрытие тафсира по ОТДЕЛЬНОМУ источнику (src='saadi'|'ik'). Без src — оба
+// (для ПКМ-меню). Каждый источник — независимая раскрывашка внутри .ayah-tafsir.
+async function toggleTafsir(
+  el: Element,
+  s: number,
+  a: number,
+  btn?: HTMLElement | null,
+  src?: 'saadi' | 'ik'
+) {
+  const sources: ('saadi' | 'ik')[] = src ? [src] : ['saadi', 'ik'];
+  let panel = $('.ayah-tafsir', el) as HTMLElement | null;
+  for (const sr of sources) {
+    const block = panel?.querySelector(`.taf-src[data-src="${sr}"]`) as HTMLElement | null;
+    if (block) {
+      block.remove();
+      btn?.classList.remove('on');
+      btn?.setAttribute('aria-expanded', 'false');
+      continue;
     }
-    if (iBlk) panel.appendChild(tafsirSectionEl('Тафсир Ибн Касира', `аят ${s}:${a}`, iBlk.x));
-    if (!sBlk && !iBlk) {
-      const empty = document.createElement('div');
-      empty.className = 'tafsir-empty';
-      empty.textContent = 'Для этого аята тафсир не найден.';
-      panel.appendChild(empty);
+    if (!panel) {
+      panel = document.createElement('div');
+      panel.className = 'ayah-tafsir open';
+      el.appendChild(panel);
     }
-  } catch {
-    // сбрасываем панель целиком — повторный клик попробует загрузить заново
-    panel.remove();
-    btn?.classList.remove('on');
-    btn?.setAttribute('aria-expanded', 'false');
-    toast('Не удалось загрузить тафсир');
+    const b = document.createElement('div');
+    b.className = 'taf-src';
+    b.setAttribute('data-src', sr);
+    b.innerHTML = '<div class="tafsir-loading">Загружаю тафсир…</div>';
+    panel.appendChild(b);
+    btn?.classList.add('on');
+    btn?.setAttribute('aria-expanded', 'true');
+    try {
+      const data = sr === 'saadi' ? await loadSaadi(s) : await loadIbnKathir(s);
+      const blk = data.find((x: any) => x.a === a);
+      b.replaceChildren();
+      const title = sr === 'saadi' ? 'Тафсир ас-Саади' : 'Тафсир Ибн Касира';
+      if (blk) b.appendChild(tafsirSectionEl(title, `аят ${s}:${a}`, blk.x));
+      else b.textContent = 'Для этого аята тафсир не найден.';
+    } catch {
+      b.remove();
+      btn?.classList.remove('on');
+      btn?.setAttribute('aria-expanded', 'false');
+      toast('Не удалось загрузить тафсир');
+    }
   }
+  if (panel && !panel.querySelector('.taf-src')) panel.remove();
 }
 
 /* ==========================================================================

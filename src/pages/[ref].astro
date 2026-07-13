@@ -76,14 +76,14 @@ const description = `${ayah.ru} — Коран, сура «${meta.nr}» аят $
         )}
 
         {taf && (
-          <div class="tafsir">
-            <span class="tafsir-label">Тафсир ас-Саади · аят {sN}:{aN}</span>
-            {taf.x}
-          </div>
+          <details class="tafsir-details">
+            <summary>Тафсир ас-Саади · аят {sN}:{aN}</summary>
+            <div class="tafsir">{taf.x}</div>
+          </details>
         )}
 
         {ikTaf && (
-          <details class="tafsir-details" open>
+          <details class="tafsir-details">
             <summary>Тафсир Ибн Касира · аят {sN}:{aN}</summary>
             <div class="tafsir">{ikTaf.x}</div>
           </details>
