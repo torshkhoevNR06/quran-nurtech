@@ -59,9 +59,12 @@ const fontFamily = mushafTajweedFontFamily(pageNum);
   <style is:inline set:html={fontCss}></style>
   <style is:inline>
     @media screen and (max-width: 650px) {
+      :root {
+        --mushaf-vvh: 100vh;
+      }
       body[data-page-mode='mushaf'] {
         height: 100vh;
-        height: 100dvh;
+        height: var(--mushaf-vvh);
         overflow: hidden;
       }
       body[data-page-mode='mushaf'] .footer,
@@ -76,7 +79,7 @@ const fontFamily = mushafTajweedFontFamily(pageNum);
       }
       body[data-page-mode='mushaf'] main.wide {
         height: calc(100vh - var(--topbar-h) - max(8px, env(safe-area-inset-top)));
-        height: calc(100dvh - var(--topbar-h) - max(8px, env(safe-area-inset-top)));
+        height: calc(var(--mushaf-vvh) - var(--topbar-h) - max(8px, env(safe-area-inset-top)));
         min-height: 0;
         overflow: hidden;
       }
@@ -100,11 +103,13 @@ const fontFamily = mushafTajweedFontFamily(pageNum);
         border-radius: 22px;
       }
       body[data-page-mode='mushaf'] .mushaf-sheet {
-        width: min(calc(100vw - 12px), calc((100vh - var(--topbar-h) - 118px) * 0.704));
-        width: min(calc(100vw - 12px), calc((100dvh - var(--topbar-h) - 118px) * 0.704));
+        width: min(calc(100vw - 12px), calc((var(--mushaf-vvh) - var(--topbar-h) - 128px) * 0.704));
         max-width: none;
         margin: 0 auto;
-        padding: 22px 10px 28px;
+        padding: 18px 10px 24px;
+      }
+      body[data-page-mode='mushaf'] .qcf-page {
+        font-size: clamp(15.8px, 4.85cqw, 18.6px);
       }
     }
   </style>
@@ -186,6 +191,23 @@ const fontFamily = mushafTajweedFontFamily(pageNum);
       document.querySelectorAll('[data-mushaf-page]').forEach(function (page) {
         page.setAttribute('data-mushaf-firefox', '1');
       });
+    })();
+
+    (function () {
+      if (document.body.getAttribute('data-page-mode') !== 'mushaf') return;
+      var root = document.documentElement;
+      function syncViewportHeight() {
+        var vv = window.visualViewport;
+        var height = Math.max(360, Math.floor((vv && vv.height) || window.innerHeight || 0));
+        root.style.setProperty('--mushaf-vvh', height + 'px');
+      }
+      syncViewportHeight();
+      window.addEventListener('resize', syncViewportHeight, { passive: true });
+      window.addEventListener('orientationchange', syncViewportHeight, { passive: true });
+      if (window.visualViewport) {
+        window.visualViewport.addEventListener('resize', syncViewportHeight, { passive: true });
+        window.visualViewport.addEventListener('scroll', syncViewportHeight, { passive: true });
+      }
     })();
 
     document.addEventListener('submit', function (event) {
