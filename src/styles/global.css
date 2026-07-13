@@ -939,15 +939,13 @@ input[type='range'] {
   .settings-menu-wrap {
     position: static;
   }
-  /* инспектор ужимает контент (не оверлей) — затемняющий фон не нужен */
+  /* Инспектор выезжает поверх контента: так главная и списки не пересчитывают
+     сетку при открытии настроек. Для мусхафа ниже есть отдельный сдвиг страницы. */
   .settings-panel-backdrop {
     display: none !important;
   }
-  body {
-    transition: padding-right 0.24s cubic-bezier(0.2, 0, 0, 1);
-  }
   body.settings-panel-open {
-    padding-right: var(--inspector-w);
+    padding-right: 0;
   }
   .menu[data-menu='settings'] {
     position: fixed;
