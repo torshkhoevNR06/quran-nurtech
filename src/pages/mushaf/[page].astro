@@ -60,7 +60,7 @@ const fontFamily = mushafTajweedFontFamily(pageNum);
 
   <div class="mushaf-reader">
     <nav class="mushaf-toolbar container" aria-label="Навигация по мусхафу">
-      <a class={`icon-btn ${prevPage ? '' : 'disabled'}`} href={prevPage ? `/mushaf/${prevPage}` : undefined} aria-label="Предыдущая страница" title="Предыдущая страница" set:html={icons.arrowRight} />
+      <a class={`icon-btn ${prevPage ? '' : 'disabled'}`} href={prevPage ? `/mushaf/${prevPage}` : undefined} aria-label="Предыдущая страница" title="Предыдущая страница" set:html={icons.arrowLeft} />
 
       <form class="mushaf-jump" action="/mushaf/1" data-mushaf-jump>
         <label for="mushaf-page">Страница</label>
@@ -68,7 +68,7 @@ const fontFamily = mushafTajweedFontFamily(pageNum);
         <span>/ {MUSHAF_TOTAL_PAGES}</span>
       </form>
 
-      <a class={`icon-btn ${nextPage ? '' : 'disabled'}`} href={nextPage ? `/mushaf/${nextPage}` : undefined} aria-label="Следующая страница" title="Следующая страница" set:html={icons.arrowLeft} />
+      <a class={`icon-btn ${nextPage ? '' : 'disabled'}`} href={nextPage ? `/mushaf/${nextPage}` : undefined} aria-label="Следующая страница" title="Следующая страница" set:html={icons.arrowRight} />
     </nav>
 
     <section class="mushaf-sheet" aria-label={`Страница ${pageNum} мусхафа`}>
@@ -118,13 +118,13 @@ const fontFamily = mushafTajweedFontFamily(pageNum);
 
     <nav class="mushaf-bottom container" aria-label="Навигация по страницам">
       <a class={`btn ${prevPage ? '' : 'disabled'}`} href={prevPage ? `/mushaf/${prevPage}` : undefined}>
-        <span set:html={icons.arrowRight} style="width:18px;height:18px" /> Назад
+        <span set:html={icons.arrowLeft} style="width:18px;height:18px" /> Назад
       </a>
       <a class="btn" href="/surah/1">
         <span set:html={icons.book} style="width:18px;height:18px" /> Суры
       </a>
       <a class={`btn primary ${nextPage ? '' : 'disabled'}`} href={nextPage ? `/mushaf/${nextPage}` : undefined}>
-        Вперёд <span set:html={icons.arrowLeft} style="width:18px;height:18px" />
+        Вперёд <span set:html={icons.arrowRight} style="width:18px;height:18px" />
       </a>
     </nav>
   </div>
