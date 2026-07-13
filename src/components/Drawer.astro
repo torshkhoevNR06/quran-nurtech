@@ -10,6 +10,11 @@ import { icons } from '../lib/icons';
     <input type="text" placeholder="Поиск суры…" data-drawer-filter aria-label="Поиск суры" />
     <button type="button" class="icon-btn" data-act="drawer-close" aria-label="Закрыть" set:html={icons.close} />
   </div>
+  <nav class="dgroup" aria-label="Чтение">
+    <div class="dgroup-title">Чтение</div>
+    <a data-continue href="/surah/1"><span class="di" set:html={icons.continue} />Продолжить</a>
+    <a href="/progress"><span class="di" set:html={icons.study} />Мой прогресс</a>
+  </nav>
   <div class="dtabs">
     <button type="button" class="on" data-dtab="surah">Суры</button>
     <button type="button" data-dtab="juz">Джузы</button>

@@ -3750,3 +3750,126 @@ main {
     min-height: 40px;
   }
 }
+
+/* ==========================================================================
+   macOS App Shell (Phase 1/2/4/9/12) — feat/macos-desktop
+   Токены оболочки, контекст-заголовок тулбара, спокойная читалка, a11y-фокус.
+   ========================================================================== */
+:root {
+  --toolbar-h: 54px;
+  --inspector-w: clamp(380px, 34vw, 460px);
+  --mac-hairline: var(--hairline);
+}
+
+/* ---- Тулбар: контекст-заголовок слева (как в Finder/Preview) ---- */
+.toolbar-context {
+  display: none;
+}
+@media (min-width: 1120px) {
+  /* на десктопе бренд ужимаем до логотипа, освобождая место контексту */
+  .topbar-inner .brand-copy {
+    display: none;
+  }
+  .topbar-inner .toolbar-context {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-width: 0;
+    max-width: 240px;
+    line-height: 1.15;
+  }
+  .toolbar-context .tc-t {
+    font: 700 var(--fs-14) / 1.15 var(--sans);
+    color: var(--ink);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    letter-spacing: -0.01em;
+  }
+  .toolbar-context .tc-s {
+    font: 500 var(--fs-12) / 1.15 var(--sans);
+    color: var(--ink-faint);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-variant-numeric: tabular-nums;
+  }
+  .toolbar-context:empty {
+    display: none;
+  }
+}
+
+/* ---- Source-list: группа «Чтение» над Суры/Джузы ---- */
+.dgroup {
+  padding: 8px 12px 2px;
+}
+.dgroup-title {
+  font: 700 var(--fs-11) / 1 var(--sans);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin: 0 4px 6px;
+}
+.dgroup a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 9px;
+  border-radius: var(--radius-s);
+  color: var(--ink);
+  font: 600 var(--fs-14) / 1.2 var(--sans);
+}
+.dgroup a:hover {
+  background: color-mix(in srgb, var(--ink) 6%, transparent);
+}
+.dgroup a .di {
+  width: 17px;
+  height: 17px;
+  flex: none;
+  color: var(--ink-faint);
+  display: inline-flex;
+}
+.dgroup a .di svg {
+  width: 100%;
+  height: 100%;
+}
+.dgroup a .dc {
+  margin-left: auto;
+  font-size: var(--fs-12);
+  color: var(--ink-faint);
+  font-variant-numeric: tabular-nums;
+}
+/* группа видна только на десктопном постоянном сайдбаре и во вкладке «Суры» */
+.drawer[data-dtab-active='juz'] .dgroup {
+  display: none;
+}
+
+/* ---- Читалка: спокойнее (Phase 4) — тоньше тени, hairline-разделители ---- */
+@media (min-width: 1120px) {
+  .ayahs {
+    box-shadow: none;
+    border: 1px solid var(--hairline);
+  }
+  .ayah {
+    border-bottom-color: var(--hairline);
+  }
+  .ayah-acts button,
+  .ayah-acts a {
+    opacity: 0.5;
+    transition: opacity 0.15s;
+  }
+  .ayah:hover .ayah-acts button,
+  .ayah:hover .ayah-acts a,
+  .ayah-acts button:focus-visible,
+  .ayah-acts a:focus-visible {
+    opacity: 1;
+  }
+}
+
+/* ---- Фокус-кольца согласованно (Phase 9) ---- */
+.toolbar-context [href]:focus-visible,
+.dgroup a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: var(--radius-s);
+}
