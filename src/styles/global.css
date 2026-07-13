@@ -4041,36 +4041,37 @@ main[role='main'] {
   }
 
   .ayah.active {
-    padding-inline: 12px;
-    border-radius: 14px;
-    box-shadow: inset 3px 0 0 var(--accent);
+    padding-inline: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
   }
 
   .tafsir-passage,
   .tafsir-details,
   .tafsir-src {
     border: 0;
-    border-left: 3px solid color-mix(in srgb, var(--accent) 72%, var(--line));
+    border-top: 1px solid color-mix(in srgb, var(--line) 88%, transparent);
     border-radius: 0;
     background: transparent;
     box-shadow: none;
   }
 
   .tafsir-passage {
-    padding: 8px 0 8px 14px;
-    margin: 12px 0;
+    padding: 14px 0 4px;
+    margin: 14px 0 0;
   }
 
   .tafsir-details {
-    margin-top: 12px;
+    margin-top: 14px;
   }
 
   .tafsir-details > summary {
-    padding: 10px 0 10px 14px;
+    padding: 14px 0 8px;
   }
 
   .tafsir-details > .tafsir {
-    padding: 0 0 10px 14px;
+    padding: 0 0 4px;
   }
 
   .ayah-tafsir {
@@ -4078,11 +4079,11 @@ main[role='main'] {
   }
 
   .tafsir-src {
-    padding: 10px 0 10px 14px;
+    padding: 14px 0 4px;
   }
 
   .tafsir-src + .tafsir-src {
-    border-left-color: color-mix(in srgb, var(--ink-faint) 45%, var(--line));
+    border-top-color: color-mix(in srgb, var(--line) 82%, transparent);
   }
 
   .tafsir-src-b,
