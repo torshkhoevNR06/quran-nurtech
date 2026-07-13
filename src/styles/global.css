@@ -71,6 +71,11 @@
   --accent-soft: rgba(63, 74, 88, 0.12);
   --hl: rgba(240, 200, 90, 0.4);
   --line: rgba(22, 26, 32, 0.1);
+  /* macOS-контролы: подложка сегментов и приподнятая «капсула» выбранного */
+  --seg-track: rgba(0, 0, 0, 0.055);
+  --seg-thumb: #ffffff;
+  --seg-thumb-bd: rgba(0, 0, 0, 0.06);
+  --knob: #ffffff;
 
   /* амбиентные орбы (мягкий нейтральный фон под стеклом) */
   --orb-1: rgba(90, 102, 120, 0.2);
@@ -121,6 +126,10 @@
   --accent-soft: rgba(174, 184, 198, 0.16);
   --hl: rgba(90, 78, 40, 0.55);
   --line: rgba(255, 255, 255, 0.09);
+  --seg-track: rgba(0, 0, 0, 0.28);
+  --seg-thumb: rgba(255, 255, 255, 0.16);
+  --seg-thumb-bd: rgba(255, 255, 255, 0.05);
+  --knob: #f2f4f7;
 
   --orb-1: rgba(90, 105, 125, 0.2);
   --orb-2: rgba(70, 82, 100, 0.2);
@@ -153,6 +162,10 @@
   --accent-soft: rgba(106, 95, 78, 0.18);
   --hl: rgba(220, 180, 90, 0.5);
   --line: rgba(90, 70, 30, 0.14);
+  --seg-track: rgba(90, 70, 30, 0.09);
+  --seg-thumb: #fffaf0;
+  --seg-thumb-bd: rgba(90, 70, 30, 0.08);
+  --knob: #fffaf0;
 
   --orb-1: rgba(190, 160, 110, 0.24);
   --orb-2: rgba(170, 150, 120, 0.18);
@@ -614,6 +627,151 @@ select.sel {
 input[type='range'] {
   width: 100%;
   accent-color: var(--accent);
+}
+
+/* ==========================================================================
+   Меню «Настройки» в стиле macOS (десктоп-поповер)
+   ========================================================================== */
+.menu[data-menu='settings'] {
+  width: min(340px, calc(100vw - 24px));
+  max-height: min(76vh, 660px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 8px 10px 12px;
+  border-radius: 14px;
+}
+.menu[data-menu='settings']::-webkit-scrollbar {
+  width: 9px;
+}
+.menu[data-menu='settings']::-webkit-scrollbar-thumb {
+  background: color-mix(in srgb, var(--ink) 22%, transparent);
+  border: 2.5px solid transparent;
+  border-radius: 9px;
+  background-clip: padding-box;
+}
+.menu h4 {
+  margin: 13px 6px 6px;
+  font-size: 11px;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  font-weight: 700;
+}
+.menu h4:first-child {
+  margin-top: 4px;
+}
+
+/* сегмент-контрол (NSSegmentedControl): подложка + приподнятая капсула выбранного */
+.menu .seg {
+  display: flex;
+  width: 100%;
+  gap: 2px;
+  padding: 2px;
+  background: var(--seg-track);
+  border: 1px solid var(--seg-thumb-bd);
+  border-radius: 9px;
+  box-shadow: inset 0 1px 1.5px rgba(0, 0, 0, 0.06);
+}
+.menu .seg.seg-grid3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+.menu .seg.seg-grid2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+.menu .seg button {
+  flex: 1 1 0;
+  min-width: 0;
+  padding: 6px;
+  border: 0;
+  background: transparent;
+  color: var(--ink-soft);
+  border-radius: 7px;
+  font: 600 12.5px/1 var(--sans);
+  cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  box-shadow: none;
+  transition: background 0.12s, color 0.12s;
+}
+.menu .seg button:hover {
+  color: var(--ink);
+}
+.menu .seg button.on {
+  background: var(--seg-thumb);
+  color: var(--ink);
+  box-shadow: 0 1px 2.5px rgba(0, 0, 0, 0.16), 0 0 0 0.5px var(--seg-thumb-bd);
+}
+
+/* пункты-списки (Перевод/тафсир, Пояснения, Заучивание) */
+.menu button.item {
+  padding: 7px 10px;
+  border-radius: 8px;
+  font: 500 13.5px/1.3 var(--sans);
+  gap: 8px;
+}
+.menu button.item.on {
+  background: var(--accent-soft);
+  color: var(--ink);
+  font-weight: 600;
+}
+.menu button.item .tick {
+  font-size: 13px;
+}
+
+/* popup-button (Чтец) в стиле macOS */
+.menu select.sel {
+  height: 32px;
+  padding: 0 30px 0 11px;
+  border-radius: 8px;
+  border: 1px solid var(--seg-thumb-bd);
+  background: var(--seg-thumb)
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='M3 5l3 3 3-3' stroke='%238a90a0' stroke-width='1.6' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")
+    no-repeat right 10px center;
+  font: 500 13.5px/1 var(--sans);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+}
+
+/* слайдеры macOS: тонкая дорожка + белый круглый регулятор */
+.menu input[type='range'] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 20px;
+  margin: 2px 2px 6px;
+  background: transparent;
+  cursor: pointer;
+}
+.menu input[type='range']::-webkit-slider-runnable-track {
+  height: 4px;
+  border-radius: 3px;
+  background: var(--seg-track);
+}
+.menu input[type='range']::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  margin-top: -7px;
+  border-radius: 50%;
+  background: var(--knob);
+  border: 0.5px solid var(--seg-thumb-bd);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+.menu input[type='range']::-moz-range-track {
+  height: 4px;
+  border-radius: 3px;
+  background: var(--seg-track);
+}
+.menu input[type='range']::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--knob);
+  border: 0.5px solid var(--seg-thumb-bd);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 
 /* ==========================================================================
