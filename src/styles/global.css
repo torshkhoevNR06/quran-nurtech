@@ -1784,6 +1784,224 @@ mark.hit {
 }
 
 /* ==========================================================================
+   QCF4-мусхаф: страничная раскладка оригинального арабского текста
+   ========================================================================== */
+.mushaf-reader {
+  padding: 18px 0 70px;
+}
+
+.mushaf-toolbar,
+.mushaf-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.mushaf-bottom {
+  margin-top: 18px;
+}
+
+.mushaf-jump {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 42px;
+  padding: 6px 10px;
+  border: 1px solid var(--glass-border);
+  border-radius: 14px;
+  background: var(--glass-bg-strong);
+  color: var(--ink-soft);
+  box-shadow: var(--glass-elev-sm);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.mushaf-jump input {
+  width: 72px;
+  height: 30px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: var(--panel-bg);
+  color: var(--ink);
+  font: 800 15px/1 var(--sans);
+  text-align: center;
+}
+
+.mushaf-sheet {
+  position: relative;
+  width: min(760px, calc(100vw - 28px));
+  aspect-ratio: 704 / 1000;
+  margin: 18px auto 0;
+  padding: 30px 44px 42px;
+  border: 1px solid color-mix(in srgb, var(--line) 72%, transparent);
+  border-radius: 8px;
+  background:
+    linear-gradient(90deg, rgba(0, 0, 0, 0.025), transparent 10%, transparent 90%, rgba(0, 0, 0, 0.025)),
+    color-mix(in srgb, var(--panel-bg) 92%, #fbfaf6);
+  box-shadow: 0 18px 60px -34px var(--glass-shadow), 0 1px 2px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+}
+
+.mushaf-meta {
+  position: absolute;
+  inset: 12px 28px auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  color: var(--ink-faint);
+  font-size: 11px;
+  line-height: 1.2;
+}
+
+.mushaf-meta span {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.mushaf-meta b {
+  color: var(--ink-soft);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.qcf-page {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-rows: repeat(15, 1fr);
+  direction: rtl;
+  color: color-mix(in srgb, var(--ink) 92%, #111);
+  font-size: 34px;
+}
+
+.qcf-line {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  white-space: nowrap;
+  line-height: 1;
+  direction: rtl;
+  overflow: visible;
+}
+
+.qcf-line.is-empty {
+  visibility: hidden;
+}
+
+.qcf-word {
+  display: inline-block;
+  flex: none;
+  line-height: 1;
+  speak: none;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: geometricPrecision;
+}
+
+.qcf-word[data-ayah-key] {
+  cursor: default;
+}
+
+.qcf-word[data-ayah-key]:hover {
+  color: var(--accent);
+}
+
+.qcf-word-surah_header {
+  font-size: 1.12em;
+}
+
+.mushaf-start {
+  padding: 54px 16px 90px;
+  text-align: center;
+}
+
+.mushaf-start h1 {
+  margin: 0;
+  font-size: 42px;
+}
+
+.mushaf-start p:not(.eyebrow) {
+  max-width: 640px;
+  margin: 12px auto 0;
+  color: var(--ink-soft);
+}
+
+.mushaf-start-actions {
+  justify-content: center;
+  margin-top: 22px;
+}
+
+.icon-btn.disabled,
+.btn.disabled {
+  opacity: 0.38;
+  pointer-events: none;
+  transform: none;
+}
+
+@media (width <= 900px) {
+  .qcf-page {
+    font-size: 30px;
+  }
+
+  .mushaf-sheet {
+    padding-inline: 36px;
+  }
+}
+
+@media (width <= 650px) {
+  .mushaf-reader {
+    padding-top: 10px;
+  }
+
+  .mushaf-toolbar {
+    gap: 8px;
+  }
+
+  .mushaf-jump {
+    flex: 1 1 auto;
+    justify-content: center;
+    max-width: 230px;
+  }
+
+  .mushaf-jump input {
+    width: 58px;
+  }
+
+  .mushaf-sheet {
+    width: min(100vw - 16px, 520px);
+    padding: 26px 18px 34px;
+  }
+
+  .mushaf-meta {
+    inset-inline: 18px;
+    font-size: 10px;
+  }
+
+  .qcf-page {
+    font-size: 22px;
+  }
+}
+
+@media (width <= 420px) {
+  .qcf-page {
+    font-size: 18px;
+  }
+
+  .mushaf-bottom {
+    gap: 8px;
+  }
+
+  .mushaf-bottom .btn {
+    padding-inline: 11px;
+  }
+}
+
+/* ==========================================================================
    Прочее
    ========================================================================== */
 .page {
@@ -3243,4 +3461,62 @@ select:focus-visible,
 .drawer[data-dtab-active='juz'] [data-drawer-list],
 .drawer[data-dtab-active='juz'] .drawer-progress {
   display: none;
+}
+
+/* ==========================================================================
+   Мобильная адаптация: весь экран (safe-area) + тач-оптимизации
+   ========================================================================== */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+button,
+a,
+label,
+summary,
+select,
+input,
+.switch,
+.seg button,
+[role='button'] {
+  touch-action: manipulation; /* без 300мс-задержки клика и двойного тап-зума */
+}
+html {
+  -webkit-text-size-adjust: 100%;
+}
+body {
+  overscroll-behavior-y: none; /* без «резинки»/pull-to-refresh — ощущение приложения */
+}
+
+/* Безопасные зоны (вырез/динамик-айленд/home-indicator). env()=0 на десктопе → max() безопасен. */
+.topbar {
+  padding-top: max(8px, env(safe-area-inset-top));
+}
+main {
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+}
+.footer {
+  padding-bottom: max(24px, env(safe-area-inset-bottom));
+}
+
+@media (max-width: 820px) {
+  /* поля ввода ≥16px — iOS не зумит страницу при фокусе */
+  input,
+  select,
+  textarea {
+    font-size: 16px;
+  }
+  /* хит-зоны ≥44px по канону мобильной эргономики */
+  .ayah-acts button,
+  .ayah-acts a {
+    min-width: 42px;
+    min-height: 42px;
+  }
+  .drawer .dlist a,
+  .menu button.item {
+    min-height: 46px;
+  }
+  .seg button {
+    min-height: 40px;
+  }
 }

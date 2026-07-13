@@ -46,6 +46,20 @@ const $ = <T extends Element = HTMLElement>(s: string, r: ParentNode = document)
 const $$ = <T extends Element = HTMLElement>(s: string, r: ParentNode = document) =>
   Array.from(r.querySelectorAll<T>(s));
 
+/* ---------- хаптики (веб-вибро; iOS игнорирует, Android/PWA вибрирует) ---------- */
+type Haptic = 'light' | 'medium' | 'success' | 'error';
+const HAPTIC: Record<Haptic, number | number[]> = {
+  light: 8,
+  medium: 16,
+  success: [12, 30, 14],
+  error: [28, 45, 28],
+};
+function haptic(kind: Haptic = 'light') {
+  try {
+    (navigator as any).vibrate?.(HAPTIC[kind]);
+  } catch {}
+}
+
 /* ---------- toast ---------- */
 let toastT: number | undefined;
 function toast(msg: string) {
@@ -53,6 +67,7 @@ function toast(msg: string) {
   if (!el) return;
   el.textContent = msg;
   el.classList.add('show');
+  haptic('light');
   clearTimeout(toastT);
   toastT = window.setTimeout(() => el.classList.remove('show'), 1800);
 }
@@ -1475,6 +1490,17 @@ function boot() {
   initReadingAnalytics();
   player.init();
   initHotkeys();
+  // тактильный отклик на тапы по интерактивным элементам (веб-вибро)
+  document.addEventListener(
+    'pointerdown',
+    (e) => {
+      const t = (e.target as Element | null)?.closest?.(
+        'button, a, .switch, .seg button, .item, [role="button"], .dlist a, .tafsir-toggle, .dtabs button'
+      );
+      if (t) haptic('light');
+    },
+    { passive: true }
+  );
   loadIndex(); // прогреть индекс для плеера/заголовков
 }
 if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
