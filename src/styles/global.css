@@ -398,6 +398,18 @@ h3 {
   height: 42px;
 }
 
+/* Логотип — белая графика (для тёмной темы). В светлых темах он сливается с
+   фоном, поэтому подкладываем графитовый бейдж-круг (лого читается на главную). */
+html[data-theme='light'] .brand-mark,
+html[data-theme='sepia'] .brand-mark {
+  background: var(--accent);
+  box-shadow: 0 1px 3px rgba(20, 24, 30, 0.16);
+}
+html[data-theme='light'] .brand-mark img,
+html[data-theme='sepia'] .brand-mark img {
+  transform: scale(0.82);
+}
+
 .brand-copy {
   display: grid;
   gap: 1px;

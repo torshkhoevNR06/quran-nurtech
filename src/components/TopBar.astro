@@ -36,7 +36,7 @@ const showQuick = !isSearch;
   <div role="toolbar" aria-label="Панель инструментов" class={`topbar-inner ${isReader ? 'is-reader' : ''} ${isSearch ? 'is-search' : ''} ${isAudio ? 'is-audio' : ''} ${isMushaf ? 'is-mushaf' : ''}`}>
     <button class="icon-btn only-mobile" data-act="drawer" aria-label="Список сур" set:html={icons.menu} />
 
-    <a href="/" class="brand" aria-label="Коран онлайн — главная">
+    <a href="/" class="brand" aria-label="Коран онлайн — главная" title="На главную — выбор суры">
       <span class="brand-mark" aria-hidden="true">
         <img src="/brand-mark.png?v=g2" width="42" height="42" alt="" />
       </span>
