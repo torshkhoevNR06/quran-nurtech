@@ -1276,6 +1276,133 @@ function initAyahContextMenu() {
   });
 }
 
+/* ==========================================================================
+   Мусхаф: тап по аяту → нижний лист (перевод, тафсир, воспроизвести, закладка).
+   В мусхафе перевода в DOM нет — берём из search-index.json (кэш поиска).
+   ========================================================================== */
+type AyahTr = { s: number; a: number; r: string; aa: string; ar: string; tl: string };
+let ayahTrCache: Record<string, AyahTr> | null = null;
+async function loadAyahTranslations(): Promise<Record<string, AyahTr>> {
+  if (ayahTrCache) return ayahTrCache;
+  const rows: AyahTr[] = await fetch(`/data/search-index.json?v=4`).then((r) => r.json());
+  const map: Record<string, AyahTr> = {};
+  for (const row of rows) map[`${row.s}:${row.a}`] = row;
+  ayahTrCache = map;
+  return map;
+}
+function initMushafAyahSheet() {
+  const words = $$('.qcf-word[data-ayah-key]');
+  if (!words.length) return;
+  const sheet = document.createElement('div');
+  sheet.className = 'mas';
+  const backdrop = document.createElement('div');
+  backdrop.className = 'mas-backdrop';
+  backdrop.setAttribute('data-mas-close', '');
+  const card = document.createElement('div');
+  card.className = 'mas-card';
+  card.setAttribute('role', 'dialog');
+  card.setAttribute('aria-modal', 'true');
+  card.innerHTML =
+    '<div class="mas-head"><b data-mas-ref></b>' +
+    '<button type="button" class="mas-x" data-mas-close aria-label="Закрыть">' +
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>' +
+    '<div class="mas-tr" data-mas-tr></div>' +
+    '<div class="mas-tafsir" data-mas-tafsir hidden></div>' +
+    '<div class="mas-acts" data-mas-acts></div>';
+  sheet.append(backdrop, card);
+  document.body.appendChild(sheet);
+
+  const refEl = card.querySelector('[data-mas-ref]') as HTMLElement;
+  const trEl = card.querySelector('[data-mas-tr]') as HTMLElement;
+  const tafEl = card.querySelector('[data-mas-tafsir]') as HTMLElement;
+  const actsEl = card.querySelector('[data-mas-acts]') as HTMLElement;
+
+  const clearHi = () =>
+    $$('.qcf-word.qcf-ayah-active').forEach((w) => w.classList.remove('qcf-ayah-active'));
+  const close = () => {
+    sheet.classList.remove('open');
+    clearHi();
+  };
+  sheet.addEventListener('click', (e) => {
+    if ((e.target as Element).closest('[data-mas-close]')) close();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') close();
+  });
+
+  const actBtn = (label: string, icon: string, run: () => void) => {
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'mas-act';
+    b.innerHTML = `<span class="mas-ic">${icon}</span>${label}`;
+    b.addEventListener('click', run);
+    return b;
+  };
+
+  const open = async (s: number, a: number) => {
+    clearHi();
+    $$(`.qcf-word[data-ayah-key="${s}:${a}"]`).forEach((w) => w.classList.add('qcf-ayah-active'));
+    await loadIndex();
+    const name = surahIndex.find((x) => x.n === s)?.nr || 'Сура ' + s;
+    refEl.textContent = `${name} · аят ${s}:${a}`;
+    trEl.textContent = 'Загружаю перевод…';
+    tafEl.hidden = true;
+    tafEl.textContent = '';
+    sheet.classList.add('open');
+
+    // действия
+    actsEl.innerHTML = '';
+    let row: AyahTr | undefined;
+    const buildActs = () => {
+      actsEl.append(
+        actBtn('Слушать', CTX_IC.play, () => player.playKey(s, a)),
+        actBtn('Тафсир', CTX_IC.book, () => showTafsir(s, a)),
+        actBtn(isBookmarked(s, a) ? 'В закладках' : 'Закладка', CTX_IC.bookmark, () => {
+          const on = toggleBookmark(s, a);
+          toast(on ? 'В закладках' : 'Убрано');
+        }),
+        actBtn('Копировать', CTX_IC.copy, () => {
+          if (!row) return;
+          copy(`${name} · аят ${s}:${a}\n\n${row.ar}\n\n${row.r}\n\n${location.origin}/${s}:${a}`);
+        }),
+        actBtn('Картинка', CTX_IC.image, () => {
+          if (!row) return;
+          openAyahEditor({ s, a, ar: row.ar, ru: row.r, aa: row.aa, tl: row.tl, surahName: name });
+        }),
+        actBtn('Открыть аят', CTX_IC.link, () => (location.href = `/${s}:${a}`))
+      );
+    };
+    buildActs();
+
+    const map = await loadAyahTranslations();
+    row = map[`${s}:${a}`];
+    trEl.textContent = row?.r || 'Перевод не найден.';
+  };
+
+  const showTafsir = async (s: number, a: number) => {
+    tafEl.hidden = false;
+    tafEl.textContent = 'Загружаю тафсир…';
+    try {
+      const [saadi, ik] = await Promise.all([loadSaadi(s), loadIbnKathir(s)]);
+      const sBlk = saadi.find((b: any) => b.a === a);
+      const iBlk = ik.find((b: any) => b.a === a);
+      tafEl.replaceChildren();
+      if (sBlk) tafEl.appendChild(tafsirSectionEl('Тафсир ас-Саади', `аят ${s}:${a}`, sBlk.x));
+      if (iBlk) tafEl.appendChild(tafsirSectionEl('Тафсир Ибн Касира', `аят ${s}:${a}`, iBlk.x));
+      if (!sBlk && !iBlk) tafEl.textContent = 'Для этого аята тафсир не найден.';
+    } catch {
+      tafEl.textContent = 'Не удалось загрузить тафсир.';
+    }
+  };
+
+  words.forEach((w) => {
+    w.addEventListener('click', () => {
+      const [s, a] = w.getAttribute('data-ayah-key')!.split(':').map(Number);
+      open(s, a);
+    });
+  });
+}
+
 // одна секция тафсира (заголовок + текст). text — из данных, поэтому только textContent.
 function tafsirSectionEl(title: string, sub: string, text: string): HTMLElement {
   const wrap = document.createElement('div');
@@ -1763,6 +1890,7 @@ function boot() {
   initContinue();
   initAyahActions();
   initAyahContextMenu();
+  initMushafAyahSheet();
   initReadingAnalytics();
   player.init();
   initHotkeys();
