@@ -939,13 +939,13 @@ input[type='range'] {
   .settings-menu-wrap {
     position: static;
   }
-  /* Инспектор выезжает поверх контента: так главная и списки не пересчитывают
-     сетку при открытии настроек. Для мусхафа ниже есть отдельный сдвиг страницы. */
+  /* Desktop inspector работает как push-панель: если ширины достаточно, контент
+     уступает ей место; на средних ширинах левый сайдбар временно прячется ниже. */
   .settings-panel-backdrop {
     display: none !important;
   }
   body.settings-panel-open {
-    padding-right: 0;
+    padding-right: var(--inspector-w);
   }
   .menu[data-menu='settings'] {
     position: fixed;
@@ -3807,6 +3807,17 @@ select:focus-visible,
   }
   .drawer .dlist a.on .nm span {
     color: color-mix(in srgb, var(--accent-ink) 72%, transparent) !important;
+  }
+}
+
+@media (min-width: 1120px) and (max-width: 1879px) {
+  body.settings-panel-open {
+    --sidebar-current-w: 0px;
+    padding-left: 0;
+  }
+  body.settings-panel-open .drawer {
+    transform: translateX(calc(-100% - 1px)) !important;
+    visibility: hidden;
   }
 }
 
