@@ -27,6 +27,9 @@ export interface Ayah {
   ru: string; // перевод Кулиева
   aa?: string; // перевод Абу Аделя
   tl?: string; // транслитерация (латиница)
+  p?: number; // страница мусхафа (1..604)
+  j?: number; // джуз (1..30)
+  h?: number; // hizb-quarter (1..240)
 }
 
 export interface Surah {

@@ -28,6 +28,22 @@ const ik = showIkWall ? getIbnKathir(surahId) : []; // Ибн Касир по а
 const blockFor = (a: number) => tafsir.find((b) => b.a === a);
 const ikFor = (a: number) => ik.find((b) => b.a === a);
 
+// границы джузов и страниц мусхафа в этой суре (маркеры навигации)
+let _pj: number | null = null;
+let _pp: number | null = null;
+const juzAt: Record<number, number> = {};
+const pageAt: Record<number, number> = {};
+for (const a of surah.a) {
+  if (a.j && a.j !== _pj) {
+    juzAt[a.n] = a.j;
+    _pj = a.j;
+  }
+  if (a.p && a.p !== _pp) {
+    pageAt[a.n] = a.p;
+    _pp = a.p;
+  }
+}
+
 const labels: Record<TranslationId, string> = {
   kuliev: 'Перевод Кулиева',
   abuadel: 'Перевод Абу Аделя',
@@ -81,6 +97,14 @@ const arName = surah.na.replace('سُورَةُ ', '');
         const ikBlk = showIkWall ? ikFor(ayah.n) : undefined;
         return (
           <>
+            {juzAt[ayah.n] && (
+              <div class="juz-sep" id={`juz-${juzAt[ayah.n]}`}>
+                <span>Джуз {juzAt[ayah.n]}</span>
+              </div>
+            )}
+            {pageAt[ayah.n] && !juzAt[ayah.n] && (
+              <div class="page-sep">Страница {pageAt[ayah.n]}</div>
+            )}
             <article class="ayah" id={`ayah-${ayah.n}`} data-ayah-key={ref(surah.n, ayah.n)}>
               <div class="ayah-top">
                 <a class="ayah-no" href={`/${surah.n}:${ayah.n}`} title="Открыть аят">{surah.n}:{ayah.n}</a>

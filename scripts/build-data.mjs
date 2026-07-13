@@ -42,6 +42,8 @@ writeFileSync(join(OUT, 'index.json'), JSON.stringify(surahs));
 // Полный поиск: по Кулиеву(r), Абу Аделю(aa), транслиту(tl), арабскому(ar).
 const searchIndex = [];
 let totalAyahs = 0;
+const juzIndex = []; // первый аят каждого джуза (для навигации по мусхафу)
+const seenJuz = new Set();
 for (const s of surahs) {
   const surah = readJson(join(DATA, 'quran', `${s.n}.json`));
   for (const ayah of surah.a) {
@@ -54,9 +56,15 @@ for (const s of surahs) {
       tl: ayah.tl || '',
       ar: ayah.ar || '',
     });
+    if (ayah.j && !seenJuz.has(ayah.j)) {
+      seenJuz.add(ayah.j);
+      juzIndex.push({ j: ayah.j, s: s.n, a: ayah.n, sr: s.nr, p: ayah.p });
+    }
   }
 }
 writeFileSync(join(OUT, 'search-index.json'), JSON.stringify(searchIndex));
+juzIndex.sort((x, y) => x.j - y.j);
+writeFileSync(join(OUT, 'juz.json'), JSON.stringify(juzIndex));
 
 // ---- 3. чтецы ----
 // Аудио: основной источник — Cloudflare CDN islamic.network (надёжен глобально, вкл. РФ):
@@ -102,8 +110,10 @@ writeFileSync(join(OUT, 'reciters.json'), JSON.stringify(reciters));
 // а отдаём по /data/tafsir/<n>.json и /data/tafsir-ibnkathir/<n>.json (nginx их гзипит).
 const tafsirOut = join(OUT, 'tafsir-saadi');
 const ikOut = join(OUT, 'tafsir-ibnkathir');
+const tajOut = join(OUT, 'tajweed'); // таджвид по-аятно [{a,h}] для ленивой подгрузки
 if (!existsSync(tafsirOut)) mkdirSync(tafsirOut, { recursive: true });
 if (!existsSync(ikOut)) mkdirSync(ikOut, { recursive: true });
+if (!existsSync(tajOut)) mkdirSync(tajOut, { recursive: true });
 let tafsirFiles = 0;
 for (const s of surahs) {
   const sd = join(DATA, 'tafsir-saadi', `${s.n}.json`); // ас-Саади по-аятно [{a,x}]
@@ -114,6 +124,11 @@ for (const s of surahs) {
   const ikp = join(DATA, 'tafsir-ibnkathir', `${s.n}.json`);
   if (existsSync(ikp)) {
     copyFileSync(ikp, join(ikOut, `${s.n}.json`));
+    tafsirFiles++;
+  }
+  const tjp = join(DATA, 'tajweed', `${s.n}.json`);
+  if (existsSync(tjp)) {
+    copyFileSync(tjp, join(tajOut, `${s.n}.json`));
     tafsirFiles++;
   }
 }

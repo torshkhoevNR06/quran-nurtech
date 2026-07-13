@@ -33,6 +33,8 @@ const K = {
   progress: 'q_progress',
   memorize: 'q_memorize',
   memrep: 'q_memrep',
+  transShow: 'q_trans',
+  tajweed: 'q_tajweed',
 };
 
 const $ = <T extends Element = HTMLElement>(s: string, r: ParentNode = document) =>
@@ -387,6 +389,110 @@ async function initDrawer() {
       (a as HTMLElement).style.display = hit ? '' : 'none';
     });
   });
+
+  // вкладка «Джузы» — навигация по мусхафу (30 джузов)
+  const juzEl = $('[data-drawer-juz]');
+  if (juzEl && !juzEl.childElementCount) {
+    try {
+      const jz: any[] = await fetch(`/data/juz.json?v=${DV}`).then((r) => r.json());
+      juzEl.innerHTML = jz
+        .map(
+          (z) =>
+            `<a href="/surah/${z.s}#ayah-${z.a}" data-juz="${z.j}"><span class="n">${z.j}</span><span class="nm">Джуз ${z.j}<span style="display:block;font-weight:400;font-size:12px;color:var(--ink-faint)">${z.sr} · ${z.s}:${z.a} · стр. ${z.p}</span></span></a>`
+        )
+        .join('');
+    } catch {}
+  }
+  const drawerRoot = $('[data-drawer]');
+  $$('[data-dtab]').forEach((t) =>
+    t.addEventListener('click', () => {
+      $$('[data-dtab]').forEach((x) => x.classList.toggle('on', x === t));
+      drawerRoot?.setAttribute('data-dtab-active', t.getAttribute('data-dtab') || 'surah');
+    })
+  );
+}
+
+/* ==========================================================================
+   Мультивыбор переводов в тексте (Кулиев / Абу Адель) — оба уже в DOM
+   ========================================================================== */
+function initTransShow() {
+  const box = $('[data-ayahs]');
+  if (!box) return;
+  const cfg = LS.get<Dict<boolean>>(K.transShow, { kuliev: true, abuadel: true });
+  const apply = () => {
+    box.setAttribute('data-tr-kuliev', cfg.kuliev ? '1' : '0');
+    box.setAttribute('data-tr-abuadel', cfg.abuadel ? '1' : '0');
+    $$('[data-tr-show]').forEach((b) =>
+      b.classList.toggle('on', !!cfg[b.getAttribute('data-tr-show')!])
+    );
+  };
+  apply();
+  $$('[data-tr-show]').forEach((b) =>
+    b.addEventListener('click', () => {
+      const k = b.getAttribute('data-tr-show')!;
+      cfg[k] = !cfg[k];
+      LS.set(K.transShow, cfg);
+      apply();
+    })
+  );
+}
+
+/* ==========================================================================
+   Таджвид — цветная подсветка правил чтения (ленивая подгрузка по суре)
+   ========================================================================== */
+const tajCache: Record<string, any[]> = {};
+const loadTajweed = async (s: number): Promise<any[]> => {
+  if (!tajCache[s]) {
+    const r = await fetch(`/data/tajweed/${s}.json?v=${DV}`);
+    if (!r.ok) throw new Error('tajweed ' + r.status);
+    tajCache[s] = await r.json();
+  }
+  return tajCache[s];
+};
+async function applyTajweed(enable: boolean) {
+  document.body.classList.toggle('tajweed-on', enable);
+  const ayahEls = $$('.ayah[data-ayah-key]');
+  ayahEls.forEach((el) => {
+    const ar = $('.ar', el) as HTMLElement | null;
+    if (ar && !ar.dataset.orig) ar.dataset.orig = ar.innerHTML; // сохранить оригинал
+  });
+  if (!enable) {
+    ayahEls.forEach((el) => {
+      const ar = $('.ar', el) as HTMLElement | null;
+      if (ar && ar.dataset.orig) ar.innerHTML = ar.dataset.orig;
+    });
+    return;
+  }
+  const s = Number(document.body.getAttribute('data-surah'));
+  if (!s) return;
+  try {
+    const taj = await loadTajweed(s);
+    const map: Dict<string> = {};
+    taj.forEach((t: any) => (map[t.a] = t.h));
+    ayahEls.forEach((el) => {
+      const a = Number(el.getAttribute('data-ayah-key')!.split(':')[1]);
+      const ar = $('.ar', el) as HTMLElement | null;
+      if (ar && map[a]) ar.innerHTML = map[a];
+    });
+  } catch {
+    document.body.classList.remove('tajweed-on');
+    $$('[data-tajweed]').forEach((b) => b.classList.remove('on'));
+    toast('Не удалось загрузить таджвид');
+  }
+}
+function initTajweed() {
+  let on = LS.get<boolean>(K.tajweed, false);
+  const sync = () => $$('[data-tajweed]').forEach((b) => b.classList.toggle('on', on));
+  sync();
+  if (on) applyTajweed(true);
+  $$('[data-tajweed]').forEach((b) =>
+    b.addEventListener('click', () => {
+      on = !on;
+      LS.set(K.tajweed, on);
+      sync();
+      applyTajweed(on);
+    })
+  );
 }
 
 /* ==========================================================================
@@ -1096,6 +1202,8 @@ function boot() {
   initTranslation();
   initMenus();
   initDrawer();
+  initTransShow();
+  initTajweed();
   initQuick();
   initBookmarks();
   initContinue();

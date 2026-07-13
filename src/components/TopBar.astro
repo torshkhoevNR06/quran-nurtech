@@ -139,6 +139,16 @@ const showQuick = !isSearch;
           ))
         }
 
+        <h4>Показывать перевод</h4>
+        <button class="item item-toggle" type="button" data-tr-show="kuliev">
+          <span class="it-label">Эльмир Кулиев</span>
+          <span class="switch" aria-hidden="true"></span>
+        </button>
+        <button class="item item-toggle" type="button" data-tr-show="abuadel">
+          <span class="it-label">Абу Адель</span>
+          <span class="switch" aria-hidden="true"></span>
+        </button>
+
         <h4>Чтец</h4>
         <select class="sel" data-reciter-sel style="width:100%">
           {reciters.map((r) => <option value={r.id}>{r.name}</option>)}
@@ -154,6 +164,20 @@ const showQuick = !isSearch;
         <h4>Шрифт арабского</h4>
         <div class="seg">
           {fonts.map((f) => <button type="button" data-font={f.id}>{f.label}</button>)}
+        </div>
+
+        <h4>Таджвид</h4>
+        <button class="item item-toggle" type="button" data-tajweed>
+          <span class="it-label">Цветные правила<small>Подсветка правил чтения (мадд, гунна, ихфа…)</small></span>
+          <span class="switch" aria-hidden="true"></span>
+        </button>
+        <div class="tj-legend">
+          <span><i class="tj-dot d-madd"></i>Мадд</span>
+          <span><i class="tj-dot d-ghunna"></i>Гунна/идгам</span>
+          <span><i class="tj-dot d-ikhfa"></i>Ихфа</span>
+          <span><i class="tj-dot d-iqlab"></i>Икляб</span>
+          <span><i class="tj-dot d-qalqala"></i>Калькаля</span>
+          <span><i class="tj-dot d-silent"></i>Беззвучные</span>
         </div>
 
         <h4>Тема</h4>

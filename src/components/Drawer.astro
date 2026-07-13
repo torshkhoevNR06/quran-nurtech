@@ -5,11 +5,16 @@ import { icons } from '../lib/icons';
 ---
 
 <div class="drawer-backdrop" data-drawer-backdrop></div>
-<aside class="drawer" data-drawer aria-label="Список сур">
+<aside class="drawer" data-drawer data-dtab-active="surah" aria-label="Список сур и джузов">
   <div class="dh">
     <input type="text" placeholder="Поиск суры…" data-drawer-filter aria-label="Поиск суры" />
     <button type="button" class="icon-btn" data-act="drawer-close" aria-label="Закрыть" set:html={icons.close} />
   </div>
+  <div class="dtabs">
+    <button type="button" class="on" data-dtab="surah">Суры</button>
+    <button type="button" data-dtab="juz">Джузы</button>
+  </div>
   <div class="drawer-progress" data-drawer-progress aria-label="Прогресс чтения"></div>
   <nav class="dlist" data-drawer-list></nav>
+  <nav class="dlist djuz" data-drawer-juz aria-label="Джузы"></nav>
 </aside>

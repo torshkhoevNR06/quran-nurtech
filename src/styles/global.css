@@ -3060,3 +3060,122 @@ select:focus-visible,
     padding: 0;
   }
 }
+
+/* ==========================================================================
+   Мультивыбор переводов в тексте
+   ========================================================================== */
+[data-ayahs][data-tr-kuliev='0'] .tr-kuliev {
+  display: none !important;
+}
+[data-ayahs][data-tr-abuadel='0'] .tr-abuadel {
+  display: none !important;
+}
+
+/* ==========================================================================
+   Таджвид — цвета правил + легенда
+   ========================================================================== */
+.ar .tj-n { color: #cf5b47; } /* мадд обычный (2) */
+.ar .tj-p { color: #d97b2f; } /* мадд допустимый */
+.ar .tj-o { color: #c9432b; } /* мадд обязательный (4-5) */
+.ar .tj-m { color: #b01f1f; } /* мадд необходимый (6) */
+.ar .tj-a { color: #2f9e57; } /* идгам с гунной / гунна */
+.ar .tj-f,
+.ar .tj-c { color: #2596a8; } /* ихфа / ихфа шафави */
+.ar .tj-w { color: #3b6fd6; } /* икляб */
+.ar .tj-q { color: #8e44ad; } /* калькаля */
+.ar .tj-u,
+.ar .tj-d,
+.ar .tj-g,
+.ar .tj-i,
+.ar .tj-y { color: #7c8896; } /* идгам без гунны / прочие идгамы */
+.ar .tj-h,
+.ar .tj-s,
+.ar .tj-l { color: #9aa0aa; } /* хамзат-васл / беззвучные / лям шамсийя */
+
+.tj-legend {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5px 10px;
+  padding: 8px 6px 2px;
+  font-size: var(--fs-12);
+  color: var(--ink-soft);
+}
+[data-tajweed]:not(.on) + .tj-legend {
+  display: none;
+}
+.tj-legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.tj-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+  flex: none;
+}
+.tj-dot.d-madd { background: #c0392b; }
+.tj-dot.d-ghunna { background: #2f9e57; }
+.tj-dot.d-ikhfa { background: #2596a8; }
+.tj-dot.d-iqlab { background: #3b6fd6; }
+.tj-dot.d-qalqala { background: #8e44ad; }
+.tj-dot.d-silent { background: #9aa0aa; }
+
+/* ==========================================================================
+   Маркеры мусхафа: джуз / страница
+   ========================================================================== */
+.juz-sep {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 22px 4px 6px;
+  color: var(--accent);
+  font: 800 var(--fs-13) / 1 var(--sans);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.juz-sep::before,
+.juz-sep::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--hairline);
+}
+.page-sep {
+  text-align: right;
+  margin: 6px 4px -4px;
+  font-size: var(--fs-11);
+  color: var(--ink-faint);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ==========================================================================
+   Вкладки drawer/сайдбара: Суры / Джузы
+   ========================================================================== */
+.dtabs {
+  display: flex;
+  gap: 2px;
+  padding: 8px 10px 2px;
+}
+.dtabs button {
+  flex: 1;
+  padding: 7px;
+  border: 0;
+  background: transparent;
+  color: var(--ink-faint);
+  font: 700 var(--fs-13) / 1 var(--sans);
+  border-radius: var(--radius-s);
+  cursor: pointer;
+  transition: background 0.12s, color 0.12s;
+}
+.dtabs button.on {
+  background: var(--seg-track);
+  color: var(--ink);
+}
+.drawer[data-dtab-active='surah'] [data-drawer-juz] {
+  display: none;
+}
+.drawer[data-dtab-active='juz'] [data-drawer-list],
+.drawer[data-dtab-active='juz'] .drawer-progress {
+  display: none;
+}
