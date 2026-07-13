@@ -57,6 +57,57 @@ const fontFamily = mushafTajweedFontFamily(pageNum);
 
 <Base {title} {description} wide pageMode="mushaf">
   <style is:inline set:html={fontCss}></style>
+  <style is:inline>
+    @media screen and (max-width: 650px) {
+      body[data-page-mode='mushaf'] {
+        height: 100vh;
+        height: 100dvh;
+        overflow: hidden;
+      }
+      body[data-page-mode='mushaf'] .footer,
+      body[data-page-mode='mushaf'] .player,
+      body[data-page-mode='mushaf'] .mushaf-bottom {
+        display: none !important;
+      }
+      body[data-page-mode='mushaf'] .topbar {
+        position: relative;
+        z-index: 60;
+        padding-bottom: 0;
+      }
+      body[data-page-mode='mushaf'] main.wide {
+        height: calc(100vh - var(--topbar-h) - max(8px, env(safe-area-inset-top)));
+        height: calc(100dvh - var(--topbar-h) - max(8px, env(safe-area-inset-top)));
+        min-height: 0;
+        overflow: hidden;
+      }
+      body[data-page-mode='mushaf'] .mushaf-reader {
+        height: 100%;
+        min-height: 0;
+        display: grid;
+        grid-template-rows: minmax(0, 1fr);
+        align-items: center;
+        padding: 4px 0 calc(72px + env(safe-area-inset-bottom));
+      }
+      body[data-page-mode='mushaf'] .mushaf-toolbar {
+        position: fixed;
+        left: max(10px, env(safe-area-inset-left));
+        right: max(10px, env(safe-area-inset-right));
+        bottom: max(10px, env(safe-area-inset-bottom));
+        z-index: 58;
+        width: auto;
+        padding: 8px;
+        gap: 8px;
+        border-radius: 22px;
+      }
+      body[data-page-mode='mushaf'] .mushaf-sheet {
+        width: min(calc(100vw - 12px), calc((100vh - var(--topbar-h) - 118px) * 0.704));
+        width: min(calc(100vw - 12px), calc((100dvh - var(--topbar-h) - 118px) * 0.704));
+        max-width: none;
+        margin: 0 auto;
+        padding: 22px 10px 28px;
+      }
+    }
+  </style>
 
   <div class="mushaf-reader">
     <nav class="mushaf-toolbar container" aria-label="Навигация по мусхафу">
