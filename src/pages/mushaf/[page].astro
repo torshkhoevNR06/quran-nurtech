@@ -66,6 +66,60 @@ const juzList = Array.from({ length: 30 }, (_, i) => i + 1).map((n) => ({
 <Base {title} {description} wide pageMode="mushaf">
   <style is:inline set:html={fontCss}></style>
   <style is:inline>
+    /* Режим чтения на весь экран (иммерсивный): прячем всю обвязку, разворачиваем страницу */
+    .mushaf-immersive-exit {
+      display: none;
+    }
+    body.mushaf-immersive .topbar,
+    body.mushaf-immersive .mushaf-toolbar,
+    body.mushaf-immersive .mushaf-meta,
+    body.mushaf-immersive .mushaf-bottom,
+    body.mushaf-immersive .footer,
+    body.mushaf-immersive .player,
+    body.mushaf-immersive .drawer,
+    body.mushaf-immersive .drawer-backdrop {
+      display: none !important;
+    }
+    body.mushaf-immersive {
+      padding-left: 0 !important;
+    }
+    body.mushaf-immersive main.wide {
+      height: 100vh;
+      height: 100dvh;
+      padding: 0;
+      overflow: hidden;
+    }
+    body.mushaf-immersive .mushaf-reader {
+      height: 100%;
+      display: grid;
+      align-items: center;
+      padding: 0;
+    }
+    body.mushaf-immersive .mushaf-sheet {
+      max-width: min(96vw, calc((100dvh - 24px) * 0.66));
+      margin: 0 auto;
+    }
+    body.mushaf-immersive .mushaf-immersive-exit {
+      display: grid;
+      place-items: center;
+      position: fixed;
+      top: max(12px, env(safe-area-inset-top));
+      right: max(12px, env(safe-area-inset-right));
+      z-index: 80;
+      width: 40px;
+      height: 40px;
+      border: 1px solid var(--hairline);
+      border-radius: 999px;
+      background: var(--panel-bg);
+      color: var(--ink);
+      box-shadow: var(--shadow-pop);
+      cursor: pointer;
+      opacity: 0.5;
+      transition: opacity 0.15s;
+    }
+    body.mushaf-immersive .mushaf-immersive-exit:hover {
+      opacity: 1;
+    }
     @media screen and (max-width: 650px) {
       :root {
         --mushaf-vvh: 100vh;
@@ -154,7 +208,15 @@ const juzList = Array.from({ length: 30 }, (_, i) => i + 1).map((n) => ({
       </form>
 
       <a class={`icon-btn ${nextPage ? '' : 'disabled'}`} href={nextPage ? `/mushaf/${nextPage}` : undefined} aria-label="Следующая страница" title="Следующая страница" set:html={icons.arrowRight} />
+
+      <button type="button" class="icon-btn" data-mushaf-immersive aria-label="Режим чтения на весь экран" title="Во весь экран (режим чтения)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3M16 3h3a2 2 0 0 1 2 2v3M8 21H5a2 2 0 0 1-2-2v-3M16 21h3a2 2 0 0 0 2-2v-3"/></svg>
+      </button>
     </nav>
+
+    <button type="button" class="mushaf-immersive-exit" data-mushaf-immersive aria-label="Выйти из режима чтения" title="Выйти (Esc)">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
 
     <section class="mushaf-sheet" aria-label={`Страница ${pageNum} мусхафа`}>
       <div class="mushaf-meta">
@@ -255,6 +317,35 @@ const juzList = Array.from({ length: 30 }, (_, i) => i + 1).map((n) => ({
       var page = Math.max(1, Math.min(604, parseInt(sel.value, 10) || 1));
       location.href = '/mushaf/' + page;
     });
+
+    // режим чтения на весь экран (иммерсивный) + нативный fullscreen
+    (function () {
+      var b = document.body;
+      var imm = function () {
+        return b.classList.contains('mushaf-immersive');
+      };
+      var enter = function () {
+        b.classList.add('mushaf-immersive');
+        var el = document.documentElement;
+        if (el.requestFullscreen) el.requestFullscreen().catch(function () {});
+      };
+      var exit = function () {
+        b.classList.remove('mushaf-immersive');
+        if (document.fullscreenElement && document.exitFullscreen)
+          document.exitFullscreen().catch(function () {});
+      };
+      document.addEventListener('click', function (e) {
+        var t = e.target && e.target.closest && e.target.closest('[data-mushaf-immersive]');
+        if (!t) return;
+        imm() ? exit() : enter();
+      });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && imm()) exit();
+      });
+      document.addEventListener('fullscreenchange', function () {
+        if (!document.fullscreenElement && imm()) b.classList.remove('mushaf-immersive');
+      });
+    })();
 
     // ← / → — навигация по страницам мусхафа (не в полях ввода)
     document.addEventListener('keydown', function (e) {
