@@ -1,30 +1,62 @@
 ---
 import Base from '../../layouts/Base.astro';
 import { icons } from '../../lib/icons';
-import { getQcfPage, qcfFontFaces, QCF_TOTAL_PAGES } from '../../lib/qcf4';
+import {
+  BASMALA,
+  getMushafMeta,
+  getMushafPage,
+  getMushafSurah,
+  mushafTajweedFontFamily,
+  mushafTajweedFontCss,
+  MUSHAF_TOTAL_PAGES,
+} from '../../lib/mushaf';
 
 export function getStaticPaths() {
-  return Array.from({ length: QCF_TOTAL_PAGES }, (_, i) => ({
+  return Array.from({ length: MUSHAF_TOTAL_PAGES }, (_, i) => ({
     params: { page: String(i + 1) },
   }));
 }
 
-const pageNum = Math.max(1, Math.min(QCF_TOTAL_PAGES, Number(Astro.params.page) || 1));
-const page = getQcfPage(pageNum);
+const pageNum = Math.max(1, Math.min(MUSHAF_TOTAL_PAGES, Number(Astro.params.page) || 1));
+const page = getMushafPage(pageNum);
+const meta = getMushafMeta();
 const prevPage = pageNum > 1 ? pageNum - 1 : null;
-const nextPage = pageNum < QCF_TOTAL_PAGES ? pageNum + 1 : null;
+const nextPage = pageNum < MUSHAF_TOTAL_PAGES ? pageNum + 1 : null;
 const title = `Мусхаф, страница ${pageNum} — Коран онлайн`;
-const description = `Оригинальная страничная раскладка мусхафа, страница ${pageNum} из ${QCF_TOTAL_PAGES}: QCF4-глифы, 15 строк и пословная разметка.`;
-const linesByNumber = new Map(page.lines.map((line) => [line.line, line]));
+const description = `Оригинальная страничная раскладка мусхафа с цветным таджвидом, страница ${pageNum} из ${MUSHAF_TOTAL_PAGES}: QCF V4-глифы, 15 строк и пословная разметка.`;
+const linesByNumber = new Map(page.lines.map((line) => [line.n, line]));
 const slots = Array.from({ length: 15 }, (_, i) => i + 1);
-const surahLabel = page.surahs
-  .map((s) => `${s.name_arabic} ${s.verse_start === s.verse_end ? s.verse_start : `${s.verse_start}-${s.verse_end}`}`)
-  .join(' · ');
-const fontFaces = qcfFontFaces();
+const starts = page.starts || [];
+const startByLine = new Map(starts.map((start) => [start.line, start]));
+const decorationByLine = new Map<number, { type: 'surah' | 'basmala'; surah: number }>();
+for (const start of starts) {
+  if (start.s === 1) {
+    decorationByLine.set(Math.max(1, start.line - 1), { type: 'surah', surah: start.s });
+  } else if (start.s === 9) {
+    decorationByLine.set(Math.max(1, start.line - 1), { type: 'surah', surah: start.s });
+  } else {
+    decorationByLine.set(Math.max(1, start.line - 2), { type: 'surah', surah: start.s });
+    decorationByLine.set(Math.max(1, start.line - 1), { type: 'basmala', surah: start.s });
+  }
+}
+const lineNumbers = page.lines.map((line) => line.n).sort((a, b) => a - b);
+const centeredLines = new Set(
+  lineNumbers.filter((lineNumber, i) => {
+    const next = lineNumbers[i + 1];
+    return !next || next > lineNumber + 1 || startByLine.has(next);
+  })
+);
+const surahLabel = starts.length
+  ? starts.map((s) => getMushafSurah(meta, s.s)?.na || `Сура ${s.s}`).join(' · ')
+  : Array.from(new Set(page.lines.flatMap((line) => line.w.map((word) => Number(word.k.split(':')[0])))))
+      .map((s) => getMushafSurah(meta, s)?.na || `Сура ${s}`)
+      .join(' · ');
+const fontCss = mushafTajweedFontCss(pageNum);
+const fontFamily = mushafTajweedFontFamily(pageNum);
 ---
 
 <Base {title} {description} wide>
-  <style is:inline set:html={fontFaces}></style>
+  <style is:inline set:html={fontCss}></style>
 
   <div class="mushaf-reader">
     <nav class="mushaf-toolbar container" aria-label="Навигация по мусхафу">
@@ -32,8 +64,8 @@ const fontFaces = qcfFontFaces();
 
       <form class="mushaf-jump" action="/mushaf/1" data-mushaf-jump>
         <label for="mushaf-page">Страница</label>
-        <input id="mushaf-page" name="page" type="number" inputmode="numeric" min="1" max={QCF_TOTAL_PAGES} value={pageNum} />
-        <span>/ {QCF_TOTAL_PAGES}</span>
+        <input id="mushaf-page" name="page" type="number" inputmode="numeric" min="1" max={MUSHAF_TOTAL_PAGES} value={pageNum} />
+        <span>/ {MUSHAF_TOTAL_PAGES}</span>
       </form>
 
       <a class={`icon-btn ${nextPage ? '' : 'disabled'}`} href={nextPage ? `/mushaf/${nextPage}` : undefined} aria-label="Следующая страница" title="Следующая страница" set:html={icons.arrowLeft} />
@@ -49,17 +81,32 @@ const fontFaces = qcfFontFaces();
         {
           slots.map((lineNumber) => {
             const line = linesByNumber.get(lineNumber);
+            const decoration = decorationByLine.get(lineNumber);
+            if (decoration?.type === 'surah') {
+              const surah = getMushafSurah(meta, decoration.surah);
+              return (
+                <div class="qcf-line qcf-line-deco qcf-surah-line" data-line={lineNumber}>
+                  <span class="qcf-surah-title">{surah?.na || `سورة ${decoration.surah}`}</span>
+                </div>
+              );
+            }
+            if (decoration?.type === 'basmala') {
+              return (
+                <div class="qcf-line qcf-line-deco qcf-basmala-line" data-line={lineNumber}>
+                  <span class="qcf-basmala">{BASMALA}</span>
+                </div>
+              );
+            }
             return (
-              <div class={`qcf-line ${line ? '' : 'is-empty'}`} data-line={lineNumber}>
-                {line?.words.map((word) => (
+              <div class={`qcf-line ${line ? '' : 'is-empty'} ${centeredLines.has(lineNumber) ? 'center' : ''}`} data-line={lineNumber}>
+                {line?.w.map((word) => (
                   <span
-                    class={`qcf-word qcf-word-${word.type}`}
-                    style={`font-family:'${word.font}'`}
-                    data-ayah-key={word.verse_key}
-                    data-word-position={word.position}
-                    title={word.text || word.verse_key || ''}
+                    class={`qcf-word ${word.e ? 'qcf-word-end' : ''}`}
+                    style={`font-family:'${fontFamily}'`}
+                    data-ayah-key={word.k}
+                    title={word.k}
                   >
-                    {word.char}
+                    {word.c}
                   </span>
                 ))}
               </div>
@@ -83,6 +130,13 @@ const fontFaces = qcfFontFaces();
   </div>
 
   <script is:inline>
+    (function () {
+      if (!/firefox/i.test(navigator.userAgent)) return;
+      document.querySelectorAll('[data-mushaf-page]').forEach(function (page) {
+        page.setAttribute('data-mushaf-firefox', '1');
+      });
+    })();
+
     document.addEventListener('submit', function (event) {
       var form = event.target && event.target.closest && event.target.closest('[data-mushaf-jump]');
       if (!form) return;

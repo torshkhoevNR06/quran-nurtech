@@ -1869,25 +1869,59 @@ mark.hit {
 }
 
 .qcf-page {
+  --mushaf-page-font: var(--ar);
+  --mushaf-ink: #1d2229;
+  --mushaf-paper: #fbfaf6;
+  --mushaf-paper-line: #ddd8ca;
+  --mushaf-ornament: #6a6f66;
   width: 100%;
   height: 100%;
   display: grid;
-  grid-template-rows: repeat(15, 1fr);
+  grid-template-rows: repeat(15, minmax(0, 1fr));
   direction: rtl;
-  color: color-mix(in srgb, var(--ink) 92%, #111);
-  font-size: 34px;
+  color: var(--mushaf-ink);
+  font-size: 32px;
+}
+
+:root[data-theme='dark'] .qcf-page {
+  --mushaf-ink: #f3f5f7;
+  --mushaf-paper: #171b20;
+  --mushaf-paper-line: #353b44;
+  --mushaf-ornament: #b7c0c9;
+}
+
+:root[data-theme='sepia'] .qcf-page {
+  --mushaf-ink: #241f18;
+  --mushaf-paper: #fbf5e8;
+  --mushaf-paper-line: #ded0b7;
+  --mushaf-ornament: #746244;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) .qcf-page {
+    --mushaf-ink: #f3f5f7;
+    --mushaf-paper: #171b20;
+    --mushaf-paper-line: #353b44;
+    --mushaf-ornament: #b7c0c9;
+  }
 }
 
 .qcf-line {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+  gap: 0.08em;
   min-width: 0;
   white-space: nowrap;
   line-height: 1;
   direction: rtl;
   overflow: visible;
+}
+
+.qcf-line.center,
+.qcf-line-deco {
+  justify-content: center;
 }
 
 .qcf-line.is-empty {
@@ -1897,6 +1931,7 @@ mark.hit {
 .qcf-word {
   display: inline-block;
   flex: none;
+  font-family: var(--mushaf-page-font), var(--ar), serif;
   line-height: 1;
   speak: none;
   -webkit-font-smoothing: antialiased;
@@ -1911,8 +1946,58 @@ mark.hit {
   color: var(--accent);
 }
 
-.qcf-word-surah_header {
-  font-size: 1.12em;
+.qcf-word-end {
+  margin-inline-start: 0.02em;
+}
+
+.qcf-surah-line {
+  align-items: end;
+}
+
+.qcf-surah-title {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: min(58%, 440px);
+  min-height: 1.85em;
+  padding: 0.14em 1.2em;
+  border: 1px solid var(--mushaf-paper-line);
+  border-radius: 999px;
+  background:
+    linear-gradient(90deg, transparent, color-mix(in srgb, var(--mushaf-paper-line) 32%, transparent), transparent),
+    var(--mushaf-paper);
+  color: var(--mushaf-ornament);
+  font-family: var(--ar), serif;
+  font-size: 0.52em;
+  font-weight: 800;
+  line-height: 1.15;
+}
+
+.qcf-surah-title::before,
+.qcf-surah-title::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 1.6em;
+  height: 1px;
+  background: var(--mushaf-paper-line);
+}
+
+.qcf-surah-title::before {
+  right: calc(100% + 0.4em);
+}
+
+.qcf-surah-title::after {
+  left: calc(100% + 0.4em);
+}
+
+.qcf-basmala {
+  color: var(--mushaf-ink);
+  font-family: var(--ar), serif;
+  font-size: 0.68em;
+  font-weight: 700;
+  line-height: 1;
 }
 
 .mushaf-start {

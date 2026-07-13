@@ -165,6 +165,17 @@ if (qcfPages !== 604 || qcfFonts !== 48) {
   throw new Error(`[build-data] QCF4 неполный набор: pages=${qcfPages}, fonts=${qcfFonts}`);
 }
 
+// ---- 6. QCF V2/V4 page layout для цветного таджвид-мусхафа ----
+// Эти page JSON содержат code_v2-глифы, совместимые с пофайловыми QCF V2/V4 шрифтами Quran Foundation.
+const mushafPagesSrc = join(DATA, 'mushaf-pages');
+if (!existsSync(mushafPagesSrc)) {
+  throw new Error('[build-data] data/mushaf-pages не найден. Нужны 604 страницы + meta.json для таджвид-мусхафа.');
+}
+const mushafPages = copyCleanDir(mushafPagesSrc, join(OUT, 'mushaf-pages'), (f) => /\.json$/.test(f));
+if (mushafPages !== 605) {
+  throw new Error(`[build-data] QCF V2/V4 неполный набор страниц: ${mushafPages}`);
+}
+
 console.log(
-  `[build-data] сур: ${surahs.length}, аятов: ${totalAyahs}, чтецов: ${reciters.length}, файлов тафсира: ${tafsirFiles}, QCF4: ${qcfPages} стр./${qcfFonts} шр. -> public/data/`
+  `[build-data] сур: ${surahs.length}, аятов: ${totalAyahs}, чтецов: ${reciters.length}, файлов тафсира: ${tafsirFiles}, QCF4: ${qcfPages} стр./${qcfFonts} шр., Tajweed QCF: ${mushafPages} JSON -> public/data/`
 );
