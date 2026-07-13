@@ -3026,3 +3026,37 @@ select:focus-visible,
 .menu button.item-toggle.on .switch::after {
   transform: translateX(16px);
 }
+
+/* ==========================================================================
+   Десктоп-плотность тулбара (macOS): ghost-кнопки вместо стеклянных квадратов
+   ========================================================================== */
+@media (min-width: 1120px) {
+  .topbar-inner .icon-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: var(--radius-s);
+    border-color: transparent;
+    background: transparent;
+    box-shadow: none;
+    color: var(--ink-soft);
+  }
+  .topbar-inner .icon-btn:hover {
+    background: color-mix(in srgb, var(--ink) 8%, transparent);
+    color: var(--ink);
+    transform: none;
+  }
+  .topbar-inner .btn {
+    height: 32px;
+    padding: 0 12px;
+    border-radius: var(--radius-s);
+  }
+  .topbar-inner .quick input {
+    height: 32px;
+    font-size: var(--fs-14);
+  }
+  .topbar-inner .quick-submit {
+    width: 32px;
+    height: 32px;
+    padding: 0;
+  }
+}
