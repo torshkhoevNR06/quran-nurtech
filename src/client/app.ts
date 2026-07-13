@@ -724,6 +724,14 @@ function initTransShow() {
    Таджвид — цветная подсветка правил чтения (ленивая подгрузка по суре)
    ========================================================================== */
 const tajCache: Record<string, any[]> = {};
+const LEADING_ARABIC_MARKS = /(<span class="tj tj-[a-z]">)([\u0610-\u061a\u064b-\u065f\u0670\u06d6-\u06ed]+)([^<]*?)<\/span>/g;
+function normalizeTajweedHtml(html: string) {
+  return html
+    .replace(/\u0672/g, '\u0670')
+    .replace(LEADING_ARABIC_MARKS, (_, open: string, marks: string, rest: string) =>
+      rest ? `${marks}${open}${rest}</span>` : marks
+    );
+}
 const loadTajweed = async (s: number): Promise<any[]> => {
   if (!tajCache[s]) {
     const r = await fetch(`/data/tajweed/${s}.json?v=${DV}`);
@@ -751,7 +759,7 @@ async function applyTajweed(enable: boolean) {
   try {
     const taj = await loadTajweed(s);
     const map: Dict<string> = {};
-    taj.forEach((t: any) => (map[t.a] = t.h));
+    taj.forEach((t: any) => (map[t.a] = normalizeTajweedHtml(t.h)));
     ayahEls.forEach((el) => {
       const a = Number(el.getAttribute('data-ayah-key')!.split(':')[1]);
       const ar = $('.ar', el) as HTMLElement | null;
@@ -764,7 +772,7 @@ async function applyTajweed(enable: boolean) {
   }
 }
 function initTajweed() {
-  let on = LS.get<boolean>(K.tajweed, false);
+  let on = LS.get<boolean>(K.tajweed, true);
   const sync = () => $$('[data-tajweed]').forEach((b) => b.classList.toggle('on', on));
   sync();
   if (on) applyTajweed(true);

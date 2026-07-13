@@ -4,7 +4,7 @@
 //   - search-index.json — {s,a,r} по всем 6236 аятам (русский текст Кулиева) для клиентского поиска
 //   - reciters.json    — список чтецов (EveryAyah folders)
 // Источник текста/тафсира: data/quran/*.json, data/tafsir/*.json (см. /about — источники).
-import { readFileSync, writeFileSync, mkdirSync, existsSync, copyFileSync } from 'node:fs';
+import { readFileSync, writeFileSync, mkdirSync, existsSync, copyFileSync, readdirSync, rmSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 
@@ -15,6 +15,17 @@ const OUT = join(ROOT, 'public', 'data');
 if (!existsSync(OUT)) mkdirSync(OUT, { recursive: true });
 
 const readJson = (p) => JSON.parse(readFileSync(p, 'utf8'));
+const copyCleanDir = (from, to, filter = () => true) => {
+  rmSync(to, { recursive: true, force: true });
+  mkdirSync(to, { recursive: true });
+  let copied = 0;
+  for (const file of readdirSync(from)) {
+    if (!filter(file)) continue;
+    copyFileSync(join(from, file), join(to, file));
+    copied++;
+  }
+  return copied;
+};
 
 // slug из транслит-названия: "Al-Faatiha" -> "al-faatiha"
 const slugify = (s) =>
@@ -133,6 +144,27 @@ for (const s of surahs) {
   }
 }
 
+// ---- 5. QCF4-мусхаф (оригинальные глифы, 604 страницы, пословная разметка) ----
+// quran-qcf4 хранит 604 page JSON + 47 сгруппированных QCF4 Hafs-шрифтов и BSML.
+// Шрифты не коммитим в репозиторий: они подтягиваются из npm и копируются в public перед сборкой.
+const qcfRoot = join(ROOT, 'node_modules', 'quran-qcf4');
+if (!existsSync(qcfRoot)) {
+  throw new Error('[build-data] quran-qcf4 не найден. Выполните npm install перед сборкой.');
+}
+const qcfOut = join(OUT, 'qcf4');
+mkdirSync(qcfOut, { recursive: true });
+const qcfPages = copyCleanDir(join(qcfRoot, 'pages'), join(qcfOut, 'pages'), (f) => /\.json$/.test(f));
+copyFileSync(join(qcfRoot, 'index.json'), join(qcfOut, 'index.json'));
+copyFileSync(join(qcfRoot, 'verses.json'), join(qcfOut, 'verses.json'));
+const qcfFonts = copyCleanDir(
+  join(qcfRoot, 'fonts-woff2'),
+  join(ROOT, 'public', 'fonts', 'qcf4'),
+  (f) => /\.woff2$/.test(f)
+);
+if (qcfPages !== 604 || qcfFonts !== 48) {
+  throw new Error(`[build-data] QCF4 неполный набор: pages=${qcfPages}, fonts=${qcfFonts}`);
+}
+
 console.log(
-  `[build-data] сур: ${surahs.length}, аятов: ${totalAyahs}, чтецов: ${reciters.length}, файлов тафсира: ${tafsirFiles} -> public/data/`
+  `[build-data] сур: ${surahs.length}, аятов: ${totalAyahs}, чтецов: ${reciters.length}, файлов тафсира: ${tafsirFiles}, QCF4: ${qcfPages} стр./${qcfFonts} шр. -> public/data/`
 );

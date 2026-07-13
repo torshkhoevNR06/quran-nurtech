@@ -1,0 +1,27 @@
+---
+import Base from '../../layouts/Base.astro';
+import { icons } from '../../lib/icons';
+
+const title = 'Мусхаф — Коран онлайн';
+const description =
+  'Оригинальная страничная раскладка Корана: 604 страницы мусхафа, QCF-глифы и пословная разметка.';
+---
+
+<Base {title} {description} wide>
+  <section class="mushaf-start container">
+    <p class="eyebrow">QCF4 · 604 страницы</p>
+    <h1>Мусхаф</h1>
+    <p>
+      Страничный режим для чтения арабского текста как в печатном мусхафе: строки, глифы и
+      разбиение по страницам берутся из QCF4.
+    </p>
+    <div class="home-actions mushaf-start-actions">
+      <a class="btn primary" href="/mushaf/1">
+        <span set:html={icons.book} style="width:18px;height:18px" /> Открыть с начала
+      </a>
+      <a class="btn" href="/mushaf/604">
+        <span set:html={icons.arrowLeft} style="width:18px;height:18px" /> Последняя страница
+      </a>
+    </div>
+  </section>
+</Base>

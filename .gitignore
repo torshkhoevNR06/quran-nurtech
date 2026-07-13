@@ -6,6 +6,7 @@ node_modules/
 
 # generated (rebuilt by scripts/build-data.mjs on prebuild/predev)
 public/data/
+public/fonts/qcf4/
 
 # os / editor
 .DS_Store

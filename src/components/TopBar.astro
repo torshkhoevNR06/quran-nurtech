@@ -27,12 +27,13 @@ const isReader =
   pathname.startsWith('/surah') || pathname.startsWith('/ayah') || /^\/\d+:\d+/.test(pathname);
 const isSearch = pathname.startsWith('/search');
 const isAudio = pathname.startsWith('/audio');
+const isMushaf = pathname.startsWith('/mushaf');
 const showReaderTools = isReader;
 const showQuick = !isSearch;
 ---
 
 <header class="topbar">
-  <div class={`topbar-inner ${isReader ? 'is-reader' : ''} ${isSearch ? 'is-search' : ''} ${isAudio ? 'is-audio' : ''}`}>
+  <div class={`topbar-inner ${isReader ? 'is-reader' : ''} ${isSearch ? 'is-search' : ''} ${isAudio ? 'is-audio' : ''} ${isMushaf ? 'is-mushaf' : ''}`}>
     <button class="icon-btn only-mobile" data-act="drawer" aria-label="Список сур" set:html={icons.menu} />
 
     <a href="/" class="brand" aria-label="Коран онлайн — главная">
@@ -65,6 +66,7 @@ const showQuick = !isSearch;
     }
 
     <a class="icon-btn" href="/search" aria-label="Поиск" title="Поиск (/)" set:html={icons.search} />
+    <a class="icon-btn desktop-comfort" href="/mushaf/1" aria-label="Мусхаф" title="Мусхаф" set:html={icons.book} />
 
     <!-- режимы отображения (десктоп) -->
     {showReaderTools && (

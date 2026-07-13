@@ -26,10 +26,19 @@ async function getJson(url, tries = 4) {
 }
 
 // [h:1[ٱ]  →  <span class="tj tj-h">ٱ</span>   (номер после ':' игнорируем — цвет по букве)
+const LEADING_ARABIC_MARKS = /(<span class="tj tj-[a-z]">)([\u0610-\u061a\u064b-\u065f\u0670\u06d6-\u06ed]+)([^<]*?)<\/span>/g;
+const normalizeTajweedHtml = (html) =>
+  html
+    .replace(/\u0672/g, '\u0670')
+    .replace(LEADING_ARABIC_MARKS, (_, open, marks, rest) =>
+      rest ? `${marks}${open}${rest}</span>` : marks
+    );
 const parseTajweed = (t) =>
-  String(t || '').replace(
-    /\[([a-z])(?::\d+)?\[([^\]]*)\]/g,
-    (_, rule, txt) => `<span class="tj tj-${rule}">${txt}</span>`
+  normalizeTajweedHtml(
+    String(t || '').replace(
+      /\[([a-z])(?::\d+)?\[([^\]]*)\]/g,
+      (_, rule, txt) => `<span class="tj tj-${rule}">${txt}</span>`
+    )
   );
 
 console.log('→ page/juz/hizb (quran-uthmani)…');

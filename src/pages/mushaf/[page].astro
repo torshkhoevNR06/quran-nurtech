@@ -1,0 +1,95 @@
+---
+import Base from '../../layouts/Base.astro';
+import { icons } from '../../lib/icons';
+import { getQcfPage, qcfFontFaces, QCF_TOTAL_PAGES } from '../../lib/qcf4';
+
+export function getStaticPaths() {
+  return Array.from({ length: QCF_TOTAL_PAGES }, (_, i) => ({
+    params: { page: String(i + 1) },
+  }));
+}
+
+const pageNum = Math.max(1, Math.min(QCF_TOTAL_PAGES, Number(Astro.params.page) || 1));
+const page = getQcfPage(pageNum);
+const prevPage = pageNum > 1 ? pageNum - 1 : null;
+const nextPage = pageNum < QCF_TOTAL_PAGES ? pageNum + 1 : null;
+const title = `Мусхаф, страница ${pageNum} — Коран онлайн`;
+const description = `Оригинальная страничная раскладка мусхафа, страница ${pageNum} из ${QCF_TOTAL_PAGES}: QCF4-глифы, 15 строк и пословная разметка.`;
+const linesByNumber = new Map(page.lines.map((line) => [line.line, line]));
+const slots = Array.from({ length: 15 }, (_, i) => i + 1);
+const surahLabel = page.surahs
+  .map((s) => `${s.name_arabic} ${s.verse_start === s.verse_end ? s.verse_start : `${s.verse_start}-${s.verse_end}`}`)
+  .join(' · ');
+const fontFaces = qcfFontFaces();
+---
+
+<Base {title} {description} wide>
+  <style is:inline set:html={fontFaces}></style>
+
+  <div class="mushaf-reader">
+    <nav class="mushaf-toolbar container" aria-label="Навигация по мусхафу">
+      <a class={`icon-btn ${prevPage ? '' : 'disabled'}`} href={prevPage ? `/mushaf/${prevPage}` : undefined} aria-label="Предыдущая страница" title="Предыдущая страница" set:html={icons.arrowRight} />
+
+      <form class="mushaf-jump" action="/mushaf/1" data-mushaf-jump>
+        <label for="mushaf-page">Страница</label>
+        <input id="mushaf-page" name="page" type="number" inputmode="numeric" min="1" max={QCF_TOTAL_PAGES} value={pageNum} />
+        <span>/ {QCF_TOTAL_PAGES}</span>
+      </form>
+
+      <a class={`icon-btn ${nextPage ? '' : 'disabled'}`} href={nextPage ? `/mushaf/${nextPage}` : undefined} aria-label="Следующая страница" title="Следующая страница" set:html={icons.arrowLeft} />
+    </nav>
+
+    <section class="mushaf-sheet" aria-label={`Страница ${pageNum} мусхафа`}>
+      <div class="mushaf-meta">
+        <span>{surahLabel}</span>
+        <b>{pageNum}</b>
+      </div>
+
+      <div class="qcf-page" dir="rtl" data-mushaf-page={pageNum}>
+        {
+          slots.map((lineNumber) => {
+            const line = linesByNumber.get(lineNumber);
+            return (
+              <div class={`qcf-line ${line ? '' : 'is-empty'}`} data-line={lineNumber}>
+                {line?.words.map((word) => (
+                  <span
+                    class={`qcf-word qcf-word-${word.type}`}
+                    style={`font-family:'${word.font}'`}
+                    data-ayah-key={word.verse_key}
+                    data-word-position={word.position}
+                    title={word.text || word.verse_key || ''}
+                  >
+                    {word.char}
+                  </span>
+                ))}
+              </div>
+            );
+          })
+        }
+      </div>
+    </section>
+
+    <nav class="mushaf-bottom container" aria-label="Навигация по страницам">
+      <a class={`btn ${prevPage ? '' : 'disabled'}`} href={prevPage ? `/mushaf/${prevPage}` : undefined}>
+        <span set:html={icons.arrowRight} style="width:18px;height:18px" /> Назад
+      </a>
+      <a class="btn" href="/surah/1">
+        <span set:html={icons.book} style="width:18px;height:18px" /> Суры
+      </a>
+      <a class={`btn primary ${nextPage ? '' : 'disabled'}`} href={nextPage ? `/mushaf/${nextPage}` : undefined}>
+        Вперёд <span set:html={icons.arrowLeft} style="width:18px;height:18px" />
+      </a>
+    </nav>
+  </div>
+
+  <script is:inline>
+    document.addEventListener('submit', function (event) {
+      var form = event.target && event.target.closest && event.target.closest('[data-mushaf-jump]');
+      if (!form) return;
+      event.preventDefault();
+      var input = form.querySelector('input[name="page"]');
+      var page = Math.max(1, Math.min(604, parseInt(input && input.value, 10) || 1));
+      location.href = '/mushaf/' + page;
+    });
+  </script>
+</Base>
