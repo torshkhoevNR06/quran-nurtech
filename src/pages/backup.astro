@@ -1,0 +1,221 @@
+---
+import Base from '../layouts/Base.astro';
+const title = 'Резервная копия — перенос закладок и прогресса';
+const description =
+  'Экспорт и импорт ваших данных: закладки, заметки, прогресс чтения, стрик, настройки. Выгрузите в файл и перенесите на другое устройство — без входа и сервера.';
+---
+
+<Base {title} {description}>
+  <div class="container page backup">
+    <header>
+      <h1>Резервная копия</h1>
+      <p>
+        Все ваши данные хранятся только на этом устройстве (без входа). Выгрузите их в файл, чтобы
+        перенести на другое устройство или не потерять при очистке браузера.
+      </p>
+    </header>
+
+    <section class="bk-card">
+      <h2>Что сохранится</h2>
+      <ul class="bk-list" data-bk-summary>
+        <li>Загрузка…</li>
+      </ul>
+    </section>
+
+    <section class="bk-card">
+      <h2>Выгрузить</h2>
+      <p>Скачает файл <code>quran-backup.json</code> со всеми вашими данными.</p>
+      <button type="button" class="btn primary" data-export>Скачать резервную копию</button>
+    </section>
+
+    <section class="bk-card">
+      <h2>Загрузить</h2>
+      <p>Выберите ранее скачанный файл. Прогресс и дни <b>объединяются</b> (не перетираются).</p>
+      <label class="btn ghost bk-import">
+        Выбрать файл…
+        <input type="file" accept="application/json,.json" data-import hidden />
+      </label>
+      <span class="bk-msg" data-msg></span>
+    </section>
+  </div>
+</Base>
+
+<style is:global>
+  .backup {
+    max-width: 640px;
+    padding-bottom: 90px;
+  }
+  .backup h1 {
+    margin: 0 0 6px;
+  }
+  .backup > header p {
+    color: var(--ink-faint);
+    font-size: var(--fs-13);
+    margin: 0 0 18px;
+    line-height: 1.5;
+  }
+  .bk-card {
+    background: var(--panel-bg);
+    border: 1px solid var(--hairline);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-card);
+    padding: 18px 20px;
+    margin-bottom: 14px;
+  }
+  .bk-card h2 {
+    margin: 0 0 8px;
+    font-size: var(--fs-16);
+  }
+  .bk-card p {
+    margin: 0 0 12px;
+    color: var(--ink-soft);
+    font-size: var(--fs-14);
+  }
+  .bk-card code {
+    background: var(--seg-track);
+    padding: 1px 6px;
+    border-radius: 5px;
+    font-size: var(--fs-13);
+  }
+  .bk-list {
+    margin: 0;
+    padding-left: 18px;
+    color: var(--ink-soft);
+    font-size: var(--fs-14);
+    line-height: 1.7;
+  }
+  .bk-import {
+    cursor: pointer;
+  }
+  .bk-msg {
+    display: inline-block;
+    margin-left: 10px;
+    font-size: var(--fs-13);
+    color: var(--good);
+  }
+  .bk-msg.err {
+    color: var(--low);
+  }
+</style>
+
+<script is:inline>
+  (function () {
+    var PREFIX = 'q_';
+    var LABELS = {
+      q_bookmarks: 'Закладки',
+      q_notes: 'Заметки к аятам',
+      q_progress: 'Прочитанные аяты',
+      q_days: 'История чтения по дням',
+      q_streak: 'Стрик (серия дней)',
+      q_time: 'Время чтения',
+      q_khatm: 'Пройденные хатмы',
+      q_khatm_plan: 'План хатма',
+      q_goal: 'Дневная цель',
+      q_theme: 'Тема',
+      q_read: 'Настройки чтения',
+      q_reciter: 'Чтец',
+      q_tasbih: 'Тасбих',
+    };
+    function collect() {
+      var out = {};
+      for (var i = 0; i < localStorage.length; i++) {
+        var k = localStorage.key(i);
+        if (k && k.indexOf(PREFIX) === 0) out[k] = localStorage.getItem(k);
+      }
+      return out;
+    }
+    // сводка
+    var data = collect();
+    var ul = document.querySelector('[data-bk-summary]');
+    var keys = Object.keys(data);
+    if (ul) {
+      if (!keys.length) ul.innerHTML = '<li>Пока нет сохранённых данных.</li>';
+      else
+        ul.innerHTML = keys
+          .map(function (k) {
+            return '<li>' + (LABELS[k] || k) + '</li>';
+          })
+          .join('');
+    }
+
+    document.querySelector('[data-export]').addEventListener('click', function () {
+      var payload = { app: 'quran.nurtech.dev', v: 1, data: collect() };
+      var blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
+      var u = URL.createObjectURL(blob);
+      var a = document.createElement('a');
+      a.href = u;
+      a.download = 'quran-backup.json';
+      a.click();
+      setTimeout(function () {
+        URL.revokeObjectURL(u);
+      }, 1500);
+    });
+
+    var msg = document.querySelector('[data-msg]');
+    function mergeCounts(oldRaw, newRaw) {
+      // q_progress: объединяем словари прочитанных аятов (OR)
+      try {
+        var o = JSON.parse(oldRaw || '{}');
+        var n = JSON.parse(newRaw || '{}');
+        for (var k in n) if (n[k] === true) o[k] = true;
+        return JSON.stringify(o);
+      } catch (e) {
+        return newRaw;
+      }
+    }
+    function mergeDays(oldRaw, newRaw) {
+      try {
+        var o = JSON.parse(oldRaw || '{}');
+        var n = JSON.parse(newRaw || '{}');
+        for (var d in n) {
+          if (!o[d]) o[d] = n[d];
+          else {
+            o[d] = {
+              sec: Math.max(o[d].sec || 0, n[d].sec || 0),
+              ayahs: Math.max(o[d].ayahs || 0, n[d].ayahs || 0),
+            };
+          }
+        }
+        return JSON.stringify(o);
+      } catch (e) {
+        return newRaw;
+      }
+    }
+    document.querySelector('[data-import]').addEventListener('change', function (e) {
+      var f = e.target.files && e.target.files[0];
+      if (!f) return;
+      var r = new FileReader();
+      r.onload = function () {
+        try {
+          var parsed = JSON.parse(r.result);
+          var d = parsed && parsed.data;
+          if (!d || typeof d !== 'object') throw new Error('bad');
+          var n = 0;
+          for (var k in d) {
+            if (k.indexOf(PREFIX) !== 0) continue;
+            var cur = localStorage.getItem(k);
+            var val = d[k];
+            if (k === 'q_progress') val = mergeCounts(cur, val);
+            else if (k === 'q_days') val = mergeDays(cur, val);
+            localStorage.setItem(k, val);
+            n++;
+          }
+          if (msg) {
+            msg.className = 'bk-msg';
+            msg.textContent = 'Загружено (' + n + ') — обновляю…';
+          }
+          if (navigator.vibrate) navigator.vibrate([12, 30, 14]);
+          setTimeout(function () {
+            location.href = '/progress';
+          }, 900);
+        } catch (err) {
+          if (msg) {
+            msg.className = 'bk-msg err';
+            msg.textContent = 'Не удалось прочитать файл — это не резервная копия Корана.';
+          }
+        }
+      };
+      r.readAsText(f);
+    });
+  })();
+</script>

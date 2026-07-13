@@ -1,0 +1,153 @@
+---
+import Base from '../layouts/Base.astro';
+const title = 'Аяты по темам — тематические подборки Корана';
+const description =
+  'Тематические подборки аятов Корана: терпение, упование, прощение, благодарность, семья и родители, дуа, богобоязненность, милосердие Аллаха, трудности и облегчение — быстрый доступ без знания номеров.';
+
+// Курируемые темы → аяты (surah, ayah, краткая подпись).
+const topics = [
+  {
+    t: 'Терпение (сабр)',
+    d: 'Стойкость при испытаниях и в подчинении',
+    a: [[2, 153], [2, 155], [3, 200], [39, 10], [16, 127]],
+  },
+  {
+    t: 'Упование на Аллаха (таваккуль)',
+    d: 'Полагаться на Всевышнего, приложив усилия',
+    a: [[65, 3], [3, 159], [8, 2], [11, 88]],
+  },
+  {
+    t: 'Прощение и покаяние',
+    d: 'Возвращение к Аллаху и надежда на милость',
+    a: [[39, 53], [3, 135], [4, 110], [2, 222]],
+  },
+  {
+    t: 'Благодарность (шукр)',
+    d: 'Признание и приумножение благ',
+    a: [[14, 7], [2, 152], [16, 18], [93, 11]],
+  },
+  {
+    t: 'Семья и родители',
+    d: 'Благодеяние к родителям и близким',
+    a: [[17, 23], [17, 24], [31, 14], [46, 15]],
+  },
+  {
+    t: 'Дуа и мольба',
+    d: 'Обращение к Аллаху с просьбой',
+    a: [[2, 186], [40, 60], [7, 55], [7, 56]],
+  },
+  {
+    t: 'Богобоязненность (таква)',
+    d: 'Осознанность о Всевышнем',
+    a: [[2, 197], [49, 13], [65, 2], [3, 102]],
+  },
+  {
+    t: 'Милосердие Аллаха',
+    d: 'Широта прощения и милости',
+    a: [[39, 53], [7, 156], [6, 54], [15, 49]],
+  },
+  {
+    t: 'Трудности и облегчение',
+    d: 'После тягот приходит облегчение',
+    a: [[94, 5], [94, 6], [65, 7], [2, 286]],
+  },
+  {
+    t: 'Смерть и вечная жизнь',
+    d: 'Напоминание о временности мира',
+    a: [[3, 185], [29, 57], [67, 2], [21, 35]],
+  },
+  {
+    t: 'Справедливость и правдивость',
+    d: 'Честность в словах и делах',
+    a: [[4, 135], [5, 8], [16, 90], [33, 70]],
+  },
+  {
+    t: 'Довольство и спокойствие сердца',
+    d: 'Умиротворение через поминание',
+    a: [[13, 28], [89, 27], [89, 28], [48, 4]],
+  },
+];
+---
+
+<Base {title} {description}>
+  <div class="container page topics">
+    <header class="tp-head">
+      <h1>Аяты по темам</h1>
+      <p>Быстрый доступ к аятам по жизненным темам — без знания номеров.</p>
+    </header>
+
+    <div class="tp-grid">
+      {
+        topics.map((topic) => (
+          <section class="tp-card">
+            <h2>{topic.t}</h2>
+            <p>{topic.d}</p>
+            <div class="tp-ayahs">
+              {topic.a.map(([s, a]) => (
+                <a href={`/${s}:${a}`}>
+                  {s}:{a}
+                </a>
+              ))}
+            </div>
+          </section>
+        ))
+      }
+    </div>
+  </div>
+</Base>
+
+<style is:global>
+  .topics {
+    max-width: 880px;
+    padding-bottom: 90px;
+  }
+  .tp-head h1 {
+    margin: 0 0 6px;
+  }
+  .tp-head p {
+    color: var(--ink-faint);
+    font-size: var(--fs-13);
+    margin: 0 0 18px;
+  }
+  .tp-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: var(--sp-3);
+  }
+  .tp-card {
+    background: var(--panel-bg);
+    border: 1px solid var(--hairline);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-card);
+    padding: 16px 18px;
+  }
+  .tp-card h2 {
+    margin: 0 0 3px;
+    font-size: var(--fs-16);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+  .tp-card p {
+    margin: 0 0 12px;
+    color: var(--ink-faint);
+    font-size: var(--fs-13);
+  }
+  .tp-ayahs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .tp-ayahs a {
+    border: 1px solid var(--hairline);
+    background: color-mix(in srgb, var(--accent) 8%, transparent);
+    color: var(--accent);
+    border-radius: var(--radius-s);
+    padding: 5px 11px;
+    font: 700 var(--fs-13) / 1 var(--sans);
+    font-variant-numeric: tabular-nums;
+    text-decoration: none;
+  }
+  .tp-ayahs a:hover {
+    background: color-mix(in srgb, var(--accent) 16%, transparent);
+  }
+</style>
