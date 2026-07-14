@@ -2,37 +2,19 @@
    Components: shared controls, rows, groups and states
    ========================================================================== */
 /* ==========================================================================
-   Кнопки / иконки (стекло)
+   Component primitives: structure only. Visual tokens are normalized below.
    ========================================================================== */
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  height: 42px;
-  padding: 0 16px;
-  border: 1px solid var(--glass-border);
-  border-radius: 14px;
-  background: var(--glass-bg);
-  color: var(--ink);
-  font: var(--weight-semibold) 14px/1 var(--sans);
+  min-height: var(--control-h);
   cursor: pointer;
   white-space: nowrap;
-  box-shadow: var(--glass-elev-sm);
-  transition: transform 0.12s, filter 0.15s, background 0.15s;
-}
-.btn:hover {
-  filter: brightness(1.04);
-  transform: translateY(-1px);
-}
-.btn:active {
-  transform: translateY(0);
-}
-.btn.primary {
-  background: linear-gradient(160deg, var(--accent), color-mix(in srgb, var(--accent) 78%, #000));
-  border-color: color-mix(in srgb, var(--accent) 60%, transparent);
-  color: var(--accent-ink);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 8px 22px -8px color-mix(in srgb, var(--accent) 70%, transparent);
+  text-decoration: none;
+  -webkit-appearance: none;
+  appearance: none;
 }
 .btn.ghost {
   background: transparent;
@@ -41,38 +23,21 @@
   -webkit-backdrop-filter: none;
   backdrop-filter: none;
 }
-.btn.ghost:hover {
-  background: var(--glass-bg);
-}
 .icon-btn {
   position: relative;
   display: inline-grid;
   place-items: center;
-  width: 42px;
-  height: 42px;
-  border: 1px solid var(--glass-border);
-  border-radius: 14px;
-  background: var(--glass-bg);
-  color: var(--ink-soft);
+  width: var(--control-h);
+  height: var(--control-h);
+  padding: 0;
   cursor: pointer;
-  box-shadow: var(--glass-elev-sm);
-  transition: transform 0.12s, color 0.15s, filter 0.15s;
-}
-.icon-btn:hover {
-  color: var(--accent);
-  transform: translateY(-1px);
-}
-.icon-btn.on {
-  background: var(--accent-soft);
-  color: var(--accent);
-  border-color: color-mix(in srgb, var(--accent) 45%, transparent);
+  -webkit-appearance: none;
+  appearance: none;
 }
 .icon-btn svg {
-  width: 20px;
-  height: 20px;
+  display: block;
 }
 
-/* всплывающие меню верхней панели (стекло) */
 .menu-wrap {
   position: relative;
 }
@@ -81,12 +46,6 @@
   top: calc(100% + 10px);
   right: 0;
   min-width: 244px;
-  border-radius: var(--r-lg);
-  background: var(--panel-bg);
-  -webkit-backdrop-filter: var(--glass-blur);
-  backdrop-filter: var(--glass-blur);
-  border: 1px solid var(--glass-border);
-  box-shadow: var(--glass-elev);
   padding: 8px;
   z-index: 60;
   display: none;
@@ -107,11 +66,6 @@
 }
 .menu h4 {
   margin: 10px 8px 6px;
-  font-size: 11px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--ink-faint);
-  font-weight: var(--weight-semibold);
 }
 .menu .row {
   display: flex;
@@ -129,69 +83,38 @@
   padding: 10px 12px;
   border: 0;
   background: transparent;
-  color: var(--ink);
   border-radius: 12px;
   cursor: pointer;
-  font: 600 14px/1.2 var(--sans);
   text-align: left;
-  transition: background 0.12s;
-}
-.menu button.item:hover {
-  background: var(--glass-bg);
-}
-.menu button.item.on {
-  color: var(--accent);
-  font-weight: var(--weight-semibold);
-  background: var(--accent-soft);
 }
 .menu button.item .tick {
   margin-left: auto;
-  color: var(--accent);
   opacity: 0;
 }
 .menu button.item.on .tick {
   opacity: 1;
 }
 
-/* сегментированный переключатель (стекло + активная капсула) */
 .seg {
   display: inline-flex;
-  background: color-mix(in srgb, var(--glass-bg) 60%, transparent);
-  border: 1px solid var(--glass-border);
-  border-radius: 15px;
   padding: 3px;
   gap: 2px;
-  box-shadow: inset 0 1px 2px var(--glass-shadow);
 }
 .seg button {
   border: 0;
   background: transparent;
-  color: var(--ink-soft);
   padding: 7px 12px;
   border-radius: 12px;
-  font: var(--weight-semibold) 13px/1 var(--sans);
   cursor: pointer;
   white-space: nowrap;
-  transition: color 0.15s;
-}
-.seg button.on {
-  background: var(--glass-active);
-  color: var(--accent);
-  box-shadow: inset 0 1.4px 0 var(--glass-spec), 0 4px 12px -4px var(--glass-shadow);
 }
 
-/* пилюли-чипы */
 .chip {
   display: inline-flex;
   align-items: center;
   gap: 6px;
   padding: 6px 13px;
   border-radius: 999px;
-  background: var(--glass-bg);
-  color: var(--ink-soft);
-  font: var(--weight-semibold) 12px/1 var(--sans);
-  border: 1px solid var(--glass-border);
-  box-shadow: var(--glass-elev-sm);
 }
 .chip.mecca {
   color: #b4791f;
@@ -204,19 +127,11 @@
 }
 
 select.sel {
-  height: 42px;
+  height: var(--control-h);
   padding: 0 34px 0 14px;
-  border: 1px solid var(--glass-border);
-  border-radius: 14px;
-  background: var(--glass-bg)
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='M2 4l4 4 4-4' stroke='%23888' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E")
-    no-repeat right 12px center;
-  color: var(--ink);
-  font: 600 14px/1 var(--sans);
   cursor: pointer;
   appearance: none;
   -webkit-appearance: none;
-  box-shadow: var(--glass-elev-sm);
 }
 
 input[type='range'] {
@@ -307,6 +222,13 @@ select.sel,
   color: var(--sys-label);
   filter: none;
   transform: none;
+}
+
+.icon-btn.on,
+.ui-icon-button.is-selected {
+  border-color: color-mix(in srgb, var(--sys-accent) 18%, var(--sys-separator));
+  background: color-mix(in srgb, var(--sys-accent) 12%, var(--sys-fill));
+  color: var(--sys-label);
 }
 
 .icon-btn:active,
