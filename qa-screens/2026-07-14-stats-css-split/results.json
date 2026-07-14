@@ -1,0 +1,112 @@
+[
+  {
+    "name": "stats-desktop-light",
+    "width": 1280,
+    "height": 900,
+    "theme": "light",
+    "logs": [],
+    "metrics": {
+      "htmlW": 1280,
+      "innerW": 1280,
+      "overflow": false,
+      "grid": {
+        "w": 828,
+        "h": 99,
+        "display": "grid",
+        "grid": "198px 198px 198px 198px",
+        "overflowX": "visible"
+      },
+      "tile": {
+        "w": 198,
+        "h": 99,
+        "display": "block",
+        "grid": "none",
+        "overflowX": "visible"
+      },
+      "tableWrap": {
+        "w": 828,
+        "h": 96,
+        "display": "block",
+        "grid": "none",
+        "overflowX": "auto"
+      },
+      "table": {
+        "w": 826,
+        "h": 94,
+        "display": "table",
+        "grid": "none",
+        "overflowX": "visible"
+      },
+      "row": {
+        "w": 826,
+        "h": 47,
+        "display": "table-row",
+        "grid": "none",
+        "overflowX": "visible"
+      },
+      "cell": {
+        "w": 826,
+        "h": 47,
+        "display": "table-cell",
+        "grid": "none",
+        "overflowX": "visible"
+      },
+      "theadDisplay": "table-header-group"
+    }
+  },
+  {
+    "name": "stats-mobile-dark",
+    "width": 390,
+    "height": 844,
+    "theme": "dark",
+    "logs": [],
+    "metrics": {
+      "htmlW": 390,
+      "innerW": 390,
+      "overflow": false,
+      "grid": {
+        "w": 358,
+        "h": 211,
+        "display": "grid",
+        "grid": "173px 173px",
+        "overflowX": "visible"
+      },
+      "tile": {
+        "w": 173,
+        "h": 99,
+        "display": "block",
+        "grid": "none",
+        "overflowX": "visible"
+      },
+      "tableWrap": {
+        "w": 358,
+        "h": 77,
+        "display": "block",
+        "grid": "none",
+        "overflowX": "visible"
+      },
+      "table": {
+        "w": 358,
+        "h": 67,
+        "display": "block",
+        "grid": "none",
+        "overflowX": "visible"
+      },
+      "row": {
+        "w": 358,
+        "h": 67,
+        "display": "block",
+        "grid": "none",
+        "overflowX": "hidden"
+      },
+      "cell": {
+        "w": 356,
+        "h": 65,
+        "display": "block",
+        "grid": "none",
+        "overflowX": "visible"
+      },
+      "theadDisplay": "none"
+    }
+  }
+]
