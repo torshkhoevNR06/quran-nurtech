@@ -1,0 +1,175 @@
+{
+  "results": [
+    {
+      "name": "desktop-home-shell",
+      "file": "/Users/ilnur_ryazhapov/Desktop/code_src/quran-nurtech-codex-apple-ui/qa-screens/2026-07-15-shell-css-split/desktop-home-shell.png",
+      "url": "http://127.0.0.1:4348/",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "info": {
+        "title": "Коран онлайн на русском — читать, слушать, изучать",
+        "url": "/",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "overflowX": 0,
+        "sidebar": "open",
+        "bodyClass": "tajweed-on",
+        "topbarRect": {
+          "x": 300,
+          "y": 0,
+          "width": 1140,
+          "height": 52,
+          "top": 0,
+          "right": 1440,
+          "bottom": 52,
+          "left": 300
+        },
+        "drawerClass": "drawer sidebar show",
+        "drawerVisible": true,
+        "drawerTransform": "matrix(1, 0, 0, 1, 0, 0)",
+        "backdropClass": "drawer-backdrop"
+      }
+    },
+    {
+      "name": "desktop-surah-9-shell",
+      "file": "/Users/ilnur_ryazhapov/Desktop/code_src/quran-nurtech-codex-apple-ui/qa-screens/2026-07-15-shell-css-split/desktop-surah-9-shell.png",
+      "url": "http://127.0.0.1:4348/surah/9",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "info": {
+        "title": "Сура 9: Ат-Тауба (Покаяние) — читать с тафсиром ас-Саади",
+        "url": "/surah/9",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "overflowX": 0,
+        "sidebar": "open",
+        "bodyClass": "tajweed-on",
+        "topbarRect": {
+          "x": 300,
+          "y": 0,
+          "width": 1140,
+          "height": 52,
+          "top": 0,
+          "right": 1440,
+          "bottom": 52,
+          "left": 300
+        },
+        "drawerClass": "drawer sidebar show",
+        "drawerVisible": true,
+        "drawerTransform": "matrix(1, 0, 0, 1, 0, 0)",
+        "backdropClass": "drawer-backdrop"
+      }
+    },
+    {
+      "name": "mobile-home-shell",
+      "file": "/Users/ilnur_ryazhapov/Desktop/code_src/quran-nurtech-codex-apple-ui/qa-screens/2026-07-15-shell-css-split/mobile-home-shell.png",
+      "url": "http://127.0.0.1:4348/",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "info": {
+        "title": "Коран онлайн на русском — читать, слушать, изучать",
+        "url": "/",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "overflowX": 0,
+        "sidebar": null,
+        "bodyClass": "tajweed-on",
+        "topbarRect": {
+          "x": 6,
+          "y": 8,
+          "width": 378,
+          "height": 58,
+          "top": 8,
+          "right": 384,
+          "bottom": 66,
+          "left": 6
+        },
+        "drawerClass": "drawer sidebar",
+        "drawerVisible": true,
+        "drawerTransform": "matrix(1, 0, 0, 1, 0, 762.12)",
+        "backdropClass": "drawer-backdrop"
+      }
+    },
+    {
+      "name": "mobile-surah-9-shell",
+      "file": "/Users/ilnur_ryazhapov/Desktop/code_src/quran-nurtech-codex-apple-ui/qa-screens/2026-07-15-shell-css-split/mobile-surah-9-shell.png",
+      "url": "http://127.0.0.1:4348/surah/9",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "info": {
+        "title": "Сура 9: Ат-Тауба (Покаяние) — читать с тафсиром ас-Саади",
+        "url": "/surah/9",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "overflowX": 0,
+        "sidebar": null,
+        "bodyClass": "tajweed-on",
+        "topbarRect": {
+          "x": 6,
+          "y": 8,
+          "width": 378,
+          "height": 58,
+          "top": 8,
+          "right": 384,
+          "bottom": 66,
+          "left": 6
+        },
+        "drawerClass": "drawer sidebar",
+        "drawerVisible": true,
+        "drawerTransform": "matrix(1, 0, 0, 1, 0, 762.12)",
+        "backdropClass": "drawer-backdrop"
+      }
+    },
+    {
+      "name": "mobile-drawer-open",
+      "file": "/Users/ilnur_ryazhapov/Desktop/code_src/quran-nurtech-codex-apple-ui/qa-screens/2026-07-15-shell-css-split/mobile-drawer-open.png",
+      "url": "http://127.0.0.1:4348/surah/9",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "info": {
+        "title": "Сура 9: Ат-Тауба (Покаяние) — читать с тафсиром ас-Саади",
+        "url": "/surah/9",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "overflowX": 0,
+        "sidebar": null,
+        "bodyClass": "tajweed-on drawer-open",
+        "topbarRect": {
+          "x": 6,
+          "y": 8,
+          "width": 378,
+          "height": 58,
+          "top": 8,
+          "right": 384,
+          "bottom": 66,
+          "left": 6
+        },
+        "drawerClass": "drawer sidebar show",
+        "drawerVisible": true,
+        "drawerTransform": "matrix(1, 0, 0, 1, 0, 2.68426)",
+        "backdropClass": "drawer-backdrop show"
+      }
+    }
+  ],
+  "logs": []
+}
