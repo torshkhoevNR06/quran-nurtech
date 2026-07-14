@@ -48,7 +48,7 @@ const svgTasbih =
     <nav class="dgroup" aria-label="Разделы">
       <div class="dgroup-title">Разделы</div>
       <a class={on('/mushaf')} href="/mushaf/1" aria-current={on('/mushaf') ? 'page' : undefined}>
-        <span class="di" set:html={icons.book} />Мусхаф
+        <span class="di" set:html={icons.mushaf} />Мусхаф
       </a>
       <a class={on('/topics')} href="/topics" aria-current={on('/topics') ? 'page' : undefined}>
         <span class="di" set:html={svgTopics} />Аяты по темам
@@ -125,13 +125,17 @@ const svgTasbih =
   .drawer .dgroup a:hover {
     background: color-mix(in srgb, var(--ink) 6%, transparent);
   }
-  .drawer .dgroup a.on {
-    background: var(--accent);
-    color: var(--accent-ink);
+  /* Активный пункт — сплошной accent во всех темах. Специфичность + !important,
+     чтобы перебить platform.css (.drawer .dgroup a.on со слабым sys-fill). */
+  .drawer.sidebar .dgroup a.on,
+  .drawer.sidebar .dfoot a.on {
+    background: var(--accent) !important;
+    color: var(--accent-ink) !important;
   }
-  .drawer .dgroup a.on .di {
-    color: var(--accent-ink);
-    opacity: 0.9;
+  .drawer.sidebar .dgroup a.on .di,
+  .drawer.sidebar .dfoot a.on .di {
+    color: var(--accent-ink) !important;
+    opacity: 0.95;
   }
   .drawer .dgroup a .di {
     width: 18px;

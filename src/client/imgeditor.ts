@@ -154,80 +154,94 @@ function render() {
 
   // соберём блоки (тип, строки, размер, межстрочный)
   type Block = { lines: string[]; size: number; lh: number; color: string; font: string; rtl?: boolean; gapTop: number };
-  const blocks: Block[] = [];
-  const sizeK = W / 1080;
+  const baseK = W / 1080;
 
-  if (S.arabic && data.ar) {
-    // значок-конца аята с номером (U+06DD ۝ + арабские цифры) — рисуется мусхаф-шрифтом
-    const arIndic = String(data.a).replace(/\d/g, (d) => '٠١٢٣٤٥٦٧٨٩'[+d]);
-    const arText = `${data.ar} ۝${arIndic}`;
-    let sz = 74 * sizeK;
-    let lines: string[] = [];
-    for (; sz >= 42 * sizeK; sz -= 4 * sizeK) {
-      ctx.font = `${sz}px ${S.arFont}, 'AmiriQuran', serif`;
-      lines = wrap(ctx, arText, maxW);
-      if (lines.length <= (S.format === '9:16' ? 6 : 4)) break;
+  // Построить все текстовые блоки под заданный масштаб k (все размеры/интерлиньяжи/
+  // отступы пропорциональны k). Переносы перемеряются под масштабированный шрифт,
+  // поэтому возвращаемая высота — точная для этого k.
+  const buildBlocks = (k: number): { blocks: Block[]; contentH: number } => {
+    const blocks: Block[] = [];
+
+    if (S.arabic && data.ar) {
+      // чистый аят без значка-конца (номер аята уже есть в подписи-заголовке;
+      // ۝+цифра в мусхаф-шрифте рисовался как «двойной кружок» — убрано)
+      const arText = data.ar;
+      let sz = 74 * k;
+      let lines: string[] = [];
+      for (; sz >= 42 * k; sz -= 4 * k) {
+        ctx.font = `${sz}px ${S.arFont}, 'AmiriQuran', serif`;
+        lines = wrap(ctx, arText, maxW);
+        if (lines.length <= (S.format === '9:16' ? 6 : 4)) break;
+      }
+      blocks.push({ lines, size: sz, lh: sz * 1.85, color: ink, font: `${sz}px ${S.arFont}, 'AmiriQuran', serif`, rtl: true, gapTop: 0 });
     }
-    blocks.push({ lines, size: sz, lh: sz * 1.85, color: ink, font: `${sz}px ${S.arFont}, 'AmiriQuran', serif`, rtl: true, gapTop: 0 });
-  }
-  if (S.translit && data.tl) {
-    const sz = 30 * sizeK;
-    ctx.font = `italic ${sz}px Georgia, serif`;
-    blocks.push({ lines: wrap(ctx, data.tl, maxW), size: sz, lh: sz * 1.4, color: soft, font: `italic ${sz}px Georgia, serif`, gapTop: 44 * sizeK });
-  }
-  const addTr = (txt: string, lbl: string) => {
-    if (!txt) return;
-    const lsz = 22 * sizeK;
-    const sz = 34 * sizeK;
-    ctx.font = `700 ${lsz}px system-ui, sans-serif`;
-    blocks.push({ lines: [lbl.toUpperCase()], size: lsz, lh: lsz * 1.5, color: acc, font: `700 ${lsz}px system-ui, sans-serif`, gapTop: 46 * sizeK });
-    ctx.font = `${sz}px system-ui, sans-serif`;
-    blocks.push({ lines: wrap(ctx, txt, maxW), size: sz, lh: sz * 1.42, color: ink, font: `${sz}px system-ui, sans-serif`, gapTop: 10 * sizeK });
+    if (S.translit && data.tl) {
+      const sz = 30 * k;
+      ctx.font = `italic ${sz}px Georgia, serif`;
+      blocks.push({ lines: wrap(ctx, data.tl, maxW), size: sz, lh: sz * 1.4, color: soft, font: `italic ${sz}px Georgia, serif`, gapTop: 44 * k });
+    }
+    const addTr = (txt: string, lbl: string) => {
+      if (!txt) return;
+      const lsz = 22 * k;
+      const sz = 34 * k;
+      ctx.font = `700 ${lsz}px system-ui, sans-serif`;
+      blocks.push({ lines: [lbl.toUpperCase()], size: lsz, lh: lsz * 1.5, color: acc, font: `700 ${lsz}px system-ui, sans-serif`, gapTop: 46 * k });
+      ctx.font = `${sz}px system-ui, sans-serif`;
+      blocks.push({ lines: wrap(ctx, txt, maxW), size: sz, lh: sz * 1.42, color: ink, font: `${sz}px system-ui, sans-serif`, gapTop: 10 * k });
+    };
+    if (S.tr === 'kuliev' || S.tr === 'both') addTr(data.ru, 'Кулиев');
+    if (S.tr === 'abuadel' || S.tr === 'both') addTr(data.aa, 'Абу Адель');
+
+    let contentH = 0;
+    blocks.forEach((bl) => (contentH += bl.gapTop + bl.lines.length * bl.lh));
+    return { blocks, contentH };
   };
-  if (S.tr === 'kuliev' || S.tr === 'both') addTr(data.ru, 'Кулиев');
-  if (S.tr === 'abuadel' || S.tr === 'both') addTr(data.aa, 'Абу Адель');
 
-  // высота контента
-  let contentH = 0;
-  blocks.forEach((bl) => (contentH += bl.gapTop + bl.lines.length * bl.lh));
+  // область: между подписью сверху и водяным знаком снизу (границы фиксированы)
+  const topArea = S.label ? pad + 60 * baseK : pad;
+  const botArea = S.watermark ? H - pad - 40 * baseK : H - pad;
+  const availH = botArea - topArea;
 
-  // область: между подписью сверху и водяным знаком снизу
-  const topArea = S.label ? pad + 60 * sizeK : pad;
-  const botArea = S.watermark ? H - pad - 40 * sizeK : H - pad;
-  let y = topArea + Math.max(0, (botArea - topArea - contentH) / 2);
+  // авто-фит: подбираем максимальный масштаб, при котором ВЕСЬ контент влезает
+  // в доступную область. Уменьшаем шаг за шагом до разумного минимума.
+  const MIN_FIT = 0.5;
+  let fit = 1;
+  let built = buildBlocks(baseK * fit);
+  while (built.contentH > availH && fit > MIN_FIT) {
+    fit = Math.max(MIN_FIT, +(fit - 0.04).toFixed(3));
+    built = buildBlocks(baseK * fit);
+  }
+  const { blocks, contentH } = built;
 
-  // подпись сверху
+  // вертикальное центрирование в доступной области (при переполнении — от верха)
+  let y = topArea + Math.max(0, (availH - contentH) / 2);
+
+  // подпись сверху (фиксированный размер)
   if (S.label) {
     ctx.fillStyle = acc;
-    ctx.font = `700 ${28 * sizeK}px system-ui, sans-serif`;
+    ctx.font = `700 ${28 * baseK}px system-ui, sans-serif`;
     ctx.direction = 'ltr' as CanvasDirection;
-    ctx.fillText(`Сура ${data.surahName} · аят ${data.s}:${data.a}`, W / 2, pad + 34 * sizeK);
+    ctx.fillText(`Сура ${data.surahName} · аят ${data.s}:${data.a}`, W / 2, pad + 34 * baseK);
   }
 
   // блоки
-  let first = true;
   for (const bl of blocks) {
     y += bl.gapTop;
     ctx.font = bl.font;
     ctx.fillStyle = bl.color;
     ctx.direction = (bl.rtl ? 'rtl' : 'ltr') as CanvasDirection;
-    // орнамент-разделитель после арабского
-    if (!first && bl.rtl === undefined && S.ornament && blocks[0]?.rtl && bl === blocks.find((x) => !x.rtl)) {
-      // (разделитель рисуем один раз ниже)
-    }
     for (const l of bl.lines) {
       y += bl.size;
       ctx.fillText(l, W / 2, y);
       y += bl.lh - bl.size;
     }
-    first = false;
   }
 
-  // водяной знак
+  // водяной знак (фиксированный размер)
   if (S.watermark) {
     ctx.direction = 'ltr' as CanvasDirection;
     ctx.fillStyle = soft;
-    ctx.font = `600 ${26 * sizeK}px system-ui, sans-serif`;
+    ctx.font = `600 ${26 * baseK}px system-ui, sans-serif`;
     ctx.fillText('quran.nurtech.dev', W / 2, H - pad);
   }
 }

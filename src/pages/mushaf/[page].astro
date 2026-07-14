@@ -257,10 +257,13 @@ const juzList = Array.from({ length: 30 }, (_, i) => i + 1).map((n) => ({
         var isMobile = window.matchMedia('(max-width: 650px)').matches;
         var isImmersive = body.classList.contains('mushaf-immersive');
         var widthSpace = Math.max(280, reader.clientWidth - (isMobile ? 12 : 56));
-        var heightReserve = isImmersive ? (isMobile ? 96 : 118) : isMobile ? 118 : 136;
+        var heightReserve = isImmersive ? (isMobile ? 96 : 118) : isMobile ? 118 : 160;
         var heightSpace = Math.max(420, reader.clientHeight - heightReserve);
         var fitWidth = Math.min(widthSpace, heightSpace * 0.704, isMobile ? 620 : 760);
         var minWidth = isMobile ? Math.min(330, widthSpace) : 390;
+        // минимальная ширина не должна выходить за пределы доступной высоты,
+        // иначе лист не помещался бы в свою строку грида и перекрывал нижние кнопки
+        minWidth = Math.min(minWidth, Math.floor(heightSpace * 0.704));
         var pageWidth = Math.round(Math.max(minWidth, fitWidth));
 
         root.style.setProperty('--mushaf-page-w', pageWidth + 'px');

@@ -117,9 +117,15 @@ body[data-page-mode='mushaf'] .mushaf-fit-btn {
 
 body[data-page-mode='mushaf'] .mushaf-sheet {
   position: relative;
-  width: var(--mushaf-page-w);
+  /* height-driven: лист выводится из ВЫСОТЫ своей 1fr-строки и физически
+     не может её превысить, поэтому никогда не наезжает на .mushaf-bottom.
+     Ширина рождается из высоты через aspect-ratio и ограничена сверху
+     вычисленной в layoutMushaf --mushaf-page-w. */
+  width: auto;
+  height: 100%;
   aspect-ratio: 0.704 / 1;
-  max-width: none;
+  max-width: min(var(--mushaf-page-w), 100%);
+  max-height: 100%;
   margin: 0 auto;
   padding: clamp(16px, 3.1%, 28px) clamp(12px, 2.4%, 22px) clamp(20px, 3.8%, 34px);
   overflow: hidden;
@@ -430,7 +436,12 @@ body.mushaf-immersive .mushaf-imm-next {
   }
 
   body[data-page-mode='mushaf'] .mushaf-sheet {
+    /* мобилка: фиксированная ширина + прокрутка (низ скрыт), возвращаем
+       поведение до height-driven-правила базового блока */
     width: min(calc(100vw - 12px), calc((var(--mushaf-vvh) - var(--topbar-h) - 128px) * 0.704));
+    height: auto;
+    max-width: 100%;
+    max-height: none;
     min-width: 0;
     margin: 0 auto;
     padding: 18px 10px 24px;

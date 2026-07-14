@@ -26,6 +26,11 @@ main[role='main'] {
 main:not(.wide) {
   max-width: var(--content-max);
 }
+/* центрируем контент-колонку в доступном пространстве (viewport − сайдбар − инспектор);
+   без этого main левоприжат и справа зияет пустота на десктопе */
+main:not(.wide) {
+  margin-inline: auto;
+}
 
 .topbar {
   padding: 0;
