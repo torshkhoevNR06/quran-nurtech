@@ -1,0 +1,232 @@
+/* ==========================================================================
+   Design tokens: Apple-like platform system
+   ========================================================================== */
+:root {
+  color-scheme: light;
+
+  /* Typography */
+  --font-ui: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display', Inter,
+    'Segoe UI', system-ui, Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-ui-rounded: ui-rounded, 'SF Pro Rounded', var(--font-ui);
+  --font-reader: var(--font-ui);
+  --font-arabic-ui: 'NaskhAr', 'AmiriQuran', serif;
+  --font-arabic-reader: var(--ar-font, 'Mushaf'), 'AmiriQuran', serif;
+  --font-arabic-mushaf: var(--mushaf-page-font, var(--ar-font, 'Mushaf')), 'AmiriQuran', serif;
+
+  --text-xs: 11px;
+  --text-sm: 12px;
+  --text-callout: 13px;
+  --text-body-sm: 14px;
+  --text-body: 15px;
+  --text-body-lg: 17px;
+  --text-title-sm: 20px;
+  --text-title: 24px;
+  --text-title-lg: 30px;
+  --text-display: 42px;
+
+  --lh-tight: 1.14;
+  --lh-ui: 1.28;
+  --lh-body: 1.55;
+  --lh-reader: 1.66;
+  --lh-arabic: 1.95;
+
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-strong: 650;
+  --weight-title: 680;
+
+  /* Spacing scale */
+  --space-0: 0;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+
+  /* Radius */
+  --radius-xxs: 6px;
+  --radius-xs: 7px;
+  --radius-sm: 8px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 18px;
+  --radius-sheet: 24px;
+  --radius-pill: 999px;
+
+  /* Control metrics */
+  --control-h-compact: 30px;
+  --control-h: 32px;
+  --control-h-comfort: 36px;
+  --touch-h: 44px;
+  --touch-h-comfort: 48px;
+  --toolbar-h: 52px;
+  --topbar-h: 52px;
+  --mobile-toolbar-h: 62px;
+  --tabbar-h: 66px;
+  --sidebar-w: 292px;
+  --inspector-w: clamp(360px, 31vw, 420px);
+  --content-max: 860px;
+
+  /* System colors: light */
+  --sys-bg: #f5f5f7;
+  --sys-grouped-bg: #f2f2f7;
+  --sys-secondary-grouped-bg: #ffffff;
+  --sys-tertiary-grouped-bg: #f7f7fa;
+  --sys-sidebar: rgba(246, 247, 249, 0.88);
+  --sys-toolbar: rgba(255, 255, 255, 0.82);
+  --sys-material: rgba(255, 255, 255, 0.74);
+  --sys-material-strong: rgba(255, 255, 255, 0.92);
+  --sys-label: #1d1d1f;
+  --sys-secondary-label: rgba(60, 60, 67, 0.72);
+  --sys-tertiary-label: rgba(60, 60, 67, 0.48);
+  --sys-quaternary-label: rgba(60, 60, 67, 0.28);
+  --sys-separator: rgba(60, 60, 67, 0.18);
+  --sys-opaque-separator: #d1d1d6;
+  --sys-fill: rgba(120, 120, 128, 0.12);
+  --sys-fill-strong: rgba(120, 120, 128, 0.18);
+  --sys-fill-vibrant: rgba(120, 120, 128, 0.24);
+  --sys-accent: #596575;
+  --sys-accent-contrast: #ffffff;
+  --sys-green: #34c759;
+
+  /* Materials */
+  --material-blur: blur(22px) saturate(180%);
+  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.055);
+  --shadow-popover: 0 18px 48px -32px rgba(0, 0, 0, 0.32), 0 1px 0 rgba(0, 0, 0, 0.04);
+  --shadow-sheet: 0 -18px 48px -34px rgba(0, 0, 0, 0.45);
+  --shadow-accessory: 0 16px 46px -28px rgba(0, 0, 0, 0.42);
+
+  /* Mushaf palettes */
+  --mushaf-vvh: 100dvh;
+  --mushaf-page-w: 560px;
+  --mushaf-qcf-size: 27px;
+  --mushaf-paper: #fbfaf6;
+  --mushaf-ink: #1d2229;
+  --mushaf-paper-line: #ddd8ca;
+  --mushaf-ornament: #6a6f66;
+  --mushaf-stage: color-mix(in srgb, var(--sys-bg) 84%, #aeb6c0);
+
+  /* Legacy aliases kept deliberately while the old base CSS is retired. */
+  --bg: var(--sys-bg);
+  --surface: var(--sys-secondary-grouped-bg);
+  --surface-soft: var(--sys-grouped-bg);
+  --panel-bg: var(--sys-secondary-grouped-bg);
+  --panel-2: var(--sys-secondary-grouped-bg);
+  --ink: var(--sys-label);
+  --ink-soft: var(--sys-secondary-label);
+  --ink-faint: var(--sys-tertiary-label);
+  --line: var(--sys-separator);
+  --hairline: var(--sys-separator);
+  --accent: var(--sys-accent);
+  --accent-ink: var(--sys-accent-contrast);
+  --accent-soft: color-mix(in srgb, var(--sys-accent) 11%, transparent);
+  --glass-bg: var(--sys-material);
+  --glass-bg-strong: var(--sys-material-strong);
+  --glass-border: rgba(255, 255, 255, 0.54);
+  --glass-shadow: rgba(0, 0, 0, 0.12);
+  --glass-elev: var(--shadow-popover);
+  --glass-elev-sm: var(--shadow-card);
+  --glass-blur: var(--material-blur);
+  --seg-track: var(--sys-fill);
+  --seg-thumb: var(--sys-secondary-grouped-bg);
+  --seg-thumb-bd: var(--sys-separator);
+  --knob: #ffffff;
+  --sans: var(--font-ui);
+  --radius-s: var(--radius-xs);
+  --r-sm: var(--radius-sm);
+  --r-md: var(--radius-md);
+  --r-lg: var(--radius-lg);
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --sys-bg: #0f1115;
+  --sys-grouped-bg: #111419;
+  --sys-secondary-grouped-bg: #171a1f;
+  --sys-tertiary-grouped-bg: #1c2027;
+  --sys-sidebar: rgba(24, 27, 33, 0.88);
+  --sys-toolbar: rgba(22, 25, 30, 0.82);
+  --sys-material: rgba(28, 32, 39, 0.72);
+  --sys-material-strong: rgba(28, 32, 39, 0.94);
+  --sys-label: rgba(245, 247, 250, 0.94);
+  --sys-secondary-label: rgba(235, 240, 247, 0.68);
+  --sys-tertiary-label: rgba(235, 240, 247, 0.42);
+  --sys-quaternary-label: rgba(235, 240, 247, 0.24);
+  --sys-separator: rgba(235, 240, 247, 0.12);
+  --sys-opaque-separator: #383f49;
+  --sys-fill: rgba(118, 118, 128, 0.18);
+  --sys-fill-strong: rgba(118, 118, 128, 0.26);
+  --sys-fill-vibrant: rgba(118, 118, 128, 0.32);
+  --sys-accent: #aeb8c6;
+  --sys-accent-contrast: #101318;
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --glass-shadow: rgba(0, 0, 0, 0.48);
+  --seg-thumb: rgba(255, 255, 255, 0.16);
+  --knob: #f5f7fa;
+  --mushaf-paper: #171b20;
+  --mushaf-ink: #f3f5f7;
+  --mushaf-paper-line: #353b44;
+  --mushaf-ornament: #b7c0c9;
+  --mushaf-stage: #0f1115;
+}
+
+:root[data-theme='sepia'] {
+  --sys-bg: #f5ead8;
+  --sys-grouped-bg: #f1e3ce;
+  --sys-secondary-grouped-bg: #fff8ec;
+  --sys-tertiary-grouped-bg: #f8eddc;
+  --sys-sidebar: rgba(251, 241, 224, 0.9);
+  --sys-toolbar: rgba(255, 248, 236, 0.84);
+  --sys-material: rgba(255, 248, 236, 0.74);
+  --sys-material-strong: rgba(255, 248, 236, 0.94);
+  --sys-label: #30291f;
+  --sys-secondary-label: rgba(63, 52, 38, 0.72);
+  --sys-tertiary-label: rgba(63, 52, 38, 0.46);
+  --sys-quaternary-label: rgba(63, 52, 38, 0.25);
+  --sys-separator: rgba(90, 70, 44, 0.15);
+  --sys-fill: rgba(90, 70, 44, 0.1);
+  --sys-fill-strong: rgba(90, 70, 44, 0.16);
+  --sys-fill-vibrant: rgba(90, 70, 44, 0.22);
+  --sys-accent: #786b58;
+  --mushaf-paper: #fbf5e8;
+  --mushaf-ink: #241f18;
+  --mushaf-paper-line: #ded0b7;
+  --mushaf-ornament: #746244;
+  --mushaf-stage: #f1e3ce;
+}
+
+:root[data-type-scale='compact'] {
+  --ru-size: 16px;
+  --ar-size: 28px;
+  --lh: 1.82;
+}
+
+:root[data-type-scale='large'] {
+  --ru-size: 20px;
+  --ar-size: 36px;
+  --lh: 2.04;
+}
+
+:root[data-type-scale='accessibility'] {
+  --ru-size: 23px;
+  --ar-size: 42px;
+  --lh: 2.16;
+}
+
+@media (max-width: 820px) {
+  :root {
+    --topbar-h: var(--mobile-toolbar-h);
+    --toolbar-h: var(--mobile-toolbar-h);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --motion-duration: 0.01ms;
+  }
+}

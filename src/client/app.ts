@@ -730,6 +730,7 @@ async function initDrawer() {
     setDesktopSidebar(saved !== 'closed', false);
   };
   const open = () => {
+    closeMenus();
     if (desktopMq.matches) {
       const next = document.documentElement.getAttribute('data-sidebar') === 'closed';
       setDesktopSidebar(next);
@@ -755,6 +756,9 @@ async function initDrawer() {
   $$('[data-act="drawer"]').forEach((b) => b.addEventListener('click', open));
   $$('[data-act="drawer-close"]').forEach((b) => b.addEventListener('click', close));
   backdrop?.addEventListener('click', close);
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && document.body.classList.contains('drawer-open')) close();
+  });
 
   // список сур строим на клиенте (чтобы не дублировать в каждой странице)
   const sid = document.body.getAttribute('data-surah');

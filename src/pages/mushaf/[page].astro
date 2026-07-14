@@ -78,7 +78,7 @@ const juzList = Array.from({ length: 30 }, (_, i) => i + 1).map((n) => ({
 
   <div class="mushaf-reader">
     <nav class="mushaf-toolbar container" aria-label="Навигация по мусхафу">
-      <a class={`icon-btn ${prevPage ? '' : 'disabled'}`} href={prevPage ? `/mushaf/${prevPage}` : undefined} aria-label="Предыдущая страница" title="Предыдущая страница" set:html={icons.arrowRight} />
+      <a class={`icon-btn ${prevPage ? '' : 'disabled'}`} href={prevPage ? `/mushaf/${prevPage}` : undefined} aria-label="Предыдущая страница" title="Предыдущая страница" set:html={icons.arrowLeft} />
 
       <select class="mushaf-nav-sel" data-mushaf-goto aria-label="Перейти к суре">
         <option value="">Сура…</option>
@@ -107,7 +107,7 @@ const juzList = Array.from({ length: 30 }, (_, i) => i + 1).map((n) => ({
         <span>/ {MUSHAF_TOTAL_PAGES}</span>
       </form>
 
-      <a class={`icon-btn ${nextPage ? '' : 'disabled'}`} href={nextPage ? `/mushaf/${nextPage}` : undefined} aria-label="Следующая страница" title="Следующая страница" set:html={icons.arrowLeft} />
+      <a class={`icon-btn ${nextPage ? '' : 'disabled'}`} href={nextPage ? `/mushaf/${nextPage}` : undefined} aria-label="Следующая страница" title="Следующая страница" set:html={icons.arrowRight} />
 
       <div class="mushaf-zoom" aria-label="Масштаб страницы">
         <button type="button" class="icon-btn mushaf-zoom-btn" data-mushaf-zoom-step="-10" aria-label="Уменьшить масштаб" title="Уменьшить" set:html={icons.minus}></button>
@@ -125,10 +125,10 @@ const juzList = Array.from({ length: 30 }, (_, i) => i + 1).map((n) => ({
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
     </button>
     {prevPage && (
-      <a class="mushaf-imm-nav mushaf-imm-prev" href={`/mushaf/${prevPage}`} aria-label="Предыдущая страница" title="Предыдущая страница" set:html={icons.arrowRight} />
+      <a class="mushaf-imm-nav mushaf-imm-prev" href={`/mushaf/${prevPage}`} aria-label="Предыдущая страница" title="Предыдущая страница" set:html={icons.arrowLeft} />
     )}
     {nextPage && (
-      <a class="mushaf-imm-nav mushaf-imm-next" href={`/mushaf/${nextPage}`} aria-label="Следующая страница" title="Следующая страница" set:html={icons.arrowLeft} />
+      <a class="mushaf-imm-nav mushaf-imm-next" href={`/mushaf/${nextPage}`} aria-label="Следующая страница" title="Следующая страница" set:html={icons.arrowRight} />
     )}
 
     <section class="mushaf-sheet" aria-label={`Страница ${pageNum} мусхафа`}>
@@ -178,13 +178,13 @@ const juzList = Array.from({ length: 30 }, (_, i) => i + 1).map((n) => ({
 
     <nav class="mushaf-bottom container" aria-label="Навигация по страницам">
       <a class={`btn ${prevPage ? '' : 'disabled'}`} href={prevPage ? `/mushaf/${prevPage}` : undefined}>
-        <span set:html={icons.arrowRight} style="width:18px;height:18px" /> Назад
+        <span set:html={icons.arrowLeft} style="width:18px;height:18px" /> Назад
       </a>
       <a class="btn" href="/surah/1">
         <span set:html={icons.book} style="width:18px;height:18px" /> Суры
       </a>
       <a class={`btn primary ${nextPage ? '' : 'disabled'}`} href={nextPage ? `/mushaf/${nextPage}` : undefined}>
-        Вперёд <span set:html={icons.arrowLeft} style="width:18px;height:18px" />
+        Вперёд <span set:html={icons.arrowRight} style="width:18px;height:18px" />
       </a>
     </nav>
   </div>

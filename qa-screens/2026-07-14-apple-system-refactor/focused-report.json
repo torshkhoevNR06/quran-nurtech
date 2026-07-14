@@ -1,0 +1,160 @@
+[
+  {
+    "type": "route",
+    "viewport": "desktop",
+    "route": "/surah/1/",
+    "overflowX": false,
+    "scrollW": 1440,
+    "clientW": 1440,
+    "bodyClass": "tajweed-on",
+    "bodyOverflow": "clip visible",
+    "prevIcon": []
+  },
+  {
+    "type": "route",
+    "viewport": "desktop",
+    "route": "/mushaf/3/",
+    "overflowX": false,
+    "scrollW": 1440,
+    "clientW": 1440,
+    "bodyClass": "tajweed-on",
+    "bodyOverflow": "hidden",
+    "prevIcon": [
+      {
+        "label": "",
+        "aria": "Предыдущая страница",
+        "href": "/mushaf/2"
+      },
+      {
+        "label": "",
+        "aria": "Следующая страница",
+        "href": "/mushaf/4"
+      },
+      {
+        "label": "Назад",
+        "aria": null,
+        "href": "/mushaf/2"
+      },
+      {
+        "label": "Суры",
+        "aria": null,
+        "href": "/surah/1"
+      },
+      {
+        "label": "Вперёд",
+        "aria": null,
+        "href": "/mushaf/4"
+      }
+    ]
+  },
+  {
+    "type": "interaction",
+    "viewport": "desktop",
+    "target": "drawer-escape",
+    "drawerOpen": false,
+    "sidebar": "closed",
+    "drawerShow": false
+  },
+  {
+    "type": "interaction",
+    "viewport": "desktop",
+    "target": "settings",
+    "settingsOpen": true,
+    "bodyClass": "tajweed-on settings-panel-open",
+    "overflowX": false,
+    "menu": {
+      "x": 1020,
+      "y": 0,
+      "w": 420,
+      "h": 900
+    },
+    "panelBody": {
+      "h": 834,
+      "scrollH": 1358,
+      "clientH": 834,
+      "overflowY": "auto",
+      "touchAction": "auto"
+    },
+    "active": "BUTTON",
+    "activeType": null
+  },
+  {
+    "type": "route",
+    "viewport": "mobile",
+    "route": "/surah/1/",
+    "overflowX": false,
+    "scrollW": 390,
+    "clientW": 390,
+    "bodyClass": "tajweed-on",
+    "bodyOverflow": "clip visible",
+    "prevIcon": []
+  },
+  {
+    "type": "route",
+    "viewport": "mobile",
+    "route": "/mushaf/3/",
+    "overflowX": false,
+    "scrollW": 390,
+    "clientW": 390,
+    "bodyClass": "tajweed-on",
+    "bodyOverflow": "hidden",
+    "prevIcon": [
+      {
+        "label": "",
+        "aria": "Предыдущая страница",
+        "href": "/mushaf/2"
+      },
+      {
+        "label": "",
+        "aria": "Следующая страница",
+        "href": "/mushaf/4"
+      },
+      {
+        "label": "Назад",
+        "aria": null,
+        "href": "/mushaf/2"
+      },
+      {
+        "label": "Суры",
+        "aria": null,
+        "href": "/surah/1"
+      },
+      {
+        "label": "Вперёд",
+        "aria": null,
+        "href": "/mushaf/4"
+      }
+    ]
+  },
+  {
+    "type": "interaction",
+    "viewport": "mobile",
+    "target": "drawer-escape",
+    "drawerOpen": false,
+    "sidebar": null,
+    "drawerShow": false
+  },
+  {
+    "type": "interaction",
+    "viewport": "mobile",
+    "target": "settings",
+    "settingsOpen": true,
+    "bodyClass": "tajweed-on settings-panel-open",
+    "overflowX": false,
+    "menu": {
+      "x": 0,
+      "y": 101,
+      "w": 390,
+      "h": 743
+    },
+    "panelBody": {
+      "h": 665,
+      "scrollH": 1506,
+      "clientH": 665,
+      "overflowY": "auto",
+      "touchAction": "pan-y"
+    },
+    "active": "BUTTON",
+    "activeType": null
+  }
+]

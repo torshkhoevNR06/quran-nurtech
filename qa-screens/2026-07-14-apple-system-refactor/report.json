@@ -1,0 +1,1222 @@
+[
+  {
+    "type": "route",
+    "viewport": "desktop",
+    "route": "/",
+    "status": "ok",
+    "title": "Коран онлайн на русском — читать, слушать, изучать",
+    "scrollW": 1440,
+    "clientW": 1440,
+    "overflowX": false,
+    "scrollH": 6885,
+    "clientH": 900,
+    "bodyOverflow": "clip visible",
+    "bodyPaddingLeft": "292px",
+    "bodyPaddingRight": "0px",
+    "activeTag": "BODY",
+    "activeType": null,
+    "topbar": {
+      "x": 292,
+      "y": 0,
+      "w": 1148,
+      "h": 52
+    },
+    "drawer": {
+      "x": 0,
+      "y": 0,
+      "w": 292,
+      "h": 900
+    },
+    "settings": {
+      "x": 1440,
+      "y": 0,
+      "w": 420,
+      "h": 900
+    },
+    "mushaf": null
+  },
+  {
+    "type": "route",
+    "viewport": "desktop",
+    "route": "/surah/1/",
+    "status": "ok",
+    "title": "Сура 1: Аль-Фатиха (Открывающая) — читать с тафсиром ас-Саади",
+    "scrollW": 1440,
+    "clientW": 1440,
+    "overflowX": false,
+    "scrollH": 2494,
+    "clientH": 900,
+    "bodyOverflow": "clip visible",
+    "bodyPaddingLeft": "292px",
+    "bodyPaddingRight": "0px",
+    "activeTag": "BODY",
+    "activeType": null,
+    "topbar": {
+      "x": 292,
+      "y": 0,
+      "w": 1148,
+      "h": 52
+    },
+    "drawer": {
+      "x": 0,
+      "y": 0,
+      "w": 292,
+      "h": 900
+    },
+    "settings": {
+      "x": 1440,
+      "y": 0,
+      "w": 420,
+      "h": 900
+    },
+    "mushaf": null
+  },
+  {
+    "type": "route",
+    "viewport": "desktop",
+    "route": "/surah/17/",
+    "status": "ok",
+    "title": "Сура 17: Аль-Исра (Ночной перенос) — читать с тафсиром ас-Саади",
+    "scrollW": 1440,
+    "clientW": 1440,
+    "overflowX": false,
+    "scrollH": 75215,
+    "clientH": 900,
+    "bodyOverflow": "clip visible",
+    "bodyPaddingLeft": "292px",
+    "bodyPaddingRight": "0px",
+    "activeTag": "BODY",
+    "activeType": null,
+    "topbar": {
+      "x": 292,
+      "y": 0,
+      "w": 1148,
+      "h": 52
+    },
+    "drawer": {
+      "x": 0,
+      "y": 0,
+      "w": 292,
+      "h": 900
+    },
+    "settings": {
+      "x": 1440,
+      "y": 0,
+      "w": 420,
+      "h": 900
+    },
+    "mushaf": null
+  },
+  {
+    "type": "route",
+    "viewport": "desktop",
+    "route": "/mushaf/3/",
+    "status": "ok",
+    "title": "Мусхаф, страница 3 — Коран онлайн",
+    "scrollW": 1440,
+    "clientW": 1440,
+    "overflowX": false,
+    "scrollH": 900,
+    "clientH": 900,
+    "bodyOverflow": "hidden",
+    "bodyPaddingLeft": "292px",
+    "bodyPaddingRight": "0px",
+    "activeTag": "BODY",
+    "activeType": null,
+    "topbar": {
+      "x": 292,
+      "y": 0,
+      "w": 1148,
+      "h": 52
+    },
+    "drawer": {
+      "x": 0,
+      "y": 0,
+      "w": 292,
+      "h": 900
+    },
+    "settings": {
+      "x": 1440,
+      "y": 0,
+      "w": 420,
+      "h": 900
+    },
+    "mushaf": {
+      "x": 616,
+      "y": 118,
+      "w": 501,
+      "h": 712
+    }
+  },
+  {
+    "type": "route",
+    "viewport": "desktop",
+    "route": "/mushaf/10/",
+    "status": "ok",
+    "title": "Мусхаф, страница 10 — Коран онлайн",
+    "scrollW": 1440,
+    "clientW": 1440,
+    "overflowX": false,
+    "scrollH": 900,
+    "clientH": 900,
+    "bodyOverflow": "hidden",
+    "bodyPaddingLeft": "292px",
+    "bodyPaddingRight": "0px",
+    "activeTag": "BODY",
+    "activeType": null,
+    "topbar": {
+      "x": 292,
+      "y": 0,
+      "w": 1148,
+      "h": 52
+    },
+    "drawer": {
+      "x": 0,
+      "y": 0,
+      "w": 292,
+      "h": 900
+    },
+    "settings": {
+      "x": 1440,
+      "y": 0,
+      "w": 420,
+      "h": 900
+    },
+    "mushaf": {
+      "x": 616,
+      "y": 118,
+      "w": 501,
+      "h": 712
+    }
+  },
+  {
+    "type": "route",
+    "viewport": "desktop",
+    "route": "/search/",
+    "status": "ok",
+    "title": "Поиск по Корану — по русскому переводу",
+    "scrollW": 1440,
+    "clientW": 1440,
+    "overflowX": false,
+    "scrollH": 900,
+    "clientH": 900,
+    "bodyOverflow": "clip visible",
+    "bodyPaddingLeft": "292px",
+    "bodyPaddingRight": "0px",
+    "activeTag": "INPUT",
+    "activeType": "search",
+    "topbar": {
+      "x": 292,
+      "y": 0,
+      "w": 1148,
+      "h": 52
+    },
+    "drawer": {
+      "x": 0,
+      "y": 0,
+      "w": 292,
+      "h": 900
+    },
+    "settings": {
+      "x": 1440,
+      "y": 0,
+      "w": 420,
+      "h": 900
+    },
+    "mushaf": null
+  },
+  {
+    "type": "route",
+    "viewport": "desktop",
+    "route": "/progress/",
+    "status": "ok",
+    "title": "Мой прогресс чтения Корана — хатм, стрик, статистика",
+    "scrollW": 1440,
+    "clientW": 1440,
+    "overflowX": false,
+    "scrollH": 3153,
+    "clientH": 900,
+    "bodyOverflow": "clip visible",
+    "bodyPaddingLeft": "292px",
+    "bodyPaddingRight": "0px",
+    "activeTag": "BODY",
+    "activeType": null,
+    "topbar": {
+      "x": 292,
+      "y": 0,
+      "w": 1148,
+      "h": 52
+    },
+    "drawer": {
+      "x": 0,
+      "y": 0,
+      "w": 292,
+      "h": 900
+    },
+    "settings": {
+      "x": 1440,
+      "y": 0,
+      "w": 420,
+      "h": 900
+    },
+    "mushaf": null
+  },
+  {
+    "type": "route",
+    "viewport": "desktop",
+    "route": "/stats/",
+    "status": "ok",
+    "title": "Статистика чтения — Коран онлайн",
+    "scrollW": 1440,
+    "clientW": 1440,
+    "overflowX": false,
+    "scrollH": 900,
+    "clientH": 900,
+    "bodyOverflow": "clip visible",
+    "bodyPaddingLeft": "292px",
+    "bodyPaddingRight": "0px",
+    "activeTag": "BODY",
+    "activeType": null,
+    "topbar": {
+      "x": 292,
+      "y": 0,
+      "w": 1148,
+      "h": 52
+    },
+    "drawer": {
+      "x": 0,
+      "y": 0,
+      "w": 292,
+      "h": 900
+    },
+    "settings": {
+      "x": 1440,
+      "y": 0,
+      "w": 420,
+      "h": 900
+    },
+    "mushaf": null
+  },
+  {
+    "type": "route",
+    "viewport": "desktop",
+    "route": "/audio/",
+    "status": "ok",
+    "title": "Аудио Корана — чтецы, суры, скачивание",
+    "scrollW": 1440,
+    "clientW": 1440,
+    "overflowX": false,
+    "scrollH": 1216,
+    "clientH": 900,
+    "bodyOverflow": "clip visible",
+    "bodyPaddingLeft": "292px",
+    "bodyPaddingRight": "0px",
+    "activeTag": "BODY",
+    "activeType": null,
+    "topbar": {
+      "x": 292,
+      "y": 0,
+      "w": 1148,
+      "h": 52
+    },
+    "drawer": {
+      "x": 0,
+      "y": 0,
+      "w": 292,
+      "h": 900
+    },
+    "settings": {
+      "x": 1440,
+      "y": 0,
+      "w": 420,
+      "h": 900
+    },
+    "mushaf": null
+  },
+  {
+    "type": "route",
+    "viewport": "desktop",
+    "route": "/bookmarks/",
+    "status": "ok",
+    "title": "Закладки и коллекции — сохранённые аяты",
+    "scrollW": 1440,
+    "clientW": 1440,
+    "overflowX": false,
+    "scrollH": 900,
+    "clientH": 900,
+    "bodyOverflow": "clip visible",
+    "bodyPaddingLeft": "292px",
+    "bodyPaddingRight": "0px",
+    "activeTag": "BODY",
+    "activeType": null,
+    "topbar": {
+      "x": 292,
+      "y": 0,
+      "w": 1148,
+      "h": 52
+    },
+    "drawer": {
+      "x": 0,
+      "y": 0,
+      "w": 292,
+      "h": 900
+    },
+    "settings": {
+      "x": 1440,
+      "y": 0,
+      "w": 420,
+      "h": 900
+    },
+    "mushaf": null
+  },
+  {
+    "type": "route",
+    "viewport": "desktop",
+    "route": "/topics/",
+    "status": "ok",
+    "title": "Аяты по темам — тематические подборки Корана",
+    "scrollW": 1440,
+    "clientW": 1440,
+    "overflowX": false,
+    "scrollH": 2270,
+    "clientH": 900,
+    "bodyOverflow": "clip visible",
+    "bodyPaddingLeft": "292px",
+    "bodyPaddingRight": "0px",
+    "activeTag": "BODY",
+    "activeType": null,
+    "topbar": {
+      "x": 292,
+      "y": 0,
+      "w": 1148,
+      "h": 52
+    },
+    "drawer": {
+      "x": 0,
+      "y": 0,
+      "w": 292,
+      "h": 900
+    },
+    "settings": {
+      "x": 1440,
+      "y": 0,
+      "w": 420,
+      "h": 900
+    },
+    "mushaf": null
+  },
+  {
+    "type": "route",
+    "viewport": "desktop",
+    "route": "/glossary/",
+    "status": "ok",
+    "title": "Словарь исламских терминов — глоссарий Корана",
+    "scrollW": 1440,
+    "clientW": 1440,
+    "overflowX": false,
+    "scrollH": 4094,
+    "clientH": 900,
+    "bodyOverflow": "clip visible",
+    "bodyPaddingLeft": "292px",
+    "bodyPaddingRight": "0px",
+    "activeTag": "BODY",
+    "activeType": null,
+    "topbar": {
+      "x": 292,
+      "y": 0,
+      "w": 1148,
+      "h": 52
+    },
+    "drawer": {
+      "x": 0,
+      "y": 0,
+      "w": 292,
+      "h": 900
+    },
+    "settings": {
+      "x": 1440,
+      "y": 0,
+      "w": 420,
+      "h": 900
+    },
+    "mushaf": null
+  },
+  {
+    "type": "route",
+    "viewport": "desktop",
+    "route": "/tasbih/",
+    "status": "ok",
+    "title": "Тасбих — электронный счётчик зикров",
+    "scrollW": 1440,
+    "clientW": 1440,
+    "overflowX": false,
+    "scrollH": 1071,
+    "clientH": 900,
+    "bodyOverflow": "clip visible",
+    "bodyPaddingLeft": "292px",
+    "bodyPaddingRight": "0px",
+    "activeTag": "BODY",
+    "activeType": null,
+    "topbar": {
+      "x": 292,
+      "y": 0,
+      "w": 1148,
+      "h": 52
+    },
+    "drawer": {
+      "x": 0,
+      "y": 0,
+      "w": 292,
+      "h": 900
+    },
+    "settings": {
+      "x": 1440,
+      "y": 0,
+      "w": 420,
+      "h": 900
+    },
+    "mushaf": null
+  },
+  {
+    "type": "route",
+    "viewport": "desktop",
+    "route": "/download/",
+    "status": "ok",
+    "title": "Скачать Коран — тексты и аудио",
+    "scrollW": 1440,
+    "clientW": 1440,
+    "overflowX": false,
+    "scrollH": 906,
+    "clientH": 900,
+    "bodyOverflow": "clip visible",
+    "bodyPaddingLeft": "292px",
+    "bodyPaddingRight": "0px",
+    "activeTag": "BODY",
+    "activeType": null,
+    "topbar": {
+      "x": 292,
+      "y": 0,
+      "w": 1148,
+      "h": 52
+    },
+    "drawer": {
+      "x": 0,
+      "y": 0,
+      "w": 292,
+      "h": 900
+    },
+    "settings": {
+      "x": 1440,
+      "y": 0,
+      "w": 420,
+      "h": 900
+    },
+    "mushaf": null
+  },
+  {
+    "type": "route",
+    "viewport": "desktop",
+    "route": "/about/",
+    "status": "ok",
+    "title": "О проекте — Коран онлайн",
+    "scrollW": 1440,
+    "clientW": 1440,
+    "overflowX": false,
+    "scrollH": 1281,
+    "clientH": 900,
+    "bodyOverflow": "clip visible",
+    "bodyPaddingLeft": "292px",
+    "bodyPaddingRight": "0px",
+    "activeTag": "BODY",
+    "activeType": null,
+    "topbar": {
+      "x": 292,
+      "y": 0,
+      "w": 1148,
+      "h": 52
+    },
+    "drawer": {
+      "x": 0,
+      "y": 0,
+      "w": 292,
+      "h": 900
+    },
+    "settings": {
+      "x": 1440,
+      "y": 0,
+      "w": 420,
+      "h": 900
+    },
+    "mushaf": null
+  },
+  {
+    "type": "interaction",
+    "viewport": "desktop",
+    "target": "drawer",
+    "bodyClass": "tajweed-on",
+    "htmlSidebar": "closed",
+    "overflowX": false,
+    "bodyOverflow": "clip visible",
+    "drawer": {
+      "x": -293,
+      "y": 0,
+      "w": 292,
+      "h": 900,
+      "overflowY": "hidden"
+    },
+    "dscroll": {
+      "x": -293,
+      "y": 51,
+      "w": 291,
+      "h": 772,
+      "scrollH": 6537,
+      "clientH": 772,
+      "overflowY": "auto",
+      "touchAction": "auto"
+    },
+    "active": "BUTTON",
+    "activeType": null
+  },
+  {
+    "type": "interaction",
+    "viewport": "desktop",
+    "target": "settings",
+    "bodyClass": "tajweed-on settings-panel-open",
+    "overflowX": false,
+    "bodyOverflow": "clip visible",
+    "menu": {
+      "x": 1020,
+      "y": 0,
+      "w": 420,
+      "h": 900,
+      "visibility": "visible",
+      "display": "block",
+      "overflowY": "hidden"
+    },
+    "panelBody": {
+      "x": 1021,
+      "y": 66,
+      "w": 419,
+      "h": 834,
+      "scrollH": 1358,
+      "clientH": 834,
+      "overflowY": "auto",
+      "touchAction": "auto"
+    },
+    "active": "BUTTON",
+    "activeType": null
+  },
+  {
+    "type": "route",
+    "viewport": "mobile",
+    "route": "/",
+    "status": "ok",
+    "title": "Коран онлайн на русском — читать, слушать, изучать",
+    "scrollW": 390,
+    "clientW": 390,
+    "overflowX": false,
+    "scrollH": 13211,
+    "clientH": 844,
+    "bodyOverflow": "clip visible",
+    "bodyPaddingLeft": "0px",
+    "bodyPaddingRight": "0px",
+    "activeTag": "BODY",
+    "activeType": null,
+    "topbar": {
+      "x": 0,
+      "y": 0,
+      "w": 390,
+      "h": 66
+    },
+    "drawer": {
+      "x": 0,
+      "y": 880,
+      "w": 390,
+      "h": 726
+    },
+    "settings": {
+      "x": 0,
+      "y": 881,
+      "w": 390,
+      "h": 743
+    },
+    "mushaf": null
+  },
+  {
+    "type": "route",
+    "viewport": "mobile",
+    "route": "/surah/1/",
+    "status": "ok",
+    "title": "Сура 1: Аль-Фатиха (Открывающая) — читать с тафсиром ас-Саади",
+    "scrollW": 390,
+    "clientW": 390,
+    "overflowX": false,
+    "scrollH": 3656,
+    "clientH": 844,
+    "bodyOverflow": "clip visible",
+    "bodyPaddingLeft": "0px",
+    "bodyPaddingRight": "0px",
+    "activeTag": "BODY",
+    "activeType": null,
+    "topbar": {
+      "x": 0,
+      "y": 0,
+      "w": 390,
+      "h": 66
+    },
+    "drawer": {
+      "x": 0,
+      "y": 880,
+      "w": 390,
+      "h": 726
+    },
+    "settings": {
+      "x": 0,
+      "y": 881,
+      "w": 390,
+      "h": 743
+    },
+    "mushaf": null
+  },
+  {
+    "type": "route",
+    "viewport": "mobile",
+    "route": "/surah/17/",
+    "status": "ok",
+    "title": "Сура 17: Аль-Исра (Ночной перенос) — читать с тафсиром ас-Саади",
+    "scrollW": 390,
+    "clientW": 390,
+    "overflowX": false,
+    "scrollH": 76788,
+    "clientH": 844,
+    "bodyOverflow": "clip visible",
+    "bodyPaddingLeft": "0px",
+    "bodyPaddingRight": "0px",
+    "activeTag": "BODY",
+    "activeType": null,
+    "topbar": {
+      "x": 0,
+      "y": 0,
+      "w": 390,
+      "h": 66
+    },
+    "drawer": {
+      "x": 0,
+      "y": 880,
+      "w": 390,
+      "h": 726
+    },
+    "settings": {
+      "x": 0,
+      "y": 881,
+      "w": 390,
+      "h": 743
+    },
+    "mushaf": null
+  },
+  {
+    "type": "route",
+    "viewport": "mobile",
+    "route": "/mushaf/3/",
+    "status": "ok",
+    "title": "Мусхаф, страница 3 — Коран онлайн",
+    "scrollW": 390,
+    "clientW": 390,
+    "overflowX": false,
+    "scrollH": 844,
+    "clientH": 844,
+    "bodyOverflow": "hidden",
+    "bodyPaddingLeft": "0px",
+    "bodyPaddingRight": "0px",
+    "activeTag": "BODY",
+    "activeType": null,
+    "topbar": {
+      "x": 0,
+      "y": 0,
+      "w": 390,
+      "h": 66
+    },
+    "drawer": {
+      "x": 0,
+      "y": 880,
+      "w": 390,
+      "h": 726
+    },
+    "settings": {
+      "x": 0,
+      "y": 881,
+      "w": 390,
+      "h": 743
+    },
+    "mushaf": {
+      "x": 6,
+      "y": 70,
+      "w": 378,
+      "h": 537
+    }
+  },
+  {
+    "type": "route",
+    "viewport": "mobile",
+    "route": "/mushaf/10/",
+    "status": "ok",
+    "title": "Мусхаф, страница 10 — Коран онлайн",
+    "scrollW": 390,
+    "clientW": 390,
+    "overflowX": false,
+    "scrollH": 844,
+    "clientH": 844,
+    "bodyOverflow": "hidden",
+    "bodyPaddingLeft": "0px",
+    "bodyPaddingRight": "0px",
+    "activeTag": "BODY",
+    "activeType": null,
+    "topbar": {
+      "x": 0,
+      "y": 0,
+      "w": 390,
+      "h": 66
+    },
+    "drawer": {
+      "x": 0,
+      "y": 880,
+      "w": 390,
+      "h": 726
+    },
+    "settings": {
+      "x": 0,
+      "y": 881,
+      "w": 390,
+      "h": 743
+    },
+    "mushaf": {
+      "x": 6,
+      "y": 70,
+      "w": 378,
+      "h": 537
+    }
+  },
+  {
+    "type": "route",
+    "viewport": "mobile",
+    "route": "/search/",
+    "status": "ok",
+    "title": "Поиск по Корану — по русскому переводу",
+    "scrollW": 390,
+    "clientW": 390,
+    "overflowX": false,
+    "scrollH": 1319,
+    "clientH": 844,
+    "bodyOverflow": "clip visible",
+    "bodyPaddingLeft": "0px",
+    "bodyPaddingRight": "0px",
+    "activeTag": "INPUT",
+    "activeType": "search",
+    "topbar": {
+      "x": 0,
+      "y": 0,
+      "w": 390,
+      "h": 64
+    },
+    "drawer": {
+      "x": 0,
+      "y": 880,
+      "w": 390,
+      "h": 726
+    },
+    "settings": {
+      "x": 0,
+      "y": 881,
+      "w": 390,
+      "h": 743
+    },
+    "mushaf": null
+  },
+  {
+    "type": "route",
+    "viewport": "mobile",
+    "route": "/progress/",
+    "status": "ok",
+    "title": "Мой прогресс чтения Корана — хатм, стрик, статистика",
+    "scrollW": 390,
+    "clientW": 390,
+    "overflowX": false,
+    "scrollH": 4253,
+    "clientH": 844,
+    "bodyOverflow": "clip visible",
+    "bodyPaddingLeft": "0px",
+    "bodyPaddingRight": "0px",
+    "activeTag": "BODY",
+    "activeType": null,
+    "topbar": {
+      "x": 0,
+      "y": 0,
+      "w": 390,
+      "h": 66
+    },
+    "drawer": {
+      "x": 0,
+      "y": 880,
+      "w": 390,
+      "h": 726
+    },
+    "settings": {
+      "x": 0,
+      "y": 881,
+      "w": 390,
+      "h": 743
+    },
+    "mushaf": null
+  },
+  {
+    "type": "route",
+    "viewport": "mobile",
+    "route": "/stats/",
+    "status": "ok",
+    "title": "Статистика чтения — Коран онлайн",
+    "scrollW": 390,
+    "clientW": 390,
+    "overflowX": false,
+    "scrollH": 1133,
+    "clientH": 844,
+    "bodyOverflow": "clip visible",
+    "bodyPaddingLeft": "0px",
+    "bodyPaddingRight": "0px",
+    "activeTag": "BODY",
+    "activeType": null,
+    "topbar": {
+      "x": 0,
+      "y": 0,
+      "w": 390,
+      "h": 66
+    },
+    "drawer": {
+      "x": 0,
+      "y": 880,
+      "w": 390,
+      "h": 726
+    },
+    "settings": {
+      "x": 0,
+      "y": 881,
+      "w": 390,
+      "h": 743
+    },
+    "mushaf": null
+  },
+  {
+    "type": "route",
+    "viewport": "mobile",
+    "route": "/audio/",
+    "status": "ok",
+    "title": "Аудио Корана — чтецы, суры, скачивание",
+    "scrollW": 390,
+    "clientW": 390,
+    "overflowX": false,
+    "scrollH": 1670,
+    "clientH": 844,
+    "bodyOverflow": "clip visible",
+    "bodyPaddingLeft": "0px",
+    "bodyPaddingRight": "0px",
+    "activeTag": "BODY",
+    "activeType": null,
+    "topbar": {
+      "x": 0,
+      "y": 0,
+      "w": 390,
+      "h": 66
+    },
+    "drawer": {
+      "x": 0,
+      "y": 880,
+      "w": 390,
+      "h": 726
+    },
+    "settings": {
+      "x": 0,
+      "y": 881,
+      "w": 390,
+      "h": 743
+    },
+    "mushaf": null
+  },
+  {
+    "type": "route",
+    "viewport": "mobile",
+    "route": "/bookmarks/",
+    "status": "ok",
+    "title": "Закладки и коллекции — сохранённые аяты",
+    "scrollW": 390,
+    "clientW": 390,
+    "overflowX": false,
+    "scrollH": 921,
+    "clientH": 844,
+    "bodyOverflow": "clip visible",
+    "bodyPaddingLeft": "0px",
+    "bodyPaddingRight": "0px",
+    "activeTag": "BODY",
+    "activeType": null,
+    "topbar": {
+      "x": 0,
+      "y": 0,
+      "w": 390,
+      "h": 66
+    },
+    "drawer": {
+      "x": 0,
+      "y": 880,
+      "w": 390,
+      "h": 726
+    },
+    "settings": {
+      "x": 0,
+      "y": 881,
+      "w": 390,
+      "h": 743
+    },
+    "mushaf": null
+  },
+  {
+    "type": "route",
+    "viewport": "mobile",
+    "route": "/topics/",
+    "status": "ok",
+    "title": "Аяты по темам — тематические подборки Корана",
+    "scrollW": 390,
+    "clientW": 390,
+    "overflowX": false,
+    "scrollH": 4945,
+    "clientH": 844,
+    "bodyOverflow": "clip visible",
+    "bodyPaddingLeft": "0px",
+    "bodyPaddingRight": "0px",
+    "activeTag": "BODY",
+    "activeType": null,
+    "topbar": {
+      "x": 0,
+      "y": 0,
+      "w": 390,
+      "h": 66
+    },
+    "drawer": {
+      "x": 0,
+      "y": 880,
+      "w": 390,
+      "h": 726
+    },
+    "settings": {
+      "x": 0,
+      "y": 881,
+      "w": 390,
+      "h": 743
+    },
+    "mushaf": null
+  },
+  {
+    "type": "route",
+    "viewport": "mobile",
+    "route": "/glossary/",
+    "status": "ok",
+    "title": "Словарь исламских терминов — глоссарий Корана",
+    "scrollW": 390,
+    "clientW": 390,
+    "overflowX": false,
+    "scrollH": 4945,
+    "clientH": 844,
+    "bodyOverflow": "clip visible",
+    "bodyPaddingLeft": "0px",
+    "bodyPaddingRight": "0px",
+    "activeTag": "BODY",
+    "activeType": null,
+    "topbar": {
+      "x": 0,
+      "y": 0,
+      "w": 390,
+      "h": 66
+    },
+    "drawer": {
+      "x": 0,
+      "y": 880,
+      "w": 390,
+      "h": 726
+    },
+    "settings": {
+      "x": 0,
+      "y": 881,
+      "w": 390,
+      "h": 743
+    },
+    "mushaf": null
+  },
+  {
+    "type": "route",
+    "viewport": "mobile",
+    "route": "/tasbih/",
+    "status": "ok",
+    "title": "Тасбих — электронный счётчик зикров",
+    "scrollW": 390,
+    "clientW": 390,
+    "overflowX": false,
+    "scrollH": 1361,
+    "clientH": 844,
+    "bodyOverflow": "clip visible",
+    "bodyPaddingLeft": "0px",
+    "bodyPaddingRight": "0px",
+    "activeTag": "BODY",
+    "activeType": null,
+    "topbar": {
+      "x": 0,
+      "y": 0,
+      "w": 390,
+      "h": 66
+    },
+    "drawer": {
+      "x": 0,
+      "y": 880,
+      "w": 390,
+      "h": 726
+    },
+    "settings": {
+      "x": 0,
+      "y": 881,
+      "w": 390,
+      "h": 743
+    },
+    "mushaf": null
+  },
+  {
+    "type": "route",
+    "viewport": "mobile",
+    "route": "/download/",
+    "status": "ok",
+    "title": "Скачать Коран — тексты и аудио",
+    "scrollW": 390,
+    "clientW": 390,
+    "overflowX": false,
+    "scrollH": 1448,
+    "clientH": 844,
+    "bodyOverflow": "clip visible",
+    "bodyPaddingLeft": "0px",
+    "bodyPaddingRight": "0px",
+    "activeTag": "BODY",
+    "activeType": null,
+    "topbar": {
+      "x": 0,
+      "y": 0,
+      "w": 390,
+      "h": 66
+    },
+    "drawer": {
+      "x": 0,
+      "y": 880,
+      "w": 390,
+      "h": 726
+    },
+    "settings": {
+      "x": 0,
+      "y": 881,
+      "w": 390,
+      "h": 743
+    },
+    "mushaf": null
+  },
+  {
+    "type": "route",
+    "viewport": "mobile",
+    "route": "/about/",
+    "status": "ok",
+    "title": "О проекте — Коран онлайн",
+    "scrollW": 390,
+    "clientW": 390,
+    "overflowX": false,
+    "scrollH": 2261,
+    "clientH": 844,
+    "bodyOverflow": "clip visible",
+    "bodyPaddingLeft": "0px",
+    "bodyPaddingRight": "0px",
+    "activeTag": "BODY",
+    "activeType": null,
+    "topbar": {
+      "x": 0,
+      "y": 0,
+      "w": 390,
+      "h": 66
+    },
+    "drawer": {
+      "x": 0,
+      "y": 880,
+      "w": 390,
+      "h": 726
+    },
+    "settings": {
+      "x": 0,
+      "y": 881,
+      "w": 390,
+      "h": 743
+    },
+    "mushaf": null
+  },
+  {
+    "type": "click-error",
+    "viewport": "mobile",
+    "target": "settings",
+    "message": "locator.click: Timeout 3000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-settings-toggle]').first()\u001b[22m\n\u001b[2m    - locator resolved to <button class=\"icon-btn\" title=\"Настройки\" data-menu-toggle=\"\" aria-expanded=\"false\" data-settings-toggle=\"\" aria-label=\"Настройки чтения\">…</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <div data-drawer-backdrop=\"\" class=\"drawer-backdrop show\"></div> intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <div data-drawer-backdrop=\"\" class=\"drawer-backdrop show\"></div> intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    6 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <div data-drawer-backdrop=\"\" class=\"drawer-backdrop show\"></div> intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 500ms\u001b[22m\n"
+  },
+  {
+    "type": "interaction",
+    "viewport": "mobile",
+    "target": "drawer",
+    "bodyClass": "tajweed-on drawer-open",
+    "htmlSidebar": null,
+    "overflowX": false,
+    "bodyOverflow": "hidden",
+    "drawer": {
+      "x": 0,
+      "y": 118,
+      "w": 390,
+      "h": 726,
+      "overflowY": "hidden"
+    },
+    "dscroll": {
+      "x": 1,
+      "y": 202,
+      "w": 388,
+      "h": 530,
+      "scrollH": 7785,
+      "clientH": 530,
+      "overflowY": "auto",
+      "touchAction": "pan-y"
+    },
+    "active": "BUTTON",
+    "activeType": null
+  },
+  {
+    "type": "interaction",
+    "viewport": "mobile",
+    "target": "settings",
+    "bodyClass": "tajweed-on drawer-open",
+    "overflowX": false,
+    "bodyOverflow": "hidden",
+    "menu": {
+      "x": 0,
+      "y": 881,
+      "w": 390,
+      "h": 743,
+      "visibility": "hidden",
+      "display": "block",
+      "overflowY": "hidden"
+    },
+    "panelBody": {
+      "x": 1,
+      "y": 949,
+      "w": 388,
+      "h": 665,
+      "scrollH": 1506,
+      "clientH": 665,
+      "overflowY": "auto",
+      "touchAction": "pan-y"
+    },
+    "active": "BUTTON",
+    "activeType": null
+  }
+]
