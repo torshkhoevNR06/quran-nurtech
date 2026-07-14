@@ -2,6 +2,7 @@
 dist/
 .astro/
 node_modules/
+node_modules
 .cache/
 
 # generated (rebuilt by scripts/build-data.mjs on prebuild/predev)
