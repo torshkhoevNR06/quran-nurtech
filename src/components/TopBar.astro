@@ -398,7 +398,8 @@ const showQuick = !isSearch;
   /* Меню чтеца: поиск + прокручиваемый список (44 чтеца) */
   .menu-reciter {
     flex-direction: column;
-    max-height: min(72vh, 500px);
+    max-height: min(70vh, 480px);
+    overflow: hidden;
   }
   .menu-reciter.open {
     display: flex;
@@ -419,8 +420,9 @@ const showQuick = !isSearch;
     outline-offset: 1px;
   }
   .reciter-list {
-    overflow-y: auto;
+    flex: 1 1 auto;
     min-height: 0;
+    overflow-y: auto;
     overscroll-behavior: contain;
   }
 </style>
