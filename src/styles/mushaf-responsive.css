@@ -1,0 +1,134 @@
+@media (max-width: 900px) {
+  body[data-page-mode='mushaf'] .mushaf-nav-sel {
+    display: none;
+  }
+
+  body[data-page-mode='mushaf'] .mushaf-toolbar {
+    justify-content: space-between;
+  }
+}
+
+@media (max-width: 650px) {
+  body[data-page-mode='mushaf'] {
+    height: var(--mushaf-vvh);
+    overflow: hidden;
+  }
+
+  body[data-page-mode='mushaf'] .topbar {
+    position: relative;
+    z-index: 60;
+    padding-bottom: 0;
+  }
+
+  body[data-page-mode='mushaf'] main.wide {
+    height: calc(var(--mushaf-vvh) - var(--topbar-h));
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  body[data-page-mode='mushaf'] .mushaf-reader {
+    height: 100%;
+    min-height: 0;
+    display: grid;
+    grid-template-rows: minmax(0, 1fr);
+    align-items: start;
+    justify-items: center;
+    padding: 4px 0 calc(82px + env(safe-area-inset-bottom));
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  body[data-page-mode='mushaf'] .mushaf-toolbar {
+    position: fixed;
+    left: max(10px, env(safe-area-inset-left));
+    right: max(10px, env(safe-area-inset-right));
+    bottom: max(10px, env(safe-area-inset-bottom));
+    top: auto;
+    z-index: 58;
+    width: auto;
+    padding: 8px;
+    gap: 8px;
+    border-radius: 22px;
+    box-shadow: var(--shadow-accessory);
+  }
+
+  body[data-page-mode='mushaf'] .mushaf-toolbar .icon-btn {
+    width: var(--touch-h);
+    height: var(--touch-h);
+    border-radius: 16px;
+  }
+
+  body[data-page-mode='mushaf'] .mushaf-jump {
+    flex: 1 1 auto;
+    min-width: 0;
+    max-width: none;
+    min-height: var(--touch-h);
+    background: var(--sys-secondary-grouped-bg);
+  }
+
+  body[data-page-mode='mushaf'] .mushaf-jump label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+  }
+
+  body[data-page-mode='mushaf'] .mushaf-jump input {
+    width: 64px;
+    height: 32px;
+    font-size: 16px;
+  }
+
+  body[data-page-mode='mushaf'] .mushaf-zoom,
+  body[data-page-mode='mushaf'] .mushaf-fit-btn {
+    display: none;
+  }
+
+  body[data-page-mode='mushaf'] .mushaf-zoom-fab {
+    display: flex;
+  }
+
+  body[data-page-mode='mushaf'] .mushaf-sheet {
+    width: min(calc(100vw - 12px), calc((var(--mushaf-vvh) - var(--topbar-h) - 128px) * 0.704));
+    min-width: 0;
+    margin: 0 auto;
+    padding: 18px 10px 24px;
+    border-radius: 5px;
+  }
+
+  body[data-page-mode='mushaf'] .mushaf-meta {
+    inset: 9px 14px auto;
+    font-size: 9px;
+  }
+
+  body[data-page-mode='mushaf'] .mushaf-meta b {
+    font-size: 11px;
+  }
+
+  body[data-page-mode='mushaf'] .qcf-page {
+    font-size: var(--mushaf-qcf-size);
+  }
+
+  body[data-page-mode='mushaf'] .mushaf-bottom {
+    display: none;
+  }
+
+  body.mushaf-immersive .mushaf-reader {
+    padding: max(12px, env(safe-area-inset-top)) 0 max(12px, env(safe-area-inset-bottom));
+  }
+
+  body.mushaf-immersive .mushaf-toolbar {
+    display: none;
+  }
+
+  body.mushaf-immersive .mushaf-imm-nav {
+    width: 40px;
+    height: 40px;
+  }
+
+  body.mushaf-immersive .mushaf-immersive-exit {
+    width: 40px;
+    height: 40px;
+  }
+}

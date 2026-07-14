@@ -273,7 +273,7 @@ select.mushaf-nav-sel {
   background-size: 12px 12px;
 }
 
-/* мусхаф-тулбар: mushaf.css задаёт background shorthand на body[...] .mushaf-nav-sel
+/* мусхаф-тулбар: mushaf-reader.css задаёт background shorthand на body[...] .mushaf-nav-sel
    (специфичность 0,2,1) и снова стирал шеврон — возвращаем на 0,2,2. */
 body[data-page-mode='mushaf'] select.mushaf-nav-sel {
   padding-right: 28px;
