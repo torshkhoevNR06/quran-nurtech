@@ -420,6 +420,9 @@ const eaUrl = (r: Reciter, s: number, a: number) =>
 // по-суровый чтец (mp3quran): целая сура одним файлом
 const surahUrl = (r: Reciter, s: number) => `${r.srv}${pad3(s)}.mp3`;
 const surahHas = (r: Reciter, s: number) => !(r.skip || []).includes(s);
+// основной URL аята: есть islamic.network-редакция (ed) → CDN, иначе напрямую EveryAyah (ea).
+// Так у ea-only чтецов нет лишнего 404→фолбэк, а предзагрузка совпадает с реальным src.
+const ayahSrc = (r: Reciter, s: number, a: number) => (r.ed ? cdnUrl(r, s, a) : eaUrl(r, s, a));
 const DEFAULT_RECITER_ID = 'binhumaid';
 // цепочка фолбэка для по-суровых чтецов: где нет Ахмада Талиба → Сувейлис → (где нет обоих) Алафаси
 const FALLBACK_CHAIN = ['binhumaid', 'souilass', 'alafasy'];
@@ -1518,6 +1521,8 @@ const player = new (class {
   memorize = LS.get<boolean>(K.memorize, false); // режим заучивания
   memRep = LS.get<number>(K.memrep, 3); // повторов аята (0 = бесконечно)
   memCount = 0;
+  preloader: HTMLAudioElement | null = null; // качает следующий аят заранее (бесшовно)
+  preloadedUrl = '';
 
   async reciter(): Promise<Reciter> {
     const rs = await loadReciters();
@@ -1621,7 +1626,7 @@ const player = new (class {
     if (this.idx !== i || !this.audio) return; // трек сменился, пока грузили данные
     let r = pickReciterForSurah(r0, t.s); // если у выбранного нет суры — идём по цепочке
     if (r.id !== r0.id) toast(`${shortName(r0)} не читал суру — включён ${shortName(r)}`);
-    const src = r.type === 'surah' ? surahUrl(r, t.s) : cdnUrl(r, t.s, t.a);
+    const src = r.type === 'surah' ? surahUrl(r, t.s) : ayahSrc(r, t.s, t.a);
     this.currentReciter = r;
     this.setTitle(t);
     this.audio.src = src;
@@ -1629,6 +1634,33 @@ const player = new (class {
     try {
       await this.audio.play();
     } catch {}
+    this.preloadNext(); // пока играет текущий — тянем следующий в кэш
+  }
+  // индекс, который проиграется следующим (для предзагрузки); -1 — предзагрузка не нужна
+  peekNextIdx(): number {
+    if (this.repeatOne) return -1; // повтор одного — тот же трек, уже загружен
+    if (this.memorize && (this.memRep === 0 || this.memCount + 1 < this.memRep)) return -1;
+    if (this.range) return this.idx >= this.range.to ? this.range.from : this.idx + 1;
+    return this.idx >= 0 && this.idx < this.playlist.length - 1 ? this.idx + 1 : -1;
+  }
+  // предзагрузка следующего аята в кэш браузера — бесшовное переключение без «грузит → играет»
+  async preloadNext() {
+    if (this.currentReciter?.type === 'surah') return; // по-суровый чтец играет всю суру одним файлом
+    const ni = this.peekNextIdx();
+    if (ni < 0) return;
+    const t = this.playlist[ni];
+    const r0 = await this.reciter();
+    const r = pickReciterForSurah(r0, t.s);
+    if (r.type === 'surah') return;
+    const url = ayahSrc(r, t.s, t.a);
+    if (this.preloadedUrl === url) return;
+    this.preloadedUrl = url;
+    if (!this.preloader) {
+      this.preloader = new Audio();
+      this.preloader.preload = 'auto';
+    }
+    this.preloader.src = url;
+    this.preloader.load();
   }
   toggle() {
     if (!this.audio) return;
