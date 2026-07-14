@@ -1,0 +1,95 @@
+.menu,
+.ui-popover {
+  border: 1px solid var(--sys-separator);
+  border-radius: 12px;
+  background: var(--sys-material-strong);
+  -webkit-backdrop-filter: var(--material-blur);
+  backdrop-filter: var(--material-blur);
+  box-shadow: var(--shadow-popover);
+}
+
+.menu h4,
+.settings-section-head span,
+.settings-field > span,
+.drawer .dgroup-title,
+.ui-section-title {
+  color: var(--sys-tertiary-label);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-strong);
+  letter-spacing: 0.055em;
+  text-transform: uppercase;
+}
+
+.menu button.item,
+.settings-choice,
+.settings-row,
+.ui-list-row {
+  color: var(--sys-label);
+  font-weight: var(--weight-medium);
+}
+
+.menu button.item:hover,
+.menu[data-menu='settings'] .settings-row:hover,
+.menu[data-menu='settings'] .settings-choice:hover,
+.ui-list-row:hover {
+  background: var(--sys-fill);
+}
+
+.menu button.item.on,
+.menu[data-menu='settings'] .settings-choice.on,
+.ui-list-row.is-selected {
+  background: var(--sys-fill-strong);
+  color: var(--sys-label);
+  box-shadow: none;
+}
+
+.settings-panel-head {
+  border-bottom-color: var(--sys-separator);
+}
+
+.settings-panel-head strong {
+  color: var(--sys-label);
+  font-size: var(--text-body-lg);
+  font-weight: var(--weight-semibold);
+}
+
+.settings-panel-head span,
+.settings-section-head small {
+  color: var(--sys-tertiary-label);
+  font-weight: var(--weight-medium);
+}
+
+.settings-group,
+.settings-choice-list,
+.settings-field,
+.ui-group,
+.ui-inspector-section {
+  border: 1px solid var(--sys-separator);
+  border-radius: var(--radius-md);
+  background: var(--sys-secondary-grouped-bg);
+  box-shadow: none;
+}
+
+.seg,
+.menu .seg,
+.ui-segmented {
+  border: 1px solid var(--sys-separator);
+  border-radius: 9px;
+  background: var(--sys-fill);
+  box-shadow: none;
+}
+
+.seg button,
+.menu .seg button,
+.ui-segmented button {
+  color: var(--sys-secondary-label);
+  font-weight: var(--weight-semibold);
+}
+
+.seg button.on,
+.menu .seg button.on,
+.ui-segmented button[aria-selected='true'] {
+  background: var(--seg-thumb);
+  color: var(--sys-label);
+  box-shadow: 0 1px 1px color-mix(in srgb, var(--sys-label) 10%, transparent);
+}

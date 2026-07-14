@@ -1,0 +1,32 @@
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+summary:focus-visible,
+[tabindex]:focus-visible,
+.icon-btn:focus-visible,
+.btn:focus-visible,
+.ayah-acts button:focus-visible,
+.ayah-acts a:focus-visible,
+.toolbar-context [href]:focus-visible,
+.dgroup a:focus-visible,
+.drawer .dgroup a:focus-visible,
+.drawer .dfoot a:focus-visible,
+.mushaf-nav-sel:focus-visible,
+.reciter-filter:focus-visible,
+.ayah-note textarea:focus-visible {
+  outline: 0 !important;
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--sys-accent) 16%, transparent) !important;
+}
+
+.quick input:focus,
+.drawer .dh input:focus,
+.list-tools .filter:focus {
+  outline: 0 !important;
+  border-color: color-mix(in srgb, var(--sys-label) 22%, var(--sys-separator)) !important;
+  background: color-mix(in srgb, var(--sys-secondary-grouped-bg) 82%, transparent) !important;
+  box-shadow:
+    inset 0 1px 1px color-mix(in srgb, var(--sys-label) 5%, transparent),
+    0 0 0 2px color-mix(in srgb, var(--sys-accent) 10%, transparent) !important;
+}
