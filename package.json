@@ -11,7 +11,9 @@
     "build": "astro build",
     "preview": "astro preview",
     "data": "node scripts/build-data.mjs",
-    "import:saadi": "node scripts/import-saadi-quran-online.mjs"
+    "import:saadi": "node scripts/import-saadi-quran-online.mjs",
+    "updatedesk:init": "node tools/updatedesk-init.mjs",
+    "updatedesk:note": "node tools/updatedesk-note.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.3",
