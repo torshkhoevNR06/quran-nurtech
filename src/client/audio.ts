@@ -155,7 +155,7 @@ function play(i: number) {
   audio.play().catch(() => {});
   subEl &&
     (subEl.textContent = r.id === r0.id ? r.name : `${r.name} · у ${shortName(r0)} нет суры`);
-  rowsBox?.querySelectorAll('.ayah.active').forEach((e) => e.classList.remove('active'));
+  rowsBox?.querySelectorAll('.audio-row.active').forEach((e) => e.classList.remove('active'));
   const row = rowsBox?.querySelector(`[data-row="${i + 1}"]`);
   row?.classList.add('active');
   row?.scrollIntoView({ block: 'center', behavior: 'smooth' });

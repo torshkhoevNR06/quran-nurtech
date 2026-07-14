@@ -201,6 +201,56 @@ body[data-page-mode='mushaf'] .mushaf-bottom {
   gap: 10px;
 }
 
+/* zoomed page: grab cursor + capture touch gestures for pan */
+body[data-page-mode='mushaf'].mushaf-zoomed .mushaf-sheet {
+  cursor: grab;
+}
+
+body[data-page-mode='mushaf'].mushaf-zoomed .mushaf-sheet:active {
+  cursor: grabbing;
+}
+
+body[data-page-mode='mushaf'].mushaf-zoomed .qcf-page {
+  touch-action: none;
+}
+
+/* floating compact zoom control (shown on mobile where the toolbar slider is hidden) */
+body[data-page-mode='mushaf'] .mushaf-zoom-fab {
+  display: none;
+  position: fixed;
+  right: max(12px, env(safe-area-inset-right));
+  bottom: calc(84px + env(safe-area-inset-bottom));
+  z-index: 59;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 6px;
+  padding: 6px;
+  border: 1px solid var(--sys-separator);
+  border-radius: 20px;
+  background: var(--sys-material-strong);
+  -webkit-backdrop-filter: var(--material-blur);
+  backdrop-filter: var(--material-blur);
+  box-shadow: var(--shadow-accessory);
+}
+
+body[data-page-mode='mushaf'] .mushaf-zoom-fab .icon-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  background: var(--sys-fill);
+  color: var(--sys-label);
+}
+
+body[data-page-mode='mushaf'] .mushaf-zoom-fab .mushaf-fab-reset {
+  min-height: 30px;
+  border: none;
+  border-radius: 10px;
+  background: transparent;
+  color: var(--sys-secondary-label);
+  font: var(--weight-strong) var(--text-xs) / 1 var(--font-ui);
+  font-variant-numeric: tabular-nums;
+}
+
 body.mushaf-immersive {
   height: var(--mushaf-vvh);
   overflow: hidden;
@@ -211,7 +261,8 @@ body.mushaf-immersive .footer,
 body.mushaf-immersive .player,
 body.mushaf-immersive .drawer,
 body.mushaf-immersive .drawer-backdrop,
-body.mushaf-immersive .mushaf-bottom {
+body.mushaf-immersive .mushaf-bottom,
+body.mushaf-immersive .mushaf-zoom-fab {
   display: none !important;
 }
 
@@ -372,6 +423,10 @@ body.mushaf-immersive .mushaf-imm-next {
   body[data-page-mode='mushaf'] .mushaf-zoom,
   body[data-page-mode='mushaf'] .mushaf-fit-btn {
     display: none;
+  }
+
+  body[data-page-mode='mushaf'] .mushaf-zoom-fab {
+    display: flex;
   }
 
   body[data-page-mode='mushaf'] .mushaf-sheet {

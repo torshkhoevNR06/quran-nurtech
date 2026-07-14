@@ -75,7 +75,7 @@
   --seg-track: rgba(0, 0, 0, 0.055);
   --seg-thumb: #ffffff;
   --seg-thumb-bd: rgba(0, 0, 0, 0.06);
-  --knob: #ffffff;
+  /* --knob (#ffffff) идентично объявлен в design-tokens.css :root — дубль убран. */
 
   /* амбиентные орбы (мягкий нейтральный фон под стеклом) */
   --orb-1: rgba(90, 102, 120, 0.2);
@@ -121,7 +121,7 @@
   --radius-md: 12px;
   --radius-lg: 16px;
   --radius-xl: 20px;
-  --radius-pill: 999px;
+  /* --radius-pill (999px) идентично объявлен в design-tokens.css :root — дубль убран. */
   --fs-11: 11px;
   --fs-12: 12px;
   --fs-13: 13px;
@@ -292,6 +292,10 @@ h3 {
   font-weight: 800;
   letter-spacing: 0;
 }
+/* h3-подзаголовки чуть легче h1/h2 (hero/brand остаются 800). */
+h3 {
+  font-weight: 700;
+}
 
 .container {
   max-width: var(--maxw);
@@ -419,14 +423,14 @@ html[data-theme='sepia'] .brand-mark img {
 .brand .brand-name {
   color: var(--ink);
   font-size: 15px;
-  font-weight: 850;
+  font-weight: 800;
   letter-spacing: 0;
 }
 
 .brand-domain {
   color: var(--ink-muted);
   font-size: 10.5px;
-  font-weight: 650;
+  font-weight: 600;
   letter-spacing: 0.02em;
   text-transform: none;
 }
@@ -725,11 +729,11 @@ input[type='range'] {
 }
 .settings-panel-head strong {
   color: var(--ink);
-  font: 760 16px/1.15 var(--sans);
+  font: 800 16px/1.15 var(--sans);
 }
 .settings-panel-head span {
   color: var(--ink-faint);
-  font: 550 12px/1.25 var(--sans);
+  font: 500 12px/1.25 var(--sans);
 }
 .settings-panel-close {
   display: inline-grid;
@@ -773,14 +777,14 @@ input[type='range'] {
 .settings-section-head span,
 .settings-field > span {
   color: var(--ink-faint);
-  font: 750 10.5px/1.15 var(--sans);
+  font: 600 10.5px/1.15 var(--sans);
   letter-spacing: 0.055em;
   text-transform: uppercase;
 }
 .settings-section-head small {
   min-width: 0;
   color: color-mix(in srgb, var(--ink-faint) 70%, transparent);
-  font: 550 11px/1.2 var(--sans);
+  font: 500 11px/1.2 var(--sans);
   overflow: hidden;
   text-align: right;
   text-overflow: ellipsis;
@@ -861,7 +865,7 @@ input[type='range'] {
 }
 .settings-choice-label small {
   color: var(--ink-faint);
-  font: 650 11px/1 var(--sans);
+  font: 600 11px/1 var(--sans);
 }
 .menu[data-menu='settings'] .settings-choice .tick {
   opacity: 0;
@@ -880,7 +884,7 @@ input[type='range'] {
 }
 .settings-field-select > span {
   color: var(--ink-soft);
-  font: 650 13px/1.2 var(--sans);
+  font: 600 13px/1.2 var(--sans);
   letter-spacing: 0;
   text-transform: none;
 }
@@ -901,7 +905,7 @@ input[type='range'] {
 }
 .settings-sliders .settings-field > span {
   color: var(--ink-soft);
-  font: 650 13px/1.2 var(--sans);
+  font: 600 13px/1.2 var(--sans);
   letter-spacing: 0;
   text-transform: none;
 }
@@ -1099,8 +1103,10 @@ input[type='range'] {
   }
 }
 
-/* На десктопе настройки превращаются в правый inspector-sidebar, как в easybot. */
-@media (min-width: 1024px) {
+/* На десктопе настройки превращаются в правый inspector-sidebar, как в easybot.
+   Порог 1120px синхронизирован с левым сайдбаром (десктоп-раскладкой): ниже него
+   настройки остаются обычным поповером, чтобы push-инспектор не переполнял тулбар. */
+@media (min-width: 1120px) {
   .settings-menu-wrap {
     position: static;
   }
@@ -1547,7 +1553,7 @@ input[type='range'] {
 }
 .tafsir-label {
   display: inline-block;
-  font: 800 11px/1 var(--sans);
+  font: 600 11px/1 var(--sans);
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--accent);
@@ -1565,7 +1571,7 @@ input[type='range'] {
 .tafsir-details > summary {
   cursor: pointer;
   padding: 12px 16px;
-  font: 800 11px/1.2 var(--sans);
+  font: 600 11px/1.2 var(--sans);
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--accent);
@@ -1685,7 +1691,7 @@ input[type='range'] {
   border-left-color: color-mix(in srgb, var(--accent) 55%, var(--ink-faint));
 }
 .tafsir-src-h {
-  font: 800 11px/1.2 var(--sans);
+  font: 600 11px/1.2 var(--sans);
   letter-spacing: 0.05em;
   text-transform: uppercase;
   color: var(--accent);
@@ -1799,7 +1805,7 @@ body.memorize-on .ayahs .ayah-tafsir {
 }
 .ayahs[data-view='compare'] .tr-lbl {
   display: block;
-  font: 800 11px/1 var(--sans);
+  font: 600 11px/1 var(--sans);
   letter-spacing: 0.05em;
   text-transform: uppercase;
   color: var(--accent);
@@ -2434,11 +2440,10 @@ mark.hit {
 
 /* ==========================================================================
    QCF4-мусхаф: страничная раскладка оригинального арабского текста
+   Базовые правила ниже частично перекрыты src/styles/mushaf.css
+   (селекторы body[data-page-mode='mushaf'] …, грузится позже и выше по
+   специфичности). Оставлены только не полностью перекрытые правила.
    ========================================================================== */
-.mushaf-reader {
-  padding: 18px 0 70px;
-}
-
 .mushaf-toolbar,
 .mushaf-bottom {
   display: flex;
@@ -3001,7 +3006,7 @@ body::after {
   flex: 1;
   min-width: 0;
   color: var(--ink-soft);
-  font-weight: 800;
+  font-weight: 700;
 }
 
 .quick {
@@ -3050,7 +3055,7 @@ select.sel,
 .eyebrow {
   margin: 0 0 6px;
   color: var(--accent);
-  font: 800 12px/1 var(--sans);
+  font: 600 12px/1 var(--sans);
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
@@ -3204,7 +3209,7 @@ select.sel,
   cursor: pointer;
   padding: 13px 16px;
   color: var(--ink);
-  font-weight: 800;
+  font-weight: 700;
   list-style: none;
 }
 
@@ -3769,7 +3774,7 @@ select.sel,
 }
 .ie-section h5 {
   margin: 0 0 8px;
-  font: 800 11px/1 var(--sans);
+  font: 600 11px/1 var(--sans);
   letter-spacing: 0.07em;
   text-transform: uppercase;
   color: var(--ink-faint);
@@ -4223,7 +4228,7 @@ select:focus-visible,
   gap: 12px;
   margin: 22px 4px 6px;
   color: var(--accent);
-  font: 800 var(--fs-13) / 1 var(--sans);
+  font: 600 var(--fs-13) / 1 var(--sans);
   letter-spacing: 0.05em;
   text-transform: uppercase;
 }

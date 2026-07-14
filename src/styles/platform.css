@@ -198,6 +198,20 @@ main:not(.wide) {
     padding-right: var(--inspector-w);
   }
 
+  /* 1120–1879px: места на три колонки нет — при открытом инспекторе левый
+     сайдбар уступает ему (иначе оставался пустой жёлоб ~292px, т.к. padding-left
+     от html[data-sidebar='open'] перебивал collapse-правило по специфичности). */
+  @media (max-width: 1879px) {
+    html[data-sidebar='open'] body.settings-panel-open {
+      padding-left: 0;
+    }
+
+    body.settings-panel-open .drawer {
+      transform: translateX(calc(-1 * var(--sidebar-w) - 1px));
+      visibility: hidden;
+    }
+  }
+
   html[data-sidebar='open'] .drawer {
     transform: translateX(0);
   }
