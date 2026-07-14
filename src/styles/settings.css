@@ -1,0 +1,475 @@
+/* ==========================================================================
+   Меню «Настройки» в стиле macOS (десктоп-поповер)
+   ========================================================================== */
+.menu[data-menu='settings'] {
+  width: min(380px, calc(100vw - 24px));
+  max-height: min(76vh, 660px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 0;
+  border-radius: 14px;
+}
+.menu[data-menu='settings']::-webkit-scrollbar {
+  width: 9px;
+}
+.menu[data-menu='settings']::-webkit-scrollbar-thumb {
+  background: color-mix(in srgb, var(--ink) 22%, transparent);
+  border: 2.5px solid transparent;
+  border-radius: 9px;
+  background-clip: padding-box;
+}
+.settings-panel-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 0;
+  padding: 14px 14px 12px;
+  border-bottom: 1px solid var(--hairline);
+}
+.settings-panel-head > div {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 2px;
+}
+.settings-panel-head strong {
+  color: var(--ink);
+  font: var(--weight-strong) 16px/1.15 var(--sans);
+}
+.settings-panel-head span {
+  color: var(--ink-faint);
+  font: 500 12px/1.25 var(--sans);
+}
+.settings-panel-close {
+  display: inline-grid;
+  width: 30px;
+  height: 30px;
+  flex: none;
+  place-items: center;
+  border: 0;
+  border-radius: 10px;
+  background: transparent;
+  color: var(--ink-soft);
+  cursor: pointer;
+}
+.settings-panel-close:hover {
+  background: var(--glass-bg);
+  color: var(--ink);
+}
+.settings-panel-close svg {
+  width: 18px;
+  height: 18px;
+}
+.settings-panel-backdrop {
+  display: none;
+}
+.settings-panel-body {
+  display: grid;
+  gap: 14px;
+  padding: 12px 12px 16px;
+}
+.settings-section {
+  display: grid;
+  gap: 8px;
+}
+.settings-section-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 0 2px;
+}
+.settings-section-head span,
+.settings-field > span {
+  color: var(--ink-faint);
+  font: 600 10.5px/1.15 var(--sans);
+  letter-spacing: 0.055em;
+  text-transform: uppercase;
+}
+.settings-section-head small {
+  min-width: 0;
+  color: color-mix(in srgb, var(--ink-faint) 70%, transparent);
+  font: 500 11px/1.2 var(--sans);
+  overflow: hidden;
+  text-align: right;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.settings-group,
+.settings-choice-list,
+.settings-field {
+  border: 1px solid color-mix(in srgb, var(--hairline) 82%, transparent);
+  border-radius: 11px;
+  background: color-mix(in srgb, var(--ink) 4%, var(--panel-bg));
+  box-shadow: inset 0 1px 0 color-mix(in srgb, #fff 5%, transparent);
+}
+.settings-group,
+.settings-choice-list {
+  overflow: hidden;
+}
+.settings-group-compact {
+  margin-top: 8px;
+}
+.menu[data-menu='settings'] .settings-row {
+  width: 100%;
+  min-height: 42px;
+  padding: 9px 10px;
+  border: 0;
+  border-bottom: 1px solid color-mix(in srgb, var(--hairline) 68%, transparent);
+  border-radius: 0;
+  background: transparent;
+}
+.menu[data-menu='settings'] .settings-row:last-child {
+  border-bottom: 0;
+}
+.menu[data-menu='settings'] .settings-row:hover {
+  background: color-mix(in srgb, var(--ink) 5%, transparent);
+}
+.menu[data-menu='settings'] .settings-row .it-label {
+  color: var(--ink);
+  font: 600 13.5px/1.25 var(--sans);
+}
+.menu[data-menu='settings'] .settings-row .it-label small {
+  margin-top: 1px;
+  color: var(--ink-faint);
+  font-size: 11.5px;
+}
+.settings-choice-list {
+  display: grid;
+  gap: 2px;
+  padding: 4px;
+}
+.menu[data-menu='settings'] .settings-choice {
+  display: flex;
+  min-height: 34px;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 7px 9px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--ink);
+}
+.menu[data-menu='settings'] .settings-choice:hover {
+  background: color-mix(in srgb, var(--ink) 5%, transparent);
+}
+.menu[data-menu='settings'] .settings-choice.on {
+  background: var(--seg-thumb);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12);
+}
+.settings-choice-label {
+  display: inline-flex;
+  min-width: 0;
+  align-items: center;
+  gap: 6px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.settings-choice-label small {
+  color: var(--ink-faint);
+  font: 600 11px/1 var(--sans);
+}
+.menu[data-menu='settings'] .settings-choice .tick {
+  opacity: 0;
+}
+.menu[data-menu='settings'] .settings-choice.on .tick {
+  opacity: 1;
+}
+.settings-field {
+  display: grid;
+  gap: 8px;
+  padding: 10px;
+}
+.settings-field-select {
+  grid-template-columns: 72px minmax(0, 1fr);
+  align-items: center;
+}
+.settings-field-select > span {
+  color: var(--ink-soft);
+  font: 600 13px/1.2 var(--sans);
+  letter-spacing: 0;
+  text-transform: none;
+}
+.settings-sliders {
+  display: grid;
+}
+.settings-sliders .settings-field {
+  grid-template-columns: 76px minmax(0, 1fr);
+  align-items: center;
+  border: 0;
+  border-bottom: 1px solid color-mix(in srgb, var(--hairline) 68%, transparent);
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+.settings-sliders .settings-field:last-child {
+  border-bottom: 0;
+}
+.settings-sliders .settings-field > span {
+  color: var(--ink-soft);
+  font: 600 13px/1.2 var(--sans);
+  letter-spacing: 0;
+  text-transform: none;
+}
+.settings-field-stack .seg {
+  margin-top: 1px;
+}
+.menu h4 {
+  margin: 13px 6px 6px;
+  font-size: 11px;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  font-weight: var(--weight-semibold);
+}
+.menu h4:first-child {
+  margin-top: 4px;
+}
+
+/* сегмент-контрол (NSSegmentedControl): подложка + приподнятая капсула выбранного */
+.menu .seg {
+  display: flex;
+  width: 100%;
+  gap: 2px;
+  padding: 2px;
+  background: var(--seg-track);
+  border: 1px solid var(--seg-thumb-bd);
+  border-radius: 9px;
+  box-shadow: inset 0 1px 1.5px rgba(0, 0, 0, 0.06);
+}
+.menu .seg.seg-grid3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+.menu .seg.seg-grid2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+.menu .seg button {
+  flex: 1 1 0;
+  min-width: 0;
+  padding: 6px;
+  border: 0;
+  background: transparent;
+  color: var(--ink-soft);
+  border-radius: 7px;
+  font: 600 12.5px/1 var(--sans);
+  cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  box-shadow: none;
+  transition: background 0.12s, color 0.12s;
+}
+.menu .seg button:hover {
+  color: var(--ink);
+}
+.menu .seg button.on {
+  background: var(--seg-thumb);
+  color: var(--ink);
+  box-shadow: 0 1px 2.5px rgba(0, 0, 0, 0.16), 0 0 0 0.5px var(--seg-thumb-bd);
+}
+
+/* пункты-списки (Перевод/тафсир, Пояснения, Заучивание) */
+.menu button.item {
+  padding: 7px 10px;
+  border-radius: 8px;
+  font: 500 13.5px/1.3 var(--sans);
+  gap: 8px;
+}
+.menu button.item.on {
+  background: var(--accent-soft);
+  color: var(--ink);
+  font-weight: 600;
+}
+.menu button.item .tick {
+  font-size: 13px;
+}
+
+/* popup-button (Чтец) в стиле macOS */
+.menu select.sel {
+  height: 32px;
+  width: 100%;
+  padding: 0 30px 0 11px;
+  border-radius: 8px;
+  border: 1px solid var(--seg-thumb-bd);
+  background: var(--seg-thumb)
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='M3 5l3 3 3-3' stroke='%238a90a0' stroke-width='1.6' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")
+    no-repeat right 10px center;
+  font: 500 13.5px/1 var(--sans);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+}
+
+/* слайдеры macOS: тонкая дорожка + белый круглый регулятор */
+.menu input[type='range'] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 20px;
+  margin: 2px 2px 6px;
+  background: transparent;
+  cursor: pointer;
+}
+.menu input[type='range']::-webkit-slider-runnable-track {
+  height: 4px;
+  border-radius: 3px;
+  background: var(--seg-track);
+}
+.menu input[type='range']::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  margin-top: -7px;
+  border-radius: 50%;
+  background: var(--knob);
+  border: 0.5px solid var(--seg-thumb-bd);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+.menu input[type='range']::-moz-range-track {
+  height: 4px;
+  border-radius: 3px;
+  background: var(--seg-track);
+}
+.menu input[type='range']::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--knob);
+  border: 0.5px solid var(--seg-thumb-bd);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+@media (max-width: 1023px) {
+  body.settings-panel-open {
+    overflow: hidden;
+  }
+  .settings-panel-backdrop {
+    position: fixed;
+    inset: calc(var(--topbar-h) + 8px) 0 0;
+    z-index: 58;
+    display: block;
+    border: 0;
+    background: rgba(4, 8, 12, 0.22);
+    opacity: 0;
+    pointer-events: none;
+    -webkit-backdrop-filter: blur(2px);
+    backdrop-filter: blur(2px);
+    transition: opacity 0.18s ease;
+  }
+  body.settings-panel-open .settings-panel-backdrop {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .menu[data-menu='settings'] {
+    position: fixed;
+    top: calc(var(--topbar-h) + 8px);
+    bottom: max(10px, env(safe-area-inset-bottom));
+    right: 12px;
+    left: 12px;
+    width: auto;
+    min-width: 0;
+    max-height: none;
+    display: block;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: max(18px, env(safe-area-inset-bottom));
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(8px) scale(0.98);
+    visibility: hidden;
+    transition:
+      transform 0.18s cubic-bezier(0.2, 0, 0, 1),
+      opacity 0.16s ease,
+      visibility 0.16s ease;
+    touch-action: pan-y;
+    z-index: 70;
+  }
+  .menu[data-menu='settings'] .settings-panel-head {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    margin: 0;
+    padding: 12px 14px 10px;
+    background: color-mix(in srgb, var(--panel-bg) 96%, transparent);
+    -webkit-backdrop-filter: var(--glass-blur);
+    backdrop-filter: var(--glass-blur);
+  }
+  .menu[data-menu='settings'].open {
+    animation: none;
+    opacity: 1;
+    pointer-events: auto;
+    transform: none;
+    visibility: visible;
+  }
+}
+
+/* На десктопе настройки превращаются в правый inspector-sidebar, как в easybot.
+   Порог 1120px синхронизирован с левым сайдбаром (десктоп-раскладкой): ниже него
+   настройки остаются обычным поповером, чтобы push-инспектор не переполнял тулбар. */
+@media (min-width: 1120px) {
+  .settings-menu-wrap {
+    position: static;
+  }
+  /* Desktop inspector работает как push-панель: если ширины достаточно, контент
+     уступает ей место; на средних ширинах левый сайдбар временно прячется ниже. */
+  .settings-panel-backdrop {
+    display: none !important;
+  }
+  body.settings-panel-open {
+    padding-right: var(--inspector-w);
+  }
+  .menu[data-menu='settings'] {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: var(--inspector-w);
+    min-width: 0;
+    max-height: none;
+    display: block;
+    overflow-y: auto;
+    padding: 0;
+    border-width: 0 0 0 1px;
+    border-radius: 0;
+    background: var(--panel-bg);
+    box-shadow: none;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateX(102%);
+    visibility: hidden;
+    transition:
+      transform 0.24s cubic-bezier(0.2, 0, 0, 1),
+      opacity 0.18s ease,
+      visibility 0.18s ease;
+    z-index: 70;
+  }
+  .menu[data-menu='settings'].open {
+    animation: none;
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateX(0);
+    visibility: visible;
+  }
+  .menu[data-menu='settings'] .settings-panel-head {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    margin: 0;
+    padding: 15px 16px 13px;
+    background: color-mix(in srgb, var(--panel-bg) 96%, transparent);
+    -webkit-backdrop-filter: var(--glass-blur);
+    backdrop-filter: var(--glass-blur);
+  }
+  .menu[data-menu='settings'] .settings-panel-body {
+    padding: 12px 16px 18px;
+  }
+  .menu[data-menu='settings'] h4:first-of-type {
+    margin-top: 12px;
+  }
+}
