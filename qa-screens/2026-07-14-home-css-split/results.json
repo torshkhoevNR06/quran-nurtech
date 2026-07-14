@@ -2,83 +2,318 @@
   {
     "name": "home-desktop-light",
     "url": "/",
-    "viewport": {
-      "width": 1440,
-      "height": 1000
-    },
+    "w": 1440,
+    "h": 1000,
     "theme": "light",
     "errors": [],
-    "title": "Коран онлайн на русском — читать, слушать, изучать",
-    "heroVisible": true,
-    "cardCount": 119,
-    "topbarVisible": true,
-    "overflow": {
-      "innerWidth": 1440,
-      "scrollWidth": 1440,
-      "bodyScrollWidth": 1440,
-      "overflowing": false
+    "metrics": {
+      "title": "Коран онлайн на русском — читать, слушать, изучать",
+      "docWidth": 1440,
+      "viewportWidth": 1440,
+      "bodyWidth": 1440,
+      "overflowX": false,
+      "homeHead": [
+        {
+          "width": 860,
+          "height": 346,
+          "top": 52,
+          "left": 440,
+          "text": "quran.nurtech.dev Коран онлайн رَبِّ زِدْنِي عِلْمًا «Господи! Приумножь мои зна"
+        }
+      ],
+      "quickSurahs": [
+        {
+          "width": 158,
+          "height": 71,
+          "top": 402,
+          "left": 456,
+          "text": "1  Аль-Фатиха Открывающая · 7 аят."
+        },
+        {
+          "width": 158,
+          "height": 71,
+          "top": 402,
+          "left": 624,
+          "text": "2  Аль-Бакара Корова · 286 аят."
+        },
+        {
+          "width": 158,
+          "height": 71,
+          "top": 402,
+          "left": 791,
+          "text": "18  Аль-Кахф Пещера · 110 аят."
+        },
+        {
+          "width": 158,
+          "height": 71,
+          "top": 402,
+          "left": 959,
+          "text": "36  Йа Син Йа Син · 83 аят."
+        },
+        {
+          "width": 158,
+          "height": 71,
+          "top": 402,
+          "left": 1126,
+          "text": "67  Аль-Мульк Власть · 30 аят."
+        }
+      ],
+      "surahCards": [
+        {
+          "width": 408,
+          "height": 95,
+          "top": 555,
+          "left": 456,
+          "text": "1    Аль-Фатиха ٱلْفَاتِحَةِ   Открывающая · 7 аят."
+        },
+        {
+          "width": 408,
+          "height": 95,
+          "top": 555,
+          "left": 876,
+          "text": "2    Аль-Бакара البَقَرَةِ   Корова · 286 аят."
+        },
+        {
+          "width": 408,
+          "height": 95,
+          "top": 662,
+          "left": 456,
+          "text": "3    Аль Имран آلِ عِمۡرَانَ   Семейство Имрана · 200 аят."
+        },
+        {
+          "width": 408,
+          "height": 95,
+          "top": 662,
+          "left": 876,
+          "text": "4    Ан-Ниса النِّسَاءِ   Женщины · 176 аят."
+        },
+        {
+          "width": 408,
+          "height": 95,
+          "top": 769,
+          "left": 456,
+          "text": "5    Аль-Маида المَائـِدَةِ   Трапеза · 120 аят."
+        },
+        {
+          "width": 408,
+          "height": 95,
+          "top": 769,
+          "left": 876,
+          "text": "6    Аль-Анам الأَنۡعَامِ   Скот · 165 аят."
+        },
+        {
+          "width": 408,
+          "height": 95,
+          "top": 876,
+          "left": 456,
+          "text": "7    Аль-Араф الأَعۡرَافِ   Ограды · 206 аят."
+        },
+        {
+          "width": 408,
+          "height": 95,
+          "top": 876,
+          "left": 876,
+          "text": "8    Аль-Анфаль الأَنفَالِ   Трофеи · 75 аят."
+        }
+      ],
+      "hero": []
     }
   },
   {
-    "name": "home-mobile-light",
+    "name": "home-mobile-dark",
     "url": "/",
-    "viewport": {
-      "width": 390,
-      "height": 844
-    },
-    "theme": "light",
-    "mobile": true,
-    "errors": [],
-    "title": "Коран онлайн на русском — читать, слушать, изучать",
-    "heroVisible": true,
-    "cardCount": 119,
-    "topbarVisible": true,
-    "overflow": {
-      "innerWidth": 390,
-      "scrollWidth": 390,
-      "bodyScrollWidth": 390,
-      "overflowing": false
-    }
-  },
-  {
-    "name": "surah-desktop-dark",
-    "url": "/surah/1/",
-    "viewport": {
-      "width": 1440,
-      "height": 1000
-    },
+    "w": 390,
+    "h": 844,
     "theme": "dark",
+    "mobile": true,
     "errors": [],
-    "title": "Сура 1: Аль-Фатиха (Открывающая) — читать с тафсиром ас-Саади",
-    "heroVisible": false,
-    "cardCount": 0,
-    "topbarVisible": true,
-    "overflow": {
-      "innerWidth": 1440,
-      "scrollWidth": 1440,
-      "bodyScrollWidth": 1440,
-      "overflowing": false
+    "metrics": {
+      "title": "Коран онлайн на русском — читать, слушать, изучать",
+      "docWidth": 390,
+      "viewportWidth": 390,
+      "bodyWidth": 390,
+      "overflowX": false,
+      "homeHead": [
+        {
+          "width": 390,
+          "height": 337,
+          "top": 66,
+          "left": 0,
+          "text": "quran.nurtech.dev Коран онлайн رَبِّ زِدْنِي عِلْمًا «Господи! Приумножь мои зна"
+        }
+      ],
+      "quickSurahs": [
+        {
+          "width": 358,
+          "height": 71,
+          "top": 407,
+          "left": 16,
+          "text": "1  Аль-Фатиха Открывающая · 7 аят."
+        },
+        {
+          "width": 358,
+          "height": 71,
+          "top": 487,
+          "left": 16,
+          "text": "2  Аль-Бакара Корова · 286 аят."
+        },
+        {
+          "width": 358,
+          "height": 71,
+          "top": 568,
+          "left": 16,
+          "text": "18  Аль-Кахф Пещера · 110 аят."
+        },
+        {
+          "width": 358,
+          "height": 71,
+          "top": 649,
+          "left": 16,
+          "text": "36  Йа Син Йа Син · 83 аят."
+        },
+        {
+          "width": 358,
+          "height": 71,
+          "top": 730,
+          "left": 16,
+          "text": "67  Аль-Мульк Власть · 30 аят."
+        }
+      ],
+      "surahCards": [
+        {
+          "width": 358,
+          "height": 92,
+          "top": 881,
+          "left": 16,
+          "text": "1    Аль-Фатиха ٱلْفَاتِحَةِ   Открывающая · 7 аят."
+        },
+        {
+          "width": 358,
+          "height": 92,
+          "top": 984,
+          "left": 16,
+          "text": "2    Аль-Бакара البَقَرَةِ   Корова · 286 аят."
+        },
+        {
+          "width": 358,
+          "height": 92,
+          "top": 1088,
+          "left": 16,
+          "text": "3    Аль Имран آلِ عِمۡرَانَ   Семейство Имрана · 200 аят."
+        },
+        {
+          "width": 358,
+          "height": 92,
+          "top": 1192,
+          "left": 16,
+          "text": "4    Ан-Ниса النِّسَاءِ   Женщины · 176 аят."
+        },
+        {
+          "width": 358,
+          "height": 92,
+          "top": 1296,
+          "left": 16,
+          "text": "5    Аль-Маида المَائـِدَةِ   Трапеза · 120 аят."
+        },
+        {
+          "width": 358,
+          "height": 92,
+          "top": 1400,
+          "left": 16,
+          "text": "6    Аль-Анам الأَنۡعَامِ   Скот · 165 аят."
+        },
+        {
+          "width": 358,
+          "height": 92,
+          "top": 1503,
+          "left": 16,
+          "text": "7    Аль-Араф الأَعۡرَافِ   Ограды · 206 аят."
+        },
+        {
+          "width": 358,
+          "height": 92,
+          "top": 1607,
+          "left": 16,
+          "text": "8    Аль-Анфаль الأَنفَالِ   Трофеи · 75 аят."
+        }
+      ],
+      "hero": []
     }
   },
   {
-    "name": "search-mobile-light",
-    "url": "/search/",
-    "viewport": {
-      "width": 390,
-      "height": 844
-    },
+    "name": "videos-desktop-light",
+    "url": "/videos/",
+    "w": 1440,
+    "h": 1000,
     "theme": "light",
-    "mobile": true,
     "errors": [],
-    "title": "Поиск по Корану — по русскому переводу",
-    "heroVisible": false,
-    "cardCount": 0,
-    "topbarVisible": true,
-    "overflow": {
-      "innerWidth": 390,
-      "scrollWidth": 390,
-      "bodyScrollWidth": 390,
-      "overflowing": false
+    "metrics": {
+      "title": "Видео-рецитации Корана — по сурам и чтецам",
+      "docWidth": 1440,
+      "viewportWidth": 1440,
+      "bodyWidth": 1440,
+      "overflowX": false,
+      "homeHead": [],
+      "quickSurahs": [],
+      "surahCards": [
+        {
+          "width": 408,
+          "height": 62,
+          "top": 267,
+          "left": 451,
+          "text": "1  Аль-Фатиха Открывающая·7 аятов  ▶"
+        },
+        {
+          "width": 408,
+          "height": 62,
+          "top": 267,
+          "left": 871,
+          "text": "2  Аль-Бакара Корова·286 аятов  ▶"
+        },
+        {
+          "width": 408,
+          "height": 62,
+          "top": 341,
+          "left": 451,
+          "text": "3  Аль Имран Семейство Имрана·200 аятов  ▶"
+        },
+        {
+          "width": 408,
+          "height": 62,
+          "top": 341,
+          "left": 871,
+          "text": "4  Ан-Ниса Женщины·176 аятов  ▶"
+        },
+        {
+          "width": 408,
+          "height": 62,
+          "top": 415,
+          "left": 451,
+          "text": "5  Аль-Маида Трапеза·120 аятов  ▶"
+        },
+        {
+          "width": 408,
+          "height": 62,
+          "top": 415,
+          "left": 871,
+          "text": "6  Аль-Анам Скот·165 аятов  ▶"
+        },
+        {
+          "width": 408,
+          "height": 62,
+          "top": 489,
+          "left": 451,
+          "text": "7  Аль-Араф Ограды·206 аятов  ▶"
+        },
+        {
+          "width": 408,
+          "height": 62,
+          "top": 489,
+          "left": 871,
+          "text": "8  Аль-Анфаль Трофеи·75 аятов  ▶"
+        }
+      ],
+      "hero": []
     }
   }
 ]
