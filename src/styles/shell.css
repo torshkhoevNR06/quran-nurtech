@@ -418,6 +418,71 @@
 }
 
 /* ==========================================================================
+   Десктоп-плотность тулбара (macOS): ghost-кнопки вместо стеклянных квадратов
+   ========================================================================== */
+@media (min-width: 1120px) {
+  .topbar-inner .icon-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: var(--radius-s);
+    border-color: transparent;
+    background: transparent;
+    box-shadow: none;
+    color: var(--ink-soft);
+  }
+  .topbar-inner .icon-btn:hover {
+    background: color-mix(in srgb, var(--ink) 8%, transparent);
+    color: var(--ink);
+    transform: none;
+  }
+  .topbar-inner .btn {
+    height: 32px;
+    padding: 0 12px;
+    border-radius: var(--radius-s);
+  }
+  .topbar-inner .quick input {
+    height: 32px;
+    font-size: var(--fs-14);
+  }
+  .topbar-inner .quick-submit {
+    width: 32px;
+    height: 32px;
+    padding: 0;
+  }
+}
+
+/* ==========================================================================
+   Вкладки drawer/сайдбара: Суры / Джузы
+   ========================================================================== */
+.dtabs {
+  display: flex;
+  gap: 2px;
+  padding: 8px 10px 2px;
+}
+.dtabs button {
+  flex: 1;
+  padding: 7px;
+  border: 0;
+  background: transparent;
+  color: var(--ink-faint);
+  font: var(--weight-semibold) var(--fs-13) / 1 var(--sans);
+  border-radius: var(--radius-s);
+  cursor: pointer;
+  transition: background 0.12s, color 0.12s;
+}
+.dtabs button.on {
+  background: var(--seg-track);
+  color: var(--ink);
+}
+.drawer[data-dtab-active='surah'] [data-drawer-juz] {
+  display: none;
+}
+.drawer[data-dtab-active='juz'] [data-drawer-list],
+.drawer[data-dtab-active='juz'] .drawer-progress {
+  display: none;
+}
+
+/* ==========================================================================
    Мобильная адаптация: весь экран (safe-area) + тач-оптимизации
    ========================================================================== */
 * {
