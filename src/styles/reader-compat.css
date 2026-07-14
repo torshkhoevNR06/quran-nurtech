@@ -1,0 +1,182 @@
+/* ==========================================================================
+   Таджвид — цвета правил + легенда
+   ========================================================================== */
+.ar .tj-n { color: #cf5b47; } /* мадд обычный (2) */
+.ar .tj-p { color: #d97b2f; } /* мадд допустимый */
+.ar .tj-o { color: #c9432b; } /* мадд обязательный (4-5) */
+.ar .tj-m { color: #b01f1f; } /* мадд необходимый (6) */
+.ar .tj-a { color: #2f9e57; } /* идгам с гунной / гунна */
+.ar .tj-f,
+.ar .tj-c { color: #2596a8; } /* ихфа / ихфа шафави */
+.ar .tj-w { color: #3b6fd6; } /* икляб */
+.ar .tj-q { color: #8e44ad; } /* калькаля */
+.ar .tj-u,
+.ar .tj-d,
+.ar .tj-g,
+.ar .tj-i,
+.ar .tj-y { color: #7c8896; } /* идгам без гунны / прочие идгамы */
+.ar .tj-h,
+.ar .tj-s,
+.ar .tj-l { color: #9aa0aa; } /* хамзат-васл / беззвучные / лям шамсийя */
+
+.tj-legend {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5px 10px;
+  padding: 8px 6px 2px;
+  font-size: var(--fs-12);
+  color: var(--ink-soft);
+}
+[data-tajweed]:not(.on) + .tj-legend {
+  display: none;
+}
+.tj-legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.tj-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+  flex: none;
+}
+.tj-dot.d-madd { background: #c0392b; }
+.tj-dot.d-ghunna { background: #2f9e57; }
+.tj-dot.d-ikhfa { background: #2596a8; }
+.tj-dot.d-iqlab { background: #3b6fd6; }
+.tj-dot.d-qalqala { background: #8e44ad; }
+.tj-dot.d-silent { background: #9aa0aa; }
+
+/* ==========================================================================
+   Reader compatibility layer
+   ========================================================================== */
+.surah-head {
+  padding: 22px 16px 8px;
+}
+
+.surah-head .ar {
+  font-size: 28px;
+  line-height: 1.5;
+}
+
+.surah-desc {
+  overflow: hidden;
+  padding: 0;
+  border-color: var(--line);
+  background: var(--surface);
+}
+
+.surah-desc summary {
+  cursor: pointer;
+  padding: 13px 16px;
+  color: var(--ink);
+  font-weight: var(--weight-semibold);
+  list-style: none;
+}
+
+.surah-desc summary::-webkit-details-marker {
+  display: none;
+}
+
+.surah-desc summary::before {
+  display: inline-block;
+  margin-right: 8px;
+  color: var(--accent);
+  content: '▸';
+}
+
+.surah-desc[open] summary::before {
+  content: '▾';
+}
+
+.surah-desc p {
+  margin: 0;
+  padding: 0 16px 16px;
+}
+
+.ayahs {
+  padding: 6px 20px;
+  border-color: var(--line);
+  border-radius: 18px;
+  background: var(--surface);
+  box-shadow: 0 14px 34px -30px var(--glass-shadow);
+}
+
+.ayah {
+  border-radius: 12px;
+}
+
+.ayah.active {
+  background: color-mix(in srgb, var(--accent-soft) 46%, var(--surface));
+}
+
+.ayah-acts {
+  opacity: 0.72;
+}
+
+.ayah:hover .ayah-acts,
+.ayah.active .ayah-acts {
+  opacity: 1;
+}
+
+.tafsir-passage,
+.tafsir-details {
+  background: var(--surface-soft);
+}
+
+.surah-desc::before,
+.ayahs::before {
+  display: none;
+}
+
+.ayah-nav {
+  display: flex;
+  gap: 8px;
+  justify-content: space-between;
+  margin: 24px 0;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 560px) {
+  .surah-head {
+    padding-top: 18px;
+  }
+
+  .surah-head h1 {
+    font-size: 30px;
+  }
+
+  .surah-desc {
+    margin: 12px 0;
+  }
+
+  .ayahs {
+    margin-bottom: 96px;
+    padding: 6px 14px;
+    border-radius: 18px;
+  }
+
+  .ayah {
+    padding: 18px 0;
+  }
+
+  .ayah.active {
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+
+  .ayah-acts {
+    gap: 1px;
+    opacity: 1;
+  }
+
+  .ayah-acts .secondary-action {
+    display: none;
+  }
+
+  .ayah-acts button,
+  .ayah-acts a {
+    width: 32px;
+  }
+}

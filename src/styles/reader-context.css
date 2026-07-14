@@ -1,0 +1,75 @@
+/* Контекстное меню аята (ПКМ) — нативный macOS-стиль */
+.ctx-menu {
+  position: fixed;
+  z-index: 200;
+  min-width: 232px;
+  padding: 5px;
+  background: var(--panel-bg);
+  border: 1px solid var(--hairline);
+  border-radius: 12px;
+  box-shadow: var(--shadow-pop);
+  display: none;
+  flex-direction: column;
+  gap: 1px;
+  animation: ctxIn 0.12s cubic-bezier(0.2, 0, 0, 1);
+}
+.ctx-menu.open {
+  display: flex;
+}
+@keyframes ctxIn {
+  from {
+    opacity: 0;
+    transform: scale(0.97) translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.ctx-item {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  width: 100%;
+  padding: 8px 10px;
+  border: 0;
+  background: transparent;
+  color: var(--ink);
+  font: 500 var(--fs-14) / 1.2 var(--sans);
+  text-align: left;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.ctx-item:hover {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+.ctx-item:hover .ctx-ic {
+  color: var(--accent-ink);
+}
+.ctx-ic {
+  width: 17px;
+  height: 17px;
+  flex: none;
+  display: inline-flex;
+  color: var(--ink-faint);
+}
+.ctx-ic svg {
+  width: 100%;
+  height: 100%;
+}
+.ctx-sep {
+  height: 1px;
+  background: var(--hairline);
+  margin: 4px 6px;
+}
+
+/* ==========================================================================
+   Мультивыбор переводов в тексте
+   ========================================================================== */
+[data-ayahs][data-tr-kuliev='0'] .tr-kuliev {
+  display: none !important;
+}
+[data-ayahs][data-tr-abuadel='0'] .tr-abuadel {
+  display: none !important;
+}
