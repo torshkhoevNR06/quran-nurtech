@@ -1,0 +1,193 @@
+/* ==========================================================================
+   Редактор картинок аятов (для Instagram)
+   ========================================================================== */
+.ie-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: rgba(6, 12, 10, 0.62);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+.ie-overlay.show {
+  display: flex;
+  animation: iefade 0.2s ease;
+}
+@keyframes iefade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.ie-modal {
+  position: relative;
+  display: flex;
+  width: min(980px, 100%);
+  max-height: 92vh;
+  background: var(--panel-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: var(--glass-elev);
+}
+.ie-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 3;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid var(--glass-border);
+  background: var(--glass-bg);
+  color: var(--ink);
+  cursor: pointer;
+  font-size: 14px;
+}
+.ie-preview {
+  flex: 1;
+  min-width: 0;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background:
+    repeating-conic-gradient(rgba(0, 0, 0, 0.06) 0% 25%, transparent 0% 50%) 50% / 24px 24px,
+    var(--bg);
+}
+.ie-preview canvas {
+  max-width: 100%;
+  max-height: 62vh;
+  width: auto;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.4);
+}
+.ie-panel {
+  width: 344px;
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  border-left: 1px solid var(--line);
+}
+.ie-controls {
+  overflow-y: auto;
+  padding: 18px 18px 8px;
+  flex: 1;
+}
+.ie-section {
+  margin-bottom: 15px;
+}
+.ie-section h5 {
+  margin: 0 0 8px;
+  font: 600 11px/1 var(--sans);
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+.ie-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.ie-chip {
+  border: 1px solid var(--glass-border);
+  background: var(--glass-bg);
+  color: var(--ink);
+  border-radius: 999px;
+  padding: 7px 13px;
+  font: 600 13px/1 var(--sans);
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+.ie-chip.on {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--accent-ink);
+}
+.ie-bgs {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 7px;
+}
+.ie-bg {
+  aspect-ratio: 1;
+  border-radius: 10px;
+  cursor: pointer;
+  border: 2px solid transparent;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.12);
+}
+.ie-bg.on {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px var(--accent);
+}
+.ie-foot {
+  flex: none;
+}
+.ie-actions {
+  display: flex;
+  gap: 8px;
+  padding: 14px 18px;
+  border-top: 1px solid var(--line);
+}
+.ie-actions .btn {
+  flex: 1;
+}
+.ie-hint {
+  padding: 0 18px 14px;
+  font: 500 12px/1.4 var(--sans);
+  color: var(--ink-faint);
+  text-align: center;
+}
+.ie-hint b {
+  color: var(--ink);
+  font-weight: var(--weight-semibold);
+  white-space: nowrap;
+}
+.ie-toast {
+  position: absolute;
+  left: 50%;
+  bottom: 84px;
+  z-index: 5;
+  max-width: 82%;
+  padding: 10px 16px;
+  border-radius: 12px;
+  background: rgba(22, 25, 30, 0.95);
+  color: #eef1f5;
+  font: 600 13px/1.35 var(--sans);
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  opacity: 0;
+  transform: translate(-50%, 10px);
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+.ie-toast.show {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+@media (max-width: 760px) {
+  .ie-modal {
+    flex-direction: column;
+    width: 100%;
+    max-height: 94vh;
+  }
+  .ie-preview {
+    padding: 14px;
+    flex: none;
+  }
+  .ie-preview canvas {
+    max-height: 38vh;
+  }
+  .ie-panel {
+    width: 100%;
+    flex: 1;
+    min-height: 0;
+    border-left: 0;
+    border-top: 1px solid var(--line);
+  }
+  .ie-bgs {
+    grid-template-columns: repeat(8, 1fr);
+  }
+}
