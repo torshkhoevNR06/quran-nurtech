@@ -10,8 +10,12 @@
   padding: 30px 0 90px;
 }
 .page h1 {
-  font-size: clamp(28px, 5vw, 38px);
+  font-size: clamp(30px, 4vw, 44px);
   margin: 0 0 10px;
+  color: var(--sys-label);
+  font-weight: var(--weight-title);
+  line-height: var(--lh-tight);
+  letter-spacing: 0;
 }
 .page h2 {
   font-size: 21px;
@@ -21,6 +25,10 @@
 .page li {
   color: var(--ink-soft);
   line-height: 1.72;
+}
+.page p {
+  color: var(--sys-secondary-label);
+  font-family: var(--font-reader);
 }
 .page a.link {
   color: var(--accent);

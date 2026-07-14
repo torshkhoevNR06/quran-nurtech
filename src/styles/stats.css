@@ -27,6 +27,11 @@
   font-size: 26px;
 }
 
+.stat-tile p {
+  color: var(--sys-secondary-label);
+  font-family: var(--font-reader);
+}
+
 .stats-table-wrap {
   overflow-x: auto;
   border: 1px solid var(--line);

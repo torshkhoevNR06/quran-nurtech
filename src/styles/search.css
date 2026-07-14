@@ -88,6 +88,11 @@
   display: block;
 }
 
+.search-result p {
+  color: var(--sys-secondary-label);
+  font-family: var(--font-reader);
+}
+
 @media (max-width: 920px) {
   .search-form {
     grid-template-columns: 1fr 1fr;

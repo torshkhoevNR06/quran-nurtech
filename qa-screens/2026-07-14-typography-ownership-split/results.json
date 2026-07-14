@@ -1,0 +1,231 @@
+[
+  {
+    "name": "home-desktop-light",
+    "url": "/",
+    "w": 1440,
+    "h": 1000,
+    "theme": "light",
+    "selectors": [
+      ".home-copy h1",
+      ".home-actions"
+    ],
+    "errors": [],
+    "metrics": {
+      "title": "Коран онлайн на русском — читать, слушать, изучать",
+      "docWidth": 1440,
+      "viewportWidth": 1440,
+      "bodyWidth": 1440,
+      "overflowX": false,
+      "styles": {
+        ".home-copy h1": {
+          "fontFamily": "-apple-system, \"system-ui\", \"SF Pro Text\", \"SF Pro Display\", Inter, \"Segoe UI\", system-ui, Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "62px",
+          "fontWeight": "680",
+          "lineHeight": "70.68px",
+          "color": "rgb(29, 29, 31)",
+          "width": 342,
+          "height": 141,
+          "text": "Коран онлайн"
+        },
+        ".home-actions": {
+          "fontFamily": "-apple-system, \"system-ui\", \"SF Pro Text\", \"SF Pro Display\", Inter, \"Segoe UI\", system-ui, Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "16px",
+          "fontWeight": "400",
+          "lineHeight": "25.6px",
+          "color": "rgb(29, 29, 31)",
+          "width": 464,
+          "height": 32,
+          "text": "Начать чтение\n   Мусхаф\n   Поиск\n   Аудио"
+        }
+      }
+    }
+  },
+  {
+    "name": "about-desktop-light",
+    "url": "/about/",
+    "w": 1440,
+    "h": 1000,
+    "theme": "light",
+    "selectors": [
+      ".page h1",
+      ".page p"
+    ],
+    "errors": [],
+    "metrics": {
+      "title": "О проекте — Коран онлайн",
+      "docWidth": 1440,
+      "viewportWidth": 1440,
+      "bodyWidth": 1440,
+      "overflowX": false,
+      "styles": {
+        ".page h1": {
+          "fontFamily": "-apple-system, \"system-ui\", \"SF Pro Text\", \"SF Pro Display\", Inter, \"Segoe UI\", system-ui, Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "44px",
+          "fontWeight": "680",
+          "lineHeight": "50.16px",
+          "color": "rgb(29, 29, 31)",
+          "width": 828,
+          "height": 50,
+          "text": "О проекте"
+        },
+        ".page p": {
+          "fontFamily": "-apple-system, \"system-ui\", \"SF Pro Text\", \"SF Pro Display\", Inter, \"Segoe UI\", system-ui, Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "16px",
+          "fontWeight": "400",
+          "lineHeight": "27.52px",
+          "color": "rgba(60, 60, 67, 0.72)",
+          "width": 828,
+          "height": 83,
+          "text": "«Коран онлайн» на quran.nurtech.dev — сайт для чтения, изучения, прослушивания\n "
+        }
+      }
+    }
+  },
+  {
+    "name": "search-mobile-dark",
+    "url": "/search/?q=милость",
+    "w": 390,
+    "h": 844,
+    "theme": "dark",
+    "mobile": true,
+    "selectors": [
+      ".search-result",
+      ".search-result .translation"
+    ],
+    "errors": [],
+    "metrics": {
+      "title": "Поиск по Корану — по русскому переводу",
+      "docWidth": 390,
+      "viewportWidth": 390,
+      "bodyWidth": 390,
+      "overflowX": false,
+      "styles": {
+        ".search-result": {
+          "fontFamily": "-apple-system, \"system-ui\", \"SF Pro Text\", \"SF Pro Display\", Inter, \"Segoe UI\", system-ui, Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "16px",
+          "fontWeight": "400",
+          "lineHeight": "25.6px",
+          "color": "rgb(29, 29, 31)",
+          "width": 358,
+          "height": 231,
+          "text": "Аль-Бакара · 2:40\n          Кулиев\n        \n        О сыны Исраила (Израиля)! По"
+        },
+        ".search-result .translation": {
+          "fontFamily": "-apple-system, \"system-ui\", \"SF Pro Text\", \"SF Pro Display\", Inter, \"Segoe UI\", system-ui, Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "18px",
+          "fontWeight": "400",
+          "lineHeight": "29.16px",
+          "color": "rgba(60, 60, 67, 0.72)",
+          "width": 324,
+          "height": 146,
+          "text": "О сыны Исраила (Израиля)! Помните милость, которую Я оказал вам. Будьте верны за"
+        }
+      }
+    }
+  },
+  {
+    "name": "stats-mobile-dark",
+    "url": "/stats/",
+    "w": 390,
+    "h": 844,
+    "theme": "dark",
+    "mobile": true,
+    "selectors": [
+      ".stat-tile",
+      ".stat-tile span",
+      ".stat-tile b"
+    ],
+    "errors": [],
+    "metrics": {
+      "title": "Статистика чтения — Коран онлайн",
+      "docWidth": 390,
+      "viewportWidth": 390,
+      "bodyWidth": 390,
+      "overflowX": false,
+      "styles": {
+        ".stat-tile": {
+          "fontFamily": "-apple-system, \"system-ui\", \"SF Pro Text\", \"SF Pro Display\", Inter, \"Segoe UI\", system-ui, Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "16px",
+          "fontWeight": "400",
+          "lineHeight": "25.6px",
+          "color": "rgb(29, 29, 31)",
+          "width": 173,
+          "height": 99,
+          "text": "Устройств —"
+        },
+        ".stat-tile span": {
+          "fontFamily": "-apple-system, \"system-ui\", \"SF Pro Text\", \"SF Pro Display\", Inter, \"Segoe UI\", system-ui, Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "13px",
+          "fontWeight": "400",
+          "lineHeight": "20.8px",
+          "color": "rgba(60, 60, 67, 0.48)",
+          "width": 143,
+          "height": 21,
+          "text": "Устройств"
+        },
+        ".stat-tile b": {
+          "fontFamily": "-apple-system, \"system-ui\", \"SF Pro Text\", \"SF Pro Display\", Inter, \"Segoe UI\", system-ui, Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "26px",
+          "fontWeight": "700",
+          "lineHeight": "41.6px",
+          "color": "rgb(29, 29, 31)",
+          "width": 23,
+          "height": 30,
+          "text": "—"
+        }
+      }
+    }
+  },
+  {
+    "name": "surah-desktop-dark",
+    "url": "/surah/1",
+    "w": 1440,
+    "h": 1000,
+    "theme": "dark",
+    "selectors": [
+      ".surah-head h1",
+      ".translation",
+      ".translit"
+    ],
+    "errors": [],
+    "metrics": {
+      "title": "Сура 1: Аль-Фатиха (Открывающая) — читать с тафсиром ас-Саади",
+      "docWidth": 1440,
+      "viewportWidth": 1440,
+      "bodyWidth": 1440,
+      "overflowX": false,
+      "styles": {
+        ".surah-head h1": {
+          "fontFamily": "-apple-system, \"system-ui\", \"SF Pro Text\", \"SF Pro Display\", Inter, \"Segoe UI\", system-ui, Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "44px",
+          "fontWeight": "680",
+          "lineHeight": "50.16px",
+          "color": "rgb(29, 29, 31)",
+          "width": 796,
+          "height": 50,
+          "text": "Аль-Фатиха"
+        },
+        ".translation": {
+          "fontFamily": "-apple-system, \"system-ui\", \"SF Pro Text\", \"SF Pro Display\", Inter, \"Segoe UI\", system-ui, Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "18px",
+          "fontWeight": "400",
+          "lineHeight": "29.88px",
+          "color": "rgba(60, 60, 67, 0.72)",
+          "width": 778,
+          "height": 30,
+          "text": "КулиевВо имя Аллаха, Милостивого, Милосердного!"
+        },
+        ".translit": {
+          "fontFamily": "-apple-system, \"system-ui\", \"SF Pro Text\", \"SF Pro Display\", Inter, \"Segoe UI\", system-ui, Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "16px",
+          "fontWeight": "400",
+          "lineHeight": "24px",
+          "color": "rgba(60, 60, 67, 0.72)",
+          "width": 0,
+          "height": 0,
+          "text": "Bismillaahir Rahmaanir Raheem"
+        }
+      }
+    }
+  }
+]
