@@ -1,0 +1,87 @@
+/* ==========================================================================
+   Page base: generic content pages, breadcrumbs and footer
+   ========================================================================== */
+.page {
+  padding: 30px 0 90px;
+}
+
+.page h1 {
+  margin: 0 0 10px;
+  color: var(--sys-label);
+  font-size: clamp(30px, 4vw, 44px);
+  font-weight: var(--weight-title);
+  line-height: var(--lh-tight);
+  letter-spacing: 0;
+}
+
+.page h2 {
+  margin: 28px 0 8px;
+  font-size: 21px;
+}
+
+.page p,
+.page li {
+  color: var(--ink-soft);
+  line-height: 1.72;
+}
+
+.page p {
+  color: var(--sys-secondary-label);
+  font-family: var(--font-reader);
+}
+
+.page a.link {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.page-head {
+  max-width: 760px;
+  margin-bottom: 18px;
+}
+
+.container.page {
+  padding-right: 16px;
+  padding-left: 16px;
+}
+
+.crumb {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  color: var(--ink-faint);
+  font-size: 13px;
+  padding: 18px 0 0;
+}
+
+.crumb a:hover {
+  color: var(--accent);
+}
+
+.eyebrow {
+  margin: 0 0 6px;
+  color: var(--accent);
+  font: 600 12px/1 var(--sans);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.footer {
+  margin-top: 30px;
+  border-top: 1px solid var(--line);
+  padding: 28px 0 44px;
+  color: var(--ink-faint);
+  font-size: 13px;
+}
+
+.footer .fnav {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+
+.footer .fnav a:hover {
+  color: var(--accent);
+}
