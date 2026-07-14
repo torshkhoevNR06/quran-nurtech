@@ -188,6 +188,89 @@ main:not(.wide) {
   display: none;
 }
 
+/* ==========================================================================
+   macOS-фундамент: фокус-кольца, отклик нажатия, доступность, числа, тумблер
+   ========================================================================== */
+/* клавиатурный фокус как в macOS — кольцо акцента (только клавиатура) */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+[tabindex]:focus-visible,
+.icon-btn:focus-visible,
+.btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: var(--radius-s);
+}
+/* тактильный отклик нажатия */
+.btn:active,
+.icon-btn:active,
+.seg button:active,
+.tafsir-toggle:active,
+.chip:active {
+  transform: scale(0.96);
+}
+/* моноширинные цифры (аят-номера, тайминги, счётчики) — как в нативных приложениях */
+.ayah-no,
+.drawer .dlist .n,
+.chip {
+  font-variant-numeric: tabular-nums;
+}
+
+/* iOS/macOS-тумблер (замена «галкам») */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 24px;
+  flex: none;
+  border-radius: 999px;
+  background: var(--seg-track);
+  border: 1px solid var(--seg-thumb-bd);
+  cursor: pointer;
+  transition: background var(--ease);
+}
+.switch::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--knob);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  transition: transform var(--ease);
+}
+.switch.on {
+  background: var(--accent);
+  border-color: transparent;
+}
+.switch.on::after {
+  transform: translateX(16px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+@media (prefers-reduced-transparency: reduce) {
+  .topbar-inner,
+  .menu,
+  .drawer,
+  .player-inner,
+  .ie-modal {
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+    background: var(--panel-bg) !important;
+  }
+}
+
 /* macOS: persistent source list + resizable-feeling inspector layout. */
 @media (min-width: 1120px) {
   html[data-sidebar='open'] body {

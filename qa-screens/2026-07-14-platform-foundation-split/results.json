@@ -1,0 +1,66 @@
+[
+  {
+    "name": "settings-desktop-dark",
+    "url": "/surah/1/",
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "theme": "dark",
+    "openSettings": true,
+    "errors": [],
+    "settingsVisible": true,
+    "switchSize": "40pxx24px",
+    "focusOutline": "none 3px",
+    "bodyClass": "tajweed-on settings-panel-open",
+    "overflow": {
+      "innerWidth": 1440,
+      "scrollWidth": 1440,
+      "bodyScrollWidth": 1440,
+      "overflowing": false
+    }
+  },
+  {
+    "name": "settings-mobile-light",
+    "url": "/surah/1/",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "theme": "light",
+    "mobile": true,
+    "openSettings": true,
+    "errors": [],
+    "settingsVisible": true,
+    "switchSize": "40pxx24px",
+    "focusOutline": "none 3px",
+    "bodyClass": "tajweed-on settings-panel-open",
+    "overflow": {
+      "innerWidth": 390,
+      "scrollWidth": 390,
+      "bodyScrollWidth": 390,
+      "overflowing": false
+    }
+  },
+  {
+    "name": "focus-search-desktop-light",
+    "url": "/search/",
+    "viewport": {
+      "width": 1280,
+      "height": 900
+    },
+    "theme": "light",
+    "focusSearch": true,
+    "errors": [],
+    "settingsVisible": false,
+    "switchSize": "40pxx24px",
+    "focusOutline": "none 0px",
+    "bodyClass": "tajweed-on",
+    "overflow": {
+      "innerWidth": 1280,
+      "scrollWidth": 1280,
+      "bodyScrollWidth": 1280,
+      "overflowing": false
+    }
+  }
+]
