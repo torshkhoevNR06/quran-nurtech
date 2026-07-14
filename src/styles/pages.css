@@ -1118,3 +1118,8 @@ select.sel,
     justify-content: space-between;
   }
 }
+@media (max-width: 560px) {
+  .surah-grid {
+    grid-template-columns: 1fr;
+  }
+}

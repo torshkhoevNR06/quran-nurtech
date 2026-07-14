@@ -1,0 +1,269 @@
+[
+  {
+    "name": "reader-desktop-dark",
+    "url": "/surah/2/",
+    "width": 1440,
+    "height": 1000,
+    "theme": "dark",
+    "action": null,
+    "logs": [],
+    "metrics": {
+      "path": "/surah/2/",
+      "htmlW": 1440,
+      "innerW": 1440,
+      "overflow": false,
+      "topbar": {
+        "w": 1140,
+        "h": 52,
+        "display": "flex",
+        "position": "relative",
+        "radius": "0px",
+        "bg": "rgba(22, 25, 30, 0.82)",
+        "color": "rgba(245, 247, 250, 0.94)"
+      },
+      "brand": {
+        "w": 144,
+        "h": 32,
+        "display": "flex",
+        "position": "static",
+        "radius": "10px",
+        "bg": "rgba(0, 0, 0, 0)",
+        "color": "rgba(245, 247, 250, 0.94)"
+      },
+      "quick": {
+        "w": 184,
+        "h": 30,
+        "display": "block",
+        "position": "static",
+        "radius": "10px",
+        "bg": "rgba(118, 118, 128, 0.18)",
+        "color": "rgba(245, 247, 250, 0.94)"
+      },
+      "icon": {
+        "w": 30,
+        "h": 30,
+        "display": "grid",
+        "position": "relative",
+        "radius": "7px",
+        "bg": "rgba(0, 0, 0, 0)",
+        "color": "rgba(194, 198, 205, 0.686)"
+      },
+      "btn": {
+        "w": 30,
+        "h": 32,
+        "display": "flex",
+        "position": "static",
+        "radius": "7px",
+        "bg": "rgb(155, 165, 180)",
+        "color": "rgb(69, 72, 76)"
+      },
+      "menu": {
+        "w": 0,
+        "h": 0,
+        "display": "none",
+        "position": "absolute",
+        "radius": "12px",
+        "bg": "rgba(28, 32, 39, 0.94)",
+        "color": "rgba(245, 247, 250, 0.94)"
+      },
+      "drawer": {
+        "w": 300,
+        "h": 1000,
+        "display": "flex",
+        "position": "fixed",
+        "radius": "0px",
+        "bg": "rgba(24, 27, 33, 0.88)",
+        "color": "rgba(245, 247, 250, 0.94)"
+      },
+      "drawerOpen": true,
+      "surahGrid": null,
+      "ayahs": {
+        "w": 828,
+        "h": 194797,
+        "display": "block",
+        "position": "relative",
+        "radius": "14px",
+        "bg": "rgb(23, 26, 31)",
+        "color": "rgba(245, 247, 250, 0.94)"
+      }
+    }
+  },
+  {
+    "name": "drawer-mobile-light",
+    "url": "/surah/2/",
+    "width": 390,
+    "height": 844,
+    "theme": "light",
+    "action": "drawer",
+    "logs": [],
+    "metrics": {
+      "path": "/surah/2/",
+      "htmlW": 390,
+      "innerW": 390,
+      "overflow": false,
+      "topbar": {
+        "w": 378,
+        "h": 58,
+        "display": "flex",
+        "position": "relative",
+        "radius": "18px",
+        "bg": "rgba(255, 255, 255, 0.92)",
+        "color": "rgb(29, 29, 31)"
+      },
+      "brand": {
+        "w": 0,
+        "h": 0,
+        "display": "none",
+        "position": "static",
+        "radius": "10px",
+        "bg": "rgba(0, 0, 0, 0)",
+        "color": "rgb(29, 29, 31)"
+      },
+      "quick": {
+        "w": 103,
+        "h": 42,
+        "display": "block",
+        "position": "static",
+        "radius": "14px",
+        "bg": "rgba(120, 120, 128, 0.12)",
+        "color": "rgb(29, 29, 31)"
+      },
+      "icon": {
+        "w": 42,
+        "h": 42,
+        "display": "grid",
+        "position": "relative",
+        "radius": "15px",
+        "bg": "rgba(120, 120, 128, 0.12)",
+        "color": "rgba(60, 60, 67, 0.72)"
+      },
+      "btn": {
+        "w": 42,
+        "h": 44,
+        "display": "flex",
+        "position": "static",
+        "radius": "15px",
+        "bg": "rgb(89, 101, 117)",
+        "color": "rgb(255, 255, 255)"
+      },
+      "menu": {
+        "w": 0,
+        "h": 0,
+        "display": "none",
+        "position": "absolute",
+        "radius": "12px",
+        "bg": "rgba(255, 255, 255, 0.92)",
+        "color": "rgb(29, 29, 31)"
+      },
+      "drawer": {
+        "w": 390,
+        "h": 726,
+        "display": "flex",
+        "position": "fixed",
+        "radius": "24px 24px 0px 0px",
+        "bg": "rgb(255, 255, 255)",
+        "color": "rgb(29, 29, 31)"
+      },
+      "drawerOpen": true,
+      "surahGrid": null,
+      "ayahs": {
+        "w": 358,
+        "h": 195241,
+        "display": "block",
+        "position": "relative",
+        "radius": "0px",
+        "bg": "rgba(0, 0, 0, 0)",
+        "color": "rgb(29, 29, 31)"
+      }
+    }
+  },
+  {
+    "name": "home-desktop-light",
+    "url": "/",
+    "width": 1280,
+    "height": 900,
+    "theme": "light",
+    "action": null,
+    "logs": [],
+    "metrics": {
+      "path": "/",
+      "htmlW": 1280,
+      "innerW": 1280,
+      "overflow": false,
+      "topbar": {
+        "w": 980,
+        "h": 52,
+        "display": "flex",
+        "position": "relative",
+        "radius": "0px",
+        "bg": "rgba(255, 255, 255, 0.82)",
+        "color": "rgb(29, 29, 31)"
+      },
+      "brand": {
+        "w": 32,
+        "h": 32,
+        "display": "flex",
+        "position": "static",
+        "radius": "10px",
+        "bg": "rgba(0, 0, 0, 0)",
+        "color": "rgb(29, 29, 31)"
+      },
+      "quick": {
+        "w": 264,
+        "h": 30,
+        "display": "block",
+        "position": "static",
+        "radius": "10px",
+        "bg": "rgba(120, 120, 128, 0.12)",
+        "color": "rgb(29, 29, 31)"
+      },
+      "icon": {
+        "w": 30,
+        "h": 30,
+        "display": "grid",
+        "position": "relative",
+        "radius": "7px",
+        "bg": "rgba(0, 0, 0, 0)",
+        "color": "rgba(60, 60, 67, 0.72)"
+      },
+      "btn": {
+        "w": 30,
+        "h": 32,
+        "display": "flex",
+        "position": "static",
+        "radius": "7px",
+        "bg": "rgb(89, 101, 117)",
+        "color": "rgb(255, 255, 255)"
+      },
+      "menu": {
+        "w": 0,
+        "h": 0,
+        "display": "none",
+        "position": "absolute",
+        "radius": "12px",
+        "bg": "rgba(255, 255, 255, 0.92)",
+        "color": "rgb(29, 29, 31)"
+      },
+      "drawer": {
+        "w": 300,
+        "h": 900,
+        "display": "flex",
+        "position": "fixed",
+        "radius": "0px",
+        "bg": "rgba(246, 247, 249, 0.88)",
+        "color": "rgb(29, 29, 31)"
+      },
+      "drawerOpen": true,
+      "surahGrid": {
+        "w": 828,
+        "h": 6157,
+        "display": "grid",
+        "position": "static",
+        "radius": "0px",
+        "bg": "rgba(0, 0, 0, 0)",
+        "color": "rgb(29, 29, 31)"
+      },
+      "ayahs": null
+    }
+  }
+]

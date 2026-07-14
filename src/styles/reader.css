@@ -925,3 +925,12 @@ mark.hit {
     border-top-color: color-mix(in srgb, var(--sys-separator) 82%, transparent);
   }
 }
+@media (max-width: 560px) {
+  :root {
+    --ar-size: 26px;
+    --ru-size: 17px;
+  }
+  .ayahs {
+    padding: 6px 14px;
+  }
+}

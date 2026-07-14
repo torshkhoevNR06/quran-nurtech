@@ -752,3 +752,9 @@ select:focus-visible,
       transform 0.22s ease;
   }
 }
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.05ms !important;
+  }
+}
