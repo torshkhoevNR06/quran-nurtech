@@ -21,6 +21,8 @@ export const icons = {
   book: s('<path d="M4 5a2 2 0 0 1 2-2h6v18H6a2 2 0 0 0-2 2zM20 5a2 2 0 0 0-2-2h-6v18h6a2 2 0 0 1 2 2z"/>'),
   headphones: s('<path d="M4 14v-2a8 8 0 0 1 16 0v2"/><rect x="3" y="14" width="4" height="6" rx="1"/><rect x="17" y="14" width="4" height="6" rx="1"/>'),
   study: s('<path d="M3 7l9-4 9 4-9 4-9-4z"/><path d="M7 9v5c0 1 2.2 2.5 5 2.5s5-1.5 5-2.5V9"/>'),
+  minus: s('<path d="M5 12h14"/>'),
+  plus: s('<path d="M12 5v14M5 12h14"/>'),
   arrowLeft: s('<path d="M15 6l-6 6 6 6"/>'),
   arrowRight: s('<path d="M9 6l6 6-6 6"/>'),
   close: s('<path d="M6 6l12 12M18 6L6 18"/>'),

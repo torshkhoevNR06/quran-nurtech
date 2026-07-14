@@ -66,183 +66,19 @@ const juzList = Array.from({ length: 30 }, (_, i) => i + 1).map((n) => ({
 <Base {title} {description} wide pageMode="mushaf">
   <style is:inline set:html={fontCss}></style>
   <style is:inline>
-    /* Режим чтения на весь экран (иммерсивный): прячем всю обвязку, разворачиваем страницу */
-    .mushaf-immersive-exit {
-      display: none;
-    }
-    body.mushaf-immersive .topbar,
-    body.mushaf-immersive .mushaf-toolbar,
-    body.mushaf-immersive .mushaf-meta,
-    body.mushaf-immersive .mushaf-bottom,
-    body.mushaf-immersive .footer,
-    body.mushaf-immersive .player,
-    body.mushaf-immersive .drawer,
-    body.mushaf-immersive .drawer-backdrop {
-      display: none !important;
-    }
-    body.mushaf-immersive {
-      padding-left: 0 !important;
-    }
-    body.mushaf-immersive main.wide {
-      height: 100vh;
-      height: 100dvh;
-      padding: 0;
-      overflow: hidden;
-    }
-    body.mushaf-immersive .mushaf-reader {
-      height: 100%;
-      display: grid;
-      align-items: center;
-      padding: 0;
-    }
-    body.mushaf-immersive .mushaf-sheet {
-      max-width: min(96vw, calc((100dvh - 24px) * 0.66));
-      margin: 0 auto;
-    }
-    body.mushaf-immersive .mushaf-immersive-exit {
-      display: grid;
-      place-items: center;
-      position: fixed;
-      top: max(12px, env(safe-area-inset-top));
-      right: max(12px, env(safe-area-inset-right));
-      z-index: 80;
-      width: 40px;
-      height: 40px;
-      border: 1px solid var(--hairline);
-      border-radius: 999px;
-      background: var(--panel-bg);
-      color: var(--ink);
-      box-shadow: var(--shadow-pop);
-      cursor: pointer;
-      opacity: 0.5;
-      transition: opacity 0.15s;
-    }
-    body.mushaf-immersive .mushaf-immersive-exit:hover {
-      opacity: 1;
-    }
-    /* стрелки листания в режиме чтения (клик/десктоп; на мобиле ещё и свайп) */
+    .mushaf-immersive-exit,
     .mushaf-imm-nav {
       display: none;
     }
+    body.mushaf-immersive .mushaf-immersive-exit,
     body.mushaf-immersive .mushaf-imm-nav {
       display: grid;
-      place-items: center;
-      position: fixed;
-      top: 50%;
-      transform: translateY(-50%);
-      z-index: 80;
-      width: 46px;
-      height: 46px;
-      border: 1px solid var(--hairline);
-      border-radius: 999px;
-      background: var(--panel-bg);
-      color: var(--ink);
-      box-shadow: var(--shadow-pop);
-      opacity: 0.4;
-      transition: opacity 0.15s;
-    }
-    body.mushaf-immersive .mushaf-imm-nav:hover {
-      opacity: 1;
-    }
-    body.mushaf-immersive .mushaf-imm-prev {
-      left: max(10px, env(safe-area-inset-left));
-    }
-    body.mushaf-immersive .mushaf-imm-next {
-      right: max(10px, env(safe-area-inset-right));
-    }
-    .mushaf-imm-nav svg {
-      width: 22px;
-      height: 22px;
-    }
-    @media screen and (max-width: 650px) {
-      :root {
-        --mushaf-vvh: 100vh;
-      }
-      body[data-page-mode='mushaf'] {
-        height: 100vh;
-        height: var(--mushaf-vvh);
-        overflow: hidden;
-      }
-      body[data-page-mode='mushaf'] .footer,
-      body[data-page-mode='mushaf'] .player,
-      body[data-page-mode='mushaf'] .mushaf-bottom {
-        display: none !important;
-      }
-      body[data-page-mode='mushaf'] .topbar {
-        position: relative;
-        z-index: 60;
-        padding-bottom: 0;
-      }
-      body[data-page-mode='mushaf'] main.wide {
-        height: calc(100vh - var(--topbar-h) - max(8px, env(safe-area-inset-top)));
-        height: calc(var(--mushaf-vvh) - var(--topbar-h) - max(8px, env(safe-area-inset-top)));
-        min-height: 0;
-        overflow: hidden;
-      }
-      body[data-page-mode='mushaf'] .mushaf-reader {
-        height: 100%;
-        min-height: 0;
-        display: grid;
-        grid-template-rows: minmax(0, 1fr);
-        align-items: center;
-        padding: 4px 0 calc(72px + env(safe-area-inset-bottom));
-      }
-      body[data-page-mode='mushaf'] .mushaf-toolbar {
-        position: fixed;
-        left: max(8px, env(safe-area-inset-left));
-        right: max(8px, env(safe-area-inset-right));
-        bottom: max(8px, env(safe-area-inset-bottom));
-        z-index: 58;
-        width: auto;
-        padding: 7px;
-        gap: 6px;
-        border-radius: 20px;
-        flex-wrap: nowrap;
-      }
-      /* на мобиле навигация мусхафа = стрелки + селекты Сура/Джуз; поле «страница» прячем */
-      body[data-page-mode='mushaf'] .mushaf-jump {
-        display: none;
-      }
-      body[data-page-mode='mushaf'] .mushaf-nav-sel {
-        flex: 1 1 0;
-        min-width: 0;
-        max-width: none;
-        height: 40px;
-        padding: 0 8px;
-        font-size: 12px;
-      }
-      body[data-page-mode='mushaf'] .mushaf-toolbar .icon-btn {
-        flex: none;
-      }
-      body[data-page-mode='mushaf'] .mushaf-sheet {
-        width: min(calc(100vw - 12px), calc((var(--mushaf-vvh) - var(--topbar-h) - 128px) * 0.704));
-        max-width: none;
-        margin: 0 auto;
-        padding: 18px 10px 24px;
-      }
-      body[data-page-mode='mushaf'] .qcf-page {
-        font-size: clamp(15.8px, 4.85cqw, 18.6px);
-      }
-    }
-    /* Мобильный режим чтения (fullscreen): страница заполняет ВЕСЬ вьюпорт по
-       аспекту, без вычета скрытых топбара/тулбара — иначе аяты обрезались снизу. */
-    @media (max-width: 650px) {
-      body.mushaf-immersive .mushaf-reader {
-        height: 100dvh;
-        padding: 0;
-      }
-      body.mushaf-immersive .mushaf-sheet {
-        width: min(calc(100vw - 8px), calc((100dvh - 12px) * 0.66));
-        max-width: none;
-        margin: 0 auto;
-        padding: 8px 6px;
-      }
     }
   </style>
 
   <div class="mushaf-reader">
     <nav class="mushaf-toolbar container" aria-label="Навигация по мусхафу">
-      <a class={`icon-btn ${prevPage ? '' : 'disabled'}`} href={prevPage ? `/mushaf/${prevPage}` : undefined} aria-label="Предыдущая страница" title="Предыдущая страница" set:html={icons.arrowLeft} />
+      <a class={`icon-btn ${prevPage ? '' : 'disabled'}`} href={prevPage ? `/mushaf/${prevPage}` : undefined} aria-label="Предыдущая страница" title="Предыдущая страница" set:html={icons.arrowRight} />
 
       <select class="mushaf-nav-sel" data-mushaf-goto aria-label="Перейти к суре">
         <option value="">Сура…</option>
@@ -271,7 +107,14 @@ const juzList = Array.from({ length: 30 }, (_, i) => i + 1).map((n) => ({
         <span>/ {MUSHAF_TOTAL_PAGES}</span>
       </form>
 
-      <a class={`icon-btn ${nextPage ? '' : 'disabled'}`} href={nextPage ? `/mushaf/${nextPage}` : undefined} aria-label="Следующая страница" title="Следующая страница" set:html={icons.arrowRight} />
+      <a class={`icon-btn ${nextPage ? '' : 'disabled'}`} href={nextPage ? `/mushaf/${nextPage}` : undefined} aria-label="Следующая страница" title="Следующая страница" set:html={icons.arrowLeft} />
+
+      <div class="mushaf-zoom" aria-label="Масштаб страницы">
+        <button type="button" class="icon-btn mushaf-zoom-btn" data-mushaf-zoom-step="-10" aria-label="Уменьшить масштаб" title="Уменьшить" set:html={icons.minus}></button>
+        <input type="range" min="86" max="180" step="2" value="100" data-mushaf-zoom-range aria-label="Масштаб страницы" />
+        <button type="button" class="icon-btn mushaf-zoom-btn" data-mushaf-zoom-step="10" aria-label="Увеличить масштаб" title="Увеличить" set:html={icons.plus}></button>
+        <button type="button" class="mushaf-fit-btn" data-mushaf-fit aria-label="Подогнать страницу по экрану" title="Подогнать по экрану">100%</button>
+      </div>
 
       <button type="button" class="icon-btn" data-mushaf-immersive aria-label="Режим чтения на весь экран" title="Во весь экран (режим чтения)">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3M16 3h3a2 2 0 0 1 2 2v3M8 21H5a2 2 0 0 1-2-2v-3M16 21h3a2 2 0 0 0 2-2v-3"/></svg>
@@ -282,10 +125,10 @@ const juzList = Array.from({ length: 30 }, (_, i) => i + 1).map((n) => ({
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
     </button>
     {prevPage && (
-      <a class="mushaf-imm-nav mushaf-imm-prev" href={`/mushaf/${prevPage}`} aria-label="Предыдущая страница" title="Предыдущая страница" set:html={icons.arrowLeft} />
+      <a class="mushaf-imm-nav mushaf-imm-prev" href={`/mushaf/${prevPage}`} aria-label="Предыдущая страница" title="Предыдущая страница" set:html={icons.arrowRight} />
     )}
     {nextPage && (
-      <a class="mushaf-imm-nav mushaf-imm-next" href={`/mushaf/${nextPage}`} aria-label="Следующая страница" title="Следующая страница" set:html={icons.arrowRight} />
+      <a class="mushaf-imm-nav mushaf-imm-next" href={`/mushaf/${nextPage}`} aria-label="Следующая страница" title="Следующая страница" set:html={icons.arrowLeft} />
     )}
 
     <section class="mushaf-sheet" aria-label={`Страница ${pageNum} мусхафа`}>
@@ -335,13 +178,13 @@ const juzList = Array.from({ length: 30 }, (_, i) => i + 1).map((n) => ({
 
     <nav class="mushaf-bottom container" aria-label="Навигация по страницам">
       <a class={`btn ${prevPage ? '' : 'disabled'}`} href={prevPage ? `/mushaf/${prevPage}` : undefined}>
-        <span set:html={icons.arrowLeft} style="width:18px;height:18px" /> Назад
+        <span set:html={icons.arrowRight} style="width:18px;height:18px" /> Назад
       </a>
       <a class="btn" href="/surah/1">
         <span set:html={icons.book} style="width:18px;height:18px" /> Суры
       </a>
       <a class={`btn primary ${nextPage ? '' : 'disabled'}`} href={nextPage ? `/mushaf/${nextPage}` : undefined}>
-        Вперёд <span set:html={icons.arrowRight} style="width:18px;height:18px" />
+        Вперёд <span set:html={icons.arrowLeft} style="width:18px;height:18px" />
       </a>
     </nav>
   </div>
@@ -356,115 +199,196 @@ const juzList = Array.from({ length: 30 }, (_, i) => i + 1).map((n) => ({
 
     (function () {
       if (document.body.getAttribute('data-page-mode') !== 'mushaf') return;
+
       var root = document.documentElement;
+      var body = document.body;
+      var reader = document.querySelector('.mushaf-reader');
+      var sheet = document.querySelector('.mushaf-sheet');
+      var range = document.querySelector('[data-mushaf-zoom-range]');
+      var fit = document.querySelector('[data-mushaf-fit]');
+      var ZOOM_KEY = 'q_mushaf_zoom';
+      var IMM_KEY = 'q_mushaf_reader';
+      var zoom = 100;
+
+      function clamp(n, min, max) {
+        return Math.max(min, Math.min(max, n));
+      }
+
+      function currentPage() {
+        return parseInt((location.pathname.match(/\/mushaf\/(\d+)/) || [])[1], 10) || 1;
+      }
+
       function syncViewportHeight() {
         var vv = window.visualViewport;
         var height = Math.max(360, Math.floor((vv && vv.height) || window.innerHeight || 0));
         root.style.setProperty('--mushaf-vvh', height + 'px');
       }
-      syncViewportHeight();
-      window.addEventListener('resize', syncViewportHeight, { passive: true });
-      window.addEventListener('orientationchange', syncViewportHeight, { passive: true });
+
+      function preserveCenter() {
+        if (!reader) return null;
+        return {
+          x: (reader.scrollLeft + reader.clientWidth / 2) / Math.max(1, reader.scrollWidth),
+          y: (reader.scrollTop + reader.clientHeight / 2) / Math.max(1, reader.scrollHeight),
+        };
+      }
+
+      function restoreCenter(center) {
+        if (!reader || !center) return;
+        requestAnimationFrame(function () {
+          reader.scrollLeft = center.x * reader.scrollWidth - reader.clientWidth / 2;
+          reader.scrollTop = center.y * reader.scrollHeight - reader.clientHeight / 2;
+        });
+      }
+
+      function layoutMushaf(center) {
+        if (!reader || !sheet) return;
+        syncViewportHeight();
+        var isMobile = window.matchMedia('(max-width: 650px)').matches;
+        var isImmersive = body.classList.contains('mushaf-immersive');
+        var widthSpace = Math.max(280, reader.clientWidth - (isMobile ? 12 : 56));
+        var heightReserve = isImmersive ? (isMobile ? 96 : 118) : isMobile ? 118 : 136;
+        var heightSpace = Math.max(420, reader.clientHeight - heightReserve);
+        var fitWidth = Math.min(widthSpace, heightSpace * 0.704, isMobile ? 620 : 760);
+        var minWidth = isMobile ? Math.min(330, widthSpace) : 390;
+        var pageWidth = Math.round(Math.max(minWidth, fitWidth) * (zoom / 100));
+
+        root.style.setProperty('--mushaf-page-w', pageWidth + 'px');
+        root.style.setProperty('--mushaf-qcf-size', clamp(pageWidth * 0.048, isMobile ? 15.5 : 18, isMobile ? 36 : 44).toFixed(2) + 'px');
+        if (range) range.value = String(zoom);
+        if (fit) fit.textContent = zoom + '%';
+        restoreCenter(center);
+      }
+
+      function setZoom(next, keepCenter) {
+        var center = keepCenter ? preserveCenter() : null;
+        zoom = clamp(Math.round(next), 86, 180);
+        try {
+          localStorage.setItem(ZOOM_KEY, String(zoom));
+        } catch (e) {}
+        layoutMushaf(center);
+      }
+
+      try {
+        zoom = clamp(parseInt(localStorage.getItem(ZOOM_KEY) || '100', 10) || 100, 86, 180);
+      } catch (e) {}
+
+      try {
+        if (sessionStorage.getItem(IMM_KEY) === '1') body.classList.add('mushaf-immersive');
+      } catch (e) {}
+
+      layoutMushaf(null);
+      window.addEventListener('resize', function () {
+        layoutMushaf(preserveCenter());
+      }, { passive: true });
+      window.addEventListener('orientationchange', function () {
+        layoutMushaf(null);
+      }, { passive: true });
       if (window.visualViewport) {
-        window.visualViewport.addEventListener('resize', syncViewportHeight, { passive: true });
+        window.visualViewport.addEventListener('resize', function () {
+          layoutMushaf(preserveCenter());
+        }, { passive: true });
         window.visualViewport.addEventListener('scroll', syncViewportHeight, { passive: true });
       }
-    })();
 
-    document.addEventListener('submit', function (event) {
-      var form = event.target && event.target.closest && event.target.closest('[data-mushaf-jump]');
-      if (!form) return;
-      event.preventDefault();
-      var input = form.querySelector('input[name="page"]');
-      var page = Math.max(1, Math.min(604, parseInt(input && input.value, 10) || 1));
-      location.href = '/mushaf/' + page;
-    });
-
-    // селекторы «Сура…» / «Джуз…» — переход на страницу мусхафа
-    document.addEventListener('change', function (event) {
-      var sel = event.target && event.target.closest && event.target.closest('[data-mushaf-goto]');
-      if (!sel || !sel.value) return;
-      var page = Math.max(1, Math.min(604, parseInt(sel.value, 10) || 1));
-      location.href = '/mushaf/' + page;
-    });
-
-    // режим чтения на весь экран (иммерсивный) + нативный fullscreen + свайп-листание
-    (function () {
-      var b = document.body;
-      var KEY = 'mushImm';
-      var imm = function () {
-        return b.classList.contains('mushaf-immersive');
-      };
-      var enter = function () {
-        b.classList.add('mushaf-immersive');
-        try {
-          sessionStorage.setItem(KEY, '1');
-        } catch (e) {}
-        var el = document.documentElement;
-        if (el.requestFullscreen) el.requestFullscreen().catch(function () {});
-      };
-      var exit = function () {
-        b.classList.remove('mushaf-immersive');
-        try {
-          sessionStorage.removeItem(KEY);
-        } catch (e) {}
-        if (document.fullscreenElement && document.exitFullscreen)
-          document.exitFullscreen().catch(function () {});
-      };
-      // восстанавливаем режим чтения после перелистывания (fullscreen API reload не переживает,
-      // но CSS-иммерсив — да; страницы листаются, обвязка остаётся скрытой)
-      try {
-        if (sessionStorage.getItem(KEY) === '1') b.classList.add('mushaf-immersive');
-      } catch (e) {}
-      document.addEventListener('click', function (e) {
-        var t = e.target && e.target.closest && e.target.closest('[data-mushaf-immersive]');
-        if (!t) return;
-        imm() ? exit() : enter();
-      });
-      document.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape' && imm()) exit();
+      document.addEventListener('submit', function (event) {
+        var form = event.target && event.target.closest && event.target.closest('[data-mushaf-jump]');
+        if (!form) return;
+        event.preventDefault();
+        var input = form.querySelector('input[name="page"]');
+        var page = clamp(parseInt(input && input.value, 10) || 1, 1, 604);
+        location.href = '/mushaf/' + page;
       });
 
-      // свайп влево/вправо по странице — листание (работает и в режиме чтения, и обычно)
-      var sx = 0,
-        sy = 0,
-        stime = 0;
-      var reader = document.querySelector('.mushaf-reader');
+      document.addEventListener('change', function (event) {
+        var sel = event.target && event.target.closest && event.target.closest('[data-mushaf-goto]');
+        if (!sel || !sel.value) return;
+        var page = clamp(parseInt(sel.value, 10) || 1, 1, 604);
+        location.href = '/mushaf/' + page;
+      });
+
+      document.addEventListener('input', function (event) {
+        var control = event.target && event.target.closest && event.target.closest('[data-mushaf-zoom-range]');
+        if (!control) return;
+        setZoom(parseInt(control.value, 10) || 100, true);
+      });
+
+      document.addEventListener('click', function (event) {
+        var zoomBtn = event.target && event.target.closest && event.target.closest('[data-mushaf-zoom-step]');
+        if (zoomBtn) {
+          setZoom(zoom + (parseInt(zoomBtn.getAttribute('data-mushaf-zoom-step'), 10) || 0), true);
+          return;
+        }
+
+        var fitBtn = event.target && event.target.closest && event.target.closest('[data-mushaf-fit]');
+        if (fitBtn) {
+          setZoom(100, true);
+          return;
+        }
+
+        var immersiveBtn = event.target && event.target.closest && event.target.closest('[data-mushaf-immersive]');
+        if (!immersiveBtn) return;
+        if (body.classList.contains('mushaf-immersive')) {
+          body.classList.remove('mushaf-immersive');
+          try {
+            sessionStorage.removeItem(IMM_KEY);
+          } catch (e) {}
+        } else {
+          body.classList.add('mushaf-immersive');
+          try {
+            sessionStorage.setItem(IMM_KEY, '1');
+          } catch (e) {}
+        }
+        layoutMushaf(null);
+      });
+
+      var sx = 0;
+      var sy = 0;
+      var stime = 0;
       if (reader) {
-        reader.addEventListener(
-          'touchstart',
-          function (e) {
-            var t = e.changedTouches[0];
-            sx = t.clientX;
-            sy = t.clientY;
-            stime = Date.now();
-          },
-          { passive: true }
-        );
-        reader.addEventListener(
-          'touchend',
-          function (e) {
-            var t = e.changedTouches[0];
-            var dx = t.clientX - sx,
-              dy = t.clientY - sy;
-            if (Date.now() - stime > 600) return;
-            if (Math.abs(dx) < 55 || Math.abs(dx) < Math.abs(dy) * 1.6) return;
-            var cur = parseInt((location.pathname.match(/\/mushaf\/(\d+)/) || [])[1], 10) || 1;
-            if (dx < 0 && cur < 604) location.href = '/mushaf/' + (cur + 1);
-            else if (dx > 0 && cur > 1) location.href = '/mushaf/' + (cur - 1);
-          },
-          { passive: true }
-        );
+        reader.addEventListener('touchstart', function (e) {
+          var t = e.changedTouches[0];
+          sx = t.clientX;
+          sy = t.clientY;
+          stime = Date.now();
+        }, { passive: true });
+        reader.addEventListener('touchend', function (e) {
+          var t = e.changedTouches[0];
+          var dx = t.clientX - sx;
+          var dy = t.clientY - sy;
+          if (Date.now() - stime > 600) return;
+          if (Math.abs(dx) < 55 || Math.abs(dx) < Math.abs(dy) * 1.6) return;
+          if (reader.scrollWidth > reader.clientWidth + 6) {
+            var maxScroll = reader.scrollWidth - reader.clientWidth;
+            if (reader.scrollLeft > 4 && reader.scrollLeft < maxScroll - 4) return;
+          }
+          var cur = currentPage();
+          if (dx < 0 && cur < 604) location.href = '/mushaf/' + (cur + 1);
+          else if (dx > 0 && cur > 1) location.href = '/mushaf/' + (cur - 1);
+        }, { passive: true });
       }
-    })();
 
-    // ← / → — навигация по страницам мусхафа (не в полях ввода)
-    document.addEventListener('keydown', function (e) {
-      var tag = (e.target && e.target.tagName) || '';
-      if (/INPUT|TEXTAREA|SELECT/.test(tag) || e.metaKey || e.ctrlKey || e.altKey) return;
-      var cur = parseInt((location.pathname.match(/\/mushaf\/(\d+)/) || [])[1], 10) || 1;
-      if (e.key === 'ArrowRight' && cur < 604) location.href = '/mushaf/' + (cur + 1);
-      else if (e.key === 'ArrowLeft' && cur > 1) location.href = '/mushaf/' + (cur - 1);
-    });
+      document.addEventListener('keydown', function (e) {
+        var tag = (e.target && e.target.tagName) || '';
+        if (/INPUT|TEXTAREA|SELECT/.test(tag) || e.metaKey || e.ctrlKey || e.altKey) return;
+        var cur = currentPage();
+        if (e.key === 'Escape' && body.classList.contains('mushaf-immersive')) {
+          body.classList.remove('mushaf-immersive');
+          try {
+            sessionStorage.removeItem(IMM_KEY);
+          } catch (err) {}
+          layoutMushaf(null);
+        } else if (e.key === 'ArrowLeft' && cur < 604) {
+          location.href = '/mushaf/' + (cur + 1);
+        } else if (e.key === 'ArrowRight' && cur > 1) {
+          location.href = '/mushaf/' + (cur - 1);
+        } else if (e.key === '+' || e.key === '=') {
+          setZoom(zoom + 10, true);
+        } else if (e.key === '-' || e.key === '_') {
+          setZoom(zoom - 10, true);
+        } else if (e.key === '0') {
+          setZoom(100, true);
+        }
+      });
+    })();
   </script>
 </Base>
