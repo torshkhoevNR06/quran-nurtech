@@ -1,0 +1,162 @@
+[
+  {
+    "name": "desktop-surah-settings-dark",
+    "shot": "qa-screens/2026-07-14-apple-platform-polish/desktop-surah-settings-dark.png",
+    "metrics": {
+      "path": "/surah/17/",
+      "viewport": {
+        "w": 1440,
+        "h": 900
+      },
+      "overflowX": 0,
+      "scrollH": 75194,
+      "tabbar": {
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0,
+        "bottom": 0,
+        "right": 0
+      },
+      "tabbarTransform": "none",
+      "settings": {
+        "x": 1020,
+        "y": 0,
+        "w": 420,
+        "h": 900,
+        "bottom": 900,
+        "right": 1440
+      },
+      "settingsOpen": true,
+      "drawer": {
+        "x": -293,
+        "y": 0,
+        "w": 292,
+        "h": 900,
+        "bottom": 900,
+        "right": -1
+      },
+      "bodyMode": ""
+    }
+  },
+  {
+    "name": "mobile-surah-light",
+    "shot": "qa-screens/2026-07-14-apple-platform-polish/mobile-surah-light.png",
+    "metrics": {
+      "path": "/surah/1/",
+      "viewport": {
+        "w": 390,
+        "h": 844
+      },
+      "overflowX": 0,
+      "scrollH": 3540,
+      "tabbar": {
+        "x": 0,
+        "y": 778,
+        "w": 390,
+        "h": 66,
+        "bottom": 844,
+        "right": 390
+      },
+      "tabbarTransform": "none",
+      "settings": {
+        "x": 0,
+        "y": 881,
+        "w": 390,
+        "h": 743,
+        "bottom": 1624,
+        "right": 390
+      },
+      "settingsOpen": false,
+      "drawer": {
+        "x": 0,
+        "y": 880,
+        "w": 390,
+        "h": 726,
+        "bottom": 1606,
+        "right": 390
+      },
+      "bodyMode": ""
+    }
+  },
+  {
+    "name": "mobile-surah-drawer",
+    "shot": "qa-screens/2026-07-14-apple-platform-polish/mobile-surah-drawer.png",
+    "metrics": {
+      "path": "/surah/1/",
+      "viewport": {
+        "w": 390,
+        "h": 844
+      },
+      "overflowX": 0,
+      "scrollH": 844,
+      "tabbar": {
+        "x": 0,
+        "y": 778,
+        "w": 390,
+        "h": 66,
+        "bottom": 844,
+        "right": 390
+      },
+      "tabbarTransform": "none",
+      "settings": {
+        "x": 0,
+        "y": 881,
+        "w": 390,
+        "h": 743,
+        "bottom": 1624,
+        "right": 390
+      },
+      "settingsOpen": false,
+      "drawer": {
+        "x": 0,
+        "y": 118,
+        "w": 390,
+        "h": 726,
+        "bottom": 844,
+        "right": 390
+      },
+      "bodyMode": ""
+    }
+  },
+  {
+    "name": "mobile-mushaf-dark",
+    "shot": "qa-screens/2026-07-14-apple-platform-polish/mobile-mushaf-dark.png",
+    "metrics": {
+      "path": "/mushaf/3/",
+      "viewport": {
+        "w": 390,
+        "h": 844
+      },
+      "overflowX": 0,
+      "scrollH": 844,
+      "tabbar": {
+        "x": 0,
+        "y": 851,
+        "w": 390,
+        "h": 66,
+        "bottom": 917,
+        "right": 390
+      },
+      "tabbarTransform": "matrix(1, 0, 0, 1, 0, 72.6)",
+      "settings": {
+        "x": 0,
+        "y": 881,
+        "w": 390,
+        "h": 743,
+        "bottom": 1624,
+        "right": 390
+      },
+      "settingsOpen": false,
+      "drawer": {
+        "x": 0,
+        "y": 880,
+        "w": 390,
+        "h": 726,
+        "bottom": 1606,
+        "right": 390
+      },
+      "bodyMode": "mushaf"
+    }
+  }
+]

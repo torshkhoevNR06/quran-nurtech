@@ -3,6 +3,7 @@ import '../styles/global.css';
 import TopBar from '../components/TopBar.astro';
 import Drawer from '../components/Drawer.astro';
 import Player from '../components/Player.astro';
+import { icons } from '../lib/icons';
 
 export interface Props {
   title: string;
@@ -20,6 +21,14 @@ const desc =
   description ??
   'Коран онлайн на русском языке: чтение, перевод, тафсир ас-Саади, аудио чтецов, поиск и заучивание. 114 сур, 6236 аятов.';
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
+const path = Astro.url.pathname;
+const tab = (name: 'home' | 'read' | 'mushaf' | 'search') => {
+  if (name === 'home') return path === '/' ? 'active' : '';
+  if (name === 'read') return path.startsWith('/surah') || path.startsWith('/ayah') || /^\/\d+:\d+/.test(path) ? 'active' : '';
+  if (name === 'mushaf') return path.startsWith('/mushaf') ? 'active' : '';
+  if (name === 'search') return path.startsWith('/search') ? 'active' : '';
+  return '';
+};
 ---
 
 <!doctype html>
@@ -120,6 +129,28 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
 
     <Drawer />
     <Player />
+    <nav class="mobile-tabbar" aria-label="Основная навигация">
+      <a class={tab('home')} href="/" aria-label="Главная">
+        <span set:html={icons.home}></span>
+        <b>Главная</b>
+      </a>
+      <a class={tab('read')} href="/surah/1" aria-label="Читать">
+        <span set:html={icons.book}></span>
+        <b>Читать</b>
+      </a>
+      <a class={tab('mushaf')} href="/mushaf/1" aria-label="Мусхаф">
+        <span set:html={icons.book}></span>
+        <b>Мусхаф</b>
+      </a>
+      <a class={tab('search')} href="/search" aria-label="Поиск">
+        <span set:html={icons.search}></span>
+        <b>Поиск</b>
+      </a>
+      <button type="button" data-act="drawer" aria-label="Меню">
+        <span set:html={icons.menu}></span>
+        <b>Меню</b>
+      </button>
+    </nav>
     <div class="toast" id="toast"></div>
 
     <script>
