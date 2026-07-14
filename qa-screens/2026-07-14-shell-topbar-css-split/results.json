@@ -1,0 +1,224 @@
+[
+  {
+    "name": "home-desktop-light",
+    "url": "/",
+    "w": 1440,
+    "h": 900,
+    "theme": "light",
+    "errors": [],
+    "metrics": {
+      "title": "Коран онлайн на русском — читать, слушать, изучать",
+      "overflowX": false,
+      "docWidth": 1440,
+      "viewportWidth": 1440,
+      "topbar": {
+        "width": 1140,
+        "height": 52,
+        "top": 0,
+        "left": 300,
+        "display": "block",
+        "gap": "normal",
+        "paddingTop": "0px",
+        "borderRadius": "0px"
+      },
+      "topbarInner": {
+        "width": 1140,
+        "height": 52,
+        "top": 0,
+        "left": 300,
+        "display": "flex",
+        "gap": "10px",
+        "paddingTop": "0px",
+        "borderRadius": "0px"
+      },
+      "quick": {
+        "width": 300,
+        "height": 32,
+        "top": 10,
+        "left": 520,
+        "display": "flex",
+        "gap": "6px",
+        "paddingTop": "0px",
+        "borderRadius": "0px"
+      },
+      "brand": {
+        "width": 144,
+        "height": 32,
+        "top": 10,
+        "left": 356,
+        "display": "flex",
+        "gap": "9px",
+        "paddingTop": "0px",
+        "borderRadius": "10px"
+      },
+      "searchButtonVisible": true
+    }
+  },
+  {
+    "name": "home-mobile-light",
+    "url": "/",
+    "w": 390,
+    "h": 844,
+    "theme": "light",
+    "mobile": true,
+    "errors": [],
+    "metrics": {
+      "title": "Коран онлайн на русском — читать, слушать, изучать",
+      "overflowX": false,
+      "docWidth": 390,
+      "viewportWidth": 390,
+      "topbar": {
+        "width": 390,
+        "height": 66,
+        "top": 0,
+        "left": 0,
+        "display": "block",
+        "gap": "normal",
+        "paddingTop": "8px",
+        "borderRadius": "0px"
+      },
+      "topbarInner": {
+        "width": 378,
+        "height": 58,
+        "top": 8,
+        "left": 6,
+        "display": "flex",
+        "gap": "6px",
+        "paddingTop": "6px",
+        "borderRadius": "18px"
+      },
+      "quick": {
+        "width": 268,
+        "height": 44,
+        "top": 15,
+        "left": 61,
+        "display": "flex",
+        "gap": "5px",
+        "paddingTop": "0px",
+        "borderRadius": "0px"
+      },
+      "brand": {
+        "width": 0,
+        "height": 0,
+        "top": 0,
+        "left": 0,
+        "display": "none",
+        "gap": "9px",
+        "paddingTop": "0px",
+        "borderRadius": "10px"
+      },
+      "searchButtonVisible": true
+    }
+  },
+  {
+    "name": "surah-desktop-dark",
+    "url": "/surah/1",
+    "w": 1440,
+    "h": 900,
+    "theme": "dark",
+    "errors": [],
+    "metrics": {
+      "title": "Сура 1: Аль-Фатиха (Открывающая) — читать с тафсиром ас-Саади",
+      "overflowX": false,
+      "docWidth": 1440,
+      "viewportWidth": 1440,
+      "topbar": {
+        "width": 1212,
+        "height": 52,
+        "top": 0,
+        "left": 228,
+        "display": "block",
+        "gap": "normal",
+        "paddingTop": "0px",
+        "borderRadius": "0px"
+      },
+      "topbarInner": {
+        "width": 1212,
+        "height": 52,
+        "top": 0,
+        "left": 228,
+        "display": "flex",
+        "gap": "10px",
+        "paddingTop": "0px",
+        "borderRadius": "0px"
+      },
+      "quick": {
+        "width": 220,
+        "height": 32,
+        "top": 10,
+        "left": 567,
+        "display": "flex",
+        "gap": "6px",
+        "paddingTop": "0px",
+        "borderRadius": "0px"
+      },
+      "brand": {
+        "width": 144,
+        "height": 32,
+        "top": 10,
+        "left": 284,
+        "display": "flex",
+        "gap": "9px",
+        "paddingTop": "0px",
+        "borderRadius": "10px"
+      },
+      "searchButtonVisible": true
+    }
+  },
+  {
+    "name": "surah-mobile-dark",
+    "url": "/surah/1",
+    "w": 390,
+    "h": 844,
+    "theme": "dark",
+    "mobile": true,
+    "errors": [],
+    "metrics": {
+      "title": "Сура 1: Аль-Фатиха (Открывающая) — читать с тафсиром ас-Саади",
+      "overflowX": false,
+      "docWidth": 390,
+      "viewportWidth": 390,
+      "topbar": {
+        "width": 390,
+        "height": 66,
+        "top": 0,
+        "left": 0,
+        "display": "block",
+        "gap": "normal",
+        "paddingTop": "8px",
+        "borderRadius": "0px"
+      },
+      "topbarInner": {
+        "width": 378,
+        "height": 58,
+        "top": 8,
+        "left": 6,
+        "display": "flex",
+        "gap": "6px",
+        "paddingTop": "6px",
+        "borderRadius": "18px"
+      },
+      "quick": {
+        "width": 150,
+        "height": 44,
+        "top": 15,
+        "left": 61,
+        "display": "flex",
+        "gap": "5px",
+        "paddingTop": "0px",
+        "borderRadius": "0px"
+      },
+      "brand": {
+        "width": 0,
+        "height": 0,
+        "top": 0,
+        "left": 0,
+        "display": "none",
+        "gap": "9px",
+        "paddingTop": "0px",
+        "borderRadius": "10px"
+      },
+      "searchButtonVisible": true
+    }
+  }
+]
