@@ -48,6 +48,10 @@ const $ = <T extends Element = HTMLElement>(s: string, r: ParentNode = document)
 const $$ = <T extends Element = HTMLElement>(s: string, r: ParentNode = document) =>
   Array.from(r.querySelectorAll<T>(s));
 
+const READ_API_ENABLED =
+  typeof location !== 'undefined' &&
+  (location.hostname === 'quran.nurtech.dev' || location.hostname.endsWith('.nurtech.dev'));
+
 /* ---------- хаптики (веб-вибро; iOS игнорирует, Android/PWA вибрирует) ---------- */
 type Haptic = 'light' | 'medium' | 'success' | 'error';
 const HAPTIC: Record<Haptic, number | number[]> = {
@@ -283,6 +287,7 @@ function readingPayload() {
   };
 }
 function sendReadingSync(useBeacon = false) {
+  if (!READ_API_ENABLED) return;
   clearTimeout(readSyncTimer);
   readSyncTimer = undefined;
   const payload = JSON.stringify(readingPayload());
@@ -299,6 +304,7 @@ function sendReadingSync(useBeacon = false) {
   }).catch(() => {});
 }
 function scheduleReadingSync(delay = 5000) {
+  if (!READ_API_ENABLED) return;
   clearTimeout(readSyncTimer);
   readSyncTimer = window.setTimeout(() => sendReadingSync(false), delay);
 }
@@ -306,6 +312,7 @@ function maybePeriodicReadingSync() {
   if (Date.now() - readLastSyncAt >= READ_SYNC_INTERVAL_MS) scheduleReadingSync(100);
 }
 async function loadPublicReadSummary() {
+  if (!READ_API_ENABLED) return;
   const box = $('[data-read-summary]');
   if (!box) return;
   try {

@@ -1,8 +1,7 @@
 /* ==========================================================================
-   Коран онлайн — quran.nurtech.dev
-   Дизайн: Liquid Glass (жидкое стекло) — по образцу easybot / 4azwaj.
-   Полупрозрачные фростед-панели с бликом (specular), глянцем и глубокими тенями
-   поверх мягкого цветного амбиентного фона. Темы: светлая/тёмная/сепия.
+   Global base
+   Tokens live in design-tokens.css. This file keeps only fonts, reset and
+   compatibility utilities that are still shared across pages.
    ========================================================================== */
 
 /* ---- Арабские шрифты (self-hosted, свободные лицензии) ---- */
@@ -21,214 +20,6 @@
   src: url('/fonts/noto-naskh.woff2') format('woff2');
   font-display: swap;
 }
-@font-face {
-  font-family: 'Manrope';
-  src: url('/fonts/manrope-400.ttf') format('truetype');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Manrope';
-  src: url('/fonts/manrope-500.ttf') format('truetype');
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Manrope';
-  src: url('/fonts/manrope-600.ttf') format('truetype');
-  font-weight: 600;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Manrope';
-  src: url('/fonts/manrope-700.ttf') format('truetype');
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Manrope';
-  src: url('/fonts/manrope-800.ttf') format('truetype');
-  font-weight: 800;
-  font-style: normal;
-  font-display: swap;
-}
-
-/* ==========================================================================
-   Токены
-   ========================================================================== */
-:root {
-  /* базовые цвета — нейтральный графит */
-  --bg: #eceef0;
-  --ink: #1b1e24;
-  --ink-soft: #4b515c;
-  --ink-faint: #838893;
-  --accent: #3f4a58;
-  --accent-ink: #ffffff;
-  --accent-soft: rgba(63, 74, 88, 0.12);
-  --hl: rgba(240, 200, 90, 0.4);
-  --line: rgba(22, 26, 32, 0.1);
-  /* macOS-контролы: подложка сегментов и приподнятая «капсула» выбранного */
-  --seg-track: rgba(0, 0, 0, 0.055);
-  --seg-thumb: #ffffff;
-  --seg-thumb-bd: rgba(0, 0, 0, 0.06);
-  /* --knob (#ffffff) идентично объявлен в design-tokens.css :root — дубль убран. */
-
-  /* амбиентные орбы (мягкий нейтральный фон под стеклом) */
-  --orb-1: rgba(90, 102, 120, 0.2);
-  --orb-2: rgba(120, 130, 145, 0.16);
-  --orb-3: rgba(150, 155, 165, 0.14);
-  --orb-4: rgba(70, 80, 95, 0.14);
-
-  /* стекло (light) */
-  --glass-bg: rgba(255, 255, 255, 0.5);
-  --glass-bg-strong: rgba(255, 255, 255, 0.68);
-  --panel-bg: rgba(255, 255, 255, 0.96);
-  --glass-border: rgba(255, 255, 255, 0.85);
-  --glass-active: rgba(255, 255, 255, 0.82);
-  --glass-shadow: rgba(20, 24, 30, 0.16);
-  --glass-spec: rgba(255, 255, 255, 0.95);
-  --glass-gloss: rgba(255, 255, 255, 0.55);
-  --glass-blur: blur(22px) saturate(180%) brightness(1.06);
-  --glass-elev: inset 0 1.2px 0 var(--glass-spec), inset 0 0 0 1px rgba(255, 255, 255, 0.05),
-    inset 0 -12px 18px -14px var(--glass-spec), 0 10px 28px -12px var(--glass-shadow),
-    0 24px 54px -18px var(--glass-shadow);
-  --glass-elev-sm: inset 0 1px 0 var(--glass-spec), 0 6px 18px -10px var(--glass-shadow),
-    0 12px 30px -16px var(--glass-shadow);
-
-  /* геометрия */
-  --topbar-h: 60px;
-  --maxw: 880px;
-  --r-lg: 22px;
-  --r-md: 15px;
-  --r-sm: 11px;
-
-  /* ---- macOS-шкалы (канон EasyBot): отступы / радиусы / кегли / тени ---- */
-  --sp-1: 4px;
-  --sp-2: 8px;
-  --sp-3: 12px;
-  --sp-4: 16px;
-  --sp-5: 20px;
-  --sp-6: 24px;
-  --sp-8: 32px;
-  --sp-10: 40px;
-  --radius-xs: 6px;
-  --radius-s: 8px;
-  --radius-sm: 10px;
-  --radius-md: 12px;
-  --radius-lg: 16px;
-  --radius-xl: 20px;
-  /* --radius-pill (999px) идентично объявлен в design-tokens.css :root — дубль убран. */
-  --fs-11: 11px;
-  --fs-12: 12px;
-  --fs-13: 13px;
-  --fs-14: 14px;
-  --fs-15: 15px;
-  --fs-16: 16px;
-  --fs-17: 17px;
-  --fs-18: 18px;
-  --fs-20: 20px;
-  --fs-22: 22px;
-  --fs-26: 26px;
-  --fs-30: 30px;
-  --fs-34: 34px;
-  --hairline: rgba(20, 24, 30, 0.08);
-  --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.1);
-  --shadow-pop: 0 12px 32px rgba(0, 0, 0, 0.18);
-  --panel-2: #ffffff;
-  --good: #3a9d6b;
-  --mid: #c9973f;
-  --low: #d4585f;
-  --ease: 0.18s cubic-bezier(0.32, 0.72, 0, 1);
-
-  /* настройки чтения (перекрываются клиентом) */
-  --ar-font: 'Mushaf';
-  --ar-size: 30px;
-  --ru-size: 18px;
-  --lh: 1.95;
-
-  /* Системный шрифт интерфейса (нативный macOS/iOS = SF). Арабский и переводы —
-     на своих шрифтах через --ar-font / .translation. */
-  --sans: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display', 'Segoe UI',
-    system-ui, Roboto, 'Helvetica Neue', Arial, sans-serif;
-  --serif: 'Georgia', 'Iowan Old Style', 'Times New Roman', serif;
-}
-
-:root[data-theme='dark'] {
-  --bg: #101216;
-  --ink: #e8eaef;
-  --ink-soft: #a8adb8;
-  --ink-faint: #757b86;
-  --accent: #aeb8c6;
-  --accent-ink: #171b22;
-  --accent-soft: rgba(174, 184, 198, 0.16);
-  --hl: rgba(90, 78, 40, 0.55);
-  --line: rgba(255, 255, 255, 0.09);
-  --seg-track: rgba(0, 0, 0, 0.28);
-  --seg-thumb: rgba(255, 255, 255, 0.16);
-  --seg-thumb-bd: rgba(255, 255, 255, 0.05);
-  --knob: #f2f4f7;
-  --hairline: rgba(255, 255, 255, 0.08);
-  --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.3);
-  --shadow-pop: 0 14px 36px rgba(0, 0, 0, 0.45);
-  --panel-2: #1f232a;
-
-  --orb-1: rgba(90, 105, 125, 0.2);
-  --orb-2: rgba(70, 82, 100, 0.2);
-  --orb-3: rgba(110, 116, 128, 0.14);
-  --orb-4: rgba(50, 60, 75, 0.24);
-
-  --glass-bg: rgba(32, 36, 42, 0.52);
-  --glass-bg-strong: rgba(34, 39, 46, 0.72);
-  --panel-bg: rgba(26, 29, 34, 0.97);
-  --glass-border: rgba(255, 255, 255, 0.14);
-  --glass-active: rgba(255, 255, 255, 0.13);
-  --glass-shadow: rgba(0, 0, 0, 0.6);
-  --glass-spec: rgba(255, 255, 255, 0.42);
-  --glass-gloss: rgba(255, 255, 255, 0.1);
-  --glass-blur: blur(24px) saturate(170%) brightness(1.15);
-  --glass-elev: inset 0 1.2px 0 var(--glass-spec), inset 0 0 0 1px rgba(255, 255, 255, 0.05),
-    inset 0 -12px 18px -14px rgba(255, 255, 255, 0.14), 0 10px 30px -12px var(--glass-shadow),
-    0 26px 60px -18px var(--glass-shadow);
-  --glass-elev-sm: inset 0 1px 0 var(--glass-spec), 0 8px 22px -12px var(--glass-shadow),
-    0 16px 36px -18px var(--glass-shadow);
-}
-
-:root[data-theme='sepia'] {
-  --bg: #efe4cf;
-  --ink: #3e3427;
-  --ink-soft: #6a5c46;
-  --ink-faint: #9a8a6d;
-  --accent: #6a5f4e;
-  --accent-ink: #ffffff;
-  --accent-soft: rgba(106, 95, 78, 0.18);
-  --hl: rgba(220, 180, 90, 0.5);
-  --line: rgba(90, 70, 30, 0.14);
-  --seg-track: rgba(90, 70, 30, 0.09);
-  --seg-thumb: #fffaf0;
-  --seg-thumb-bd: rgba(90, 70, 30, 0.08);
-  --knob: #fffaf0;
-  --hairline: rgba(90, 70, 30, 0.1);
-  --panel-2: #fffaf0;
-
-  --orb-1: rgba(190, 160, 110, 0.24);
-  --orb-2: rgba(170, 150, 120, 0.18);
-  --orb-3: rgba(200, 150, 100, 0.16);
-  --orb-4: rgba(150, 135, 110, 0.16);
-
-  --glass-bg: rgba(255, 250, 240, 0.5);
-  --glass-bg-strong: rgba(255, 250, 240, 0.72);
-  --panel-bg: rgba(252, 246, 235, 0.97);
-  --glass-border: rgba(255, 252, 244, 0.85);
-  --glass-active: rgba(255, 250, 240, 0.85);
-  --glass-shadow: rgba(90, 70, 30, 0.18);
-  --glass-spec: rgba(255, 253, 245, 0.95);
-  --glass-gloss: rgba(255, 253, 245, 0.6);
-}
-
 * {
   box-sizing: border-box;
 }
@@ -248,9 +39,9 @@ html {
 body {
   margin: 0;
   min-height: 100vh;
-  background: var(--bg);
-  color: var(--ink);
-  font-family: var(--sans);
+  background: var(--sys-bg);
+  color: var(--sys-label);
+  font-family: var(--font-ui);
   font-size: 16px;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
@@ -258,27 +49,8 @@ body {
   overflow-x: clip;
 }
 
-/* ---- Амбиентный цветной фон (под стеклом), фиксированный ---- */
 body::before {
-  content: '';
-  position: fixed;
-  inset: -20% -10% -10% -10%;
-  z-index: -2;
-  pointer-events: none;
-  background:
-    radial-gradient(42vw 42vw at 12% 8%, var(--orb-1), transparent 60%),
-    radial-gradient(38vw 38vw at 88% 4%, var(--orb-2), transparent 58%),
-    radial-gradient(46vw 46vw at 78% 72%, var(--orb-3), transparent 60%),
-    radial-gradient(40vw 40vw at 18% 88%, var(--orb-4), transparent 60%);
-  filter: saturate(1.1);
-}
-body::after {
-  content: '';
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-  background: linear-gradient(180deg, transparent, color-mix(in srgb, var(--bg) 55%, transparent));
+  display: none;
 }
 
 a {
@@ -289,12 +61,11 @@ h1,
 h2,
 h3 {
   line-height: 1.18;
-  font-weight: 800;
+  font-weight: var(--weight-title);
   letter-spacing: 0;
 }
-/* h3-подзаголовки чуть легче h1/h2 (hero/brand остаются 800). */
 h3 {
-  font-weight: 700;
+  font-weight: var(--weight-semibold);
 }
 
 .container {
@@ -304,28 +75,6 @@ h3 {
 }
 .wide {
   --maxw: 1120px;
-}
-
-/* ==========================================================================
-   Стеклянная утилита
-   ========================================================================== */
-.glass {
-  position: relative;
-  isolation: isolate;
-  background: var(--glass-bg);
-  -webkit-backdrop-filter: var(--glass-blur);
-  backdrop-filter: var(--glass-blur);
-  border: 1px solid var(--glass-border);
-  box-shadow: var(--glass-elev);
-}
-.glass::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  pointer-events: none;
-  z-index: -1;
-  background: linear-gradient(180deg, var(--glass-gloss) 0%, transparent 46%);
 }
 
 /* ==========================================================================
@@ -378,7 +127,7 @@ h3 {
   padding: 2px 8px 2px 2px;
   border-radius: 16px;
   background: color-mix(in srgb, var(--surface) 64%, transparent);
-  font-weight: 800;
+  font-weight: var(--weight-strong);
   letter-spacing: 0;
   white-space: nowrap;
   min-width: 0;
@@ -423,7 +172,7 @@ html[data-theme='sepia'] .brand-mark img {
 .brand .brand-name {
   color: var(--ink);
   font-size: 15px;
-  font-weight: 800;
+  font-weight: var(--weight-strong);
   letter-spacing: 0;
 }
 
@@ -483,7 +232,7 @@ html[data-theme='sepia'] .brand-mark img {
   border-radius: 14px;
   background: var(--glass-bg);
   color: var(--ink);
-  font: 700 14px/1 var(--sans);
+  font: var(--weight-semibold) 14px/1 var(--sans);
   cursor: pointer;
   white-space: nowrap;
   box-shadow: var(--glass-elev-sm);
@@ -579,7 +328,7 @@ html[data-theme='sepia'] .brand-mark img {
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--ink-faint);
-  font-weight: 700;
+  font-weight: var(--weight-semibold);
 }
 .menu .row {
   display: flex;
@@ -609,7 +358,7 @@ html[data-theme='sepia'] .brand-mark img {
 }
 .menu button.item.on {
   color: var(--accent);
-  font-weight: 700;
+  font-weight: var(--weight-semibold);
   background: var(--accent-soft);
 }
 .menu button.item .tick {
@@ -637,7 +386,7 @@ html[data-theme='sepia'] .brand-mark img {
   color: var(--ink-soft);
   padding: 7px 12px;
   border-radius: 12px;
-  font: 700 13px/1 var(--sans);
+  font: var(--weight-semibold) 13px/1 var(--sans);
   cursor: pointer;
   white-space: nowrap;
   transition: color 0.15s;
@@ -657,7 +406,7 @@ html[data-theme='sepia'] .brand-mark img {
   border-radius: 999px;
   background: var(--glass-bg);
   color: var(--ink-soft);
-  font: 700 12px/1 var(--sans);
+  font: var(--weight-semibold) 12px/1 var(--sans);
   border: 1px solid var(--glass-border);
   box-shadow: var(--glass-elev-sm);
 }
@@ -729,7 +478,7 @@ input[type='range'] {
 }
 .settings-panel-head strong {
   color: var(--ink);
-  font: 800 16px/1.15 var(--sans);
+  font: var(--weight-strong) 16px/1.15 var(--sans);
 }
 .settings-panel-head span {
   color: var(--ink-faint);
@@ -918,7 +667,7 @@ input[type='range'] {
   letter-spacing: 0.03em;
   text-transform: uppercase;
   color: var(--ink-faint);
-  font-weight: 700;
+  font-weight: var(--weight-semibold);
 }
 .menu h4:first-child {
   margin-top: 4px;
@@ -1273,7 +1022,7 @@ input[type='range'] {
   color: var(--accent);
   border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
   border-radius: 14px;
-  font-weight: 800;
+  font-weight: var(--weight-strong);
   font-size: 15px;
   transform: rotate(45deg);
   box-shadow: inset 0 1px 0 var(--glass-spec);
@@ -1296,7 +1045,7 @@ input[type='range'] {
   margin-top: 3px;
 }
 .surah-card .r {
-  font-weight: 800;
+  font-weight: var(--weight-strong);
   font-size: 16px;
   min-width: 0;
   white-space: nowrap;
@@ -1461,7 +1210,7 @@ input[type='range'] {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  font: 800 13px/1 var(--sans);
+  font: var(--weight-strong) 13px/1 var(--sans);
   color: var(--accent);
   background: var(--accent-soft);
   padding: 6px 12px;
@@ -1603,7 +1352,7 @@ input[type='range'] {
   border-radius: 999px;
   background: color-mix(in srgb, var(--accent-soft) 40%, transparent);
   color: var(--accent);
-  font: 700 13px/1 var(--sans);
+  font: var(--weight-semibold) 13px/1 var(--sans);
   cursor: pointer;
   transition: background 0.15s, border-color 0.15s, color 0.15s;
 }
@@ -1699,7 +1448,7 @@ input[type='range'] {
 }
 .tafsir-src-sub {
   color: var(--ink-faint);
-  font-weight: 700;
+  font-weight: var(--weight-semibold);
 }
 .tafsir-src-b {
   min-width: 0;
@@ -1953,7 +1702,7 @@ mark.hit {
   margin-bottom: 10px;
 }
 .mas-head b {
-  font: 700 var(--fs-15) / 1.2 var(--sans);
+  font: var(--weight-semibold) var(--fs-15) / 1.2 var(--sans);
   color: var(--ink);
 }
 .mas-x {
@@ -2072,7 +1821,7 @@ mark.hit {
   padding-left: 6px;
 }
 .player .now .t {
-  font-weight: 800;
+  font-weight: var(--weight-strong);
   font-size: 14px;
   white-space: nowrap;
   overflow: hidden;
@@ -2156,7 +1905,7 @@ mark.hit {
   background: var(--glass-bg);
 }
 .player .speed {
-  font: 800 12px/1 var(--sans);
+  font: var(--weight-strong) 12px/1 var(--sans);
   color: var(--ink-soft);
   min-width: 44px;
 }
@@ -2253,7 +2002,7 @@ mark.hit {
 }
 .drawer .dlist .nm {
   flex: 1;
-  font-weight: 700;
+  font-weight: var(--weight-semibold);
   font-size: 15px;
 }
 .drawer .dlist .ar-name {
@@ -2359,7 +2108,7 @@ mark.hit {
 }
 .stats-table th {
   color: var(--ink-faint);
-  font-weight: 700;
+  font-weight: var(--weight-semibold);
 }
 .stats-table tr:last-child td {
   border-bottom: 0;
@@ -2411,7 +2160,7 @@ mark.hit {
     content: attr(data-label);
     flex: none;
     color: var(--ink-faint);
-    font-weight: 700;
+    font-weight: var(--weight-semibold);
     text-align: left;
   }
   .stats-table td:first-child {
@@ -2419,7 +2168,7 @@ mark.hit {
     flex-direction: column;
     gap: 4px;
     text-align: left;
-    font-weight: 700;
+    font-weight: var(--weight-semibold);
   }
   .stats-table td:first-child::before {
     font-size: 11px;
@@ -2468,7 +2217,7 @@ mark.hit {
   color: var(--ink-soft);
   box-shadow: var(--glass-elev-sm);
   font-size: 13px;
-  font-weight: 700;
+  font-weight: var(--weight-semibold);
 }
 
 .mushaf-jump input {
@@ -2478,7 +2227,7 @@ mark.hit {
   border-radius: 9px;
   background: var(--panel-bg);
   color: var(--ink);
-  font: 800 15px/1 var(--sans);
+  font: var(--weight-strong) 15px/1 var(--sans);
   text-align: center;
 }
 
@@ -2491,7 +2240,7 @@ mark.hit {
   border-radius: 14px;
   background: var(--glass-bg-strong);
   color: var(--ink);
-  font: 700 13px / 1 var(--sans);
+  font: var(--weight-semibold) 13px / 1 var(--sans);
   box-shadow: var(--glass-elev-sm);
   cursor: pointer;
 }
@@ -2538,7 +2287,7 @@ mark.hit {
 .mushaf-meta b {
   color: var(--ink-soft);
   font-size: 13px;
-  font-weight: 800;
+  font-weight: var(--weight-strong);
 }
 
 .qcf-page {
@@ -2643,7 +2392,7 @@ mark.hit {
   color: var(--mushaf-ornament);
   font-family: var(--ar), serif;
   font-size: 0.52em;
-  font-weight: 800;
+  font-weight: var(--weight-strong);
   line-height: 1.15;
 }
 
@@ -2669,7 +2418,7 @@ mark.hit {
   color: var(--mushaf-ink);
   font-family: var(--ar), serif;
   font-size: 0.68em;
-  font-weight: 700;
+  font-weight: var(--weight-semibold);
   line-height: 1;
 }
 
@@ -2824,7 +2573,7 @@ mark.hit {
   padding: 11px 20px;
   border-radius: 999px;
   font-size: 14px;
-  font-weight: 700;
+  font-weight: var(--weight-semibold);
   box-shadow: var(--glass-elev);
   opacity: 0;
   pointer-events: none;
@@ -2935,45 +2684,9 @@ mark.hit {
 }
 
 /* ==========================================================================
-   UX review pass: reader-first redesign
+   Page compatibility layer: older page selectors kept while templates migrate
+   to the shared components.css patterns.
    ========================================================================== */
-:root {
-  --bg: #f1f2f4;
-  --surface: #ffffff;
-  --surface-soft: #f6f7f9;
-  --panel-bg: #ffffff;
-  --glass-bg: #ffffff;
-  --glass-bg-strong: rgba(255, 255, 255, 0.96);
-  --glass-border: rgba(22, 26, 32, 0.11);
-  --glass-shadow: rgba(20, 24, 30, 0.09);
-  --glass-spec: rgba(255, 255, 255, 0.7);
-  --glass-gloss: rgba(255, 255, 255, 0.28);
-  --glass-blur: blur(14px) saturate(135%);
-  --glass-elev: 0 14px 34px -26px var(--glass-shadow);
-  --glass-elev-sm: 0 8px 22px -18px var(--glass-shadow);
-  --r-lg: 16px;
-  --r-md: 12px;
-  --r-sm: 9px;
-}
-
-:root[data-theme='dark'] {
-  --surface: #15171b;
-  --surface-soft: #1a1d22;
-  --panel-bg: #181b20;
-  --glass-bg: #181b20;
-  --glass-bg-strong: rgba(24, 27, 32, 0.96);
-  --glass-border: rgba(255, 255, 255, 0.1);
-  --glass-shadow: rgba(0, 0, 0, 0.48);
-}
-
-:root[data-theme='sepia'] {
-  --surface: #fff9ef;
-  --surface-soft: #fbf1df;
-  --panel-bg: #fff9ef;
-  --glass-bg: #fff9ef;
-  --glass-bg-strong: rgba(255, 249, 239, 0.96);
-}
-
 body::before {
   opacity: 0.34;
   filter: blur(8px) saturate(0.9);
@@ -3006,7 +2719,7 @@ body::after {
   flex: 1;
   min-width: 0;
   color: var(--ink-soft);
-  font-weight: 700;
+  font-weight: var(--weight-semibold);
 }
 
 .quick {
@@ -3126,7 +2839,7 @@ select.sel,
   border-radius: 10px;
   background: var(--accent-soft);
   color: var(--accent);
-  font-weight: 800;
+  font-weight: var(--weight-strong);
 }
 
 .quick-surah strong,
@@ -3209,7 +2922,7 @@ select.sel,
   cursor: pointer;
   padding: 13px 16px;
   color: var(--ink);
-  font-weight: 700;
+  font-weight: var(--weight-semibold);
   list-style: none;
 }
 
@@ -3362,7 +3075,7 @@ select.sel,
   margin: 0 0 6px;
   color: var(--ink-faint);
   font-size: 13px;
-  font-weight: 700;
+  font-weight: var(--weight-semibold);
 }
 
 .audio-selectors select {
@@ -3390,7 +3103,7 @@ select.sel,
 
 .audio-now .t {
   font-size: 18px;
-  font-weight: 800;
+  font-weight: var(--weight-strong);
 }
 
 .audio-now .s {
@@ -3414,7 +3127,7 @@ select.sel,
 }
 
 .speed {
-  font: 800 12px/1 var(--sans);
+  font: var(--weight-strong) 12px/1 var(--sans);
 }
 
 .audio-list {
@@ -3835,7 +3548,7 @@ select.sel,
 }
 .ie-hint b {
   color: var(--ink);
-  font-weight: 700;
+  font-weight: var(--weight-semibold);
   white-space: nowrap;
 }
 .ie-toast {
@@ -4261,7 +3974,7 @@ select:focus-visible,
   border: 0;
   background: transparent;
   color: var(--ink-faint);
-  font: 700 var(--fs-13) / 1 var(--sans);
+  font: var(--weight-semibold) var(--fs-13) / 1 var(--sans);
   border-radius: var(--radius-s);
   cursor: pointer;
   transition: background 0.12s, color 0.12s;

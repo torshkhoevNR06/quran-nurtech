@@ -24,6 +24,21 @@
   --text-title-lg: 30px;
   --text-display: 42px;
 
+  /* Compatibility scale while page-level styles are migrated. */
+  --fs-11: var(--text-xs);
+  --fs-12: var(--text-sm);
+  --fs-13: var(--text-callout);
+  --fs-14: var(--text-body-sm);
+  --fs-15: var(--text-body);
+  --fs-16: 16px;
+  --fs-17: var(--text-body-lg);
+  --fs-18: 18px;
+  --fs-20: var(--text-title-sm);
+  --fs-22: 22px;
+  --fs-26: 26px;
+  --fs-30: var(--text-title-lg);
+  --fs-34: 34px;
+
   --lh-tight: 1.14;
   --lh-ui: 1.28;
   --lh-body: 1.55;
@@ -48,6 +63,15 @@
   --space-10: 40px;
   --space-12: 48px;
 
+  --sp-1: var(--space-1);
+  --sp-2: var(--space-2);
+  --sp-3: var(--space-3);
+  --sp-4: var(--space-4);
+  --sp-5: var(--space-5);
+  --sp-6: var(--space-6);
+  --sp-8: var(--space-8);
+  --sp-10: var(--space-10);
+
   /* Radius */
   --radius-xxs: 6px;
   --radius-xs: 7px;
@@ -71,6 +95,7 @@
   --sidebar-w: 292px;
   --inspector-w: clamp(360px, 31vw, 420px);
   --content-max: 860px;
+  --maxw: var(--content-max);
 
   /* System colors: light */
   --sys-bg: #f5f5f7;
@@ -93,6 +118,8 @@
   --sys-accent: #596575;
   --sys-accent-contrast: #ffffff;
   --sys-green: #34c759;
+  --sys-yellow: #ffcc00;
+  --sys-red: #ff453a;
 
   /* Materials */
   --material-blur: blur(22px) saturate(180%);
@@ -128,15 +155,25 @@
   --glass-bg: var(--sys-material);
   --glass-bg-strong: var(--sys-material-strong);
   --glass-border: rgba(255, 255, 255, 0.54);
+  --glass-active: var(--sys-fill-strong);
   --glass-shadow: rgba(0, 0, 0, 0.12);
+  --glass-spec: rgba(255, 255, 255, 0.7);
+  --glass-gloss: rgba(255, 255, 255, 0.28);
   --glass-elev: var(--shadow-popover);
   --glass-elev-sm: var(--shadow-card);
   --glass-blur: var(--material-blur);
+  --shadow-pop: var(--shadow-popover);
   --seg-track: var(--sys-fill);
   --seg-thumb: var(--sys-secondary-grouped-bg);
   --seg-thumb-bd: var(--sys-separator);
   --knob: #ffffff;
+  --hl: rgba(255, 204, 0, 0.24);
+  --good: var(--sys-green);
+  --mid: var(--sys-yellow);
+  --low: var(--sys-red);
+  --ease: 0.18s cubic-bezier(0.32, 0.72, 0, 1);
   --sans: var(--font-ui);
+  --serif: 'Georgia', 'Iowan Old Style', 'Times New Roman', serif;
   --radius-s: var(--radius-xs);
   --r-sm: var(--radius-sm);
   --r-md: var(--radius-md);

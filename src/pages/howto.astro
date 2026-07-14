@@ -44,7 +44,7 @@ const keys = [
     <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:8px;margin-top:8px">
       {keys.map(([k, v]) => (
         <div style="display:flex;gap:10px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:var(--r-md);padding:8px 12px">
-          <kbd style="font:700 12px/1 var(--sans);background:var(--surface-2);border:1px solid var(--line);border-radius:6px;padding:4px 8px">{k}</kbd>
+          <kbd style="font: var(--weight-semibold) 12px/1 var(--sans);background:var(--surface-2);border:1px solid var(--line);border-radius:6px;padding:4px 8px">{k}</kbd>
           <span style="color:var(--ink-soft)">{v}</span>
         </div>
       ))}

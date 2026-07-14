@@ -63,6 +63,13 @@ const description = 'Анонимная статистика чтения: ус�
         var el = document.querySelector('[data-stat="' + name + '"]');
         if (el) el.textContent = value;
       }
+      var readApiEnabled =
+        location.hostname === 'quran.nurtech.dev' || location.hostname.endsWith('.nurtech.dev');
+      if (!readApiEnabled) {
+        var localTop = document.querySelector('[data-stats-top]');
+        if (localTop) localTop.innerHTML = '<tr><td colspan="5">Сборщик статистики недоступен в локальном preview</td></tr>';
+        return;
+      }
       fetch('/api/read/summary', { headers: { Accept: 'application/json' } })
         .then(function (r) {
           if (!r.ok) throw new Error('api');

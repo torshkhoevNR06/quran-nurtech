@@ -126,7 +126,7 @@ const description =
   }
   .tb-num {
     font-size: clamp(56px, 18vw, 84px);
-    font-weight: 800;
+    font-weight: var(--weight-strong);
     letter-spacing: -0.03em;
     line-height: 1;
     font-variant-numeric: tabular-nums;
@@ -149,7 +149,7 @@ const description =
     background: transparent;
     color: var(--ink-soft);
     border-radius: var(--radius-md);
-    font: 700 var(--fs-16) / 1 var(--sans);
+    font: var(--weight-semibold) var(--fs-16) / 1 var(--sans);
     cursor: pointer;
   }
   .tb-targets button.on {
@@ -177,7 +177,7 @@ const description =
   }
   .tb-stats b {
     font-size: 22px;
-    font-weight: 800;
+    font-weight: var(--weight-strong);
     font-variant-numeric: tabular-nums;
   }
   .tb-count.done .tb-fill {
