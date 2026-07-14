@@ -1,13 +1,16 @@
 ---
 import Base from '../layouts/Base.astro';
+import PageHeader from '../components/ui/PageHeader.astro';
+import PageShell from '../components/ui/PageShell.astro';
 const title = 'Скачать Коран — тексты и аудио';
 const description = 'Скачать данные Корана: перевод в JSON и CSV, аудио по сурам и аятам. Источники и форматы.';
 ---
 
 <Base {title} {description}>
-  <div class="container page">
-    <h1>Скачать</h1>
-    <p>Тексты и аудио доступны для скачивания. Данные — из открытых источников (см. <a class="link" href="/about" style="color:var(--accent)">О проекте</a>).</p>
+  <PageShell>
+    <PageHeader title="Скачать">
+      <p>Тексты и аудио доступны для скачивания. Данные — из открытых источников (см. <a class="link" href="/about" style="color:var(--accent)">О проекте</a>).</p>
+    </PageHeader>
 
     <h2>Тексты</h2>
     <ul>
@@ -40,7 +43,7 @@ const description = 'Скачать данные Корана: перевод в
     </p>
 
     <div class="toast" data-dl-toast style="display:none"></div>
-  </div>
+  </PageShell>
 
   <script is:inline>
     document.querySelector('[data-csv]')?.addEventListener('click', async function () {

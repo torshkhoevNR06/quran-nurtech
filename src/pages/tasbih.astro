@@ -1,16 +1,19 @@
 ---
 import Base from '../layouts/Base.astro';
+import PageHeader from '../components/ui/PageHeader.astro';
+import PageShell from '../components/ui/PageShell.astro';
 const title = 'Тасбих — электронный счётчик зикров';
 const description =
   'Электронный тасбих: считайте зикр (СубханаЛлах, АльхамдулиЛлах, Аллаху Акбар) — большая зона тапа, круги по 33/99/100, тактильный отклик, сохранение прогресса.';
 ---
 
 <Base {title} {description}>
-  <div class="container page tasbih" data-tasbih>
-    <header class="tb-head">
-      <h1>Тасбих</h1>
-      <p>Счётчик зикров — нажимайте на круг. Прогресс сохраняется на этом устройстве.</p>
-    </header>
+  <PageShell class="tasbih" narrow data-tasbih>
+    <PageHeader
+      class="tb-head"
+      title="Тасбих"
+      description="Счётчик зикров — нажимайте на круг. Прогресс сохраняется на этом устройстве."
+    />
 
     <div class="tb-dhikr" data-dhikr-row>
       <button type="button" class="on" data-dhikr="СубханаЛлах">СубханаЛлах</button>
@@ -46,7 +49,7 @@ const description =
     <div class="tb-actions">
       <button type="button" class="btn ghost" data-reset>Сбросить круг</button>
     </div>
-  </div>
+  </PageShell>
 </Base>
 
 <style is:global>

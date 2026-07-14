@@ -1,25 +1,29 @@
 ---
 import Base from '../layouts/Base.astro';
+import PageHeader from '../components/ui/PageHeader.astro';
+import PageShell from '../components/ui/PageShell.astro';
 const title = 'Закладки и коллекции — сохранённые аяты';
 const description =
   'Ваши закладки Корана с группировкой по именованным коллекциям: соберите аяты по темам (для заучивания, дуа, важное) — всё на этом устройстве, без входа.';
 ---
 
 <Base {title} {description}>
-  <div class="container page bmp" data-bmp>
-    <header class="bmp-head">
-      <h1>Закладки</h1>
-      <p>Сохранённые аяты. Группируйте их в коллекции по темам.</p>
+  <PageShell class="bmp" narrow data-bmp>
+    <PageHeader
+      class="bmp-head"
+      title="Закладки"
+      description="Сохранённые аяты. Группируйте их в коллекции по темам."
+    >
       <form class="bmp-new" data-new-form>
         <input type="text" placeholder="Новая коллекция…" data-new-name maxlength="40" aria-label="Название коллекции" />
         <button type="submit" class="btn primary">Создать</button>
       </form>
-    </header>
+    </PageHeader>
 
     <div class="bmp-body" data-body>
       <p class="bmp-empty" data-loading>Загрузка…</p>
     </div>
-  </div>
+  </PageShell>
 </Base>
 
 <style is:global>

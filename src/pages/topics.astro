@@ -1,5 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
+import PageHeader from '../components/ui/PageHeader.astro';
+import PageShell from '../components/ui/PageShell.astro';
 const title = 'Аяты по темам — тематические подборки Корана';
 const description =
   'Тематические подборки аятов Корана: терпение, упование, прощение, благодарность, семья и родители, дуа, богобоязненность, милосердие Аллаха, трудности и облегчение — быстрый доступ без знания номеров.';
@@ -175,11 +177,12 @@ const topics = [
 ---
 
 <Base {title} {description}>
-  <div class="container page topics">
-    <header class="tp-head">
-      <h1>Аяты по темам</h1>
-      <p>Быстрый доступ к аятам по жизненным темам — без знания номеров.</p>
-    </header>
+  <PageShell class="topics">
+    <PageHeader
+      class="tp-head"
+      title="Аяты по темам"
+      description="Быстрый доступ к аятам по жизненным темам — без знания номеров."
+    />
 
     <div class="tp-grid">
       {
@@ -198,7 +201,7 @@ const topics = [
         ))
       }
     </div>
-  </div>
+  </PageShell>
 </Base>
 
 <style is:global>

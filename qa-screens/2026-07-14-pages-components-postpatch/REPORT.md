@@ -1,0 +1,2 @@
+- desktop-stats /stats/: ok
+- mobile-backup-clean /backup/: ok

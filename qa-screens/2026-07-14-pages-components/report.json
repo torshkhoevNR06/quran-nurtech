@@ -1,0 +1,178 @@
+[
+  {
+    "viewport": "desktop",
+    "route": "/",
+    "status": 200,
+    "ok": true,
+    "metrics": {
+      "overflowX": 0,
+      "h": 6660
+    },
+    "errors": []
+  },
+  {
+    "viewport": "desktop",
+    "route": "/stats/",
+    "status": 200,
+    "ok": true,
+    "metrics": {
+      "overflowX": 0,
+      "h": 621
+    },
+    "errors": []
+  },
+  {
+    "viewport": "desktop",
+    "route": "/bookmarks/",
+    "status": 200,
+    "ok": true,
+    "metrics": {
+      "overflowX": 0,
+      "h": 448
+    },
+    "errors": []
+  },
+  {
+    "viewport": "desktop",
+    "route": "/glossary/",
+    "status": 200,
+    "ok": true,
+    "metrics": {
+      "overflowX": 0,
+      "h": 3945
+    },
+    "errors": []
+  },
+  {
+    "viewport": "desktop",
+    "route": "/topics/",
+    "status": 200,
+    "ok": true,
+    "metrics": {
+      "overflowX": 0,
+      "h": 2046
+    },
+    "errors": []
+  },
+  {
+    "viewport": "desktop",
+    "route": "/progress/",
+    "status": 200,
+    "ok": true,
+    "metrics": {
+      "overflowX": 0,
+      "h": 2930
+    },
+    "errors": []
+  },
+  {
+    "viewport": "desktop",
+    "route": "/surah/17/",
+    "status": 200,
+    "ok": true,
+    "metrics": {
+      "overflowX": 0,
+      "h": 74729
+    },
+    "errors": []
+  },
+  {
+    "viewport": "desktop",
+    "route": "/mushaf/3/",
+    "status": 200,
+    "ok": true,
+    "metrics": {
+      "overflowX": 0,
+      "h": 928
+    },
+    "errors": []
+  },
+  {
+    "viewport": "mobile",
+    "route": "/",
+    "status": 200,
+    "ok": true,
+    "metrics": {
+      "overflowX": 0,
+      "h": 12705
+    },
+    "errors": []
+  },
+  {
+    "viewport": "mobile",
+    "route": "/stats/",
+    "status": 200,
+    "ok": true,
+    "metrics": {
+      "overflowX": 0,
+      "h": 755
+    },
+    "errors": []
+  },
+  {
+    "viewport": "mobile",
+    "route": "/bookmarks/",
+    "status": 200,
+    "ok": true,
+    "metrics": {
+      "overflowX": 0,
+      "h": 484
+    },
+    "errors": []
+  },
+  {
+    "viewport": "mobile",
+    "route": "/glossary/",
+    "status": 200,
+    "ok": true,
+    "metrics": {
+      "overflowX": 0,
+      "h": 4493
+    },
+    "errors": []
+  },
+  {
+    "viewport": "mobile",
+    "route": "/topics/",
+    "status": 200,
+    "ok": true,
+    "metrics": {
+      "overflowX": 0,
+      "h": 4441
+    },
+    "errors": []
+  },
+  {
+    "viewport": "mobile",
+    "route": "/progress/",
+    "status": 200,
+    "ok": true,
+    "metrics": {
+      "overflowX": 0,
+      "h": 3748
+    },
+    "errors": []
+  },
+  {
+    "viewport": "mobile",
+    "route": "/surah/17/",
+    "status": 200,
+    "ok": true,
+    "metrics": {
+      "overflowX": 0,
+      "h": 76283
+    },
+    "errors": []
+  },
+  {
+    "viewport": "mobile",
+    "route": "/mushaf/3/",
+    "status": 200,
+    "ok": true,
+    "metrics": {
+      "overflowX": 0,
+      "h": 790
+    },
+    "errors": []
+  }
+]

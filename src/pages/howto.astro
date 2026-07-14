@@ -1,5 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
+import PageHeader from '../components/ui/PageHeader.astro';
+import PageShell from '../components/ui/PageShell.astro';
 const title = 'Как работать с сайтом — Коран онлайн';
 const description = 'Инструкция: быстрый переход, режимы отображения, аудио, закладки, темы, горячие клавиши.';
 const keys = [
@@ -19,8 +21,8 @@ const keys = [
 ---
 
 <Base {title} {description}>
-  <div class="container page">
-    <h1>Как работать с сайтом</h1>
+  <PageShell>
+    <PageHeader title="Как работать с сайтом" />
 
     <h2>Быстрый переход</h2>
     <p>Поле вверху принимает: номер суры (<b>18</b>), номер аята (<b>2:255</b>), название (<b>ясин</b>, <b>аль-кахф</b>). Нажмите Enter — откроется нужное место.</p>
@@ -49,5 +51,5 @@ const keys = [
         </div>
       ))}
     </div>
-  </div>
+  </PageShell>
 </Base>

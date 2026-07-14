@@ -1,16 +1,17 @@
 ---
 import Base from '../layouts/Base.astro';
+import PageHeader from '../components/ui/PageHeader.astro';
+import PageShell from '../components/ui/PageShell.astro';
 const title = 'Статистика чтения — Коран онлайн';
 const description = 'Анонимная статистика чтения: устройства, прочитанные аяты, время и стрики.';
 ---
 
 <Base {title} {description}>
-  <div class="container page stats-page">
-    <h1>Статистика чтения</h1>
-    <p>
-      Здесь показаны анонимные устройства, а не люди: сайт не требует входа и различает читателей
-      только по локальному идентификатору браузера.
-    </p>
+  <PageShell class="stats-page">
+    <PageHeader
+      title="Статистика чтения"
+      description="Здесь показаны анонимные устройства, а не люди: сайт не требует входа и различает читателей только по локальному идентификатору браузера."
+    />
 
     <section class="stats-grid" data-stats-root>
       <div class="stat-tile">
@@ -31,24 +32,28 @@ const description = 'Анонимная статистика чтения: ус�
       </div>
     </section>
 
-    <h2>Топ устройств</h2>
-    <div class="stats-table-wrap">
-      <table class="stats-table">
-        <thead>
-          <tr>
-            <th>Устройство</th>
-            <th>Аяты</th>
-            <th>Охват</th>
-            <th>Время</th>
-            <th>Стрик</th>
-          </tr>
-        </thead>
-        <tbody data-stats-top>
-          <tr><td colspan="5">Загружаю…</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
+    <section class="ui-section">
+      <div class="ui-section-header">
+        <h2 class="ui-section-title">Топ устройств</h2>
+      </div>
+      <div class="stats-table-wrap">
+        <table class="stats-table">
+          <thead>
+            <tr>
+              <th>Устройство</th>
+              <th>Аяты</th>
+              <th>Охват</th>
+              <th>Время</th>
+              <th>Стрик</th>
+            </tr>
+          </thead>
+          <tbody data-stats-top>
+            <tr><td colspan="5">Загружаю…</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </PageShell>
 
   <script is:inline>
     (function () {

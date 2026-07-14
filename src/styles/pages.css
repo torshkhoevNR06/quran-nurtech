@@ -1,0 +1,946 @@
+/* ==========================================================================
+   Pages: generic content, home/search/audio/stats compatibility layer
+   ========================================================================== */
+
+/* ---- Stats tables ---- */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin: 22px 0 28px;
+}
+.stat-tile {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 14px;
+  background: var(--surface);
+}
+.stat-tile span {
+  display: block;
+  color: var(--ink-faint);
+  font-size: 13px;
+  margin-bottom: 7px;
+}
+.stat-tile b {
+  color: var(--ink);
+  font-size: 26px;
+}
+.stats-table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+.stats-table {
+  width: 100%;
+  min-width: 620px;
+  border-collapse: collapse;
+  background: var(--surface);
+}
+.stats-table th,
+.stats-table td {
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  font-size: 14px;
+}
+.stats-table th {
+  color: var(--ink-faint);
+  font-weight: var(--weight-semibold);
+}
+.stats-table tr:last-child td {
+  border-bottom: 0;
+}
+@media (max-width: 760px) {
+  .stats-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .stats-table-wrap {
+    overflow: visible;
+    border: 0;
+    border-radius: 0;
+  }
+  .stats-table,
+  .stats-table thead,
+  .stats-table tbody,
+  .stats-table tr,
+  .stats-table td {
+    display: block;
+    width: 100%;
+    min-width: 0;
+  }
+  .stats-table {
+    background: transparent;
+    border-collapse: separate;
+  }
+  .stats-table thead {
+    display: none;
+  }
+  .stats-table tr {
+    margin-bottom: 10px;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: var(--surface);
+    box-shadow: var(--shadow-card);
+    overflow: hidden;
+  }
+  .stats-table td {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--line);
+    text-align: right;
+    font-size: 14px;
+  }
+  .stats-table td::before {
+    content: attr(data-label);
+    flex: none;
+    color: var(--ink-faint);
+    font-weight: var(--weight-semibold);
+    text-align: left;
+  }
+  .stats-table td:first-child {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 4px;
+    text-align: left;
+    font-weight: var(--weight-semibold);
+  }
+  .stats-table td:first-child::before {
+    font-size: 11px;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+  }
+  .stats-table td:last-child {
+    border-bottom: 0;
+  }
+  .stats-table td[colspan] {
+    display: block;
+    text-align: left;
+  }
+  .stats-table td[colspan]::before {
+    content: none;
+  }
+}
+
+/* ---- Generic pages and footer ---- */
+/* ==========================================================================
+   Прочее
+   ========================================================================== */
+.page {
+  padding: 30px 0 90px;
+}
+.page h1 {
+  font-size: clamp(28px, 5vw, 38px);
+  margin: 0 0 10px;
+}
+.page h2 {
+  font-size: 21px;
+  margin: 28px 0 8px;
+}
+.page p,
+.page li {
+  color: var(--ink-soft);
+  line-height: 1.72;
+}
+.page a.link {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.crumb {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  color: var(--ink-faint);
+  font-size: 13px;
+  padding: 18px 0 0;
+}
+.crumb a:hover {
+  color: var(--accent);
+}
+.footer {
+  margin-top: 30px;
+  border-top: 1px solid var(--line);
+  padding: 28px 0 44px;
+  color: var(--ink-faint);
+  font-size: 13px;
+}
+.footer .fnav {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+.footer .fnav a:hover {
+  color: var(--accent);
+}
+
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: 104px;
+  transform: translateX(-50%) translateY(20px);
+  background: var(--glass-bg-strong);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  color: var(--ink);
+  padding: 11px 20px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: var(--weight-semibold);
+  box-shadow: var(--glass-elev);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s, transform 0.25s;
+  z-index: 90;
+}
+.toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+.hide {
+  display: none !important;
+}
+.only-mobile {
+  display: none;
+}
+.sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}
+.ayah-nav {
+  display: flex;
+  gap: 8px;
+  justify-content: space-between;
+  margin: 24px 0;
+  flex-wrap: wrap;
+}
+
+/* ---- Page compatibility ---- */
+/* ==========================================================================
+   Page compatibility layer: older page selectors kept while templates migrate
+   to the shared components.css patterns.
+   ========================================================================== */
+body::before {
+  opacity: 0.34;
+  filter: blur(8px) saturate(0.9);
+}
+
+body::after {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.24), color-mix(in srgb, var(--bg) 88%, transparent));
+}
+
+.topbar {
+  padding-top: 8px;
+}
+
+.topbar-inner {
+  max-width: 1080px;
+  min-height: 54px;
+  padding: 6px 10px;
+  border-radius: 18px;
+}
+
+.topbar-inner::before,
+.surah-card::before,
+.surah-desc::before,
+.ayahs::before,
+.glass::before {
+  display: none;
+}
+
+.topbar-title {
+  flex: 1;
+  min-width: 0;
+  color: var(--ink-soft);
+  font-weight: var(--weight-semibold);
+}
+
+.quick {
+  max-width: 320px;
+}
+
+.quick-submit {
+  width: 42px;
+  padding: 0;
+  font-size: 18px;
+}
+
+.topbar-inner.is-reader .quick {
+  flex: 0 0 220px;
+  max-width: 220px;
+}
+
+.btn,
+.icon-btn,
+.chip,
+select.sel,
+.list-tools .filter {
+  box-shadow: var(--glass-elev-sm);
+}
+
+.btn:hover,
+.icon-btn:hover,
+.surah-card:hover {
+  transform: none;
+}
+
+.desktop-comfort {
+  display: none;
+}
+
+.page-head {
+  max-width: 760px;
+  margin-bottom: 18px;
+}
+
+.container.page {
+  padding-right: 16px;
+  padding-left: 16px;
+}
+
+.eyebrow {
+  margin: 0 0 6px;
+  color: var(--accent);
+  font: 600 12px/1 var(--sans);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.home-head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 22px;
+  align-items: end;
+  padding-top: 40px;
+  padding-bottom: 22px;
+}
+
+.home-copy h1 {
+  margin: 0 0 10px;
+  font-size: clamp(34px, 6vw, 52px);
+}
+
+.home-copy .verse {
+  direction: rtl;
+  color: var(--accent);
+  font-family: var(--ar-font), 'AmiriQuran', serif;
+  font-size: clamp(23px, 4.4vw, 32px);
+  line-height: 1.9;
+}
+
+.home-copy .verse-tr {
+  max-width: 560px;
+  margin: 4px 0 0;
+  color: var(--ink-soft);
+}
+
+.home-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+.quick-surahs {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 10px;
+  margin: 4px 0 18px;
+}
+
+.quick-surah {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: 10px;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  background: var(--surface);
+}
+
+.quick-surah:hover {
+  border-color: color-mix(in srgb, var(--accent) 32%, var(--line));
+}
+
+.quick-surah-num {
+  display: grid;
+  flex: none;
+  width: 32px;
+  height: 32px;
+  place-items: center;
+  border-radius: 10px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-weight: var(--weight-strong);
+}
+
+.quick-surah strong,
+.quick-surah small {
+  display: block;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.quick-surah small {
+  color: var(--ink-faint);
+  font-size: 12px;
+}
+
+.hero {
+  padding: 34px 16px 20px;
+}
+
+.surah-grid {
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 12px;
+}
+
+.surah-card {
+  min-width: 0;
+  overflow: hidden;
+  border-color: var(--line);
+  border-radius: 16px;
+  background: var(--surface);
+  box-shadow: 0 10px 24px -22px var(--glass-shadow);
+}
+
+.surah-card .num {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  transform: none;
+}
+
+.surah-card .num span {
+  transform: none;
+}
+
+.surah-card .row1,
+.surah-card .row2 {
+  min-width: 0;
+}
+
+.surah-card .r,
+.surah-card .m {
+  flex: 1 1 auto;
+}
+
+.surah-card .ar-name {
+  min-width: 0;
+  max-width: 42%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.surah-head {
+  padding: 22px 16px 8px;
+}
+
+.surah-head .ar {
+  font-size: 28px;
+  line-height: 1.5;
+}
+
+.surah-desc {
+  overflow: hidden;
+  padding: 0;
+  border-color: var(--line);
+  background: var(--surface);
+}
+
+.surah-desc summary {
+  cursor: pointer;
+  padding: 13px 16px;
+  color: var(--ink);
+  font-weight: var(--weight-semibold);
+  list-style: none;
+}
+
+.surah-desc summary::-webkit-details-marker {
+  display: none;
+}
+
+.surah-desc summary::before {
+  display: inline-block;
+  margin-right: 8px;
+  color: var(--accent);
+  content: '▸';
+}
+
+.surah-desc[open] summary::before {
+  content: '▾';
+}
+
+.surah-desc p {
+  margin: 0;
+  padding: 0 16px 16px;
+}
+
+.ayahs {
+  padding: 6px 20px;
+  border-color: var(--line);
+  border-radius: 18px;
+  background: var(--surface);
+  box-shadow: 0 14px 34px -30px var(--glass-shadow);
+}
+
+.ayah {
+  border-radius: 12px;
+}
+
+.ayah.active {
+  background: color-mix(in srgb, var(--accent-soft) 46%, var(--surface));
+}
+
+.ayah-acts {
+  opacity: 0.72;
+}
+
+.ayah:hover .ayah-acts,
+.ayah.active .ayah-acts {
+  opacity: 1;
+}
+
+.tafsir-passage,
+.tafsir-details {
+  background: var(--surface-soft);
+}
+
+.search-form {
+  display: grid;
+  grid-template-columns: minmax(260px, 1fr) auto auto auto auto;
+  gap: 8px;
+  align-items: center;
+  margin: 18px 0;
+}
+
+.search-input-wrap {
+  display: flex;
+  min-width: 0;
+  height: 46px;
+  align-items: center;
+  gap: 8px;
+  padding: 0 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  background: var(--surface);
+}
+
+.search-input-wrap input {
+  flex: 1;
+  min-width: 0;
+  height: 44px;
+  border: 0;
+  outline: none;
+  background: transparent;
+  color: var(--ink);
+  font-size: 16px;
+}
+
+.search-empty {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  background: var(--surface);
+}
+
+.search-empty h2 {
+  margin: 0 0 4px;
+  font-size: 20px;
+}
+
+.search-empty p {
+  margin: 0;
+}
+
+.example-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.search-example {
+  border: 1px solid var(--line);
+  cursor: pointer;
+}
+
+.search-results {
+  display: grid;
+  gap: 10px;
+}
+
+.search-result {
+  display: block;
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  background: var(--surface);
+}
+
+.search-result-top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.search-result .translation {
+  display: block;
+}
+
+.audio-selectors {
+  display: grid;
+  grid-template-columns: minmax(240px, 1fr) minmax(220px, 0.75fr);
+  gap: 10px;
+  margin: 18px 0;
+}
+
+.audio-selectors label span {
+  display: block;
+  margin: 0 0 6px;
+  color: var(--ink-faint);
+  font-size: 13px;
+  font-weight: var(--weight-semibold);
+}
+
+.audio-selectors select {
+  width: 100%;
+}
+
+.audio-now {
+  position: sticky;
+  z-index: 10;
+  top: calc(var(--topbar-h) + 14px);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  background: var(--surface);
+  box-shadow: 0 12px 28px -24px var(--glass-shadow);
+}
+
+.audio-now .now {
+  flex: 1;
+  min-width: 0;
+}
+
+.audio-now .t {
+  font-size: 18px;
+  font-weight: var(--weight-strong);
+}
+
+.audio-now .s {
+  color: var(--ink-faint);
+  font-size: 13px;
+}
+
+.audio-controls {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.audio-main-play {
+  width: 48px;
+  height: 48px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+
+.speed {
+  font: var(--weight-strong) 12px/1 var(--sans);
+}
+
+.audio-list {
+  display: grid;
+  gap: 6px;
+  margin-top: 14px;
+}
+
+.audio-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 10px;
+  border: 1px solid transparent;
+  border-radius: var(--r-md);
+}
+
+.audio-row:hover,
+.audio-row.active {
+  border-color: var(--line);
+  background: var(--surface);
+}
+
+.audio-row-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.audio-row-text b,
+.audio-row-text small {
+  display: block;
+}
+
+.audio-row-text small {
+  color: var(--ink-faint);
+}
+
+@media (max-width: 920px) {
+  .brand-domain {
+    display: none;
+  }
+
+  .topbar-inner.is-reader .brand-name {
+    display: none;
+  }
+
+  .topbar-inner.is-reader .quick {
+    flex-basis: 150px;
+    max-width: 150px;
+  }
+
+  .search-form {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .search-input-wrap {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 820px) {
+  .topbar-inner {
+    gap: 6px;
+  }
+
+  .brand {
+    flex: none;
+  }
+
+  .brand-mark,
+  .brand-mark img {
+    width: 38px;
+    height: 38px;
+    border-radius: 14px;
+  }
+
+  .quick {
+    flex: 1 1 120px;
+  }
+
+  .quick input {
+    font-size: 14px;
+  }
+
+  .home-head {
+    display: block;
+    padding-top: 34px;
+    text-align: center;
+  }
+
+  .home-actions {
+    justify-content: center;
+    margin-top: 20px;
+  }
+
+  .quick-surahs {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .quick-surahs .quick-surah:first-child {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 560px) {
+  :root {
+    --ar-size: 26px;
+    --ru-size: 17px;
+    --topbar-h: 54px;
+  }
+
+  .topbar {
+    padding-inline: 6px;
+  }
+
+  .topbar-inner {
+    gap: 4px;
+    padding-inline: 6px;
+    border-radius: 17px;
+  }
+
+  .topbar-inner .brand {
+    padding: 0;
+  }
+
+  .topbar-inner .brand-mark,
+  .topbar-inner .brand-mark img {
+    width: 30px;
+    height: 30px;
+  }
+
+  .topbar-title {
+    font-size: 14px;
+  }
+
+  .topbar-inner > a.icon-btn[aria-label='Поиск'] {
+    display: inline-grid;
+  }
+
+  .topbar-inner.is-search > a.icon-btn[aria-label='Поиск'] {
+    display: none;
+  }
+
+  .topbar-inner.is-reader > .menu-wrap:not(.settings-menu-wrap) {
+    display: none;
+  }
+
+  .quick input {
+    padding: 0 10px;
+  }
+
+  .quick-submit {
+    width: 38px;
+  }
+
+  .home-copy h1 {
+    font-size: 34px;
+  }
+
+  .home-copy .verse-tr {
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .home-actions .btn {
+    min-width: 138px;
+  }
+
+  .quick-surahs {
+    grid-template-columns: 1fr;
+  }
+
+  .list-tools {
+    margin-top: 14px;
+  }
+
+  .surah-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .surah-card {
+    width: 100%;
+    gap: 10px;
+    padding: 13px 12px;
+  }
+
+  .surah-card .ar-name {
+    max-width: 34%;
+    font-size: 18px;
+  }
+
+  .surah-card .acts {
+    gap: 0;
+  }
+
+  .surah-card .acts a {
+    width: 28px;
+  }
+
+  .surah-card .acts a:nth-child(n + 2) {
+    display: none;
+  }
+
+  .surah-head {
+    padding-top: 18px;
+  }
+
+  .surah-head h1 {
+    font-size: 30px;
+  }
+
+  .surah-desc {
+    margin: 12px 0;
+  }
+
+  .ayahs {
+    margin-bottom: 96px;
+    padding: 6px 14px;
+    border-radius: 18px;
+  }
+
+  .ayah {
+    padding: 18px 0;
+  }
+
+  .ayah.active {
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+
+  .ayah-acts {
+    gap: 1px;
+    opacity: 1;
+  }
+
+  .ayah-acts .secondary-action {
+    display: none;
+  }
+
+  .ayah-acts button,
+  .ayah-acts a {
+    width: 32px;
+  }
+
+  .search-form {
+    grid-template-columns: 1fr;
+  }
+
+  .search-form .btn {
+    width: fit-content;
+  }
+
+  .search-empty {
+    display: block;
+  }
+
+  .example-row {
+    justify-content: flex-start;
+    margin-top: 14px;
+  }
+
+  .audio-selectors {
+    grid-template-columns: 1fr;
+  }
+
+  .audio-now {
+    top: calc(var(--topbar-h) + 10px);
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .audio-controls {
+    justify-content: space-between;
+  }
+}

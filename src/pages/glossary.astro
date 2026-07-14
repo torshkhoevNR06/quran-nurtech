@@ -1,5 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
+import PageHeader from '../components/ui/PageHeader.astro';
+import PageShell from '../components/ui/PageShell.astro';
 const title = 'Словарь исламских терминов — глоссарий Корана';
 const description =
   'Краткий словарь ключевых исламских терминов, встречающихся в переводах и тафсирах Корана: таква, тавхид, иман, ихсан, джаннат, барзах и другие — с понятными объяснениями на русском.';
@@ -48,12 +50,14 @@ const terms = [
 ---
 
 <Base {title} {description}>
-  <div class="container page gloss">
-    <header class="gl-head">
-      <h1>Словарь терминов</h1>
-      <p>Ключевые исламские понятия из переводов и тафсиров — коротко и по-русски.</p>
+  <PageShell class="gloss" narrow>
+    <PageHeader
+      class="gl-head"
+      title="Словарь терминов"
+      description="Ключевые исламские понятия из переводов и тафсиров — коротко и по-русски."
+    >
       <input type="search" placeholder="Найти термин…" data-gl-search aria-label="Поиск термина" />
-    </header>
+    </PageHeader>
 
     <div class="gl-list" data-gl-list>
       {
@@ -69,7 +73,7 @@ const terms = [
       }
     </div>
     <p class="gl-empty" data-gl-empty hidden>Ничего не найдено.</p>
-  </div>
+  </PageShell>
 </Base>
 
 <style is:global>

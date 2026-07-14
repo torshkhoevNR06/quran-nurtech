@@ -1,12 +1,14 @@
 ---
 import Base from '../layouts/Base.astro';
+import PageHeader from '../components/ui/PageHeader.astro';
+import PageShell from '../components/ui/PageShell.astro';
 const title = 'О проекте — Коран онлайн';
 const description = 'О проекте «Коран онлайн» (quran.nurtech.dev): цели, источники текстов и аудио, лицензии.';
 ---
 
 <Base {title} {description}>
-  <div class="container page">
-    <h1>О проекте</h1>
+  <PageShell>
+    <PageHeader title="О проекте" />
     <p>
       «Коран онлайн» на <b>quran.nurtech.dev</b> — сайт для чтения, изучения, прослушивания
       и заучивания Корана на русском языке. Мы стремимся сделать удобное, быстрое и бесплатное
@@ -40,5 +42,5 @@ const description = 'О проекте «Коран онлайн» (quran.nurtec
 
     <h2>Проект NurTech</h2>
     <p>Часть экосистемы NurTech. Смежные страницы: <a class="link" href="/howto" style="color:var(--accent)">Как работать с сайтом</a>, <a class="link" href="/translators" style="color:var(--accent)">О переводчиках</a>, <a class="link" href="/privacy" style="color:var(--accent)">Конфиденциальность</a>.</p>
-  </div>
+  </PageShell>
 </Base>

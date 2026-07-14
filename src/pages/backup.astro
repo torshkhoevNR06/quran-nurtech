@@ -1,34 +1,34 @@
 ---
 import Base from '../layouts/Base.astro';
+import Card from '../components/ui/Card.astro';
+import PageHeader from '../components/ui/PageHeader.astro';
+import PageShell from '../components/ui/PageShell.astro';
 const title = 'Резервная копия — перенос закладок и прогресса';
 const description =
   'Экспорт и импорт ваших данных: закладки, заметки, прогресс чтения, стрик, настройки. Выгрузите в файл и перенесите на другое устройство — без входа и сервера.';
 ---
 
 <Base {title} {description}>
-  <div class="container page backup">
-    <header>
-      <h1>Резервная копия</h1>
-      <p>
-        Все ваши данные хранятся только на этом устройстве (без входа). Выгрузите их в файл, чтобы
-        перенести на другое устройство или не потерять при очистке браузера.
-      </p>
-    </header>
+  <PageShell class="backup" narrow>
+    <PageHeader
+      title="Резервная копия"
+      description="Все ваши данные хранятся только на этом устройстве (без входа). Выгрузите их в файл, чтобы перенести на другое устройство или не потерять при очистке браузера."
+    />
 
-    <section class="bk-card">
+    <Card class="bk-card">
       <h2>Что сохранится</h2>
       <ul class="bk-list" data-bk-summary>
         <li>Загрузка…</li>
       </ul>
-    </section>
+    </Card>
 
-    <section class="bk-card">
+    <Card class="bk-card">
       <h2>Выгрузить</h2>
       <p>Скачает файл <code>quran-backup.json</code> со всеми вашими данными.</p>
       <button type="button" class="btn primary" data-export>Скачать резервную копию</button>
-    </section>
+    </Card>
 
-    <section class="bk-card">
+    <Card class="bk-card">
       <h2>Загрузить</h2>
       <p>Выберите ранее скачанный файл. Прогресс и дни <b>объединяются</b> (не перетираются).</p>
       <label class="btn ghost bk-import">
@@ -36,8 +36,8 @@ const description =
         <input type="file" accept="application/json,.json" data-import hidden />
       </label>
       <span class="bk-msg" data-msg></span>
-    </section>
-  </div>
+    </Card>
+  </PageShell>
 </Base>
 
 <style is:global>
