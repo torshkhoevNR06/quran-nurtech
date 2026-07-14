@@ -1,0 +1,84 @@
+[
+  {
+    "name": "home-desktop-light",
+    "url": "/",
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "theme": "light",
+    "errors": [],
+    "title": "Коран онлайн на русском — читать, слушать, изучать",
+    "heroVisible": true,
+    "cardCount": 119,
+    "topbarVisible": true,
+    "overflow": {
+      "innerWidth": 1440,
+      "scrollWidth": 1440,
+      "bodyScrollWidth": 1440,
+      "overflowing": false
+    }
+  },
+  {
+    "name": "home-mobile-light",
+    "url": "/",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "theme": "light",
+    "mobile": true,
+    "errors": [],
+    "title": "Коран онлайн на русском — читать, слушать, изучать",
+    "heroVisible": true,
+    "cardCount": 119,
+    "topbarVisible": true,
+    "overflow": {
+      "innerWidth": 390,
+      "scrollWidth": 390,
+      "bodyScrollWidth": 390,
+      "overflowing": false
+    }
+  },
+  {
+    "name": "surah-desktop-dark",
+    "url": "/surah/1/",
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "theme": "dark",
+    "errors": [],
+    "title": "Сура 1: Аль-Фатиха (Открывающая) — читать с тафсиром ас-Саади",
+    "heroVisible": false,
+    "cardCount": 0,
+    "topbarVisible": true,
+    "overflow": {
+      "innerWidth": 1440,
+      "scrollWidth": 1440,
+      "bodyScrollWidth": 1440,
+      "overflowing": false
+    }
+  },
+  {
+    "name": "search-mobile-light",
+    "url": "/search/",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "theme": "light",
+    "mobile": true,
+    "errors": [],
+    "title": "Поиск по Корану — по русскому переводу",
+    "heroVisible": false,
+    "cardCount": 0,
+    "topbarVisible": true,
+    "overflow": {
+      "innerWidth": 390,
+      "scrollWidth": 390,
+      "bodyScrollWidth": 390,
+      "overflowing": false
+    }
+  }
+]
