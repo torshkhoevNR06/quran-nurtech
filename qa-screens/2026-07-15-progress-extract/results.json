@@ -1,0 +1,28 @@
+[
+  {
+    "name": "desktop-progress",
+    "scrollWidth": 1440,
+    "clientWidth": 1440,
+    "overflowX": false,
+    "pct": "0%",
+    "read": "0",
+    "tiles": 6,
+    "mapCells": 114,
+    "juzRows": 30,
+    "hasPlan": true,
+    "errors": []
+  },
+  {
+    "name": "mobile-progress",
+    "scrollWidth": 390,
+    "clientWidth": 390,
+    "overflowX": false,
+    "pct": "0%",
+    "read": "0",
+    "tiles": 6,
+    "mapCells": 114,
+    "juzRows": 30,
+    "hasPlan": true,
+    "errors": []
+  }
+]
