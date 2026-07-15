@@ -64,6 +64,12 @@
   - стили вынесены в `src/styles/page-bookmarks.css` и `src/styles/page-tasbih.css`;
   - `tasbih` использует `Button`, `SegmentedControl` и `StatTile`;
   - динамические строки закладок получают общие `ui-card` / `ui-button` классы.
+- Убраны остаточные ручные inline-стили интерфейса:
+  - иконки кнопок переведены на `ui-inline-icon*`;
+  - меню закладок, справка, видео, поиск, 404 и инфо-страницы используют классы вместо `style=""`;
+  - заметки к аяту вынесены из `SurahView.astro` в `src/styles/reader-notes.css`;
+  - отрицательный `letter-spacing` удалён из `progress.css`.
+- Единственный оставшийся `<style is:inline>` — технический QCF `@font-face` в `mushaf/[page].astro`, зависящий от конкретной страницы мусхафа.
 - `/search/`, `/audio/`, `/download/` переведены на `PageShell` / `PageHeader` и новые UI-компоненты.
 - `/stats/` переведён на `Section` и `StatTile`, а таблица статистики обновлена под системные grouped-токены.
 - Исправлен fullscreen мушафа: `body.mushaf-immersive` теперь явно скрывает `.mobile-tabbar` вместе с остальным app chrome.
@@ -154,11 +160,17 @@
   - создание коллекции, generated `ui-card` rows, shared delete button, dhikr buttons, segmented targets, stat tiles и horizontal overflow;
   - 9 автоматических проверок, 0 падений;
   - скрины: `qa-screens/2026-07-15-bookmarks-tasbih-components/`.
+- После cleanup inline-стилей пройден targeted QA:
+  - desktop `/`, `/surah/1`, `/howto`, `/videos`;
+  - mobile `/search`, `/2:255`, `/mushaf/2`;
+  - shared icon utilities, search classes, bookmark menu empty state, shortcut rows, video tools и horizontal overflow;
+  - 16 автоматических проверок, 0 падений;
+  - скрины: `qa-screens/2026-07-15-inline-css-cleanup/`.
 
 ### Частично закрыто
 
 - Компонентная система уже покрывает базовые primitives, settings inspector, player, drawer shell, `topics`, `glossary`, `backup`, `bookmarks` и `tasbih`; клиентски генерируемые строки сур/джузов в drawer пока остаются HTML-строками.
-- Page CSS стал чище, но `image-editor` и остаточные page-specific слои ещё требуют отдельного унификационного прохода. `stats`, `audio`, `search`, `download`, `topics`, `glossary`, `backup`, `bookmarks`, `tasbih` уже ближе к общей системе.
+- Page CSS стал чище, но `image-editor` и остаточные page-specific слои ещё требуют отдельного унификационного прохода. `stats`, `audio`, `search`, `download`, `topics`, `glossary`, `backup`, `bookmarks`, `tasbih` и базовые инфо-страницы уже ближе к общей системе.
 - Мушаф стал стабильнее по fullscreen и базовой матрице, но advanced polish по zoom/pan/pinch/604-page audit ещё не закрыт полностью.
 
 ### Остаётся

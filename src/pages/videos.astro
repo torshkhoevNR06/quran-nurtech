@@ -12,18 +12,17 @@ const description = 'Видео-рецитации Корана: подборк�
     <h1>Видео-рецитации</h1>
     <p>Выберите суру и чтеца — откроется подборка видео на YouTube. Раздел с встроенным плеером пополняется.</p>
 
-    <div style="display:flex;gap:8px;flex-wrap:wrap;margin:16px 0">
-      <select class="sel" data-v-reciter aria-label="Чтец" style="min-width:220px">
+    <div class="inline-tools">
+      <select class="sel inline-control-lg" data-v-reciter aria-label="Чтец">
         <option value="">Любой чтец</option>
         {reciters.map((r) => <option value={r.name}>{r.name}</option>)}
       </select>
       <input
-        class="filter"
+        class="filter inline-control-md"
         type="text"
         placeholder="Фильтр сур…"
         data-v-filter
         aria-label="Фильтр сур"
-        style="min-width:200px"
       />
     </div>
 

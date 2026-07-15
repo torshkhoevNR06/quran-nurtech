@@ -31,7 +31,7 @@
   margin: 0;
   font-size: var(--fs-16);
   font-weight: var(--weight-semibold);
-  letter-spacing: -0.01em;
+  letter-spacing: 0;
 }
 .mini-btn {
   border: 1px solid var(--hairline);
@@ -90,7 +90,7 @@
 .ring-c b {
   font-size: 28px;
   font-weight: var(--weight-strong);
-  letter-spacing: -0.02em;
+  letter-spacing: 0;
 }
 .ring-c span {
   font-size: var(--fs-12);
@@ -243,7 +243,7 @@
 .tile b {
   font-size: 24px;
   font-weight: var(--weight-strong);
-  letter-spacing: -0.02em;
+  letter-spacing: 0;
   font-variant-numeric: tabular-nums;
 }
 

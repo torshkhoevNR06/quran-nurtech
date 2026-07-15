@@ -34,7 +34,7 @@ const keys = [
     <p>В верхней панели выбираются перевод/тафсир и чтец. Страница суры открывается по адресу вида <b>/surah/2/saadi</b> или <b>/surah/2/kuliev</b>.</p>
 
     <h2>Аудио</h2>
-    <p>Нажмите ▶ у аята — внизу появится плеер: предыдущий/следующий аят, повтор аята, повтор диапазона, скорость 0.75× / 1× / 1.25× / 1.5×. Каталог чтецов и скачивание — на странице <a class="link" href="/audio" style="color:var(--accent)">Аудио</a>.</p>
+    <p>Нажмите ▶ у аята — внизу появится плеер: предыдущий/следующий аят, повтор аята, повтор диапазона, скорость 0.75× / 1× / 1.25× / 1.5×. Каталог чтецов и скачивание — на странице <a class="link" href="/audio">Аудио</a>.</p>
 
     <h2>Закладки и «Продолжить»</h2>
     <p>«Флажок» у аята добавляет закладку. Кнопка «Продолжить» возвращает к последнему прочитанному месту. Всё хранится локально в браузере — без регистрации.</p>
@@ -43,11 +43,11 @@ const keys = [
     <p>Тема: светлая, тёмная, сепия или системная. В настройках чтения — размер арабского и русского текста, межстрочный интервал и арабский шрифт.</p>
 
     <h2>Горячие клавиши</h2>
-    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:8px;margin-top:8px">
+    <div class="shortcut-grid">
       {keys.map(([k, v]) => (
-        <div style="display:flex;gap:10px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:var(--r-md);padding:8px 12px">
-          <kbd style="font: var(--weight-semibold) 12px/1 var(--sans);background:var(--surface-2);border:1px solid var(--line);border-radius:6px;padding:4px 8px">{k}</kbd>
-          <span style="color:var(--ink-soft)">{v}</span>
+        <div class="shortcut-row">
+          <kbd>{k}</kbd>
+          <span>{v}</span>
         </div>
       ))}
     </div>

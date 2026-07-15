@@ -11,13 +11,13 @@ const description = 'Скачать данные Корана: перевод в
 <Base {title} {description}>
   <PageShell>
     <PageHeader title="Скачать">
-      <p>Тексты и аудио доступны для скачивания. Данные — из открытых источников (см. <a class="link" href="/about" style="color:var(--accent)">О проекте</a>).</p>
+      <p>Тексты и аудио доступны для скачивания. Данные — из открытых источников (см. <a class="link" href="/about">О проекте</a>).</p>
     </PageHeader>
 
     <Section title="Тексты">
       <ul>
         <li>
-          <a class="link" href="/data/search-index.json" download style="color:var(--accent)">Перевод Кулиева — JSON</a>
+          <a class="link" href="/data/search-index.json" download>Перевод Кулиева — JSON</a>
           — все 6236 аятов (сура, аят, текст).
         </li>
         <li>
@@ -25,7 +25,7 @@ const description = 'Скачать данные Корана: перевод в
           — генерируется в браузере.
         </li>
         <li>
-          <a class="link" href="/data/index.json" download style="color:var(--accent)">Список сур — JSON</a>
+          <a class="link" href="/data/index.json" download>Список сур — JSON</a>
           — метаданные 114 сур.
         </li>
         <li>PDF / EPUB — в подготовке.</li>
@@ -34,7 +34,7 @@ const description = 'Скачать данные Корана: перевод в
 
     <Section title="Аудио">
       <p>
-        Аудио по сурам и аятам скачивается на странице <a class="link" href="/audio" style="color:var(--accent)">Аудио</a>:
+        Аудио по сурам и аятам скачивается на странице <a class="link" href="/audio">Аудио</a>:
         выберите чтеца и суру, у каждого аята есть кнопка загрузки mp3. Источник — EveryAyah.
       </p>
     </Section>
@@ -43,11 +43,11 @@ const description = 'Скачать данные Корана: перевод в
       <p>
         Арабский текст (Усмани) и перевод Э. Кулиева, тафсир ас-Саади — из открытых наборов
         данных. Аудио — публичные записи чтецов через EveryAyah. Подробнее — на странице
-        <a class="link" href="/about" style="color:var(--accent)">О проекте</a>.
+        <a class="link" href="/about">О проекте</a>.
       </p>
     </Section>
 
-    <div class="toast" data-dl-toast style="display:none"></div>
+    <div class="toast" data-dl-toast hidden></div>
   </PageShell>
 
   <script is:inline>

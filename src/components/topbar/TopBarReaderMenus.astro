@@ -13,7 +13,7 @@ const reciters = getReciters();
   <div class="menu-wrap desktop-only reader-tool" data-menu-wrap>
     <button class="btn" data-menu-toggle aria-haspopup="true">
       <span data-tr-current>Тафсир</span>
-      <span set:html={icons.chevron} style="width:14px;height:14px" />
+      <span class="ui-inline-icon-xs" set:html={icons.chevron} />
     </button>
     <div class="menu" data-menu="tr">
       <h4>Перевод / тафсир</h4>
@@ -27,7 +27,7 @@ const reciters = getReciters();
             title={t.available ? '' : 'Скоро'}
           >
             {t.name}
-            {!t.available && <span style="color:var(--ink-faint);font-size:12px"> · скоро</span>}
+            {!t.available && <span class="menu-empty-note"> · скоро</span>}
             <span class="tick">✓</span>
           </button>
         ))
@@ -63,4 +63,3 @@ const reciters = getReciters();
     </div>
   </div>
 )}
-

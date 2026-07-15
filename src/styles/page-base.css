@@ -36,6 +36,66 @@
   text-underline-offset: 2px;
 }
 
+.page-center {
+  text-align: center;
+}
+
+.page-cta {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.shortcut-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.shortcut-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  background: var(--surface);
+  padding: 8px 12px;
+}
+
+.shortcut-row kbd {
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--surface-2);
+  padding: 4px 8px;
+  font: var(--weight-semibold) 12px / 1 var(--sans);
+}
+
+.shortcut-row span {
+  color: var(--ink-soft);
+}
+
+.inline-tools {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 16px 0;
+}
+
+.inline-control-md {
+  min-width: 200px;
+}
+
+.inline-control-lg {
+  min-width: 220px;
+}
+
+.page-spaced {
+  margin-top: 20px;
+}
+
 .page-head {
   max-width: 760px;
   margin-bottom: 18px;

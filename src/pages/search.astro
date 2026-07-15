@@ -18,7 +18,7 @@ const description = 'Поиск по Корану на русском языке
 
     <form data-search-form class="search-form">
       <div class="search-input-wrap">
-        <span set:html={icons.search} style="width:18px;height:18px;color:var(--ink-faint)" />
+        <span class="ui-inline-icon" set:html={icons.search} />
         <input
           type="search"
           name="q"
@@ -37,8 +37,8 @@ const description = 'Поиск по Корану на русском языке
       <select class="sel" data-search-surah aria-label="Сура">
         <option value="">Все суры</option>
       </select>
-      <label class="chip" style="cursor:pointer;user-select:none">
-        <input type="checkbox" data-search-exact style="accent-color:var(--accent)" /> Точное слово
+      <label class="chip search-exact">
+        <input type="checkbox" data-search-exact /> Точное слово
       </label>
       <Button variant="primary" type="submit">Найти</Button>
     </form>
@@ -55,7 +55,7 @@ const description = 'Поиск по Корану на русском языке
       </div>
     </div>
 
-    <div data-search-status style="color:var(--ink-faint);font-size:14px;margin-bottom:12px"></div>
+    <div class="search-status" data-search-status></div>
     <div data-search-results class="search-results"></div>
   </PageShell>
 

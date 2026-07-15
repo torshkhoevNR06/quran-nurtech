@@ -1,0 +1,59 @@
+/* ==========================================================================
+   Reader notes
+   ========================================================================== */
+.ayah-note-btn.has {
+  color: var(--accent);
+  opacity: 1 !important;
+}
+
+.ayah-note {
+  display: grid;
+  gap: 6px;
+  margin-top: 12px;
+  animation: ayahNoteIn 0.18s ease;
+}
+
+@keyframes ayahNoteIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.ayah-note textarea {
+  min-height: 64px;
+  width: 100%;
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-md);
+  background: color-mix(in srgb, var(--accent) 5%, var(--panel-bg));
+  color: var(--ink);
+  padding: 11px 13px;
+  font: var(--weight-regular) var(--fs-15) / 1.55 var(--sans);
+  resize: vertical;
+}
+
+.ayah-note textarea:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+.ayah-note-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--ink-faint);
+  font-size: var(--fs-12);
+}
+
+.ayah-note-del {
+  border: 0;
+  background: transparent;
+  color: var(--low);
+  cursor: pointer;
+  padding: 4px 6px;
+  font: var(--weight-semibold) var(--fs-12) / 1 var(--sans);
+}

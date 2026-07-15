@@ -174,13 +174,13 @@ const juzList = Array.from({ length: 30 }, (_, i) => i + 1).map((n) => ({
 
     <nav class="mushaf-bottom container" aria-label="Навигация по страницам">
       <a class={`btn ${prevPage ? '' : 'disabled'}`} href={prevPage ? `/mushaf/${prevPage}` : undefined}>
-        <span set:html={icons.arrowLeft} style="width:18px;height:18px" /> Назад
+        <span class="ui-inline-icon" set:html={icons.arrowLeft} /> Назад
       </a>
       <a class="btn" href="/surah/1">
-        <span set:html={icons.book} style="width:18px;height:18px" /> Суры
+        <span class="ui-inline-icon" set:html={icons.book} /> Суры
       </a>
       <a class={`btn primary ${nextPage ? '' : 'disabled'}`} href={nextPage ? `/mushaf/${nextPage}` : undefined}>
-        Вперёд <span set:html={icons.arrowRight} style="width:18px;height:18px" />
+        Вперёд <span class="ui-inline-icon" set:html={icons.arrowRight} />
       </a>
     </nav>
   </div>

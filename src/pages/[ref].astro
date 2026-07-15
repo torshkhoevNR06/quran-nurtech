@@ -94,7 +94,7 @@ const description = `${ayah.ru} — Коран, сура «${meta.nr}» аят $
     <nav class="ayah-nav">
       {prev ? (
         <a class="btn" href={`/${prev.s}:${prev.a}`}>
-          <span set:html={icons.arrowLeft} style="width:16px;height:16px" /> {prev.s}:{prev.a}
+          <span class="ui-inline-icon-sm" set:html={icons.arrowLeft} /> {prev.s}:{prev.a}
         </a>
       ) : (
         <span />
@@ -102,7 +102,7 @@ const description = `${ayah.ru} — Коран, сура «${meta.nr}» аят $
       <a class="btn" href={`/surah/${sN}#ayah-${aN}`}>Открыть в суре</a>
       {next && (
         <a class="btn" href={`/${next.s}:${next.a}`}>
-          {next.s}:{next.a} <span set:html={icons.arrowRight} style="width:16px;height:16px" />
+          {next.s}:{next.a} <span class="ui-inline-icon-sm" set:html={icons.arrowRight} />
         </a>
       )}
     </nav>

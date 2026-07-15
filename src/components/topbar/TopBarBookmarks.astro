@@ -8,13 +8,12 @@ import { icons } from '../../lib/icons';
   <div class="menu" data-menu="bookmarks">
     <h4>Закладки</h4>
     <button class="item hide" type="button" data-bookmark-add>
-      <span set:html={icons.bookmark} style="width:18px;height:18px" /> Добавить текущий аят
+      <span class="ui-inline-icon" set:html={icons.bookmark} /> Добавить текущий аят
     </button>
     <div data-bookmark-list>
-      <div style="padding:10px;color:var(--ink-faint);font-size:13px" data-bookmark-empty>
+      <div class="menu-empty" data-bookmark-empty>
         Пока пусто. Открой аят и нажми на «флажок» или клавишу B.
       </div>
     </div>
   </div>
 </div>
-

@@ -21,6 +21,10 @@
   background: var(--surface);
 }
 
+.search-input-wrap .ui-inline-icon {
+  color: var(--ink-faint);
+}
+
 .search-input-wrap input {
   flex: 1;
   min-width: 0;
@@ -30,6 +34,21 @@
   background: transparent;
   color: var(--ink);
   font-size: 16px;
+}
+
+.search-exact {
+  cursor: pointer;
+  user-select: none;
+}
+
+.search-exact input {
+  accent-color: var(--accent);
+}
+
+.search-status {
+  margin-bottom: 12px;
+  color: var(--ink-faint);
+  font-size: var(--fs-14);
 }
 
 .search-empty {
