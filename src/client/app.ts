@@ -13,6 +13,7 @@ import {
   setViewHotkey,
 } from './reader-settings';
 import { $, $$, haptic, K, LS, toast, type Dict } from './shared';
+import { initTajweed } from './tajweed';
 import { closeMenus, initMenus, markMenu } from './ui-menus';
 
 /* ---------- данные (ленивая загрузка) ---------- */
@@ -110,72 +111,6 @@ function pickReciterForSurah(r: Reciter, s: number): Reciter {
     if (c && (c.type !== 'surah' || surahHas(c, s))) return c;
   }
   return reciters.find((x) => x.id === 'alafasy') || reciters[0];
-}
-
-/* ==========================================================================
-   Таджвид — цветная подсветка правил чтения (ленивая подгрузка по суре)
-   ========================================================================== */
-const tajCache: Record<string, any[]> = {};
-const LEADING_ARABIC_MARKS = /(<span class="tj tj-[a-z]">)([\u0610-\u061a\u064b-\u065f\u0670\u06d6-\u06ed]+)([^<]*?)<\/span>/g;
-function normalizeTajweedHtml(html: string) {
-  return html
-    .replace(/\u0672/g, '\u0670')
-    .replace(LEADING_ARABIC_MARKS, (_, open: string, marks: string, rest: string) =>
-      rest ? `${marks}${open}${rest}</span>` : marks
-    );
-}
-const loadTajweed = async (s: number): Promise<any[]> => {
-  if (!tajCache[s]) {
-    const r = await fetch(`/data/tajweed/${s}.json?v=${DV}`);
-    if (!r.ok) throw new Error('tajweed ' + r.status);
-    tajCache[s] = await r.json();
-  }
-  return tajCache[s];
-};
-async function applyTajweed(enable: boolean) {
-  document.body.classList.toggle('tajweed-on', enable);
-  const ayahEls = $$('.ayah[data-ayah-key]');
-  ayahEls.forEach((el) => {
-    const ar = $('.ar', el) as HTMLElement | null;
-    if (ar && !ar.dataset.orig) ar.dataset.orig = ar.innerHTML; // сохранить оригинал
-  });
-  if (!enable) {
-    ayahEls.forEach((el) => {
-      const ar = $('.ar', el) as HTMLElement | null;
-      if (ar && ar.dataset.orig) ar.innerHTML = ar.dataset.orig;
-    });
-    return;
-  }
-  const s = Number(document.body.getAttribute('data-surah'));
-  if (!s) return;
-  try {
-    const taj = await loadTajweed(s);
-    const map: Dict<string> = {};
-    taj.forEach((t: any) => (map[t.a] = normalizeTajweedHtml(t.h)));
-    ayahEls.forEach((el) => {
-      const a = Number(el.getAttribute('data-ayah-key')!.split(':')[1]);
-      const ar = $('.ar', el) as HTMLElement | null;
-      if (ar && map[a]) ar.innerHTML = map[a];
-    });
-  } catch {
-    document.body.classList.remove('tajweed-on');
-    $$('[data-tajweed]').forEach((b) => b.classList.remove('on'));
-    toast('Не удалось загрузить таджвид');
-  }
-}
-function initTajweed() {
-  let on = LS.get<boolean>(K.tajweed, true);
-  const sync = () => $$('[data-tajweed]').forEach((b) => b.classList.toggle('on', on));
-  sync();
-  if (on) applyTajweed(true);
-  $$('[data-tajweed]').forEach((b) =>
-    b.addEventListener('click', () => {
-      on = !on;
-      LS.set(K.tajweed, on);
-      sync();
-      applyTajweed(on);
-    })
-  );
 }
 
 /* ==========================================================================
@@ -356,7 +291,7 @@ function extractAyah(el: Element, s: number, a: number) {
   const strip = (t?: string | null) =>
     clean(t).replace(/^(Перевод\s·\s)?(Эльмир\sКулиев|Абу\sАдель|Кулиев|Транслитерация)\s*/, '');
   // Арабский берём из ЧИСТОГО оригинала (до таджвид-разметки), иначе при включённом
-  // таджвиде textContent склеивает слова. data-orig сохраняется в applyTajweed.
+  // При таджвиде textContent склеивает слова. data-orig сохраняет исходный HTML.
   const arEl = $('.ar', el) as HTMLElement | null;
   const arHtml = arEl ? arEl.dataset.orig || arEl.innerHTML : '';
   const arTmp = document.createElement('div');
@@ -1231,7 +1166,7 @@ function boot() {
   initMenus();
   initDrawer({ dataVersion: DV, loadIndex });
   initTransShow();
-  initTajweed();
+  initTajweed(DV);
   initQuick();
   initBookmarks();
   initContinue();

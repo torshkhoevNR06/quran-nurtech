@@ -1,0 +1,42 @@
+[
+  {
+    "label": "tajweed enabled by default on body",
+    "ok": true,
+    "details": ""
+  },
+  {
+    "label": "tajweed spans render",
+    "ok": true,
+    "details": "30"
+  },
+  {
+    "label": "tajweed toggle disables body class",
+    "ok": true,
+    "details": ""
+  },
+  {
+    "label": "tajweed toggle restores original arabic html",
+    "ok": true,
+    "details": ""
+  },
+  {
+    "label": "tajweed toggle reenables body class",
+    "ok": true,
+    "details": ""
+  },
+  {
+    "label": "tajweed spans render after reenable",
+    "ok": true,
+    "details": ""
+  },
+  {
+    "label": "mobile tajweed enabled by default",
+    "ok": true,
+    "details": ""
+  },
+  {
+    "label": "mobile tajweed spans render",
+    "ok": true,
+    "details": ""
+  }
+]
