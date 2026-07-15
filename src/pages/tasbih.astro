@@ -1,5 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
+import Button from '../components/ui/Button.astro';
 import PageHeader from '../components/ui/PageHeader.astro';
 import PageShell from '../components/ui/PageShell.astro';
 const title = 'Тасбих — электронный счётчик зикров';
@@ -47,7 +48,7 @@ const description =
     </div>
 
     <div class="tb-actions">
-      <button type="button" class="btn ghost" data-reset>Сбросить круг</button>
+      <Button variant="ghost" data-reset>Сбросить круг</Button>
     </div>
   </PageShell>
 </Base>

@@ -2,6 +2,8 @@
 import Base from '../layouts/Base.astro';
 import PageHeader from '../components/ui/PageHeader.astro';
 import PageShell from '../components/ui/PageShell.astro';
+import Section from '../components/ui/Section.astro';
+import StatTile from '../components/ui/StatTile.astro';
 const title = 'Статистика чтения — Коран онлайн';
 const description = 'Анонимная статистика чтения: устройства, прочитанные аяты, время и стрики.';
 ---
@@ -14,28 +16,13 @@ const description = 'Анонимная статистика чтения: ус�
     />
 
     <section class="stats-grid" data-stats-root>
-      <div class="stat-tile">
-        <span>Устройств</span>
-        <b data-stat="devices">—</b>
-      </div>
-      <div class="stat-tile">
-        <span>Активны сегодня</span>
-        <b data-stat="active">—</b>
-      </div>
-      <div class="stat-tile">
-        <span>Прочитано аятов</span>
-        <b data-stat="ayahs">—</b>
-      </div>
-      <div class="stat-tile">
-        <span>Время чтения</span>
-        <b data-stat="time">—</b>
-      </div>
+      <StatTile label="Устройств" stat="devices" />
+      <StatTile label="Активны сегодня" stat="active" />
+      <StatTile label="Прочитано аятов" stat="ayahs" />
+      <StatTile label="Время чтения" stat="time" />
     </section>
 
-    <section class="ui-section">
-      <div class="ui-section-header">
-        <h2 class="ui-section-title">Топ устройств</h2>
-      </div>
+    <Section title="Топ устройств">
       <div class="stats-table-wrap">
         <table class="stats-table">
           <thead>
@@ -52,7 +39,7 @@ const description = 'Анонимная статистика чтения: ус�
           </tbody>
         </table>
       </div>
-    </section>
+    </Section>
   </PageShell>
 
   <script is:inline>

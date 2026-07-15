@@ -9,7 +9,16 @@ import {
   renderReadingProgress,
   surahReadCount,
 } from './reading-analytics';
+import {
+  initReading,
+  initTheme,
+  initTranslation,
+  initTransShow,
+  initView,
+  setViewHotkey,
+} from './reader-settings';
 import { $, $$, haptic, K, LS, toast, type Dict } from './shared';
+import { closeMenus, initMenus, markMenu, updateMobileScrollLock } from './ui-menus';
 
 /* ---------- данные (ленивая загрузка) ---------- */
 interface Reciter {
@@ -106,276 +115,6 @@ function pickReciterForSurah(r: Reciter, s: number): Reciter {
     if (c && (c.type !== 'surah' || surahHas(c, s))) return c;
   }
   return reciters.find((x) => x.id === 'alafasy') || reciters[0];
-}
-
-/* ==========================================================================
-   Тема
-   ========================================================================== */
-function applyTheme(t: string) {
-  const eff =
-    t === 'system'
-      ? matchMedia('(prefers-color-scheme: dark)').matches
-        ? 'dark'
-        : 'light'
-      : t;
-  document.documentElement.setAttribute('data-theme', eff);
-}
-function initTheme() {
-  const cur = LS.get<string>(K.theme, 'system');
-  applyTheme(cur); // подстраховка, если anti-flash не отработал
-  markMenu('theme', 'theme-set', cur);
-  $$('[data-theme-set]').forEach((b) =>
-    b.addEventListener('click', () => {
-      const v = b.getAttribute('data-theme-set')!;
-      LS.set(K.theme, v);
-      applyTheme(v);
-      markMenu('theme', 'theme-set', v);
-    })
-  );
-  // Быстрый тумблер в хедере: флип светлая↔тёмная от ТЕКУЩЕЙ отрисованной темы
-  // (работает и когда выбрана «системная» — берём фактический data-theme).
-  $$('[data-theme-toggle]').forEach((b) =>
-    b.addEventListener('click', () => {
-      const effNow = document.documentElement.getAttribute('data-theme');
-      const next = effNow === 'dark' ? 'light' : 'dark';
-      LS.set(K.theme, next);
-      applyTheme(next);
-      markMenu('theme', 'theme-set', next);
-    })
-  );
-  matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
-    if (LS.get<string>(K.theme, 'system') === 'system') applyTheme('system');
-  });
-}
-
-/* ==========================================================================
-   Настройки чтения
-   ========================================================================== */
-interface ReadCfg {
-  ar: number;
-  ru: number;
-  lh: number;
-  font: string;
-  hb?: boolean; // скрывать пояснения в скобках (…) и […]
-}
-// убрать пояснения в скобках из текста перевода
-const stripBrackets = (s: string) =>
-  s
-    .replace(/\s*[([][^)\]]*[)\]]/g, '')
-    .replace(/\s{2,}/g, ' ')
-    .replace(/\s+([,.;:!?])/g, '$1')
-    .trim();
-function applyBrackets(on: boolean) {
-  $$('.translation').forEach((el) => {
-    const e = el as HTMLElement;
-    // подпись «Перевод · …» отделена <br>: обрабатываем только текстовый хвост
-    if (on) {
-      if (e.dataset.full == null) e.dataset.full = e.innerHTML;
-      const parts = e.dataset.full.split('<br>'); // всегда из оригинала
-      const tail = parts.pop()!; // последний сегмент = сам текст перевода
-      const head = parts.length ? parts.join('<br>') + '<br>' : '';
-      e.innerHTML = head + stripBrackets(tail);
-    } else if (e.dataset.full != null) {
-      e.innerHTML = e.dataset.full;
-      delete e.dataset.full;
-    }
-  });
-}
-function initReading() {
-  const cfg = LS.get<ReadCfg>(K.read, { ar: 30, ru: 18, lh: 1.9, font: 'Mushaf' });
-  const rootStyle = document.documentElement.style;
-  const apply = () => {
-    rootStyle.setProperty('--ar-size', cfg.ar + 'px');
-    rootStyle.setProperty('--ru-size', cfg.ru + 'px');
-    rootStyle.setProperty('--lh', String(cfg.lh));
-    rootStyle.setProperty('--ar-font', cfg.font);
-    LS.set(K.read, cfg);
-  };
-  // скрытие пояснений в скобках
-  const markHb = () =>
-    $$('[data-hide-brackets]').forEach((b) => b.classList.toggle('on', !!cfg.hb));
-  $$('[data-hide-brackets]').forEach((b) =>
-    b.addEventListener('click', () => {
-      cfg.hb = !cfg.hb;
-      apply();
-      applyBrackets(!!cfg.hb);
-      markHb();
-    })
-  );
-  markHb();
-  if (cfg.hb) applyBrackets(true);
-  // ползунки
-  const bind = (key: keyof ReadCfg, parse: (v: string) => number) =>
-    $$<HTMLInputElement>(`[data-set="${key}"]`).forEach((inp) => {
-      inp.value = String(cfg[key]);
-      inp.addEventListener('input', () => {
-        (cfg[key] as number) = parse(inp.value);
-        apply();
-      });
-    });
-  bind('ar', (v) => parseInt(v, 10));
-  bind('ru', (v) => parseInt(v, 10));
-  bind('lh', (v) => parseFloat(v));
-  // шрифт
-  const markFont = () =>
-    $$('[data-font]').forEach((b) => b.classList.toggle('on', b.getAttribute('data-font') === cfg.font));
-  $$('[data-font]').forEach((b) =>
-    b.addEventListener('click', () => {
-      cfg.font = b.getAttribute('data-font')!;
-      apply();
-      markFont();
-    })
-  );
-  markFont();
-  apply();
-}
-
-/* ==========================================================================
-   Режим отображения (араб / перевод / транслит / тафсир / всё)
-   ========================================================================== */
-// Независимые слои отображения (араб / транслит / перевод — каждый вкл/выкл).
-// Дефолт: арабский + перевод (транслит выключен).
-interface Layers {
-  ar: boolean;
-  tl: boolean;
-  tr: boolean;
-}
-let layersState: Layers = { ar: true, tl: false, tr: true };
-function applyLayers(l: Layers) {
-  // подстраховка: хотя бы один слой должен быть включён
-  if (!l.ar && !l.tl && !l.tr) l.ar = true;
-  const box = $('[data-ayahs]');
-  if (box) {
-    box.classList.toggle('hide-ar', !l.ar);
-    box.classList.toggle('hide-tl', !l.tl);
-    box.classList.toggle('hide-tr', !l.tr);
-  }
-  $$('[data-layer]').forEach((b) =>
-    b.classList.toggle('on', !!(l as any)[b.getAttribute('data-layer')!])
-  );
-}
-function initView() {
-  layersState = LS.get<Layers>(K.layers, { ar: true, tl: false, tr: true });
-  applyLayers(layersState);
-  $$('[data-layer]').forEach((b) =>
-    b.addEventListener('click', () => {
-      const k = b.getAttribute('data-layer') as keyof Layers;
-      layersState[k] = !layersState[k];
-      LS.set(K.layers, layersState);
-      applyLayers(layersState);
-    })
-  );
-}
-
-/* ==========================================================================
-   Перевод (навигация на /surah/:id/:tr)
-   ========================================================================== */
-function initTranslation() {
-  const cur = document.body.getAttribute('data-tr') || LS.get<string>(K.tr, 'saadi');
-  const names: Dict<string> = {
-    kuliev: 'Кулиев',
-    saadi: 'Тафсир',
-    abuadel: 'Абу Адель',
-    'ibn-kathir': 'Ибн Касир',
-  };
-  const label = $('[data-tr-current]');
-  if (label) label.textContent = names[cur] || 'Перевод';
-  markMenu('tr', 'tr', cur);
-  markMenu('settings', 'tr', cur);
-  // ВАЖНО: только кнопки перевода — НЕ body (у body есть data-tr для чтения настроек,
-  // иначе клик по любому месту страницы всплывал бы к body и навигировал на /surah/:id/:tr)
-  $$('button[data-tr]').forEach((b) =>
-    b.addEventListener('click', () => {
-      if ((b as HTMLButtonElement).disabled) return;
-      const v = b.getAttribute('data-tr')!;
-      LS.set(K.tr, v);
-      const sid = document.body.getAttribute('data-surah');
-      if (sid) location.href = `/surah/${sid}/${v}`;
-      else toast('Перевод сохранён — откроется в суре');
-    })
-  );
-}
-
-/* ==========================================================================
-   Меню верхней панели
-   ========================================================================== */
-function markMenu(menu: string, attr: string, val: string) {
-  $$(`[data-menu="${menu}"] [data-${attr}]`).forEach((b) =>
-    b.classList.toggle('on', b.getAttribute(`data-${attr}`) === val)
-  );
-}
-let mobileScrollY = 0;
-let mobileScrollLocked = false;
-function updateMobileScrollLock() {
-  const viewportWidth = Math.min(window.innerWidth || 0, document.documentElement.clientWidth || Infinity);
-  const shouldLock =
-    viewportWidth <= 1023 &&
-    (document.body.classList.contains('settings-panel-open') || document.body.classList.contains('drawer-open'));
-  if (shouldLock && !mobileScrollLocked) {
-    mobileScrollY = window.scrollY || 0;
-    document.body.style.position = 'fixed';
-    document.body.style.top = `-${mobileScrollY}px`;
-    document.body.style.left = '0';
-    document.body.style.right = '0';
-    document.body.style.width = '100%';
-    mobileScrollLocked = true;
-  } else if (!shouldLock && mobileScrollLocked) {
-    document.body.style.position = '';
-    document.body.style.top = '';
-    document.body.style.left = '';
-    document.body.style.right = '';
-    document.body.style.width = '';
-    window.scrollTo(0, mobileScrollY);
-    mobileScrollLocked = false;
-  }
-}
-window.addEventListener('resize', updateMobileScrollLock);
-window.addEventListener('orientationchange', updateMobileScrollLock);
-function initMenus() {
-  $$('[data-menu-wrap]').forEach((wrap) => {
-    const toggle = $('[data-menu-toggle]', wrap);
-    const menu = $('.menu', wrap);
-    if (!toggle || !menu) return;
-    const isSettings = menu.getAttribute('data-menu') === 'settings';
-    const backdrop = isSettings ? $('[data-settings-panel-backdrop]', wrap) : null;
-    if (isSettings) {
-      document.body.append(menu);
-      if (backdrop) document.body.append(backdrop);
-    }
-    menu.addEventListener('click', (e) => e.stopPropagation());
-    toggle.setAttribute('aria-expanded', 'false');
-    toggle.addEventListener('click', (e) => {
-      e.stopPropagation();
-      const open = menu.classList.contains('open');
-      closeMenus();
-      if (!open) {
-        menu.classList.add('open');
-        toggle.setAttribute('aria-expanded', 'true');
-        if (isSettings) {
-          document.body.classList.add('settings-panel-open');
-          updateMobileScrollLock();
-        }
-      }
-    });
-  });
-  $$('[data-menu-close], [data-settings-panel-backdrop]').forEach((el) =>
-    el.addEventListener('click', (e) => {
-      e.stopPropagation();
-      closeMenus();
-    })
-  );
-  document.addEventListener('click', (e) => {
-    if (!(e.target as Element).closest('[data-menu-wrap]')) closeMenus();
-  });
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') closeMenus();
-  });
-}
-function closeMenus() {
-  $$('.menu.open').forEach((m) => m.classList.remove('open'));
-  $$('[data-menu-toggle][aria-expanded="true"]').forEach((t) => t.setAttribute('aria-expanded', 'false'));
-  document.body.classList.remove('settings-panel-open');
-  updateMobileScrollLock();
 }
 
 /* ==========================================================================
@@ -477,31 +216,6 @@ async function initDrawer() {
     t.addEventListener('click', () => {
       $$('[data-dtab]').forEach((x) => x.classList.toggle('on', x === t));
       drawerRoot?.setAttribute('data-dtab-active', t.getAttribute('data-dtab') || 'surah');
-    })
-  );
-}
-
-/* ==========================================================================
-   Мультивыбор переводов в тексте (Кулиев / Абу Адель) — оба уже в DOM
-   ========================================================================== */
-function initTransShow() {
-  const box = $('[data-ayahs]');
-  if (!box) return;
-  const cfg = LS.get<Dict<boolean>>(K.transShow, { kuliev: true, abuadel: true });
-  const apply = () => {
-    box.setAttribute('data-tr-kuliev', cfg.kuliev ? '1' : '0');
-    box.setAttribute('data-tr-abuadel', cfg.abuadel ? '1' : '0');
-    $$('[data-tr-show]').forEach((b) =>
-      b.classList.toggle('on', !!cfg[b.getAttribute('data-tr-show')!])
-    );
-  };
-  apply();
-  $$('[data-tr-show]').forEach((b) =>
-    b.addEventListener('click', () => {
-      const k = b.getAttribute('data-tr-show')!;
-      cfg[k] = !cfg[k];
-      LS.set(K.transShow, cfg);
-      apply();
     })
   );
 }
@@ -1535,17 +1249,6 @@ function initHotkeys() {
         break;
     }
   });
-}
-function setViewHotkey(v: string) {
-  // хоткеи тумблят слои: a — арабский, s — перевод, d — транслит
-  const map: Dict<keyof Layers> = { arabic: 'ar', translation: 'tr', translit: 'tl' };
-  const k = map[v];
-  if (!k) return;
-  layersState[k] = !layersState[k];
-  LS.set(K.layers, layersState);
-  applyLayers(layersState);
-  const names: Dict<string> = { ar: 'Арабский', tr: 'Перевод', tl: 'Транслитерация' };
-  toast(`${names[k]}: ${layersState[k] ? 'вкл' : 'выкл'}`);
 }
 function jumpAyah(delta: number) {
   const box = $('[data-ayahs]');

@@ -1,5 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
+import Button from '../components/ui/Button.astro';
 import PageHeader from '../components/ui/PageHeader.astro';
 import PageShell from '../components/ui/PageShell.astro';
 const title = 'Закладки и коллекции — сохранённые аяты';
@@ -16,7 +17,7 @@ const description =
     >
       <form class="bmp-new" data-new-form>
         <input type="text" placeholder="Новая коллекция…" data-new-name maxlength="40" aria-label="Название коллекции" />
-        <button type="submit" class="btn primary">Создать</button>
+        <Button type="submit" variant="primary">Создать</Button>
       </form>
     </PageHeader>
 

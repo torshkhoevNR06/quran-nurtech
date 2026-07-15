@@ -1,0 +1,172 @@
+[
+  {
+    "label": "desktop surah loads ayahs",
+    "ok": true,
+    "details": ""
+  },
+  {
+    "label": "settings panel opens",
+    "ok": true,
+    "details": ""
+  },
+  {
+    "label": "body marks settings open",
+    "ok": true,
+    "details": ""
+  },
+  {
+    "label": "settings layer controls visible",
+    "ok": true,
+    "details": ""
+  },
+  {
+    "label": "translit layer toggle marks state",
+    "ok": true,
+    "details": ""
+  },
+  {
+    "label": "escape closes settings",
+    "ok": true,
+    "details": ""
+  },
+  {
+    "label": "theme toggle writes rendered theme",
+    "ok": true,
+    "details": "dark"
+  },
+  {
+    "label": "mobile surah loads ayahs",
+    "ok": true,
+    "details": ""
+  },
+  {
+    "label": "mobile drawer opens",
+    "ok": true,
+    "details": ""
+  },
+  {
+    "label": "mobile body fixed when drawer open",
+    "ok": true,
+    "details": ""
+  },
+  {
+    "label": "mobile drawer closes and body unlocks",
+    "ok": true,
+    "details": ""
+  },
+  {
+    "label": "mobile settings opens",
+    "ok": true,
+    "details": ""
+  },
+  {
+    "label": "mobile body fixed when settings open",
+    "ok": true,
+    "details": ""
+  },
+  {
+    "label": "mobile settings close unlocks body",
+    "ok": true,
+    "details": ""
+  },
+  {
+    "label": "desktop /stats/ has page title",
+    "ok": true,
+    "details": ""
+  },
+  {
+    "label": "desktop /stats/ no horizontal overflow",
+    "ok": true,
+    "details": ""
+  },
+  {
+    "label": "desktop stats uses stat tiles",
+    "ok": true,
+    "details": ""
+  },
+  {
+    "label": "desktop /bookmarks/ has page title",
+    "ok": true,
+    "details": ""
+  },
+  {
+    "label": "desktop /bookmarks/ no horizontal overflow",
+    "ok": true,
+    "details": ""
+  },
+  {
+    "label": "desktop bookmarks create button uses ui button",
+    "ok": true,
+    "details": ""
+  },
+  {
+    "label": "desktop /tasbih/ has page title",
+    "ok": true,
+    "details": ""
+  },
+  {
+    "label": "desktop /tasbih/ no horizontal overflow",
+    "ok": true,
+    "details": ""
+  },
+  {
+    "label": "desktop tasbih reset uses ui button",
+    "ok": true,
+    "details": ""
+  },
+  {
+    "label": "desktop tasbih count increments",
+    "ok": true,
+    "details": ""
+  },
+  {
+    "label": "mobile /stats/ has page title",
+    "ok": true,
+    "details": ""
+  },
+  {
+    "label": "mobile /stats/ no horizontal overflow",
+    "ok": true,
+    "details": ""
+  },
+  {
+    "label": "mobile stats uses stat tiles",
+    "ok": true,
+    "details": ""
+  },
+  {
+    "label": "mobile /bookmarks/ has page title",
+    "ok": true,
+    "details": ""
+  },
+  {
+    "label": "mobile /bookmarks/ no horizontal overflow",
+    "ok": true,
+    "details": ""
+  },
+  {
+    "label": "mobile bookmarks create button uses ui button",
+    "ok": true,
+    "details": ""
+  },
+  {
+    "label": "mobile /tasbih/ has page title",
+    "ok": true,
+    "details": ""
+  },
+  {
+    "label": "mobile /tasbih/ no horizontal overflow",
+    "ok": true,
+    "details": ""
+  },
+  {
+    "label": "mobile tasbih reset uses ui button",
+    "ok": true,
+    "details": ""
+  },
+  {
+    "label": "mobile tasbih count increments",
+    "ok": true,
+    "details": ""
+  }
+]

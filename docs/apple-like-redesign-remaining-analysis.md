@@ -26,11 +26,16 @@
 - `TopBar.astro` разбит на компоненты в `src/components/topbar/`, клиентская логика контекста вынесена в `src/client/topbar.ts`.
 - Общие клиентские хелперы вынесены в `src/client/shared.ts`.
 - Dwell-аналитика чтения вынесена в `src/client/reading-analytics.ts`.
+- Верхние меню и mobile scroll-lock вынесены в `src/client/ui-menus.ts`.
+- Настройки чтения вынесены в `src/client/reader-settings.ts`: тема, размеры текста, слои арабский/перевод/транслит, выбор перевода, мультиперевод и hotkey-переключение слоёв.
 - Добавлены реальные UI-компоненты:
   - `src/components/ui/Button.astro`;
   - `src/components/ui/IconButton.astro`;
-  - `src/components/ui/Section.astro`.
+  - `src/components/ui/Section.astro`;
+  - `src/components/ui/StatTile.astro`.
 - `/search/`, `/audio/`, `/download/` переведены на `PageShell` / `PageHeader` и новые UI-компоненты.
+- `/stats/` переведён на `Section` и `StatTile`, а таблица статистики обновлена под системные grouped-токены.
+- `/bookmarks/` и `/tasbih/` частично переведены на общий `Button`.
 - Исправлен fullscreen мушафа: `body.mushaf-immersive` теперь явно скрывает `.mobile-tabbar` вместе с остальным app chrome.
 - Пройдена QA-матрица:
   - 15 маршрутов;
@@ -39,18 +44,24 @@
   - 30 route/viewport combinations;
   - 0 автоматических проблем в `qa-screens/2026-07-15-full-matrix/problems.json`.
 - Дополнительно проверен immersive-мушаф на desktop/mobile: topbar, footer и tabbar скрыты, горизонтального overflow нет.
+- После выноса reader settings и UI-компонентов пройден targeted QA:
+  - desktop/mobile `/surah/1/`, `/stats/`, `/bookmarks/`, `/tasbih/`;
+  - settings/drawer scroll-lock;
+  - переключение темы и слоёв чтения;
+  - 34 автоматические проверки, 0 падений;
+  - скрины: `qa-screens/2026-07-15-reader-settings-extract/`.
 
 ### Частично закрыто
 
-- `src/client/app.ts` уменьшен с 2001 до примерно 1663 строк, но ещё содержит несколько доменов: drawer, settings, audio-player, reader-actions, bookmarks, theme, hotkeys, home-filter.
-- Компонентная система начата, но ещё не покрывает `SegmentedControl`, `SwitchRow`, `ListRow`, `InspectorSection`, `Sheet`, `Toolbar`, `ReaderCard`, `StatCard`.
-- Page CSS стал чище, но `bookmarks`, `backup`, `tasbih`, `glossary`, `topics`, `stats`, `audio`, `search`, `image-editor` ещё требуют отдельного унификационного прохода.
+- `src/client/app.ts` уменьшен с 2001 до примерно 1366 строк, но ещё содержит несколько доменов: drawer, audio-player, reader-actions, bookmarks, reciter/audio data, tajweed, hotkeys, home-filter.
+- Компонентная система начата, но ещё не покрывает `SegmentedControl`, `SwitchRow`, `ListRow`, `InspectorSection`, `Sheet`, `Toolbar`, `ReaderCard`.
+- Page CSS стал чище, но `bookmarks`, `backup`, `tasbih`, `glossary`, `topics`, `image-editor` ещё требуют отдельного унификационного прохода. `stats`, `audio`, `search`, `download` уже ближе к общей системе.
 - Мушаф стал стабильнее по fullscreen и базовой матрице, но advanced polish по zoom/pan/pinch/604-page audit ещё не закрыт полностью.
 
 ### Остаётся
 
-- Дальше дробить `src/client/app.ts` по доменам: drawer, settings, audio-player, reader-actions, bookmarks, theme, hotkeys, home-filter.
-- Добавить недостающие UI-компоненты и мигрировать на них `Drawer`, `Player`, `settings`, `stats`, `bookmarks`, `topics`, `glossary`, `tasbih`, `backup`.
+- Дальше дробить `src/client/app.ts` по доменам: drawer, audio-player, reader-actions, bookmarks, reciter/audio data, tajweed, hotkeys, home-filter.
+- Добавить недостающие UI-компоненты и мигрировать на них `Drawer`, `Player`, `settings`, `topics`, `glossary`, `backup`; продолжить углублять `bookmarks` и `tasbih`.
 - Провести типографический pass по страницам с локальными стилями и убрать случайные тяжёлые веса `700/800`, где они не являются смысловым акцентом.
 - Довести mobile overlay-аудит вручную: drawer scroll, settings scroll, action sheet, player, keyboard behavior, body scroll lock.
 - Довести desktop three-column как полноценную state-модель: sidebar collapsed, inspector open, narrow fallback, toolbar overflow.
