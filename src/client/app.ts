@@ -4,6 +4,7 @@ import { initBookmarks, initContinue, isBookmarked, toggleBookmark } from './boo
 import { openAyahEditor } from './imgeditor';
 import { initDrawer } from './drawer';
 import { initHomeFilter } from './home-filter';
+import { initHotkeys } from './hotkeys';
 import { initHapticInteractions } from './interactions';
 import { initMemorize } from './memorize';
 import { initQuick } from './quick-nav';
@@ -780,93 +781,6 @@ const ICON_PAUSE =
   '<svg viewBox="0 0 24 24" fill="none"><rect x="6" y="5" width="4" height="14" rx="1" fill="currentColor"/><rect x="14" y="5" width="4" height="14" rx="1" fill="currentColor"/></svg>';
 
 /* ==========================================================================
-   Горячие клавиши
-   ========================================================================== */
-function currentAyahIdx(): number {
-  return player.idx >= 0 ? player.idx : 0;
-}
-function initHotkeys() {
-  document.addEventListener('keydown', (e) => {
-    const tag = (e.target as Element)?.tagName;
-    if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT') {
-      if (e.key === 'Escape') (e.target as HTMLElement).blur();
-      return;
-    }
-    const sid = document.body.getAttribute('data-surah');
-    switch (e.key) {
-      case '/':
-        e.preventDefault();
-        $<HTMLInputElement>('[data-quick-input]')?.focus();
-        break;
-      case '[':
-        if (e.altKey) navSurah(-1);
-        else if (e.shiftKey) jumpAyah(-10);
-        else jumpAyah(-1);
-        break;
-      case ']':
-        if (e.altKey) navSurah(1);
-        else if (e.shiftKey) jumpAyah(10);
-        else jumpAyah(1);
-        break;
-      case 'p':
-      case 'P':
-        e.preventDefault();
-        player.toggle();
-        break;
-      case 'a':
-      case 'A':
-        setViewHotkey('arabic');
-        break;
-      case 's':
-      case 'S':
-        setViewHotkey('translation');
-        break;
-      case 'd':
-      case 'D':
-        setViewHotkey('translit');
-        break;
-      case 't':
-      case 'T':
-        setViewHotkey('tafsir');
-        break;
-      case 'b':
-      case 'B':
-        if (sid) {
-          const t = player.playlist[currentAyahIdx()];
-          if (t) {
-            const on = toggleBookmark(t.s, t.a);
-            toast(on ? 'В закладках' : 'Убрано');
-          }
-        }
-        break;
-      case 'Escape':
-        closeMenus();
-        break;
-    }
-  });
-}
-function jumpAyah(delta: number) {
-  const box = $('[data-ayahs]');
-  if (!box) return;
-  const els = $$('[data-ayah-key]');
-  if (!els.length) return;
-  let base = player.idx >= 0 ? player.idx : 0;
-  const target = Math.min(Math.max(base + delta, 0), els.length - 1);
-  els[target].scrollIntoView({ block: 'center', behavior: 'smooth' });
-  els[target].classList.add('active');
-  setTimeout(() => {
-    if (player.idx < 0) els[target].classList.remove('active');
-  }, 1200);
-  player.idx = target;
-}
-async function navSurah(delta: number) {
-  const sid = document.body.getAttribute('data-surah');
-  if (!sid) return;
-  const n = +sid + delta;
-  if (n >= 1 && n <= 114) location.href = `/surah/${n}`;
-}
-
-/* ==========================================================================
    Старт
    ========================================================================== */
 function boot() {
@@ -888,7 +802,7 @@ function boot() {
   initMushafAyahSheet();
   initReadingAnalytics();
   player.init();
-  initHotkeys();
+  initHotkeys({ player, setViewHotkey, toggleBookmark, closeMenus });
   initHapticInteractions();
   loadIndex(); // прогреть индекс для плеера/заголовков
 }

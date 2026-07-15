@@ -36,6 +36,7 @@
 - Заучивание вынесено в `src/client/memorize.ts`: тумблер режима, повтор аята и синхронизация body/storage.
 - Тактильный отклик по интерактивным элементам вынесен в `src/client/interactions.ts`.
 - Данные Корана вынесены в `src/client/quran-data.ts`: версия данных, индекс сур, чтецы, загрузчики тафсиров, fallback чтецов и построение audio URL.
+- Горячие клавиши вынесены в `src/client/hotkeys.ts`: быстрый фокус поиска, переключение слоёв A/S/D, закладка B, переход по аятам и Escape.
 - Добавлены реальные UI-компоненты:
   - `src/components/ui/Button.astro`;
   - `src/components/ui/IconButton.astro`;
@@ -92,17 +93,23 @@
   - copy/editor data через индекс сур, раскрытие тафсира, подготовка audio src и заголовка плеера;
   - 3 автоматические проверки, 0 падений;
   - скрин: `qa-screens/2026-07-15-quran-data-extract/`.
+- После выноса hotkeys пройден targeted QA:
+  - desktop `/surah/1/`;
+  - `/`, A/S/D, B и `]`;
+  - 4 автоматические проверки, 0 падений;
+  - скрин: `qa-screens/2026-07-15-hotkeys-extract/`.
 
 ### Частично закрыто
 
-- `src/client/app.ts` уменьшен с 2001 до примерно 896 строк, но ещё содержит несколько доменов: audio-player, reader-actions и hotkeys.
+- `src/client/app.ts` уменьшен с 2001 до примерно 810 строк, но ещё содержит два крупных домена: audio-player и reader-actions.
 - Компонентная система начата, но ещё не покрывает `SegmentedControl`, `SwitchRow`, `ListRow`, `InspectorSection`, `Sheet`, `Toolbar`, `ReaderCard`.
 - Page CSS стал чище, но `bookmarks`, `backup`, `tasbih`, `glossary`, `topics`, `image-editor` ещё требуют отдельного унификационного прохода. `stats`, `audio`, `search`, `download` уже ближе к общей системе.
 - Мушаф стал стабильнее по fullscreen и базовой матрице, но advanced polish по zoom/pan/pinch/604-page audit ещё не закрыт полностью.
 
 ### Остаётся
 
-- Дальше дробить `src/client/app.ts` по доменам: audio-player, reader-actions и hotkeys.
+- Дальше дробить `src/client/app.ts` по доменам: audio-player и reader-actions.
+- Отдельно решить, нужен ли новый hotkey для тафсира: старый `T` до выноса не имел фактического слоя, потому что текущая модель настроек включает только Arabic/translation/transliteration.
 - Добавить недостающие UI-компоненты и мигрировать на них `Drawer`, `Player`, `settings`, `topics`, `glossary`, `backup`; продолжить углублять `bookmarks` и `tasbih`.
 - Провести типографический pass по страницам с локальными стилями и убрать случайные тяжёлые веса `700/800`, где они не являются смысловым акцентом.
 - Довести mobile overlay-аудит вручную: drawer scroll, settings scroll, action sheet, player, keyboard behavior, body scroll lock.

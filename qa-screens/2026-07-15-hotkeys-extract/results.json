@@ -1,0 +1,22 @@
+[
+  {
+    "label": "slash focuses quick input",
+    "ok": true,
+    "details": "true"
+  },
+  {
+    "label": "A/S/D toggle reader layers",
+    "ok": true,
+    "details": "{\"hideAr\":true,\"hideTr\":true,\"showTl\":true}"
+  },
+  {
+    "label": "B toggles bookmark for current ayah",
+    "ok": true,
+    "details": "[\"1:1\"]"
+  },
+  {
+    "label": "bracket navigation activates an ayah",
+    "ok": true,
+    "details": "1:2"
+  }
+]
