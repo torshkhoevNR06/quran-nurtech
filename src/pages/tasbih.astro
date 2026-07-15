@@ -3,6 +3,8 @@ import Base from '../layouts/Base.astro';
 import Button from '../components/ui/Button.astro';
 import PageHeader from '../components/ui/PageHeader.astro';
 import PageShell from '../components/ui/PageShell.astro';
+import SegmentedControl from '../components/ui/SegmentedControl.astro';
+import StatTile from '../components/ui/StatTile.astro';
 const title = 'Тасбих — электронный счётчик зикров';
 const description =
   'Электронный тасбих: считайте зикр (СубханаЛлах, АльхамдулиЛлах, Аллаху Акбар) — большая зона тапа, круги по 33/99/100, тактильный отклик, сохранение прогресса.';
@@ -17,11 +19,11 @@ const description =
     />
 
     <div class="tb-dhikr" data-dhikr-row>
-      <button type="button" class="on" data-dhikr="СубханаЛлах">СубханаЛлах</button>
-      <button type="button" data-dhikr="АльхамдулиЛлах">АльхамдулиЛлах</button>
-      <button type="button" data-dhikr="Аллаху Акбар">Аллаху Акбар</button>
-      <button type="button" data-dhikr="Ля иляха илля Ллах">Ля иляха илля Ллах</button>
-      <button type="button" data-dhikr="Астагфируллах">Астагфируллах</button>
+      <Button variant="ghost" class="tb-dhikr-btn on" data-dhikr="СубханаЛлах">СубханаЛлах</Button>
+      <Button variant="ghost" class="tb-dhikr-btn" data-dhikr="АльхамдулиЛлах">АльхамдулиЛлах</Button>
+      <Button variant="ghost" class="tb-dhikr-btn" data-dhikr="Аллаху Акбар">Аллаху Акбар</Button>
+      <Button variant="ghost" class="tb-dhikr-btn" data-dhikr="Ля иляха илля Ллах">Ля иляха илля Ллах</Button>
+      <Button variant="ghost" class="tb-dhikr-btn" data-dhikr="Астагфируллах">Астагфируллах</Button>
     </div>
 
     <button type="button" class="tb-count" data-count-btn aria-label="Счёт">
@@ -35,16 +37,22 @@ const description =
       </span>
     </button>
 
-    <div class="tb-targets" data-targets>
-      <button type="button" data-target="33" class="on">33</button>
-      <button type="button" data-target="99">99</button>
-      <button type="button" data-target="100">100</button>
-      <button type="button" data-target="0">∞</button>
-    </div>
+    <SegmentedControl
+      class="tb-targets"
+      data-targets
+      dataAttr="data-target"
+      ariaLabel="Цель круга"
+      options={[
+        { id: '33', label: '33', selected: true },
+        { id: '99', label: '99' },
+        { id: '100', label: '100' },
+        { id: '0', label: '∞' },
+      ]}
+    />
 
     <div class="tb-stats">
-      <div><span>Кругов сегодня</span><b data-rounds>0</b></div>
-      <div><span>Всего зикров</span><b data-total>0</b></div>
+      <StatTile label="Кругов сегодня" value="0" stat="rounds" />
+      <StatTile label="Всего зикров" value="0" stat="total" />
     </div>
 
     <div class="tb-actions">
@@ -52,142 +60,6 @@ const description =
     </div>
   </PageShell>
 </Base>
-
-<style is:global>
-  .tasbih {
-    max-width: 520px;
-    padding-bottom: 90px;
-    text-align: center;
-  }
-  .tb-head h1 {
-    margin: 0 0 6px;
-  }
-  .tb-head p {
-    color: var(--ink-faint);
-    font-size: var(--fs-13);
-    margin: 0 0 18px;
-  }
-  .tb-dhikr {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 6px;
-    margin-bottom: 22px;
-  }
-  .tb-dhikr button {
-    border: 1px solid var(--hairline);
-    background: transparent;
-    color: var(--ink-soft);
-    border-radius: var(--radius-pill);
-    padding: 7px 14px;
-    font: 600 var(--fs-13) / 1 var(--sans);
-    cursor: pointer;
-    transition: background 0.15s, color 0.15s, border-color 0.15s;
-  }
-  .tb-dhikr button.on {
-    background: var(--accent);
-    border-color: var(--accent);
-    color: var(--accent-ink);
-  }
-  .tb-count {
-    border: 0;
-    background: transparent;
-    cursor: pointer;
-    padding: 0;
-    display: inline-block;
-    -webkit-tap-highlight-color: transparent;
-  }
-  .tb-count:active {
-    transform: scale(0.97);
-  }
-  .tb-ring {
-    position: relative;
-    display: inline-grid;
-    place-items: center;
-    width: min(74vw, 300px);
-    height: min(74vw, 300px);
-  }
-  .tb-ring svg {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    transform: rotate(-90deg);
-  }
-  .tb-track {
-    fill: none;
-    stroke: var(--seg-track);
-    stroke-width: 10;
-  }
-  .tb-fill {
-    fill: none;
-    stroke: var(--accent);
-    stroke-width: 10;
-    stroke-linecap: round;
-    stroke-dasharray: 100;
-    stroke-dashoffset: 100;
-    transition: stroke-dashoffset 0.25s ease;
-  }
-  .tb-num {
-    font-size: clamp(56px, 18vw, 84px);
-    font-weight: var(--weight-strong);
-    letter-spacing: -0.03em;
-    line-height: 1;
-    font-variant-numeric: tabular-nums;
-  }
-  .tb-of {
-    color: var(--ink-faint);
-    font-size: var(--fs-14);
-    margin-top: 6px;
-  }
-  .tb-targets {
-    display: flex;
-    justify-content: center;
-    gap: 8px;
-    margin: 22px 0 18px;
-  }
-  .tb-targets button {
-    min-width: 56px;
-    height: 40px;
-    border: 1px solid var(--hairline);
-    background: transparent;
-    color: var(--ink-soft);
-    border-radius: var(--radius-md);
-    font: var(--weight-semibold) var(--fs-16) / 1 var(--sans);
-    cursor: pointer;
-  }
-  .tb-targets button.on {
-    background: var(--seg-thumb);
-    color: var(--ink);
-    box-shadow: 0 1px 2.5px rgba(0, 0, 0, 0.16);
-  }
-  .tb-stats {
-    display: flex;
-    justify-content: center;
-    gap: 12px;
-    margin-bottom: 16px;
-  }
-  .tb-stats div {
-    background: var(--panel-bg);
-    border: 1px solid var(--hairline);
-    border-radius: var(--radius-md);
-    padding: 12px 18px;
-  }
-  .tb-stats span {
-    display: block;
-    color: var(--ink-faint);
-    font-size: var(--fs-12);
-    margin-bottom: 4px;
-  }
-  .tb-stats b {
-    font-size: 22px;
-    font-weight: var(--weight-strong);
-    font-variant-numeric: tabular-nums;
-  }
-  .tb-count.done .tb-fill {
-    stroke: var(--good);
-  }
-</style>
 
 <script is:inline>
   (function () {
@@ -224,8 +96,8 @@ const description =
     function render() {
       $('[data-num]').textContent = st.count;
       $('[data-of]').textContent = st.target ? 'из ' + st.target : 'без предела';
-      $('[data-rounds]').textContent = st.rounds;
-      $('[data-total]').textContent = st.total.toLocaleString('ru');
+      $('[data-stat="rounds"]').textContent = st.rounds;
+      $('[data-stat="total"]').textContent = st.total.toLocaleString('ru');
       var pct = st.target ? Math.min(100, Math.round((st.count / st.target) * 100)) : (st.count % 100);
       $('[data-ring]').style.strokeDashoffset = 100 - pct;
       $('[data-count-btn]').classList.toggle('done', st.target && st.count >= st.target);

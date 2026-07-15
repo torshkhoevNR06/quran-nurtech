@@ -1,0 +1,139 @@
+/* ==========================================================================
+   Tasbih page
+   ========================================================================== */
+.tasbih {
+  max-width: 520px;
+  padding-bottom: 90px;
+  text-align: center;
+}
+
+.tb-head h1 {
+  margin: 0 0 6px;
+}
+
+.tb-head p {
+  color: var(--ink-faint);
+  font-size: var(--fs-13);
+  margin: 0 0 18px;
+}
+
+.tb-dhikr {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px;
+  margin-bottom: 22px;
+}
+
+.tb-dhikr .tb-dhikr-btn {
+  min-height: 32px;
+  border-color: var(--sys-separator);
+  border-radius: var(--radius-pill);
+  color: var(--ink-soft);
+  font-size: var(--fs-13);
+  font-weight: var(--weight-semibold);
+}
+
+.tb-dhikr .tb-dhikr-btn.on {
+  border-color: var(--sys-accent);
+  background: var(--sys-accent);
+  color: var(--sys-accent-contrast);
+}
+
+.tb-count {
+  display: inline-block;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.tb-count:active {
+  transform: scale(0.97);
+}
+
+.tb-ring {
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+  width: min(74vw, 300px);
+  height: min(74vw, 300px);
+}
+
+.tb-ring svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.tb-track {
+  fill: none;
+  stroke: var(--seg-track);
+  stroke-width: 10;
+}
+
+.tb-fill {
+  fill: none;
+  stroke: var(--sys-accent);
+  stroke-width: 10;
+  stroke-linecap: round;
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+  transition: stroke-dashoffset 0.25s ease;
+}
+
+.tb-num {
+  font-size: clamp(56px, 18vw, 84px);
+  font-weight: var(--weight-strong);
+  letter-spacing: 0;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.tb-of {
+  color: var(--ink-faint);
+  font-size: var(--fs-14);
+  margin-top: 6px;
+}
+
+.tb-targets {
+  display: inline-flex;
+  justify-content: center;
+  gap: 4px;
+  margin: 22px 0 18px;
+}
+
+.tb-targets button {
+  min-width: 56px;
+  height: 34px;
+  font-size: var(--fs-16);
+}
+
+.tb-stats {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.tb-stats .ui-stat-tile {
+  padding: 12px 18px;
+  text-align: center;
+}
+
+.tb-stats .ui-stat-tile b {
+  font-size: 22px;
+}
+
+.tb-count.done .tb-fill {
+  stroke: var(--good);
+}
+
+@media (max-width: 520px) {
+  .tb-stats {
+    grid-template-columns: 1fr;
+  }
+}

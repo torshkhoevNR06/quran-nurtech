@@ -60,9 +60,12 @@
   - `src/styles/page-topics.css`;
   - `src/styles/page-glossary.css`;
   - `src/styles/page-backup.css`.
+- `/bookmarks/` и `/tasbih/` избавлены от крупных inline `<style is:global>`:
+  - стили вынесены в `src/styles/page-bookmarks.css` и `src/styles/page-tasbih.css`;
+  - `tasbih` использует `Button`, `SegmentedControl` и `StatTile`;
+  - динамические строки закладок получают общие `ui-card` / `ui-button` классы.
 - `/search/`, `/audio/`, `/download/` переведены на `PageShell` / `PageHeader` и новые UI-компоненты.
 - `/stats/` переведён на `Section` и `StatTile`, а таблица статистики обновлена под системные grouped-токены.
-- `/bookmarks/` и `/tasbih/` частично переведены на общий `Button`.
 - Исправлен fullscreen мушафа: `body.mushaf-immersive` теперь явно скрывает `.mobile-tabbar` вместе с остальным app chrome.
 - Пройдена QA-матрица:
   - 15 маршрутов;
@@ -146,17 +149,22 @@
   - shared cards, shared export button, glossary search, backup summary и horizontal overflow;
   - 10 автоматических проверок, 0 падений;
   - скрины: `qa-screens/2026-07-15-page-css-components/`.
+- После миграции `/bookmarks/` и `/tasbih/` пройден targeted QA:
+  - desktop `/bookmarks/`, mobile `/tasbih/`;
+  - создание коллекции, generated `ui-card` rows, shared delete button, dhikr buttons, segmented targets, stat tiles и horizontal overflow;
+  - 9 автоматических проверок, 0 падений;
+  - скрины: `qa-screens/2026-07-15-bookmarks-tasbih-components/`.
 
 ### Частично закрыто
 
-- Компонентная система уже покрывает базовые primitives, settings inspector, player, drawer shell, `topics`, `glossary` и `backup`; клиентски генерируемые строки сур/джузов в drawer пока остаются HTML-строками.
-- Page CSS стал чище, но `bookmarks`, `tasbih`, `image-editor` и остаточные page-specific слои ещё требуют отдельного унификационного прохода. `stats`, `audio`, `search`, `download`, `topics`, `glossary`, `backup` уже ближе к общей системе.
+- Компонентная система уже покрывает базовые primitives, settings inspector, player, drawer shell, `topics`, `glossary`, `backup`, `bookmarks` и `tasbih`; клиентски генерируемые строки сур/джузов в drawer пока остаются HTML-строками.
+- Page CSS стал чище, но `image-editor` и остаточные page-specific слои ещё требуют отдельного унификационного прохода. `stats`, `audio`, `search`, `download`, `topics`, `glossary`, `backup`, `bookmarks`, `tasbih` уже ближе к общей системе.
 - Мушаф стал стабильнее по fullscreen и базовой матрице, но advanced polish по zoom/pan/pinch/604-page audit ещё не закрыт полностью.
 
 ### Остаётся
 
 - Отдельно решить, нужен ли новый hotkey для тафсира: старый `T` до выноса не имел фактического слоя, потому что текущая модель настроек включает только Arabic/translation/transliteration.
-- Продолжить углублять `bookmarks` и `tasbih`; отдельно можно заменить HTML-строки сур/джузов в `src/client/drawer.ts` на шаблонный helper.
+- Отдельно можно заменить HTML-строки сур/джузов в `src/client/drawer.ts` на шаблонный helper и решить судьбу `image-editor`.
 - Провести типографический pass по страницам с локальными стилями и убрать случайные тяжёлые веса `700/800`, где они не являются смысловым акцентом.
 - Довести mobile overlay-аудит вручную: drawer scroll, settings scroll, action sheet, player, keyboard behavior, body scroll lock.
 - Довести desktop three-column как полноценную state-модель: sidebar collapsed, inspector open, narrow fallback, toolbar overflow.
