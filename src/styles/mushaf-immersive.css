@@ -1,3 +1,8 @@
+.mushaf-immersive-exit,
+.mushaf-imm-nav {
+  display: none;
+}
+
 body.mushaf-immersive {
   height: var(--mushaf-vvh);
   overflow: hidden;
@@ -48,6 +53,7 @@ body.mushaf-immersive .mushaf-meta {
 
 body.mushaf-immersive .mushaf-immersive-exit,
 body.mushaf-immersive .mushaf-imm-nav {
+  display: grid;
   position: fixed;
   z-index: 70;
   place-items: center;
