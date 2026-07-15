@@ -2,6 +2,7 @@ import { isBookmarked, toggleBookmark } from './bookmarks';
 import { openAyahEditor } from './imgeditor';
 import { loadIbnKathir, loadIndex, loadSaadi, surahIndex } from './quran-data';
 import { $, $$, K, LS, toast } from './shared';
+import { updateMobileScrollLock } from './ui-menus';
 
 interface ReaderActionsPlayer {
   playKey(s: number, a: number): void;
@@ -360,6 +361,8 @@ export function initMushafAyahSheet({ player }: ReaderActionsDeps) {
     $$('.qcf-word.qcf-ayah-active').forEach((w) => w.classList.remove('qcf-ayah-active'));
   const close = () => {
     sheet.classList.remove('open');
+    document.body.classList.remove('mushaf-sheet-open');
+    updateMobileScrollLock();
     clearHi();
   };
   sheet.addEventListener('click', (e) => {
@@ -388,6 +391,8 @@ export function initMushafAyahSheet({ player }: ReaderActionsDeps) {
     tafEl.hidden = true;
     tafEl.textContent = '';
     sheet.classList.add('open');
+    document.body.classList.add('mushaf-sheet-open');
+    updateMobileScrollLock();
 
     actsEl.innerHTML = '';
     let row: AyahTr | undefined;

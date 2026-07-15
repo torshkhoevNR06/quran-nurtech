@@ -1,6 +1,8 @@
 // Мощный редактор картинок аятов для Instagram: форматы, фоны-градиенты,
 // выбор текстов/шрифтов/цвета, живой предпросмотр на canvas, экспорт/шеринг.
 
+import { updateMobileScrollLock } from './ui-menus';
+
 export interface AyahData {
   s: number;
   a: number;
@@ -423,6 +425,8 @@ function toastIE(msg: string) {
 
 function close() {
   overlay.classList.remove('show');
+  document.body.classList.remove('image-editor-open');
+  updateMobileScrollLock();
   document.body.style.overflow = prevBodyOverflow;
 }
 
@@ -433,7 +437,9 @@ export async function openAyahEditor(d: AyahData) {
   if (!overlay) build();
   prevBodyOverflow = document.body.style.overflow;
   overlay.classList.add('show');
+  document.body.classList.add('image-editor-open');
   document.body.style.overflow = 'hidden';
+  updateMobileScrollLock();
   refresh();
   (overlay.querySelector('.ie-modal') as HTMLElement | null)?.focus({ preventScroll: true });
   try {

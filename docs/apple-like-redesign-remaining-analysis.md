@@ -203,11 +203,17 @@
 - Компонентная система уже покрывает базовые primitives, settings inspector, player, drawer shell, `topics`, `glossary`, `backup`, `bookmarks`, `tasbih` и клиентски генерируемые строки drawer через DOM helper.
 - Page CSS стал чище, но остаточные page-specific слои ещё требуют отдельного унификационного прохода. `stats`, `audio`, `search`, `download`, `topics`, `glossary`, `backup`, `bookmarks`, `tasbih`, `image-editor` и базовые инфо-страницы уже ближе к общей системе.
 - Мушаф стал стабильнее по fullscreen и базовой матрице, но advanced polish по zoom/pan/pinch/604-page audit ещё не закрыт полностью.
+- Mobile overlay-аудит закрыт:
+  - общий scroll-lock теперь учитывает drawer, settings, mushaf ayah sheet и image editor;
+  - settings на mobile стал собственным scroll-контейнером без автофокуса в поле поиска;
+  - действия аята на mobile снова видимы, поэтому редактор картинки доступен touch-кнопкой;
+  - mushaf ayah sheet и mini-player учитывают safe area и не вылезают за viewport;
+  - проверено в `qa-screens/2026-07-15-mobile-overlay-audit/`: 6 автоматических проверок, 0 падений.
 
 ### Остаётся
 
-- Довести mobile overlay-аудит вручную: drawer scroll, settings scroll, action sheet, player, keyboard behavior, body scroll lock.
 - Довести desktop three-column как полноценную state-модель: sidebar collapsed, inspector open, narrow fallback, toolbar overflow.
+- Довести расширенную mobile-проверку как iOS-приложение за пределами overlay: tabbar/player coexistence на длинных страницах, search/audio/progress/stats, keyboard при ручном фокусе, 375x667 и 430x932.
 - Провести расширенную QA-матрицу из раздела 8: 375x667, 430x932, 768x1024, 1024x768, 1440x900, 1920x1080, плюс ручной mobile Safari.
 
 ## Что уже сделано

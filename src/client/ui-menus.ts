@@ -13,7 +13,10 @@ export function updateMobileScrollLock() {
   const viewportWidth = Math.min(window.innerWidth || 0, document.documentElement.clientWidth || Infinity);
   const shouldLock =
     viewportWidth <= 1023 &&
-    (document.body.classList.contains('settings-panel-open') || document.body.classList.contains('drawer-open'));
+    (document.body.classList.contains('settings-panel-open') ||
+      document.body.classList.contains('drawer-open') ||
+      document.body.classList.contains('mushaf-sheet-open') ||
+      document.body.classList.contains('image-editor-open'));
 
   if (shouldLock && !mobileScrollLocked) {
     mobileScrollY = window.scrollY || 0;

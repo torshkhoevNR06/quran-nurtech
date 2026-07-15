@@ -172,7 +172,8 @@
   }
 
   .ayah-acts .secondary-action {
-    display: none;
+    display: grid;
+    place-items: center;
   }
 
   .ayah-acts button,

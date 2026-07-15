@@ -21,6 +21,9 @@ html {
 body {
   overscroll-behavior-y: none; /* без «резинки»/pull-to-refresh — ощущение приложения */
 }
-body.drawer-open {
+body.drawer-open,
+body.settings-panel-open,
+body.mushaf-sheet-open,
+body.image-editor-open {
   overflow: hidden;
 }

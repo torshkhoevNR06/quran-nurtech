@@ -1,0 +1,207 @@
+{
+  "generatedAt": "2026-07-15T05:40:44.421Z",
+  "base": "http://127.0.0.1:4331",
+  "viewport": {
+    "width": 390,
+    "height": 664
+  },
+  "total": 6,
+  "failures": 0,
+  "checks": [
+    {
+      "name": "drawer uses internal scroll and locks body",
+      "ok": true,
+      "details": {
+        "drawer": {
+          "top": 79.6875,
+          "bottom": 664,
+          "left": 0,
+          "right": 390,
+          "width": 390,
+          "height": 584.3125,
+          "display": "flex",
+          "overflowY": "hidden",
+          "scrollHeight": 582,
+          "clientHeight": 582,
+          "canScroll": false
+        },
+        "drawerScroll": {
+          "top": 163.6875,
+          "bottom": 552,
+          "left": 1,
+          "right": 389,
+          "width": 388,
+          "height": 388.3125,
+          "display": "block",
+          "overflowY": "auto",
+          "scrollHeight": 7553,
+          "clientHeight": 388,
+          "canScroll": true
+        },
+        "metrics": {
+          "innerWidth": 390,
+          "innerHeight": 664,
+          "hOverflow": 0,
+          "bodyOverflow": "hidden"
+        },
+        "bodyLocked": true
+      }
+    },
+    {
+      "name": "settings has internal scroll and no overflow",
+      "ok": true,
+      "details": {
+        "settings": {
+          "top": 79.6875,
+          "bottom": 664,
+          "left": 0,
+          "right": 390,
+          "width": 390,
+          "height": 584.3125,
+          "display": "block",
+          "overflowY": "auto",
+          "scrollHeight": 1590,
+          "clientHeight": 582,
+          "canScroll": true
+        },
+        "settingsBody": {
+          "top": 147.234375,
+          "bottom": 1653.0625,
+          "left": 1,
+          "right": 389,
+          "width": 388,
+          "height": 1505.828125,
+          "display": "grid",
+          "overflowY": "visible",
+          "scrollHeight": 1506,
+          "clientHeight": 1506,
+          "canScroll": false
+        },
+        "activeTag": "BUTTON",
+        "metrics": {
+          "innerWidth": 390,
+          "innerHeight": 664,
+          "hOverflow": 0,
+          "bodyOverflow": "hidden"
+        },
+        "bodyLocked": true
+      }
+    },
+    {
+      "name": "image editor is mobile sheet and locks body",
+      "ok": true,
+      "details": {
+        "shareRect": {
+          "top": 487.96875,
+          "bottom": 529.96875,
+          "left": 275,
+          "right": 317,
+          "width": 42,
+          "height": 42,
+          "display": "grid",
+          "overflowY": "visible",
+          "scrollHeight": 42,
+          "clientHeight": 42,
+          "canScroll": false
+        },
+        "editor": {
+          "top": 38.859375,
+          "bottom": 664,
+          "left": 0,
+          "right": 390,
+          "width": 390,
+          "height": 625.140625,
+          "display": "grid",
+          "overflowY": "hidden",
+          "scrollHeight": 624,
+          "clientHeight": 624,
+          "canScroll": false
+        },
+        "editorBody": {
+          "top": 307.890625,
+          "bottom": 560.203125,
+          "left": 0,
+          "right": 390,
+          "width": 390,
+          "height": 252.3125,
+          "display": "block",
+          "overflowY": "auto",
+          "scrollHeight": 552,
+          "clientHeight": 252,
+          "canScroll": true
+        },
+        "metrics": {
+          "innerWidth": 390,
+          "innerHeight": 664,
+          "hOverflow": 0,
+          "bodyOverflow": "hidden"
+        },
+        "bodyLocked": true
+      }
+    },
+    {
+      "name": "image editor restores scroll lock on close",
+      "ok": true,
+      "details": {
+        "metrics": {
+          "innerWidth": 390,
+          "innerHeight": 664,
+          "hOverflow": 0,
+          "bodyOverflow": "visible"
+        },
+        "bodyLocked": false
+      }
+    },
+    {
+      "name": "mushaf ayah sheet locks body and fits viewport",
+      "ok": true,
+      "details": {
+        "sheet": {
+          "top": 421.03125,
+          "bottom": 664,
+          "left": 0,
+          "right": 390,
+          "width": 390,
+          "height": 242.96875,
+          "display": "block",
+          "overflowY": "auto",
+          "scrollHeight": 242,
+          "clientHeight": 242,
+          "canScroll": false
+        },
+        "metrics": {
+          "innerWidth": 390,
+          "innerHeight": 664,
+          "hOverflow": 0,
+          "bodyOverflow": "hidden"
+        },
+        "bodyLocked": true
+      }
+    },
+    {
+      "name": "player visible without horizontal overflow",
+      "ok": true,
+      "details": {
+        "player": {
+          "top": 587,
+          "bottom": 663,
+          "left": 0,
+          "right": 390,
+          "width": 390,
+          "height": 76,
+          "display": "block",
+          "overflowY": "visible",
+          "scrollHeight": 76,
+          "clientHeight": 76,
+          "canScroll": false
+        },
+        "metrics": {
+          "innerWidth": 390,
+          "innerHeight": 664,
+          "hOverflow": 0,
+          "bodyOverflow": "visible"
+        }
+      }
+    }
+  ]
+}
