@@ -33,6 +33,8 @@
 - Закладки и «Продолжить» вынесены в `src/client/bookmarks.ts`: хранение, синхронизация кнопок, topbar-список и последнее место чтения.
 - Быстрый переход вынесен в `src/client/quick-nav.ts`: `2:255`, номер суры, алиасы названий и fallback в поиск.
 - Фильтр главной вынесен в `src/client/home-filter.ts`: поиск по карточкам сур и переход по клику на карточку.
+- Заучивание вынесено в `src/client/memorize.ts`: тумблер режима, повтор аята и синхронизация body/storage.
+- Тактильный отклик по интерактивным элементам вынесен в `src/client/interactions.ts`.
 - Добавлены реальные UI-компоненты:
   - `src/components/ui/Button.astro`;
   - `src/components/ui/IconButton.astro`;
@@ -79,17 +81,22 @@
   - фильтрация карточек сур и переход по клику;
   - 3 автоматические проверки, 0 падений;
   - скрин: `qa-screens/2026-07-15-home-filter-extract/`.
+- После выноса заучивания и интеракций пройден targeted QA:
+  - mobile `/surah/1/`;
+  - открытие настроек, включение заучивания, выбор повтора `x5`;
+  - 3 автоматические проверки, 0 падений;
+  - скрин: `qa-screens/2026-07-15-memorize-interactions-extract/`.
 
 ### Частично закрыто
 
-- `src/client/app.ts` уменьшен с 2001 до примерно 1016 строк, но ещё содержит несколько доменов: audio-player, reader-actions, reciter/audio data, hotkeys, memorize и haptic interactions.
+- `src/client/app.ts` уменьшен с 2001 до примерно 977 строк, но ещё содержит несколько доменов: audio-player, reader-actions, reciter/audio data и hotkeys.
 - Компонентная система начата, но ещё не покрывает `SegmentedControl`, `SwitchRow`, `ListRow`, `InspectorSection`, `Sheet`, `Toolbar`, `ReaderCard`.
 - Page CSS стал чище, но `bookmarks`, `backup`, `tasbih`, `glossary`, `topics`, `image-editor` ещё требуют отдельного унификационного прохода. `stats`, `audio`, `search`, `download` уже ближе к общей системе.
 - Мушаф стал стабильнее по fullscreen и базовой матрице, но advanced polish по zoom/pan/pinch/604-page audit ещё не закрыт полностью.
 
 ### Остаётся
 
-- Дальше дробить `src/client/app.ts` по доменам: audio-player, reader-actions, reciter/audio data, hotkeys, memorize и haptic interactions.
+- Дальше дробить `src/client/app.ts` по доменам: audio-player, reader-actions, reciter/audio data и hotkeys.
 - Добавить недостающие UI-компоненты и мигрировать на них `Drawer`, `Player`, `settings`, `topics`, `glossary`, `backup`; продолжить углублять `bookmarks` и `tasbih`.
 - Провести типографический pass по страницам с локальными стилями и убрать случайные тяжёлые веса `700/800`, где они не являются смысловым акцентом.
 - Довести mobile overlay-аудит вручную: drawer scroll, settings scroll, action sheet, player, keyboard behavior, body scroll lock.

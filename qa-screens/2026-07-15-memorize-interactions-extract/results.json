@@ -1,0 +1,17 @@
+[
+  {
+    "label": "settings button opens panel",
+    "ok": true,
+    "details": "true"
+  },
+  {
+    "label": "memorize toggle applies body class and storage",
+    "ok": true,
+    "details": "true"
+  },
+  {
+    "label": "memrep button applies selected state and storage",
+    "ok": true,
+    "details": "5"
+  }
+]

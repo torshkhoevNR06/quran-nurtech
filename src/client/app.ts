@@ -4,6 +4,8 @@ import { initBookmarks, initContinue, isBookmarked, toggleBookmark } from './boo
 import { openAyahEditor } from './imgeditor';
 import { initDrawer } from './drawer';
 import { initHomeFilter } from './home-filter';
+import { initHapticInteractions } from './interactions';
+import { initMemorize } from './memorize';
 import { initQuick } from './quick-nav';
 import { initReadingAnalytics } from './reading-analytics';
 import {
@@ -14,7 +16,7 @@ import {
   initView,
   setViewHotkey,
 } from './reader-settings';
-import { $, $$, haptic, K, LS, toast, type Dict } from './shared';
+import { $, $$, K, LS, toast, type Dict } from './shared';
 import { initTajweed } from './tajweed';
 import { closeMenus, initMenus, markMenu } from './ui-menus';
 
@@ -946,42 +948,11 @@ async function navSurah(delta: number) {
 }
 
 /* ==========================================================================
-   Заучивание (скрыть перевод + повтор аята N раз)
-   ========================================================================== */
-function initMemorize() {
-  const applyMem = () => {
-    $$('[data-memorize]').forEach((b) => b.classList.toggle('on', player.memorize));
-    $$('[data-memrep]').forEach((b) =>
-      b.classList.toggle('on', +b.getAttribute('data-memrep')! === player.memRep)
-    );
-    document.body.classList.toggle('memorize-on', player.memorize);
-  };
-  $$('[data-memorize]').forEach((b) =>
-    b.addEventListener('click', () => {
-      player.memorize = !player.memorize;
-      player.memCount = 0;
-      LS.set(K.memorize, player.memorize);
-      applyMem();
-      toast(player.memorize ? 'Заучивание вкл: перевод скрыт, аят повторяется' : 'Заучивание выкл');
-    })
-  );
-  $$('[data-memrep]').forEach((b) =>
-    b.addEventListener('click', () => {
-      player.memRep = +b.getAttribute('data-memrep')!;
-      player.memCount = 0;
-      LS.set(K.memrep, player.memRep);
-      applyMem();
-    })
-  );
-  applyMem();
-}
-
-/* ==========================================================================
    Старт
    ========================================================================== */
 function boot() {
   initHomeFilter();
-  initMemorize();
+  initMemorize(player);
   initTheme();
   initReading();
   initView();
@@ -999,17 +970,7 @@ function boot() {
   initReadingAnalytics();
   player.init();
   initHotkeys();
-  // тактильный отклик на тапы по интерактивным элементам (веб-вибро)
-  document.addEventListener(
-    'pointerdown',
-    (e) => {
-      const t = (e.target as Element | null)?.closest?.(
-        'button, a, .switch, .seg button, .item, [role="button"], .dlist a, .tafsir-toggle, .dtabs button'
-      );
-      if (t) haptic('light');
-    },
-    { passive: true }
-  );
+  initHapticInteractions();
   loadIndex(); // прогреть индекс для плеера/заголовков
 }
 if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
