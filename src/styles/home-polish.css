@@ -1,11 +1,3 @@
-.surah-card::before {
-  display: none;
-}
-
-.surah-card:hover {
-  transform: none;
-}
-
 .list-tools .filter {
   box-shadow: var(--glass-elev-sm);
 }

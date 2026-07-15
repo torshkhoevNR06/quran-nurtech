@@ -10,21 +10,6 @@
 .surah-card {
   min-width: 0;
   overflow: hidden;
-  border-color: var(--line);
-  border-radius: 16px;
-  background: var(--surface);
-  box-shadow: 0 10px 24px -22px var(--glass-shadow);
-}
-
-.surah-card .num {
-  width: 40px;
-  height: 40px;
-  border-radius: 12px;
-  transform: none;
-}
-
-.surah-card .num span {
-  transform: none;
 }
 
 .surah-card .row1,
