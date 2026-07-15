@@ -7,6 +7,20 @@ import { initHomeFilter } from './home-filter';
 import { initHapticInteractions } from './interactions';
 import { initMemorize } from './memorize';
 import { initQuick } from './quick-nav';
+import {
+  ayahSrc,
+  DV,
+  eaUrl,
+  loadIbnKathir,
+  loadIndex,
+  loadReciters,
+  loadSaadi,
+  pickReciterForSurah,
+  shortName,
+  surahIndex,
+  surahUrl,
+  type Reciter,
+} from './quran-data';
 import { initReadingAnalytics } from './reading-analytics';
 import {
   initReading,
@@ -20,102 +34,7 @@ import { $, $$, K, LS, toast, type Dict } from './shared';
 import { initTajweed } from './tajweed';
 import { closeMenus, initMenus, markMenu } from './ui-menus';
 
-/* ---------- данные (ленивая загрузка) ---------- */
-interface Reciter {
-  id: string;
-  name: string;
-  ed?: string; // редакция islamic.network
-  br?: number; // битрейт
-  ea?: string; // папка EveryAyah (фолбэк)
-  type?: 'ayah' | 'surah';
-  srv?: string; // база по-суровых файлов (mp3quran)
-  skip?: number[]; // недоступные суры у по-сурового чтеца
-}
-interface SurahMeta {
-  n: number;
-  na: string;
-  ne: string;
-  nr: string;
-  nm: string;
-  t: string;
-  c: number;
-  slug: string;
-}
-// версия данных — сбивает кэш браузера при изменении public/data/* (напр. новые чтецы)
-const DV = '5';
-let reciters: Reciter[] = [];
-let surahIndex: SurahMeta[] = [];
-let ayahOffset: number[] = []; // ayahOffset[s] = число аятов до суры s (для глобального номера)
-function computeOffsets(idx: SurahMeta[]) {
-  ayahOffset = [];
-  let acc = 0;
-  for (const s of idx) {
-    ayahOffset[s.n] = acc;
-    acc += s.c;
-  }
-}
-const loadReciters = async () => {
-  if (!reciters.length) reciters = await fetch(`/data/reciters.json?v=${DV}`).then((r) => r.json());
-  return reciters;
-};
-const loadIndex = async () => {
-  if (!surahIndex.length) {
-    surahIndex = await fetch(`/data/index.json?v=${DV}`).then((r) => r.json());
-    computeOffsets(surahIndex);
-  }
-  return surahIndex;
-};
-
-// Ленивая подгрузка тафсиров по суре (кэш в памяти на сессию). При ошибке НЕ кэшируем,
-// чтобы повторный клик мог попробовать заново.
-const saadiCache: Record<string, any[]> = {};
-const ikCache: Record<string, any[]> = {};
-const loadSaadi = async (s: number): Promise<any[]> => {
-  if (!saadiCache[s]) {
-    const r = await fetch(`/data/tafsir-saadi/${s}.json?v=${DV}`);
-    if (!r.ok) throw new Error('saadi ' + r.status);
-    saadiCache[s] = await r.json();
-  }
-  return saadiCache[s];
-};
-const loadIbnKathir = async (s: number): Promise<any[]> => {
-  if (!ikCache[s]) {
-    const r = await fetch(`/data/tafsir-ibnkathir/${s}.json?v=${DV}`);
-    if (!r.ok) throw new Error('ibnkathir ' + r.status);
-    ikCache[s] = await r.json();
-  }
-  return ikCache[s];
-};
-
-const pad3 = (x: number) => String(x).padStart(3, '0');
-// глобальный номер аята 1..6236
-const globalAyah = (s: number, a: number) => (ayahOffset[s] || 0) + a;
-// основной источник — Cloudflare CDN islamic.network (быстрый глобально, вкл. РФ)
-const cdnUrl = (r: Reciter, s: number, a: number) =>
-  `https://cdn.islamic.network/quran/audio/${r.br}/${r.ed}/${globalAyah(s, a)}.mp3`;
-// фолбэк — EveryAyah
-const eaUrl = (r: Reciter, s: number, a: number) =>
-  `https://everyayah.com/data/${r.ea}/${pad3(s)}${pad3(a)}.mp3`;
-// по-суровый чтец (mp3quran): целая сура одним файлом
-const surahUrl = (r: Reciter, s: number) => `${r.srv}${pad3(s)}.mp3`;
-const surahHas = (r: Reciter, s: number) => !(r.skip || []).includes(s);
-// основной URL аята: есть islamic.network-редакция (ed) → CDN, иначе напрямую EveryAyah (ea).
-// Так у ea-only чтецов нет лишнего 404→фолбэк, а предзагрузка совпадает с реальным src.
-const ayahSrc = (r: Reciter, s: number, a: number) => (r.ed ? cdnUrl(r, s, a) : eaUrl(r, s, a));
 const DEFAULT_RECITER_ID = 'binhumaid';
-// цепочка фолбэка для по-суровых чтецов: где нет Ахмада Талиба → Сувейлис → (где нет обоих) Алафаси
-const FALLBACK_CHAIN = ['binhumaid', 'souilass', 'alafasy'];
-const shortName = (r: Reciter) => r.name.split('·')[0].trim();
-// вернуть чтеца, который реально прочитал эту суру (если у выбранного её нет — идём по цепочке)
-function pickReciterForSurah(r: Reciter, s: number): Reciter {
-  if (r.type !== 'surah' || surahHas(r, s)) return r;
-  for (const id of FALLBACK_CHAIN) {
-    if (id === r.id) continue;
-    const c = reciters.find((x) => x.id === id);
-    if (c && (c.type !== 'surah' || surahHas(c, s))) return c;
-  }
-  return reciters.find((x) => x.id === 'alafasy') || reciters[0];
-}
 
 /* ==========================================================================
    Действия аята: copy / share / bookmark / play
