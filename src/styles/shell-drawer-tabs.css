@@ -1,12 +1,17 @@
 /* ==========================================================================
    Вкладки drawer/сайдбара: Суры / Джузы
    ========================================================================== */
-.dtabs {
-  display: flex;
+.drawer .dtabs {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: 2px;
-  padding: 8px 10px 2px;
+  width: calc(100% - 20px);
+  margin: 8px 10px 2px;
+  padding: 3px;
+  box-sizing: border-box;
 }
-.dtabs button {
+.drawer .dtabs button {
+  min-width: 0;
   flex: 1;
   padding: 7px;
   border: 0;
@@ -17,7 +22,7 @@
   cursor: pointer;
   transition: background 0.12s, color 0.12s;
 }
-.dtabs button.on {
+.drawer .dtabs button.on {
   background: var(--seg-track);
   color: var(--ink);
 }
@@ -27,4 +32,32 @@
 .drawer[data-dtab-active='juz'] [data-drawer-list],
 .drawer[data-dtab-active='juz'] .drawer-progress {
   display: none;
+}
+
+.drawer .djuz a {
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr);
+  align-items: start;
+  column-gap: 10px;
+  min-width: 0;
+}
+
+.drawer .djuz .n {
+  width: 34px;
+  padding-top: 1px;
+  text-align: center;
+}
+
+.drawer .djuz .nm {
+  min-width: 0;
+  overflow: hidden;
+}
+
+.drawer .djuz .nm strong,
+.drawer .djuz .nm span {
+  display: block;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
