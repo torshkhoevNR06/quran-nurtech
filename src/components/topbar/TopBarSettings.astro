@@ -1,4 +1,8 @@
 ---
+import InspectorSection from '../ui/InspectorSection.astro';
+import ListRow from '../ui/ListRow.astro';
+import SegmentedControl from '../ui/SegmentedControl.astro';
+import SwitchRow from '../ui/SwitchRow.astro';
 import { icons } from '../../lib/icons';
 import { getReciters, TRANSLATIONS } from '../../lib/quran';
 const reciters = getReciters();
@@ -28,75 +32,43 @@ const themes = [
     </div>
 
     <div class="settings-panel-body">
-      <section class="settings-section">
-        <div class="settings-section-head">
-          <span>Содержание</span>
-          <small>Слои текста в аяте</small>
-        </div>
+      <InspectorSection title="Содержание" description="Слои текста в аяте">
         <div class="settings-group">
-          <button class="item item-toggle settings-row" type="button" data-layer="ar">
-            <span class="it-label">Арабский текст</span>
-            <span class="switch" aria-hidden="true"></span>
-          </button>
-          <button class="item item-toggle settings-row" type="button" data-layer="tr">
-            <span class="it-label">Перевод</span>
-            <span class="switch" aria-hidden="true"></span>
-          </button>
-          <button class="item item-toggle settings-row" type="button" data-layer="tl">
-            <span class="it-label">Транслитерация</span>
-            <span class="switch" aria-hidden="true"></span>
-          </button>
+          <SwitchRow label="Арабский текст" data-layer="ar" />
+          <SwitchRow label="Перевод" data-layer="tr" />
+          <SwitchRow label="Транслитерация" data-layer="tl" />
         </div>
-      </section>
+      </InspectorSection>
 
-      <section class="settings-section">
-        <div class="settings-section-head">
-          <span>Перевод и тафсир</span>
-          <small>Основной источник</small>
-        </div>
+      <InspectorSection title="Перевод и тафсир" description="Основной источник">
         <div class="settings-choice-list">
           {
             TRANSLATIONS.map((t) => (
-              <button class="item settings-choice" type="button" data-tr={t.id} disabled={!t.available}>
+              <ListRow class="settings-choice" data-tr={t.id} disabled={!t.available} tick>
                 <span class="settings-choice-label">
                   {t.name}
                   {!t.available && <small>скоро</small>}
                 </span>
-                <span class="tick">✓</span>
-              </button>
+              </ListRow>
             ))
           }
         </div>
         <div class="settings-group settings-group-compact">
-          <button class="item item-toggle settings-row" type="button" data-tr-show="kuliev">
-            <span class="it-label">Показывать Кулиева</span>
-            <span class="switch" aria-hidden="true"></span>
-          </button>
-          <button class="item item-toggle settings-row" type="button" data-tr-show="abuadel">
-            <span class="it-label">Показывать Абу Аделя</span>
-            <span class="switch" aria-hidden="true"></span>
-          </button>
+          <SwitchRow label="Показывать Кулиева" data-tr-show="kuliev" />
+          <SwitchRow label="Показывать Абу Аделя" data-tr-show="abuadel" />
         </div>
-      </section>
+      </InspectorSection>
 
-      <section class="settings-section">
-        <div class="settings-section-head">
-          <span>Аудио</span>
-          <small>Голос для прослушивания</small>
-        </div>
+      <InspectorSection title="Аудио" description="Голос для прослушивания">
         <label class="settings-field settings-field-select">
           <span>Чтец</span>
           <select class="sel" data-reciter-sel>
             {reciters.map((r) => <option value={r.id}>{r.name}</option>)}
           </select>
         </label>
-      </section>
+      </InspectorSection>
 
-      <section class="settings-section">
-        <div class="settings-section-head">
-          <span>Типографика</span>
-          <small>Размеры и арабский шрифт</small>
-        </div>
+      <InspectorSection title="Типографика" description="Размеры и арабский шрифт">
         <div class="settings-group settings-sliders">
           <label class="settings-field settings-field-range">
             <span>Арабский</span>
@@ -113,22 +85,13 @@ const themes = [
         </div>
         <div class="settings-field settings-field-stack">
           <span>Шрифт арабского</span>
-          <div class="seg">
-            {fonts.map((f) => <button type="button" data-font={f.id}>{f.label}</button>)}
-          </div>
+          <SegmentedControl options={fonts} dataAttr="data-font" ariaLabel="Шрифт арабского" />
         </div>
-      </section>
+      </InspectorSection>
 
-      <section class="settings-section">
-        <div class="settings-section-head">
-          <span>Оформление</span>
-          <small>Тема и правила чтения</small>
-        </div>
+      <InspectorSection title="Оформление" description="Тема и правила чтения">
         <div class="settings-group">
-          <button class="item item-toggle settings-row" type="button" data-tajweed>
-            <span class="it-label">Таджвид<small>Цветные правила чтения</small></span>
-            <span class="switch" aria-hidden="true"></span>
-          </button>
+          <SwitchRow label="Таджвид" description="Цветные правила чтения" data-tajweed />
           <div class="tj-legend">
             <span><i class="tj-dot d-madd"></i>Мадд</span>
             <span><i class="tj-dot d-ghunna"></i>Гунна</span>
@@ -140,39 +103,31 @@ const themes = [
         </div>
         <div class="settings-field settings-field-stack">
           <span>Тема</span>
-          <div class="seg seg-grid2" data-theme-seg>
-            {themes.map((t) => <button type="button" data-theme-set={t.id}>{t.label}</button>)}
-          </div>
+          <SegmentedControl options={themes} dataAttr="data-theme-set" class="seg-grid2" data-theme-seg ariaLabel="Тема" />
         </div>
-      </section>
+      </InspectorSection>
 
-      <section class="settings-section">
-        <div class="settings-section-head">
-          <span>Режимы чтения</span>
-          <small>Поведение текста</small>
-        </div>
+      <InspectorSection title="Режимы чтения" description="Поведение текста">
         <div class="settings-group">
-          <button class="item item-toggle settings-row" type="button" data-hide-brackets>
-            <span class="it-label">Скрыть пояснения в скобках</span>
-            <span class="switch" aria-hidden="true"></span>
-          </button>
-          <button class="item item-toggle settings-row" type="button" data-memorize>
-            <span class="it-label">Заучивание<small>Скрыть перевод и повторять аят</small></span>
-            <span class="switch" aria-hidden="true"></span>
-          </button>
+          <SwitchRow label="Скрыть пояснения в скобках" data-hide-brackets />
+          <SwitchRow label="Заучивание" description="Скрыть перевод и повторять аят" data-memorize />
         </div>
         <div class="settings-field settings-field-stack">
           <span>Повтор аята</span>
-          <div class="seg" data-memrep-seg>
-            <button type="button" data-memrep="2">×2</button>
-            <button type="button" data-memrep="3">×3</button>
-            <button type="button" data-memrep="5">×5</button>
-            <button type="button" data-memrep="0">∞</button>
-          </div>
+          <SegmentedControl
+            options={[
+              { id: '2', label: '×2' },
+              { id: '3', label: '×3' },
+              { id: '5', label: '×5' },
+              { id: '0', label: '∞' },
+            ]}
+            dataAttr="data-memrep"
+            data-memrep-seg
+            ariaLabel="Повтор аята"
+          />
         </div>
-      </section>
+      </InspectorSection>
     </div>
   </div>
   <button class="settings-panel-backdrop" type="button" data-settings-panel-backdrop aria-label="Закрыть настройки"></button>
 </div>
-

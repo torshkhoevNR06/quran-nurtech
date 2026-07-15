@@ -1,0 +1,13 @@
+---
+interface Props {
+  class?: string;
+  labelledBy?: string;
+  [key: string]: unknown;
+}
+
+const { class: className = '', labelledBy, ...attrs } = Astro.props;
+---
+
+<div {...attrs} class:list={['ui-sheet', className]} role="dialog" aria-modal="true" aria-labelledby={labelledBy}>
+  <slot />
+</div>

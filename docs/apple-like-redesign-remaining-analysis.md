@@ -45,6 +45,15 @@
   - `src/components/ui/IconButton.astro`;
   - `src/components/ui/Section.astro`;
   - `src/components/ui/StatTile.astro`.
+- Добавлены недостающие UI-компоненты для следующего этапа миграции:
+  - `src/components/ui/SegmentedControl.astro`;
+  - `src/components/ui/SwitchRow.astro`;
+  - `src/components/ui/ListRow.astro`;
+  - `src/components/ui/InspectorSection.astro`;
+  - `src/components/ui/Sheet.astro`;
+  - `src/components/ui/Toolbar.astro`;
+  - `src/components/ui/ReaderCard.astro`.
+- Settings inspector в `TopBarSettings.astro` переведён на `InspectorSection`, `SwitchRow`, `ListRow` и `SegmentedControl` с сохранением всех `data-*` хуков.
 - `/search/`, `/audio/`, `/download/` переведены на `PageShell` / `PageHeader` и новые UI-компоненты.
 - `/stats/` переведён на `Section` и `StatTile`, а таблица статистики обновлена под системные grouped-токены.
 - `/bookmarks/` и `/tasbih/` частично переведены на общий `Button`.
@@ -111,17 +120,22 @@
   - playlist, play, audio src, speed, repeat, next и связь memorize/settings;
   - 8 автоматических проверок, 0 падений;
   - скрин: `qa-screens/2026-07-15-audio-player-extract/`.
+- После перевода settings inspector на UI-компоненты пройден targeted QA:
+  - desktop/mobile `/surah/1/`;
+  - открытие settings, секции, switch rows, segmented controls, layers, theme, font, memorize и mobile scroll-lock;
+  - 11 автоматических проверок, 0 падений;
+  - скрины: `qa-screens/2026-07-15-ui-components-settings/`.
 
 ### Частично закрыто
 
-- Компонентная система начата, но ещё не покрывает `SegmentedControl`, `SwitchRow`, `ListRow`, `InspectorSection`, `Sheet`, `Toolbar`, `ReaderCard`.
+- Компонентная система уже покрывает базовые primitives и settings inspector, но ещё не мигрированы `Drawer`, `Player`, `topics`, `glossary`, `backup`, а `Sheet`, `Toolbar`, `ReaderCard` пока добавлены как база для следующих проходов.
 - Page CSS стал чище, но `bookmarks`, `backup`, `tasbih`, `glossary`, `topics`, `image-editor` ещё требуют отдельного унификационного прохода. `stats`, `audio`, `search`, `download` уже ближе к общей системе.
 - Мушаф стал стабильнее по fullscreen и базовой матрице, но advanced polish по zoom/pan/pinch/604-page audit ещё не закрыт полностью.
 
 ### Остаётся
 
 - Отдельно решить, нужен ли новый hotkey для тафсира: старый `T` до выноса не имел фактического слоя, потому что текущая модель настроек включает только Arabic/translation/transliteration.
-- Добавить недостающие UI-компоненты и мигрировать на них `Drawer`, `Player`, `settings`, `topics`, `glossary`, `backup`; продолжить углублять `bookmarks` и `tasbih`.
+- Мигрировать на новые UI-компоненты `Drawer`, `Player`, `topics`, `glossary`, `backup`; продолжить углублять `bookmarks` и `tasbih`.
 - Провести типографический pass по страницам с локальными стилями и убрать случайные тяжёлые веса `700/800`, где они не являются смысловым акцентом.
 - Довести mobile overlay-аудит вручную: drawer scroll, settings scroll, action sheet, player, keyboard behavior, body scroll lock.
 - Довести desktop three-column как полноценную state-модель: sidebar collapsed, inspector open, narrow fallback, toolbar overflow.

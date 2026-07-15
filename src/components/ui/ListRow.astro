@@ -1,0 +1,46 @@
+---
+interface Props {
+  href?: string;
+  type?: 'button' | 'submit' | 'reset';
+  label?: string;
+  detail?: string;
+  class?: string;
+  selected?: boolean;
+  disabled?: boolean;
+  tick?: boolean;
+  [key: string]: unknown;
+}
+
+const {
+  href,
+  type = 'button',
+  label,
+  detail,
+  class: className = '',
+  selected = false,
+  disabled = false,
+  tick = false,
+  ...attrs
+} = Astro.props;
+const classes = ['item', 'ui-list-row', selected && 'on is-selected', className];
+---
+
+{
+  href ? (
+    <a {...attrs} href={href} class:list={classes} aria-current={selected ? 'page' : undefined}>
+      <span class="ui-list-row-label">
+        <slot>{label}</slot>
+        {detail && <small>{detail}</small>}
+      </span>
+      {tick && <span class="tick">✓</span>}
+    </a>
+  ) : (
+    <button {...attrs} type={type} class:list={classes} disabled={disabled}>
+      <span class="ui-list-row-label">
+        <slot>{label}</slot>
+        {detail && <small>{detail}</small>}
+      </span>
+      {tick && <span class="tick">✓</span>}
+    </button>
+  )
+}

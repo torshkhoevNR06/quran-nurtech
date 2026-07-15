@@ -1,0 +1,18 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+  class?: string;
+  [key: string]: unknown;
+}
+
+const { title, description, class: className = '', ...attrs } = Astro.props;
+---
+
+<section {...attrs} class:list={['settings-section', 'ui-inspector-section-shell', className]}>
+  <div class="settings-section-head">
+    <span>{title}</span>
+    {description && <small>{description}</small>}
+  </div>
+  <slot />
+</section>
