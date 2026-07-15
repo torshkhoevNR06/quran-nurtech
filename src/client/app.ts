@@ -3,6 +3,7 @@
 import { initBookmarks, initContinue, isBookmarked, toggleBookmark } from './bookmarks';
 import { openAyahEditor } from './imgeditor';
 import { initDrawer } from './drawer';
+import { initHomeFilter } from './home-filter';
 import { initQuick } from './quick-nav';
 import { initReadingAnalytics } from './reading-analytics';
 import {
@@ -942,30 +943,6 @@ async function navSurah(delta: number) {
   if (!sid) return;
   const n = +sid + delta;
   if (n >= 1 && n <= 114) location.href = `/surah/${n}`;
-}
-
-/* ==========================================================================
-   Фильтр сур на главной
-   ========================================================================== */
-function initHomeFilter() {
-  const cards = $$('[data-surah-grid] [data-card]');
-  // вся карточка кликабельна → открыть суру (клики по вложенным ссылкам-действиям не перехватываем)
-  cards.forEach((c) => {
-    c.addEventListener('click', (e) => {
-      if ((e.target as Element).closest('a')) return;
-      const href = c.getAttribute('data-href');
-      if (href) location.href = href;
-    });
-  });
-  const inp = $<HTMLInputElement>('[data-home-filter]');
-  if (!inp) return;
-  inp.addEventListener('input', () => {
-    const q = inp.value.trim().toLowerCase();
-    cards.forEach((c) => {
-      const hit = !q || (c.getAttribute('data-name') || '').includes(q);
-      (c as HTMLElement).style.display = hit ? '' : 'none';
-    });
-  });
 }
 
 /* ==========================================================================
