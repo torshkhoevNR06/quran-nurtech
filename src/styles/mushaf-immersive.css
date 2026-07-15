@@ -13,6 +13,7 @@ body.mushaf-immersive .footer,
 body.mushaf-immersive .player,
 body.mushaf-immersive .drawer,
 body.mushaf-immersive .drawer-backdrop,
+body.mushaf-immersive .mobile-tabbar,
 body.mushaf-immersive .mushaf-bottom,
 body.mushaf-immersive .mushaf-zoom-fab {
   display: none !important;

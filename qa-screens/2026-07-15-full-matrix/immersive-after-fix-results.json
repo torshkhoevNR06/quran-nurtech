@@ -1,0 +1,22 @@
+[
+  {
+    "name": "desktop-mushaf-immersive-after-fix",
+    "immersive": true,
+    "topbarDisplay": "none",
+    "footerDisplay": "none",
+    "tabbarDisplay": "none",
+    "overflowX": false,
+    "qcfPage": true,
+    "errors": []
+  },
+  {
+    "name": "mobile-mushaf-immersive-after-fix",
+    "immersive": true,
+    "topbarDisplay": "none",
+    "footerDisplay": "none",
+    "tabbarDisplay": "none",
+    "overflowX": false,
+    "qcfPage": true,
+    "errors": []
+  }
+]
