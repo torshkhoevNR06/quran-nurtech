@@ -209,11 +209,16 @@
   - действия аята на mobile снова видимы, поэтому редактор картинки доступен touch-кнопкой;
   - mushaf ayah sheet и mini-player учитывают safe area и не вылезают за viewport;
   - проверено в `qa-screens/2026-07-15-mobile-overlay-audit/`: 6 автоматических проверок, 0 падений.
+- Desktop three-column state model закрыт на ключевых ширинах:
+  - 1440/1280 px: settings работает как правый inspector и ужимает content без horizontal overflow;
+  - 1440/1280 px: sidebar сворачивается независимо;
+  - 1024 px: settings больше не улетает ниже viewport, а открывается как правый popover/fallback;
+  - проверено в `qa-screens/2026-07-15-desktop-three-column-audit/`: 6 автоматических проверок, 0 падений.
 
 ### Остаётся
 
-- Довести desktop three-column как полноценную state-модель: sidebar collapsed, inspector open, narrow fallback, toolbar overflow.
 - Довести расширенную mobile-проверку как iOS-приложение за пределами overlay: tabbar/player coexistence на длинных страницах, search/audio/progress/stats, keyboard при ручном фокусе, 375x667 и 430x932.
+- Довести advanced polish мушафа: zoom/pan/pinch, сохранение масштаба, fullscreen stability, светлая/тёмная палитра, audit страниц.
 - Провести расширенную QA-матрицу из раздела 8: 375x667, 430x932, 768x1024, 1024x768, 1440x900, 1920x1080, плюс ручной mobile Safari.
 
 ## Что уже сделано

@@ -63,6 +63,72 @@
   }
 }
 
+@media (min-width: 1024px) and (max-width: 1119px) {
+  body.settings-panel-open {
+    overflow: hidden;
+  }
+
+  .settings-panel-backdrop {
+    position: fixed;
+    inset: calc(var(--topbar-h) + 8px) 0 0;
+    z-index: 58;
+    display: block;
+    border: 0;
+    background: rgba(4, 8, 12, 0.16);
+    opacity: 0;
+    pointer-events: none;
+    -webkit-backdrop-filter: blur(2px);
+    backdrop-filter: blur(2px);
+    transition: opacity 0.18s ease;
+  }
+
+  body.settings-panel-open .settings-panel-backdrop {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .menu[data-menu='settings'] {
+    position: fixed;
+    top: calc(var(--topbar-h) + 12px);
+    right: 12px;
+    bottom: 12px;
+    left: auto;
+    z-index: 82;
+    display: block;
+    width: min(400px, calc(100vw - 24px));
+    max-height: none;
+    overflow-x: hidden;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    border-radius: var(--radius-xl);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateX(14px) scale(0.98);
+    visibility: hidden;
+    transition:
+      transform 0.2s cubic-bezier(0.2, 0, 0, 1),
+      opacity 0.16s ease,
+      visibility 0.16s ease;
+  }
+
+  .menu[data-menu='settings'].open {
+    opacity: 1;
+    pointer-events: auto;
+    transform: none;
+    visibility: visible;
+  }
+
+  .menu[data-menu='settings'] .settings-panel-head {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    margin: 0;
+    background: color-mix(in srgb, var(--panel-bg) 96%, transparent);
+    -webkit-backdrop-filter: var(--glass-blur);
+    backdrop-filter: var(--glass-blur);
+  }
+}
+
 /* На десктопе настройки превращаются в правый inspector-sidebar, как в easybot.
    Порог 1120px синхронизирован с левым сайдбаром (десктоп-раскладкой): ниже него
    настройки остаются обычным поповером, чтобы push-инспектор не переполнял тулбар. */

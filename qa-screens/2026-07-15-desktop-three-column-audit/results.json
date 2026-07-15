@@ -1,0 +1,1039 @@
+{
+  "generatedAt": "2026-07-15T05:44:03.382Z",
+  "total": 6,
+  "failures": 0,
+  "checks": [
+    {
+      "name": "desktop-1440: inspector pushes content without overflow",
+      "ok": true,
+      "details": {
+        "settingsVisible": true,
+        "topbarOk": true,
+        "noOverflow": true,
+        "contentWidth": 860,
+        "bodyPaddingRight": "420px",
+        "drawerLeft": -301
+      }
+    },
+    {
+      "name": "desktop-1440: sidebar toggles independently",
+      "ok": true,
+      "details": {
+        "drawerToggled": {
+          "label": "drawer-toggle",
+          "inner": {
+            "w": 1440,
+            "h": 900
+          },
+          "htmlSidebar": "closed",
+          "bodyClass": "tajweed-on",
+          "hOverflow": 0,
+          "bodyPaddingLeft": "0px",
+          "bodyPaddingRight": "0px",
+          "topbar": {
+            "x": 0,
+            "y": 0,
+            "w": 1440,
+            "h": 52,
+            "left": 0,
+            "right": 1440,
+            "top": 0,
+            "bottom": 52,
+            "display": "flex",
+            "vis": "visible",
+            "transform": "none",
+            "overflowY": "visible"
+          },
+          "topbarScroll": {
+            "scrollWidth": 1440,
+            "clientWidth": 1440
+          },
+          "drawer": {
+            "x": -301,
+            "y": 0,
+            "w": 300,
+            "h": 900,
+            "left": -301,
+            "right": -1,
+            "top": 0,
+            "bottom": 900,
+            "display": "flex",
+            "vis": "hidden",
+            "transform": "matrix(1, 0, 0, 1, -301, 0)",
+            "overflowY": "hidden"
+          },
+          "settings": {
+            "x": 1440,
+            "y": 0,
+            "w": 420,
+            "h": 900,
+            "left": 1440,
+            "right": 1860,
+            "top": 0,
+            "bottom": 900,
+            "display": "block",
+            "vis": "hidden",
+            "transform": "matrix(1, 0, 0, 1, 420, 0)",
+            "overflowY": "hidden"
+          },
+          "content": {
+            "x": 0,
+            "y": 52,
+            "w": 860,
+            "h": 2267.125,
+            "left": 0,
+            "right": 860,
+            "top": 52,
+            "bottom": 2319.125,
+            "display": "block",
+            "vis": "visible",
+            "transform": "none",
+            "overflowY": "visible"
+          },
+          "ayahs": {
+            "x": 16,
+            "y": 376.5,
+            "w": 828,
+            "h": 1780.625,
+            "left": 16,
+            "right": 844,
+            "top": 376.5,
+            "bottom": 2157.125,
+            "display": "block",
+            "vis": "visible",
+            "transform": "none",
+            "overflowY": "visible"
+          }
+        }
+      }
+    },
+    {
+      "name": "desktop-1280: inspector pushes content without overflow",
+      "ok": true,
+      "details": {
+        "settingsVisible": true,
+        "topbarOk": true,
+        "noOverflow": true,
+        "contentWidth": 860,
+        "bodyPaddingRight": "396.8px",
+        "drawerLeft": -301
+      }
+    },
+    {
+      "name": "desktop-1280: sidebar toggles independently",
+      "ok": true,
+      "details": {
+        "drawerToggled": {
+          "label": "drawer-toggle",
+          "inner": {
+            "w": 1280,
+            "h": 820
+          },
+          "htmlSidebar": "closed",
+          "bodyClass": "tajweed-on",
+          "hOverflow": 0,
+          "bodyPaddingLeft": "0px",
+          "bodyPaddingRight": "0px",
+          "topbar": {
+            "x": 0,
+            "y": 0,
+            "w": 1280,
+            "h": 52,
+            "left": 0,
+            "right": 1280,
+            "top": 0,
+            "bottom": 52,
+            "display": "flex",
+            "vis": "visible",
+            "transform": "none",
+            "overflowY": "visible"
+          },
+          "topbarScroll": {
+            "scrollWidth": 1280,
+            "clientWidth": 1280
+          },
+          "drawer": {
+            "x": -301,
+            "y": 0,
+            "w": 300,
+            "h": 820,
+            "left": -301,
+            "right": -1,
+            "top": 0,
+            "bottom": 820,
+            "display": "flex",
+            "vis": "hidden",
+            "transform": "matrix(1, 0, 0, 1, -301, 0)",
+            "overflowY": "hidden"
+          },
+          "settings": {
+            "x": 1280,
+            "y": 0,
+            "w": 396.796875,
+            "h": 820,
+            "left": 1280,
+            "right": 1676.796875,
+            "top": 0,
+            "bottom": 820,
+            "display": "block",
+            "vis": "hidden",
+            "transform": "matrix(1, 0, 0, 1, 396.797, 0)",
+            "overflowY": "hidden"
+          },
+          "content": {
+            "x": 0,
+            "y": 52,
+            "w": 860,
+            "h": 2267.125,
+            "left": 0,
+            "right": 860,
+            "top": 52,
+            "bottom": 2319.125,
+            "display": "block",
+            "vis": "visible",
+            "transform": "none",
+            "overflowY": "visible"
+          },
+          "ayahs": {
+            "x": 16,
+            "y": 376.5,
+            "w": 828,
+            "h": 1780.625,
+            "left": 16,
+            "right": 844,
+            "top": 376.5,
+            "bottom": 2157.125,
+            "display": "block",
+            "vis": "visible",
+            "transform": "none",
+            "overflowY": "visible"
+          }
+        }
+      }
+    },
+    {
+      "name": "tablet-1024: settings fallback stays in viewport",
+      "ok": true,
+      "details": {
+        "settingsVisible": true,
+        "settings": {
+          "x": 612,
+          "y": 64,
+          "w": 400,
+          "h": 692,
+          "left": 612,
+          "right": 1012,
+          "top": 64,
+          "bottom": 756,
+          "display": "block",
+          "vis": "visible",
+          "transform": "none",
+          "overflowY": "auto"
+        },
+        "bodyPaddingRight": "0px"
+      }
+    },
+    {
+      "name": "tablet-1024: drawer overlay stays in viewport",
+      "ok": true,
+      "details": {
+        "drawer": {
+          "x": 10,
+          "y": 10,
+          "w": 420,
+          "h": 748,
+          "left": 10,
+          "right": 430,
+          "top": 10,
+          "bottom": 758,
+          "display": "flex",
+          "vis": "visible",
+          "transform": "matrix(1, 0, 0, 1, 0, 0)",
+          "overflowY": "hidden"
+        }
+      }
+    }
+  ],
+  "details": [
+    {
+      "vp": "desktop-1440",
+      "before": {
+        "label": "before",
+        "inner": {
+          "w": 1440,
+          "h": 900
+        },
+        "htmlSidebar": "open",
+        "bodyClass": "tajweed-on",
+        "hOverflow": 0,
+        "bodyPaddingLeft": "300px",
+        "bodyPaddingRight": "0px",
+        "topbar": {
+          "x": 300,
+          "y": 0,
+          "w": 1140,
+          "h": 52,
+          "left": 300,
+          "right": 1440,
+          "top": 0,
+          "bottom": 52,
+          "display": "flex",
+          "vis": "visible",
+          "transform": "none",
+          "overflowY": "visible"
+        },
+        "topbarScroll": {
+          "scrollWidth": 1140,
+          "clientWidth": 1140
+        },
+        "drawer": {
+          "x": 0,
+          "y": 0,
+          "w": 300,
+          "h": 900,
+          "left": 0,
+          "right": 300,
+          "top": 0,
+          "bottom": 900,
+          "display": "flex",
+          "vis": "visible",
+          "transform": "matrix(1, 0, 0, 1, 0, 0)",
+          "overflowY": "hidden"
+        },
+        "settings": {
+          "x": 1440,
+          "y": 0,
+          "w": 420,
+          "h": 900,
+          "left": 1440,
+          "right": 1860,
+          "top": 0,
+          "bottom": 900,
+          "display": "block",
+          "vis": "hidden",
+          "transform": "matrix(1, 0, 0, 1, 420, 0)",
+          "overflowY": "hidden"
+        },
+        "content": {
+          "x": 300,
+          "y": 52,
+          "w": 860,
+          "h": 2267.125,
+          "left": 300,
+          "right": 1160,
+          "top": 52,
+          "bottom": 2319.125,
+          "display": "block",
+          "vis": "visible",
+          "transform": "none",
+          "overflowY": "visible"
+        },
+        "ayahs": {
+          "x": 316,
+          "y": 376.5,
+          "w": 828,
+          "h": 1780.625,
+          "left": 316,
+          "right": 1144,
+          "top": 376.5,
+          "bottom": 2157.125,
+          "display": "block",
+          "vis": "visible",
+          "transform": "none",
+          "overflowY": "visible"
+        }
+      },
+      "settingsOpen": {
+        "label": "settings-open",
+        "inner": {
+          "w": 1440,
+          "h": 900
+        },
+        "htmlSidebar": "open",
+        "bodyClass": "tajweed-on settings-panel-open",
+        "hOverflow": 0,
+        "bodyPaddingLeft": "0px",
+        "bodyPaddingRight": "420px",
+        "topbar": {
+          "x": 0,
+          "y": 0,
+          "w": 1020,
+          "h": 52,
+          "left": 0,
+          "right": 1020,
+          "top": 0,
+          "bottom": 52,
+          "display": "flex",
+          "vis": "visible",
+          "transform": "none",
+          "overflowY": "visible"
+        },
+        "topbarScroll": {
+          "scrollWidth": 1020,
+          "clientWidth": 1020
+        },
+        "drawer": {
+          "x": -301,
+          "y": 0,
+          "w": 300,
+          "h": 900,
+          "left": -301,
+          "right": -1,
+          "top": 0,
+          "bottom": 900,
+          "display": "flex",
+          "vis": "hidden",
+          "transform": "matrix(1, 0, 0, 1, -301, 0)",
+          "overflowY": "hidden"
+        },
+        "settings": {
+          "x": 1020,
+          "y": 0,
+          "w": 420,
+          "h": 900,
+          "left": 1020,
+          "right": 1440,
+          "top": 0,
+          "bottom": 900,
+          "display": "block",
+          "vis": "visible",
+          "transform": "matrix(1, 0, 0, 1, 0, 0)",
+          "overflowY": "hidden"
+        },
+        "content": {
+          "x": 0,
+          "y": 52,
+          "w": 860,
+          "h": 2267.125,
+          "left": 0,
+          "right": 860,
+          "top": 52,
+          "bottom": 2319.125,
+          "display": "block",
+          "vis": "visible",
+          "transform": "none",
+          "overflowY": "visible"
+        },
+        "ayahs": {
+          "x": 16,
+          "y": 376.5,
+          "w": 828,
+          "h": 1780.625,
+          "left": 16,
+          "right": 844,
+          "top": 376.5,
+          "bottom": 2157.125,
+          "display": "block",
+          "vis": "visible",
+          "transform": "none",
+          "overflowY": "visible"
+        }
+      },
+      "drawerToggled": {
+        "label": "drawer-toggle",
+        "inner": {
+          "w": 1440,
+          "h": 900
+        },
+        "htmlSidebar": "closed",
+        "bodyClass": "tajweed-on",
+        "hOverflow": 0,
+        "bodyPaddingLeft": "0px",
+        "bodyPaddingRight": "0px",
+        "topbar": {
+          "x": 0,
+          "y": 0,
+          "w": 1440,
+          "h": 52,
+          "left": 0,
+          "right": 1440,
+          "top": 0,
+          "bottom": 52,
+          "display": "flex",
+          "vis": "visible",
+          "transform": "none",
+          "overflowY": "visible"
+        },
+        "topbarScroll": {
+          "scrollWidth": 1440,
+          "clientWidth": 1440
+        },
+        "drawer": {
+          "x": -301,
+          "y": 0,
+          "w": 300,
+          "h": 900,
+          "left": -301,
+          "right": -1,
+          "top": 0,
+          "bottom": 900,
+          "display": "flex",
+          "vis": "hidden",
+          "transform": "matrix(1, 0, 0, 1, -301, 0)",
+          "overflowY": "hidden"
+        },
+        "settings": {
+          "x": 1440,
+          "y": 0,
+          "w": 420,
+          "h": 900,
+          "left": 1440,
+          "right": 1860,
+          "top": 0,
+          "bottom": 900,
+          "display": "block",
+          "vis": "hidden",
+          "transform": "matrix(1, 0, 0, 1, 420, 0)",
+          "overflowY": "hidden"
+        },
+        "content": {
+          "x": 0,
+          "y": 52,
+          "w": 860,
+          "h": 2267.125,
+          "left": 0,
+          "right": 860,
+          "top": 52,
+          "bottom": 2319.125,
+          "display": "block",
+          "vis": "visible",
+          "transform": "none",
+          "overflowY": "visible"
+        },
+        "ayahs": {
+          "x": 16,
+          "y": 376.5,
+          "w": 828,
+          "h": 1780.625,
+          "left": 16,
+          "right": 844,
+          "top": 376.5,
+          "bottom": 2157.125,
+          "display": "block",
+          "vis": "visible",
+          "transform": "none",
+          "overflowY": "visible"
+        }
+      }
+    },
+    {
+      "vp": "desktop-1280",
+      "before": {
+        "label": "before",
+        "inner": {
+          "w": 1280,
+          "h": 820
+        },
+        "htmlSidebar": "open",
+        "bodyClass": "tajweed-on",
+        "hOverflow": 0,
+        "bodyPaddingLeft": "300px",
+        "bodyPaddingRight": "0px",
+        "topbar": {
+          "x": 300,
+          "y": 0,
+          "w": 980,
+          "h": 52,
+          "left": 300,
+          "right": 1280,
+          "top": 0,
+          "bottom": 52,
+          "display": "flex",
+          "vis": "visible",
+          "transform": "none",
+          "overflowY": "visible"
+        },
+        "topbarScroll": {
+          "scrollWidth": 980,
+          "clientWidth": 980
+        },
+        "drawer": {
+          "x": 0,
+          "y": 0,
+          "w": 300,
+          "h": 820,
+          "left": 0,
+          "right": 300,
+          "top": 0,
+          "bottom": 820,
+          "display": "flex",
+          "vis": "visible",
+          "transform": "matrix(1, 0, 0, 1, 0, 0)",
+          "overflowY": "hidden"
+        },
+        "settings": {
+          "x": 1280,
+          "y": 0,
+          "w": 396.796875,
+          "h": 820,
+          "left": 1280,
+          "right": 1676.796875,
+          "top": 0,
+          "bottom": 820,
+          "display": "block",
+          "vis": "hidden",
+          "transform": "matrix(1, 0, 0, 1, 396.797, 0)",
+          "overflowY": "hidden"
+        },
+        "content": {
+          "x": 300,
+          "y": 52,
+          "w": 860,
+          "h": 2267.125,
+          "left": 300,
+          "right": 1160,
+          "top": 52,
+          "bottom": 2319.125,
+          "display": "block",
+          "vis": "visible",
+          "transform": "none",
+          "overflowY": "visible"
+        },
+        "ayahs": {
+          "x": 316,
+          "y": 376.5,
+          "w": 828,
+          "h": 1780.625,
+          "left": 316,
+          "right": 1144,
+          "top": 376.5,
+          "bottom": 2157.125,
+          "display": "block",
+          "vis": "visible",
+          "transform": "none",
+          "overflowY": "visible"
+        }
+      },
+      "settingsOpen": {
+        "label": "settings-open",
+        "inner": {
+          "w": 1280,
+          "h": 820
+        },
+        "htmlSidebar": "open",
+        "bodyClass": "tajweed-on settings-panel-open",
+        "hOverflow": 0,
+        "bodyPaddingLeft": "0px",
+        "bodyPaddingRight": "396.8px",
+        "topbar": {
+          "x": 0,
+          "y": 0,
+          "w": 883.203125,
+          "h": 52,
+          "left": 0,
+          "right": 883.203125,
+          "top": 0,
+          "bottom": 52,
+          "display": "flex",
+          "vis": "visible",
+          "transform": "none",
+          "overflowY": "visible"
+        },
+        "topbarScroll": {
+          "scrollWidth": 883,
+          "clientWidth": 883
+        },
+        "drawer": {
+          "x": -301,
+          "y": 0,
+          "w": 300,
+          "h": 820,
+          "left": -301,
+          "right": -1,
+          "top": 0,
+          "bottom": 820,
+          "display": "flex",
+          "vis": "hidden",
+          "transform": "matrix(1, 0, 0, 1, -301, 0)",
+          "overflowY": "hidden"
+        },
+        "settings": {
+          "x": 883.203125,
+          "y": 0,
+          "w": 396.796875,
+          "h": 820,
+          "left": 883.203125,
+          "right": 1280,
+          "top": 0,
+          "bottom": 820,
+          "display": "block",
+          "vis": "visible",
+          "transform": "matrix(1, 0, 0, 1, 0, 0)",
+          "overflowY": "hidden"
+        },
+        "content": {
+          "x": 0,
+          "y": 52,
+          "w": 860,
+          "h": 2267.125,
+          "left": 0,
+          "right": 860,
+          "top": 52,
+          "bottom": 2319.125,
+          "display": "block",
+          "vis": "visible",
+          "transform": "none",
+          "overflowY": "visible"
+        },
+        "ayahs": {
+          "x": 16,
+          "y": 376.5,
+          "w": 828,
+          "h": 1780.625,
+          "left": 16,
+          "right": 844,
+          "top": 376.5,
+          "bottom": 2157.125,
+          "display": "block",
+          "vis": "visible",
+          "transform": "none",
+          "overflowY": "visible"
+        }
+      },
+      "drawerToggled": {
+        "label": "drawer-toggle",
+        "inner": {
+          "w": 1280,
+          "h": 820
+        },
+        "htmlSidebar": "closed",
+        "bodyClass": "tajweed-on",
+        "hOverflow": 0,
+        "bodyPaddingLeft": "0px",
+        "bodyPaddingRight": "0px",
+        "topbar": {
+          "x": 0,
+          "y": 0,
+          "w": 1280,
+          "h": 52,
+          "left": 0,
+          "right": 1280,
+          "top": 0,
+          "bottom": 52,
+          "display": "flex",
+          "vis": "visible",
+          "transform": "none",
+          "overflowY": "visible"
+        },
+        "topbarScroll": {
+          "scrollWidth": 1280,
+          "clientWidth": 1280
+        },
+        "drawer": {
+          "x": -301,
+          "y": 0,
+          "w": 300,
+          "h": 820,
+          "left": -301,
+          "right": -1,
+          "top": 0,
+          "bottom": 820,
+          "display": "flex",
+          "vis": "hidden",
+          "transform": "matrix(1, 0, 0, 1, -301, 0)",
+          "overflowY": "hidden"
+        },
+        "settings": {
+          "x": 1280,
+          "y": 0,
+          "w": 396.796875,
+          "h": 820,
+          "left": 1280,
+          "right": 1676.796875,
+          "top": 0,
+          "bottom": 820,
+          "display": "block",
+          "vis": "hidden",
+          "transform": "matrix(1, 0, 0, 1, 396.797, 0)",
+          "overflowY": "hidden"
+        },
+        "content": {
+          "x": 0,
+          "y": 52,
+          "w": 860,
+          "h": 2267.125,
+          "left": 0,
+          "right": 860,
+          "top": 52,
+          "bottom": 2319.125,
+          "display": "block",
+          "vis": "visible",
+          "transform": "none",
+          "overflowY": "visible"
+        },
+        "ayahs": {
+          "x": 16,
+          "y": 376.5,
+          "w": 828,
+          "h": 1780.625,
+          "left": 16,
+          "right": 844,
+          "top": 376.5,
+          "bottom": 2157.125,
+          "display": "block",
+          "vis": "visible",
+          "transform": "none",
+          "overflowY": "visible"
+        }
+      }
+    },
+    {
+      "vp": "tablet-1024",
+      "before": {
+        "label": "before",
+        "inner": {
+          "w": 1024,
+          "h": 768
+        },
+        "bodyClass": "tajweed-on",
+        "hOverflow": 0,
+        "bodyPaddingLeft": "0px",
+        "bodyPaddingRight": "0px",
+        "topbar": {
+          "x": 0,
+          "y": 0,
+          "w": 1024,
+          "h": 52,
+          "left": 0,
+          "right": 1024,
+          "top": 0,
+          "bottom": 52,
+          "display": "flex",
+          "vis": "visible",
+          "transform": "none",
+          "overflowY": "visible"
+        },
+        "topbarScroll": {
+          "scrollWidth": 1024,
+          "clientWidth": 1024
+        },
+        "drawer": {
+          "x": -473,
+          "y": 10,
+          "w": 420,
+          "h": 748,
+          "left": -473,
+          "right": -53,
+          "top": 10,
+          "bottom": 758,
+          "display": "flex",
+          "vis": "visible",
+          "transform": "matrix(1, 0, 0, 1, -483, 0)",
+          "overflowY": "hidden"
+        },
+        "settings": {
+          "x": 630,
+          "y": 70.91998291015625,
+          "w": 392,
+          "h": 678.1600341796875,
+          "left": 630,
+          "right": 1022,
+          "top": 70.91998291015625,
+          "bottom": 749.0800170898438,
+          "display": "block",
+          "vis": "hidden",
+          "transform": "matrix(0.98, 0, 0, 0.98, 14, 0)",
+          "overflowY": "auto"
+        },
+        "content": {
+          "x": 0,
+          "y": 52,
+          "w": 860,
+          "h": 2233.484375,
+          "left": 0,
+          "right": 860,
+          "top": 52,
+          "bottom": 2285.484375,
+          "display": "block",
+          "vis": "visible",
+          "transform": "none",
+          "overflowY": "visible"
+        },
+        "ayahs": {
+          "x": 16,
+          "y": 372.859375,
+          "w": 828,
+          "h": 1750.625,
+          "left": 16,
+          "right": 844,
+          "top": 372.859375,
+          "bottom": 2123.484375,
+          "display": "block",
+          "vis": "visible",
+          "transform": "none",
+          "overflowY": "visible"
+        }
+      },
+      "settingsOpen": {
+        "label": "settings-open",
+        "inner": {
+          "w": 1024,
+          "h": 768
+        },
+        "bodyClass": "tajweed-on settings-panel-open",
+        "hOverflow": 0,
+        "bodyPaddingLeft": "0px",
+        "bodyPaddingRight": "0px",
+        "topbar": {
+          "x": 0,
+          "y": 0,
+          "w": 1024,
+          "h": 52,
+          "left": 0,
+          "right": 1024,
+          "top": 0,
+          "bottom": 52,
+          "display": "flex",
+          "vis": "visible",
+          "transform": "none",
+          "overflowY": "visible"
+        },
+        "topbarScroll": {
+          "scrollWidth": 1024,
+          "clientWidth": 1024
+        },
+        "drawer": {
+          "x": -473,
+          "y": 10,
+          "w": 420,
+          "h": 748,
+          "left": -473,
+          "right": -53,
+          "top": 10,
+          "bottom": 758,
+          "display": "flex",
+          "vis": "visible",
+          "transform": "matrix(1, 0, 0, 1, -483, 0)",
+          "overflowY": "hidden"
+        },
+        "settings": {
+          "x": 612,
+          "y": 64,
+          "w": 400,
+          "h": 692,
+          "left": 612,
+          "right": 1012,
+          "top": 64,
+          "bottom": 756,
+          "display": "block",
+          "vis": "visible",
+          "transform": "none",
+          "overflowY": "auto"
+        },
+        "content": {
+          "x": 0,
+          "y": 52,
+          "w": 860,
+          "h": 2233.484375,
+          "left": 0,
+          "right": 860,
+          "top": 52,
+          "bottom": 2285.484375,
+          "display": "block",
+          "vis": "visible",
+          "transform": "none",
+          "overflowY": "visible"
+        },
+        "ayahs": {
+          "x": 16,
+          "y": 372.859375,
+          "w": 828,
+          "h": 1750.625,
+          "left": 16,
+          "right": 844,
+          "top": 372.859375,
+          "bottom": 2123.484375,
+          "display": "block",
+          "vis": "visible",
+          "transform": "none",
+          "overflowY": "visible"
+        }
+      },
+      "drawerToggled": {
+        "label": "drawer-toggle",
+        "inner": {
+          "w": 1024,
+          "h": 768
+        },
+        "bodyClass": "tajweed-on drawer-open",
+        "hOverflow": 0,
+        "bodyPaddingLeft": "0px",
+        "bodyPaddingRight": "0px",
+        "topbar": {
+          "x": 0,
+          "y": 0,
+          "w": 1024,
+          "h": 52,
+          "left": 0,
+          "right": 1024,
+          "top": 0,
+          "bottom": 52,
+          "display": "flex",
+          "vis": "visible",
+          "transform": "none",
+          "overflowY": "visible"
+        },
+        "topbarScroll": {
+          "scrollWidth": 1024,
+          "clientWidth": 1024
+        },
+        "drawer": {
+          "x": 10,
+          "y": 10,
+          "w": 420,
+          "h": 748,
+          "left": 10,
+          "right": 430,
+          "top": 10,
+          "bottom": 758,
+          "display": "flex",
+          "vis": "visible",
+          "transform": "matrix(1, 0, 0, 1, 0, 0)",
+          "overflowY": "hidden"
+        },
+        "settings": {
+          "x": 630,
+          "y": 70.91998291015625,
+          "w": 392,
+          "h": 678.1600341796875,
+          "left": 630,
+          "right": 1022,
+          "top": 70.91998291015625,
+          "bottom": 749.0800170898438,
+          "display": "block",
+          "vis": "hidden",
+          "transform": "matrix(0.98, 0, 0, 0.98, 14, 0)",
+          "overflowY": "auto"
+        },
+        "content": {
+          "x": 0,
+          "y": 52,
+          "w": 860,
+          "h": 2233.484375,
+          "left": 0,
+          "right": 860,
+          "top": 52,
+          "bottom": 2285.484375,
+          "display": "block",
+          "vis": "visible",
+          "transform": "none",
+          "overflowY": "visible"
+        },
+        "ayahs": {
+          "x": 16,
+          "y": 372.859375,
+          "w": 828,
+          "h": 1750.625,
+          "left": 16,
+          "right": 844,
+          "top": 372.859375,
+          "bottom": 2123.484375,
+          "display": "block",
+          "vis": "visible",
+          "transform": "none",
+          "overflowY": "visible"
+        }
+      }
+    }
+  ]
+}
