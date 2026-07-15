@@ -13,7 +13,7 @@ interface HotkeyPlayer {
 
 interface HotkeyDeps {
   player: HotkeyPlayer;
-  setViewHotkey(view: 'arabic' | 'translation' | 'translit' | 'tafsir'): void;
+  setViewHotkey(view: 'arabic' | 'translation' | 'translit'): void;
   toggleBookmark(s: number, a: number): boolean;
   closeMenus(): void;
 }
@@ -34,6 +34,35 @@ export function initHotkeys({ player, setViewHotkey, toggleBookmark, closeMenus 
       if (player.idx < 0) els[target].classList.remove('active');
     }, 1200);
     player.idx = target;
+  };
+
+  const targetAyah = () => {
+    const els = $$('[data-ayah-key]');
+    if (!els.length) return null;
+    if (player.idx >= 0 && els[player.idx]) return els[player.idx];
+    const center = window.innerHeight / 2;
+    return els.reduce<Element | null>((best, el) => {
+      const rect = el.getBoundingClientRect();
+      if (rect.bottom < 0 || rect.top > window.innerHeight) return best;
+      if (!best) return el;
+      const bestRect = best.getBoundingClientRect();
+      return Math.abs(rect.top + rect.height / 2 - center) <
+        Math.abs(bestRect.top + bestRect.height / 2 - center)
+        ? el
+        : best;
+    }, null);
+  };
+
+  const toggleCurrentTafsir = () => {
+    const ayah = targetAyah();
+    const btn = ayah?.querySelector<HTMLElement>('[data-act="tafsir"][data-src="saadi"], [data-act="tafsir"]');
+    if (!btn) {
+      toast('Тафсир доступен на страницах чтения');
+      return;
+    }
+    btn.click();
+    const ref = ayah?.getAttribute('data-ayah-key') || 'аят';
+    toast(`Тафсир: ${ref}`);
   };
 
   const navSurah = (delta: number) => {
@@ -84,7 +113,7 @@ export function initHotkeys({ player, setViewHotkey, toggleBookmark, closeMenus 
         break;
       case 't':
       case 'T':
-        setViewHotkey('tafsir');
+        toggleCurrentTafsir();
         break;
       case 'b':
       case 'B':

@@ -76,6 +76,20 @@
   height: 100%;
 }
 
+.drawer .drawer-row-sub {
+  display: block;
+  margin-top: 2px;
+  color: var(--ink-faint);
+  font-size: var(--fs-12);
+  font-weight: var(--weight-regular);
+  line-height: 1.25;
+}
+
+.drawer .dlist a.on .drawer-row-sub,
+.drawer .dgroup a.on .drawer-row-sub {
+  color: color-mix(in srgb, var(--accent-ink) 74%, transparent);
+}
+
 .drawer .dfoot {
   flex: none;
   border-top: 1px solid var(--hairline);

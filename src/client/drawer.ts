@@ -21,6 +21,57 @@ interface DrawerOptions {
   loadIndex: () => Promise<SurahMeta[]>;
 }
 
+function drawerLine(text: string) {
+  const el = document.createElement('span');
+  el.className = 'drawer-row-sub';
+  el.textContent = text;
+  return el;
+}
+
+function buildDrawerLink({
+  href,
+  number,
+  title,
+  subtitle,
+  arabic,
+  active,
+  read,
+  attrs,
+}: {
+  href: string;
+  number: string | number;
+  title: string;
+  subtitle: string;
+  arabic?: string;
+  active?: boolean;
+  read?: boolean;
+  attrs?: Record<string, string | number>;
+}) {
+  const link = document.createElement('a');
+  link.href = href;
+  if (active) link.classList.add('on');
+  if (read) link.classList.add('read');
+  for (const [key, value] of Object.entries(attrs || {})) link.setAttribute(key, String(value));
+
+  const n = document.createElement('span');
+  n.className = 'n';
+  n.textContent = String(number);
+
+  const name = document.createElement('span');
+  name.className = 'nm';
+  name.textContent = title;
+  name.appendChild(drawerLine(subtitle));
+
+  link.append(n, name);
+  if (arabic) {
+    const ar = document.createElement('span');
+    ar.className = 'ar-name';
+    ar.textContent = arabic;
+    link.appendChild(ar);
+  }
+  return link;
+}
+
 export async function initDrawer({ dataVersion, loadIndex }: DrawerOptions) {
   const drawer = $('[data-drawer]');
   const backdrop = $('[data-drawer-backdrop]');
@@ -82,16 +133,23 @@ export async function initDrawer({ dataVersion, loadIndex }: DrawerOptions) {
   loadPublicReadSummary();
 
   if (listEl) {
-    listEl.innerHTML = idx
-      .map((s) => {
-        const name = `${s.nr} ${s.ne} ${s.nm}`.toLowerCase();
-        const ar = s.na.replace('سُورَةُ ', '');
-        const cls = [String(s.n) === sid ? 'on' : '', surahReadCount(s.n, s.c, prog) >= s.c ? 'read' : '']
-          .filter(Boolean)
-          .join(' ');
-        return `<a href="/surah/${s.n}" data-n="${s.n}" data-name="${name}"${cls ? ` class="${cls}"` : ''}><span class="n">${s.n}</span><span class="nm">${s.nr}<span style="display:block;font-weight:400;font-size:12px;color:var(--ink-faint)">${s.nm} · ${s.c} аятов</span></span><span class="ar-name">${ar}</span></a>`;
-      })
-      .join('');
+    listEl.replaceChildren(
+      ...idx.map((s) =>
+        buildDrawerLink({
+          href: `/surah/${s.n}`,
+          number: s.n,
+          title: s.nr,
+          subtitle: `${s.nm} · ${s.c} аятов`,
+          arabic: s.na.replace('سُورَةُ ', ''),
+          active: String(s.n) === sid,
+          read: surahReadCount(s.n, s.c, prog) >= s.c,
+          attrs: {
+            'data-n': s.n,
+            'data-name': `${s.nr} ${s.ne} ${s.nm}`.toLowerCase(),
+          },
+        })
+      )
+    );
   }
 
   const filter = $<HTMLInputElement>('[data-drawer-filter]');
@@ -107,12 +165,17 @@ export async function initDrawer({ dataVersion, loadIndex }: DrawerOptions) {
   if (juzEl && !juzEl.childElementCount) {
     try {
       const jz: any[] = await fetch(`/data/juz.json?v=${dataVersion}`).then((r) => r.json());
-      juzEl.innerHTML = jz
-        .map(
-          (z) =>
-            `<a href="/surah/${z.s}#ayah-${z.a}" data-juz="${z.j}"><span class="n">${z.j}</span><span class="nm">Джуз ${z.j}<span style="display:block;font-weight:400;font-size:12px;color:var(--ink-faint)">${z.sr} · ${z.s}:${z.a} · стр. ${z.p}</span></span></a>`
+      juzEl.replaceChildren(
+        ...jz.map((z) =>
+          buildDrawerLink({
+            href: `/surah/${z.s}#ayah-${z.a}`,
+            number: z.j,
+            title: `Джуз ${z.j}`,
+            subtitle: `${z.sr} · ${z.s}:${z.a} · стр. ${z.p}`,
+            attrs: { 'data-juz': z.j },
+          })
         )
-        .join('');
+      );
     } catch {}
   }
 

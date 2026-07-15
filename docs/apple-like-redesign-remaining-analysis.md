@@ -176,17 +176,25 @@
   - dialog semantics, two-column desktop modal, mobile bottom sheet, internal controls scroll, scroll-lock restore и horizontal overflow;
   - 12 автоматических проверок, 0 падений;
   - скрины: `qa-screens/2026-07-15-image-editor-polish/`.
+- HTML-строки сур/джузов в drawer заменены на DOM helper:
+  - строки списка строятся через `buildDrawerLink`;
+  - подписи сур/джузов вынесены в класс `.drawer-row-sub` вместо inline-style;
+  - фильтр, активная сура и read-state сохранены.
+- Hotkey `T` получил реальное действие: открывает/закрывает тафсир ас-Саади у текущего проигрываемого или видимого аята.
+- После drawer helper + tafsir hotkey пройден targeted QA:
+  - desktop/mobile `/surah/2/`;
+  - helper rows, отсутствие inline-style в подписях, список джузов, mobile internal scroll, scroll-lock, horizontal overflow и `T` для тафсира;
+  - 8 автоматических проверок, 0 падений;
+  - скрины: `qa-screens/2026-07-15-drawer-hotkey-helper/`.
 
 ### Частично закрыто
 
-- Компонентная система уже покрывает базовые primitives, settings inspector, player, drawer shell, `topics`, `glossary`, `backup`, `bookmarks` и `tasbih`; клиентски генерируемые строки сур/джузов в drawer пока остаются HTML-строками.
+- Компонентная система уже покрывает базовые primitives, settings inspector, player, drawer shell, `topics`, `glossary`, `backup`, `bookmarks`, `tasbih` и клиентски генерируемые строки drawer через DOM helper.
 - Page CSS стал чище, но остаточные page-specific слои ещё требуют отдельного унификационного прохода. `stats`, `audio`, `search`, `download`, `topics`, `glossary`, `backup`, `bookmarks`, `tasbih`, `image-editor` и базовые инфо-страницы уже ближе к общей системе.
 - Мушаф стал стабильнее по fullscreen и базовой матрице, но advanced polish по zoom/pan/pinch/604-page audit ещё не закрыт полностью.
 
 ### Остаётся
 
-- Отдельно решить, нужен ли новый hotkey для тафсира: старый `T` до выноса не имел фактического слоя, потому что текущая модель настроек включает только Arabic/translation/transliteration.
-- Отдельно можно заменить HTML-строки сур/джузов в `src/client/drawer.ts` на шаблонный helper.
 - Провести типографический pass по страницам с локальными стилями и убрать случайные тяжёлые веса `700/800`, где они не являются смысловым акцентом.
 - Довести mobile overlay-аудит вручную: drawer scroll, settings scroll, action sheet, player, keyboard behavior, body scroll lock.
 - Довести desktop three-column как полноценную state-модель: sidebar collapsed, inspector open, narrow fallback, toolbar overflow.

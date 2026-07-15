@@ -1,0 +1,100 @@
+{
+  "results": [
+    {
+      "name": "desktop drawer rows use helper subline",
+      "ok": true,
+      "details": {
+        "rows": 114,
+        "subRows": 114,
+        "inlineStyledSub": 0,
+        "active": 1,
+        "hOverflow": 0
+      }
+    },
+    {
+      "name": "desktop active surah preserved",
+      "ok": true,
+      "details": {
+        "rows": 114,
+        "subRows": 114,
+        "inlineStyledSub": 0,
+        "active": 1,
+        "hOverflow": 0
+      }
+    },
+    {
+      "name": "desktop no horizontal overflow",
+      "ok": true,
+      "details": {
+        "rows": 114,
+        "subRows": 114,
+        "inlineStyledSub": 0,
+        "active": 1,
+        "hOverflow": 0
+      }
+    },
+    {
+      "name": "desktop juz rows use helper subline",
+      "ok": true,
+      "details": {
+        "rows": 30,
+        "subRows": 30,
+        "inlineStyledSub": 0
+      }
+    },
+    {
+      "name": "desktop T opens current ayah tafsir",
+      "ok": true,
+      "details": {
+        "panels": 1,
+        "toast": "Тафсир: 2:1"
+      }
+    },
+    {
+      "name": "mobile drawer body locked and internal scroll ready",
+      "ok": true,
+      "details": {
+        "bodyOpen": true,
+        "bodyOverflow": "hidden",
+        "scrollOverflow": "auto",
+        "canScroll": true,
+        "drawerTop": 79.6875,
+        "drawerBottom": 664,
+        "viewportH": 664,
+        "hOverflow": 0,
+        "subRows": 114
+      }
+    },
+    {
+      "name": "mobile drawer bottom sheet visible",
+      "ok": true,
+      "details": {
+        "bodyOpen": true,
+        "bodyOverflow": "hidden",
+        "scrollOverflow": "auto",
+        "canScroll": true,
+        "drawerTop": 79.6875,
+        "drawerBottom": 664,
+        "viewportH": 664,
+        "hOverflow": 0,
+        "subRows": 114
+      }
+    },
+    {
+      "name": "mobile drawer no horizontal overflow",
+      "ok": true,
+      "details": {
+        "bodyOpen": true,
+        "bodyOverflow": "hidden",
+        "scrollOverflow": "auto",
+        "canScroll": true,
+        "drawerTop": 79.6875,
+        "drawerBottom": 664,
+        "viewportH": 664,
+        "hOverflow": 0,
+        "subRows": 114
+      }
+    }
+  ],
+  "failures": []
+}
