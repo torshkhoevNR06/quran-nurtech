@@ -166,17 +166,27 @@
   - shared icon utilities, search classes, bookmark menu empty state, shortcut rows, video tools и horizontal overflow;
   - 16 автоматических проверок, 0 падений;
   - скрины: `qa-screens/2026-07-15-inline-css-cleanup/`.
+- `image-editor` приведён к общей UI-системе:
+  - overlay стал системным material modal на desktop и bottom sheet на mobile;
+  - chips/actions переведены на `ui-button`, close — на `ui-icon-button`;
+  - добавлены dialog semantics, фокус при открытии и восстановление body scroll после закрытия;
+  - панель настроек получила собственный внутренний scroll на телефоне.
+- После polish редактора картинок пройден targeted QA:
+  - desktop/mobile `/surah/1/`;
+  - dialog semantics, two-column desktop modal, mobile bottom sheet, internal controls scroll, scroll-lock restore и horizontal overflow;
+  - 12 автоматических проверок, 0 падений;
+  - скрины: `qa-screens/2026-07-15-image-editor-polish/`.
 
 ### Частично закрыто
 
 - Компонентная система уже покрывает базовые primitives, settings inspector, player, drawer shell, `topics`, `glossary`, `backup`, `bookmarks` и `tasbih`; клиентски генерируемые строки сур/джузов в drawer пока остаются HTML-строками.
-- Page CSS стал чище, но `image-editor` и остаточные page-specific слои ещё требуют отдельного унификационного прохода. `stats`, `audio`, `search`, `download`, `topics`, `glossary`, `backup`, `bookmarks`, `tasbih` и базовые инфо-страницы уже ближе к общей системе.
+- Page CSS стал чище, но остаточные page-specific слои ещё требуют отдельного унификационного прохода. `stats`, `audio`, `search`, `download`, `topics`, `glossary`, `backup`, `bookmarks`, `tasbih`, `image-editor` и базовые инфо-страницы уже ближе к общей системе.
 - Мушаф стал стабильнее по fullscreen и базовой матрице, но advanced polish по zoom/pan/pinch/604-page audit ещё не закрыт полностью.
 
 ### Остаётся
 
 - Отдельно решить, нужен ли новый hotkey для тафсира: старый `T` до выноса не имел фактического слоя, потому что текущая модель настроек включает только Arabic/translation/transliteration.
-- Отдельно можно заменить HTML-строки сур/джузов в `src/client/drawer.ts` на шаблонный helper и решить судьбу `image-editor`.
+- Отдельно можно заменить HTML-строки сур/джузов в `src/client/drawer.ts` на шаблонный helper.
 - Провести типографический pass по страницам с локальными стилями и убрать случайные тяжёлые веса `700/800`, где они не являются смысловым акцентом.
 - Довести mobile overlay-аудит вручную: drawer scroll, settings scroll, action sheet, player, keyboard behavior, body scroll lock.
 - Довести desktop three-column как полноценную state-модель: sidebar collapsed, inspector open, narrow fallback, toolbar overflow.
