@@ -44,6 +44,8 @@
 }
 
 .ayahs {
+  width: 100%;
+  min-width: 0;
   border: 1px solid var(--sys-separator);
   border-radius: var(--radius-lg);
   background: var(--sys-secondary-grouped-bg);
@@ -51,8 +53,35 @@
 }
 
 .ayah {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
   border-bottom-color: var(--sys-separator);
   border-radius: 0;
+}
+
+.ayah-top,
+.tr-block,
+.translation,
+.translit,
+.tafsir-toggles,
+.tafsir-passage,
+.tafsir-details,
+.ayah-note {
+  width: 100%;
+  min-width: 0;
+}
+
+.ayah .ar {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  text-align: right;
+}
+
+.tr-block {
+  display: grid;
+  gap: 10px;
 }
 
 .ayah.active {

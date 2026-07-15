@@ -27,6 +27,16 @@ main:not(.wide) {
   max-width: var(--content-max);
 }
 
+main[role='main']:not(.wide) {
+  width: min(100%, var(--content-max));
+  margin-inline: auto;
+}
+
+main[role='main']:not(.wide) > .container {
+  width: 100%;
+  max-width: 100%;
+}
+
 .topbar {
   padding: 0;
   background: transparent;
@@ -63,6 +73,14 @@ main:not(.wide) {
 .brand-mark img {
   width: 34px;
   height: 34px;
+}
+
+.toolbar-context {
+  display: grid;
+  min-width: 0;
+  flex: 0 1 auto;
+  gap: 1px;
+  line-height: 1.08;
 }
 
 .brand .brand-name,
