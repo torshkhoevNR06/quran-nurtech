@@ -1,5 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
+import Card from '../components/ui/Card.astro';
 import PageHeader from '../components/ui/PageHeader.astro';
 import PageShell from '../components/ui/PageShell.astro';
 const title = 'Аяты по темам — тематические подборки Корана';
@@ -187,7 +188,7 @@ const topics = [
     <div class="tp-grid">
       {
         topics.map((topic) => (
-          <section class="tp-card">
+          <Card class="tp-card">
             <h2>{topic.t}</h2>
             <p>{topic.d}</p>
             <div class="tp-ayahs">
@@ -197,65 +198,9 @@ const topics = [
                 </a>
               ))}
             </div>
-          </section>
+          </Card>
         ))
       }
     </div>
   </PageShell>
 </Base>
-
-<style is:global>
-  .topics {
-    max-width: 880px;
-    padding-bottom: 90px;
-  }
-  .tp-head h1 {
-    margin: 0 0 6px;
-  }
-  .tp-head p {
-    color: var(--ink-faint);
-    font-size: var(--fs-13);
-    margin: 0 0 18px;
-  }
-  .tp-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-    gap: var(--sp-3);
-  }
-  .tp-card {
-    background: var(--panel-bg);
-    border: 1px solid var(--hairline);
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-card);
-    padding: 16px 18px;
-  }
-  .tp-card h2 {
-    margin: 0 0 3px;
-    font-size: var(--fs-16);
-    font-weight: var(--weight-semibold);
-    letter-spacing: -0.01em;
-  }
-  .tp-card p {
-    margin: 0 0 12px;
-    color: var(--ink-faint);
-    font-size: var(--fs-13);
-  }
-  .tp-ayahs {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-  }
-  .tp-ayahs a {
-    border: 1px solid var(--hairline);
-    background: color-mix(in srgb, var(--accent) 8%, transparent);
-    color: var(--accent);
-    border-radius: var(--radius-s);
-    padding: 5px 11px;
-    font: var(--weight-semibold) var(--fs-13) / 1 var(--sans);
-    font-variant-numeric: tabular-nums;
-    text-decoration: none;
-  }
-  .tp-ayahs a:hover {
-    background: color-mix(in srgb, var(--accent) 16%, transparent);
-  }
-</style>

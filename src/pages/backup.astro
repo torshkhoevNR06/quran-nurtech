@@ -1,5 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
+import Button from '../components/ui/Button.astro';
 import Card from '../components/ui/Card.astro';
 import PageHeader from '../components/ui/PageHeader.astro';
 import PageShell from '../components/ui/PageShell.astro';
@@ -25,7 +26,7 @@ const description =
     <Card class="bk-card">
       <h2>Выгрузить</h2>
       <p>Скачает файл <code>quran-backup.json</code> со всеми вашими данными.</p>
-      <button type="button" class="btn primary" data-export>Скачать резервную копию</button>
+      <Button variant="primary" data-export>Скачать резервную копию</Button>
     </Card>
 
     <Card class="bk-card">
@@ -39,64 +40,6 @@ const description =
     </Card>
   </PageShell>
 </Base>
-
-<style is:global>
-  .backup {
-    max-width: 640px;
-    padding-bottom: 90px;
-  }
-  .backup h1 {
-    margin: 0 0 6px;
-  }
-  .backup > header p {
-    color: var(--ink-faint);
-    font-size: var(--fs-13);
-    margin: 0 0 18px;
-    line-height: 1.5;
-  }
-  .bk-card {
-    background: var(--panel-bg);
-    border: 1px solid var(--hairline);
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-card);
-    padding: 18px 20px;
-    margin-bottom: 14px;
-  }
-  .bk-card h2 {
-    margin: 0 0 8px;
-    font-size: var(--fs-16);
-  }
-  .bk-card p {
-    margin: 0 0 12px;
-    color: var(--ink-soft);
-    font-size: var(--fs-14);
-  }
-  .bk-card code {
-    background: var(--seg-track);
-    padding: 1px 6px;
-    border-radius: 5px;
-    font-size: var(--fs-13);
-  }
-  .bk-list {
-    margin: 0;
-    padding-left: 18px;
-    color: var(--ink-soft);
-    font-size: var(--fs-14);
-    line-height: 1.7;
-  }
-  .bk-import {
-    cursor: pointer;
-  }
-  .bk-msg {
-    display: inline-block;
-    margin-left: 10px;
-    font-size: var(--fs-13);
-    color: var(--good);
-  }
-  .bk-msg.err {
-    color: var(--low);
-  }
-</style>
 
 <script is:inline>
   (function () {
