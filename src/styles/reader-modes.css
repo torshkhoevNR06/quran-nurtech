@@ -65,7 +65,7 @@
 }
 .ayahs[data-view='compare'] .tr-lbl {
   display: block;
-  font: 600 11px/1 var(--sans);
+  font: var(--weight-semibold) 11px/1 var(--sans);
   letter-spacing: 0.05em;
   text-transform: uppercase;
   color: var(--accent);

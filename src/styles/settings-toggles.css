@@ -12,7 +12,7 @@
 .menu .item-toggle .it-label small {
   font-size: var(--fs-11);
   color: var(--ink-faint);
-  font-weight: 500;
+  font-weight: var(--weight-medium);
 }
 .menu .item-toggle .switch {
   margin-left: auto;
@@ -20,7 +20,7 @@
 .menu button.item-toggle.on {
   background: transparent;
   color: var(--ink);
-  font-weight: 500;
+  font-weight: var(--weight-medium);
 }
 .menu button.item-toggle.on .switch {
   background: var(--accent);

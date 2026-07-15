@@ -156,7 +156,7 @@ body[data-page-mode='mushaf'] .qcf-page {
   align-items: center;
   font-family: var(--font-arabic-mushaf);
   font-size: var(--mushaf-qcf-size);
-  font-weight: 500;
+  font-weight: var(--weight-medium);
   line-height: 1;
   color: var(--mushaf-ink);
   direction: rtl;

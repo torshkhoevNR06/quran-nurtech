@@ -39,7 +39,7 @@
 }
 .settings-panel-head span {
   color: var(--ink-faint);
-  font: 500 12px/1.25 var(--sans);
+  font: var(--weight-medium) 12px/1.25 var(--sans);
 }
 .settings-panel-close {
   display: inline-grid;

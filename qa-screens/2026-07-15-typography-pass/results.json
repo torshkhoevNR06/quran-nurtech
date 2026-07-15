@@ -1,0 +1,869 @@
+{
+  "results": [
+    {
+      "name": "desktop / uses system font stack",
+      "ok": true,
+      "details": {
+        "titleText": "Коран онлайн",
+        "titleSize": 52,
+        "titleWeight": "650",
+        "bodyFont": "-apple-system, \"system-ui\", \"SF Pro Text\", \"SF Pro Display\", Inter, \"Segoe UI\", system-ui, Roboto, \"Helvetica Neue\", Arial, sans-serif",
+        "overflow": 0,
+        "badWeights": []
+      }
+    },
+    {
+      "name": "desktop / no horizontal overflow",
+      "ok": true,
+      "details": {
+        "titleText": "Коран онлайн",
+        "titleSize": 52,
+        "titleWeight": "650",
+        "bodyFont": "-apple-system, \"system-ui\", \"SF Pro Text\", \"SF Pro Display\", Inter, \"Segoe UI\", system-ui, Roboto, \"Helvetica Neue\", Arial, sans-serif",
+        "overflow": 0,
+        "badWeights": []
+      }
+    },
+    {
+      "name": "desktop / title weight is not heavy",
+      "ok": true,
+      "details": {
+        "titleText": "Коран онлайн",
+        "titleSize": 52,
+        "titleWeight": "650",
+        "bodyFont": "-apple-system, \"system-ui\", \"SF Pro Text\", \"SF Pro Display\", Inter, \"Segoe UI\", system-ui, Roboto, \"Helvetica Neue\", Arial, sans-serif",
+        "overflow": 0,
+        "badWeights": []
+      }
+    },
+    {
+      "name": "desktop / no stray heavy content weights",
+      "ok": true,
+      "details": {
+        "titleText": "Коран онлайн",
+        "titleSize": 52,
+        "titleWeight": "650",
+        "bodyFont": "-apple-system, \"system-ui\", \"SF Pro Text\", \"SF Pro Display\", Inter, \"Segoe UI\", system-ui, Roboto, \"Helvetica Neue\", Arial, sans-serif",
+        "overflow": 0,
+        "badWeights": []
+      }
+    },
+    {
+      "name": "desktop /surah/1/ uses system font stack",
+      "ok": true,
+      "details": {
+        "titleText": "Аль-Фатиха",
+        "titleSize": 38,
+        "titleWeight": "650",
+        "bodyFont": "-apple-system, \"system-ui\", \"SF Pro Text\", \"SF Pro Display\", Inter, \"Segoe UI\", system-ui, Roboto, \"Helvetica Neue\", Arial, sans-serif",
+        "overflow": 0,
+        "badWeights": []
+      }
+    },
+    {
+      "name": "desktop /surah/1/ no horizontal overflow",
+      "ok": true,
+      "details": {
+        "titleText": "Аль-Фатиха",
+        "titleSize": 38,
+        "titleWeight": "650",
+        "bodyFont": "-apple-system, \"system-ui\", \"SF Pro Text\", \"SF Pro Display\", Inter, \"Segoe UI\", system-ui, Roboto, \"Helvetica Neue\", Arial, sans-serif",
+        "overflow": 0,
+        "badWeights": []
+      }
+    },
+    {
+      "name": "desktop /surah/1/ title weight is not heavy",
+      "ok": true,
+      "details": {
+        "titleText": "Аль-Фатиха",
+        "titleSize": 38,
+        "titleWeight": "650",
+        "bodyFont": "-apple-system, \"system-ui\", \"SF Pro Text\", \"SF Pro Display\", Inter, \"Segoe UI\", system-ui, Roboto, \"Helvetica Neue\", Arial, sans-serif",
+        "overflow": 0,
+        "badWeights": []
+      }
+    },
+    {
+      "name": "desktop /surah/1/ no stray heavy content weights",
+      "ok": true,
+      "details": {
+        "titleText": "Аль-Фатиха",
+        "titleSize": 38,
+        "titleWeight": "650",
+        "bodyFont": "-apple-system, \"system-ui\", \"SF Pro Text\", \"SF Pro Display\", Inter, \"Segoe UI\", system-ui, Roboto, \"Helvetica Neue\", Arial, sans-serif",
+        "overflow": 0,
+        "badWeights": []
+      }
+    },
+    {
+      "name": "desktop /search/ uses system font stack",
+      "ok": true,
+      "details": {
+        "titleText": "Поиск по Корану",
+        "titleSize": 38,
+        "titleWeight": "650",
+        "bodyFont": "-apple-system, \"system-ui\", \"SF Pro Text\", \"SF Pro Display\", Inter, \"Segoe UI\", system-ui, Roboto, \"Helvetica Neue\", Arial, sans-serif",
+        "overflow": 0,
+        "badWeights": []
+      }
+    },
+    {
+      "name": "desktop /search/ no horizontal overflow",
+      "ok": true,
+      "details": {
+        "titleText": "Поиск по Корану",
+        "titleSize": 38,
+        "titleWeight": "650",
+        "bodyFont": "-apple-system, \"system-ui\", \"SF Pro Text\", \"SF Pro Display\", Inter, \"Segoe UI\", system-ui, Roboto, \"Helvetica Neue\", Arial, sans-serif",
+        "overflow": 0,
+        "badWeights": []
+      }
+    },
+    {
+      "name": "desktop /search/ title weight is not heavy",
+      "ok": true,
+      "details": {
+        "titleText": "Поиск по Корану",
+        "titleSize": 38,
+        "titleWeight": "650",
+        "bodyFont": "-apple-system, \"system-ui\", \"SF Pro Text\", \"SF Pro Display\", Inter, \"Segoe UI\", system-ui, Roboto, \"Helvetica Neue\", Arial, sans-serif",
+        "overflow": 0,
+        "badWeights": []
+      }
+    },
+    {
+      "name": "desktop /search/ no stray heavy content weights",
+      "ok": true,
+      "details": {
+        "titleText": "Поиск по Корану",
+        "titleSize": 38,
+        "titleWeight": "650",
+        "bodyFont": "-apple-system, \"system-ui\", \"SF Pro Text\", \"SF Pro Display\", Inter, \"Segoe UI\", system-ui, Roboto, \"Helvetica Neue\", Arial, sans-serif",
+        "overflow": 0,
+        "badWeights": []
+      }
+    },
+    {
+      "name": "desktop /stats/ uses system font stack",
+      "ok": true,
+      "details": {
+        "titleText": "Статистика чтения",
+        "titleSize": 38,
+        "titleWeight": "650",
+        "bodyFont": "-apple-system, \"system-ui\", \"SF Pro Text\", \"SF Pro Display\", Inter, \"Segoe UI\", system-ui, Roboto, \"Helvetica Neue\", Arial, sans-serif",
+        "overflow": 0,
+        "badWeights": []
+      }
+    },
+    {
+      "name": "desktop /stats/ no horizontal overflow",
+      "ok": true,
+      "details": {
+        "titleText": "Статистика чтения",
+        "titleSize": 38,
+        "titleWeight": "650",
+        "bodyFont": "-apple-system, \"system-ui\", \"SF Pro Text\", \"SF Pro Display\", Inter, \"Segoe UI\", system-ui, Roboto, \"Helvetica Neue\", Arial, sans-serif",
+        "overflow": 0,
+        "badWeights": []
+      }
+    },
+    {
+      "name": "desktop /stats/ title weight is not heavy",
+      "ok": true,
+      "details": {
+        "titleText": "Статистика чтения",
+        "titleSize": 38,
+        "titleWeight": "650",
+        "bodyFont": "-apple-system, \"system-ui\", \"SF Pro Text\", \"SF Pro Display\", Inter, \"Segoe UI\", system-ui, Roboto, \"Helvetica Neue\", Arial, sans-serif",
+        "overflow": 0,
+        "badWeights": []
+      }
+    },
+    {
+      "name": "desktop /stats/ no stray heavy content weights",
+      "ok": true,
+      "details": {
+        "titleText": "Статистика чтения",
+        "titleSize": 38,
+        "titleWeight": "650",
+        "bodyFont": "-apple-system, \"system-ui\", \"SF Pro Text\", \"SF Pro Display\", Inter, \"Segoe UI\", system-ui, Roboto, \"Helvetica Neue\", Arial, sans-serif",
+        "overflow": 0,
+        "badWeights": []
+      }
+    },
+    {
+      "name": "desktop /audio/ uses system font stack",
+      "ok": true,
+      "details": {
+        "titleText": "Аудио Корана",
+        "titleSize": 38,
+        "titleWeight": "650",
+        "bodyFont": "-apple-system, \"system-ui\", \"SF Pro Text\", \"SF Pro Display\", Inter, \"Segoe UI\", system-ui, Roboto, \"Helvetica Neue\", Arial, sans-serif",
+        "overflow": 0,
+        "badWeights": []
+      }
+    },
+    {
+      "name": "desktop /audio/ no horizontal overflow",
+      "ok": true,
+      "details": {
+        "titleText": "Аудио Корана",
+        "titleSize": 38,
+        "titleWeight": "650",
+        "bodyFont": "-apple-system, \"system-ui\", \"SF Pro Text\", \"SF Pro Display\", Inter, \"Segoe UI\", system-ui, Roboto, \"Helvetica Neue\", Arial, sans-serif",
+        "overflow": 0,
+        "badWeights": []
+      }
+    },
+    {
+      "name": "desktop /audio/ title weight is not heavy",
+      "ok": true,
+      "details": {
+        "titleText": "Аудио Корана",
+        "titleSize": 38,
+        "titleWeight": "650",
+        "bodyFont": "-apple-system, \"system-ui\", \"SF Pro Text\", \"SF Pro Display\", Inter, \"Segoe UI\", system-ui, Roboto, \"Helvetica Neue\", Arial, sans-serif",
+        "overflow": 0,
+        "badWeights": []
+      }
+    },
+    {
+      "name": "desktop /audio/ no stray heavy content weights",
+      "ok": true,
+      "details": {
+        "titleText": "Аудио Корана",
+        "titleSize": 38,
+        "titleWeight": "650",
+        "bodyFont": "-apple-system, \"system-ui\", \"SF Pro Text\", \"SF Pro Display\", Inter, \"Segoe UI\", system-ui, Roboto, \"Helvetica Neue\", Arial, sans-serif",
+        "overflow": 0,
+        "badWeights": []
+      }
+    },
+    {
+      "name": "desktop /topics/ uses system font stack",
+      "ok": true,
+      "details": {
+        "titleText": "Аяты по темам",
+        "titleSize": 38,
+        "titleWeight": "650",
+        "bodyFont": "-apple-system, \"system-ui\", \"SF Pro Text\", \"SF Pro Display\", Inter, \"Segoe UI\", system-ui, Roboto, \"Helvetica Neue\", Arial, sans-serif",
+        "overflow": 0,
+        "badWeights": []
+      }
+    },
+    {
+      "name": "desktop /topics/ no horizontal overflow",
+      "ok": true,
+      "details": {
+        "titleText": "Аяты по темам",
+        "titleSize": 38,
+        "titleWeight": "650",
+        "bodyFont": "-apple-system, \"system-ui\", \"SF Pro Text\", \"SF Pro Display\", Inter, \"Segoe UI\", system-ui, Roboto, \"Helvetica Neue\", Arial, sans-serif",
+        "overflow": 0,
+        "badWeights": []
+      }
+    },
+    {
+      "name": "desktop /topics/ title weight is not heavy",
+      "ok": true,
+      "details": {
+        "titleText": "Аяты по темам",
+        "titleSize": 38,
+        "titleWeight": "650",
+        "bodyFont": "-apple-system, \"system-ui\", \"SF Pro Text\", \"SF Pro Display\", Inter, \"Segoe UI\", system-ui, Roboto, \"Helvetica Neue\", Arial, sans-serif",
+        "overflow": 0,
+        "badWeights": []
+      }
+    },
+    {
+      "name": "desktop /topics/ no stray heavy content weights",
+      "ok": true,
+      "details": {
+        "titleText": "Аяты по темам",
+        "titleSize": 38,
+        "titleWeight": "650",
+        "bodyFont": "-apple-system, \"system-ui\", \"SF Pro Text\", \"SF Pro Display\", Inter, \"Segoe UI\", system-ui, Roboto, \"Helvetica Neue\", Arial, sans-serif",
+        "overflow": 0,
+        "badWeights": []
+      }
+    },
+    {
+      "name": "desktop /glossary/ uses system font stack",
+      "ok": true,
+      "details": {
+        "titleText": "Словарь терминов",
+        "titleSize": 38,
+        "titleWeight": "650",
+        "bodyFont": "-apple-system, \"system-ui\", \"SF Pro Text\", \"SF Pro Display\", Inter, \"Segoe UI\", system-ui, Roboto, \"Helvetica Neue\", Arial, sans-serif",
+        "overflow": 0,
+        "badWeights": []
+      }
+    },
+    {
+      "name": "desktop /glossary/ no horizontal overflow",
+      "ok": true,
+      "details": {
+        "titleText": "Словарь терминов",
+        "titleSize": 38,
+        "titleWeight": "650",
+        "bodyFont": "-apple-system, \"system-ui\", \"SF Pro Text\", \"SF Pro Display\", Inter, \"Segoe UI\", system-ui, Roboto, \"Helvetica Neue\", Arial, sans-serif",
+        "overflow": 0,
+        "badWeights": []
+      }
+    },
+    {
+      "name": "desktop /glossary/ title weight is not heavy",
+      "ok": true,
+      "details": {
+        "titleText": "Словарь терминов",
+        "titleSize": 38,
+        "titleWeight": "650",
+        "bodyFont": "-apple-system, \"system-ui\", \"SF Pro Text\", \"SF Pro Display\", Inter, \"Segoe UI\", system-ui, Roboto, \"Helvetica Neue\", Arial, sans-serif",
+        "overflow": 0,
+        "badWeights": []
+      }
+    },
+    {
+      "name": "desktop /glossary/ no stray heavy content weights",
+      "ok": true,
+      "details": {
+        "titleText": "Словарь терминов",
+        "titleSize": 38,
+        "titleWeight": "650",
+        "bodyFont": "-apple-system, \"system-ui\", \"SF Pro Text\", \"SF Pro Display\", Inter, \"Segoe UI\", system-ui, Roboto, \"Helvetica Neue\", Arial, sans-serif",
+        "overflow": 0,
+        "badWeights": []
+      }
+    },
+    {
+      "name": "desktop /bookmarks/ uses system font stack",
+      "ok": true,
+      "details": {
+        "titleText": "Закладки",
+        "titleSize": 38,
+        "titleWeight": "650",
+        "bodyFont": "-apple-system, \"system-ui\", \"SF Pro Text\", \"SF Pro Display\", Inter, \"Segoe UI\", system-ui, Roboto, \"Helvetica Neue\", Arial, sans-serif",
+        "overflow": 0,
+        "badWeights": []
+      }
+    },
+    {
+      "name": "desktop /bookmarks/ no horizontal overflow",
+      "ok": true,
+      "details": {
+        "titleText": "Закладки",
+        "titleSize": 38,
+        "titleWeight": "650",
+        "bodyFont": "-apple-system, \"system-ui\", \"SF Pro Text\", \"SF Pro Display\", Inter, \"Segoe UI\", system-ui, Roboto, \"Helvetica Neue\", Arial, sans-serif",
+        "overflow": 0,
+        "badWeights": []
+      }
+    },
+    {
+      "name": "desktop /bookmarks/ title weight is not heavy",
+      "ok": true,
+      "details": {
+        "titleText": "Закладки",
+        "titleSize": 38,
+        "titleWeight": "650",
+        "bodyFont": "-apple-system, \"system-ui\", \"SF Pro Text\", \"SF Pro Display\", Inter, \"Segoe UI\", system-ui, Roboto, \"Helvetica Neue\", Arial, sans-serif",
+        "overflow": 0,
+        "badWeights": []
+      }
+    },
+    {
+      "name": "desktop /bookmarks/ no stray heavy content weights",
+      "ok": true,
+      "details": {
+        "titleText": "Закладки",
+        "titleSize": 38,
+        "titleWeight": "650",
+        "bodyFont": "-apple-system, \"system-ui\", \"SF Pro Text\", \"SF Pro Display\", Inter, \"Segoe UI\", system-ui, Roboto, \"Helvetica Neue\", Arial, sans-serif",
+        "overflow": 0,
+        "badWeights": []
+      }
+    },
+    {
+      "name": "desktop /tasbih/ uses system font stack",
+      "ok": true,
+      "details": {
+        "titleText": "Тасбих",
+        "titleSize": 38,
+        "titleWeight": "650",
+        "bodyFont": "-apple-system, \"system-ui\", \"SF Pro Text\", \"SF Pro Display\", Inter, \"Segoe UI\", system-ui, Roboto, \"Helvetica Neue\", Arial, sans-serif",
+        "overflow": 0,
+        "badWeights": []
+      }
+    },
+    {
+      "name": "desktop /tasbih/ no horizontal overflow",
+      "ok": true,
+      "details": {
+        "titleText": "Тасбих",
+        "titleSize": 38,
+        "titleWeight": "650",
+        "bodyFont": "-apple-system, \"system-ui\", \"SF Pro Text\", \"SF Pro Display\", Inter, \"Segoe UI\", system-ui, Roboto, \"Helvetica Neue\", Arial, sans-serif",
+        "overflow": 0,
+        "badWeights": []
+      }
+    },
+    {
+      "name": "desktop /tasbih/ title weight is not heavy",
+      "ok": true,
+      "details": {
+        "titleText": "Тасбих",
+        "titleSize": 38,
+        "titleWeight": "650",
+        "bodyFont": "-apple-system, \"system-ui\", \"SF Pro Text\", \"SF Pro Display\", Inter, \"Segoe UI\", system-ui, Roboto, \"Helvetica Neue\", Arial, sans-serif",
+        "overflow": 0,
+        "badWeights": []
+      }
+    },
+    {
+      "name": "desktop /tasbih/ no stray heavy content weights",
+      "ok": true,
+      "details": {
+        "titleText": "Тасбих",
+        "titleSize": 38,
+        "titleWeight": "650",
+        "bodyFont": "-apple-system, \"system-ui\", \"SF Pro Text\", \"SF Pro Display\", Inter, \"Segoe UI\", system-ui, Roboto, \"Helvetica Neue\", Arial, sans-serif",
+        "overflow": 0,
+        "badWeights": []
+      }
+    },
+    {
+      "name": "mobile / uses system font stack",
+      "ok": true,
+      "details": {
+        "titleText": "Коран онлайн",
+        "titleSize": 32,
+        "titleWeight": "650",
+        "bodyFont": "-apple-system, \"system-ui\", \"SF Pro Text\", \"SF Pro Display\", Inter, \"Segoe UI\", system-ui, Roboto, \"Helvetica Neue\", Arial, sans-serif",
+        "overflow": 0,
+        "badWeights": []
+      }
+    },
+    {
+      "name": "mobile / no horizontal overflow",
+      "ok": true,
+      "details": {
+        "titleText": "Коран онлайн",
+        "titleSize": 32,
+        "titleWeight": "650",
+        "bodyFont": "-apple-system, \"system-ui\", \"SF Pro Text\", \"SF Pro Display\", Inter, \"Segoe UI\", system-ui, Roboto, \"Helvetica Neue\", Arial, sans-serif",
+        "overflow": 0,
+        "badWeights": []
+      }
+    },
+    {
+      "name": "mobile / title weight is not heavy",
+      "ok": true,
+      "details": {
+        "titleText": "Коран онлайн",
+        "titleSize": 32,
+        "titleWeight": "650",
+        "bodyFont": "-apple-system, \"system-ui\", \"SF Pro Text\", \"SF Pro Display\", Inter, \"Segoe UI\", system-ui, Roboto, \"Helvetica Neue\", Arial, sans-serif",
+        "overflow": 0,
+        "badWeights": []
+      }
+    },
+    {
+      "name": "mobile / no stray heavy content weights",
+      "ok": true,
+      "details": {
+        "titleText": "Коран онлайн",
+        "titleSize": 32,
+        "titleWeight": "650",
+        "bodyFont": "-apple-system, \"system-ui\", \"SF Pro Text\", \"SF Pro Display\", Inter, \"Segoe UI\", system-ui, Roboto, \"Helvetica Neue\", Arial, sans-serif",
+        "overflow": 0,
+        "badWeights": []
+      }
+    },
+    {
+      "name": "mobile /surah/1/ uses system font stack",
+      "ok": true,
+      "details": {
+        "titleText": "Аль-Фатиха",
+        "titleSize": 30,
+        "titleWeight": "650",
+        "bodyFont": "-apple-system, \"system-ui\", \"SF Pro Text\", \"SF Pro Display\", Inter, \"Segoe UI\", system-ui, Roboto, \"Helvetica Neue\", Arial, sans-serif",
+        "overflow": 0,
+        "badWeights": []
+      }
+    },
+    {
+      "name": "mobile /surah/1/ no horizontal overflow",
+      "ok": true,
+      "details": {
+        "titleText": "Аль-Фатиха",
+        "titleSize": 30,
+        "titleWeight": "650",
+        "bodyFont": "-apple-system, \"system-ui\", \"SF Pro Text\", \"SF Pro Display\", Inter, \"Segoe UI\", system-ui, Roboto, \"Helvetica Neue\", Arial, sans-serif",
+        "overflow": 0,
+        "badWeights": []
+      }
+    },
+    {
+      "name": "mobile /surah/1/ title weight is not heavy",
+      "ok": true,
+      "details": {
+        "titleText": "Аль-Фатиха",
+        "titleSize": 30,
+        "titleWeight": "650",
+        "bodyFont": "-apple-system, \"system-ui\", \"SF Pro Text\", \"SF Pro Display\", Inter, \"Segoe UI\", system-ui, Roboto, \"Helvetica Neue\", Arial, sans-serif",
+        "overflow": 0,
+        "badWeights": []
+      }
+    },
+    {
+      "name": "mobile /surah/1/ no stray heavy content weights",
+      "ok": true,
+      "details": {
+        "titleText": "Аль-Фатиха",
+        "titleSize": 30,
+        "titleWeight": "650",
+        "bodyFont": "-apple-system, \"system-ui\", \"SF Pro Text\", \"SF Pro Display\", Inter, \"Segoe UI\", system-ui, Roboto, \"Helvetica Neue\", Arial, sans-serif",
+        "overflow": 0,
+        "badWeights": []
+      }
+    },
+    {
+      "name": "mobile /search/ uses system font stack",
+      "ok": true,
+      "details": {
+        "titleText": "Поиск по Корану",
+        "titleSize": 28,
+        "titleWeight": "650",
+        "bodyFont": "-apple-system, \"system-ui\", \"SF Pro Text\", \"SF Pro Display\", Inter, \"Segoe UI\", system-ui, Roboto, \"Helvetica Neue\", Arial, sans-serif",
+        "overflow": 0,
+        "badWeights": []
+      }
+    },
+    {
+      "name": "mobile /search/ no horizontal overflow",
+      "ok": true,
+      "details": {
+        "titleText": "Поиск по Корану",
+        "titleSize": 28,
+        "titleWeight": "650",
+        "bodyFont": "-apple-system, \"system-ui\", \"SF Pro Text\", \"SF Pro Display\", Inter, \"Segoe UI\", system-ui, Roboto, \"Helvetica Neue\", Arial, sans-serif",
+        "overflow": 0,
+        "badWeights": []
+      }
+    },
+    {
+      "name": "mobile /search/ title weight is not heavy",
+      "ok": true,
+      "details": {
+        "titleText": "Поиск по Корану",
+        "titleSize": 28,
+        "titleWeight": "650",
+        "bodyFont": "-apple-system, \"system-ui\", \"SF Pro Text\", \"SF Pro Display\", Inter, \"Segoe UI\", system-ui, Roboto, \"Helvetica Neue\", Arial, sans-serif",
+        "overflow": 0,
+        "badWeights": []
+      }
+    },
+    {
+      "name": "mobile /search/ no stray heavy content weights",
+      "ok": true,
+      "details": {
+        "titleText": "Поиск по Корану",
+        "titleSize": 28,
+        "titleWeight": "650",
+        "bodyFont": "-apple-system, \"system-ui\", \"SF Pro Text\", \"SF Pro Display\", Inter, \"Segoe UI\", system-ui, Roboto, \"Helvetica Neue\", Arial, sans-serif",
+        "overflow": 0,
+        "badWeights": []
+      }
+    },
+    {
+      "name": "mobile /stats/ uses system font stack",
+      "ok": true,
+      "details": {
+        "titleText": "Статистика чтения",
+        "titleSize": 28,
+        "titleWeight": "650",
+        "bodyFont": "-apple-system, \"system-ui\", \"SF Pro Text\", \"SF Pro Display\", Inter, \"Segoe UI\", system-ui, Roboto, \"Helvetica Neue\", Arial, sans-serif",
+        "overflow": 0,
+        "badWeights": []
+      }
+    },
+    {
+      "name": "mobile /stats/ no horizontal overflow",
+      "ok": true,
+      "details": {
+        "titleText": "Статистика чтения",
+        "titleSize": 28,
+        "titleWeight": "650",
+        "bodyFont": "-apple-system, \"system-ui\", \"SF Pro Text\", \"SF Pro Display\", Inter, \"Segoe UI\", system-ui, Roboto, \"Helvetica Neue\", Arial, sans-serif",
+        "overflow": 0,
+        "badWeights": []
+      }
+    },
+    {
+      "name": "mobile /stats/ title weight is not heavy",
+      "ok": true,
+      "details": {
+        "titleText": "Статистика чтения",
+        "titleSize": 28,
+        "titleWeight": "650",
+        "bodyFont": "-apple-system, \"system-ui\", \"SF Pro Text\", \"SF Pro Display\", Inter, \"Segoe UI\", system-ui, Roboto, \"Helvetica Neue\", Arial, sans-serif",
+        "overflow": 0,
+        "badWeights": []
+      }
+    },
+    {
+      "name": "mobile /stats/ no stray heavy content weights",
+      "ok": true,
+      "details": {
+        "titleText": "Статистика чтения",
+        "titleSize": 28,
+        "titleWeight": "650",
+        "bodyFont": "-apple-system, \"system-ui\", \"SF Pro Text\", \"SF Pro Display\", Inter, \"Segoe UI\", system-ui, Roboto, \"Helvetica Neue\", Arial, sans-serif",
+        "overflow": 0,
+        "badWeights": []
+      }
+    },
+    {
+      "name": "mobile /audio/ uses system font stack",
+      "ok": true,
+      "details": {
+        "titleText": "Аудио Корана",
+        "titleSize": 28,
+        "titleWeight": "650",
+        "bodyFont": "-apple-system, \"system-ui\", \"SF Pro Text\", \"SF Pro Display\", Inter, \"Segoe UI\", system-ui, Roboto, \"Helvetica Neue\", Arial, sans-serif",
+        "overflow": 0,
+        "badWeights": []
+      }
+    },
+    {
+      "name": "mobile /audio/ no horizontal overflow",
+      "ok": true,
+      "details": {
+        "titleText": "Аудио Корана",
+        "titleSize": 28,
+        "titleWeight": "650",
+        "bodyFont": "-apple-system, \"system-ui\", \"SF Pro Text\", \"SF Pro Display\", Inter, \"Segoe UI\", system-ui, Roboto, \"Helvetica Neue\", Arial, sans-serif",
+        "overflow": 0,
+        "badWeights": []
+      }
+    },
+    {
+      "name": "mobile /audio/ title weight is not heavy",
+      "ok": true,
+      "details": {
+        "titleText": "Аудио Корана",
+        "titleSize": 28,
+        "titleWeight": "650",
+        "bodyFont": "-apple-system, \"system-ui\", \"SF Pro Text\", \"SF Pro Display\", Inter, \"Segoe UI\", system-ui, Roboto, \"Helvetica Neue\", Arial, sans-serif",
+        "overflow": 0,
+        "badWeights": []
+      }
+    },
+    {
+      "name": "mobile /audio/ no stray heavy content weights",
+      "ok": true,
+      "details": {
+        "titleText": "Аудио Корана",
+        "titleSize": 28,
+        "titleWeight": "650",
+        "bodyFont": "-apple-system, \"system-ui\", \"SF Pro Text\", \"SF Pro Display\", Inter, \"Segoe UI\", system-ui, Roboto, \"Helvetica Neue\", Arial, sans-serif",
+        "overflow": 0,
+        "badWeights": []
+      }
+    },
+    {
+      "name": "mobile /topics/ uses system font stack",
+      "ok": true,
+      "details": {
+        "titleText": "Аяты по темам",
+        "titleSize": 28,
+        "titleWeight": "650",
+        "bodyFont": "-apple-system, \"system-ui\", \"SF Pro Text\", \"SF Pro Display\", Inter, \"Segoe UI\", system-ui, Roboto, \"Helvetica Neue\", Arial, sans-serif",
+        "overflow": 0,
+        "badWeights": []
+      }
+    },
+    {
+      "name": "mobile /topics/ no horizontal overflow",
+      "ok": true,
+      "details": {
+        "titleText": "Аяты по темам",
+        "titleSize": 28,
+        "titleWeight": "650",
+        "bodyFont": "-apple-system, \"system-ui\", \"SF Pro Text\", \"SF Pro Display\", Inter, \"Segoe UI\", system-ui, Roboto, \"Helvetica Neue\", Arial, sans-serif",
+        "overflow": 0,
+        "badWeights": []
+      }
+    },
+    {
+      "name": "mobile /topics/ title weight is not heavy",
+      "ok": true,
+      "details": {
+        "titleText": "Аяты по темам",
+        "titleSize": 28,
+        "titleWeight": "650",
+        "bodyFont": "-apple-system, \"system-ui\", \"SF Pro Text\", \"SF Pro Display\", Inter, \"Segoe UI\", system-ui, Roboto, \"Helvetica Neue\", Arial, sans-serif",
+        "overflow": 0,
+        "badWeights": []
+      }
+    },
+    {
+      "name": "mobile /topics/ no stray heavy content weights",
+      "ok": true,
+      "details": {
+        "titleText": "Аяты по темам",
+        "titleSize": 28,
+        "titleWeight": "650",
+        "bodyFont": "-apple-system, \"system-ui\", \"SF Pro Text\", \"SF Pro Display\", Inter, \"Segoe UI\", system-ui, Roboto, \"Helvetica Neue\", Arial, sans-serif",
+        "overflow": 0,
+        "badWeights": []
+      }
+    },
+    {
+      "name": "mobile /glossary/ uses system font stack",
+      "ok": true,
+      "details": {
+        "titleText": "Словарь терминов",
+        "titleSize": 28,
+        "titleWeight": "650",
+        "bodyFont": "-apple-system, \"system-ui\", \"SF Pro Text\", \"SF Pro Display\", Inter, \"Segoe UI\", system-ui, Roboto, \"Helvetica Neue\", Arial, sans-serif",
+        "overflow": 0,
+        "badWeights": []
+      }
+    },
+    {
+      "name": "mobile /glossary/ no horizontal overflow",
+      "ok": true,
+      "details": {
+        "titleText": "Словарь терминов",
+        "titleSize": 28,
+        "titleWeight": "650",
+        "bodyFont": "-apple-system, \"system-ui\", \"SF Pro Text\", \"SF Pro Display\", Inter, \"Segoe UI\", system-ui, Roboto, \"Helvetica Neue\", Arial, sans-serif",
+        "overflow": 0,
+        "badWeights": []
+      }
+    },
+    {
+      "name": "mobile /glossary/ title weight is not heavy",
+      "ok": true,
+      "details": {
+        "titleText": "Словарь терминов",
+        "titleSize": 28,
+        "titleWeight": "650",
+        "bodyFont": "-apple-system, \"system-ui\", \"SF Pro Text\", \"SF Pro Display\", Inter, \"Segoe UI\", system-ui, Roboto, \"Helvetica Neue\", Arial, sans-serif",
+        "overflow": 0,
+        "badWeights": []
+      }
+    },
+    {
+      "name": "mobile /glossary/ no stray heavy content weights",
+      "ok": true,
+      "details": {
+        "titleText": "Словарь терминов",
+        "titleSize": 28,
+        "titleWeight": "650",
+        "bodyFont": "-apple-system, \"system-ui\", \"SF Pro Text\", \"SF Pro Display\", Inter, \"Segoe UI\", system-ui, Roboto, \"Helvetica Neue\", Arial, sans-serif",
+        "overflow": 0,
+        "badWeights": []
+      }
+    },
+    {
+      "name": "mobile /bookmarks/ uses system font stack",
+      "ok": true,
+      "details": {
+        "titleText": "Закладки",
+        "titleSize": 28,
+        "titleWeight": "650",
+        "bodyFont": "-apple-system, \"system-ui\", \"SF Pro Text\", \"SF Pro Display\", Inter, \"Segoe UI\", system-ui, Roboto, \"Helvetica Neue\", Arial, sans-serif",
+        "overflow": 0,
+        "badWeights": []
+      }
+    },
+    {
+      "name": "mobile /bookmarks/ no horizontal overflow",
+      "ok": true,
+      "details": {
+        "titleText": "Закладки",
+        "titleSize": 28,
+        "titleWeight": "650",
+        "bodyFont": "-apple-system, \"system-ui\", \"SF Pro Text\", \"SF Pro Display\", Inter, \"Segoe UI\", system-ui, Roboto, \"Helvetica Neue\", Arial, sans-serif",
+        "overflow": 0,
+        "badWeights": []
+      }
+    },
+    {
+      "name": "mobile /bookmarks/ title weight is not heavy",
+      "ok": true,
+      "details": {
+        "titleText": "Закладки",
+        "titleSize": 28,
+        "titleWeight": "650",
+        "bodyFont": "-apple-system, \"system-ui\", \"SF Pro Text\", \"SF Pro Display\", Inter, \"Segoe UI\", system-ui, Roboto, \"Helvetica Neue\", Arial, sans-serif",
+        "overflow": 0,
+        "badWeights": []
+      }
+    },
+    {
+      "name": "mobile /bookmarks/ no stray heavy content weights",
+      "ok": true,
+      "details": {
+        "titleText": "Закладки",
+        "titleSize": 28,
+        "titleWeight": "650",
+        "bodyFont": "-apple-system, \"system-ui\", \"SF Pro Text\", \"SF Pro Display\", Inter, \"Segoe UI\", system-ui, Roboto, \"Helvetica Neue\", Arial, sans-serif",
+        "overflow": 0,
+        "badWeights": []
+      }
+    },
+    {
+      "name": "mobile /tasbih/ uses system font stack",
+      "ok": true,
+      "details": {
+        "titleText": "Тасбих",
+        "titleSize": 28,
+        "titleWeight": "650",
+        "bodyFont": "-apple-system, \"system-ui\", \"SF Pro Text\", \"SF Pro Display\", Inter, \"Segoe UI\", system-ui, Roboto, \"Helvetica Neue\", Arial, sans-serif",
+        "overflow": 0,
+        "badWeights": []
+      }
+    },
+    {
+      "name": "mobile /tasbih/ no horizontal overflow",
+      "ok": true,
+      "details": {
+        "titleText": "Тасбих",
+        "titleSize": 28,
+        "titleWeight": "650",
+        "bodyFont": "-apple-system, \"system-ui\", \"SF Pro Text\", \"SF Pro Display\", Inter, \"Segoe UI\", system-ui, Roboto, \"Helvetica Neue\", Arial, sans-serif",
+        "overflow": 0,
+        "badWeights": []
+      }
+    },
+    {
+      "name": "mobile /tasbih/ title weight is not heavy",
+      "ok": true,
+      "details": {
+        "titleText": "Тасбих",
+        "titleSize": 28,
+        "titleWeight": "650",
+        "bodyFont": "-apple-system, \"system-ui\", \"SF Pro Text\", \"SF Pro Display\", Inter, \"Segoe UI\", system-ui, Roboto, \"Helvetica Neue\", Arial, sans-serif",
+        "overflow": 0,
+        "badWeights": []
+      }
+    },
+    {
+      "name": "mobile /tasbih/ no stray heavy content weights",
+      "ok": true,
+      "details": {
+        "titleText": "Тасбих",
+        "titleSize": 28,
+        "titleWeight": "650",
+        "bodyFont": "-apple-system, \"system-ui\", \"SF Pro Text\", \"SF Pro Display\", Inter, \"Segoe UI\", system-ui, Roboto, \"Helvetica Neue\", Arial, sans-serif",
+        "overflow": 0,
+        "badWeights": []
+      }
+    }
+  ],
+  "failures": []
+}

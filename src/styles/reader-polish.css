@@ -8,7 +8,7 @@
 }
 
 .surah-head h1 {
-  font-size: clamp(30px, 4vw, 44px);
+  font-size: clamp(28px, 3.4vw, 38px);
   line-height: var(--lh-tight);
 }
 
@@ -145,7 +145,7 @@
   }
 
   .surah-head h1 {
-    font-size: 32px;
+    font-size: 30px;
   }
 
   .surah-head .ar,

@@ -1,0 +1,79 @@
+# Typography pass QA
+
+Routes: 9
+Viewports: 2
+Checks: 72
+Failures: 0
+
+- PASS desktop / uses system font stack
+- PASS desktop / no horizontal overflow
+- PASS desktop / title weight is not heavy
+- PASS desktop / no stray heavy content weights
+- PASS desktop /surah/1/ uses system font stack
+- PASS desktop /surah/1/ no horizontal overflow
+- PASS desktop /surah/1/ title weight is not heavy
+- PASS desktop /surah/1/ no stray heavy content weights
+- PASS desktop /search/ uses system font stack
+- PASS desktop /search/ no horizontal overflow
+- PASS desktop /search/ title weight is not heavy
+- PASS desktop /search/ no stray heavy content weights
+- PASS desktop /stats/ uses system font stack
+- PASS desktop /stats/ no horizontal overflow
+- PASS desktop /stats/ title weight is not heavy
+- PASS desktop /stats/ no stray heavy content weights
+- PASS desktop /audio/ uses system font stack
+- PASS desktop /audio/ no horizontal overflow
+- PASS desktop /audio/ title weight is not heavy
+- PASS desktop /audio/ no stray heavy content weights
+- PASS desktop /topics/ uses system font stack
+- PASS desktop /topics/ no horizontal overflow
+- PASS desktop /topics/ title weight is not heavy
+- PASS desktop /topics/ no stray heavy content weights
+- PASS desktop /glossary/ uses system font stack
+- PASS desktop /glossary/ no horizontal overflow
+- PASS desktop /glossary/ title weight is not heavy
+- PASS desktop /glossary/ no stray heavy content weights
+- PASS desktop /bookmarks/ uses system font stack
+- PASS desktop /bookmarks/ no horizontal overflow
+- PASS desktop /bookmarks/ title weight is not heavy
+- PASS desktop /bookmarks/ no stray heavy content weights
+- PASS desktop /tasbih/ uses system font stack
+- PASS desktop /tasbih/ no horizontal overflow
+- PASS desktop /tasbih/ title weight is not heavy
+- PASS desktop /tasbih/ no stray heavy content weights
+- PASS mobile / uses system font stack
+- PASS mobile / no horizontal overflow
+- PASS mobile / title weight is not heavy
+- PASS mobile / no stray heavy content weights
+- PASS mobile /surah/1/ uses system font stack
+- PASS mobile /surah/1/ no horizontal overflow
+- PASS mobile /surah/1/ title weight is not heavy
+- PASS mobile /surah/1/ no stray heavy content weights
+- PASS mobile /search/ uses system font stack
+- PASS mobile /search/ no horizontal overflow
+- PASS mobile /search/ title weight is not heavy
+- PASS mobile /search/ no stray heavy content weights
+- PASS mobile /stats/ uses system font stack
+- PASS mobile /stats/ no horizontal overflow
+- PASS mobile /stats/ title weight is not heavy
+- PASS mobile /stats/ no stray heavy content weights
+- PASS mobile /audio/ uses system font stack
+- PASS mobile /audio/ no horizontal overflow
+- PASS mobile /audio/ title weight is not heavy
+- PASS mobile /audio/ no stray heavy content weights
+- PASS mobile /topics/ uses system font stack
+- PASS mobile /topics/ no horizontal overflow
+- PASS mobile /topics/ title weight is not heavy
+- PASS mobile /topics/ no stray heavy content weights
+- PASS mobile /glossary/ uses system font stack
+- PASS mobile /glossary/ no horizontal overflow
+- PASS mobile /glossary/ title weight is not heavy
+- PASS mobile /glossary/ no stray heavy content weights
+- PASS mobile /bookmarks/ uses system font stack
+- PASS mobile /bookmarks/ no horizontal overflow
+- PASS mobile /bookmarks/ title weight is not heavy
+- PASS mobile /bookmarks/ no stray heavy content weights
+- PASS mobile /tasbih/ uses system font stack
+- PASS mobile /tasbih/ no horizontal overflow
+- PASS mobile /tasbih/ title weight is not heavy
+- PASS mobile /tasbih/ no stray heavy content weights

@@ -186,6 +186,17 @@
   - helper rows, отсутствие inline-style в подписях, список джузов, mobile internal scroll, scroll-lock, horizontal overflow и `T` для тафсира;
   - 8 автоматических проверок, 0 падений;
   - скрины: `qa-screens/2026-07-15-drawer-hotkey-helper/`.
+- Проведён типографический pass:
+  - `--weight-title` снижен до 650;
+  - крупные page/home/reader заголовки стали спокойнее и ближе к системной иерархии;
+  - голые CSS-веса `500/600` заменены на `--weight-medium` / `--weight-semibold`;
+  - в CSS не осталось случайных `700/800/900` и отрицательного `letter-spacing`.
+- После typography pass пройдена route QA:
+  - 9 маршрутов: `/`, `/surah/1/`, `/search/`, `/stats/`, `/audio/`, `/topics/`, `/glossary/`, `/bookmarks/`, `/tasbih/`;
+  - desktop 1440x1000 и mobile iPhone 13;
+  - system font stack, horizontal overflow, title weight и stray heavy content weights;
+  - 72 автоматические проверки, 0 падений;
+  - скрины: `qa-screens/2026-07-15-typography-pass/`.
 
 ### Частично закрыто
 
@@ -195,7 +206,6 @@
 
 ### Остаётся
 
-- Провести типографический pass по страницам с локальными стилями и убрать случайные тяжёлые веса `700/800`, где они не являются смысловым акцентом.
 - Довести mobile overlay-аудит вручную: drawer scroll, settings scroll, action sheet, player, keyboard behavior, body scroll lock.
 - Довести desktop three-column как полноценную state-модель: sidebar collapsed, inspector open, narrow fallback, toolbar overflow.
 - Провести расширенную QA-матрицу из раздела 8: 375x667, 430x932, 768x1024, 1024x768, 1440x900, 1920x1080, плюс ручной mobile Safari.

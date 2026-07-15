@@ -25,7 +25,7 @@
 .ui-page-title {
   margin: 0;
   color: var(--sys-label);
-  font-size: clamp(28px, 4vw, 44px);
+  font-size: clamp(27px, 3.4vw, 38px);
   font-weight: var(--weight-title);
   line-height: var(--lh-tight);
   letter-spacing: 0;

@@ -35,7 +35,7 @@
   border: 0;
   background: transparent;
   color: var(--ink);
-  font: 500 var(--fs-14) / 1.2 var(--sans);
+  font: var(--weight-medium) var(--fs-14) / 1.2 var(--sans);
   text-align: left;
   border-radius: 8px;
   cursor: pointer;

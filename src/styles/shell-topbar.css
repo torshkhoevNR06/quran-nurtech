@@ -100,7 +100,7 @@ html[data-theme='sepia'] .brand-mark img {
 .brand-domain {
   color: var(--ink-muted);
   font-size: 10.5px;
-  font-weight: 600;
+  font-weight: var(--weight-semibold);
   letter-spacing: 0.02em;
   text-transform: none;
 }
