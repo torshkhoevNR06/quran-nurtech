@@ -1,0 +1,53 @@
+/* ==========================================================================
+   Component: segmented control
+   ========================================================================== */
+.seg,
+.ui-segmented {
+  display: inline-flex;
+  gap: 2px;
+  padding: 3px;
+  border: 1px solid var(--sys-separator);
+  border-radius: 9px;
+  background: var(--sys-fill);
+  box-shadow: none;
+}
+
+.seg button,
+.ui-segmented button {
+  min-width: 0;
+  border: 0;
+  border-radius: 7px;
+  background: transparent;
+  color: var(--sys-secondary-label);
+  cursor: pointer;
+  font-weight: var(--weight-semibold);
+  overflow: hidden;
+  padding: 7px 12px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.seg button:hover,
+.ui-segmented button:hover {
+  color: var(--sys-label);
+}
+
+.seg button.on,
+.ui-segmented button.on,
+.ui-segmented button[aria-selected='true'] {
+  background: var(--seg-thumb);
+  color: var(--sys-label);
+  box-shadow: 0 1px 1px color-mix(in srgb, var(--sys-label) 10%, transparent);
+}
+
+.seg-grid2,
+.ui-segmented.seg-grid2 {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.seg-grid3,
+.ui-segmented.seg-grid3 {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}

@@ -104,6 +104,22 @@ html[data-theme='sepia'] .brand-mark img {
   letter-spacing: 0.02em;
   text-transform: none;
 }
+
+.topbar-title {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  color: var(--ink-soft);
+  font-size: var(--text-body-sm);
+  font-weight: var(--weight-semibold);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.desktop-comfort {
+  display: none;
+}
+
 .topbar .grow {
   flex: 1;
 }
@@ -178,6 +194,9 @@ html[data-theme='sepia'] .brand-mark img {
   .topbar-inner .btn {
     height: 38px;
     padding: 0 11px;
+  }
+  .topbar-title {
+    font-size: 14px;
   }
   .quick {
     gap: 5px;

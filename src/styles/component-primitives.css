@@ -137,20 +137,6 @@
   font-size: var(--fs-12);
 }
 
-.seg {
-  display: inline-flex;
-  padding: 3px;
-  gap: 2px;
-}
-.seg button {
-  border: 0;
-  background: transparent;
-  padding: 7px 12px;
-  border-radius: 12px;
-  cursor: pointer;
-  white-space: nowrap;
-}
-
 .chip {
   display: inline-flex;
   align-items: center;

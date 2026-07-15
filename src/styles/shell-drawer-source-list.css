@@ -164,10 +164,6 @@
   height: 17px;
 }
 
-.drawer[data-dtab-active='juz'] .drawer-progress {
-  display: none;
-}
-
 .drawer .dscroll .dlist {
   flex: none;
   min-height: 0;

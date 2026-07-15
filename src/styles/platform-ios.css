@@ -40,7 +40,6 @@
     display: inline-grid;
   }
 
-  .topbar-inner > a.icon-btn[aria-label='Поиск'],
   .topbar-inner > a.icon-btn[aria-label='Мусхаф'],
   .theme-toggle,
   .topbar-inner > .menu-wrap:not(.settings-menu-wrap) {

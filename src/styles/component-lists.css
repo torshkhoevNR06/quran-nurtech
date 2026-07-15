@@ -69,27 +69,3 @@
   background: var(--sys-secondary-grouped-bg);
   box-shadow: none;
 }
-
-.seg,
-.menu .seg,
-.ui-segmented {
-  border: 1px solid var(--sys-separator);
-  border-radius: 9px;
-  background: var(--sys-fill);
-  box-shadow: none;
-}
-
-.seg button,
-.menu .seg button,
-.ui-segmented button {
-  color: var(--sys-secondary-label);
-  font-weight: var(--weight-semibold);
-}
-
-.seg button.on,
-.menu .seg button.on,
-.ui-segmented button[aria-selected='true'] {
-  background: var(--seg-thumb);
-  color: var(--sys-label);
-  box-shadow: 0 1px 1px color-mix(in srgb, var(--sys-label) 10%, transparent);
-}
