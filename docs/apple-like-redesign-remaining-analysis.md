@@ -15,6 +15,47 @@
 3. Mobile/iOS и desktop/macOS поведение нужно проверять как отдельные приложения, а не как responsive web.
 4. Мушаф требует отдельного polish-прохода, потому что это не обычная страница, а главный режим чтения.
 
+## Статус после прохода Codex 2026-07-15
+
+Этот файл был исходной картой оставшихся работ. После текущего прохода часть пунктов закрыта и проверена.
+
+### Закрыто
+
+- `progress.astro` разделён: стили вынесены в `src/styles/progress.css`, клиентская логика в `src/client/progress.ts`.
+- `mushaf/[page].astro` разделён: клиентская логика вынесена в `src/client/mushaf.ts`, immersive CSS вынесен в `src/styles/mushaf-immersive.css`.
+- `TopBar.astro` разбит на компоненты в `src/components/topbar/`, клиентская логика контекста вынесена в `src/client/topbar.ts`.
+- Общие клиентские хелперы вынесены в `src/client/shared.ts`.
+- Dwell-аналитика чтения вынесена в `src/client/reading-analytics.ts`.
+- Добавлены реальные UI-компоненты:
+  - `src/components/ui/Button.astro`;
+  - `src/components/ui/IconButton.astro`;
+  - `src/components/ui/Section.astro`.
+- `/search/`, `/audio/`, `/download/` переведены на `PageShell` / `PageHeader` и новые UI-компоненты.
+- Исправлен fullscreen мушафа: `body.mushaf-immersive` теперь явно скрывает `.mobile-tabbar` вместе с остальным app chrome.
+- Пройдена QA-матрица:
+  - 15 маршрутов;
+  - desktop 1440x1000;
+  - mobile 390x844;
+  - 30 route/viewport combinations;
+  - 0 автоматических проблем в `qa-screens/2026-07-15-full-matrix/problems.json`.
+- Дополнительно проверен immersive-мушаф на desktop/mobile: topbar, footer и tabbar скрыты, горизонтального overflow нет.
+
+### Частично закрыто
+
+- `src/client/app.ts` уменьшен с 2001 до примерно 1663 строк, но ещё содержит несколько доменов: drawer, settings, audio-player, reader-actions, bookmarks, theme, hotkeys, home-filter.
+- Компонентная система начата, но ещё не покрывает `SegmentedControl`, `SwitchRow`, `ListRow`, `InspectorSection`, `Sheet`, `Toolbar`, `ReaderCard`, `StatCard`.
+- Page CSS стал чище, но `bookmarks`, `backup`, `tasbih`, `glossary`, `topics`, `stats`, `audio`, `search`, `image-editor` ещё требуют отдельного унификационного прохода.
+- Мушаф стал стабильнее по fullscreen и базовой матрице, но advanced polish по zoom/pan/pinch/604-page audit ещё не закрыт полностью.
+
+### Остаётся
+
+- Дальше дробить `src/client/app.ts` по доменам: drawer, settings, audio-player, reader-actions, bookmarks, theme, hotkeys, home-filter.
+- Добавить недостающие UI-компоненты и мигрировать на них `Drawer`, `Player`, `settings`, `stats`, `bookmarks`, `topics`, `glossary`, `tasbih`, `backup`.
+- Провести типографический pass по страницам с локальными стилями и убрать случайные тяжёлые веса `700/800`, где они не являются смысловым акцентом.
+- Довести mobile overlay-аудит вручную: drawer scroll, settings scroll, action sheet, player, keyboard behavior, body scroll lock.
+- Довести desktop three-column как полноценную state-модель: sidebar collapsed, inspector open, narrow fallback, toolbar overflow.
+- Провести расширенную QA-матрицу из раздела 8: 375x667, 430x932, 768x1024, 1024x768, 1440x900, 1920x1080, плюс ручной mobile Safari.
+
 ## Что уже сделано
 
 ### CSS-архитектура
@@ -519,4 +560,3 @@ Mobile уже исправлялся точечно: меню, настройк�
 Самый большой риск сейчас — продолжать полировать внешний вид поверх старой структуры. Так будут появляться новые поздние CSS-правила, а старые конфликты вернутся.
 
 Правильный следующий фокус: сначала уменьшать крупные острова и закреплять компонентную систему, потом делать новый visual polish. Иначе каждый новый красивый фикс будет ещё одним слоем поверх предыдущего.
-
