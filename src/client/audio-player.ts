@@ -37,6 +37,11 @@ export class AudioPlayerController {
   preloader: HTMLAudioElement | null = null;
   preloadedUrl = '';
 
+  setPlayerOpen(open: boolean) {
+    this.el?.classList.toggle('show', open);
+    document.body.classList.toggle('player-open', open);
+  }
+
   async reciter(): Promise<Reciter> {
     const rs = await loadReciters();
     return rs.find((r) => r.id === this.reciterId) || rs[0];
@@ -132,7 +137,7 @@ export class AudioPlayerController {
     this.idx = i;
     const t = this.playlist[i];
     if (this.rangeArm != null) this.setRange(i);
-    this.el?.classList.add('show');
+    this.setPlayerOpen(true);
     this.highlight(t);
     this.setTitle(t);
     this.setLoading(true);
@@ -200,7 +205,7 @@ export class AudioPlayerController {
 
   stop() {
     this.audio?.pause();
-    this.el?.classList.remove('show');
+    this.setPlayerOpen(false);
     this.clearHighlight();
     this.idx = -1;
   }

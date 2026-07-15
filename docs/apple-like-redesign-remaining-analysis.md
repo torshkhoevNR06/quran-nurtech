@@ -221,10 +221,16 @@
   - 1440/1280 px: sidebar сворачивается независимо;
   - 1024 px: settings больше не улетает ниже viewport, а открывается как правый popover/fallback;
   - проверено в `qa-screens/2026-07-15-desktop-three-column-audit/`: 6 автоматических проверок, 0 падений.
+- Расширенный mobile/iOS-аудит закрыт:
+  - проверены 375x667 и 430x932 как отдельные iPhone-режимы;
+  - `/search/`, `/audio/`, `/progress/`, `/stats/`, `/surah/9/` проходят без horizontal overflow;
+  - drawer и settings не вызывают клавиатуру сами, блокируют body scroll и имеют внутренний scroll;
+  - drawer search фокусируется только после ручного tap;
+  - нижний player теперь ставит `body.player-open`, поэтому mobile tabbar уезжает независимо от DOM-соседства;
+  - проверено в `qa-screens/2026-07-15-extended-mobile-ios-audit/`: 52 автоматические проверки, 0 падений.
 
 ### Остаётся
 
-- Довести расширенную mobile-проверку как iOS-приложение за пределами overlay: tabbar/player coexistence на длинных страницах, search/audio/progress/stats, keyboard при ручном фокусе, 375x667 и 430x932.
 - Провести расширенную QA-матрицу из раздела 8: 375x667, 430x932, 768x1024, 1024x768, 1440x900, 1920x1080, плюс ручной mobile Safari.
 
 ## Что уже сделано

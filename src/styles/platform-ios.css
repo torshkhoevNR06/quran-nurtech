@@ -119,6 +119,7 @@
   }
 
   body[data-page-mode='mushaf'] .mobile-tabbar,
+  body.player-open .mobile-tabbar,
   .player.show + .mobile-tabbar {
     transform: translateY(110%);
   }
