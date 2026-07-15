@@ -1,17 +1,20 @@
 ---
 import Base from '../layouts/Base.astro';
+import Button from '../components/ui/Button.astro';
+import PageHeader from '../components/ui/PageHeader.astro';
+import PageShell from '../components/ui/PageShell.astro';
 import { icons } from '../lib/icons';
 const title = 'Поиск по Корану — по русскому переводу';
 const description = 'Поиск по Корану на русском языке (перевод Кулиева). Фильтр по суре, точное и частичное совпадение, ссылки на аяты.';
 ---
 
 <Base {title} {description}>
-  <div class="container page search-page">
-    <header class="page-head">
-      <p class="eyebrow">Поиск</p>
-      <h1>Поиск по Корану</h1>
-      <p>Ищите по переводам, транслитерации и арабскому тексту. Верхнее поле на других страницах только переходит к суре или аяту, а здесь работает полноценный поиск.</p>
-    </header>
+  <PageShell class="search-page">
+    <PageHeader
+      kicker="Поиск"
+      title="Поиск по Корану"
+      description="Ищите по переводам, транслитерации и арабскому тексту. Верхнее поле на других страницах только переходит к суре или аяту, а здесь работает полноценный поиск."
+    />
 
     <form data-search-form class="search-form">
       <div class="search-input-wrap">
@@ -37,7 +40,7 @@ const description = 'Поиск по Корану на русском языке
       <label class="chip" style="cursor:pointer;user-select:none">
         <input type="checkbox" data-search-exact style="accent-color:var(--accent)" /> Точное слово
       </label>
-      <button class="btn primary" type="submit">Найти</button>
+      <Button variant="primary" type="submit">Найти</Button>
     </form>
 
     <div class="search-empty" data-search-empty>
@@ -54,7 +57,7 @@ const description = 'Поиск по Корану на русском языке
 
     <div data-search-status style="color:var(--ink-faint);font-size:14px;margin-bottom:12px"></div>
     <div data-search-results class="search-results"></div>
-  </div>
+  </PageShell>
 
   <script>
     import '../client/search';

@@ -1,0 +1,34 @@
+---
+interface Props {
+  href?: string;
+  type?: 'button' | 'submit' | 'reset';
+  label: string;
+  title?: string;
+  class?: string;
+  selected?: boolean;
+  [key: string]: unknown;
+}
+
+const {
+  href,
+  type = 'button',
+  label,
+  title,
+  class: className = '',
+  selected = false,
+  ...attrs
+} = Astro.props;
+const classes = ['icon-btn', 'ui-icon-button', selected && 'on is-selected', className];
+---
+
+{
+  href ? (
+    <a {...attrs} href={href} class:list={classes} aria-label={label} title={title}>
+      <slot />
+    </a>
+  ) : (
+    <button {...attrs} type={type} class:list={classes} aria-label={label} title={title}>
+      <slot />
+    </button>
+  )
+}

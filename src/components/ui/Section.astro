@@ -1,0 +1,25 @@
+---
+interface Props {
+  title?: string;
+  description?: string;
+  class?: string;
+  [key: string]: unknown;
+}
+
+const { title, description, class: className = '', ...attrs } = Astro.props;
+---
+
+<section {...attrs} class:list={['ui-section', className]}>
+  {
+    (title || description || Astro.slots.has('actions')) && (
+      <div class="ui-section-header">
+        <div>
+          {title && <h2 class="ui-section-title">{title}</h2>}
+          {description && <p class="ui-section-description">{description}</p>}
+        </div>
+        <slot name="actions" />
+      </div>
+    )
+  }
+  <slot />
+</section>

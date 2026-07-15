@@ -1,17 +1,20 @@
 ---
 import Base from '../layouts/Base.astro';
+import IconButton from '../components/ui/IconButton.astro';
+import PageHeader from '../components/ui/PageHeader.astro';
+import PageShell from '../components/ui/PageShell.astro';
 import { icons } from '../lib/icons';
 const title = 'Аудио Корана — чтецы, суры, скачивание';
 const description = 'Слушайте и скачивайте аудио Корана: чтецы (Мишари Рашид, аль-Хусари, аль-Катами и другие), выбор суры и аята, повтор, скорость.';
 ---
 
 <Base {title} {description}>
-  <div class="container page audio-page">
-    <header class="page-head">
-      <p class="eyebrow">Слушание и заучивание</p>
-      <h1>Аудио Корана</h1>
-      <p>Выберите чтеца и суру. Можно слушать по аятам, повторять текущий аят, менять скорость и скачивать mp3.</p>
-    </header>
+  <PageShell class="audio-page">
+    <PageHeader
+      kicker="Слушание и заучивание"
+      title="Аудио Корана"
+      description="Выберите чтеца и суру. Можно слушать по аятам, повторять текущий аят, менять скорость и скачивать mp3."
+    />
 
     <div class="audio-selectors">
       <label>
@@ -31,17 +34,17 @@ const description = 'Слушайте и скачивайте аудио Кор�
         <div class="s" data-a-sub>Нажмите play в списке ниже или большую кнопку воспроизведения.</div>
       </div>
       <div class="audio-controls">
-        <button class="icon-btn" data-a-prev aria-label="Предыдущий" set:html={icons.prev} />
+        <IconButton label="Предыдущий" data-a-prev><span set:html={icons.prev} /></IconButton>
         <button class="play audio-main-play" data-a-toggle aria-label="Play/pause" set:html={icons.play} />
-        <button class="icon-btn" data-a-next aria-label="Следующий" set:html={icons.next} />
-        <button class="icon-btn" data-a-repeat aria-label="Повтор аята" title="Повтор аята" set:html={icons.repeat} />
-        <button class="icon-btn" data-a-speed aria-label="Скорость"><span class="speed" data-a-speed-label>1×</span></button>
+        <IconButton label="Следующий" data-a-next><span set:html={icons.next} /></IconButton>
+        <IconButton label="Повтор аята" title="Повтор аята" data-a-repeat><span set:html={icons.repeat} /></IconButton>
+        <IconButton label="Скорость" data-a-speed><span class="speed" data-a-speed-label>1×</span></IconButton>
       </div>
       <audio data-a-audio preload="none"></audio>
     </section>
 
     <div class="audio-list" data-a-rows></div>
-  </div>
+  </PageShell>
 
   <script>
     import '../client/audio';
