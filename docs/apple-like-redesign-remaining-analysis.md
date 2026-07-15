@@ -202,7 +202,14 @@
 
 - Компонентная система уже покрывает базовые primitives, settings inspector, player, drawer shell, `topics`, `glossary`, `backup`, `bookmarks`, `tasbih` и клиентски генерируемые строки drawer через DOM helper.
 - Page CSS стал чище, но остаточные page-specific слои ещё требуют отдельного унификационного прохода. `stats`, `audio`, `search`, `download`, `topics`, `glossary`, `backup`, `bookmarks`, `tasbih`, `image-editor` и базовые инфо-страницы уже ближе к общей системе.
-- Мушаф стал стабильнее по fullscreen и базовой матрице, но advanced polish по zoom/pan/pinch/604-page audit ещё не закрыт полностью.
+- Advanced polish мушафа закрыт:
+  - масштаб и pan сохраняются для текущей страницы через `q_mushaf_zoom_state`;
+  - desktop drag-pan восстанавливается после перезагрузки;
+  - mobile pinch/two-finger zoom работает и сохраняет состояние;
+  - floating zoom control на mobile и toolbar zoom на desktop проверены отдельно;
+  - fullscreen/immersive стабильно скрывает app chrome на desktop и mobile;
+  - светлая и тёмная палитры мушафа проверены как отдельные схемы, не как простая инверсия;
+  - проверено в `qa-screens/2026-07-15-mushaf-advanced-polish/`: 9 автоматических проверок, 0 падений.
 - Mobile overlay-аудит закрыт:
   - общий scroll-lock теперь учитывает drawer, settings, mushaf ayah sheet и image editor;
   - settings на mobile стал собственным scroll-контейнером без автофокуса в поле поиска;
@@ -218,7 +225,6 @@
 ### Остаётся
 
 - Довести расширенную mobile-проверку как iOS-приложение за пределами overlay: tabbar/player coexistence на длинных страницах, search/audio/progress/stats, keyboard при ручном фокусе, 375x667 и 430x932.
-- Довести advanced polish мушафа: zoom/pan/pinch, сохранение масштаба, fullscreen stability, светлая/тёмная палитра, audit страниц.
 - Провести расширенную QA-матрицу из раздела 8: 375x667, 430x932, 768x1024, 1024x768, 1440x900, 1920x1080, плюс ручной mobile Safari.
 
 ## Что уже сделано

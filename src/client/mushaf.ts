@@ -18,6 +18,7 @@
   var range = document.querySelector('[data-mushaf-zoom-range]');
   var fitEls = document.querySelectorAll('[data-mushaf-fit]');
   var ZOOM_KEY = 'q_mushaf_zoom';
+  var STATE_KEY = 'q_mushaf_zoom_state';
   var IMM_KEY = 'q_mushaf_reader';
   var MIN_SCALE = 1;
   var MAX_SCALE = 3;
@@ -89,6 +90,13 @@
     for (var i = 0; i < fitEls.length; i++) fitEls[i].textContent = pct + '%';
   }
 
+  function saveViewState() {
+    try {
+      localStorage.setItem(ZOOM_KEY, String(scale));
+      localStorage.setItem(STATE_KEY, JSON.stringify({ page: currentPage(), scale: scale, panX: panX, panY: panY }));
+    } catch (e) {}
+  }
+
   function applyZoom() {
     if (!pageEl) return;
     if (scale <= 1.001) {
@@ -124,10 +132,8 @@
       panY += relY * k;
     }
     scale = newS;
-    try {
-      localStorage.setItem(ZOOM_KEY, String(scale));
-    } catch (e) {}
     applyZoom();
+    saveViewState();
   }
 
   function sheetCenter() {
@@ -148,6 +154,15 @@
   try {
     var stored = parseFloat(localStorage.getItem(ZOOM_KEY) || '1');
     scale = stored >= MIN_SCALE && stored <= MAX_SCALE ? stored : 1;
+  } catch (e) {}
+
+  try {
+    var state = JSON.parse(localStorage.getItem(STATE_KEY) || 'null');
+    if (state && state.page === currentPage()) {
+      scale = state.scale >= MIN_SCALE && state.scale <= MAX_SCALE ? state.scale : scale;
+      panX = typeof state.panX === 'number' ? state.panX : 0;
+      panY = typeof state.panY === 'number' ? state.panY : 0;
+    }
   } catch (e) {}
 
   try {
@@ -328,9 +343,74 @@
       try {
         sheet.releasePointerCapture(e.pointerId);
       } catch (err) {}
+      saveViewState();
     }
     sheet.addEventListener('pointerup', endDrag);
     sheet.addEventListener('pointercancel', endDrag);
+
+    var pinching = false;
+    var pinchStartDist = 0;
+    var pinchStartScale = 1;
+    var pinchStartPanX = 0;
+    var pinchStartPanY = 0;
+    var pinchStartCenterX = 0;
+    var pinchStartCenterY = 0;
+    var pinchStartRelX = 0;
+    var pinchStartRelY = 0;
+
+    function touchDistance(t0, t1) {
+      var dx = t1.clientX - t0.clientX;
+      var dy = t1.clientY - t0.clientY;
+      return Math.sqrt(dx * dx + dy * dy);
+    }
+
+    function touchCenter(t0, t1) {
+      return { x: (t0.clientX + t1.clientX) / 2, y: (t0.clientY + t1.clientY) / 2 };
+    }
+
+    sheet.addEventListener(
+      'touchstart',
+      function (e) {
+        if (e.touches.length !== 2 || !pageEl) return;
+        var c = touchCenter(e.touches[0], e.touches[1]);
+        var r = pageEl.getBoundingClientRect();
+        pinching = true;
+        pinchStartDist = Math.max(1, touchDistance(e.touches[0], e.touches[1]));
+        pinchStartScale = scale;
+        pinchStartPanX = panX;
+        pinchStartPanY = panY;
+        pinchStartCenterX = c.x;
+        pinchStartCenterY = c.y;
+        pinchStartRelX = c.x - r.left;
+        pinchStartRelY = c.y - r.top;
+      },
+      { passive: true }
+    );
+
+    sheet.addEventListener(
+      'touchmove',
+      function (e) {
+        if (!pinching || e.touches.length !== 2 || !pageEl) return;
+        e.preventDefault();
+        var c = touchCenter(e.touches[0], e.touches[1]);
+        var nextScale = clamp(pinchStartScale * (touchDistance(e.touches[0], e.touches[1]) / pinchStartDist), MIN_SCALE, MAX_SCALE);
+        var ratio = nextScale / Math.max(0.001, pinchStartScale);
+        scale = nextScale;
+        panX = pinchStartPanX + (c.x - pinchStartCenterX) + pinchStartRelX * (1 - ratio);
+        panY = pinchStartPanY + (c.y - pinchStartCenterY) + pinchStartRelY * (1 - ratio);
+        applyZoom();
+      },
+      { passive: false }
+    );
+
+    function endPinch() {
+      if (!pinching) return;
+      pinching = false;
+      saveViewState();
+    }
+
+    sheet.addEventListener('touchend', endPinch, { passive: true });
+    sheet.addEventListener('touchcancel', endPinch, { passive: true });
   }
 
   document.addEventListener('keydown', function (e) {
