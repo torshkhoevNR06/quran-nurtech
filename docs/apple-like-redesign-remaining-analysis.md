@@ -38,6 +38,8 @@
 - Данные Корана вынесены в `src/client/quran-data.ts`: версия данных, индекс сур, чтецы, загрузчики тафсиров, fallback чтецов и построение audio URL.
 - Горячие клавиши вынесены в `src/client/hotkeys.ts`: быстрый фокус поиска, переключение слоёв A/S/D, закладка B, переход по аятам и Escape.
 - Действия аятов вынесены в `src/client/reader-actions.ts`: copy/share/bookmark/play, раскрытие тафсира, macOS-like context menu и mushaf ayah sheet.
+- Аудиоплеер вынесен в `src/client/audio-player.ts`: плейлист, выбор чтеца, speed/repeat/range, fallback audio URL, подсветка текущего аята, preload следующего аята и связь с режимом заучивания.
+- `src/client/app.ts` уменьшен с 2001 до 53 строк и теперь работает как boot-orchestrator клиентских модулей.
 - Добавлены реальные UI-компоненты:
   - `src/components/ui/Button.astro`;
   - `src/components/ui/IconButton.astro`;
@@ -104,17 +106,20 @@
   - тафсир, play, context menu, mushaf sheet + перевод + тафсир;
   - 5 автоматических проверок, 0 падений;
   - скрины: `qa-screens/2026-07-15-reader-actions-extract/`.
+- После выноса audio-player пройден targeted QA:
+  - desktop `/surah/1/`;
+  - playlist, play, audio src, speed, repeat, next и связь memorize/settings;
+  - 8 автоматических проверок, 0 падений;
+  - скрин: `qa-screens/2026-07-15-audio-player-extract/`.
 
 ### Частично закрыто
 
-- `src/client/app.ts` уменьшен с 2001 до примерно 365 строк, но ещё содержит крупный домен audio-player.
 - Компонентная система начата, но ещё не покрывает `SegmentedControl`, `SwitchRow`, `ListRow`, `InspectorSection`, `Sheet`, `Toolbar`, `ReaderCard`.
 - Page CSS стал чище, но `bookmarks`, `backup`, `tasbih`, `glossary`, `topics`, `image-editor` ещё требуют отдельного унификационного прохода. `stats`, `audio`, `search`, `download` уже ближе к общей системе.
 - Мушаф стал стабильнее по fullscreen и базовой матрице, но advanced polish по zoom/pan/pinch/604-page audit ещё не закрыт полностью.
 
 ### Остаётся
 
-- Дальше вынести из `src/client/app.ts` последний крупный домен: audio-player.
 - Отдельно решить, нужен ли новый hotkey для тафсира: старый `T` до выноса не имел фактического слоя, потому что текущая модель настроек включает только Arabic/translation/transliteration.
 - Добавить недостающие UI-компоненты и мигрировать на них `Drawer`, `Player`, `settings`, `topics`, `glossary`, `backup`; продолжить углублять `bookmarks` и `tasbih`.
 - Провести типографический pass по страницам с локальными стилями и убрать случайные тяжёлые веса `700/800`, где они не являются смысловым акцентом.

@@ -1,0 +1,40 @@
+{
+  "route": "/surah/1/",
+  "viewport": "1440x980",
+  "checks": [
+    {
+      "name": "playlist собран из аятов суры",
+      "ok": true
+    },
+    {
+      "name": "play показывает нижний плеер",
+      "ok": true
+    },
+    {
+      "name": "play выставляет заголовок первого аята",
+      "ok": true
+    },
+    {
+      "name": "play подставляет audio src",
+      "ok": true
+    },
+    {
+      "name": "speed сохраняется и обновляет label",
+      "ok": true
+    },
+    {
+      "name": "repeat переключает состояние кнопки",
+      "ok": true
+    },
+    {
+      "name": "next переводит плеер на следующий аят",
+      "ok": true
+    },
+    {
+      "name": "settings связывает режим заучивания с плеером",
+      "ok": true
+    }
+  ],
+  "failures": [],
+  "screenshot": "desktop-audio-player.png"
+}
