@@ -28,6 +28,7 @@
 - Dwell-аналитика чтения вынесена в `src/client/reading-analytics.ts`.
 - Верхние меню и mobile scroll-lock вынесены в `src/client/ui-menus.ts`.
 - Настройки чтения вынесены в `src/client/reader-settings.ts`: тема, размеры текста, слои арабский/перевод/транслит, выбор перевода, мультиперевод и hotkey-переключение слоёв.
+- Drawer/sidebar вынесен в `src/client/drawer.ts`: desktop collapse, mobile overlay, фильтр сур, вкладка джузов и прогресс в сайдбаре.
 - Добавлены реальные UI-компоненты:
   - `src/components/ui/Button.astro`;
   - `src/components/ui/IconButton.astro`;
@@ -50,17 +51,22 @@
   - переключение темы и слоёв чтения;
   - 34 автоматические проверки, 0 падений;
   - скрины: `qa-screens/2026-07-15-reader-settings-extract/`.
+- После выноса drawer пройден отдельный targeted QA:
+  - desktop/mobile `/surah/2/`;
+  - collapse/reopen sidebar, mobile scroll-lock, фильтр, вкладка джузов;
+  - 11 автоматических проверок, 0 падений;
+  - скрины: `qa-screens/2026-07-15-drawer-extract/`.
 
 ### Частично закрыто
 
-- `src/client/app.ts` уменьшен с 2001 до примерно 1366 строк, но ещё содержит несколько доменов: drawer, audio-player, reader-actions, bookmarks, reciter/audio data, tajweed, hotkeys, home-filter.
+- `src/client/app.ts` уменьшен с 2001 до примерно 1258 строк, но ещё содержит несколько доменов: audio-player, reader-actions, bookmarks, reciter/audio data, tajweed, hotkeys, home-filter.
 - Компонентная система начата, но ещё не покрывает `SegmentedControl`, `SwitchRow`, `ListRow`, `InspectorSection`, `Sheet`, `Toolbar`, `ReaderCard`.
 - Page CSS стал чище, но `bookmarks`, `backup`, `tasbih`, `glossary`, `topics`, `image-editor` ещё требуют отдельного унификационного прохода. `stats`, `audio`, `search`, `download` уже ближе к общей системе.
 - Мушаф стал стабильнее по fullscreen и базовой матрице, но advanced polish по zoom/pan/pinch/604-page audit ещё не закрыт полностью.
 
 ### Остаётся
 
-- Дальше дробить `src/client/app.ts` по доменам: drawer, audio-player, reader-actions, bookmarks, reciter/audio data, tajweed, hotkeys, home-filter.
+- Дальше дробить `src/client/app.ts` по доменам: audio-player, reader-actions, bookmarks, reciter/audio data, tajweed, hotkeys, home-filter.
 - Добавить недостающие UI-компоненты и мигрировать на них `Drawer`, `Player`, `settings`, `topics`, `glossary`, `backup`; продолжить углублять `bookmarks` и `tasbih`.
 - Провести типографический pass по страницам с локальными стилями и убрать случайные тяжёлые веса `700/800`, где они не являются смысловым акцентом.
 - Довести mobile overlay-аудит вручную: drawer scroll, settings scroll, action sheet, player, keyboard behavior, body scroll lock.
