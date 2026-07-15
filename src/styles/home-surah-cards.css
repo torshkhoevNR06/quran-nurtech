@@ -23,6 +23,7 @@
 .surah-card .row1,
 .surah-card .row2 {
   display: flex;
+  min-width: 0;
   align-items: center;
   justify-content: space-between;
   gap: 10px;
@@ -54,6 +55,7 @@
   flex: none;
   display: flex;
   gap: 2px;
+  max-width: 100%;
 }
 .surah-card .acts a {
   width: 32px;

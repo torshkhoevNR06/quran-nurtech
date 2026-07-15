@@ -44,6 +44,24 @@
   transition: background 0.12s;
 }
 
+.drawer .dgroup .ui-list-row-label,
+.drawer .dfoot .ui-list-row-label {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: 10px;
+  flex: 1 1 auto;
+}
+
+.drawer .dgroup .ui-list-row-label {
+  line-height: 1.2;
+}
+
+.drawer .dgroup .ui-list-row-label > :not(.di),
+.drawer .dfoot .ui-list-row-label > :not(.di) {
+  min-width: 0;
+}
+
 .drawer .dgroup a:hover,
 .drawer .dgroup .ui-list-row:hover {
   background: color-mix(in srgb, var(--ink) 6%, transparent);
@@ -63,17 +81,19 @@
 
 .drawer .dgroup a .di,
 .drawer .dgroup .ui-list-row .di {
-  width: 18px;
-  height: 18px;
+  width: 20px;
+  height: 20px;
   flex: none;
   color: var(--ink-faint);
-  display: inline-flex;
+  display: inline-grid;
+  place-items: center;
 }
 
 .drawer .dgroup a .di svg,
 .drawer .dgroup .ui-list-row .di svg {
-  width: 100%;
-  height: 100%;
+  display: block;
+  width: 18px;
+  height: 18px;
 }
 
 .drawer .drawer-row-sub {
@@ -129,17 +149,19 @@
 
 .drawer .dfoot a .di,
 .drawer .dfoot .ui-list-row .di {
-  width: 17px;
-  height: 17px;
+  width: 20px;
+  height: 20px;
   flex: none;
   color: var(--ink-faint);
-  display: inline-flex;
+  display: inline-grid;
+  place-items: center;
 }
 
 .drawer .dfoot a .di svg,
 .drawer .dfoot .ui-list-row .di svg {
-  width: 100%;
-  height: 100%;
+  display: block;
+  width: 17px;
+  height: 17px;
 }
 
 .drawer[data-dtab-active='juz'] .drawer-progress {
