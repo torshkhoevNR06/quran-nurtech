@@ -1,0 +1,20 @@
+---
+import { icons } from '../../lib/icons';
+---
+
+<!-- Закладки -->
+<div class="menu-wrap" data-menu-wrap>
+  <button class="icon-btn" data-menu-toggle aria-label="Закладки" title="Закладки (B)" set:html={icons.bookmark} />
+  <div class="menu" data-menu="bookmarks">
+    <h4>Закладки</h4>
+    <button class="item hide" type="button" data-bookmark-add>
+      <span set:html={icons.bookmark} style="width:18px;height:18px" /> Добавить текущий аят
+    </button>
+    <div data-bookmark-list>
+      <div style="padding:10px;color:var(--ink-faint);font-size:13px" data-bookmark-empty>
+        Пока пусто. Открой аят и нажми на «флажок» или клавишу B.
+      </div>
+    </div>
+  </div>
+</div>
+

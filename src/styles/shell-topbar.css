@@ -197,3 +197,59 @@ html[data-theme='sepia'] .brand-mark img {
     display: none;
   }
 }
+
+/* ==========================================================================
+   Topbar menus and theme toggle
+   ========================================================================== */
+/* Тумблер темы в хедере: показываем иконку целевого режима —
+   в тёмной теме солнце (клик → светлая), в светлой/сепии луну (клик → тёмная). */
+.theme-toggle {
+  position: relative;
+}
+.theme-toggle .th-ic {
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+.theme-toggle .th-ic svg {
+  width: 20px;
+  height: 20px;
+}
+html[data-theme='dark'] .theme-toggle .th-sun {
+  display: inline-flex;
+}
+html[data-theme='light'] .theme-toggle .th-moon,
+html[data-theme='sepia'] .theme-toggle .th-moon {
+  display: inline-flex;
+}
+
+/* Меню чтеца: поиск + прокручиваемый список (44 чтеца) */
+.menu-reciter {
+  flex-direction: column;
+  max-height: min(70vh, 480px);
+  overflow: hidden;
+}
+.menu-reciter.open {
+  display: flex;
+}
+.reciter-filter {
+  width: 100%;
+  height: 34px;
+  margin: 2px 0 6px;
+  padding: 0 11px;
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-s);
+  background: var(--panel-bg);
+  color: var(--ink);
+  font: 400 var(--fs-14) / 1 var(--sans);
+}
+.reciter-filter:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+.reciter-list {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}

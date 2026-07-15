@@ -1,0 +1,66 @@
+---
+import { icons } from '../../lib/icons';
+import { getReciters, TRANSLATIONS } from '../../lib/quran';
+interface Props {
+  showReaderTools: boolean;
+}
+const { showReaderTools } = Astro.props;
+const reciters = getReciters();
+---
+
+<!-- Перевод -->
+{showReaderTools && (
+  <div class="menu-wrap desktop-only reader-tool" data-menu-wrap>
+    <button class="btn" data-menu-toggle aria-haspopup="true">
+      <span data-tr-current>Тафсир</span>
+      <span set:html={icons.chevron} style="width:14px;height:14px" />
+    </button>
+    <div class="menu" data-menu="tr">
+      <h4>Перевод / тафсир</h4>
+      {
+        TRANSLATIONS.map((t) => (
+          <button
+            class="item"
+            type="button"
+            data-tr={t.id}
+            disabled={!t.available}
+            title={t.available ? '' : 'Скоро'}
+          >
+            {t.name}
+            {!t.available && <span style="color:var(--ink-faint);font-size:12px"> · скоро</span>}
+            <span class="tick">✓</span>
+          </button>
+        ))
+      }
+    </div>
+  </div>
+)}
+
+<!-- Чтец -->
+{showReaderTools && (
+  <div class="menu-wrap desktop-only reader-tool" data-menu-wrap>
+    <button class="icon-btn" data-menu-toggle aria-label="Чтец" title="Чтец" set:html={icons.headphones} />
+    <div class="menu menu-reciter" data-menu="reciter">
+      <h4>Чтец</h4>
+      <input
+        class="reciter-filter"
+        type="text"
+        placeholder="Поиск чтеца…"
+        autocomplete="off"
+        data-reciter-filter
+        aria-label="Поиск чтеца по имени"
+      />
+      <div class="reciter-list" data-reciter-list>
+        {
+          reciters.map((r) => (
+            <button class="item" type="button" data-reciter={r.id} data-name={r.name.toLowerCase()}>
+              {r.name}
+              <span class="tick">✓</span>
+            </button>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+)}
+
