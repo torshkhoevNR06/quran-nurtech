@@ -1,0 +1,37 @@
+[
+  {
+    "label": "bookmark button exists",
+    "ok": true,
+    "details": ""
+  },
+  {
+    "label": "bookmark stored after click",
+    "ok": true,
+    "details": ""
+  },
+  {
+    "label": "bookmark button marked on",
+    "ok": true,
+    "details": ""
+  },
+  {
+    "label": "bookmark menu shows saved ayah",
+    "ok": true,
+    "details": ""
+  },
+  {
+    "label": "bookmark removed after second click",
+    "ok": true,
+    "details": ""
+  },
+  {
+    "label": "continue last position stored",
+    "ok": true,
+    "details": "{\"s\":3,\"a\":1}"
+  },
+  {
+    "label": "mobile bookmark stored after tap",
+    "ok": true,
+    "details": ""
+  }
+]

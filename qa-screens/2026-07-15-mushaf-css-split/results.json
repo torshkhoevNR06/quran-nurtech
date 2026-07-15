@@ -1,0 +1,189 @@
+{
+  "results": [
+    {
+      "name": "desktop-mushaf-page-2",
+      "file": "/Users/ilnur_ryazhapov/Desktop/code_src/quran-nurtech-codex-apple-ui/qa-screens/2026-07-15-mushaf-css-split/desktop-mushaf-page-2.png",
+      "url": "http://127.0.0.1:4347/mushaf/2",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "info": {
+        "title": "Мусхаф, страница 2 — Коран онлайн",
+        "url": "/mushaf/2",
+        "mode": "mushaf",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "qcfLines": 15,
+        "visibleTextLines": 8,
+        "hasSheet": true,
+        "hasPage": true,
+        "sheetRect": {
+          "x": 619.5,
+          "y": 123.1875,
+          "width": 501,
+          "height": 711.640625,
+          "top": 123.1875,
+          "right": 1120.5,
+          "bottom": 834.828125,
+          "left": 619.5
+        },
+        "pageRect": {
+          "x": 642.5,
+          "y": 152.1875,
+          "width": 455,
+          "height": 647.640625,
+          "top": 152.1875,
+          "right": 1097.5,
+          "bottom": 799.828125,
+          "left": 642.5
+        },
+        "overflowX": 0,
+        "bodyOverflow": "hidden",
+        "readerOverflow": "auto",
+        "fontsReady": true
+      }
+    },
+    {
+      "name": "desktop-mushaf-page-49",
+      "file": "/Users/ilnur_ryazhapov/Desktop/code_src/quran-nurtech-codex-apple-ui/qa-screens/2026-07-15-mushaf-css-split/desktop-mushaf-page-49.png",
+      "url": "http://127.0.0.1:4347/mushaf/49",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "info": {
+        "title": "Мусхаф, страница 49 — Коран онлайн",
+        "url": "/mushaf/49",
+        "mode": "mushaf",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "qcfLines": 15,
+        "visibleTextLines": 15,
+        "hasSheet": true,
+        "hasPage": true,
+        "sheetRect": {
+          "x": 619.5,
+          "y": 123.1875,
+          "width": 501,
+          "height": 711.640625,
+          "top": 123.1875,
+          "right": 1120.5,
+          "bottom": 834.828125,
+          "left": 619.5
+        },
+        "pageRect": {
+          "x": 642.5,
+          "y": 152.1875,
+          "width": 455,
+          "height": 647.640625,
+          "top": 152.1875,
+          "right": 1097.5,
+          "bottom": 799.828125,
+          "left": 642.5
+        },
+        "overflowX": 0,
+        "bodyOverflow": "hidden",
+        "readerOverflow": "auto",
+        "fontsReady": true
+      }
+    },
+    {
+      "name": "mobile-mushaf-page-2",
+      "file": "/Users/ilnur_ryazhapov/Desktop/code_src/quran-nurtech-codex-apple-ui/qa-screens/2026-07-15-mushaf-css-split/mobile-mushaf-page-2.png",
+      "url": "http://127.0.0.1:4347/mushaf/2",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "info": {
+        "title": "Мусхаф, страница 2 — Коран онлайн",
+        "url": "/mushaf/2",
+        "mode": "mushaf",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "qcfLines": 15,
+        "visibleTextLines": 8,
+        "hasSheet": true,
+        "hasPage": true,
+        "sheetRect": {
+          "x": 6,
+          "y": 70,
+          "width": 378,
+          "height": 536.921875,
+          "top": 70,
+          "right": 384,
+          "bottom": 606.921875,
+          "left": 6
+        },
+        "pageRect": {
+          "x": 17,
+          "y": 89,
+          "width": 356,
+          "height": 492.921875,
+          "top": 89,
+          "right": 373,
+          "bottom": 581.921875,
+          "left": 17
+        },
+        "overflowX": 0,
+        "bodyOverflow": "hidden",
+        "readerOverflow": "auto",
+        "fontsReady": true
+      }
+    },
+    {
+      "name": "mobile-mushaf-page-49",
+      "file": "/Users/ilnur_ryazhapov/Desktop/code_src/quran-nurtech-codex-apple-ui/qa-screens/2026-07-15-mushaf-css-split/mobile-mushaf-page-49.png",
+      "url": "http://127.0.0.1:4347/mushaf/49",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "info": {
+        "title": "Мусхаф, страница 49 — Коран онлайн",
+        "url": "/mushaf/49",
+        "mode": "mushaf",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "qcfLines": 15,
+        "visibleTextLines": 15,
+        "hasSheet": true,
+        "hasPage": true,
+        "sheetRect": {
+          "x": 6,
+          "y": 70,
+          "width": 378,
+          "height": 536.921875,
+          "top": 70,
+          "right": 384,
+          "bottom": 606.921875,
+          "left": 6
+        },
+        "pageRect": {
+          "x": 17,
+          "y": 89,
+          "width": 356,
+          "height": 492.921875,
+          "top": 89,
+          "right": 373,
+          "bottom": 581.921875,
+          "left": 17
+        },
+        "overflowX": 0,
+        "bodyOverflow": "hidden",
+        "readerOverflow": "auto",
+        "fontsReady": true
+      }
+    }
+  ],
+  "logs": []
+}

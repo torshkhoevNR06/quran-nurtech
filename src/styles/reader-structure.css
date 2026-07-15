@@ -1,0 +1,245 @@
+/* ==========================================================================
+   Страница суры
+   ========================================================================== */
+.surah-head {
+  text-align: center;
+  padding: 36px 16px 10px;
+}
+.surah-head .kicker {
+  color: var(--ink-faint);
+  font-size: 13px;
+  letter-spacing: 0.04em;
+}
+.surah-head h1 {
+  font-size: clamp(28px, 5.5vw, 40px);
+  margin: 8px 0 4px;
+}
+.surah-head .ar {
+  font-family: var(--ar-font), 'AmiriQuran', serif;
+  direction: rtl;
+  font-size: 32px;
+  color: var(--accent);
+  margin: 6px 0;
+}
+.surah-head .meta {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 12px;
+}
+.surah-desc {
+  position: relative;
+  isolation: isolate;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--r-lg);
+  padding: 16px 18px;
+  color: var(--ink-soft);
+  margin: 16px 0;
+  font-size: 15px;
+  box-shadow: var(--glass-elev-sm);
+}
+.surah-desc::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: -1;
+  background: linear-gradient(180deg, var(--glass-gloss) 0%, transparent 42%);
+}
+.bism {
+  text-align: center;
+  font-family: var(--ar-font), 'AmiriQuran', serif;
+  direction: rtl;
+  font-size: 28px;
+  color: var(--ink);
+  padding: 20px 0 8px;
+}
+
+/* ==========================================================================
+   Маркеры мусхафа: джуз / страница
+   ========================================================================== */
+.juz-sep {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 22px 4px 6px;
+  color: var(--accent);
+  font: var(--weight-semibold) var(--fs-13) / 1 var(--sans);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.juz-sep::before,
+.juz-sep::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--hairline);
+}
+.page-sep {
+  text-align: right;
+  margin: 6px 4px -4px;
+  font-size: var(--fs-11);
+  color: var(--ink-faint);
+  font-variant-numeric: tabular-nums;
+}
+
+/* лист чтения — единая стеклянная «страница» */
+.ayahs {
+  position: relative;
+  isolation: isolate;
+  min-width: 0;
+  max-width: 100%;
+  margin: 6px 0 130px;
+  padding: 8px 20px;
+  border-radius: 26px;
+  background: var(--glass-bg-strong);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-elev);
+}
+.ayahs::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 160px;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: -1;
+  background: linear-gradient(180deg, var(--glass-gloss) 0%, transparent 100%);
+}
+.ayah {
+  min-width: 0;
+  max-width: 100%;
+  padding: 22px 4px 20px;
+  border-bottom: 1px solid var(--line);
+  scroll-margin-top: calc(var(--topbar-h) + 24px);
+  border-radius: 16px;
+  transition: background 0.3s;
+  /* Длинные суры (Аль-Бакара — 286 аятов, ~190 000px): не рендерим аяты за пределами
+     экрана, пока до них не долистаешь. Контент ОСТАЁТСЯ в DOM — поиск/индексация,
+     Ctrl+F и якоря #ayah-N работают, страдает только рендер за экраном. auto-размер
+     запоминается после первого показа, так что скролл не «прыгает». */
+  content-visibility: auto;
+  contain-intrinsic-size: auto 640px;
+}
+.ayah:last-child {
+  border-bottom: 0;
+}
+.ayah.active {
+  background: color-mix(in srgb, var(--accent-soft) 90%, transparent);
+  box-shadow: inset 3px 0 0 var(--accent), inset 0 1px 0 var(--glass-spec);
+  padding-left: 14px;
+  padding-right: 14px;
+}
+.ayah-top {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+.ayah-no {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font: var(--weight-strong) 13px/1 var(--sans);
+  color: var(--accent);
+  background: var(--accent-soft);
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent);
+  cursor: pointer;
+  transition: filter 0.15s, transform 0.12s;
+}
+.ayah-no:hover {
+  filter: brightness(1.08);
+  transform: translateY(-1px);
+}
+.ayah-acts {
+  margin-left: auto;
+  display: flex;
+  gap: 2px;
+}
+.ayah-acts button,
+.ayah-acts a {
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  border: 0;
+  background: transparent;
+  color: var(--ink-faint);
+  border-radius: 11px;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+.ayah-acts button:hover,
+.ayah-acts a:hover {
+  background: var(--glass-bg);
+  color: var(--accent);
+}
+.ayah-acts button.on {
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+.ayah-acts svg {
+  width: 18px;
+  height: 18px;
+}
+
+.ar {
+  font-family: var(--ar-font), 'AmiriQuran', 'NaskhAr', serif;
+  direction: rtl;
+  text-align: right;
+  font-size: var(--ar-size);
+  line-height: var(--lh);
+  color: var(--ink);
+}
+.translit {
+  color: var(--ink-faint);
+  font-style: italic;
+  font-size: calc(var(--ru-size) - 2px);
+  margin-top: 12px;
+  line-height: 1.6;
+}
+.translation {
+  min-width: 0;
+  max-width: 100%;
+  font-size: var(--ru-size);
+  color: var(--ink-soft);
+  line-height: 1.72;
+  margin-top: 12px;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+.tafsir {
+  min-width: 0;
+  max-width: 100%;
+  font-size: var(--ru-size);
+  color: var(--ink-soft);
+  line-height: 1.78;
+  margin-top: 14px;
+  white-space: pre-line;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+.tafsir-passage {
+  min-width: 0;
+  max-width: 100%;
+  background: color-mix(in srgb, var(--accent-soft) 55%, transparent);
+  border-radius: 16px;
+  padding: 16px 16px 18px;
+  margin: 6px 0;
+  border: 1px solid var(--line);
+}
+.tafsir-label {
+  display: inline-block;
+  font: var(--weight-semibold) 11px/1 var(--sans);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 8px;
+}

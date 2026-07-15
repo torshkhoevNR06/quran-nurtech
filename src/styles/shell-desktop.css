@@ -1,0 +1,158 @@
+/* ==========================================================================
+   Десктоп-сайдбар (macOS source list): drawer → постоянная левая колонка
+   ========================================================================== */
+@media (min-width: 821px) and (max-width: 1119px) {
+  /* планшетная «дыра»: сайдбара ещё нет — возвращаем кнопку-гамбургер */
+  [data-act='drawer'].only-mobile {
+    display: inline-flex;
+  }
+}
+@media (min-width: 1120px) {
+  :root {
+    --sidebar-w: 300px;
+    --sidebar-current-w: var(--sidebar-w);
+  }
+  :root[data-sidebar='closed'] {
+    --sidebar-current-w: 0px;
+  }
+  body {
+    padding-left: var(--sidebar-current-w);
+    transition:
+      padding-left 0.28s cubic-bezier(0.2, 0, 0, 1),
+      padding-right 0.24s cubic-bezier(0.2, 0, 0, 1);
+  }
+  /* тулбар в контент-панели: пилюля в размер содержимого по центру (не 1080px cap,
+     иначе пункты вылезали за край и обрезались). Инлайн-переключатель видов убираем —
+     он есть в «Настройках». */
+  .topbar-inner {
+    max-width: 100%;
+    width: -moz-fit-content;
+    width: fit-content;
+    margin-inline: auto;
+  }
+  .topbar .seg.desktop-only[data-view-seg] {
+    display: none;
+  }
+  .topbar-inner [data-act='drawer'].only-mobile {
+    display: inline-grid;
+  }
+  .quick {
+    flex: none;
+  }
+  .drawer {
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: var(--sidebar-w);
+    border: 0;
+    border-right: 1px solid var(--hairline);
+    border-radius: 0;
+    box-shadow: none;
+    transform: translateX(0) !important;
+    visibility: visible;
+    transition:
+      transform 0.28s cubic-bezier(0.2, 0, 0, 1),
+      visibility 0.28s ease;
+    z-index: 30;
+    background: var(--panel-bg);
+  }
+  :root[data-sidebar='closed'] .drawer {
+    transform: translateX(calc(-100% - 1px)) !important;
+    visibility: hidden;
+  }
+  .drawer-backdrop {
+    display: none !important;
+  }
+  .drawer .dh {
+    padding: 12px;
+    border-bottom: 1px solid var(--hairline);
+  }
+  .drawer .dh [data-act='drawer-close'] {
+    display: grid;
+    width: 30px;
+    height: 30px;
+    border-radius: var(--radius-s);
+  }
+  .drawer .dh input {
+    height: 30px;
+    border-radius: var(--radius-s);
+    font-size: var(--fs-13);
+  }
+  .drawer-progress {
+    border-bottom: 1px solid var(--hairline);
+  }
+  .drawer .dlist {
+    flex: none;
+    min-height: 0;
+    overflow: visible;
+    padding: 6px;
+  }
+  .drawer .dlist a {
+    padding: 7px 9px;
+    border-radius: var(--radius-s);
+    gap: 8px;
+  }
+  .drawer .dlist .nm {
+    font-size: var(--fs-14);
+  }
+  .drawer .dlist a:hover {
+    background: color-mix(in srgb, var(--ink) 6%, transparent);
+  }
+  .drawer .dlist a.on {
+    background: var(--accent);
+    box-shadow: none;
+  }
+  .drawer .dlist a.on .n,
+  .drawer .dlist a.on .nm,
+  .drawer .dlist a.on .ar-name {
+    color: var(--accent-ink);
+  }
+  .drawer .dlist a.on .nm span {
+    color: color-mix(in srgb, var(--accent-ink) 72%, transparent) !important;
+  }
+}
+
+@media (min-width: 1120px) and (max-width: 1879px) {
+  body.settings-panel-open {
+    --sidebar-current-w: 0px;
+    padding-left: 0;
+  }
+  body.settings-panel-open .drawer {
+    transform: translateX(calc(-100% - 1px)) !important;
+    visibility: hidden;
+  }
+}
+
+/* ==========================================================================
+   Десктоп-плотность тулбара (macOS): ghost-кнопки вместо стеклянных квадратов
+   ========================================================================== */
+@media (min-width: 1120px) {
+  .topbar-inner .icon-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: var(--radius-s);
+    border-color: transparent;
+    background: transparent;
+    box-shadow: none;
+    color: var(--ink-soft);
+  }
+  .topbar-inner .icon-btn:hover {
+    background: color-mix(in srgb, var(--ink) 8%, transparent);
+    color: var(--ink);
+    transform: none;
+  }
+  .topbar-inner .btn {
+    height: 32px;
+    padding: 0 12px;
+    border-radius: var(--radius-s);
+  }
+  .topbar-inner .quick input {
+    height: 32px;
+    font-size: var(--fs-14);
+  }
+  .topbar-inner .quick-submit {
+    width: 32px;
+    height: 32px;
+    padding: 0;
+  }
+}

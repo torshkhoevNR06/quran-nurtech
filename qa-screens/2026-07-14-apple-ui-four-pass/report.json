@@ -1,0 +1,611 @@
+[
+  {
+    "viewport": "desktop",
+    "route": "/",
+    "status": 200,
+    "ok": true,
+    "metrics": {
+      "title": "Коран онлайн на русском — читать, слушать, изучать",
+      "overflowX": 0,
+      "mainHeight": 6660
+    },
+    "errors": [],
+    "interaction": {}
+  },
+  {
+    "viewport": "desktop",
+    "route": "/surah/1/",
+    "status": 200,
+    "ok": true,
+    "metrics": {
+      "title": "Сура 1: Аль-Фатиха (Открывающая) — читать с тафсиром ас-Саади",
+      "overflowX": 0,
+      "mainHeight": 2270
+    },
+    "errors": [],
+    "interaction": {
+      "settingsOpen": true
+    }
+  },
+  {
+    "viewport": "desktop",
+    "route": "/surah/9/",
+    "status": 200,
+    "ok": true,
+    "metrics": {
+      "title": "Сура 9: Ат-Тауба (Покаяние) — читать с тафсиром ас-Саади",
+      "overflowX": 0,
+      "mainHeight": 87970
+    },
+    "errors": [],
+    "interaction": {}
+  },
+  {
+    "viewport": "desktop",
+    "route": "/surah/17/",
+    "status": 200,
+    "ok": true,
+    "metrics": {
+      "title": "Сура 17: Аль-Исра (Ночной перенос) — читать с тафсиром ас-Саади",
+      "overflowX": 0,
+      "mainHeight": 74729
+    },
+    "errors": [],
+    "interaction": {}
+  },
+  {
+    "viewport": "desktop",
+    "route": "/surah/1/kuliev/",
+    "status": 200,
+    "ok": true,
+    "metrics": {
+      "title": "Сура 1: Аль-Фатиха — эльмир кулиев",
+      "overflowX": 0,
+      "mainHeight": 2270
+    },
+    "errors": [],
+    "interaction": {}
+  },
+  {
+    "viewport": "desktop",
+    "route": "/ayah/2/255/",
+    "status": 200,
+    "ok": true,
+    "metrics": {
+      "title": "Аят 2:255 — сура Аль-Бакара · Коран онлайн",
+      "overflowX": 0,
+      "mainHeight": 1296
+    },
+    "errors": [],
+    "interaction": {}
+  },
+  {
+    "viewport": "desktop",
+    "route": "/mushaf/3/",
+    "status": 200,
+    "ok": true,
+    "metrics": {
+      "title": "Мусхаф, страница 3 — Коран онлайн",
+      "overflowX": 0,
+      "mainHeight": 928
+    },
+    "errors": [],
+    "interaction": {
+      "zoomed": true
+    }
+  },
+  {
+    "viewport": "desktop",
+    "route": "/mushaf/10/",
+    "status": 200,
+    "ok": true,
+    "metrics": {
+      "title": "Мусхаф, страница 10 — Коран онлайн",
+      "overflowX": 0,
+      "mainHeight": 928
+    },
+    "errors": [],
+    "interaction": {}
+  },
+  {
+    "viewport": "desktop",
+    "route": "/search/",
+    "status": 200,
+    "ok": true,
+    "metrics": {
+      "title": "Поиск по Корану — по русскому переводу",
+      "overflowX": 0,
+      "mainHeight": 481
+    },
+    "errors": [],
+    "interaction": {}
+  },
+  {
+    "viewport": "desktop",
+    "route": "/progress/",
+    "status": 200,
+    "ok": true,
+    "metrics": {
+      "title": "Мой прогресс чтения Корана — хатм, стрик, статистика",
+      "overflowX": 0,
+      "mainHeight": 2930
+    },
+    "errors": [],
+    "interaction": {}
+  },
+  {
+    "viewport": "desktop",
+    "route": "/stats/",
+    "status": 200,
+    "ok": true,
+    "metrics": {
+      "title": "Статистика чтения — Коран онлайн",
+      "overflowX": 0,
+      "mainHeight": 519
+    },
+    "errors": [],
+    "interaction": {}
+  },
+  {
+    "viewport": "desktop",
+    "route": "/audio/",
+    "status": 200,
+    "ok": true,
+    "metrics": {
+      "title": "Аудио Корана — чтецы, суры, скачивание",
+      "overflowX": 0,
+      "mainHeight": 990
+    },
+    "errors": [],
+    "interaction": {}
+  },
+  {
+    "viewport": "desktop",
+    "route": "/bookmarks/",
+    "status": 200,
+    "ok": true,
+    "metrics": {
+      "title": "Закладки и коллекции — сохранённые аяты",
+      "overflowX": 0,
+      "mainHeight": 380
+    },
+    "errors": [],
+    "interaction": {}
+  },
+  {
+    "viewport": "desktop",
+    "route": "/topics/",
+    "status": 200,
+    "ok": true,
+    "metrics": {
+      "title": "Аяты по темам — тематические подборки Корана",
+      "overflowX": 0,
+      "mainHeight": 2046
+    },
+    "errors": [],
+    "interaction": {}
+  },
+  {
+    "viewport": "desktop",
+    "route": "/glossary/",
+    "status": 200,
+    "ok": true,
+    "metrics": {
+      "title": "Словарь исламских терминов — глоссарий Корана",
+      "overflowX": 0,
+      "mainHeight": 3870
+    },
+    "errors": [],
+    "interaction": {}
+  },
+  {
+    "viewport": "desktop",
+    "route": "/tasbih/",
+    "status": 200,
+    "ok": true,
+    "metrics": {
+      "title": "Тасбих — электронный счётчик зикров",
+      "overflowX": 0,
+      "mainHeight": 847
+    },
+    "errors": [],
+    "interaction": {}
+  },
+  {
+    "viewport": "desktop",
+    "route": "/download/",
+    "status": 200,
+    "ok": true,
+    "metrics": {
+      "title": "Скачать Коран — тексты и аудио",
+      "overflowX": 0,
+      "mainHeight": 683
+    },
+    "errors": [],
+    "interaction": {}
+  },
+  {
+    "viewport": "desktop",
+    "route": "/backup/",
+    "status": 200,
+    "ok": true,
+    "metrics": {
+      "title": "Резервная копия — перенос закладок и прогресса",
+      "overflowX": 0,
+      "mainHeight": 843
+    },
+    "errors": [],
+    "interaction": {}
+  },
+  {
+    "viewport": "desktop",
+    "route": "/howto/",
+    "status": 200,
+    "ok": true,
+    "metrics": {
+      "title": "Как работать с сайтом — Коран онлайн",
+      "overflowX": 0,
+      "mainHeight": 1145
+    },
+    "errors": [],
+    "interaction": {}
+  },
+  {
+    "viewport": "desktop",
+    "route": "/about/",
+    "status": 200,
+    "ok": true,
+    "metrics": {
+      "title": "О проекте — Коран онлайн",
+      "overflowX": 0,
+      "mainHeight": 1057
+    },
+    "errors": [],
+    "interaction": {}
+  },
+  {
+    "viewport": "desktop",
+    "route": "/privacy/",
+    "status": 200,
+    "ok": true,
+    "metrics": {
+      "title": "Конфиденциальность — Коран онлайн",
+      "overflowX": 0,
+      "mainHeight": 537
+    },
+    "errors": [],
+    "interaction": {}
+  },
+  {
+    "viewport": "desktop",
+    "route": "/translators/",
+    "status": 200,
+    "ok": true,
+    "metrics": {
+      "title": "О переводчиках — Коран онлайн",
+      "overflowX": 0,
+      "mainHeight": 674
+    },
+    "errors": [],
+    "interaction": {}
+  },
+  {
+    "viewport": "desktop",
+    "route": "/videos/",
+    "status": 200,
+    "ok": true,
+    "metrics": {
+      "title": "Видео-рецитации Корана — по сурам и чтецам",
+      "overflowX": 0,
+      "mainHeight": 4591
+    },
+    "errors": [],
+    "interaction": {}
+  },
+  {
+    "viewport": "mobile",
+    "route": "/",
+    "status": 200,
+    "ok": true,
+    "metrics": {
+      "title": "Коран онлайн на русском — читать, слушать, изучать",
+      "overflowX": 0,
+      "mainHeight": 12705
+    },
+    "errors": [],
+    "interaction": {
+      "drawerOpen": true,
+      "drawerOwnScroll": true
+    }
+  },
+  {
+    "viewport": "mobile",
+    "route": "/surah/1/",
+    "status": 200,
+    "ok": true,
+    "metrics": {
+      "title": "Сура 1: Аль-Фатиха (Открывающая) — читать с тафсиром ас-Саади",
+      "overflowX": 0,
+      "mainHeight": 3151
+    },
+    "errors": [],
+    "interaction": {
+      "settingsOpen": true
+    }
+  },
+  {
+    "viewport": "mobile",
+    "route": "/surah/9/",
+    "status": 200,
+    "ok": true,
+    "metrics": {
+      "title": "Сура 9: Ат-Тауба (Покаяние) — читать с тафсиром ас-Саади",
+      "overflowX": 0,
+      "mainHeight": 88916
+    },
+    "errors": [],
+    "interaction": {}
+  },
+  {
+    "viewport": "mobile",
+    "route": "/surah/17/",
+    "status": 200,
+    "ok": true,
+    "metrics": {
+      "title": "Сура 17: Аль-Исра (Ночной перенос) — читать с тафсиром ас-Саади",
+      "overflowX": 0,
+      "mainHeight": 76283
+    },
+    "errors": [],
+    "interaction": {}
+  },
+  {
+    "viewport": "mobile",
+    "route": "/surah/1/kuliev/",
+    "status": 200,
+    "ok": true,
+    "metrics": {
+      "title": "Сура 1: Аль-Фатиха — эльмир кулиев",
+      "overflowX": 0,
+      "mainHeight": 3151
+    },
+    "errors": [],
+    "interaction": {}
+  },
+  {
+    "viewport": "mobile",
+    "route": "/ayah/2/255/",
+    "status": 200,
+    "ok": true,
+    "metrics": {
+      "title": "Аят 2:255 — сура Аль-Бакара · Коран онлайн",
+      "overflowX": 0,
+      "mainHeight": 2171
+    },
+    "errors": [],
+    "interaction": {}
+  },
+  {
+    "viewport": "mobile",
+    "route": "/mushaf/3/",
+    "status": 200,
+    "ok": true,
+    "metrics": {
+      "title": "Мусхаф, страница 3 — Коран онлайн",
+      "overflowX": 0,
+      "mainHeight": 790
+    },
+    "errors": [],
+    "interaction": {
+      "zoomed": true
+    }
+  },
+  {
+    "viewport": "mobile",
+    "route": "/mushaf/10/",
+    "status": 200,
+    "ok": true,
+    "metrics": {
+      "title": "Мусхаф, страница 10 — Коран онлайн",
+      "overflowX": 0,
+      "mainHeight": 790
+    },
+    "errors": [],
+    "interaction": {}
+  },
+  {
+    "viewport": "mobile",
+    "route": "/search/",
+    "status": 200,
+    "ok": true,
+    "metrics": {
+      "title": "Поиск по Корану — по русскому переводу",
+      "overflowX": 0,
+      "mainHeight": 814
+    },
+    "errors": [],
+    "interaction": {}
+  },
+  {
+    "viewport": "mobile",
+    "route": "/progress/",
+    "status": 200,
+    "ok": true,
+    "metrics": {
+      "title": "Мой прогресс чтения Корана — хатм, стрик, статистика",
+      "overflowX": 0,
+      "mainHeight": 3748
+    },
+    "errors": [],
+    "interaction": {}
+  },
+  {
+    "viewport": "mobile",
+    "route": "/stats/",
+    "status": 200,
+    "ok": true,
+    "metrics": {
+      "title": "Статистика чтения — Коран онлайн",
+      "overflowX": 0,
+      "mainHeight": 651
+    },
+    "errors": [],
+    "interaction": {}
+  },
+  {
+    "viewport": "mobile",
+    "route": "/audio/",
+    "status": 200,
+    "ok": true,
+    "metrics": {
+      "title": "Аудио Корана — чтецы, суры, скачивание",
+      "overflowX": 0,
+      "mainHeight": 1163
+    },
+    "errors": [],
+    "interaction": {}
+  },
+  {
+    "viewport": "mobile",
+    "route": "/bookmarks/",
+    "status": 200,
+    "ok": true,
+    "metrics": {
+      "title": "Закладки и коллекции — сохранённые аяты",
+      "overflowX": 0,
+      "mainHeight": 416
+    },
+    "errors": [],
+    "interaction": {}
+  },
+  {
+    "viewport": "mobile",
+    "route": "/topics/",
+    "status": 200,
+    "ok": true,
+    "metrics": {
+      "title": "Аяты по темам — тематические подборки Корана",
+      "overflowX": 0,
+      "mainHeight": 4441
+    },
+    "errors": [],
+    "interaction": {}
+  },
+  {
+    "viewport": "mobile",
+    "route": "/glossary/",
+    "status": 200,
+    "ok": true,
+    "metrics": {
+      "title": "Словарь исламских терминов — глоссарий Корана",
+      "overflowX": 0,
+      "mainHeight": 4441
+    },
+    "errors": [],
+    "interaction": {}
+  },
+  {
+    "viewport": "mobile",
+    "route": "/tasbih/",
+    "status": 200,
+    "ok": true,
+    "metrics": {
+      "title": "Тасбих — электронный счётчик зикров",
+      "overflowX": 0,
+      "mainHeight": 857
+    },
+    "errors": [],
+    "interaction": {}
+  },
+  {
+    "viewport": "mobile",
+    "route": "/download/",
+    "status": 200,
+    "ok": true,
+    "metrics": {
+      "title": "Скачать Коран — тексты и аудио",
+      "overflowX": 0,
+      "mainHeight": 944
+    },
+    "errors": [],
+    "interaction": {}
+  },
+  {
+    "viewport": "mobile",
+    "route": "/backup/",
+    "status": 200,
+    "ok": true,
+    "metrics": {
+      "title": "Резервная копия — перенос закладок и прогресса",
+      "overflowX": 0,
+      "mainHeight": 894
+    },
+    "errors": [],
+    "interaction": {}
+  },
+  {
+    "viewport": "mobile",
+    "route": "/howto/",
+    "status": 200,
+    "ok": true,
+    "metrics": {
+      "title": "Как работать с сайтом — Коран онлайн",
+      "overflowX": 0,
+      "mainHeight": 1899
+    },
+    "errors": [],
+    "interaction": {}
+  },
+  {
+    "viewport": "mobile",
+    "route": "/about/",
+    "status": 200,
+    "ok": true,
+    "metrics": {
+      "title": "О проекте — Коран онлайн",
+      "overflowX": 0,
+      "mainHeight": 1757
+    },
+    "errors": [],
+    "interaction": {}
+  },
+  {
+    "viewport": "mobile",
+    "route": "/privacy/",
+    "status": 200,
+    "ok": true,
+    "metrics": {
+      "title": "Конфиденциальность — Коран онлайн",
+      "overflowX": 0,
+      "mainHeight": 851
+    },
+    "errors": [],
+    "interaction": {}
+  },
+  {
+    "viewport": "mobile",
+    "route": "/translators/",
+    "status": 200,
+    "ok": true,
+    "metrics": {
+      "title": "О переводчиках — Коран онлайн",
+      "overflowX": 0,
+      "mainHeight": 906
+    },
+    "errors": [],
+    "interaction": {}
+  },
+  {
+    "viewport": "mobile",
+    "route": "/videos/",
+    "status": 200,
+    "ok": true,
+    "metrics": {
+      "title": "Видео-рецитации Корана — по сурам и чтецам",
+      "overflowX": 0,
+      "mainHeight": 9032
+    },
+    "errors": [],
+    "interaction": {}
+  }
+]

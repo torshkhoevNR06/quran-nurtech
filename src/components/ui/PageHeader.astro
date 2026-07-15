@@ -1,0 +1,18 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+  kicker?: string;
+  class?: string;
+  [key: string]: unknown;
+}
+
+const { title, description, kicker, class: className = '', ...attrs } = Astro.props;
+---
+
+<header {...attrs} class:list={['ui-page-header', className]}>
+  {kicker && <p class="ui-page-kicker">{kicker}</p>}
+  <h1 class="ui-page-title">{title}</h1>
+  {description && <p class="ui-page-subtitle">{description}</p>}
+  <slot />
+</header>

@@ -1,0 +1,141 @@
+{
+  "results": [
+    {
+      "name": "desktop-surah-9",
+      "file": "/Users/ilnur_ryazhapov/Desktop/code_src/quran-nurtech-codex-apple-ui/qa-screens/2026-07-15-reader-css-split/desktop-surah-9.png",
+      "url": "http://127.0.0.1:4346/surah/9",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "info": {
+        "ayahCount": 129,
+        "ayahs": true,
+        "firstAyahRect": {
+          "bottom": 703.59375,
+          "height": 278.25,
+          "left": 337,
+          "right": 1123,
+          "top": 425.34375,
+          "width": 786,
+          "x": 337,
+          "y": 425.34375
+        },
+        "firstTafsirVisible": true,
+        "overflowX": 0,
+        "scrollWidth": 1440,
+        "tafsirButtons": 258,
+        "theme": "dark",
+        "title": "Сура 9: Ат-Тауба (Покаяние) — читать с тафсиром ас-Саади",
+        "url": "/surah/9",
+        "viewport": {
+          "height": 900,
+          "width": 1440
+        }
+      }
+    },
+    {
+      "name": "desktop-surah-1",
+      "file": "/Users/ilnur_ryazhapov/Desktop/code_src/quran-nurtech-codex-apple-ui/qa-screens/2026-07-15-reader-css-split/desktop-surah-1.png",
+      "url": "http://127.0.0.1:4346/surah/1",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "info": {
+        "ayahCount": 7,
+        "ayahs": true,
+        "firstAyahRect": {
+          "bottom": 673.71875,
+          "height": 248.375,
+          "left": 337,
+          "right": 1123,
+          "top": 425.34375,
+          "width": 786,
+          "x": 337,
+          "y": 425.34375
+        },
+        "firstTafsirVisible": true,
+        "overflowX": 0,
+        "scrollWidth": 1440,
+        "tafsirButtons": 14,
+        "theme": "dark",
+        "title": "Сура 1: Аль-Фатиха (Открывающая) — читать с тафсиром ас-Саади",
+        "url": "/surah/1",
+        "viewport": {
+          "height": 900,
+          "width": 1440
+        }
+      }
+    },
+    {
+      "name": "desktop-ayah-2-255",
+      "file": "/Users/ilnur_ryazhapov/Desktop/code_src/quran-nurtech-codex-apple-ui/qa-screens/2026-07-15-reader-css-split/desktop-ayah-2-255.png",
+      "url": "http://127.0.0.1:4346/2:255",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "info": {
+        "ayahCount": 1,
+        "ayahs": true,
+        "firstAyahRect": {
+          "bottom": 1177.265625,
+          "height": 966.515625,
+          "left": 337,
+          "right": 1123,
+          "top": 210.75,
+          "width": 786,
+          "x": 337,
+          "y": 210.75
+        },
+        "firstTafsirVisible": null,
+        "overflowX": 0,
+        "scrollWidth": 1440,
+        "tafsirButtons": 0,
+        "theme": "dark",
+        "title": "Аят 2:255 — сура Аль-Бакара · Коран онлайн",
+        "url": "/2:255",
+        "viewport": {
+          "height": 900,
+          "width": 1440
+        }
+      }
+    },
+    {
+      "name": "mobile-surah-1",
+      "file": "/Users/ilnur_ryazhapov/Desktop/code_src/quran-nurtech-codex-apple-ui/qa-screens/2026-07-15-reader-css-split/mobile-surah-1.png",
+      "url": "http://127.0.0.1:4346/surah/1",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "info": {
+        "ayahCount": 7,
+        "ayahs": true,
+        "firstAyahRect": {
+          "bottom": 796.0703125,
+          "height": 325.8125,
+          "left": 30,
+          "right": 360,
+          "top": 470.2578125,
+          "width": 330,
+          "x": 30,
+          "y": 470.2578125
+        },
+        "firstTafsirVisible": true,
+        "overflowX": 0,
+        "scrollWidth": 390,
+        "tafsirButtons": 14,
+        "theme": "dark",
+        "title": "Сура 1: Аль-Фатиха (Открывающая) — читать с тафсиром ас-Саади",
+        "url": "/surah/1",
+        "viewport": {
+          "height": 844,
+          "width": 390
+        }
+      }
+    }
+  ],
+  "logs": []
+}

@@ -1,0 +1,16 @@
+/* ==========================================================================
+   Home typography ownership
+   ========================================================================== */
+.home-copy h1,
+.hero h1 {
+  color: var(--sys-label);
+  font-size: clamp(32px, 5.2vw, 52px);
+  font-weight: var(--weight-title);
+  line-height: var(--lh-tight);
+  letter-spacing: 0;
+}
+
+.hero .cta,
+.home-actions {
+  gap: var(--space-2);
+}

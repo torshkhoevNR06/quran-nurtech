@@ -1,0 +1,19 @@
+---
+interface Props {
+  label: string;
+  description?: string;
+  type?: 'button' | 'submit' | 'reset';
+  class?: string;
+  [key: string]: unknown;
+}
+
+const { label, description, type = 'button', class: className = '', ...attrs } = Astro.props;
+---
+
+<button {...attrs} type={type} class:list={['item', 'item-toggle', 'settings-row', 'ui-switch-row', className]}>
+  <span class="it-label ui-switch-row-label">
+    {label}
+    {description && <small>{description}</small>}
+  </span>
+  <span class="switch" aria-hidden="true"></span>
+</button>

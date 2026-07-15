@@ -1,0 +1,18 @@
+/* ==========================================================================
+   Utilities: visibility helpers and screen-reader text
+   ========================================================================== */
+.hide {
+  display: none !important;
+}
+
+.only-mobile {
+  display: none;
+}
+
+.sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}

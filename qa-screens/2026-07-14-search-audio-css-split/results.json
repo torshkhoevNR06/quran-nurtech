@@ -1,0 +1,130 @@
+[
+  {
+    "name": "search-desktop-light",
+    "url": "/search/",
+    "width": 1280,
+    "height": 900,
+    "theme": "light",
+    "action": "search",
+    "logs": [],
+    "metrics": {
+      "htmlW": 1280,
+      "innerW": 1280,
+      "overflow": false,
+      "searchForm": {
+        "w": 828,
+        "h": 65,
+        "display": "grid",
+        "grid": "260px 126px 212px 130.922px 67.0781px",
+        "flexDirection": "row"
+      },
+      "searchInput": {
+        "w": 260,
+        "h": 46,
+        "display": "flex",
+        "grid": "none",
+        "flexDirection": "row"
+      },
+      "searchResults": 175,
+      "audioSelectors": null,
+      "audioNow": null,
+      "audioRows": 0
+    }
+  },
+  {
+    "name": "search-mobile-dark",
+    "url": "/search/",
+    "width": 390,
+    "height": 844,
+    "theme": "dark",
+    "action": "search",
+    "logs": [],
+    "metrics": {
+      "htmlW": 390,
+      "innerW": 390,
+      "overflow": false,
+      "searchForm": {
+        "w": 358,
+        "h": 226,
+        "display": "grid",
+        "grid": "358px",
+        "flexDirection": "row"
+      },
+      "searchInput": {
+        "w": 358,
+        "h": 46,
+        "display": "flex",
+        "grid": "none",
+        "flexDirection": "row"
+      },
+      "searchResults": 175,
+      "audioSelectors": null,
+      "audioNow": null,
+      "audioRows": 0
+    }
+  },
+  {
+    "name": "audio-desktop-light",
+    "url": "/audio/",
+    "width": 1280,
+    "height": 900,
+    "theme": "light",
+    "action": "audio",
+    "logs": [],
+    "metrics": {
+      "htmlW": 1280,
+      "innerW": 1280,
+      "overflow": false,
+      "searchForm": null,
+      "searchInput": null,
+      "searchResults": 0,
+      "audioSelectors": {
+        "w": 828,
+        "h": 59,
+        "display": "grid",
+        "grid": "467.422px 350.562px",
+        "flexDirection": "row"
+      },
+      "audioNow": {
+        "w": 828,
+        "h": 101,
+        "display": "flex",
+        "grid": "none",
+        "flexDirection": "row"
+      },
+      "audioRows": 7
+    }
+  },
+  {
+    "name": "audio-mobile-dark",
+    "url": "/audio/",
+    "width": 390,
+    "height": 844,
+    "theme": "dark",
+    "action": "audio",
+    "logs": [],
+    "metrics": {
+      "htmlW": 390,
+      "innerW": 390,
+      "overflow": false,
+      "searchForm": null,
+      "searchInput": null,
+      "searchResults": 0,
+      "audioSelectors": {
+        "w": 358,
+        "h": 128,
+        "display": "grid",
+        "grid": "358px",
+        "flexDirection": "row"
+      },
+      "audioNow": {
+        "w": 358,
+        "h": 183,
+        "display": "flex",
+        "grid": "none",
+        "flexDirection": "column"
+      },
+      "audioRows": 7
+    }
+  }
+]

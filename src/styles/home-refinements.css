@@ -1,0 +1,30 @@
+.hero {
+  padding: 34px 16px 20px;
+}
+
+.surah-grid {
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 12px;
+}
+
+.surah-card {
+  min-width: 0;
+  overflow: hidden;
+}
+
+.surah-card .row1,
+.surah-card .row2 {
+  min-width: 0;
+}
+
+.surah-card .r,
+.surah-card .m {
+  flex: 1 1 auto;
+}
+
+.surah-card .ar-name {
+  min-width: 0;
+  max-width: 42%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

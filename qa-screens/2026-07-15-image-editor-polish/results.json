@@ -1,0 +1,179 @@
+{
+  "results": [
+    {
+      "name": "desktop dialog semantics",
+      "ok": true,
+      "details": {
+        "role": "dialog",
+        "aria": "true",
+        "cols": "618px 360px",
+        "chipCount": 18,
+        "actions": 2,
+        "bodyOverflow": "hidden",
+        "modalWidth": 980,
+        "controlsOverflow": "auto",
+        "hOverflow": 0
+      }
+    },
+    {
+      "name": "desktop two-column modal",
+      "ok": true,
+      "details": {
+        "role": "dialog",
+        "aria": "true",
+        "cols": "618px 360px",
+        "chipCount": 18,
+        "actions": 2,
+        "bodyOverflow": "hidden",
+        "modalWidth": 980,
+        "controlsOverflow": "auto",
+        "hOverflow": 0
+      }
+    },
+    {
+      "name": "desktop shared chips/actions",
+      "ok": true,
+      "details": {
+        "role": "dialog",
+        "aria": "true",
+        "cols": "618px 360px",
+        "chipCount": 18,
+        "actions": 2,
+        "bodyOverflow": "hidden",
+        "modalWidth": 980,
+        "controlsOverflow": "auto",
+        "hOverflow": 0
+      }
+    },
+    {
+      "name": "desktop body scroll locked",
+      "ok": true,
+      "details": {
+        "role": "dialog",
+        "aria": "true",
+        "cols": "618px 360px",
+        "chipCount": 18,
+        "actions": 2,
+        "bodyOverflow": "hidden",
+        "modalWidth": 980,
+        "controlsOverflow": "auto",
+        "hOverflow": 0
+      }
+    },
+    {
+      "name": "desktop no horizontal overflow",
+      "ok": true,
+      "details": {
+        "role": "dialog",
+        "aria": "true",
+        "cols": "618px 360px",
+        "chipCount": 18,
+        "actions": 2,
+        "bodyOverflow": "hidden",
+        "modalWidth": 980,
+        "controlsOverflow": "auto",
+        "hOverflow": 0
+      }
+    },
+    {
+      "name": "desktop body scroll restored",
+      "ok": true,
+      "details": {
+        "restored": ""
+      }
+    },
+    {
+      "name": "mobile bottom sheet full width",
+      "ok": true,
+      "details": {
+        "modalWidth": 390,
+        "modalBottom": 664,
+        "viewportW": 390,
+        "viewportH": 664,
+        "controlsOverflow": "auto",
+        "controlsScrollHeight": 552,
+        "controlsClientHeight": 252,
+        "closeW": 44,
+        "closeH": 44,
+        "hOverflow": 0,
+        "bodyOverflow": "hidden"
+      }
+    },
+    {
+      "name": "mobile controls have internal scroll",
+      "ok": true,
+      "details": {
+        "modalWidth": 390,
+        "modalBottom": 664,
+        "viewportW": 390,
+        "viewportH": 664,
+        "controlsOverflow": "auto",
+        "controlsScrollHeight": 552,
+        "controlsClientHeight": 252,
+        "closeW": 44,
+        "closeH": 44,
+        "hOverflow": 0,
+        "bodyOverflow": "hidden"
+      }
+    },
+    {
+      "name": "mobile close target >=44",
+      "ok": true,
+      "details": {
+        "modalWidth": 390,
+        "modalBottom": 664,
+        "viewportW": 390,
+        "viewportH": 664,
+        "controlsOverflow": "auto",
+        "controlsScrollHeight": 552,
+        "controlsClientHeight": 252,
+        "closeW": 44,
+        "closeH": 44,
+        "hOverflow": 0,
+        "bodyOverflow": "hidden"
+      }
+    },
+    {
+      "name": "mobile no horizontal overflow",
+      "ok": true,
+      "details": {
+        "modalWidth": 390,
+        "modalBottom": 664,
+        "viewportW": 390,
+        "viewportH": 664,
+        "controlsOverflow": "auto",
+        "controlsScrollHeight": 552,
+        "controlsClientHeight": 252,
+        "closeW": 44,
+        "closeH": 44,
+        "hOverflow": 0,
+        "bodyOverflow": "hidden"
+      }
+    },
+    {
+      "name": "mobile body scroll locked",
+      "ok": true,
+      "details": {
+        "modalWidth": 390,
+        "modalBottom": 664,
+        "viewportW": 390,
+        "viewportH": 664,
+        "controlsOverflow": "auto",
+        "controlsScrollHeight": 552,
+        "controlsClientHeight": 252,
+        "closeW": 44,
+        "closeH": 44,
+        "hOverflow": 0,
+        "bodyOverflow": "hidden"
+      }
+    },
+    {
+      "name": "mobile body scroll restored",
+      "ok": true,
+      "details": {
+        "restoredMobile": ""
+      }
+    }
+  ],
+  "failures": []
+}

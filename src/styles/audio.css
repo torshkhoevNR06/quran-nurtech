@@ -1,0 +1,120 @@
+/* ==========================================================================
+   Audio page
+   ========================================================================== */
+.audio-selectors {
+  display: grid;
+  grid-template-columns: minmax(240px, 1fr) minmax(220px, 0.75fr);
+  gap: 10px;
+  margin: 18px 0;
+}
+
+.audio-selectors label span {
+  display: block;
+  margin: 0 0 6px;
+  color: var(--ink-faint);
+  font-size: 13px;
+  font-weight: var(--weight-semibold);
+}
+
+.audio-selectors select {
+  width: 100%;
+}
+
+.audio-now {
+  position: sticky;
+  z-index: 10;
+  top: calc(var(--topbar-h) + 14px);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  background: var(--surface);
+  box-shadow: 0 12px 28px -24px var(--glass-shadow);
+}
+
+.audio-now .now {
+  flex: 1;
+  min-width: 0;
+}
+
+.audio-now .t {
+  font-size: 18px;
+  font-weight: var(--weight-strong);
+}
+
+.audio-now .s {
+  color: var(--ink-faint);
+  font-size: 13px;
+}
+
+.audio-controls {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.audio-main-play {
+  width: 48px;
+  height: 48px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+
+.speed {
+  font: var(--weight-strong) 12px/1 var(--sans);
+}
+
+.audio-list {
+  display: grid;
+  gap: 6px;
+  margin-top: 14px;
+}
+
+.audio-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 10px;
+  border: 1px solid transparent;
+  border-radius: var(--r-md);
+}
+
+.audio-row:hover,
+.audio-row.active {
+  border-color: var(--line);
+  background: var(--surface);
+}
+
+.audio-row-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.audio-row-text b,
+.audio-row-text small {
+  display: block;
+}
+
+.audio-row-text small {
+  color: var(--ink-faint);
+}
+
+@media (max-width: 560px) {
+  .audio-selectors {
+    grid-template-columns: 1fr;
+  }
+
+  .audio-now {
+    top: calc(var(--topbar-h) + 10px);
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .audio-controls {
+    justify-content: space-between;
+  }
+}

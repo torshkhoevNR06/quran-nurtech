@@ -1,0 +1,14 @@
+---
+interface Props {
+  as?: 'header' | 'nav' | 'div';
+  class?: string;
+  label?: string;
+  [key: string]: unknown;
+}
+
+const { as: Tag = 'div', class: className = '', label, ...attrs } = Astro.props;
+---
+
+<Tag {...attrs} class:list={['ui-toolbar', className]} aria-label={label}>
+  <slot />
+</Tag>

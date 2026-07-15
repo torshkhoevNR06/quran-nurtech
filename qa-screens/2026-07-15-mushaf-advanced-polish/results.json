@@ -1,0 +1,51 @@
+{
+  "total": 9,
+  "failed": 0,
+  "results": [
+    {
+      "name": "desktop zoom button applies transform",
+      "pass": true,
+      "details": "scale=2.00"
+    },
+    {
+      "name": "desktop pan/zoom state persisted",
+      "pass": true,
+      "details": "{\"page\":8,\"scale\":2.000000000000001,\"panX\":-387.5,\"panY\":-446.82031110830434}"
+    },
+    {
+      "name": "desktop reload restores zoom state",
+      "pass": true,
+      "details": "scale=2.00 state={\"page\":8,\"scale\":2.000000000000001,\"panX\":-387.5,\"panY\":-446.82031110830434}"
+    },
+    {
+      "name": "desktop immersive hides app chrome",
+      "pass": true,
+      "details": "{\"cls\":true,\"topDisplay\":\"none\",\"sideDisplay\":\"none\"}"
+    },
+    {
+      "name": "mobile mushaf fits viewport without horizontal overflow",
+      "pass": true,
+      "details": "{\"overflow\":0,\"sheet\":{\"x\":6,\"y\":70,\"width\":378,\"height\":536.921875,\"top\":70,\"right\":384,\"bottom\":606.921875,\"left\":6},\"page\":{\"x\":17,\"y\":89,\"width\":356,\"height\":492.921875,\"top\":89,\"right\":373,\"bottom\":581.921875,\"left\":17},\"viewport\":{\"w\":390,\"h\":844}}"
+    },
+    {
+      "name": "mobile mushaf has separate light/dark palette",
+      "pass": true,
+      "details": "light={\"bg\":\"rgb(251, 250, 246)\",\"color\":\"rgb(106, 111, 102)\"} dark={\"bg\":\"rgb(23, 27, 32)\",\"color\":\"rgb(183, 192, 201)\"}"
+    },
+    {
+      "name": "mobile zoom fab applies zoom",
+      "pass": true,
+      "details": "scale=1.10"
+    },
+    {
+      "name": "mobile pinch gesture changes/persists zoom",
+      "pass": true,
+      "details": "before=1.10 after=2.61 state={\"page\":2,\"scale\":2.6125000000000003,\"panX\":-287.02499895095826,\"panY\":-401.62196846008305}"
+    },
+    {
+      "name": "mobile immersive hides app chrome and stays inside viewport",
+      "pass": true,
+      "details": "{\"cls\":true,\"top\":\"none\",\"tab\":\"none\",\"toolbar\":\"none\",\"overflow\":0}"
+    }
+  ]
+}

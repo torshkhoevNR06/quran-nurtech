@@ -1,0 +1,14 @@
+---
+interface Props {
+  as?: 'article' | 'section' | 'div';
+  class?: string;
+  active?: boolean;
+  [key: string]: unknown;
+}
+
+const { as: Tag = 'article', class: className = '', active = false, ...attrs } = Astro.props;
+---
+
+<Tag {...attrs} class:list={['ui-reader-card', active && 'is-active', className]}>
+  <slot />
+</Tag>

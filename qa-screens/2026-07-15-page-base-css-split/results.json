@@ -1,0 +1,287 @@
+[
+  {
+    "name": "about-desktop-light",
+    "url": "/about/",
+    "w": 1440,
+    "h": 1000,
+    "theme": "light",
+    "selectors": [
+      ".page",
+      ".page h1",
+      ".footer"
+    ],
+    "errors": [],
+    "metrics": {
+      "title": "О проекте — Коран онлайн",
+      "overflowX": false,
+      "docWidth": 1440,
+      "viewportWidth": 1440,
+      "styles": {
+        ".page": {
+          "width": 860,
+          "height": 1331,
+          "top": 52,
+          "left": 245,
+          "display": "grid",
+          "fontSize": "16px",
+          "color": "rgb(29, 29, 31)",
+          "opacity": "1",
+          "text": "О проекте    \n«Коран онлайн» на quran.nurtech.dev — сайт для чтения, изучения, п"
+        },
+        ".page h1": {
+          "width": 828,
+          "height": 50,
+          "top": 82,
+          "left": 261,
+          "display": "block",
+          "fontSize": "44px",
+          "color": "rgb(29, 29, 31)",
+          "opacity": "1",
+          "text": "О проекте"
+        },
+        ".footer": {
+          "width": 1195,
+          "height": 161,
+          "top": 1413,
+          "left": 245,
+          "display": "block",
+          "fontSize": "13px",
+          "color": "rgba(60, 60, 67, 0.48)",
+          "opacity": "1",
+          "text": "Главная Мусхаф Мой прогресс Закладки Аяты по темам Словарь Тасбих Резервная копи"
+        }
+      },
+      "toast": {
+        "display": "block",
+        "opacity": "1",
+        "text": "QA toast"
+      }
+    }
+  },
+  {
+    "name": "search-mobile-dark",
+    "url": "/search/?q=милость",
+    "w": 390,
+    "h": 844,
+    "theme": "dark",
+    "mobile": true,
+    "selectors": [
+      ".only-mobile",
+      ".search-page",
+      ".footer"
+    ],
+    "errors": [],
+    "metrics": {
+      "title": "Поиск по Корану — по русскому переводу",
+      "overflowX": false,
+      "docWidth": 390,
+      "viewportWidth": 390,
+      "styles": {
+        ".only-mobile": {
+          "width": 42,
+          "height": 42,
+          "top": 15,
+          "left": 13,
+          "display": "grid",
+          "fontSize": "16px",
+          "color": "rgba(60, 60, 67, 0.72)",
+          "opacity": "1",
+          "text": ""
+        },
+        ".search-page": {
+          "width": 390,
+          "height": 54232,
+          "top": 64,
+          "left": 0,
+          "display": "block",
+          "fontSize": "16px",
+          "color": "rgb(29, 29, 31)",
+          "opacity": "1",
+          "text": "Поиск Поиск по Корану Ищите по переводам, транслитерации и арабскому тексту. Вер"
+        },
+        ".footer": {
+          "width": 390,
+          "height": 343,
+          "top": 54326,
+          "left": 0,
+          "display": "block",
+          "fontSize": "13px",
+          "color": "rgba(60, 60, 67, 0.48)",
+          "opacity": "1",
+          "text": "Главная Мусхаф Мой прогресс Закладки Аяты по темам Словарь Тасбих Резервная копи"
+        }
+      },
+      "toast": {
+        "display": "block",
+        "opacity": "0",
+        "text": ""
+      }
+    }
+  },
+  {
+    "name": "surah-mobile-dark",
+    "url": "/surah/1",
+    "w": 390,
+    "h": 844,
+    "theme": "dark",
+    "mobile": true,
+    "selectors": [
+      ".only-mobile",
+      ".surah-head",
+      ".footer"
+    ],
+    "errors": [],
+    "metrics": {
+      "title": "Сура 1: Аль-Фатиха (Открывающая) — читать с тафсиром ас-Саади",
+      "overflowX": false,
+      "docWidth": 390,
+      "viewportWidth": 390,
+      "styles": {
+        ".only-mobile": {
+          "width": 42,
+          "height": 42,
+          "top": 16,
+          "left": 13,
+          "display": "grid",
+          "fontSize": "16px",
+          "color": "rgba(60, 60, 67, 0.72)",
+          "opacity": "1",
+          "text": ""
+        },
+        ".surah-head": {
+          "width": 358,
+          "height": 242,
+          "top": 105,
+          "left": 16,
+          "display": "block",
+          "fontSize": "16px",
+          "color": "rgb(29, 29, 31)",
+          "opacity": "1",
+          "text": "Сура №1 · Открывающая Аль-Фатиха ٱلْفَاتِحَةِ  мекканская 7 аятов Перевод Кулиев"
+        },
+        ".footer": {
+          "width": 390,
+          "height": 343,
+          "top": 3175,
+          "left": 0,
+          "display": "block",
+          "fontSize": "13px",
+          "color": "rgba(60, 60, 67, 0.48)",
+          "opacity": "1",
+          "text": "Главная Мусхаф Мой прогресс Закладки Аяты по темам Словарь Тасбих Резервная копи"
+        }
+      },
+      "toast": {
+        "display": "block",
+        "opacity": "0",
+        "text": ""
+      }
+    }
+  },
+  {
+    "name": "audio-desktop-light",
+    "url": "/audio/",
+    "w": 1440,
+    "h": 1000,
+    "theme": "light",
+    "selectors": [
+      ".page-head",
+      ".eyebrow",
+      ".footer"
+    ],
+    "errors": [],
+    "metrics": {
+      "title": "Аудио Корана — чтецы, суры, скачивание",
+      "overflowX": false,
+      "docWidth": 1440,
+      "viewportWidth": 1440,
+      "styles": {
+        ".page-head": {
+          "width": 760,
+          "height": 146,
+          "top": 82,
+          "left": 244,
+          "display": "block",
+          "fontSize": "16px",
+          "color": "rgb(29, 29, 31)",
+          "opacity": "1",
+          "text": "Слушание и заучивание Аудио Корана Выберите чтеца и суру. Можно слушать по аятам"
+        },
+        ".eyebrow": {
+          "width": 760,
+          "height": 19,
+          "top": 82,
+          "left": 244,
+          "display": "block",
+          "fontSize": "11px",
+          "color": "rgba(60, 60, 67, 0.72)",
+          "opacity": "1",
+          "text": "Слушание и заучивание"
+        },
+        ".footer": {
+          "width": 1212,
+          "height": 161,
+          "top": 1062,
+          "left": 228,
+          "display": "block",
+          "fontSize": "13px",
+          "color": "rgba(60, 60, 67, 0.48)",
+          "opacity": "1",
+          "text": "Главная Мусхаф Мой прогресс Закладки Аяты по темам Словарь Тасбих Резервная копи"
+        }
+      },
+      "toast": {
+        "display": "block",
+        "opacity": "0",
+        "text": ""
+      }
+    }
+  },
+  {
+    "name": "home-desktop-light",
+    "url": "/",
+    "w": 1440,
+    "h": 1000,
+    "theme": "light",
+    "selectors": [
+      ".home-copy h1",
+      ".footer"
+    ],
+    "errors": [],
+    "metrics": {
+      "title": "Коран онлайн на русском — читать, слушать, изучать",
+      "overflowX": false,
+      "docWidth": 1440,
+      "viewportWidth": 1440,
+      "styles": {
+        ".home-copy h1": {
+          "width": 342,
+          "height": 141,
+          "top": 109,
+          "left": 456,
+          "display": "block",
+          "fontSize": "62px",
+          "color": "rgb(29, 29, 31)",
+          "opacity": "1",
+          "text": "Коран онлайн"
+        },
+        ".footer": {
+          "width": 1140,
+          "height": 161,
+          "top": 6742,
+          "left": 300,
+          "display": "block",
+          "fontSize": "13px",
+          "color": "rgba(60, 60, 67, 0.48)",
+          "opacity": "1",
+          "text": "Главная Мусхаф Мой прогресс Закладки Аяты по темам Словарь Тасбих Резервная копи"
+        }
+      },
+      "toast": {
+        "display": "block",
+        "opacity": "0",
+        "text": ""
+      }
+    }
+  }
+]

@@ -1,0 +1,10 @@
+/* iPad/tablet: keep desktop visual tone but avoid three-column pressure. */
+@media (min-width: 821px) and (max-width: 1119px) {
+  .topbar-inner {
+    min-height: var(--toolbar-h);
+  }
+
+  .drawer {
+    width: min(420px, 86vw);
+  }
+}

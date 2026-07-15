@@ -1,46 +1,54 @@
 ---
 import Base from '../layouts/Base.astro';
+import Button from '../components/ui/Button.astro';
+import PageHeader from '../components/ui/PageHeader.astro';
+import PageShell from '../components/ui/PageShell.astro';
+import Section from '../components/ui/Section.astro';
 const title = 'Скачать Коран — тексты и аудио';
 const description = 'Скачать данные Корана: перевод в JSON и CSV, аудио по сурам и аятам. Источники и форматы.';
 ---
 
 <Base {title} {description}>
-  <div class="container page">
-    <h1>Скачать</h1>
-    <p>Тексты и аудио доступны для скачивания. Данные — из открытых источников (см. <a class="link" href="/about" style="color:var(--accent)">О проекте</a>).</p>
+  <PageShell>
+    <PageHeader title="Скачать">
+      <p>Тексты и аудио доступны для скачивания. Данные — из открытых источников (см. <a class="link" href="/about">О проекте</a>).</p>
+    </PageHeader>
 
-    <h2>Тексты</h2>
-    <ul>
-      <li>
-        <a class="link" href="/data/search-index.json" download style="color:var(--accent)">Перевод Кулиева — JSON</a>
-        — все 6236 аятов (сура, аят, текст).
-      </li>
-      <li>
-        <button class="btn" data-csv style="margin:6px 0">Перевод Кулиева — CSV</button>
-        — генерируется в браузере.
-      </li>
-      <li>
-        <a class="link" href="/data/index.json" download style="color:var(--accent)">Список сур — JSON</a>
-        — метаданные 114 сур.
-      </li>
-      <li>PDF / EPUB — в подготовке.</li>
-    </ul>
+    <Section title="Тексты">
+      <ul>
+        <li>
+          <a class="link" href="/data/search-index.json" download>Перевод Кулиева — JSON</a>
+          — все 6236 аятов (сура, аят, текст).
+        </li>
+        <li>
+          <Button data-csv>Перевод Кулиева — CSV</Button>
+          — генерируется в браузере.
+        </li>
+        <li>
+          <a class="link" href="/data/index.json" download>Список сур — JSON</a>
+          — метаданные 114 сур.
+        </li>
+        <li>PDF / EPUB — в подготовке.</li>
+      </ul>
+    </Section>
 
-    <h2>Аудио</h2>
-    <p>
-      Аудио по сурам и аятам скачивается на странице <a class="link" href="/audio" style="color:var(--accent)">Аудио</a>:
-      выберите чтеца и суру, у каждого аята есть кнопка загрузки mp3. Источник — EveryAyah.
-    </p>
+    <Section title="Аудио">
+      <p>
+        Аудио по сурам и аятам скачивается на странице <a class="link" href="/audio">Аудио</a>:
+        выберите чтеца и суру, у каждого аята есть кнопка загрузки mp3. Источник — EveryAyah.
+      </p>
+    </Section>
 
-    <h2>Источники и лицензии</h2>
-    <p>
-      Арабский текст (Усмани) и перевод Э. Кулиева, тафсир ас-Саади — из открытых наборов
-      данных. Аудио — публичные записи чтецов через EveryAyah. Подробнее — на странице
-      <a class="link" href="/about" style="color:var(--accent)">О проекте</a>.
-    </p>
+    <Section title="Источники и лицензии">
+      <p>
+        Арабский текст (Усмани) и перевод Э. Кулиева, тафсир ас-Саади — из открытых наборов
+        данных. Аудио — публичные записи чтецов через EveryAyah. Подробнее — на странице
+        <a class="link" href="/about">О проекте</a>.
+      </p>
+    </Section>
 
-    <div class="toast" data-dl-toast style="display:none"></div>
-  </div>
+    <div class="toast" data-dl-toast hidden></div>
+  </PageShell>
 
   <script is:inline>
     document.querySelector('[data-csv]')?.addEventListener('click', async function () {

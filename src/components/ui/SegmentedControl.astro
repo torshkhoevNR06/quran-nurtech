@@ -1,0 +1,40 @@
+---
+interface Option {
+  id: string | number;
+  label: string;
+  value?: string | number;
+  selected?: boolean;
+  disabled?: boolean;
+  attrs?: Record<string, unknown>;
+}
+
+interface Props {
+  options: Option[];
+  dataAttr?: string;
+  class?: string;
+  ariaLabel?: string;
+  [key: string]: unknown;
+}
+
+const { options, dataAttr = 'data-value', class: className = '', ariaLabel, ...attrs } = Astro.props;
+---
+
+<div {...attrs} class:list={['seg', 'ui-segmented', className]} role="tablist" aria-label={ariaLabel}>
+  {
+    options.map((option) => {
+      const optionAttrs = { [dataAttr]: option.value ?? option.id, ...(option.attrs || {}) };
+      return (
+        <button
+          {...optionAttrs}
+          type="button"
+          disabled={option.disabled}
+          class:list={[option.selected && 'on']}
+          role="tab"
+          aria-selected={option.selected ? 'true' : 'false'}
+        >
+          {option.label}
+        </button>
+      );
+    })
+  }
+</div>

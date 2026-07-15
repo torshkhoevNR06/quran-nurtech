@@ -1,0 +1,94 @@
+[
+  {
+    "name": "desktop-home",
+    "path": "/Users/ilnur_ryazhapov/Desktop/code_src/quran-nurtech-codex-apple-ui/qa-screens/2026-07-15-home-css-split/desktop-home.png",
+    "metrics": {
+      "filterValue": null,
+      "firstCard": {
+        "h": 95,
+        "w": 408,
+        "x": 456,
+        "y": 555
+      },
+      "gridCards": 114,
+      "gridColumns": "408px 408px",
+      "overflowX": 0,
+      "path": "/",
+      "quickCards": 5,
+      "title": "Коран онлайн",
+      "viewport": {
+        "height": 900,
+        "width": 1440
+      }
+    }
+  },
+  {
+    "name": "desktop-home-filtered",
+    "path": "/Users/ilnur_ryazhapov/Desktop/code_src/quran-nurtech-codex-apple-ui/qa-screens/2026-07-15-home-css-split/desktop-home-filtered.png",
+    "metrics": {
+      "filterValue": "йа син",
+      "firstCard": {
+        "h": 0,
+        "w": 0,
+        "x": 0,
+        "y": 0
+      },
+      "gridCards": 114,
+      "gridColumns": "408px 408px",
+      "overflowX": 0,
+      "path": "/",
+      "quickCards": 5,
+      "title": "Коран онлайн",
+      "viewport": {
+        "height": 900,
+        "width": 1440
+      }
+    }
+  },
+  {
+    "name": "mobile-home",
+    "path": "/Users/ilnur_ryazhapov/Desktop/code_src/quran-nurtech-codex-apple-ui/qa-screens/2026-07-15-home-css-split/mobile-home.png",
+    "metrics": {
+      "filterValue": null,
+      "firstCard": {
+        "h": 92,
+        "w": 358,
+        "x": 16,
+        "y": 881
+      },
+      "gridCards": 114,
+      "gridColumns": "358px",
+      "overflowX": 0,
+      "path": "/",
+      "quickCards": 5,
+      "title": "Коран онлайн",
+      "viewport": {
+        "height": 844,
+        "width": 390
+      }
+    }
+  },
+  {
+    "name": "mobile-home-filtered",
+    "path": "/Users/ilnur_ryazhapov/Desktop/code_src/quran-nurtech-codex-apple-ui/qa-screens/2026-07-15-home-css-split/mobile-home-filtered.png",
+    "metrics": {
+      "filterValue": "йа син",
+      "firstCard": {
+        "h": 0,
+        "w": 0,
+        "x": 0,
+        "y": 0
+      },
+      "gridCards": 114,
+      "gridColumns": "358px",
+      "overflowX": 0,
+      "path": "/",
+      "quickCards": 5,
+      "title": "Коран онлайн",
+      "viewport": {
+        "height": 844,
+        "width": 390
+      }
+    }
+  }
+]

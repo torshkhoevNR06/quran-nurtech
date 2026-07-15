@@ -1,0 +1,22 @@
+[
+  {
+    "label": "quick number opens surah",
+    "ok": true,
+    "details": "/surah/18"
+  },
+  {
+    "label": "quick ayah opens ayah shortcut",
+    "ok": true,
+    "details": "/2:255"
+  },
+  {
+    "label": "quick alias opens surah",
+    "ok": true,
+    "details": "/surah/112"
+  },
+  {
+    "label": "quick fallback opens search",
+    "ok": true,
+    "details": "/search?q=%D1%80%D0%B5%D0%B4%D0%BA%D0%BE%D0%B5%20%D1%81%D0%BB%D0%BE%D0%B2%D0%BE%20%D0%B4%D0%BB%D1%8F%20%D0%BF%D0%BE%D0%B8%D1%81%D0%BA%D0%B0"
+  }
+]

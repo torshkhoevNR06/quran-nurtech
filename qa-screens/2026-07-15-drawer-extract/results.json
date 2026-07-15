@@ -1,0 +1,57 @@
+[
+  {
+    "label": "desktop drawer list renders",
+    "ok": true,
+    "details": ""
+  },
+  {
+    "label": "desktop current surah selected",
+    "ok": true,
+    "details": ""
+  },
+  {
+    "label": "desktop sidebar collapses",
+    "ok": true,
+    "details": ""
+  },
+  {
+    "label": "desktop sidebar reopens",
+    "ok": true,
+    "details": ""
+  },
+  {
+    "label": "desktop drawer filter finds surah",
+    "ok": true,
+    "details": "1"
+  },
+  {
+    "label": "desktop juz tab renders links",
+    "ok": true,
+    "details": ""
+  },
+  {
+    "label": "mobile drawer opens",
+    "ok": true,
+    "details": ""
+  },
+  {
+    "label": "mobile body locks",
+    "ok": true,
+    "details": ""
+  },
+  {
+    "label": "mobile drawer list renders",
+    "ok": true,
+    "details": ""
+  },
+  {
+    "label": "mobile filter keeps at least one visible row",
+    "ok": true,
+    "details": ""
+  },
+  {
+    "label": "mobile drawer closes and unlocks",
+    "ok": true,
+    "details": ""
+  }
+]

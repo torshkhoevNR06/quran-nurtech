@@ -1,0 +1,372 @@
+[
+  {
+    "name": "desktop-home",
+    "url": "/",
+    "viewport": {
+      "w": 1440,
+      "h": 900
+    },
+    "scrollWidth": 1440,
+    "clientWidth": 1440,
+    "overflowX": false,
+    "cardCount": 114,
+    "firstCard": {
+      "x": 456,
+      "y": 555.109375,
+      "w": 408,
+      "h": 95
+    },
+    "firstCardStyle": {
+      "display": "flex",
+      "gap": "13px",
+      "padding": "13px 14px",
+      "background": "rgb(255, 255, 255)",
+      "borderRadius": "10px",
+      "boxShadow": "rgba(0, 0, 0, 0.055) 0px 1px 2px 0px",
+      "fontWeight": "400"
+    },
+    "numStyle": {
+      "width": "34px",
+      "height": "34px",
+      "borderRadius": "9px",
+      "transform": "none",
+      "background": "rgba(120, 120, 128, 0.12)",
+      "color": "rgba(60, 60, 67, 0.72)"
+    },
+    "overflowing": [
+      {
+        "tag": "div",
+        "cls": "menu",
+        "rect": {
+          "x": 1440,
+          "y": 0,
+          "width": 420,
+          "height": 900,
+          "top": 0,
+          "right": 1860,
+          "bottom": 900,
+          "left": 1440
+        }
+      },
+      {
+        "tag": "div",
+        "cls": "settings-panel-head",
+        "rect": {
+          "x": 1441,
+          "y": 0,
+          "width": 419,
+          "height": 65.546875,
+          "top": 0,
+          "right": 1860,
+          "bottom": 65.546875,
+          "left": 1441
+        }
+      },
+      {
+        "tag": "div",
+        "cls": "",
+        "rect": {
+          "x": 1457,
+          "y": 15,
+          "width": 215.21875,
+          "height": 36.546875,
+          "top": 15,
+          "right": 1672.21875,
+          "bottom": 51.546875,
+          "left": 1457
+        }
+      },
+      {
+        "tag": "strong",
+        "cls": "",
+        "rect": {
+          "x": 1457,
+          "y": 15,
+          "width": 215.21875,
+          "height": 19.546875,
+          "top": 15,
+          "right": 1672.21875,
+          "bottom": 34.546875,
+          "left": 1457
+        }
+      },
+      {
+        "tag": "span",
+        "cls": "",
+        "rect": {
+          "x": 1457,
+          "y": 36.546875,
+          "width": 215.21875,
+          "height": 15,
+          "top": 36.546875,
+          "right": 1672.21875,
+          "bottom": 51.546875,
+          "left": 1457
+        }
+      },
+      {
+        "tag": "button",
+        "cls": "settings-panel-close",
+        "rect": {
+          "x": 1814,
+          "y": 18.265625,
+          "width": 30,
+          "height": 30,
+          "top": 18.265625,
+          "right": 1844,
+          "bottom": 48.265625,
+          "left": 1814
+        }
+      },
+      {
+        "tag": "svg",
+        "cls": {},
+        "rect": {
+          "x": 1820,
+          "y": 24.265625,
+          "width": 18,
+          "height": 18,
+          "top": 24.265625,
+          "right": 1838,
+          "bottom": 42.265625,
+          "left": 1820
+        }
+      },
+      {
+        "tag": "path",
+        "cls": {},
+        "rect": {
+          "x": 1824.5,
+          "y": 28.765625,
+          "width": 9,
+          "height": 9,
+          "top": 28.765625,
+          "right": 1833.5,
+          "bottom": 37.765625,
+          "left": 1824.5
+        }
+      }
+    ]
+  },
+  {
+    "name": "desktop-home-filter",
+    "url": "/",
+    "viewport": {
+      "w": 1440,
+      "h": 900
+    },
+    "scrollWidth": 1440,
+    "clientWidth": 1440,
+    "overflowX": false,
+    "cardCount": 114,
+    "firstCard": {
+      "x": 0,
+      "y": 0,
+      "w": 0,
+      "h": 0
+    },
+    "firstCardStyle": {
+      "display": "none",
+      "gap": "13px",
+      "padding": "13px 14px",
+      "background": "rgb(255, 255, 255)",
+      "borderRadius": "10px",
+      "boxShadow": "rgba(0, 0, 0, 0.055) 0px 1px 2px 0px",
+      "fontWeight": "400"
+    },
+    "numStyle": {
+      "width": "34px",
+      "height": "34px",
+      "borderRadius": "9px",
+      "transform": "none",
+      "background": "rgba(120, 120, 128, 0.12)",
+      "color": "rgba(60, 60, 67, 0.72)"
+    },
+    "overflowing": [
+      {
+        "tag": "div",
+        "cls": "menu",
+        "rect": {
+          "x": 1440,
+          "y": 0,
+          "width": 420,
+          "height": 900,
+          "top": 0,
+          "right": 1860,
+          "bottom": 900,
+          "left": 1440
+        }
+      },
+      {
+        "tag": "div",
+        "cls": "settings-panel-head",
+        "rect": {
+          "x": 1441,
+          "y": 0,
+          "width": 419,
+          "height": 65.546875,
+          "top": 0,
+          "right": 1860,
+          "bottom": 65.546875,
+          "left": 1441
+        }
+      },
+      {
+        "tag": "div",
+        "cls": "",
+        "rect": {
+          "x": 1457,
+          "y": 15,
+          "width": 215.21875,
+          "height": 36.546875,
+          "top": 15,
+          "right": 1672.21875,
+          "bottom": 51.546875,
+          "left": 1457
+        }
+      },
+      {
+        "tag": "strong",
+        "cls": "",
+        "rect": {
+          "x": 1457,
+          "y": 15,
+          "width": 215.21875,
+          "height": 19.546875,
+          "top": 15,
+          "right": 1672.21875,
+          "bottom": 34.546875,
+          "left": 1457
+        }
+      },
+      {
+        "tag": "span",
+        "cls": "",
+        "rect": {
+          "x": 1457,
+          "y": 36.546875,
+          "width": 215.21875,
+          "height": 15,
+          "top": 36.546875,
+          "right": 1672.21875,
+          "bottom": 51.546875,
+          "left": 1457
+        }
+      },
+      {
+        "tag": "button",
+        "cls": "settings-panel-close",
+        "rect": {
+          "x": 1814,
+          "y": 18.265625,
+          "width": 30,
+          "height": 30,
+          "top": 18.265625,
+          "right": 1844,
+          "bottom": 48.265625,
+          "left": 1814
+        }
+      },
+      {
+        "tag": "svg",
+        "cls": {},
+        "rect": {
+          "x": 1820,
+          "y": 24.265625,
+          "width": 18,
+          "height": 18,
+          "top": 24.265625,
+          "right": 1838,
+          "bottom": 42.265625,
+          "left": 1820
+        }
+      },
+      {
+        "tag": "path",
+        "cls": {},
+        "rect": {
+          "x": 1824.5,
+          "y": 28.765625,
+          "width": 9,
+          "height": 9,
+          "top": 28.765625,
+          "right": 1833.5,
+          "bottom": 37.765625,
+          "left": 1824.5
+        }
+      }
+    ]
+  },
+  {
+    "name": "mobile-home",
+    "url": "/",
+    "viewport": {
+      "w": 390,
+      "h": 844
+    },
+    "scrollWidth": 390,
+    "clientWidth": 390,
+    "overflowX": false,
+    "cardCount": 114,
+    "firstCard": {
+      "x": 16,
+      "y": 880.53125,
+      "w": 358,
+      "h": 91.796875
+    },
+    "firstCardStyle": {
+      "display": "flex",
+      "gap": "10px",
+      "padding": "13px 14px",
+      "background": "rgb(255, 255, 255)",
+      "borderRadius": "10px",
+      "boxShadow": "rgba(0, 0, 0, 0.055) 0px 1px 2px 0px",
+      "fontWeight": "400"
+    },
+    "numStyle": {
+      "width": "34px",
+      "height": "34px",
+      "borderRadius": "9px",
+      "transform": "none",
+      "background": "rgba(120, 120, 128, 0.12)",
+      "color": "rgba(60, 60, 67, 0.72)"
+    },
+    "overflowing": []
+  },
+  {
+    "name": "mobile-home-filter",
+    "url": "/",
+    "viewport": {
+      "w": 390,
+      "h": 844
+    },
+    "scrollWidth": 390,
+    "clientWidth": 390,
+    "overflowX": false,
+    "cardCount": 114,
+    "firstCard": {
+      "x": 0,
+      "y": 0,
+      "w": 0,
+      "h": 0
+    },
+    "firstCardStyle": {
+      "display": "none",
+      "gap": "10px",
+      "padding": "13px 14px",
+      "background": "rgb(255, 255, 255)",
+      "borderRadius": "10px",
+      "boxShadow": "rgba(0, 0, 0, 0.055) 0px 1px 2px 0px",
+      "fontWeight": "400"
+    },
+    "numStyle": {
+      "width": "34px",
+      "height": "34px",
+      "borderRadius": "9px",
+      "transform": "none",
+      "background": "rgba(120, 120, 128, 0.12)",
+      "color": "rgba(60, 60, 67, 0.72)"
+    },
+    "overflowing": []
+  }
+]

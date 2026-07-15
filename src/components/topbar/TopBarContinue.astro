@@ -1,0 +1,15 @@
+---
+import { icons } from '../../lib/icons';
+interface Props {
+  isReader: boolean;
+}
+const { isReader } = Astro.props;
+---
+
+<!-- Продолжить (прячется на reader-страницах и мобиле) -->
+{!isReader && (
+  <a class="btn ghost hide t-opt" data-continue href="#" title="Последнее место чтения">
+    <span class="ui-inline-icon" set:html={icons.continue} />
+    <span class="desktop-only">Продолжить</span>
+  </a>
+)}

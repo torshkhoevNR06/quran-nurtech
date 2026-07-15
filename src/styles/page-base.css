@@ -1,0 +1,147 @@
+/* ==========================================================================
+   Page base: generic content pages, breadcrumbs and footer
+   ========================================================================== */
+.page {
+  padding: 30px 0 90px;
+}
+
+.page h1 {
+  margin: 0 0 10px;
+  color: var(--sys-label);
+  font-size: clamp(28px, 3.5vw, 38px);
+  font-weight: var(--weight-title);
+  line-height: var(--lh-tight);
+  letter-spacing: 0;
+}
+
+.page h2 {
+  margin: 28px 0 8px;
+  font-size: 21px;
+}
+
+.page p,
+.page li {
+  color: var(--ink-soft);
+  line-height: 1.72;
+}
+
+.page p {
+  color: var(--sys-secondary-label);
+  font-family: var(--font-reader);
+}
+
+.page a.link {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.page-center {
+  text-align: center;
+}
+
+.page-cta {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.shortcut-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.shortcut-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  background: var(--surface);
+  padding: 8px 12px;
+}
+
+.shortcut-row kbd {
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--surface-2);
+  padding: 4px 8px;
+  font: var(--weight-semibold) 12px / 1 var(--sans);
+}
+
+.shortcut-row span {
+  color: var(--ink-soft);
+}
+
+.inline-tools {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 16px 0;
+}
+
+.inline-control-md {
+  min-width: 200px;
+}
+
+.inline-control-lg {
+  min-width: 220px;
+}
+
+.page-spaced {
+  margin-top: 20px;
+}
+
+.page-head {
+  max-width: 760px;
+  margin-bottom: 18px;
+}
+
+.container.page {
+  padding-right: 16px;
+  padding-left: 16px;
+}
+
+.crumb {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  color: var(--ink-faint);
+  font-size: 13px;
+  padding: 18px 0 0;
+}
+
+.crumb a:hover {
+  color: var(--accent);
+}
+
+.eyebrow {
+  margin: 0 0 6px;
+  color: var(--accent);
+  font: var(--weight-semibold) 12px/1 var(--sans);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.footer {
+  margin-top: 30px;
+  border-top: 1px solid var(--line);
+  padding: 28px 0 44px;
+  color: var(--ink-faint);
+  font-size: 13px;
+}
+
+.footer .fnav {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+
+.footer .fnav a:hover {
+  color: var(--accent);
+}

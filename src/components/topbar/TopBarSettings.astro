@@ -1,0 +1,133 @@
+---
+import InspectorSection from '../ui/InspectorSection.astro';
+import ListRow from '../ui/ListRow.astro';
+import SegmentedControl from '../ui/SegmentedControl.astro';
+import SwitchRow from '../ui/SwitchRow.astro';
+import { icons } from '../../lib/icons';
+import { getReciters, TRANSLATIONS } from '../../lib/quran';
+const reciters = getReciters();
+const fonts = [
+  { id: 'Mushaf', label: 'Мусхаф' },
+  { id: 'AmiriQuran', label: 'Амири' },
+  { id: 'NaskhAr', label: 'Насх' },
+];
+const themes = [
+  { id: 'light', label: 'Светлая' },
+  { id: 'dark', label: 'Тёмная' },
+  { id: 'sepia', label: 'Сепия' },
+  { id: 'system', label: 'Системная' },
+];
+---
+
+<!-- Настройки чтения -->
+<div class="menu-wrap settings-menu-wrap" data-menu-wrap data-settings-menu-wrap>
+  <button class="icon-btn" data-menu-toggle data-settings-toggle aria-label="Настройки чтения" title="Настройки" set:html={icons.settings} />
+  <div class="menu" data-menu="settings" role="complementary" aria-label="Настройки чтения">
+    <div class="settings-panel-head">
+      <div>
+        <strong>Настройки чтения</strong>
+        <span>Текст, перевод, звук и оформление</span>
+      </div>
+      <button class="settings-panel-close" type="button" data-menu-close aria-label="Закрыть настройки" set:html={icons.close} />
+    </div>
+
+    <div class="settings-panel-body">
+      <InspectorSection title="Содержание" description="Слои текста в аяте">
+        <div class="settings-group">
+          <SwitchRow label="Арабский текст" data-layer="ar" />
+          <SwitchRow label="Перевод" data-layer="tr" />
+          <SwitchRow label="Транслитерация" data-layer="tl" />
+        </div>
+      </InspectorSection>
+
+      <InspectorSection title="Перевод и тафсир" description="Основной источник">
+        <div class="settings-choice-list">
+          {
+            TRANSLATIONS.map((t) => (
+              <ListRow class="settings-choice" data-tr={t.id} disabled={!t.available} tick>
+                <span class="settings-choice-label">
+                  {t.name}
+                  {!t.available && <small>скоро</small>}
+                </span>
+              </ListRow>
+            ))
+          }
+        </div>
+        <div class="settings-group settings-group-compact">
+          <SwitchRow label="Показывать Кулиева" data-tr-show="kuliev" />
+          <SwitchRow label="Показывать Абу Аделя" data-tr-show="abuadel" />
+        </div>
+      </InspectorSection>
+
+      <InspectorSection title="Аудио" description="Голос для прослушивания">
+        <label class="settings-field settings-field-select">
+          <span>Чтец</span>
+          <select class="sel" data-reciter-sel>
+            {reciters.map((r) => <option value={r.id}>{r.name}</option>)}
+          </select>
+        </label>
+      </InspectorSection>
+
+      <InspectorSection title="Типографика" description="Размеры и арабский шрифт">
+        <div class="settings-group settings-sliders">
+          <label class="settings-field settings-field-range">
+            <span>Арабский</span>
+            <input type="range" min="22" max="52" step="2" data-set="ar" />
+          </label>
+          <label class="settings-field settings-field-range">
+            <span>Перевод</span>
+            <input type="range" min="14" max="26" step="1" data-set="ru" />
+          </label>
+          <label class="settings-field settings-field-range">
+            <span>Интервал</span>
+            <input type="range" min="1.5" max="2.6" step="0.1" data-set="lh" />
+          </label>
+        </div>
+        <div class="settings-field settings-field-stack">
+          <span>Шрифт арабского</span>
+          <SegmentedControl options={fonts} dataAttr="data-font" ariaLabel="Шрифт арабского" />
+        </div>
+      </InspectorSection>
+
+      <InspectorSection title="Оформление" description="Тема и правила чтения">
+        <div class="settings-group">
+          <SwitchRow label="Таджвид" description="Цветные правила чтения" data-tajweed />
+          <div class="tj-legend">
+            <span><i class="tj-dot d-madd"></i>Мадд</span>
+            <span><i class="tj-dot d-ghunna"></i>Гунна</span>
+            <span><i class="tj-dot d-ikhfa"></i>Ихфа</span>
+            <span><i class="tj-dot d-iqlab"></i>Икляб</span>
+            <span><i class="tj-dot d-qalqala"></i>Калькаля</span>
+            <span><i class="tj-dot d-silent"></i>Беззвучные</span>
+          </div>
+        </div>
+        <div class="settings-field settings-field-stack">
+          <span>Тема</span>
+          <SegmentedControl options={themes} dataAttr="data-theme-set" class="seg-grid2" data-theme-seg ariaLabel="Тема" />
+        </div>
+      </InspectorSection>
+
+      <InspectorSection title="Режимы чтения" description="Поведение текста">
+        <div class="settings-group">
+          <SwitchRow label="Скрыть пояснения в скобках" data-hide-brackets />
+          <SwitchRow label="Заучивание" description="Скрыть перевод и повторять аят" data-memorize />
+        </div>
+        <div class="settings-field settings-field-stack">
+          <span>Повтор аята</span>
+          <SegmentedControl
+            options={[
+              { id: '2', label: '×2' },
+              { id: '3', label: '×3' },
+              { id: '5', label: '×5' },
+              { id: '0', label: '∞' },
+            ]}
+            dataAttr="data-memrep"
+            data-memrep-seg
+            ariaLabel="Повтор аята"
+          />
+        </div>
+      </InspectorSection>
+    </div>
+  </div>
+  <button class="settings-panel-backdrop" type="button" data-settings-panel-backdrop aria-label="Закрыть настройки"></button>
+</div>

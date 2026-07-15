@@ -1,0 +1,53 @@
+{
+  "checks": [
+    {
+      "name": "settings panel opens after component migration",
+      "ok": true
+    },
+    {
+      "name": "inspector sections render",
+      "ok": true
+    },
+    {
+      "name": "switch rows preserve data hooks",
+      "ok": true
+    },
+    {
+      "name": "segmented controls preserve option data hooks",
+      "ok": true
+    },
+    {
+      "name": "layer switch still writes display state",
+      "ok": true
+    },
+    {
+      "name": "theme segmented control still switches theme",
+      "ok": true
+    },
+    {
+      "name": "font segmented control still writes arabic font",
+      "ok": true
+    },
+    {
+      "name": "memorize switch and repeat segmented still work",
+      "ok": true
+    },
+    {
+      "name": "mobile settings opens as sheet/panel",
+      "ok": true
+    },
+    {
+      "name": "mobile body scroll lock survives settings components",
+      "ok": true
+    },
+    {
+      "name": "mobile settings owns scrollable body",
+      "ok": true
+    }
+  ],
+  "failures": [],
+  "screenshots": [
+    "desktop-settings-components.png",
+    "mobile-settings-components.png"
+  ]
+}

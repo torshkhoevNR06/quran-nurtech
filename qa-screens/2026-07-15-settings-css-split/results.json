@@ -1,0 +1,134 @@
+[
+  {
+    "name": "desktop-settings-open",
+    "clicked": true,
+    "path": "/Users/ilnur_ryazhapov/Desktop/code_src/quran-nurtech-codex-apple-ui/qa-screens/2026-07-15-settings-css-split/desktop-settings-open.png",
+    "metrics": {
+      "active": {
+        "aria": "Настройки чтения",
+        "placeholder": null,
+        "tag": "BUTTON"
+      },
+      "bodyOpen": true,
+      "bodyPaddingRight": "420px",
+      "menuOpen": true,
+      "menuRect": {
+        "bottom": 900,
+        "h": 900,
+        "right": 1440,
+        "w": 420,
+        "x": 1020,
+        "y": 0
+      },
+      "menuScroll": {
+        "canScroll": false,
+        "clientHeight": 900,
+        "scrollHeight": 900
+      },
+      "overflowX": 0,
+      "viewport": {
+        "height": 900,
+        "width": 1440
+      }
+    }
+  },
+  {
+    "name": "desktop-narrow-settings-open",
+    "clicked": true,
+    "path": "/Users/ilnur_ryazhapov/Desktop/code_src/quran-nurtech-codex-apple-ui/qa-screens/2026-07-15-settings-css-split/desktop-narrow-settings-open.png",
+    "metrics": {
+      "active": {
+        "aria": "Настройки чтения",
+        "placeholder": null,
+        "tag": "BUTTON"
+      },
+      "bodyOpen": true,
+      "bodyPaddingRight": "365.8px",
+      "menuOpen": true,
+      "menuRect": {
+        "bottom": 820,
+        "h": 820,
+        "right": 1180,
+        "w": 366,
+        "x": 814,
+        "y": 0
+      },
+      "menuScroll": {
+        "canScroll": false,
+        "clientHeight": 820,
+        "scrollHeight": 820
+      },
+      "overflowX": 0,
+      "viewport": {
+        "height": 820,
+        "width": 1180
+      }
+    }
+  },
+  {
+    "name": "mobile-settings-open",
+    "clicked": true,
+    "path": "/Users/ilnur_ryazhapov/Desktop/code_src/quran-nurtech-codex-apple-ui/qa-screens/2026-07-15-settings-css-split/mobile-settings-open.png",
+    "metrics": {
+      "active": {
+        "aria": "Настройки чтения",
+        "placeholder": null,
+        "tag": "BUTTON"
+      },
+      "bodyOpen": true,
+      "bodyPaddingRight": "0px",
+      "menuOpen": true,
+      "menuRect": {
+        "bottom": 844,
+        "h": 743,
+        "right": 390,
+        "w": 390,
+        "x": 0,
+        "y": 101
+      },
+      "menuScroll": {
+        "canScroll": true,
+        "clientHeight": 741,
+        "scrollHeight": 749
+      },
+      "overflowX": 0,
+      "viewport": {
+        "height": 844,
+        "width": 390
+      }
+    }
+  },
+  {
+    "name": "mobile-home-settings-open",
+    "clicked": true,
+    "path": "/Users/ilnur_ryazhapov/Desktop/code_src/quran-nurtech-codex-apple-ui/qa-screens/2026-07-15-settings-css-split/mobile-home-settings-open.png",
+    "metrics": {
+      "active": {
+        "aria": "Настройки чтения",
+        "placeholder": null,
+        "tag": "BUTTON"
+      },
+      "bodyOpen": true,
+      "bodyPaddingRight": "0px",
+      "menuOpen": true,
+      "menuRect": {
+        "bottom": 844,
+        "h": 743,
+        "right": 390,
+        "w": 390,
+        "x": 0,
+        "y": 101
+      },
+      "menuScroll": {
+        "canScroll": true,
+        "clientHeight": 741,
+        "scrollHeight": 749
+      },
+      "overflowX": 0,
+      "viewport": {
+        "height": 844,
+        "width": 390
+      }
+    }
+  }
+]

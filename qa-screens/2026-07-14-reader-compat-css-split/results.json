@@ -1,0 +1,144 @@
+[
+  {
+    "name": "surah-desktop-light",
+    "url": "/surah/1",
+    "w": 1440,
+    "h": 1000,
+    "theme": "light",
+    "errors": [],
+    "metrics": {
+      "title": "Сура 1: Аль-Фатиха (Открывающая) — читать с тафсиром ас-Саади",
+      "docWidth": 1440,
+      "viewportWidth": 1440,
+      "bodyWidth": 1440,
+      "overflowX": false,
+      "surahHead": {
+        "width": 828,
+        "height": 209,
+        "top": 91,
+        "left": 244,
+        "text": "Сура №1 · Открывающая Аль-Фатиха ٱلْفَاتِحَةِ  мекканская 7 аятов Перевод Кулиев"
+      },
+      "ayahs": {
+        "width": 828,
+        "height": 1781,
+        "top": 383,
+        "left": 244,
+        "text": "Джуз 1     1:1         بِسْمِ ٱللَّهِ ٱلرَّحْمَـٰنِ ٱلرَّحِيمِ Bismillaahir Rahm"
+      },
+      "firstAyah": {
+        "width": 786,
+        "height": 248,
+        "top": 425,
+        "left": 265,
+        "text": "1:1         بِسْمِ ٱللَّهِ ٱلرَّحْمَـٰنِ ٱلرَّحِيمِ Bismillaahir Rahmaanir Rahee"
+      },
+      "ayahNav": {
+        "width": 828,
+        "height": 32,
+        "top": 2294,
+        "left": 244,
+        "text": "След. сура"
+      },
+      "tafsir": null,
+      "ayahCount": 7
+    }
+  },
+  {
+    "name": "surah-mobile-dark",
+    "url": "/surah/1",
+    "w": 390,
+    "h": 844,
+    "theme": "dark",
+    "mobile": true,
+    "errors": [],
+    "metrics": {
+      "title": "Сура 1: Аль-Фатиха (Открывающая) — читать с тафсиром ас-Саади",
+      "docWidth": 390,
+      "viewportWidth": 390,
+      "bodyWidth": 390,
+      "overflowX": false,
+      "surahHead": {
+        "width": 358,
+        "height": 242,
+        "top": 105,
+        "left": 16,
+        "text": "Сура №1 · Открывающая Аль-Фатиха ٱلْفَاتِحَةِ  мекканская 7 аятов Перевод Кулиев"
+      },
+      "ayahs": {
+        "width": 358,
+        "height": 2573,
+        "top": 423,
+        "left": 16,
+        "text": "Джуз 1     1:1         بِسْمِ ٱللَّهِ ٱلرَّحْمَـٰنِ ٱلرَّحِيمِ Bismillaahir Rahm"
+      },
+      "firstAyah": {
+        "width": 330,
+        "height": 326,
+        "top": 470,
+        "left": 30,
+        "text": "1:1         بِسْمِ ٱللَّهِ ٱلرَّحْمَـٰنِ ٱلرَّحِيمِ Bismillaahir Rahmaanir Rahee"
+      },
+      "ayahNav": {
+        "width": 358,
+        "height": 44,
+        "top": 3101,
+        "left": 16,
+        "text": "След. сура"
+      },
+      "tafsir": null,
+      "ayahCount": 7
+    }
+  },
+  {
+    "name": "ayah-desktop-dark",
+    "url": "/2:255",
+    "w": 1440,
+    "h": 1000,
+    "theme": "dark",
+    "errors": [],
+    "metrics": {
+      "title": "Аят 2:255 — сура Аль-Бакара · Коран онлайн",
+      "docWidth": 1440,
+      "viewportWidth": 1440,
+      "bodyWidth": 1440,
+      "overflowX": false,
+      "surahHead": {
+        "width": 828,
+        "height": 113,
+        "top": 91,
+        "left": 244,
+        "text": "Сура 2 «Аль-Бакара» · Корова Аят 2:255"
+      },
+      "ayahs": {
+        "width": 828,
+        "height": 967,
+        "top": 210,
+        "left": 244,
+        "text": "2:255         ٱللَّهُ لَآ إِلَـٰهَ إِلَّا هُوَ ٱلْحَىُّ ٱلْقَيُّومُ‌ۚ لَا تَأْخ"
+      },
+      "firstAyah": {
+        "width": 786,
+        "height": 965,
+        "top": 211,
+        "left": 265,
+        "text": "2:255         ٱللَّهُ لَآ إِلَـٰهَ إِلَّا هُوَ ٱلْحَىُّ ٱلْقَيُّومُ‌ۚ لَا تَأْخ"
+      },
+      "ayahNav": {
+        "width": 828,
+        "height": 32,
+        "top": 1306,
+        "left": 244,
+        "text": "2:254  Открыть в суре  2:256"
+      },
+      "tafsir": {
+        "width": 758,
+        "height": 39,
+        "top": 1061,
+        "left": 279,
+        "text": "Тафсир ас-Саади · аят 2:255 Как сказал Пророк Мухаммад, да благословит его Аллах"
+      },
+      "ayahCount": 1
+    }
+  }
+]

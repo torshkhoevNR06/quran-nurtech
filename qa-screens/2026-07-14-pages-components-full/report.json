@@ -1,0 +1,508 @@
+[
+  {
+    "viewport": "desktop",
+    "route": "/",
+    "status": 200,
+    "ok": true,
+    "metrics": {
+      "overflowX": 0,
+      "mainHeight": 6660
+    },
+    "errors": []
+  },
+  {
+    "viewport": "desktop",
+    "route": "/surah/1/",
+    "status": 200,
+    "ok": true,
+    "metrics": {
+      "overflowX": 0,
+      "mainHeight": 2270
+    },
+    "errors": []
+  },
+  {
+    "viewport": "desktop",
+    "route": "/surah/9/",
+    "status": 200,
+    "ok": true,
+    "metrics": {
+      "overflowX": 0,
+      "mainHeight": 87970
+    },
+    "errors": []
+  },
+  {
+    "viewport": "desktop",
+    "route": "/surah/17/",
+    "status": 200,
+    "ok": true,
+    "metrics": {
+      "overflowX": 0,
+      "mainHeight": 74729
+    },
+    "errors": []
+  },
+  {
+    "viewport": "desktop",
+    "route": "/surah/1/kuliev/",
+    "status": 200,
+    "ok": true,
+    "metrics": {
+      "overflowX": 0,
+      "mainHeight": 2270
+    },
+    "errors": []
+  },
+  {
+    "viewport": "desktop",
+    "route": "/ayah/2/255/",
+    "status": 200,
+    "ok": true,
+    "metrics": {
+      "overflowX": 0,
+      "mainHeight": 1296
+    },
+    "errors": []
+  },
+  {
+    "viewport": "desktop",
+    "route": "/mushaf/3/",
+    "status": 200,
+    "ok": true,
+    "metrics": {
+      "overflowX": 0,
+      "mainHeight": 928
+    },
+    "errors": []
+  },
+  {
+    "viewport": "desktop",
+    "route": "/mushaf/10/",
+    "status": 200,
+    "ok": true,
+    "metrics": {
+      "overflowX": 0,
+      "mainHeight": 928
+    },
+    "errors": []
+  },
+  {
+    "viewport": "desktop",
+    "route": "/search/",
+    "status": 200,
+    "ok": true,
+    "metrics": {
+      "overflowX": 0,
+      "mainHeight": 481
+    },
+    "errors": []
+  },
+  {
+    "viewport": "desktop",
+    "route": "/progress/",
+    "status": 200,
+    "ok": true,
+    "metrics": {
+      "overflowX": 0,
+      "mainHeight": 2930
+    },
+    "errors": []
+  },
+  {
+    "viewport": "desktop",
+    "route": "/stats/",
+    "status": 200,
+    "ok": true,
+    "metrics": {
+      "overflowX": 0,
+      "mainHeight": 621
+    },
+    "errors": []
+  },
+  {
+    "viewport": "desktop",
+    "route": "/audio/",
+    "status": 200,
+    "ok": true,
+    "metrics": {
+      "overflowX": 0,
+      "mainHeight": 990
+    },
+    "errors": []
+  },
+  {
+    "viewport": "desktop",
+    "route": "/bookmarks/",
+    "status": 200,
+    "ok": true,
+    "metrics": {
+      "overflowX": 0,
+      "mainHeight": 448
+    },
+    "errors": []
+  },
+  {
+    "viewport": "desktop",
+    "route": "/topics/",
+    "status": 200,
+    "ok": true,
+    "metrics": {
+      "overflowX": 0,
+      "mainHeight": 2090
+    },
+    "errors": []
+  },
+  {
+    "viewport": "desktop",
+    "route": "/glossary/",
+    "status": 200,
+    "ok": true,
+    "metrics": {
+      "overflowX": 0,
+      "mainHeight": 3945
+    },
+    "errors": []
+  },
+  {
+    "viewport": "desktop",
+    "route": "/tasbih/",
+    "status": 200,
+    "ok": true,
+    "metrics": {
+      "overflowX": 0,
+      "mainHeight": 971
+    },
+    "errors": []
+  },
+  {
+    "viewport": "desktop",
+    "route": "/download/",
+    "status": 200,
+    "ok": true,
+    "metrics": {
+      "overflowX": 0,
+      "mainHeight": 909
+    },
+    "errors": []
+  },
+  {
+    "viewport": "desktop",
+    "route": "/backup/",
+    "status": 200,
+    "ok": true,
+    "metrics": {
+      "overflowX": 0,
+      "mainHeight": 898
+    },
+    "errors": []
+  },
+  {
+    "viewport": "desktop",
+    "route": "/howto/",
+    "status": 200,
+    "ok": true,
+    "metrics": {
+      "overflowX": 0,
+      "mainHeight": 1603
+    },
+    "errors": []
+  },
+  {
+    "viewport": "desktop",
+    "route": "/about/",
+    "status": 200,
+    "ok": true,
+    "metrics": {
+      "overflowX": 0,
+      "mainHeight": 1331
+    },
+    "errors": []
+  },
+  {
+    "viewport": "desktop",
+    "route": "/privacy/",
+    "status": 200,
+    "ok": true,
+    "metrics": {
+      "overflowX": 0,
+      "mainHeight": 537
+    },
+    "errors": []
+  },
+  {
+    "viewport": "desktop",
+    "route": "/translators/",
+    "status": 200,
+    "ok": true,
+    "metrics": {
+      "overflowX": 0,
+      "mainHeight": 674
+    },
+    "errors": []
+  },
+  {
+    "viewport": "desktop",
+    "route": "/videos/",
+    "status": 200,
+    "ok": true,
+    "metrics": {
+      "overflowX": 0,
+      "mainHeight": 4591
+    },
+    "errors": []
+  },
+  {
+    "viewport": "mobile",
+    "route": "/",
+    "status": 200,
+    "ok": true,
+    "metrics": {
+      "overflowX": 0,
+      "mainHeight": 12705
+    },
+    "errors": []
+  },
+  {
+    "viewport": "mobile",
+    "route": "/surah/1/",
+    "status": 200,
+    "ok": true,
+    "metrics": {
+      "overflowX": 0,
+      "mainHeight": 3151
+    },
+    "errors": []
+  },
+  {
+    "viewport": "mobile",
+    "route": "/surah/9/",
+    "status": 200,
+    "ok": true,
+    "metrics": {
+      "overflowX": 0,
+      "mainHeight": 88916
+    },
+    "errors": []
+  },
+  {
+    "viewport": "mobile",
+    "route": "/surah/17/",
+    "status": 200,
+    "ok": true,
+    "metrics": {
+      "overflowX": 0,
+      "mainHeight": 76283
+    },
+    "errors": []
+  },
+  {
+    "viewport": "mobile",
+    "route": "/surah/1/kuliev/",
+    "status": 200,
+    "ok": true,
+    "metrics": {
+      "overflowX": 0,
+      "mainHeight": 3151
+    },
+    "errors": []
+  },
+  {
+    "viewport": "mobile",
+    "route": "/ayah/2/255/",
+    "status": 200,
+    "ok": true,
+    "metrics": {
+      "overflowX": 0,
+      "mainHeight": 2171
+    },
+    "errors": []
+  },
+  {
+    "viewport": "mobile",
+    "route": "/mushaf/3/",
+    "status": 200,
+    "ok": true,
+    "metrics": {
+      "overflowX": 0,
+      "mainHeight": 790
+    },
+    "errors": []
+  },
+  {
+    "viewport": "mobile",
+    "route": "/mushaf/10/",
+    "status": 200,
+    "ok": true,
+    "metrics": {
+      "overflowX": 0,
+      "mainHeight": 790
+    },
+    "errors": []
+  },
+  {
+    "viewport": "mobile",
+    "route": "/search/",
+    "status": 200,
+    "ok": true,
+    "metrics": {
+      "overflowX": 0,
+      "mainHeight": 814
+    },
+    "errors": []
+  },
+  {
+    "viewport": "mobile",
+    "route": "/progress/",
+    "status": 200,
+    "ok": true,
+    "metrics": {
+      "overflowX": 0,
+      "mainHeight": 3748
+    },
+    "errors": []
+  },
+  {
+    "viewport": "mobile",
+    "route": "/stats/",
+    "status": 200,
+    "ok": true,
+    "metrics": {
+      "overflowX": 0,
+      "mainHeight": 755
+    },
+    "errors": []
+  },
+  {
+    "viewport": "mobile",
+    "route": "/audio/",
+    "status": 200,
+    "ok": true,
+    "metrics": {
+      "overflowX": 0,
+      "mainHeight": 1163
+    },
+    "errors": []
+  },
+  {
+    "viewport": "mobile",
+    "route": "/bookmarks/",
+    "status": 200,
+    "ok": true,
+    "metrics": {
+      "overflowX": 0,
+      "mainHeight": 484
+    },
+    "errors": []
+  },
+  {
+    "viewport": "mobile",
+    "route": "/topics/",
+    "status": 200,
+    "ok": true,
+    "metrics": {
+      "overflowX": 0,
+      "mainHeight": 4485
+    },
+    "errors": []
+  },
+  {
+    "viewport": "mobile",
+    "route": "/glossary/",
+    "status": 200,
+    "ok": true,
+    "metrics": {
+      "overflowX": 0,
+      "mainHeight": 4493
+    },
+    "errors": []
+  },
+  {
+    "viewport": "mobile",
+    "route": "/tasbih/",
+    "status": 200,
+    "ok": true,
+    "metrics": {
+      "overflowX": 0,
+      "mainHeight": 981
+    },
+    "errors": []
+  },
+  {
+    "viewport": "mobile",
+    "route": "/download/",
+    "status": 200,
+    "ok": true,
+    "metrics": {
+      "overflowX": 0,
+      "mainHeight": 1170
+    },
+    "errors": []
+  },
+  {
+    "viewport": "mobile",
+    "route": "/backup/",
+    "status": 200,
+    "ok": true,
+    "metrics": {
+      "overflowX": 0,
+      "mainHeight": 954
+    },
+    "errors": []
+  },
+  {
+    "viewport": "mobile",
+    "route": "/howto/",
+    "status": 200,
+    "ok": true,
+    "metrics": {
+      "overflowX": 0,
+      "mainHeight": 2357
+    },
+    "errors": []
+  },
+  {
+    "viewport": "mobile",
+    "route": "/about/",
+    "status": 200,
+    "ok": true,
+    "metrics": {
+      "overflowX": 0,
+      "mainHeight": 2031
+    },
+    "errors": []
+  },
+  {
+    "viewport": "mobile",
+    "route": "/privacy/",
+    "status": 200,
+    "ok": true,
+    "metrics": {
+      "overflowX": 0,
+      "mainHeight": 851
+    },
+    "errors": []
+  },
+  {
+    "viewport": "mobile",
+    "route": "/translators/",
+    "status": 200,
+    "ok": true,
+    "metrics": {
+      "overflowX": 0,
+      "mainHeight": 906
+    },
+    "errors": []
+  },
+  {
+    "viewport": "mobile",
+    "route": "/videos/",
+    "status": 200,
+    "ok": true,
+    "metrics": {
+      "overflowX": 0,
+      "mainHeight": 9032
+    },
+    "errors": []
+  }
+]

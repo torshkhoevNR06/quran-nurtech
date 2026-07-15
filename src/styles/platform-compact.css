@@ -1,0 +1,31 @@
+@media (max-width: 420px) {
+  .topbar {
+    padding-inline: 6px;
+  }
+
+  .quick input {
+    padding-inline: 11px;
+  }
+
+  .topbar-inner .icon-btn,
+  .quick-submit {
+    width: 42px;
+    height: 42px;
+  }
+
+  .mobile-tabbar {
+    padding-inline: 6px;
+  }
+
+  .mobile-tabbar b {
+    font-size: 10px;
+  }
+
+  .player-inner {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+
+  .player .extra {
+    display: none;
+  }
+}

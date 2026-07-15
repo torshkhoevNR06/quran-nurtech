@@ -1,0 +1,23 @@
+.list-tools {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 20px 0 16px;
+}
+.list-tools .filter {
+  flex: 1;
+  min-width: 180px;
+  height: 46px;
+  padding: 0 16px;
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  background: var(--glass-bg);
+  color: var(--ink);
+  font-size: 15px;
+  box-shadow: var(--glass-elev-sm);
+}
+.list-tools .filter:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 0;
+}

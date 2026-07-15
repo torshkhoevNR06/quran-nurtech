@@ -1,0 +1,16 @@
+@media (prefers-reduced-motion: no-preference) {
+  .settings-panel-backdrop,
+  .menu[data-menu='settings'],
+  .drawer,
+  .mobile-tabbar {
+    transition:
+      opacity 0.22s ease,
+      transform 0.22s ease;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.05ms !important;
+  }
+}

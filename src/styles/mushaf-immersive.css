@@ -1,0 +1,93 @@
+.mushaf-immersive-exit,
+.mushaf-imm-nav {
+  display: none;
+}
+
+body.mushaf-immersive {
+  height: var(--mushaf-vvh);
+  overflow: hidden;
+}
+
+body.mushaf-immersive .topbar,
+body.mushaf-immersive .footer,
+body.mushaf-immersive .player,
+body.mushaf-immersive .drawer,
+body.mushaf-immersive .drawer-backdrop,
+body.mushaf-immersive .mobile-tabbar,
+body.mushaf-immersive .mushaf-bottom,
+body.mushaf-immersive .mushaf-zoom-fab {
+  display: none !important;
+}
+
+body.mushaf-immersive main.wide {
+  height: var(--mushaf-vvh) !important;
+}
+
+body.mushaf-immersive .mushaf-reader {
+  height: var(--mushaf-vvh);
+  padding: 18px;
+  grid-template-rows: minmax(0, 1fr);
+  background: radial-gradient(circle at 50% 18%, color-mix(in srgb, var(--sys-fill-vibrant) 70%, transparent), transparent 42%),
+    var(--mushaf-stage);
+}
+
+body.mushaf-immersive .mushaf-toolbar {
+  position: fixed;
+  top: max(14px, env(safe-area-inset-top));
+  left: 50%;
+  width: min(720px, calc(100vw - 120px));
+  transform: translateX(-50%);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.18s ease;
+}
+
+body.mushaf-immersive .mushaf-reader:hover .mushaf-toolbar,
+body.mushaf-immersive .mushaf-toolbar:focus-within {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+body.mushaf-immersive .mushaf-meta {
+  opacity: 0.3;
+}
+
+body.mushaf-immersive .mushaf-immersive-exit,
+body.mushaf-immersive .mushaf-imm-nav {
+  display: grid;
+  position: fixed;
+  z-index: 70;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--sys-separator);
+  border-radius: var(--radius-pill);
+  background: var(--sys-material-strong);
+  color: var(--sys-secondary-label);
+  -webkit-backdrop-filter: var(--material-blur);
+  backdrop-filter: var(--material-blur);
+  box-shadow: var(--shadow-card);
+}
+
+body.mushaf-immersive .mushaf-immersive-exit {
+  top: max(14px, env(safe-area-inset-top));
+  right: max(14px, env(safe-area-inset-right));
+}
+
+body.mushaf-immersive .mushaf-imm-prev {
+  left: max(14px, env(safe-area-inset-left));
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+body.mushaf-immersive .mushaf-imm-next {
+  right: max(14px, env(safe-area-inset-right));
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.mushaf-immersive-exit svg,
+.mushaf-imm-nav svg {
+  width: 20px;
+  height: 20px;
+}

@@ -1,0 +1,53 @@
+{
+  "checks": [
+    {
+      "name": "drawer source links use shared list rows",
+      "ok": true
+    },
+    {
+      "name": "drawer tabs use segmented control",
+      "ok": true
+    },
+    {
+      "name": "drawer generated surah list appears",
+      "ok": true
+    },
+    {
+      "name": "drawer filter still narrows surah list",
+      "ok": true
+    },
+    {
+      "name": "drawer juz tab still switches list",
+      "ok": true
+    },
+    {
+      "name": "desktop drawer can collapse",
+      "ok": true
+    },
+    {
+      "name": "desktop drawer can reopen",
+      "ok": true
+    },
+    {
+      "name": "mobile drawer opens and locks body",
+      "ok": true
+    },
+    {
+      "name": "mobile drawer list has its own scroll",
+      "ok": true
+    },
+    {
+      "name": "mobile drawer remains open after wheel scroll",
+      "ok": true
+    },
+    {
+      "name": "mobile drawer juz tab works",
+      "ok": true
+    }
+  ],
+  "failures": [],
+  "screenshots": [
+    "desktop-drawer-component.png",
+    "mobile-drawer-component.png"
+  ]
+}

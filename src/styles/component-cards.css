@@ -1,0 +1,41 @@
+.surah-card,
+.quick-surah,
+.search-result,
+.stat-tile,
+.audio-now,
+.ui-card {
+  border: 1px solid var(--sys-separator);
+  border-radius: var(--radius-md);
+  background: var(--sys-secondary-grouped-bg);
+  box-shadow: var(--shadow-card);
+}
+
+.surah-card {
+  padding: 13px 14px;
+}
+
+.surah-card .num {
+  width: 34px;
+  height: 34px;
+  border: 0;
+  border-radius: 9px;
+  background: var(--sys-fill);
+  color: var(--sys-secondary-label);
+  transform: none;
+  box-shadow: none;
+  font-weight: var(--weight-semibold);
+}
+
+.surah-card .num span {
+  transform: none;
+}
+
+.surah-card .r {
+  font-size: var(--text-body);
+  font-weight: var(--weight-semibold);
+}
+
+.surah-card .m,
+.surah-card .ar-name {
+  color: var(--sys-tertiary-label);
+}

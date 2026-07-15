@@ -1,0 +1,29 @@
+/* ==========================================================================
+   Мобильная адаптация: весь экран (safe-area) + тач-оптимизации
+   ========================================================================== */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+button,
+a,
+label,
+summary,
+select,
+input,
+.switch,
+.seg button,
+[role='button'] {
+  touch-action: manipulation; /* без 300мс-задержки клика и двойного тап-зума */
+}
+html {
+  -webkit-text-size-adjust: 100%;
+}
+body {
+  overscroll-behavior-y: none; /* без «резинки»/pull-to-refresh — ощущение приложения */
+}
+body.drawer-open,
+body.settings-panel-open,
+body.mushaf-sheet-open,
+body.image-editor-open {
+  overflow: hidden;
+}

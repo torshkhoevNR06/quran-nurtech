@@ -1,0 +1,71 @@
+[
+  {
+    "name": "topbar-desktop-dark",
+    "url": "/surah/2/",
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "theme": "dark",
+    "errors": [],
+    "iconSize": "30x30",
+    "quickHeight": 30,
+    "drawerVisible": true,
+    "dtabsDisplay": "flex",
+    "juzDisplay": "flex",
+    "pageSepDisplay": "block",
+    "overflow": {
+      "innerWidth": 1440,
+      "scrollWidth": 1440,
+      "bodyScrollWidth": 1440,
+      "overflowing": false
+    }
+  },
+  {
+    "name": "drawer-mobile-light",
+    "url": "/surah/2/",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "theme": "light",
+    "mobile": true,
+    "openDrawer": true,
+    "errors": [],
+    "iconSize": "42x42",
+    "quickHeight": 42,
+    "drawerVisible": true,
+    "dtabsDisplay": "flex",
+    "juzDisplay": "flex",
+    "pageSepDisplay": "block",
+    "overflow": {
+      "innerWidth": 390,
+      "scrollWidth": 390,
+      "bodyScrollWidth": 390,
+      "overflowing": false
+    }
+  },
+  {
+    "name": "reader-markers-desktop-light",
+    "url": "/surah/2/",
+    "viewport": {
+      "width": 1280,
+      "height": 900
+    },
+    "theme": "light",
+    "scrollToMarker": true,
+    "errors": [],
+    "iconSize": "30x30",
+    "quickHeight": 30,
+    "drawerVisible": true,
+    "dtabsDisplay": "flex",
+    "juzDisplay": "flex",
+    "pageSepDisplay": "block",
+    "overflow": {
+      "innerWidth": 1280,
+      "scrollWidth": 1280,
+      "bodyScrollWidth": 1280,
+      "overflowing": false
+    }
+  }
+]

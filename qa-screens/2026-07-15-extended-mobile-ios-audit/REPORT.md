@@ -1,0 +1,57 @@
+# Extended Mobile iOS Audit
+
+Total: 52
+Failed: 0
+
+- PASS iphone-se /search/ no horizontal overflow: {"overflow":0,"bodyOverflow":"clip visible","bodyPosition":"static","bodyPlayerOpen":false,"drawerOpen":false,"settingsOpen":false,"activeTag":"INPUT","activePlaceholder":"Например: терпение, прощение, свет…","h":667,"w":375}
+- PASS iphone-se /search/ topbar fits: {"x":0,"y":0,"width":375,"height":64}
+- PASS iphone-se /search/ tabbar fits or absent: {"x":0,"y":601,"width":375,"height":66}
+- PASS iphone-se /audio/ no horizontal overflow: {"overflow":0,"bodyOverflow":"clip visible","bodyPosition":"static","bodyPlayerOpen":false,"drawerOpen":false,"settingsOpen":false,"activeTag":"BODY","activePlaceholder":"","h":667,"w":375}
+- PASS iphone-se /audio/ topbar fits: {"x":0,"y":0,"width":375,"height":66}
+- PASS iphone-se /audio/ tabbar fits or absent: {"x":0,"y":601,"width":375,"height":66}
+- PASS iphone-se /progress/ no horizontal overflow: {"overflow":0,"bodyOverflow":"clip visible","bodyPosition":"static","bodyPlayerOpen":false,"drawerOpen":false,"settingsOpen":false,"activeTag":"BODY","activePlaceholder":"","h":667,"w":375}
+- PASS iphone-se /progress/ topbar fits: {"x":0,"y":0,"width":375,"height":66}
+- PASS iphone-se /progress/ tabbar fits or absent: {"x":0,"y":601,"width":375,"height":66}
+- PASS iphone-se /stats/ no horizontal overflow: {"overflow":0,"bodyOverflow":"clip visible","bodyPosition":"static","bodyPlayerOpen":false,"drawerOpen":false,"settingsOpen":false,"activeTag":"BODY","activePlaceholder":"","h":667,"w":375}
+- PASS iphone-se /stats/ topbar fits: {"x":0,"y":0,"width":375,"height":66}
+- PASS iphone-se /stats/ tabbar fits or absent: {"x":0,"y":601,"width":375,"height":66}
+- PASS iphone-se /surah/9/ no horizontal overflow: {"overflow":0,"bodyOverflow":"clip visible","bodyPosition":"static","bodyPlayerOpen":false,"drawerOpen":false,"settingsOpen":false,"activeTag":"BODY","activePlaceholder":"","h":667,"w":375}
+- PASS iphone-se /surah/9/ topbar fits: {"x":0,"y":0,"width":375,"height":66}
+- PASS iphone-se /surah/9/ tabbar fits or absent: {"x":0,"y":601,"width":375,"height":66}
+- PASS iphone-se long surah player opens in viewport: state={"overflow":0,"bodyOverflow":"clip visible","bodyPosition":"static","bodyPlayerOpen":true,"drawerOpen":false,"settingsOpen":false,"activeTag":"BUTTON","activePlaceholder":"","h":667,"w":375} player={"x":0,"y":590,"width":375,"height":76}
+- PASS iphone-se long surah tabbar hides while player open: tab={"x":0,"y":673.5999755859375,"width":375,"height":66}
+- PASS iphone-se drawer opens: {"overflow":0,"bodyOverflow":"hidden","bodyPosition":"fixed","bodyPlayerOpen":false,"drawerOpen":true,"settingsOpen":false,"activeTag":"BUTTON","activePlaceholder":"","h":667,"w":375}
+- PASS iphone-se drawer open does not autofocus input: {"overflow":0,"bodyOverflow":"hidden","bodyPosition":"fixed","bodyPlayerOpen":false,"drawerOpen":true,"settingsOpen":false,"activeTag":"BUTTON","activePlaceholder":"","h":667,"w":375}
+- PASS iphone-se drawer locks body scroll: {"overflow":0,"bodyOverflow":"hidden","bodyPosition":"fixed","bodyPlayerOpen":false,"drawerOpen":true,"settingsOpen":false,"activeTag":"BUTTON","activePlaceholder":"","h":667,"w":375}
+- PASS iphone-se drawer wheel does not move page: before=0 after=0
+- PASS iphone-se drawer input focuses only after manual tap: {"overflow":0,"bodyOverflow":"hidden","bodyPosition":"fixed","bodyPlayerOpen":false,"drawerOpen":true,"settingsOpen":false,"activeTag":"INPUT","activePlaceholder":"Поиск суры…","h":667,"w":375}
+- PASS iphone-se settings opens: {"overflow":0,"bodyOverflow":"hidden","bodyPosition":"fixed","bodyPlayerOpen":false,"drawerOpen":false,"settingsOpen":true,"activeTag":"BUTTON","activePlaceholder":"","h":667,"w":375}
+- PASS iphone-se settings open does not autofocus input: {"overflow":0,"bodyOverflow":"hidden","bodyPosition":"fixed","bodyPlayerOpen":false,"drawerOpen":false,"settingsOpen":true,"activeTag":"BUTTON","activePlaceholder":"","h":667,"w":375}
+- PASS iphone-se settings locks body scroll: {"overflow":0,"bodyOverflow":"hidden","bodyPosition":"fixed","bodyPlayerOpen":false,"drawerOpen":false,"settingsOpen":true,"activeTag":"BUTTON","activePlaceholder":"","h":667,"w":375}
+- PASS iphone-se settings has internal scroll when needed: {"scrollHeight":1590,"clientHeight":585,"overflowY":"auto"}
+- PASS iphone-pro /search/ no horizontal overflow: {"overflow":0,"bodyOverflow":"clip visible","bodyPosition":"static","bodyPlayerOpen":false,"drawerOpen":false,"settingsOpen":false,"activeTag":"INPUT","activePlaceholder":"Например: терпение, прощение, свет…","h":932,"w":430}
+- PASS iphone-pro /search/ topbar fits: {"x":0,"y":0,"width":430,"height":66}
+- PASS iphone-pro /search/ tabbar fits or absent: {"x":0,"y":866,"width":430,"height":66}
+- PASS iphone-pro /audio/ no horizontal overflow: {"overflow":0,"bodyOverflow":"clip visible","bodyPosition":"static","bodyPlayerOpen":false,"drawerOpen":false,"settingsOpen":false,"activeTag":"BODY","activePlaceholder":"","h":932,"w":430}
+- PASS iphone-pro /audio/ topbar fits: {"x":0,"y":0,"width":430,"height":66}
+- PASS iphone-pro /audio/ tabbar fits or absent: {"x":0,"y":866,"width":430,"height":66}
+- PASS iphone-pro /progress/ no horizontal overflow: {"overflow":0,"bodyOverflow":"clip visible","bodyPosition":"static","bodyPlayerOpen":false,"drawerOpen":false,"settingsOpen":false,"activeTag":"BODY","activePlaceholder":"","h":932,"w":430}
+- PASS iphone-pro /progress/ topbar fits: {"x":0,"y":0,"width":430,"height":66}
+- PASS iphone-pro /progress/ tabbar fits or absent: {"x":0,"y":866,"width":430,"height":66}
+- PASS iphone-pro /stats/ no horizontal overflow: {"overflow":0,"bodyOverflow":"clip visible","bodyPosition":"static","bodyPlayerOpen":false,"drawerOpen":false,"settingsOpen":false,"activeTag":"BODY","activePlaceholder":"","h":932,"w":430}
+- PASS iphone-pro /stats/ topbar fits: {"x":0,"y":0,"width":430,"height":66}
+- PASS iphone-pro /stats/ tabbar fits or absent: {"x":0,"y":866,"width":430,"height":66}
+- PASS iphone-pro /surah/9/ no horizontal overflow: {"overflow":0,"bodyOverflow":"clip visible","bodyPosition":"static","bodyPlayerOpen":false,"drawerOpen":false,"settingsOpen":false,"activeTag":"BODY","activePlaceholder":"","h":932,"w":430}
+- PASS iphone-pro /surah/9/ topbar fits: {"x":0,"y":0,"width":430,"height":66}
+- PASS iphone-pro /surah/9/ tabbar fits or absent: {"x":0,"y":866,"width":430,"height":66}
+- PASS iphone-pro long surah player opens in viewport: state={"overflow":0,"bodyOverflow":"clip visible","bodyPosition":"static","bodyPlayerOpen":true,"drawerOpen":false,"settingsOpen":false,"activeTag":"BUTTON","activePlaceholder":"","h":932,"w":430} player={"x":0,"y":853,"width":430,"height":78}
+- PASS iphone-pro long surah tabbar hides while player open: tab={"x":0,"y":938.5999755859375,"width":430,"height":66}
+- PASS iphone-pro drawer opens: {"overflow":0,"bodyOverflow":"hidden","bodyPosition":"fixed","bodyPlayerOpen":false,"drawerOpen":true,"settingsOpen":false,"activeTag":"BUTTON","activePlaceholder":"","h":932,"w":430}
+- PASS iphone-pro drawer open does not autofocus input: {"overflow":0,"bodyOverflow":"hidden","bodyPosition":"fixed","bodyPlayerOpen":false,"drawerOpen":true,"settingsOpen":false,"activeTag":"BUTTON","activePlaceholder":"","h":932,"w":430}
+- PASS iphone-pro drawer locks body scroll: {"overflow":0,"bodyOverflow":"hidden","bodyPosition":"fixed","bodyPlayerOpen":false,"drawerOpen":true,"settingsOpen":false,"activeTag":"BUTTON","activePlaceholder":"","h":932,"w":430}
+- PASS iphone-pro drawer wheel does not move page: before=0 after=0
+- PASS iphone-pro drawer input focuses only after manual tap: {"overflow":0,"bodyOverflow":"hidden","bodyPosition":"fixed","bodyPlayerOpen":false,"drawerOpen":true,"settingsOpen":false,"activeTag":"INPUT","activePlaceholder":"Поиск суры…","h":932,"w":430}
+- PASS iphone-pro settings opens: {"overflow":0,"bodyOverflow":"hidden","bodyPosition":"fixed","bodyPlayerOpen":false,"drawerOpen":false,"settingsOpen":true,"activeTag":"BUTTON","activePlaceholder":"","h":932,"w":430}
+- PASS iphone-pro settings open does not autofocus input: {"overflow":0,"bodyOverflow":"hidden","bodyPosition":"fixed","bodyPlayerOpen":false,"drawerOpen":false,"settingsOpen":true,"activeTag":"BUTTON","activePlaceholder":"","h":932,"w":430}
+- PASS iphone-pro settings locks body scroll: {"overflow":0,"bodyOverflow":"hidden","bodyPosition":"fixed","bodyPlayerOpen":false,"drawerOpen":false,"settingsOpen":true,"activeTag":"BUTTON","activePlaceholder":"","h":932,"w":430}
+- PASS iphone-pro settings has internal scroll when needed: {"scrollHeight":1590,"clientHeight":818,"overflowY":"auto"}

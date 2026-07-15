@@ -1,34 +1,35 @@
 ---
 import Base from '../layouts/Base.astro';
+import Button from '../components/ui/Button.astro';
+import Card from '../components/ui/Card.astro';
+import PageHeader from '../components/ui/PageHeader.astro';
+import PageShell from '../components/ui/PageShell.astro';
 const title = 'Резервная копия — перенос закладок и прогресса';
 const description =
   'Экспорт и импорт ваших данных: закладки, заметки, прогресс чтения, стрик, настройки. Выгрузите в файл и перенесите на другое устройство — без входа и сервера.';
 ---
 
 <Base {title} {description}>
-  <div class="container page backup">
-    <header>
-      <h1>Резервная копия</h1>
-      <p>
-        Все ваши данные хранятся только на этом устройстве (без входа). Выгрузите их в файл, чтобы
-        перенести на другое устройство или не потерять при очистке браузера.
-      </p>
-    </header>
+  <PageShell class="backup" narrow>
+    <PageHeader
+      title="Резервная копия"
+      description="Все ваши данные хранятся только на этом устройстве (без входа). Выгрузите их в файл, чтобы перенести на другое устройство или не потерять при очистке браузера."
+    />
 
-    <section class="bk-card">
+    <Card class="bk-card">
       <h2>Что сохранится</h2>
       <ul class="bk-list" data-bk-summary>
         <li>Загрузка…</li>
       </ul>
-    </section>
+    </Card>
 
-    <section class="bk-card">
+    <Card class="bk-card">
       <h2>Выгрузить</h2>
       <p>Скачает файл <code>quran-backup.json</code> со всеми вашими данными.</p>
-      <button type="button" class="btn primary" data-export>Скачать резервную копию</button>
-    </section>
+      <Button variant="primary" data-export>Скачать резервную копию</Button>
+    </Card>
 
-    <section class="bk-card">
+    <Card class="bk-card">
       <h2>Загрузить</h2>
       <p>Выберите ранее скачанный файл. Прогресс и дни <b>объединяются</b> (не перетираются).</p>
       <label class="btn ghost bk-import">
@@ -36,67 +37,9 @@ const description =
         <input type="file" accept="application/json,.json" data-import hidden />
       </label>
       <span class="bk-msg" data-msg></span>
-    </section>
-  </div>
+    </Card>
+  </PageShell>
 </Base>
-
-<style is:global>
-  .backup {
-    max-width: 640px;
-    padding-bottom: 90px;
-  }
-  .backup h1 {
-    margin: 0 0 6px;
-  }
-  .backup > header p {
-    color: var(--ink-faint);
-    font-size: var(--fs-13);
-    margin: 0 0 18px;
-    line-height: 1.5;
-  }
-  .bk-card {
-    background: var(--panel-bg);
-    border: 1px solid var(--hairline);
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-card);
-    padding: 18px 20px;
-    margin-bottom: 14px;
-  }
-  .bk-card h2 {
-    margin: 0 0 8px;
-    font-size: var(--fs-16);
-  }
-  .bk-card p {
-    margin: 0 0 12px;
-    color: var(--ink-soft);
-    font-size: var(--fs-14);
-  }
-  .bk-card code {
-    background: var(--seg-track);
-    padding: 1px 6px;
-    border-radius: 5px;
-    font-size: var(--fs-13);
-  }
-  .bk-list {
-    margin: 0;
-    padding-left: 18px;
-    color: var(--ink-soft);
-    font-size: var(--fs-14);
-    line-height: 1.7;
-  }
-  .bk-import {
-    cursor: pointer;
-  }
-  .bk-msg {
-    display: inline-block;
-    margin-left: 10px;
-    font-size: var(--fs-13);
-    color: var(--good);
-  }
-  .bk-msg.err {
-    color: var(--low);
-  }
-</style>
 
 <script is:inline>
   (function () {

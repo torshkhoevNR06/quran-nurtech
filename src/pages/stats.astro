@@ -1,54 +1,46 @@
 ---
 import Base from '../layouts/Base.astro';
+import PageHeader from '../components/ui/PageHeader.astro';
+import PageShell from '../components/ui/PageShell.astro';
+import Section from '../components/ui/Section.astro';
+import StatTile from '../components/ui/StatTile.astro';
 const title = 'Статистика чтения — Коран онлайн';
 const description = 'Анонимная статистика чтения: устройства, прочитанные аяты, время и стрики.';
 ---
 
 <Base {title} {description}>
-  <div class="container page stats-page">
-    <h1>Статистика чтения</h1>
-    <p>
-      Здесь показаны анонимные устройства, а не люди: сайт не требует входа и различает читателей
-      только по локальному идентификатору браузера.
-    </p>
+  <PageShell class="stats-page">
+    <PageHeader
+      title="Статистика чтения"
+      description="Здесь показаны анонимные устройства, а не люди: сайт не требует входа и различает читателей только по локальному идентификатору браузера."
+    />
 
     <section class="stats-grid" data-stats-root>
-      <div class="stat-tile">
-        <span>Устройств</span>
-        <b data-stat="devices">—</b>
-      </div>
-      <div class="stat-tile">
-        <span>Активны сегодня</span>
-        <b data-stat="active">—</b>
-      </div>
-      <div class="stat-tile">
-        <span>Прочитано аятов</span>
-        <b data-stat="ayahs">—</b>
-      </div>
-      <div class="stat-tile">
-        <span>Время чтения</span>
-        <b data-stat="time">—</b>
-      </div>
+      <StatTile label="Устройств" stat="devices" />
+      <StatTile label="Активны сегодня" stat="active" />
+      <StatTile label="Прочитано аятов" stat="ayahs" />
+      <StatTile label="Время чтения" stat="time" />
     </section>
 
-    <h2>Топ устройств</h2>
-    <div class="stats-table-wrap">
-      <table class="stats-table">
-        <thead>
-          <tr>
-            <th>Устройство</th>
-            <th>Аяты</th>
-            <th>Охват</th>
-            <th>Время</th>
-            <th>Стрик</th>
-          </tr>
-        </thead>
-        <tbody data-stats-top>
-          <tr><td colspan="5">Загружаю…</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
+    <Section title="Топ устройств">
+      <div class="stats-table-wrap">
+        <table class="stats-table">
+          <thead>
+            <tr>
+              <th>Устройство</th>
+              <th>Аяты</th>
+              <th>Охват</th>
+              <th>Время</th>
+              <th>Стрик</th>
+            </tr>
+          </thead>
+          <tbody data-stats-top>
+            <tr><td colspan="5">Загружаю…</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </Section>
+  </PageShell>
 
   <script is:inline>
     (function () {
@@ -62,6 +54,13 @@ const description = 'Анонимная статистика чтения: ус�
       function set(name, value) {
         var el = document.querySelector('[data-stat="' + name + '"]');
         if (el) el.textContent = value;
+      }
+      var readApiEnabled =
+        location.hostname === 'quran.nurtech.dev' || location.hostname.endsWith('.nurtech.dev');
+      if (!readApiEnabled) {
+        var localTop = document.querySelector('[data-stats-top]');
+        if (localTop) localTop.innerHTML = '<tr><td colspan="5">Сборщик статистики недоступен в локальном preview</td></tr>';
+        return;
       }
       fetch('/api/read/summary', { headers: { Accept: 'application/json' } })
         .then(function (r) {

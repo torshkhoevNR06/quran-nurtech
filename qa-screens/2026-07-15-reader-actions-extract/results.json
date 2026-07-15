@@ -1,0 +1,27 @@
+[
+  {
+    "label": "ayah tafsir button opens Saadi block",
+    "ok": true,
+    "details": "Это означает: я начинаю во имя Аллаха. Из лексического анали"
+  },
+  {
+    "label": "ayah play button reaches player",
+    "ok": true,
+    "details": "Сура Аль-Фатиха"
+  },
+  {
+    "label": "context menu opens on ayah",
+    "ok": true,
+    "details": "Воспроизвести"
+  },
+  {
+    "label": "mushaf ayah sheet opens from word with translation",
+    "ok": true,
+    "details": "Аль-Бакара · аят 2:1 / Алиф. Лам. Мим."
+  },
+  {
+    "label": "mushaf sheet tafsir action loads text",
+    "ok": true,
+    "details": "Мы уже говорили о толковании высказывания «Во имя Аллаха, Ми"
+  }
+]

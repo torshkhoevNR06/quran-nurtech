@@ -1,0 +1,50 @@
+{
+  "checks": [
+    {
+      "name": "topics renders card components",
+      "ok": true
+    },
+    {
+      "name": "topics ayah links are present",
+      "ok": true
+    },
+    {
+      "name": "topics has no horizontal overflow",
+      "ok": true
+    },
+    {
+      "name": "glossary renders card components",
+      "ok": true
+    },
+    {
+      "name": "glossary search filters terms",
+      "ok": true
+    },
+    {
+      "name": "glossary empty state remains hidden for hits",
+      "ok": true
+    },
+    {
+      "name": "backup renders shared card components",
+      "ok": true
+    },
+    {
+      "name": "backup export uses shared button component",
+      "ok": true
+    },
+    {
+      "name": "backup summary lists expected data groups",
+      "ok": true
+    },
+    {
+      "name": "backup mobile has no horizontal overflow",
+      "ok": true
+    }
+  ],
+  "failures": [],
+  "screenshots": [
+    "desktop-topics.png",
+    "desktop-glossary-search.png",
+    "mobile-backup.png"
+  ]
+}

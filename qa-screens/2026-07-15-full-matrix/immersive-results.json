@@ -1,0 +1,44 @@
+[
+  {
+    "name": "desktop-mushaf-immersive",
+    "immersive": true,
+    "topbarDisplay": "none",
+    "footerDisplay": "none",
+    "tabbarDisplay": "none",
+    "pageRect": {
+      "top": 87.953125,
+      "left": 582.5,
+      "width": 575,
+      "height": 818.09375,
+      "bottom": 906.046875
+    },
+    "viewport": {
+      "w": 1440,
+      "h": 1000
+    },
+    "overflowX": false,
+    "lines": 0,
+    "errors": []
+  },
+  {
+    "name": "mobile-mushaf-immersive",
+    "immersive": true,
+    "topbarDisplay": "none",
+    "footerDisplay": "none",
+    "tabbarDisplay": "grid",
+    "pageRect": {
+      "top": 31,
+      "left": 17,
+      "width": 356,
+      "height": 492.921875,
+      "bottom": 523.921875
+    },
+    "viewport": {
+      "w": 390,
+      "h": 844
+    },
+    "overflowX": false,
+    "lines": 0,
+    "errors": []
+  }
+]

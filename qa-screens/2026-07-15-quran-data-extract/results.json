@@ -1,0 +1,17 @@
+[
+  {
+    "label": "index-backed surah name available for copy/editor data",
+    "ok": true,
+    "details": "true"
+  },
+  {
+    "label": "tafsir loader opens section",
+    "ok": true,
+    "details": "Это означает: я начинаю во имя Аллаха. Из лексического анализа этого словосочета"
+  },
+  {
+    "label": "audio play prepares remote source and player title",
+    "ok": true,
+    "details": "Сура Аль-Фатиха | https://server16.mp3quran.net/a_binhameed/Rewayat-Hafs-A-n-Assem/001.m"
+  }
+]

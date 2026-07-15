@@ -1,0 +1,37 @@
+{
+  "checks": [
+    {
+      "name": "player toolbar uses shared ui-toolbar class",
+      "ok": true
+    },
+    {
+      "name": "player icon buttons keep data hooks",
+      "ok": true
+    },
+    {
+      "name": "play button keeps circular custom style",
+      "ok": true
+    },
+    {
+      "name": "speed still works after IconButton migration",
+      "ok": true
+    },
+    {
+      "name": "repeat still toggles selected state",
+      "ok": true
+    },
+    {
+      "name": "mobile player appears after component migration",
+      "ok": true
+    },
+    {
+      "name": "mobile player has no horizontal overflow",
+      "ok": true
+    }
+  ],
+  "failures": [],
+  "screenshots": [
+    "desktop-player-component.png",
+    "mobile-player-component.png"
+  ]
+}

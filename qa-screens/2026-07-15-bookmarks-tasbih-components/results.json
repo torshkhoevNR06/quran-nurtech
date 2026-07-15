@@ -1,0 +1,45 @@
+{
+  "checks": [
+    {
+      "name": "bookmarks renders generated ui-card rows",
+      "ok": true
+    },
+    {
+      "name": "bookmarks generated delete uses ui button class",
+      "ok": true
+    },
+    {
+      "name": "bookmarks can create collection",
+      "ok": true
+    },
+    {
+      "name": "bookmarks desktop has no horizontal overflow",
+      "ok": true
+    },
+    {
+      "name": "tasbih dhikr controls use shared buttons",
+      "ok": true
+    },
+    {
+      "name": "tasbih target control uses segmented component",
+      "ok": true
+    },
+    {
+      "name": "tasbih stats use stat tiles",
+      "ok": true
+    },
+    {
+      "name": "tasbih updates count and target",
+      "ok": true
+    },
+    {
+      "name": "tasbih mobile has no horizontal overflow",
+      "ok": true
+    }
+  ],
+  "failures": [],
+  "screenshots": [
+    "desktop-bookmarks.png",
+    "mobile-tasbih.png"
+  ]
+}

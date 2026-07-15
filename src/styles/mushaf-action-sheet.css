@@ -1,0 +1,120 @@
+/* Мусхаф: нижний лист аята (тап по аяту) */
+.mas {
+  position: fixed;
+  inset: 0;
+  z-index: 210;
+  display: none;
+}
+.mas.open {
+  display: block;
+}
+.mas-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(6, 10, 14, 0.28);
+  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
+}
+.mas-card {
+  position: absolute;
+  left: 50%;
+  bottom: env(safe-area-inset-bottom);
+  transform: translateX(-50%);
+  width: min(560px, 100%);
+  max-height: 74vh;
+  overflow-y: auto;
+  background: var(--panel-bg);
+  border: 1px solid var(--hairline);
+  border-bottom: 0;
+  border-radius: 20px 20px 0 0;
+  box-shadow: var(--shadow-pop);
+  padding: 16px 18px 18px;
+  animation: masIn 0.22s cubic-bezier(0.2, 0, 0, 1);
+}
+@keyframes masIn {
+  from {
+    transform: translate(-50%, 14px);
+    opacity: 0;
+  }
+  to {
+    transform: translate(-50%, 0);
+    opacity: 1;
+  }
+}
+.mas-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.mas-head b {
+  font: var(--weight-semibold) var(--fs-15) / 1.2 var(--sans);
+  color: var(--ink);
+}
+.mas-x {
+  width: 32px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+  border: 0;
+  background: var(--seg-track);
+  border-radius: 999px;
+  color: var(--ink-soft);
+  cursor: pointer;
+}
+.mas-x svg {
+  width: 16px;
+  height: 16px;
+}
+.mas-tr {
+  font: 400 var(--fs-16) / 1.6 var(--sans);
+  color: var(--ink);
+  margin-bottom: 12px;
+}
+.mas-tafsir {
+  font: 400 var(--fs-14) / 1.6 var(--sans);
+  color: var(--ink-soft);
+  margin-bottom: 12px;
+}
+.mas-acts {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+.mas-act {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  padding: 10px 6px;
+  border: 1px solid var(--hairline);
+  background: var(--panel-bg);
+  border-radius: 12px;
+  color: var(--ink);
+  font: var(--weight-semibold) var(--fs-12) / 1.1 var(--sans);
+  cursor: pointer;
+}
+.mas-act:hover {
+  background: var(--accent);
+  color: var(--accent-ink);
+  border-color: var(--accent);
+}
+.mas-act:hover .mas-ic {
+  color: var(--accent-ink);
+}
+.mas-ic {
+  width: 20px;
+  height: 20px;
+  display: inline-flex;
+  color: var(--ink-faint);
+}
+.mas-ic svg {
+  width: 100%;
+  height: 100%;
+}
+/* подсветка выбранного аята в мусхафе */
+.qcf-word.qcf-ayah-active {
+  background: color-mix(in srgb, var(--accent) 22%, transparent);
+  border-radius: 4px;
+}

@@ -1,5 +1,8 @@
 ---
 import Base from '../layouts/Base.astro';
+import Card from '../components/ui/Card.astro';
+import PageHeader from '../components/ui/PageHeader.astro';
+import PageShell from '../components/ui/PageShell.astro';
 const title = 'Словарь исламских терминов — глоссарий Корана';
 const description =
   'Краткий словарь ключевых исламских терминов, встречающихся в переводах и тафсирах Корана: таква, тавхид, иман, ихсан, джаннат, барзах и другие — с понятными объяснениями на русском.';
@@ -48,92 +51,31 @@ const terms = [
 ---
 
 <Base {title} {description}>
-  <div class="container page gloss">
-    <header class="gl-head">
-      <h1>Словарь терминов</h1>
-      <p>Ключевые исламские понятия из переводов и тафсиров — коротко и по-русски.</p>
+  <PageShell class="gloss" narrow>
+    <PageHeader
+      class="gl-head"
+      title="Словарь терминов"
+      description="Ключевые исламские понятия из переводов и тафсиров — коротко и по-русски."
+    >
       <input type="search" placeholder="Найти термин…" data-gl-search aria-label="Поиск термина" />
-    </header>
+    </PageHeader>
 
     <div class="gl-list" data-gl-list>
       {
         terms.map(([ar, ru, def]) => (
-          <article class="gl-term" data-search={`${ru} ${def} ${ar}`.toLowerCase()}>
+          <Card as="article" class="gl-term" data-search={`${ru} ${def} ${ar}`.toLowerCase()}>
             <div class="gl-t">
               <b>{ru}</b>
               <span class="gl-ar" dir="rtl">{ar}</span>
             </div>
             <p>{def}</p>
-          </article>
+          </Card>
         ))
       }
     </div>
     <p class="gl-empty" data-gl-empty hidden>Ничего не найдено.</p>
-  </div>
+  </PageShell>
 </Base>
-
-<style is:global>
-  .gloss {
-    max-width: 720px;
-    padding-bottom: 90px;
-  }
-  .gl-head h1 {
-    margin: 0 0 6px;
-  }
-  .gl-head p {
-    color: var(--ink-faint);
-    font-size: var(--fs-13);
-    margin: 0 0 14px;
-  }
-  .gl-head input {
-    width: 100%;
-    height: 40px;
-    border: 1px solid var(--hairline);
-    border-radius: var(--radius-md);
-    background: var(--seg-thumb);
-    color: var(--ink);
-    padding: 0 14px;
-    font: 500 16px / 1 var(--sans);
-  }
-  .gl-list {
-    display: grid;
-    gap: 10px;
-    margin-top: 18px;
-  }
-  .gl-term {
-    background: var(--panel-bg);
-    border: 1px solid var(--hairline);
-    border-radius: var(--radius-md);
-    padding: 14px 16px;
-  }
-  .gl-t {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    gap: 10px;
-    margin-bottom: 5px;
-  }
-  .gl-t b {
-    font-size: var(--fs-16);
-    font-weight: 700;
-  }
-  .gl-ar {
-    font-family: var(--ar-font), serif;
-    color: var(--ink-faint);
-    font-size: var(--fs-16);
-  }
-  .gl-term p {
-    margin: 0;
-    color: var(--ink-soft);
-    font-size: var(--fs-14);
-    line-height: 1.55;
-  }
-  .gl-empty {
-    text-align: center;
-    color: var(--ink-faint);
-    margin-top: 24px;
-  }
-</style>
 
 <script is:inline>
   (function () {

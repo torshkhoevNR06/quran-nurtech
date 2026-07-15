@@ -1,0 +1,465 @@
+[
+  {
+    "name": "desktop-home",
+    "path": "/Users/ilnur_ryazhapov/Desktop/code_src/quran-nurtech-codex-apple-ui/qa-screens/2026-07-15-components-css-split/desktop-home.png",
+    "metrics": {
+      "drawer": true,
+      "fixedEls": [
+        {
+          "cls": "topbar",
+          "h": 52,
+          "tag": "HEADER",
+          "top": 0
+        },
+        {
+          "cls": "drawer sidebar show",
+          "h": 900,
+          "tag": "ASIDE",
+          "top": 0
+        },
+        {
+          "cls": "player",
+          "h": 84,
+          "tag": "DIV",
+          "top": 950
+        },
+        {
+          "cls": "toast",
+          "h": 24,
+          "tag": "DIV",
+          "top": 792
+        },
+        {
+          "cls": "menu",
+          "h": 900,
+          "tag": "DIV",
+          "top": 0
+        },
+        {
+          "cls": "settings-panel-head",
+          "h": 66,
+          "tag": "DIV",
+          "top": 0
+        },
+        {
+          "cls": "",
+          "h": 900,
+          "tag": "DIV",
+          "top": 0
+        }
+      ],
+      "height": 900,
+      "overflowX": 0,
+      "title": "Коран онлайн на русском — читать, слушать, изучать",
+      "topbar": true,
+      "url": "/",
+      "visibleMain": true,
+      "width": 1440
+    }
+  },
+  {
+    "name": "desktop-surah-9",
+    "path": "/Users/ilnur_ryazhapov/Desktop/code_src/quran-nurtech-codex-apple-ui/qa-screens/2026-07-15-components-css-split/desktop-surah-9.png",
+    "metrics": {
+      "drawer": true,
+      "fixedEls": [
+        {
+          "cls": "topbar",
+          "h": 52,
+          "tag": "HEADER",
+          "top": 0
+        },
+        {
+          "cls": "drawer sidebar show",
+          "h": 900,
+          "tag": "ASIDE",
+          "top": 0
+        },
+        {
+          "cls": "player",
+          "h": 84,
+          "tag": "DIV",
+          "top": 950
+        },
+        {
+          "cls": "toast",
+          "h": 24,
+          "tag": "DIV",
+          "top": 792
+        },
+        {
+          "cls": "menu",
+          "h": 900,
+          "tag": "DIV",
+          "top": 0
+        },
+        {
+          "cls": "settings-panel-head",
+          "h": 66,
+          "tag": "DIV",
+          "top": 0
+        },
+        {
+          "cls": "",
+          "h": 900,
+          "tag": "DIV",
+          "top": 0
+        }
+      ],
+      "height": 900,
+      "overflowX": 0,
+      "title": "Сура 9: Ат-Тауба (Покаяние) — читать с тафсиром ас-Саади",
+      "topbar": true,
+      "url": "/surah/9",
+      "visibleMain": true,
+      "width": 1440
+    }
+  },
+  {
+    "name": "desktop-search",
+    "path": "/Users/ilnur_ryazhapov/Desktop/code_src/quran-nurtech-codex-apple-ui/qa-screens/2026-07-15-components-css-split/desktop-search.png",
+    "metrics": {
+      "drawer": true,
+      "fixedEls": [
+        {
+          "cls": "topbar",
+          "h": 52,
+          "tag": "HEADER",
+          "top": 0
+        },
+        {
+          "cls": "drawer sidebar show",
+          "h": 900,
+          "tag": "ASIDE",
+          "top": 0
+        },
+        {
+          "cls": "player",
+          "h": 84,
+          "tag": "DIV",
+          "top": 950
+        },
+        {
+          "cls": "toast",
+          "h": 24,
+          "tag": "DIV",
+          "top": 792
+        },
+        {
+          "cls": "menu",
+          "h": 900,
+          "tag": "DIV",
+          "top": 0
+        },
+        {
+          "cls": "settings-panel-head",
+          "h": 66,
+          "tag": "DIV",
+          "top": 0
+        },
+        {
+          "cls": "",
+          "h": 900,
+          "tag": "DIV",
+          "top": 0
+        }
+      ],
+      "height": 900,
+      "overflowX": 0,
+      "title": "Поиск по Корану — по русскому переводу",
+      "topbar": true,
+      "url": "/search/",
+      "visibleMain": true,
+      "width": 1440
+    }
+  },
+  {
+    "name": "desktop-stats",
+    "path": "/Users/ilnur_ryazhapov/Desktop/code_src/quran-nurtech-codex-apple-ui/qa-screens/2026-07-15-components-css-split/desktop-stats.png",
+    "metrics": {
+      "drawer": true,
+      "fixedEls": [
+        {
+          "cls": "topbar",
+          "h": 52,
+          "tag": "HEADER",
+          "top": 0
+        },
+        {
+          "cls": "drawer sidebar show",
+          "h": 900,
+          "tag": "ASIDE",
+          "top": 0
+        },
+        {
+          "cls": "player",
+          "h": 84,
+          "tag": "DIV",
+          "top": 950
+        },
+        {
+          "cls": "toast",
+          "h": 24,
+          "tag": "DIV",
+          "top": 792
+        },
+        {
+          "cls": "menu",
+          "h": 900,
+          "tag": "DIV",
+          "top": 0
+        },
+        {
+          "cls": "settings-panel-head",
+          "h": 66,
+          "tag": "DIV",
+          "top": 0
+        },
+        {
+          "cls": "",
+          "h": 900,
+          "tag": "DIV",
+          "top": 0
+        }
+      ],
+      "height": 900,
+      "overflowX": 0,
+      "title": "Статистика чтения — Коран онлайн",
+      "topbar": true,
+      "url": "/stats/",
+      "visibleMain": true,
+      "width": 1440
+    }
+  },
+  {
+    "name": "desktop-audio",
+    "path": "/Users/ilnur_ryazhapov/Desktop/code_src/quran-nurtech-codex-apple-ui/qa-screens/2026-07-15-components-css-split/desktop-audio.png",
+    "metrics": {
+      "drawer": true,
+      "fixedEls": [
+        {
+          "cls": "topbar",
+          "h": 52,
+          "tag": "HEADER",
+          "top": 0
+        },
+        {
+          "cls": "audio-now",
+          "h": 101,
+          "tag": "SECTION",
+          "top": 323
+        },
+        {
+          "cls": "drawer sidebar show",
+          "h": 900,
+          "tag": "ASIDE",
+          "top": 0
+        },
+        {
+          "cls": "player",
+          "h": 84,
+          "tag": "DIV",
+          "top": 950
+        },
+        {
+          "cls": "toast",
+          "h": 24,
+          "tag": "DIV",
+          "top": 792
+        },
+        {
+          "cls": "menu",
+          "h": 900,
+          "tag": "DIV",
+          "top": 0
+        },
+        {
+          "cls": "settings-panel-head",
+          "h": 66,
+          "tag": "DIV",
+          "top": 0
+        },
+        {
+          "cls": "",
+          "h": 900,
+          "tag": "DIV",
+          "top": 0
+        }
+      ],
+      "height": 900,
+      "overflowX": 0,
+      "title": "Аудио Корана — чтецы, суры, скачивание",
+      "topbar": true,
+      "url": "/audio/",
+      "visibleMain": true,
+      "width": 1440
+    }
+  },
+  {
+    "name": "mobile-home",
+    "path": "/Users/ilnur_ryazhapov/Desktop/code_src/quran-nurtech-codex-apple-ui/qa-screens/2026-07-15-components-css-split/mobile-home.png",
+    "metrics": {
+      "drawer": true,
+      "fixedEls": [
+        {
+          "cls": "topbar",
+          "h": 66,
+          "tag": "HEADER",
+          "top": 0
+        },
+        {
+          "cls": "drawer-backdrop",
+          "h": 844,
+          "tag": "DIV",
+          "top": 0
+        },
+        {
+          "cls": "drawer sidebar",
+          "h": 726,
+          "tag": "ASIDE",
+          "top": 880
+        },
+        {
+          "cls": "player",
+          "h": 88,
+          "tag": "DIV",
+          "top": 897
+        },
+        {
+          "cls": "mobile-tabbar",
+          "h": 66,
+          "tag": "NAV",
+          "top": 778
+        },
+        {
+          "cls": "toast",
+          "h": 24,
+          "tag": "DIV",
+          "top": 736
+        },
+        {
+          "cls": "menu",
+          "h": 743,
+          "tag": "DIV",
+          "top": 881
+        },
+        {
+          "cls": "settings-panel-head",
+          "h": 67,
+          "tag": "DIV",
+          "top": 882
+        },
+        {
+          "cls": "settings-panel-backdrop",
+          "h": 782,
+          "tag": "BUTTON",
+          "top": 62
+        },
+        {
+          "cls": "",
+          "h": 844,
+          "tag": "DIV",
+          "top": 0
+        }
+      ],
+      "height": 844,
+      "overflowX": 0,
+      "title": "Коран онлайн на русском — читать, слушать, изучать",
+      "topbar": true,
+      "url": "/",
+      "visibleMain": true,
+      "width": 390
+    }
+  },
+  {
+    "name": "mobile-surah-1",
+    "path": "/Users/ilnur_ryazhapov/Desktop/code_src/quran-nurtech-codex-apple-ui/qa-screens/2026-07-15-components-css-split/mobile-surah-1.png",
+    "metrics": {
+      "drawer": true,
+      "fixedEls": [
+        {
+          "cls": "topbar",
+          "h": 66,
+          "tag": "HEADER",
+          "top": 0
+        },
+        {
+          "cls": "drawer-backdrop",
+          "h": 844,
+          "tag": "DIV",
+          "top": 0
+        },
+        {
+          "cls": "drawer sidebar",
+          "h": 726,
+          "tag": "ASIDE",
+          "top": 880
+        },
+        {
+          "cls": "player",
+          "h": 88,
+          "tag": "DIV",
+          "top": 897
+        },
+        {
+          "cls": "mobile-tabbar",
+          "h": 66,
+          "tag": "NAV",
+          "top": 778
+        },
+        {
+          "cls": "toast",
+          "h": 24,
+          "tag": "DIV",
+          "top": 736
+        },
+        {
+          "cls": "menu",
+          "h": 743,
+          "tag": "DIV",
+          "top": 881
+        },
+        {
+          "cls": "settings-panel-head",
+          "h": 67,
+          "tag": "DIV",
+          "top": 882
+        },
+        {
+          "cls": "settings-panel-backdrop",
+          "h": 782,
+          "tag": "BUTTON",
+          "top": 62
+        },
+        {
+          "cls": "",
+          "h": 844,
+          "tag": "DIV",
+          "top": 0
+        }
+      ],
+      "height": 844,
+      "overflowX": 0,
+      "title": "Сура 1: Аль-Фатиха (Открывающая) — читать с тафсиром ас-Саади",
+      "topbar": true,
+      "url": "/surah/1/",
+      "visibleMain": true,
+      "width": 390
+    }
+  },
+  {
+    "name": "mobile-settings-open",
+    "path": "/Users/ilnur_ryazhapov/Desktop/code_src/quran-nurtech-codex-apple-ui/qa-screens/2026-07-15-components-css-split/mobile-settings-open.png",
+    "metrics": {
+      "active": {
+        "placeholder": null,
+        "tag": "BUTTON",
+        "type": null
+      },
+      "menuOpen": true,
+      "opened": true,
+      "overflowX": 0,
+      "settingsCount": 1
+    }
+  }
+]

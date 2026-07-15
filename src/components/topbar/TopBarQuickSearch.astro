@@ -1,0 +1,26 @@
+---
+interface Props {
+  showQuick: boolean;
+}
+const { showQuick } = Astro.props;
+---
+
+{
+  showQuick ? (
+    <form class="quick" data-quick role="search">
+      <input
+        type="text"
+        name="q"
+        placeholder="Сура, 2:255 или слово…"
+        autocomplete="off"
+        spellcheck="false"
+        aria-label="Поиск: сура, аят или слово"
+        data-quick-input
+      />
+      <button class="btn primary quick-submit" type="submit" aria-label="Перейти">→</button>
+    </form>
+  ) : (
+    <div class="topbar-title">Поиск по Корану</div>
+  )
+}
+

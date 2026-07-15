@@ -1,0 +1,77 @@
+{
+  "checks": [
+    {
+      "name": "home action icons use inline utility",
+      "ok": true
+    },
+    {
+      "name": "home desktop has no horizontal overflow",
+      "ok": true
+    },
+    {
+      "name": "search icon/status/exact use classes",
+      "ok": true
+    },
+    {
+      "name": "search still returns results",
+      "ok": true
+    },
+    {
+      "name": "search mobile has no horizontal overflow",
+      "ok": true
+    },
+    {
+      "name": "surah nav icons use inline utility",
+      "ok": true
+    },
+    {
+      "name": "topbar bookmark empty uses class",
+      "ok": true
+    },
+    {
+      "name": "surah desktop has no horizontal overflow",
+      "ok": true
+    },
+    {
+      "name": "single ayah nav icons use utility",
+      "ok": true
+    },
+    {
+      "name": "single ayah mobile has no horizontal overflow",
+      "ok": true
+    },
+    {
+      "name": "mushaf bottom icons use inline utility",
+      "ok": true
+    },
+    {
+      "name": "mushaf mobile has no horizontal overflow",
+      "ok": true
+    },
+    {
+      "name": "howto shortcuts use classes",
+      "ok": true
+    },
+    {
+      "name": "howto desktop has no horizontal overflow",
+      "ok": true
+    },
+    {
+      "name": "videos tools use classes",
+      "ok": true
+    },
+    {
+      "name": "videos desktop has no horizontal overflow",
+      "ok": true
+    }
+  ],
+  "failures": [],
+  "screenshots": [
+    "desktop-home.png",
+    "mobile-search.png",
+    "desktop-surah-bookmarks-menu.png",
+    "mobile-ayah.png",
+    "mobile-mushaf.png",
+    "desktop-videos.png"
+  ]
+}

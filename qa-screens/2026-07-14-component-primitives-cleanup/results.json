@@ -1,0 +1,189 @@
+[
+  {
+    "name": "topbar-controls-desktop-dark",
+    "url": "/surah/2/",
+    "width": 1440,
+    "height": 900,
+    "theme": "dark",
+    "logs": [],
+    "metrics": {
+      "htmlW": 1440,
+      "innerW": 1440,
+      "overflow": false,
+      "btn": {
+        "w": 30,
+        "h": 32,
+        "display": "flex",
+        "bg": "rgb(164, 174, 188)",
+        "color": "rgb(44, 47, 51)",
+        "border": "rgba(0, 0, 0, 0)"
+      },
+      "primary": {
+        "w": 30,
+        "h": 32,
+        "display": "flex",
+        "bg": "rgb(164, 174, 188)",
+        "color": "rgb(44, 47, 51)",
+        "border": "rgba(0, 0, 0, 0)"
+      },
+      "icon": {
+        "w": 30,
+        "h": 30,
+        "display": "grid",
+        "bg": "rgba(0, 0, 0, 0)",
+        "color": "rgba(213, 218, 225, 0.682)",
+        "border": "rgba(0, 0, 0, 0)"
+      },
+      "iconOn": null,
+      "quick": {
+        "w": 184,
+        "h": 30,
+        "display": "block",
+        "bg": "rgba(118, 118, 128, 0.18)",
+        "color": "rgba(245, 247, 250, 0.94)",
+        "border": "rgba(235, 240, 247, 0.12)"
+      },
+      "seg": {
+        "w": 365,
+        "h": 31,
+        "display": "flex",
+        "bg": "rgba(118, 118, 128, 0.18)",
+        "color": "rgba(245, 247, 250, 0.94)",
+        "border": "rgba(235, 240, 247, 0.12)"
+      },
+      "chip": {
+        "w": 116,
+        "h": 40,
+        "display": "flex",
+        "bg": "rgba(118, 118, 128, 0.18)",
+        "color": "rgb(174, 184, 198)",
+        "border": "rgba(235, 240, 247, 0.12)"
+      },
+      "settingsOpen": false,
+      "drawerOpen": true
+    }
+  },
+  {
+    "name": "settings-popover-desktop-light",
+    "url": "/surah/2/",
+    "width": 1280,
+    "height": 900,
+    "theme": "light",
+    "action": "settings",
+    "logs": [],
+    "metrics": {
+      "htmlW": 1280,
+      "innerW": 1280,
+      "overflow": false,
+      "btn": {
+        "w": 30,
+        "h": 32,
+        "display": "flex",
+        "bg": "rgb(89, 101, 117)",
+        "color": "rgb(255, 255, 255)",
+        "border": "rgba(0, 0, 0, 0)"
+      },
+      "primary": {
+        "w": 30,
+        "h": 32,
+        "display": "flex",
+        "bg": "rgb(89, 101, 117)",
+        "color": "rgb(255, 255, 255)",
+        "border": "rgba(0, 0, 0, 0)"
+      },
+      "icon": {
+        "w": 30,
+        "h": 30,
+        "display": "grid",
+        "bg": "rgba(0, 0, 0, 0)",
+        "color": "rgba(60, 60, 67, 0.72)",
+        "border": "rgba(0, 0, 0, 0)"
+      },
+      "iconOn": null,
+      "quick": {
+        "w": 184,
+        "h": 30,
+        "display": "block",
+        "bg": "rgba(120, 120, 128, 0.12)",
+        "color": "rgb(29, 29, 31)",
+        "border": "rgba(60, 60, 67, 0.18)"
+      },
+      "seg": {
+        "w": 342,
+        "h": 31,
+        "display": "flex",
+        "bg": "rgba(120, 120, 128, 0.12)",
+        "color": "rgb(29, 29, 31)",
+        "border": "rgba(60, 60, 67, 0.18)"
+      },
+      "chip": {
+        "w": 116,
+        "h": 40,
+        "display": "flex",
+        "bg": "rgba(120, 120, 128, 0.12)",
+        "color": "rgb(89, 101, 117)",
+        "border": "rgba(60, 60, 67, 0.18)"
+      },
+      "settingsOpen": true,
+      "drawerOpen": true
+    }
+  },
+  {
+    "name": "mobile-controls-light",
+    "url": "/",
+    "width": 390,
+    "height": 844,
+    "theme": "light",
+    "action": "drawer",
+    "logs": [],
+    "metrics": {
+      "htmlW": 390,
+      "innerW": 390,
+      "overflow": false,
+      "btn": {
+        "w": 42,
+        "h": 44,
+        "display": "flex",
+        "bg": "rgb(89, 101, 117)",
+        "color": "rgb(255, 255, 255)",
+        "border": "rgba(0, 0, 0, 0)"
+      },
+      "primary": {
+        "w": 42,
+        "h": 44,
+        "display": "flex",
+        "bg": "rgb(89, 101, 117)",
+        "color": "rgb(255, 255, 255)",
+        "border": "rgba(0, 0, 0, 0)"
+      },
+      "icon": {
+        "w": 42,
+        "h": 42,
+        "display": "grid",
+        "bg": "rgba(120, 120, 128, 0.12)",
+        "color": "rgba(60, 60, 67, 0.72)",
+        "border": "rgba(60, 60, 67, 0.18)"
+      },
+      "iconOn": null,
+      "quick": {
+        "w": 221,
+        "h": 42,
+        "display": "block",
+        "bg": "rgba(120, 120, 128, 0.12)",
+        "color": "rgb(29, 29, 31)",
+        "border": "rgba(60, 60, 67, 0.18)"
+      },
+      "seg": {
+        "w": 334,
+        "h": 46,
+        "display": "flex",
+        "bg": "rgba(120, 120, 128, 0.12)",
+        "color": "rgb(29, 29, 31)",
+        "border": "rgba(60, 60, 67, 0.18)"
+      },
+      "chip": null,
+      "settingsOpen": false,
+      "drawerOpen": true
+    }
+  }
+]

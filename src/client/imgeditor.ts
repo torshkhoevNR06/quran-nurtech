@@ -1,6 +1,8 @@
 // Мощный редактор картинок аятов для Instagram: форматы, фоны-градиенты,
 // выбор текстов/шрифтов/цвета, живой предпросмотр на canvas, экспорт/шеринг.
 
+import { updateMobileScrollLock } from './ui-menus';
+
 export interface AyahData {
   s: number;
   a: number;
@@ -78,6 +80,7 @@ const S: State = {
 let data: AyahData;
 let canvas: HTMLCanvasElement;
 let overlay: HTMLElement;
+let prevBodyOverflow = '';
 
 const bgCss = (b: Bg) =>
   `linear-gradient(${b.angle}deg, ${b.stops.map(([o, c]) => `${c} ${o * 100}%`).join(', ')})`;
@@ -247,7 +250,7 @@ function render() {
 }
 
 function chip(label: string, active: boolean, attr: string) {
-  return `<button type="button" class="ie-chip${active ? ' on' : ''}" ${attr}>${label}</button>`;
+  return `<button type="button" class="ie-chip ui-button${active ? ' on' : ''}" ${attr}>${label}</button>`;
 }
 
 function controlsHtml() {
@@ -285,8 +288,8 @@ function build() {
   overlay = document.createElement('div');
   overlay.className = 'ie-overlay';
   overlay.innerHTML = `
-    <div class="ie-modal" role="dialog" aria-label="Редактор картинки аята">
-      <button class="ie-close" data-ie-close aria-label="Закрыть">✕</button>
+    <div class="ie-modal" role="dialog" aria-modal="true" aria-label="Редактор картинки аята" tabindex="-1">
+      <button class="ie-close ui-icon-button" data-ie-close aria-label="Закрыть">✕</button>
       <div class="ie-preview"><canvas data-ie-canvas></canvas></div>
       <div class="ie-panel">
         <div class="ie-controls" data-ie-controls>${controlsHtml()}</div>
@@ -351,15 +354,15 @@ function renderFoot() {
   let hint = '';
   if (isTouch() && canShareFiles()) {
     buttons =
-      `<button class="btn primary" data-ie-share>Поделиться</button>` +
-      `<button class="btn" data-ie-download>Скачать</button>`;
+      `<button class="btn ui-button primary is-primary" data-ie-share>Поделиться</button>` +
+      `<button class="btn ui-button" data-ie-download>Скачать</button>`;
   } else if (canCopyImg()) {
     buttons =
-      `<button class="btn primary" data-ie-copy>Копировать</button>` +
-      `<button class="btn" data-ie-download>Скачать</button>`;
+      `<button class="btn ui-button primary is-primary" data-ie-copy>Копировать</button>` +
+      `<button class="btn ui-button" data-ie-download>Скачать</button>`;
     hint = `<div class="ie-hint">Вставьте картинку в Telegram или Instagram: <b>⌘/Ctrl + V</b></div>`;
   } else {
-    buttons = `<button class="btn primary" data-ie-download>Скачать картинку</button>`;
+    buttons = `<button class="btn ui-button primary is-primary" data-ie-download>Скачать картинку</button>`;
   }
   foot.innerHTML = `<div class="ie-actions">${buttons}</div>${hint}`;
 }
@@ -436,7 +439,9 @@ function toastIE(msg: string) {
 
 function close() {
   overlay.classList.remove('show');
-  document.body.style.overflow = '';
+  document.body.classList.remove('image-editor-open');
+  updateMobileScrollLock();
+  document.body.style.overflow = prevBodyOverflow;
 }
 
 export async function openAyahEditor(d: AyahData) {
@@ -444,9 +449,13 @@ export async function openAyahEditor(d: AyahData) {
   // разумные умолчания источников: если нет aa, ставим kuliev
   if (S.tr !== 'none' && !d.aa && (S.tr === 'abuadel' || S.tr === 'both')) S.tr = 'kuliev';
   if (!overlay) build();
+  prevBodyOverflow = document.body.style.overflow;
   overlay.classList.add('show');
+  document.body.classList.add('image-editor-open');
   document.body.style.overflow = 'hidden';
+  updateMobileScrollLock();
   refresh();
+  (overlay.querySelector('.ie-modal') as HTMLElement | null)?.focus({ preventScroll: true });
   try {
     if (document.fonts && (document.fonts as any).ready) {
       await (document.fonts as any).ready;

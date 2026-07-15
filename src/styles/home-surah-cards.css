@@ -1,0 +1,76 @@
+.surah-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 14px;
+  padding-bottom: 70px;
+}
+.surah-card {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  cursor: pointer;
+}
+.surah-card .num {
+  flex: none;
+  display: grid;
+  place-items: center;
+  font-size: 15px;
+}
+.surah-card .card-body {
+  flex: 1;
+  min-width: 0;
+}
+.surah-card .row1,
+.surah-card .row2 {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+.surah-card .row2 {
+  margin-top: 3px;
+}
+.surah-card .r {
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.surah-card .m {
+  font-size: 12.5px;
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.surah-card .ar-name {
+  flex: none;
+  font-family: var(--ar-font), 'AmiriQuran', serif;
+  font-size: 20px;
+  direction: rtl;
+  white-space: nowrap;
+}
+.surah-card .acts {
+  flex: none;
+  display: flex;
+  gap: 2px;
+  max-width: 100%;
+}
+.surah-card .acts a {
+  width: 32px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+  border-radius: 10px;
+  color: var(--ink-faint);
+  transition: background 0.15s, color 0.15s;
+}
+.surah-card .acts a:hover {
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+.surah-card .acts svg {
+  width: 16px;
+  height: 16px;
+}
