@@ -55,6 +55,7 @@
   - `src/components/ui/ReaderCard.astro`.
 - Settings inspector в `TopBarSettings.astro` переведён на `InspectorSection`, `SwitchRow`, `ListRow` и `SegmentedControl` с сохранением всех `data-*` хуков.
 - `Player.astro` переведён на `Toolbar` и `IconButton`, при этом сохранены player-specific классы для floating material и круглой play-кнопки.
+- `Drawer.astro` переведён на `ListRow`, `IconButton` и `SegmentedControl`; большой inline `<style is:global>` вынесен в `src/styles/shell-drawer-source-list.css`.
 - `/search/`, `/audio/`, `/download/` переведены на `PageShell` / `PageHeader` и новые UI-компоненты.
 - `/stats/` переведён на `Section` и `StatTile`, а таблица статистики обновлена под системные grouped-токены.
 - `/bookmarks/` и `/tasbih/` частично переведены на общий `Button`.
@@ -131,17 +132,22 @@
   - toolbar class, icon-button hooks, круглая play-кнопка, speed, repeat и mobile overflow;
   - 7 автоматических проверок, 0 падений;
   - скрины: `qa-screens/2026-07-15-player-component/`.
+- После перевода drawer/sidebar на UI-компоненты пройден targeted QA:
+  - desktop/mobile `/surah/2/`;
+  - shared list rows, segmented tabs, список сур, фильтр, джузы, desktop collapse/reopen, mobile body lock и внутренний scroll;
+  - 11 автоматических проверок, 0 падений;
+  - скрины: `qa-screens/2026-07-15-drawer-component/`.
 
 ### Частично закрыто
 
-- Компонентная система уже покрывает базовые primitives, settings inspector и player, но ещё не мигрированы `Drawer`, `topics`, `glossary`, `backup`, а `Sheet`, `Toolbar`, `ReaderCard` пока добавлены как база для следующих проходов.
+- Компонентная система уже покрывает базовые primitives, settings inspector, player и drawer shell, но ещё не мигрированы `topics`, `glossary`, `backup`; клиентски генерируемые строки сур/джузов в drawer пока остаются HTML-строками.
 - Page CSS стал чище, но `bookmarks`, `backup`, `tasbih`, `glossary`, `topics`, `image-editor` ещё требуют отдельного унификационного прохода. `stats`, `audio`, `search`, `download` уже ближе к общей системе.
 - Мушаф стал стабильнее по fullscreen и базовой матрице, но advanced polish по zoom/pan/pinch/604-page audit ещё не закрыт полностью.
 
 ### Остаётся
 
 - Отдельно решить, нужен ли новый hotkey для тафсира: старый `T` до выноса не имел фактического слоя, потому что текущая модель настроек включает только Arabic/translation/transliteration.
-- Мигрировать на новые UI-компоненты `Drawer`, `topics`, `glossary`, `backup`; продолжить углублять `bookmarks` и `tasbih`.
+- Мигрировать на новые UI-компоненты `topics`, `glossary`, `backup`; продолжить углублять `bookmarks` и `tasbih`. Отдельно можно заменить HTML-строки сур/джузов в `src/client/drawer.ts` на шаблонный helper.
 - Провести типографический pass по страницам с локальными стилями и убрать случайные тяжёлые веса `700/800`, где они не являются смысловым акцентом.
 - Довести mobile overlay-аудит вручную: drawer scroll, settings scroll, action sheet, player, keyboard behavior, body scroll lock.
 - Довести desktop three-column как полноценную state-модель: sidebar collapsed, inspector open, narrow fallback, toolbar overflow.
