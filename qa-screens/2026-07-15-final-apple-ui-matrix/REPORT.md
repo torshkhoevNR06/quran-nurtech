@@ -1,0 +1,1401 @@
+# Final Apple UI Matrix
+
+Total: 1396
+Failed: 0
+
+- PASS chromium iphone-se / http ok: 200
+- PASS chromium iphone-se / no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium iphone-se / main exists: {"x":0,"y":66,"width":375,"height":12703.09375}
+- PASS chromium iphone-se / topbar width ok: {"x":0,"y":0,"width":375,"height":66}
+- PASS chromium iphone-se / tabbar width ok: {"x":0,"y":601,"width":375,"height":66}
+- PASS chromium iphone-se / no visible overwide elements: []
+- PASS chromium iphone-se /surah/1/ http ok: 200
+- PASS chromium iphone-se /surah/1/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium iphone-se /surah/1/ main exists: {"x":0,"y":66,"width":375,"height":3819.75}
+- PASS chromium iphone-se /surah/1/ topbar width ok: {"x":0,"y":0,"width":375,"height":66}
+- PASS chromium iphone-se /surah/1/ tabbar width ok: {"x":0,"y":601,"width":375,"height":66}
+- PASS chromium iphone-se /surah/1/ no visible overwide elements: []
+- PASS chromium iphone-se /surah/2/ http ok: 200
+- PASS chromium iphone-se /surah/2/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium iphone-se /surah/2/ main exists: {"x":0,"y":66,"width":375,"height":196013.875}
+- PASS chromium iphone-se /surah/2/ topbar width ok: {"x":0,"y":0,"width":375,"height":66}
+- PASS chromium iphone-se /surah/2/ tabbar width ok: {"x":0,"y":601,"width":375,"height":66}
+- PASS chromium iphone-se /surah/2/ no visible overwide elements: []
+- PASS chromium iphone-se /surah/9/ http ok: 200
+- PASS chromium iphone-se /surah/9/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium iphone-se /surah/9/ main exists: {"x":0,"y":66,"width":375,"height":88841.15625}
+- PASS chromium iphone-se /surah/9/ topbar width ok: {"x":0,"y":0,"width":375,"height":66}
+- PASS chromium iphone-se /surah/9/ tabbar width ok: {"x":0,"y":601,"width":375,"height":66}
+- PASS chromium iphone-se /surah/9/ no visible overwide elements: []
+- PASS chromium iphone-se /mushaf/1 http ok: 200
+- PASS chromium iphone-se /mushaf/1 no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium iphone-se /mushaf/1 main exists: {"x":0,"y":66,"width":375,"height":613}
+- PASS chromium iphone-se /mushaf/1 topbar width ok: {"x":0,"y":0,"width":375,"height":66}
+- PASS chromium iphone-se /mushaf/1 tabbar width ok: {"x":0,"y":673.5999755859375,"width":375,"height":66}
+- PASS chromium iphone-se /mushaf/1 no visible overwide elements: []
+- PASS chromium iphone-se /mushaf/1 mushaf sheet exists: {"x":16.78125,"y":70,"width":341.4375,"height":484.984375}
+- PASS chromium iphone-se /mushaf/1 mushaf fits width: {"x":16.78125,"y":70,"width":341.4375,"height":484.984375}
+- PASS chromium iphone-se /mushaf/2 http ok: 200
+- PASS chromium iphone-se /mushaf/2 no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium iphone-se /mushaf/2 main exists: {"x":0,"y":66,"width":375,"height":613}
+- PASS chromium iphone-se /mushaf/2 topbar width ok: {"x":0,"y":0,"width":375,"height":66}
+- PASS chromium iphone-se /mushaf/2 tabbar width ok: {"x":0,"y":673.5999755859375,"width":375,"height":66}
+- PASS chromium iphone-se /mushaf/2 no visible overwide elements: []
+- PASS chromium iphone-se /mushaf/2 mushaf sheet exists: {"x":16.78125,"y":70,"width":341.4375,"height":484.984375}
+- PASS chromium iphone-se /mushaf/2 mushaf fits width: {"x":16.78125,"y":70,"width":341.4375,"height":484.984375}
+- PASS chromium iphone-se /mushaf/604 http ok: 200
+- PASS chromium iphone-se /mushaf/604 no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium iphone-se /mushaf/604 main exists: {"x":0,"y":66,"width":375,"height":613}
+- PASS chromium iphone-se /mushaf/604 topbar width ok: {"x":0,"y":0,"width":375,"height":66}
+- PASS chromium iphone-se /mushaf/604 tabbar width ok: {"x":0,"y":673.5999755859375,"width":375,"height":66}
+- PASS chromium iphone-se /mushaf/604 no visible overwide elements: []
+- PASS chromium iphone-se /mushaf/604 mushaf sheet exists: {"x":16.78125,"y":70,"width":341.4375,"height":484.984375}
+- PASS chromium iphone-se /mushaf/604 mushaf fits width: {"x":16.78125,"y":70,"width":341.4375,"height":484.984375}
+- PASS chromium iphone-se /search/ http ok: 200
+- PASS chromium iphone-se /search/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium iphone-se /search/ main exists: {"x":0,"y":64,"width":375,"height":1031.5}
+- PASS chromium iphone-se /search/ topbar width ok: {"x":0,"y":0,"width":375,"height":64}
+- PASS chromium iphone-se /search/ tabbar width ok: {"x":0,"y":601,"width":375,"height":66}
+- PASS chromium iphone-se /search/ no visible overwide elements: []
+- PASS chromium iphone-se /progress/ http ok: 200
+- PASS chromium iphone-se /progress/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium iphone-se /progress/ main exists: {"x":0,"y":66,"width":375,"height":3698.59375}
+- PASS chromium iphone-se /progress/ topbar width ok: {"x":0,"y":0,"width":375,"height":66}
+- PASS chromium iphone-se /progress/ tabbar width ok: {"x":0,"y":601,"width":375,"height":66}
+- PASS chromium iphone-se /progress/ no visible overwide elements: []
+- PASS chromium iphone-se /stats/ http ok: 200
+- PASS chromium iphone-se /stats/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium iphone-se /stats/ main exists: {"x":0,"y":66,"width":375,"height":799.546875}
+- PASS chromium iphone-se /stats/ topbar width ok: {"x":0,"y":0,"width":375,"height":66}
+- PASS chromium iphone-se /stats/ tabbar width ok: {"x":0,"y":601,"width":375,"height":66}
+- PASS chromium iphone-se /stats/ no visible overwide elements: []
+- PASS chromium iphone-se /audio/ http ok: 200
+- PASS chromium iphone-se /audio/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium iphone-se /audio/ main exists: {"x":0,"y":66,"width":375,"height":1247.84375}
+- PASS chromium iphone-se /audio/ topbar width ok: {"x":0,"y":0,"width":375,"height":66}
+- PASS chromium iphone-se /audio/ tabbar width ok: {"x":0,"y":601,"width":375,"height":66}
+- PASS chromium iphone-se /audio/ no visible overwide elements: []
+- PASS chromium iphone-se /bookmarks/ http ok: 200
+- PASS chromium iphone-se /bookmarks/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium iphone-se /bookmarks/ main exists: {"x":0,"y":66,"width":375,"height":509.65625}
+- PASS chromium iphone-se /bookmarks/ topbar width ok: {"x":0,"y":0,"width":375,"height":66}
+- PASS chromium iphone-se /bookmarks/ tabbar width ok: {"x":0,"y":601,"width":375,"height":66}
+- PASS chromium iphone-se /bookmarks/ no visible overwide elements: []
+- PASS chromium iphone-se /topics/ http ok: 200
+- PASS chromium iphone-se /topics/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium iphone-se /topics/ main exists: {"x":0,"y":66,"width":375,"height":4746.359375}
+- PASS chromium iphone-se /topics/ topbar width ok: {"x":0,"y":0,"width":375,"height":66}
+- PASS chromium iphone-se /topics/ tabbar width ok: {"x":0,"y":601,"width":375,"height":66}
+- PASS chromium iphone-se /topics/ no visible overwide elements: []
+- PASS chromium iphone-se /glossary/ http ok: 200
+- PASS chromium iphone-se /glossary/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium iphone-se /glossary/ main exists: {"x":0,"y":66,"width":375,"height":5033}
+- PASS chromium iphone-se /glossary/ topbar width ok: {"x":0,"y":0,"width":375,"height":66}
+- PASS chromium iphone-se /glossary/ tabbar width ok: {"x":0,"y":601,"width":375,"height":66}
+- PASS chromium iphone-se /glossary/ no visible overwide elements: []
+- PASS chromium iphone-se /tasbih/ http ok: 200
+- PASS chromium iphone-se /tasbih/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium iphone-se /tasbih/ main exists: {"x":0,"y":66,"width":375,"height":1101.6875}
+- PASS chromium iphone-se /tasbih/ topbar width ok: {"x":0,"y":0,"width":375,"height":66}
+- PASS chromium iphone-se /tasbih/ tabbar width ok: {"x":0,"y":601,"width":375,"height":66}
+- PASS chromium iphone-se /tasbih/ no visible overwide elements: []
+- PASS chromium iphone-se /download/ http ok: 200
+- PASS chromium iphone-se /download/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium iphone-se /download/ main exists: {"x":0,"y":66,"width":375,"height":1131.484375}
+- PASS chromium iphone-se /download/ topbar width ok: {"x":0,"y":0,"width":375,"height":66}
+- PASS chromium iphone-se /download/ tabbar width ok: {"x":0,"y":601,"width":375,"height":66}
+- PASS chromium iphone-se /download/ no visible overwide elements: []
+- PASS chromium iphone-se /backup/ http ok: 200
+- PASS chromium iphone-se /backup/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium iphone-se /backup/ main exists: {"x":0,"y":66,"width":375,"height":939.59375}
+- PASS chromium iphone-se /backup/ topbar width ok: {"x":0,"y":0,"width":375,"height":66}
+- PASS chromium iphone-se /backup/ tabbar width ok: {"x":0,"y":601,"width":375,"height":66}
+- PASS chromium iphone-se /backup/ no visible overwide elements: []
+- PASS chromium iphone-se /about/ http ok: 200
+- PASS chromium iphone-se /about/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium iphone-se /about/ main exists: {"x":0,"y":66,"width":375,"height":2138.53125}
+- PASS chromium iphone-se /about/ topbar width ok: {"x":0,"y":0,"width":375,"height":66}
+- PASS chromium iphone-se /about/ tabbar width ok: {"x":0,"y":601,"width":375,"height":66}
+- PASS chromium iphone-se /about/ no visible overwide elements: []
+- PASS chromium iphone-se /privacy/ http ok: 200
+- PASS chromium iphone-se /privacy/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium iphone-se /privacy/ main exists: {"x":0,"y":66,"width":375,"height":848.765625}
+- PASS chromium iphone-se /privacy/ topbar width ok: {"x":0,"y":0,"width":375,"height":66}
+- PASS chromium iphone-se /privacy/ tabbar width ok: {"x":0,"y":601,"width":375,"height":66}
+- PASS chromium iphone-se /privacy/ no visible overwide elements: []
+- PASS chromium iphone-se /translators/ http ok: 200
+- PASS chromium iphone-se /translators/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium iphone-se /translators/ main exists: {"x":0,"y":66,"width":375,"height":903.21875}
+- PASS chromium iphone-se /translators/ topbar width ok: {"x":0,"y":0,"width":375,"height":66}
+- PASS chromium iphone-se /translators/ tabbar width ok: {"x":0,"y":601,"width":375,"height":66}
+- PASS chromium iphone-se /translators/ no visible overwide elements: []
+- PASS chromium iphone-se /videos/ http ok: 200
+- PASS chromium iphone-se /videos/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium iphone-se /videos/ main exists: {"x":0,"y":66,"width":375,"height":9105.859375}
+- PASS chromium iphone-se /videos/ topbar width ok: {"x":0,"y":0,"width":375,"height":66}
+- PASS chromium iphone-se /videos/ tabbar width ok: {"x":0,"y":601,"width":375,"height":66}
+- PASS chromium iphone-se /videos/ no visible overwide elements: []
+- PASS chromium iphone-se drawer scenario opens/locks: {"open":true,"overflow":"hidden","pos":"fixed","active":"BUTTON","sidebar":"","pageOverflow":0}
+- PASS chromium iphone-se drawer search filters: hits=11
+- PASS chromium iphone-se settings scenario opens/locks: {"open":true,"overflow":"hidden","pos":"fixed","active":"BUTTON","pageOverflow":0}
+- PASS chromium iphone-se settings tajweed toggles: clicked
+- PASS chromium iphone-se audio scenario player opens: {"open":true,"player":{"x":0,"y":590,"width":375,"height":76,"top":590,"right":375,"bottom":666,"left":0},"tab":{"x":0,"y":673.5999755859375,"width":375,"height":66,"top":673.5999755859375,"right":375,"bottom":739.5999755859375,"left":0}}
+- PASS chromium iphone-se mushaf zoom scenario: {"zoomed":true,"overflow":0}
+- PASS chromium iphone-se mushaf immersive scenario: {"immersive":true,"top":"none","footer":"none","overflow":0}
+- PASS chromium iphone-se no console errors
+- PASS chromium iphone-modern / http ok: 200
+- PASS chromium iphone-modern / no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium iphone-modern / main exists: {"x":0,"y":66,"width":390,"height":12703.09375}
+- PASS chromium iphone-modern / topbar width ok: {"x":0,"y":0,"width":390,"height":66}
+- PASS chromium iphone-modern / tabbar width ok: {"x":0,"y":778,"width":390,"height":66}
+- PASS chromium iphone-modern / no visible overwide elements: []
+- PASS chromium iphone-modern /surah/1/ http ok: 200
+- PASS chromium iphone-modern /surah/1/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium iphone-modern /surah/1/ main exists: {"x":0,"y":66,"width":390,"height":3076.21875}
+- PASS chromium iphone-modern /surah/1/ topbar width ok: {"x":0,"y":0,"width":390,"height":66}
+- PASS chromium iphone-modern /surah/1/ tabbar width ok: {"x":0,"y":778,"width":390,"height":66}
+- PASS chromium iphone-modern /surah/1/ no visible overwide elements: []
+- PASS chromium iphone-modern /surah/2/ http ok: 200
+- PASS chromium iphone-modern /surah/2/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium iphone-modern /surah/2/ main exists: {"x":0,"y":66,"width":390,"height":195474.8125}
+- PASS chromium iphone-modern /surah/2/ topbar width ok: {"x":0,"y":0,"width":390,"height":66}
+- PASS chromium iphone-modern /surah/2/ tabbar width ok: {"x":0,"y":778,"width":390,"height":66}
+- PASS chromium iphone-modern /surah/2/ no visible overwide elements: []
+- PASS chromium iphone-modern /surah/9/ http ok: 200
+- PASS chromium iphone-modern /surah/9/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium iphone-modern /surah/9/ main exists: {"x":0,"y":66,"width":390,"height":88812}
+- PASS chromium iphone-modern /surah/9/ topbar width ok: {"x":0,"y":0,"width":390,"height":66}
+- PASS chromium iphone-modern /surah/9/ tabbar width ok: {"x":0,"y":778,"width":390,"height":66}
+- PASS chromium iphone-modern /surah/9/ no visible overwide elements: []
+- PASS chromium iphone-modern /mushaf/1 http ok: 200
+- PASS chromium iphone-modern /mushaf/1 no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium iphone-modern /mushaf/1 main exists: {"x":0,"y":66,"width":390,"height":790}
+- PASS chromium iphone-modern /mushaf/1 topbar width ok: {"x":0,"y":0,"width":390,"height":66}
+- PASS chromium iphone-modern /mushaf/1 tabbar width ok: {"x":0,"y":850.5999755859375,"width":390,"height":66}
+- PASS chromium iphone-modern /mushaf/1 no visible overwide elements: []
+- PASS chromium iphone-modern /mushaf/1 mushaf sheet exists: {"x":6,"y":70,"width":378,"height":536.921875}
+- PASS chromium iphone-modern /mushaf/1 mushaf fits width: {"x":6,"y":70,"width":378,"height":536.921875}
+- PASS chromium iphone-modern /mushaf/2 http ok: 200
+- PASS chromium iphone-modern /mushaf/2 no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium iphone-modern /mushaf/2 main exists: {"x":0,"y":66,"width":390,"height":790}
+- PASS chromium iphone-modern /mushaf/2 topbar width ok: {"x":0,"y":0,"width":390,"height":66}
+- PASS chromium iphone-modern /mushaf/2 tabbar width ok: {"x":0,"y":850.5999755859375,"width":390,"height":66}
+- PASS chromium iphone-modern /mushaf/2 no visible overwide elements: []
+- PASS chromium iphone-modern /mushaf/2 mushaf sheet exists: {"x":6,"y":70,"width":378,"height":536.921875}
+- PASS chromium iphone-modern /mushaf/2 mushaf fits width: {"x":6,"y":70,"width":378,"height":536.921875}
+- PASS chromium iphone-modern /mushaf/604 http ok: 200
+- PASS chromium iphone-modern /mushaf/604 no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium iphone-modern /mushaf/604 main exists: {"x":0,"y":66,"width":390,"height":790}
+- PASS chromium iphone-modern /mushaf/604 topbar width ok: {"x":0,"y":0,"width":390,"height":66}
+- PASS chromium iphone-modern /mushaf/604 tabbar width ok: {"x":0,"y":850.5999755859375,"width":390,"height":66}
+- PASS chromium iphone-modern /mushaf/604 no visible overwide elements: []
+- PASS chromium iphone-modern /mushaf/604 mushaf sheet exists: {"x":6,"y":70,"width":378,"height":536.921875}
+- PASS chromium iphone-modern /mushaf/604 mushaf fits width: {"x":6,"y":70,"width":378,"height":536.921875}
+- PASS chromium iphone-modern /search/ http ok: 200
+- PASS chromium iphone-modern /search/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium iphone-modern /search/ main exists: {"x":0,"y":64,"width":390,"height":1002.265625}
+- PASS chromium iphone-modern /search/ topbar width ok: {"x":0,"y":0,"width":390,"height":64}
+- PASS chromium iphone-modern /search/ tabbar width ok: {"x":0,"y":778,"width":390,"height":66}
+- PASS chromium iphone-modern /search/ no visible overwide elements: []
+- PASS chromium iphone-modern /progress/ http ok: 200
+- PASS chromium iphone-modern /progress/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium iphone-modern /progress/ main exists: {"x":0,"y":66,"width":390,"height":3746.09375}
+- PASS chromium iphone-modern /progress/ topbar width ok: {"x":0,"y":0,"width":390,"height":66}
+- PASS chromium iphone-modern /progress/ tabbar width ok: {"x":0,"y":778,"width":390,"height":66}
+- PASS chromium iphone-modern /progress/ no visible overwide elements: []
+- PASS chromium iphone-modern /stats/ http ok: 200
+- PASS chromium iphone-modern /stats/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium iphone-modern /stats/ main exists: {"x":0,"y":66,"width":390,"height":748.359375}
+- PASS chromium iphone-modern /stats/ topbar width ok: {"x":0,"y":0,"width":390,"height":66}
+- PASS chromium iphone-modern /stats/ tabbar width ok: {"x":0,"y":778,"width":390,"height":66}
+- PASS chromium iphone-modern /stats/ no visible overwide elements: []
+- PASS chromium iphone-modern /audio/ http ok: 200
+- PASS chromium iphone-modern /audio/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium iphone-modern /audio/ main exists: {"x":0,"y":66,"width":390,"height":1247.84375}
+- PASS chromium iphone-modern /audio/ topbar width ok: {"x":0,"y":0,"width":390,"height":66}
+- PASS chromium iphone-modern /audio/ tabbar width ok: {"x":0,"y":778,"width":390,"height":66}
+- PASS chromium iphone-modern /audio/ no visible overwide elements: []
+- PASS chromium iphone-modern /bookmarks/ http ok: 200
+- PASS chromium iphone-modern /bookmarks/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium iphone-modern /bookmarks/ main exists: {"x":0,"y":66,"width":390,"height":509.65625}
+- PASS chromium iphone-modern /bookmarks/ topbar width ok: {"x":0,"y":0,"width":390,"height":66}
+- PASS chromium iphone-modern /bookmarks/ tabbar width ok: {"x":0,"y":778,"width":390,"height":66}
+- PASS chromium iphone-modern /bookmarks/ no visible overwide elements: []
+- PASS chromium iphone-modern /topics/ http ok: 200
+- PASS chromium iphone-modern /topics/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium iphone-modern /topics/ main exists: {"x":0,"y":66,"width":390,"height":4746.359375}
+- PASS chromium iphone-modern /topics/ topbar width ok: {"x":0,"y":0,"width":390,"height":66}
+- PASS chromium iphone-modern /topics/ tabbar width ok: {"x":0,"y":778,"width":390,"height":66}
+- PASS chromium iphone-modern /topics/ no visible overwide elements: []
+- PASS chromium iphone-modern /glossary/ http ok: 200
+- PASS chromium iphone-modern /glossary/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium iphone-modern /glossary/ main exists: {"x":0,"y":66,"width":390,"height":4967.9375}
+- PASS chromium iphone-modern /glossary/ topbar width ok: {"x":0,"y":0,"width":390,"height":66}
+- PASS chromium iphone-modern /glossary/ tabbar width ok: {"x":0,"y":778,"width":390,"height":66}
+- PASS chromium iphone-modern /glossary/ no visible overwide elements: []
+- PASS chromium iphone-modern /tasbih/ http ok: 200
+- PASS chromium iphone-modern /tasbih/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium iphone-modern /tasbih/ main exists: {"x":0,"y":66,"width":390,"height":1112.78125}
+- PASS chromium iphone-modern /tasbih/ topbar width ok: {"x":0,"y":0,"width":390,"height":66}
+- PASS chromium iphone-modern /tasbih/ tabbar width ok: {"x":0,"y":778,"width":390,"height":66}
+- PASS chromium iphone-modern /tasbih/ no visible overwide elements: []
+- PASS chromium iphone-modern /download/ http ok: 200
+- PASS chromium iphone-modern /download/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium iphone-modern /download/ main exists: {"x":0,"y":66,"width":390,"height":1131.484375}
+- PASS chromium iphone-modern /download/ topbar width ok: {"x":0,"y":0,"width":390,"height":66}
+- PASS chromium iphone-modern /download/ tabbar width ok: {"x":0,"y":778,"width":390,"height":66}
+- PASS chromium iphone-modern /download/ no visible overwide elements: []
+- PASS chromium iphone-modern /backup/ http ok: 200
+- PASS chromium iphone-modern /backup/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium iphone-modern /backup/ main exists: {"x":0,"y":66,"width":390,"height":963.671875}
+- PASS chromium iphone-modern /backup/ topbar width ok: {"x":0,"y":0,"width":390,"height":66}
+- PASS chromium iphone-modern /backup/ tabbar width ok: {"x":0,"y":778,"width":390,"height":66}
+- PASS chromium iphone-modern /backup/ no visible overwide elements: []
+- PASS chromium iphone-modern /about/ http ok: 200
+- PASS chromium iphone-modern /about/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium iphone-modern /about/ main exists: {"x":0,"y":66,"width":390,"height":2028.46875}
+- PASS chromium iphone-modern /about/ topbar width ok: {"x":0,"y":0,"width":390,"height":66}
+- PASS chromium iphone-modern /about/ tabbar width ok: {"x":0,"y":778,"width":390,"height":66}
+- PASS chromium iphone-modern /about/ no visible overwide elements: []
+- PASS chromium iphone-modern /privacy/ http ok: 200
+- PASS chromium iphone-modern /privacy/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium iphone-modern /privacy/ main exists: {"x":0,"y":66,"width":390,"height":848.765625}
+- PASS chromium iphone-modern /privacy/ topbar width ok: {"x":0,"y":0,"width":390,"height":66}
+- PASS chromium iphone-modern /privacy/ tabbar width ok: {"x":0,"y":778,"width":390,"height":66}
+- PASS chromium iphone-modern /privacy/ no visible overwide elements: []
+- PASS chromium iphone-modern /translators/ http ok: 200
+- PASS chromium iphone-modern /translators/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium iphone-modern /translators/ main exists: {"x":0,"y":66,"width":390,"height":903.21875}
+- PASS chromium iphone-modern /translators/ topbar width ok: {"x":0,"y":0,"width":390,"height":66}
+- PASS chromium iphone-modern /translators/ tabbar width ok: {"x":0,"y":778,"width":390,"height":66}
+- PASS chromium iphone-modern /translators/ no visible overwide elements: []
+- PASS chromium iphone-modern /videos/ http ok: 200
+- PASS chromium iphone-modern /videos/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium iphone-modern /videos/ main exists: {"x":0,"y":66,"width":390,"height":9019.921875}
+- PASS chromium iphone-modern /videos/ topbar width ok: {"x":0,"y":0,"width":390,"height":66}
+- PASS chromium iphone-modern /videos/ tabbar width ok: {"x":0,"y":778,"width":390,"height":66}
+- PASS chromium iphone-modern /videos/ no visible overwide elements: []
+- PASS chromium iphone-modern drawer scenario opens/locks: {"open":true,"overflow":"hidden","pos":"fixed","active":"BUTTON","sidebar":"","pageOverflow":0}
+- PASS chromium iphone-modern drawer search filters: hits=11
+- PASS chromium iphone-modern settings scenario opens/locks: {"open":true,"overflow":"hidden","pos":"fixed","active":"BUTTON","pageOverflow":0}
+- PASS chromium iphone-modern settings tajweed toggles: clicked
+- PASS chromium iphone-modern audio scenario player opens: {"open":true,"player":{"x":0,"y":767,"width":390,"height":76,"top":767,"right":390,"bottom":843,"left":0},"tab":{"x":0,"y":850.5999755859375,"width":390,"height":66,"top":850.5999755859375,"right":390,"bottom":916.5999755859375,"left":0}}
+- PASS chromium iphone-modern mushaf zoom scenario: {"zoomed":true,"overflow":0}
+- PASS chromium iphone-modern mushaf immersive scenario: {"immersive":true,"top":"none","footer":"none","overflow":0}
+- PASS chromium iphone-modern no console errors
+- PASS chromium iphone-large / http ok: 200
+- PASS chromium iphone-large / no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium iphone-large / main exists: {"x":0,"y":66,"width":430,"height":12703.09375}
+- PASS chromium iphone-large / topbar width ok: {"x":0,"y":0,"width":430,"height":66}
+- PASS chromium iphone-large / tabbar width ok: {"x":0,"y":866,"width":430,"height":66}
+- PASS chromium iphone-large / no visible overwide elements: []
+- PASS chromium iphone-large /surah/1/ http ok: 200
+- PASS chromium iphone-large /surah/1/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium iphone-large /surah/1/ main exists: {"x":0,"y":66,"width":430,"height":2777.53125}
+- PASS chromium iphone-large /surah/1/ topbar width ok: {"x":0,"y":0,"width":430,"height":66}
+- PASS chromium iphone-large /surah/1/ tabbar width ok: {"x":0,"y":866,"width":430,"height":66}
+- PASS chromium iphone-large /surah/1/ no visible overwide elements: []
+- PASS chromium iphone-large /surah/2/ http ok: 200
+- PASS chromium iphone-large /surah/2/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium iphone-large /surah/2/ main exists: {"x":0,"y":66,"width":430,"height":195387.15625}
+- PASS chromium iphone-large /surah/2/ topbar width ok: {"x":0,"y":0,"width":430,"height":66}
+- PASS chromium iphone-large /surah/2/ tabbar width ok: {"x":0,"y":866,"width":430,"height":66}
+- PASS chromium iphone-large /surah/2/ no visible overwide elements: []
+- PASS chromium iphone-large /surah/9/ http ok: 200
+- PASS chromium iphone-large /surah/9/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium iphone-large /surah/9/ main exists: {"x":0,"y":66,"width":430,"height":88717.78125}
+- PASS chromium iphone-large /surah/9/ topbar width ok: {"x":0,"y":0,"width":430,"height":66}
+- PASS chromium iphone-large /surah/9/ tabbar width ok: {"x":0,"y":866,"width":430,"height":66}
+- PASS chromium iphone-large /surah/9/ no visible overwide elements: []
+- PASS chromium iphone-large /mushaf/1 http ok: 200
+- PASS chromium iphone-large /mushaf/1 no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium iphone-large /mushaf/1 main exists: {"x":0,"y":66,"width":430,"height":878}
+- PASS chromium iphone-large /mushaf/1 topbar width ok: {"x":0,"y":0,"width":430,"height":66}
+- PASS chromium iphone-large /mushaf/1 tabbar width ok: {"x":0,"y":938.5999755859375,"width":430,"height":66}
+- PASS chromium iphone-large /mushaf/1 no visible overwide elements: []
+- PASS chromium iphone-large /mushaf/1 mushaf sheet exists: {"x":6,"y":70,"width":418,"height":593.75}
+- PASS chromium iphone-large /mushaf/1 mushaf fits width: {"x":6,"y":70,"width":418,"height":593.75}
+- PASS chromium iphone-large /mushaf/2 http ok: 200
+- PASS chromium iphone-large /mushaf/2 no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium iphone-large /mushaf/2 main exists: {"x":0,"y":66,"width":430,"height":878}
+- PASS chromium iphone-large /mushaf/2 topbar width ok: {"x":0,"y":0,"width":430,"height":66}
+- PASS chromium iphone-large /mushaf/2 tabbar width ok: {"x":0,"y":938.5999755859375,"width":430,"height":66}
+- PASS chromium iphone-large /mushaf/2 no visible overwide elements: []
+- PASS chromium iphone-large /mushaf/2 mushaf sheet exists: {"x":6,"y":70,"width":418,"height":593.75}
+- PASS chromium iphone-large /mushaf/2 mushaf fits width: {"x":6,"y":70,"width":418,"height":593.75}
+- PASS chromium iphone-large /mushaf/604 http ok: 200
+- PASS chromium iphone-large /mushaf/604 no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium iphone-large /mushaf/604 main exists: {"x":0,"y":66,"width":430,"height":878}
+- PASS chromium iphone-large /mushaf/604 topbar width ok: {"x":0,"y":0,"width":430,"height":66}
+- PASS chromium iphone-large /mushaf/604 tabbar width ok: {"x":0,"y":938.5999755859375,"width":430,"height":66}
+- PASS chromium iphone-large /mushaf/604 no visible overwide elements: []
+- PASS chromium iphone-large /mushaf/604 mushaf sheet exists: {"x":6,"y":70,"width":418,"height":593.75}
+- PASS chromium iphone-large /mushaf/604 mushaf fits width: {"x":6,"y":70,"width":418,"height":593.75}
+- PASS chromium iphone-large /search/ http ok: 200
+- PASS chromium iphone-large /search/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium iphone-large /search/ main exists: {"x":0,"y":66,"width":430,"height":954.671875}
+- PASS chromium iphone-large /search/ topbar width ok: {"x":0,"y":0,"width":430,"height":66}
+- PASS chromium iphone-large /search/ tabbar width ok: {"x":0,"y":866,"width":430,"height":66}
+- PASS chromium iphone-large /search/ no visible overwide elements: []
+- PASS chromium iphone-large /progress/ http ok: 200
+- PASS chromium iphone-large /progress/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium iphone-large /progress/ main exists: {"x":0,"y":66,"width":430,"height":3605.546875}
+- PASS chromium iphone-large /progress/ topbar width ok: {"x":0,"y":0,"width":430,"height":66}
+- PASS chromium iphone-large /progress/ tabbar width ok: {"x":0,"y":866,"width":430,"height":66}
+- PASS chromium iphone-large /progress/ no visible overwide elements: []
+- PASS chromium iphone-large /stats/ http ok: 200
+- PASS chromium iphone-large /stats/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium iphone-large /stats/ main exists: {"x":0,"y":66,"width":430,"height":748.359375}
+- PASS chromium iphone-large /stats/ topbar width ok: {"x":0,"y":0,"width":430,"height":66}
+- PASS chromium iphone-large /stats/ tabbar width ok: {"x":0,"y":866,"width":430,"height":66}
+- PASS chromium iphone-large /stats/ no visible overwide elements: []
+- PASS chromium iphone-large /audio/ http ok: 200
+- PASS chromium iphone-large /audio/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium iphone-large /audio/ main exists: {"x":0,"y":66,"width":430,"height":1247.84375}
+- PASS chromium iphone-large /audio/ topbar width ok: {"x":0,"y":0,"width":430,"height":66}
+- PASS chromium iphone-large /audio/ tabbar width ok: {"x":0,"y":866,"width":430,"height":66}
+- PASS chromium iphone-large /audio/ no visible overwide elements: []
+- PASS chromium iphone-large /bookmarks/ http ok: 200
+- PASS chromium iphone-large /bookmarks/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium iphone-large /bookmarks/ main exists: {"x":0,"y":66,"width":430,"height":487.296875}
+- PASS chromium iphone-large /bookmarks/ topbar width ok: {"x":0,"y":0,"width":430,"height":66}
+- PASS chromium iphone-large /bookmarks/ tabbar width ok: {"x":0,"y":866,"width":430,"height":66}
+- PASS chromium iphone-large /bookmarks/ no visible overwide elements: []
+- PASS chromium iphone-large /topics/ http ok: 200
+- PASS chromium iphone-large /topics/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium iphone-large /topics/ main exists: {"x":0,"y":66,"width":430,"height":4715.359375}
+- PASS chromium iphone-large /topics/ topbar width ok: {"x":0,"y":0,"width":430,"height":66}
+- PASS chromium iphone-large /topics/ tabbar width ok: {"x":0,"y":866,"width":430,"height":66}
+- PASS chromium iphone-large /topics/ no visible overwide elements: []
+- PASS chromium iphone-large /glossary/ http ok: 200
+- PASS chromium iphone-large /glossary/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium iphone-large /glossary/ main exists: {"x":0,"y":66,"width":430,"height":4881.1875}
+- PASS chromium iphone-large /glossary/ topbar width ok: {"x":0,"y":0,"width":430,"height":66}
+- PASS chromium iphone-large /glossary/ tabbar width ok: {"x":0,"y":866,"width":430,"height":66}
+- PASS chromium iphone-large /glossary/ no visible overwide elements: []
+- PASS chromium iphone-large /tasbih/ http ok: 200
+- PASS chromium iphone-large /tasbih/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium iphone-large /tasbih/ main exists: {"x":0,"y":66,"width":430,"height":1086.1875}
+- PASS chromium iphone-large /tasbih/ topbar width ok: {"x":0,"y":0,"width":430,"height":66}
+- PASS chromium iphone-large /tasbih/ tabbar width ok: {"x":0,"y":866,"width":430,"height":66}
+- PASS chromium iphone-large /tasbih/ no visible overwide elements: []
+- PASS chromium iphone-large /download/ http ok: 200
+- PASS chromium iphone-large /download/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium iphone-large /download/ main exists: {"x":0,"y":66,"width":430,"height":1021.421875}
+- PASS chromium iphone-large /download/ topbar width ok: {"x":0,"y":0,"width":430,"height":66}
+- PASS chromium iphone-large /download/ tabbar width ok: {"x":0,"y":866,"width":430,"height":66}
+- PASS chromium iphone-large /download/ no visible overwide elements: []
+- PASS chromium iphone-large /backup/ http ok: 200
+- PASS chromium iphone-large /backup/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium iphone-large /backup/ main exists: {"x":0,"y":66,"width":430,"height":920.09375}
+- PASS chromium iphone-large /backup/ topbar width ok: {"x":0,"y":0,"width":430,"height":66}
+- PASS chromium iphone-large /backup/ tabbar width ok: {"x":0,"y":866,"width":430,"height":66}
+- PASS chromium iphone-large /backup/ no visible overwide elements: []
+- PASS chromium iphone-large /about/ http ok: 200
+- PASS chromium iphone-large /about/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium iphone-large /about/ main exists: {"x":0,"y":66,"width":430,"height":1890.890625}
+- PASS chromium iphone-large /about/ topbar width ok: {"x":0,"y":0,"width":430,"height":66}
+- PASS chromium iphone-large /about/ tabbar width ok: {"x":0,"y":866,"width":430,"height":66}
+- PASS chromium iphone-large /about/ no visible overwide elements: []
+- PASS chromium iphone-large /privacy/ http ok: 200
+- PASS chromium iphone-large /privacy/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium iphone-large /privacy/ main exists: {"x":0,"y":66,"width":430,"height":766.21875}
+- PASS chromium iphone-large /privacy/ topbar width ok: {"x":0,"y":0,"width":430,"height":66}
+- PASS chromium iphone-large /privacy/ tabbar width ok: {"x":0,"y":866,"width":430,"height":66}
+- PASS chromium iphone-large /privacy/ no visible overwide elements: []
+- PASS chromium iphone-large /translators/ http ok: 200
+- PASS chromium iphone-large /translators/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium iphone-large /translators/ main exists: {"x":0,"y":66,"width":430,"height":848.1875}
+- PASS chromium iphone-large /translators/ topbar width ok: {"x":0,"y":0,"width":430,"height":66}
+- PASS chromium iphone-large /translators/ tabbar width ok: {"x":0,"y":866,"width":430,"height":66}
+- PASS chromium iphone-large /translators/ no visible overwide elements: []
+- PASS chromium iphone-large /videos/ http ok: 200
+- PASS chromium iphone-large /videos/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium iphone-large /videos/ main exists: {"x":0,"y":66,"width":430,"height":8848.046875}
+- PASS chromium iphone-large /videos/ topbar width ok: {"x":0,"y":0,"width":430,"height":66}
+- PASS chromium iphone-large /videos/ tabbar width ok: {"x":0,"y":866,"width":430,"height":66}
+- PASS chromium iphone-large /videos/ no visible overwide elements: []
+- PASS chromium iphone-large drawer scenario opens/locks: {"open":true,"overflow":"hidden","pos":"fixed","active":"BUTTON","sidebar":"","pageOverflow":0}
+- PASS chromium iphone-large drawer search filters: hits=11
+- PASS chromium iphone-large settings scenario opens/locks: {"open":true,"overflow":"hidden","pos":"fixed","active":"BUTTON","pageOverflow":0}
+- PASS chromium iphone-large settings tajweed toggles: clicked
+- PASS chromium iphone-large audio scenario player opens: {"open":true,"player":{"x":0,"y":853,"width":430,"height":78,"top":853,"right":430,"bottom":931,"left":0},"tab":{"x":0,"y":938.5999755859375,"width":430,"height":66,"top":938.5999755859375,"right":430,"bottom":1004.5999755859375,"left":0}}
+- PASS chromium iphone-large mushaf zoom scenario: {"zoomed":true,"overflow":0}
+- PASS chromium iphone-large mushaf immersive scenario: {"immersive":true,"top":"none","footer":"none","overflow":0}
+- PASS chromium iphone-large no console errors
+- PASS chromium ipad / http ok: 200
+- PASS chromium ipad / no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium ipad / main exists: {"x":0,"y":66,"width":768,"height":6758.25}
+- PASS chromium ipad / topbar width ok: {"x":0,"y":0,"width":768,"height":66}
+- PASS chromium ipad / tabbar width ok: {"x":0,"y":958,"width":768,"height":66}
+- PASS chromium ipad / no visible overwide elements: []
+- PASS chromium ipad /surah/1/ http ok: 200
+- PASS chromium ipad /surah/1/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium ipad /surah/1/ main exists: {"x":0,"y":66,"width":768,"height":2257.96875}
+- PASS chromium ipad /surah/1/ topbar width ok: {"x":0,"y":0,"width":768,"height":66}
+- PASS chromium ipad /surah/1/ tabbar width ok: {"x":0,"y":958,"width":768,"height":66}
+- PASS chromium ipad /surah/1/ no visible overwide elements: []
+- PASS chromium ipad /surah/2/ http ok: 200
+- PASS chromium ipad /surah/2/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium ipad /surah/2/ main exists: {"x":0,"y":66,"width":768,"height":194175.875}
+- PASS chromium ipad /surah/2/ topbar width ok: {"x":0,"y":0,"width":768,"height":66}
+- PASS chromium ipad /surah/2/ tabbar width ok: {"x":0,"y":958,"width":768,"height":66}
+- PASS chromium ipad /surah/2/ no visible overwide elements: []
+- PASS chromium ipad /surah/9/ http ok: 200
+- PASS chromium ipad /surah/9/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium ipad /surah/9/ main exists: {"x":0,"y":66,"width":768,"height":87483.71875}
+- PASS chromium ipad /surah/9/ topbar width ok: {"x":0,"y":0,"width":768,"height":66}
+- PASS chromium ipad /surah/9/ tabbar width ok: {"x":0,"y":958,"width":768,"height":66}
+- PASS chromium ipad /surah/9/ no visible overwide elements: []
+- PASS chromium ipad /mushaf/1 http ok: 200
+- PASS chromium ipad /mushaf/1 no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium ipad /mushaf/1 main exists: {"x":0,"y":66,"width":768,"height":962}
+- PASS chromium ipad /mushaf/1 topbar width ok: {"x":0,"y":0,"width":768,"height":66}
+- PASS chromium ipad /mushaf/1 tabbar width ok: {"x":0,"y":1030.5999755859375,"width":768,"height":66}
+- PASS chromium ipad /mushaf/1 no visible overwide elements: []
+- PASS chromium ipad /mushaf/1 mushaf sheet exists: {"x":93,"y":131.65625,"width":582,"height":826.703125}
+- PASS chromium ipad /mushaf/1 mushaf fits width: {"x":93,"y":131.65625,"width":582,"height":826.703125}
+- PASS chromium ipad /mushaf/2 http ok: 200
+- PASS chromium ipad /mushaf/2 no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium ipad /mushaf/2 main exists: {"x":0,"y":66,"width":768,"height":962}
+- PASS chromium ipad /mushaf/2 topbar width ok: {"x":0,"y":0,"width":768,"height":66}
+- PASS chromium ipad /mushaf/2 tabbar width ok: {"x":0,"y":1030.5999755859375,"width":768,"height":66}
+- PASS chromium ipad /mushaf/2 no visible overwide elements: []
+- PASS chromium ipad /mushaf/2 mushaf sheet exists: {"x":93,"y":131.65625,"width":582,"height":826.703125}
+- PASS chromium ipad /mushaf/2 mushaf fits width: {"x":93,"y":131.65625,"width":582,"height":826.703125}
+- PASS chromium ipad /mushaf/604 http ok: 200
+- PASS chromium ipad /mushaf/604 no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium ipad /mushaf/604 main exists: {"x":0,"y":66,"width":768,"height":962}
+- PASS chromium ipad /mushaf/604 topbar width ok: {"x":0,"y":0,"width":768,"height":66}
+- PASS chromium ipad /mushaf/604 tabbar width ok: {"x":0,"y":1030.5999755859375,"width":768,"height":66}
+- PASS chromium ipad /mushaf/604 no visible overwide elements: []
+- PASS chromium ipad /mushaf/604 mushaf sheet exists: {"x":93,"y":131.65625,"width":582,"height":826.703125}
+- PASS chromium ipad /mushaf/604 mushaf fits width: {"x":93,"y":131.65625,"width":582,"height":826.703125}
+- PASS chromium ipad /search/ http ok: 200
+- PASS chromium ipad /search/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium ipad /search/ main exists: {"x":0,"y":66,"width":768,"height":761.296875}
+- PASS chromium ipad /search/ topbar width ok: {"x":0,"y":0,"width":768,"height":66}
+- PASS chromium ipad /search/ tabbar width ok: {"x":0,"y":958,"width":768,"height":66}
+- PASS chromium ipad /search/ no visible overwide elements: []
+- PASS chromium ipad /progress/ http ok: 200
+- PASS chromium ipad /progress/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium ipad /progress/ main exists: {"x":0,"y":66,"width":768,"height":2941.203125}
+- PASS chromium ipad /progress/ topbar width ok: {"x":0,"y":0,"width":768,"height":66}
+- PASS chromium ipad /progress/ tabbar width ok: {"x":0,"y":958,"width":768,"height":66}
+- PASS chromium ipad /progress/ no visible overwide elements: []
+- PASS chromium ipad /stats/ http ok: 200
+- PASS chromium ipad /stats/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium ipad /stats/ main exists: {"x":0,"y":66,"width":768,"height":590.90625}
+- PASS chromium ipad /stats/ topbar width ok: {"x":0,"y":0,"width":768,"height":66}
+- PASS chromium ipad /stats/ tabbar width ok: {"x":0,"y":958,"width":768,"height":66}
+- PASS chromium ipad /stats/ no visible overwide elements: []
+- PASS chromium ipad /audio/ http ok: 200
+- PASS chromium ipad /audio/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium ipad /audio/ main exists: {"x":0,"y":66,"width":768,"height":1067.015625}
+- PASS chromium ipad /audio/ topbar width ok: {"x":0,"y":0,"width":768,"height":66}
+- PASS chromium ipad /audio/ tabbar width ok: {"x":0,"y":958,"width":768,"height":66}
+- PASS chromium ipad /audio/ no visible overwide elements: []
+- PASS chromium ipad /bookmarks/ http ok: 200
+- PASS chromium ipad /bookmarks/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium ipad /bookmarks/ main exists: {"x":0,"y":66,"width":768,"height":431.78125}
+- PASS chromium ipad /bookmarks/ topbar width ok: {"x":0,"y":0,"width":768,"height":66}
+- PASS chromium ipad /bookmarks/ tabbar width ok: {"x":0,"y":958,"width":768,"height":66}
+- PASS chromium ipad /bookmarks/ no visible overwide elements: []
+- PASS chromium ipad /topics/ http ok: 200
+- PASS chromium ipad /topics/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium ipad /topics/ main exists: {"x":0,"y":66,"width":768,"height":2560.25}
+- PASS chromium ipad /topics/ topbar width ok: {"x":0,"y":0,"width":768,"height":66}
+- PASS chromium ipad /topics/ tabbar width ok: {"x":0,"y":958,"width":768,"height":66}
+- PASS chromium ipad /topics/ no visible overwide elements: []
+- PASS chromium ipad /glossary/ http ok: 200
+- PASS chromium ipad /glossary/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium ipad /glossary/ main exists: {"x":0,"y":66,"width":768,"height":4382.375}
+- PASS chromium ipad /glossary/ topbar width ok: {"x":0,"y":0,"width":768,"height":66}
+- PASS chromium ipad /glossary/ tabbar width ok: {"x":0,"y":958,"width":768,"height":66}
+- PASS chromium ipad /glossary/ no visible overwide elements: []
+- PASS chromium ipad /tasbih/ http ok: 200
+- PASS chromium ipad /tasbih/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium ipad /tasbih/ main exists: {"x":0,"y":66,"width":768,"height":941.40625}
+- PASS chromium ipad /tasbih/ topbar width ok: {"x":0,"y":0,"width":768,"height":66}
+- PASS chromium ipad /tasbih/ tabbar width ok: {"x":0,"y":958,"width":768,"height":66}
+- PASS chromium ipad /tasbih/ no visible overwide elements: []
+- PASS chromium ipad /download/ http ok: 200
+- PASS chromium ipad /download/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium ipad /download/ main exists: {"x":0,"y":66,"width":768,"height":883.84375}
+- PASS chromium ipad /download/ topbar width ok: {"x":0,"y":0,"width":768,"height":66}
+- PASS chromium ipad /download/ tabbar width ok: {"x":0,"y":958,"width":768,"height":66}
+- PASS chromium ipad /download/ no visible overwide elements: []
+- PASS chromium ipad /backup/ http ok: 200
+- PASS chromium ipad /backup/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium ipad /backup/ main exists: {"x":0,"y":66,"width":768,"height":871.9375}
+- PASS chromium ipad /backup/ topbar width ok: {"x":0,"y":0,"width":768,"height":66}
+- PASS chromium ipad /backup/ tabbar width ok: {"x":0,"y":958,"width":768,"height":66}
+- PASS chromium ipad /backup/ no visible overwide elements: []
+- PASS chromium ipad /about/ http ok: 200
+- PASS chromium ipad /about/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium ipad /about/ main exists: {"x":0,"y":66,"width":768,"height":1340.578125}
+- PASS chromium ipad /about/ topbar width ok: {"x":0,"y":0,"width":768,"height":66}
+- PASS chromium ipad /about/ tabbar width ok: {"x":0,"y":958,"width":768,"height":66}
+- PASS chromium ipad /about/ no visible overwide elements: []
+- PASS chromium ipad /privacy/ http ok: 200
+- PASS chromium ipad /privacy/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium ipad /privacy/ main exists: {"x":0,"y":66,"width":768,"height":546.09375}
+- PASS chromium ipad /privacy/ topbar width ok: {"x":0,"y":0,"width":768,"height":66}
+- PASS chromium ipad /privacy/ tabbar width ok: {"x":0,"y":958,"width":768,"height":66}
+- PASS chromium ipad /privacy/ no visible overwide elements: []
+- PASS chromium ipad /translators/ http ok: 200
+- PASS chromium ipad /translators/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium ipad /translators/ main exists: {"x":0,"y":66,"width":768,"height":683.09375}
+- PASS chromium ipad /translators/ topbar width ok: {"x":0,"y":0,"width":768,"height":66}
+- PASS chromium ipad /translators/ tabbar width ok: {"x":0,"y":958,"width":768,"height":66}
+- PASS chromium ipad /translators/ no visible overwide elements: []
+- PASS chromium ipad /videos/ http ok: 200
+- PASS chromium ipad /videos/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium ipad /videos/ main exists: {"x":0,"y":66,"width":768,"height":4717.625}
+- PASS chromium ipad /videos/ topbar width ok: {"x":0,"y":0,"width":768,"height":66}
+- PASS chromium ipad /videos/ tabbar width ok: {"x":0,"y":958,"width":768,"height":66}
+- PASS chromium ipad /videos/ no visible overwide elements: []
+- PASS chromium ipad drawer scenario opens/locks: {"open":true,"overflow":"hidden","pos":"fixed","active":"BUTTON","sidebar":"","pageOverflow":0}
+- PASS chromium ipad drawer search filters: hits=11
+- PASS chromium ipad settings scenario opens/locks: {"open":true,"overflow":"hidden","pos":"fixed","active":"BUTTON","pageOverflow":0}
+- PASS chromium ipad settings tajweed toggles: clicked
+- PASS chromium ipad audio scenario player opens: {"open":true,"player":{"x":0,"y":945,"width":768,"height":78,"top":945,"right":768,"bottom":1023,"left":0},"tab":{"x":0,"y":1030.5999755859375,"width":768,"height":66,"top":1030.5999755859375,"right":768,"bottom":1096.5999755859375,"left":0}}
+- PASS chromium ipad mushaf immersive scenario: {"immersive":true,"top":"none","footer":"none","overflow":0}
+- PASS chromium ipad no console errors
+- PASS chromium desktop-compact / http ok: 200
+- PASS chromium desktop-compact / no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium desktop-compact / main exists: {"x":0,"y":52,"width":1024,"height":6637.296875}
+- PASS chromium desktop-compact / topbar width ok: {"x":0,"y":0,"width":1024,"height":52}
+- PASS chromium desktop-compact / tabbar width ok: {"x":0,"y":0,"width":0,"height":0}
+- PASS chromium desktop-compact / no visible overwide elements: []
+- PASS chromium desktop-compact /surah/1/ http ok: 200
+- PASS chromium desktop-compact /surah/1/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium desktop-compact /surah/1/ main exists: {"x":0,"y":52,"width":860,"height":2233.484375}
+- PASS chromium desktop-compact /surah/1/ topbar width ok: {"x":0,"y":0,"width":1024,"height":52}
+- PASS chromium desktop-compact /surah/1/ tabbar width ok: {"x":0,"y":0,"width":0,"height":0}
+- PASS chromium desktop-compact /surah/1/ no visible overwide elements: []
+- PASS chromium desktop-compact /surah/2/ http ok: 200
+- PASS chromium desktop-compact /surah/2/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium desktop-compact /surah/2/ main exists: {"x":0,"y":52,"width":860,"height":194396.921875}
+- PASS chromium desktop-compact /surah/2/ topbar width ok: {"x":0,"y":0,"width":1024,"height":52}
+- PASS chromium desktop-compact /surah/2/ tabbar width ok: {"x":0,"y":0,"width":0,"height":0}
+- PASS chromium desktop-compact /surah/2/ no visible overwide elements: []
+- PASS chromium desktop-compact /surah/9/ http ok: 200
+- PASS chromium desktop-compact /surah/9/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium desktop-compact /surah/9/ main exists: {"x":0,"y":52,"width":860,"height":87523.359375}
+- PASS chromium desktop-compact /surah/9/ topbar width ok: {"x":0,"y":0,"width":1024,"height":52}
+- PASS chromium desktop-compact /surah/9/ tabbar width ok: {"x":0,"y":0,"width":0,"height":0}
+- PASS chromium desktop-compact /surah/9/ no visible overwide elements: []
+- PASS chromium desktop-compact /mushaf/1 http ok: 200
+- PASS chromium desktop-compact /mushaf/1 no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium desktop-compact /mushaf/1 main exists: {"x":0,"y":52,"width":1024,"height":716}
+- PASS chromium desktop-compact /mushaf/1 topbar width ok: {"x":0,"y":0,"width":1024,"height":52}
+- PASS chromium desktop-compact /mushaf/1 tabbar width ok: {"x":0,"y":0,"width":0,"height":0}
+- PASS chromium desktop-compact /mushaf/1 no visible overwide elements: []
+- PASS chromium desktop-compact /mushaf/1 mushaf sheet exists: {"x":308,"y":123.234375,"width":408,"height":579.53125}
+- PASS chromium desktop-compact /mushaf/1 mushaf fits width: {"x":308,"y":123.234375,"width":408,"height":579.53125}
+- PASS chromium desktop-compact /mushaf/2 http ok: 200
+- PASS chromium desktop-compact /mushaf/2 no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium desktop-compact /mushaf/2 main exists: {"x":0,"y":52,"width":1024,"height":716}
+- PASS chromium desktop-compact /mushaf/2 topbar width ok: {"x":0,"y":0,"width":1024,"height":52}
+- PASS chromium desktop-compact /mushaf/2 tabbar width ok: {"x":0,"y":0,"width":0,"height":0}
+- PASS chromium desktop-compact /mushaf/2 no visible overwide elements: []
+- PASS chromium desktop-compact /mushaf/2 mushaf sheet exists: {"x":308,"y":123.234375,"width":408,"height":579.53125}
+- PASS chromium desktop-compact /mushaf/2 mushaf fits width: {"x":308,"y":123.234375,"width":408,"height":579.53125}
+- PASS chromium desktop-compact /mushaf/604 http ok: 200
+- PASS chromium desktop-compact /mushaf/604 no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium desktop-compact /mushaf/604 main exists: {"x":0,"y":52,"width":1024,"height":716}
+- PASS chromium desktop-compact /mushaf/604 topbar width ok: {"x":0,"y":0,"width":1024,"height":52}
+- PASS chromium desktop-compact /mushaf/604 tabbar width ok: {"x":0,"y":0,"width":0,"height":0}
+- PASS chromium desktop-compact /mushaf/604 no visible overwide elements: []
+- PASS chromium desktop-compact /mushaf/604 mushaf sheet exists: {"x":308,"y":123.234375,"width":408,"height":579.53125}
+- PASS chromium desktop-compact /mushaf/604 mushaf fits width: {"x":308,"y":123.234375,"width":408,"height":579.53125}
+- PASS chromium desktop-compact /search/ http ok: 200
+- PASS chromium desktop-compact /search/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium desktop-compact /search/ main exists: {"x":0,"y":52,"width":860,"height":630.65625}
+- PASS chromium desktop-compact /search/ topbar width ok: {"x":0,"y":0,"width":1024,"height":52}
+- PASS chromium desktop-compact /search/ tabbar width ok: {"x":0,"y":0,"width":0,"height":0}
+- PASS chromium desktop-compact /search/ no visible overwide elements: []
+- PASS chromium desktop-compact /progress/ http ok: 200
+- PASS chromium desktop-compact /progress/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium desktop-compact /progress/ main exists: {"x":0,"y":52,"width":860,"height":2912.65625}
+- PASS chromium desktop-compact /progress/ topbar width ok: {"x":0,"y":0,"width":1024,"height":52}
+- PASS chromium desktop-compact /progress/ tabbar width ok: {"x":0,"y":0,"width":0,"height":0}
+- PASS chromium desktop-compact /progress/ no visible overwide elements: []
+- PASS chromium desktop-compact /stats/ http ok: 200
+- PASS chromium desktop-compact /stats/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium desktop-compact /stats/ main exists: {"x":0,"y":52,"width":860,"height":599.859375}
+- PASS chromium desktop-compact /stats/ topbar width ok: {"x":0,"y":0,"width":1024,"height":52}
+- PASS chromium desktop-compact /stats/ tabbar width ok: {"x":0,"y":0,"width":0,"height":0}
+- PASS chromium desktop-compact /stats/ no visible overwide elements: []
+- PASS chromium desktop-compact /audio/ http ok: 200
+- PASS chromium desktop-compact /audio/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium desktop-compact /audio/ main exists: {"x":0,"y":52,"width":860,"height":1075.96875}
+- PASS chromium desktop-compact /audio/ topbar width ok: {"x":0,"y":0,"width":1024,"height":52}
+- PASS chromium desktop-compact /audio/ tabbar width ok: {"x":0,"y":0,"width":0,"height":0}
+- PASS chromium desktop-compact /audio/ no visible overwide elements: []
+- PASS chromium desktop-compact /bookmarks/ http ok: 200
+- PASS chromium desktop-compact /bookmarks/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium desktop-compact /bookmarks/ main exists: {"x":0,"y":52,"width":860,"height":434.734375}
+- PASS chromium desktop-compact /bookmarks/ topbar width ok: {"x":0,"y":0,"width":1024,"height":52}
+- PASS chromium desktop-compact /bookmarks/ tabbar width ok: {"x":0,"y":0,"width":0,"height":0}
+- PASS chromium desktop-compact /bookmarks/ no visible overwide elements: []
+- PASS chromium desktop-compact /topics/ http ok: 200
+- PASS chromium desktop-compact /topics/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium desktop-compact /topics/ main exists: {"x":0,"y":52,"width":860,"height":2210.375}
+- PASS chromium desktop-compact /topics/ topbar width ok: {"x":0,"y":0,"width":1024,"height":52}
+- PASS chromium desktop-compact /topics/ tabbar width ok: {"x":0,"y":0,"width":0,"height":0}
+- PASS chromium desktop-compact /topics/ no visible overwide elements: []
+- PASS chromium desktop-compact /glossary/ http ok: 200
+- PASS chromium desktop-compact /glossary/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium desktop-compact /glossary/ main exists: {"x":0,"y":52,"width":860,"height":4326.265625}
+- PASS chromium desktop-compact /glossary/ topbar width ok: {"x":0,"y":0,"width":1024,"height":52}
+- PASS chromium desktop-compact /glossary/ tabbar width ok: {"x":0,"y":0,"width":0,"height":0}
+- PASS chromium desktop-compact /glossary/ no visible overwide elements: []
+- PASS chromium desktop-compact /tasbih/ http ok: 200
+- PASS chromium desktop-compact /tasbih/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium desktop-compact /tasbih/ main exists: {"x":0,"y":52,"width":860,"height":932.359375}
+- PASS chromium desktop-compact /tasbih/ topbar width ok: {"x":0,"y":0,"width":1024,"height":52}
+- PASS chromium desktop-compact /tasbih/ tabbar width ok: {"x":0,"y":0,"width":0,"height":0}
+- PASS chromium desktop-compact /tasbih/ no visible overwide elements: []
+- PASS chromium desktop-compact /download/ http ok: 200
+- PASS chromium desktop-compact /download/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium desktop-compact /download/ main exists: {"x":0,"y":52,"width":860,"height":853.28125}
+- PASS chromium desktop-compact /download/ topbar width ok: {"x":0,"y":0,"width":1024,"height":52}
+- PASS chromium desktop-compact /download/ tabbar width ok: {"x":0,"y":0,"width":0,"height":0}
+- PASS chromium desktop-compact /download/ no visible overwide elements: []
+- PASS chromium desktop-compact /backup/ http ok: 200
+- PASS chromium desktop-compact /backup/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium desktop-compact /backup/ main exists: {"x":0,"y":52,"width":860,"height":880.96875}
+- PASS chromium desktop-compact /backup/ topbar width ok: {"x":0,"y":0,"width":1024,"height":52}
+- PASS chromium desktop-compact /backup/ tabbar width ok: {"x":0,"y":0,"width":0,"height":0}
+- PASS chromium desktop-compact /backup/ no visible overwide elements: []
+- PASS chromium desktop-compact /about/ http ok: 200
+- PASS chromium desktop-compact /about/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium desktop-compact /about/ main exists: {"x":0,"y":52,"width":860,"height":1322.015625}
+- PASS chromium desktop-compact /about/ topbar width ok: {"x":0,"y":0,"width":1024,"height":52}
+- PASS chromium desktop-compact /about/ tabbar width ok: {"x":0,"y":0,"width":0,"height":0}
+- PASS chromium desktop-compact /about/ no visible overwide elements: []
+- PASS chromium desktop-compact /privacy/ http ok: 200
+- PASS chromium desktop-compact /privacy/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium desktop-compact /privacy/ main exists: {"x":0,"y":52,"width":860,"height":527.53125}
+- PASS chromium desktop-compact /privacy/ topbar width ok: {"x":0,"y":0,"width":1024,"height":52}
+- PASS chromium desktop-compact /privacy/ tabbar width ok: {"x":0,"y":0,"width":0,"height":0}
+- PASS chromium desktop-compact /privacy/ no visible overwide elements: []
+- PASS chromium desktop-compact /translators/ http ok: 200
+- PASS chromium desktop-compact /translators/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium desktop-compact /translators/ main exists: {"x":0,"y":52,"width":860,"height":664.53125}
+- PASS chromium desktop-compact /translators/ topbar width ok: {"x":0,"y":0,"width":1024,"height":52}
+- PASS chromium desktop-compact /translators/ tabbar width ok: {"x":0,"y":0,"width":0,"height":0}
+- PASS chromium desktop-compact /translators/ no visible overwide elements: []
+- PASS chromium desktop-compact /videos/ http ok: 200
+- PASS chromium desktop-compact /videos/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium desktop-compact /videos/ main exists: {"x":0,"y":52,"width":1024,"height":4571.890625}
+- PASS chromium desktop-compact /videos/ topbar width ok: {"x":0,"y":0,"width":1024,"height":52}
+- PASS chromium desktop-compact /videos/ tabbar width ok: {"x":0,"y":0,"width":0,"height":0}
+- PASS chromium desktop-compact /videos/ no visible overwide elements: []
+- PASS chromium desktop-compact drawer scenario desktop state: {"beforeSidebar":"","after":{"open":true,"overflow":"hidden","pos":"static","active":"BUTTON","sidebar":"","pageOverflow":0},"beforeDrawer":{"x":-473,"y":10,"width":420,"height":748}}
+- PASS chromium desktop-compact drawer search filters: hits=11
+- PASS chromium desktop-compact settings scenario opens/locks: {"open":true,"overflow":"hidden","pos":"static","active":"BUTTON","pageOverflow":0}
+- PASS chromium desktop-compact settings tajweed toggles: clicked
+- PASS chromium desktop-compact audio scenario player opens: {"open":true,"player":{"x":0,"y":684,"width":1024,"height":84,"top":684,"right":1024,"bottom":768,"left":0},"tab":{"x":0,"y":0,"width":0,"height":0,"top":0,"right":0,"bottom":0,"left":0}}
+- PASS chromium desktop-compact mushaf zoom scenario: {"zoomed":true,"overflow":0}
+- PASS chromium desktop-compact mushaf immersive scenario: {"immersive":true,"top":"none","footer":"none","overflow":0}
+- PASS chromium desktop-compact no console errors
+- PASS chromium desktop-normal / http ok: 200
+- PASS chromium desktop-normal / no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium desktop-normal / main exists: {"x":300,"y":52,"width":1140,"height":6637.296875}
+- PASS chromium desktop-normal / topbar width ok: {"x":300,"y":0,"width":1140,"height":52}
+- PASS chromium desktop-normal / tabbar width ok: {"x":0,"y":0,"width":0,"height":0}
+- PASS chromium desktop-normal / no visible overwide elements: []
+- PASS chromium desktop-normal /surah/1/ http ok: 200
+- PASS chromium desktop-normal /surah/1/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium desktop-normal /surah/1/ main exists: {"x":300,"y":52,"width":860,"height":2267.125}
+- PASS chromium desktop-normal /surah/1/ topbar width ok: {"x":300,"y":0,"width":1140,"height":52}
+- PASS chromium desktop-normal /surah/1/ tabbar width ok: {"x":0,"y":0,"width":0,"height":0}
+- PASS chromium desktop-normal /surah/1/ no visible overwide elements: []
+- PASS chromium desktop-normal /surah/2/ http ok: 200
+- PASS chromium desktop-normal /surah/2/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium desktop-normal /surah/2/ main exists: {"x":300,"y":52,"width":860,"height":195693.8125}
+- PASS chromium desktop-normal /surah/2/ topbar width ok: {"x":300,"y":0,"width":1140,"height":52}
+- PASS chromium desktop-normal /surah/2/ tabbar width ok: {"x":0,"y":0,"width":0,"height":0}
+- PASS chromium desktop-normal /surah/2/ no visible overwide elements: []
+- PASS chromium desktop-normal /surah/9/ http ok: 200
+- PASS chromium desktop-normal /surah/9/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium desktop-normal /surah/9/ main exists: {"x":300,"y":52,"width":860,"height":88289}
+- PASS chromium desktop-normal /surah/9/ topbar width ok: {"x":300,"y":0,"width":1140,"height":52}
+- PASS chromium desktop-normal /surah/9/ tabbar width ok: {"x":0,"y":0,"width":0,"height":0}
+- PASS chromium desktop-normal /surah/9/ no visible overwide elements: []
+- PASS chromium desktop-normal /mushaf/1 http ok: 200
+- PASS chromium desktop-normal /mushaf/1 no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium desktop-normal /mushaf/1 main exists: {"x":300,"y":52,"width":1140,"height":848}
+- PASS chromium desktop-normal /mushaf/1 topbar width ok: {"x":300,"y":0,"width":1140,"height":52}
+- PASS chromium desktop-normal /mushaf/1 tabbar width ok: {"x":0,"y":0,"width":0,"height":0}
+- PASS chromium desktop-normal /mushaf/1 no visible overwide elements: []
+- PASS chromium desktop-normal /mushaf/1 mushaf sheet exists: {"x":619.5,"y":123.1875,"width":501,"height":711.640625}
+- PASS chromium desktop-normal /mushaf/1 mushaf fits width: {"x":619.5,"y":123.1875,"width":501,"height":711.640625}
+- PASS chromium desktop-normal /mushaf/2 http ok: 200
+- PASS chromium desktop-normal /mushaf/2 no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium desktop-normal /mushaf/2 main exists: {"x":300,"y":52,"width":1140,"height":848}
+- PASS chromium desktop-normal /mushaf/2 topbar width ok: {"x":300,"y":0,"width":1140,"height":52}
+- PASS chromium desktop-normal /mushaf/2 tabbar width ok: {"x":0,"y":0,"width":0,"height":0}
+- PASS chromium desktop-normal /mushaf/2 no visible overwide elements: []
+- PASS chromium desktop-normal /mushaf/2 mushaf sheet exists: {"x":619.5,"y":123.1875,"width":501,"height":711.640625}
+- PASS chromium desktop-normal /mushaf/2 mushaf fits width: {"x":619.5,"y":123.1875,"width":501,"height":711.640625}
+- PASS chromium desktop-normal /mushaf/604 http ok: 200
+- PASS chromium desktop-normal /mushaf/604 no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium desktop-normal /mushaf/604 main exists: {"x":300,"y":52,"width":1140,"height":848}
+- PASS chromium desktop-normal /mushaf/604 topbar width ok: {"x":300,"y":0,"width":1140,"height":52}
+- PASS chromium desktop-normal /mushaf/604 tabbar width ok: {"x":0,"y":0,"width":0,"height":0}
+- PASS chromium desktop-normal /mushaf/604 no visible overwide elements: []
+- PASS chromium desktop-normal /mushaf/604 mushaf sheet exists: {"x":619.5,"y":123.1875,"width":501,"height":711.640625}
+- PASS chromium desktop-normal /mushaf/604 mushaf fits width: {"x":619.5,"y":123.1875,"width":501,"height":711.640625}
+- PASS chromium desktop-normal /search/ http ok: 200
+- PASS chromium desktop-normal /search/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium desktop-normal /search/ main exists: {"x":300,"y":52,"width":860,"height":633.109375}
+- PASS chromium desktop-normal /search/ topbar width ok: {"x":300,"y":0,"width":1140,"height":52}
+- PASS chromium desktop-normal /search/ tabbar width ok: {"x":0,"y":0,"width":0,"height":0}
+- PASS chromium desktop-normal /search/ no visible overwide elements: []
+- PASS chromium desktop-normal /progress/ http ok: 200
+- PASS chromium desktop-normal /progress/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium desktop-normal /progress/ main exists: {"x":300,"y":52,"width":860,"height":2915.109375}
+- PASS chromium desktop-normal /progress/ topbar width ok: {"x":300,"y":0,"width":1140,"height":52}
+- PASS chromium desktop-normal /progress/ tabbar width ok: {"x":0,"y":0,"width":0,"height":0}
+- PASS chromium desktop-normal /progress/ no visible overwide elements: []
+- PASS chromium desktop-normal /stats/ http ok: 200
+- PASS chromium desktop-normal /stats/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium desktop-normal /stats/ main exists: {"x":300,"y":52,"width":860,"height":602.3125}
+- PASS chromium desktop-normal /stats/ topbar width ok: {"x":300,"y":0,"width":1140,"height":52}
+- PASS chromium desktop-normal /stats/ tabbar width ok: {"x":0,"y":0,"width":0,"height":0}
+- PASS chromium desktop-normal /stats/ no visible overwide elements: []
+- PASS chromium desktop-normal /audio/ http ok: 200
+- PASS chromium desktop-normal /audio/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium desktop-normal /audio/ main exists: {"x":300,"y":52,"width":860,"height":1078.421875}
+- PASS chromium desktop-normal /audio/ topbar width ok: {"x":300,"y":0,"width":1140,"height":52}
+- PASS chromium desktop-normal /audio/ tabbar width ok: {"x":0,"y":0,"width":0,"height":0}
+- PASS chromium desktop-normal /audio/ no visible overwide elements: []
+- PASS chromium desktop-normal /bookmarks/ http ok: 200
+- PASS chromium desktop-normal /bookmarks/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium desktop-normal /bookmarks/ main exists: {"x":300,"y":52,"width":860,"height":437.1875}
+- PASS chromium desktop-normal /bookmarks/ topbar width ok: {"x":300,"y":0,"width":1140,"height":52}
+- PASS chromium desktop-normal /bookmarks/ tabbar width ok: {"x":0,"y":0,"width":0,"height":0}
+- PASS chromium desktop-normal /bookmarks/ no visible overwide elements: []
+- PASS chromium desktop-normal /topics/ http ok: 200
+- PASS chromium desktop-normal /topics/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium desktop-normal /topics/ main exists: {"x":300,"y":52,"width":860,"height":2212.828125}
+- PASS chromium desktop-normal /topics/ topbar width ok: {"x":300,"y":0,"width":1140,"height":52}
+- PASS chromium desktop-normal /topics/ tabbar width ok: {"x":0,"y":0,"width":0,"height":0}
+- PASS chromium desktop-normal /topics/ no visible overwide elements: []
+- PASS chromium desktop-normal /glossary/ http ok: 200
+- PASS chromium desktop-normal /glossary/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium desktop-normal /glossary/ main exists: {"x":300,"y":52,"width":860,"height":4328.71875}
+- PASS chromium desktop-normal /glossary/ topbar width ok: {"x":300,"y":0,"width":1140,"height":52}
+- PASS chromium desktop-normal /glossary/ tabbar width ok: {"x":0,"y":0,"width":0,"height":0}
+- PASS chromium desktop-normal /glossary/ no visible overwide elements: []
+- PASS chromium desktop-normal /tasbih/ http ok: 200
+- PASS chromium desktop-normal /tasbih/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium desktop-normal /tasbih/ main exists: {"x":300,"y":52,"width":860,"height":934.8125}
+- PASS chromium desktop-normal /tasbih/ topbar width ok: {"x":300,"y":0,"width":1140,"height":52}
+- PASS chromium desktop-normal /tasbih/ tabbar width ok: {"x":0,"y":0,"width":0,"height":0}
+- PASS chromium desktop-normal /tasbih/ no visible overwide elements: []
+- PASS chromium desktop-normal /download/ http ok: 200
+- PASS chromium desktop-normal /download/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium desktop-normal /download/ main exists: {"x":300,"y":52,"width":860,"height":855.734375}
+- PASS chromium desktop-normal /download/ topbar width ok: {"x":300,"y":0,"width":1140,"height":52}
+- PASS chromium desktop-normal /download/ tabbar width ok: {"x":0,"y":0,"width":0,"height":0}
+- PASS chromium desktop-normal /download/ no visible overwide elements: []
+- PASS chromium desktop-normal /backup/ http ok: 200
+- PASS chromium desktop-normal /backup/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium desktop-normal /backup/ main exists: {"x":300,"y":52,"width":860,"height":859.34375}
+- PASS chromium desktop-normal /backup/ topbar width ok: {"x":300,"y":0,"width":1140,"height":52}
+- PASS chromium desktop-normal /backup/ tabbar width ok: {"x":0,"y":0,"width":0,"height":0}
+- PASS chromium desktop-normal /backup/ no visible overwide elements: []
+- PASS chromium desktop-normal /about/ http ok: 200
+- PASS chromium desktop-normal /about/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium desktop-normal /about/ main exists: {"x":300,"y":52,"width":860,"height":1324.46875}
+- PASS chromium desktop-normal /about/ topbar width ok: {"x":300,"y":0,"width":1140,"height":52}
+- PASS chromium desktop-normal /about/ tabbar width ok: {"x":0,"y":0,"width":0,"height":0}
+- PASS chromium desktop-normal /about/ no visible overwide elements: []
+- PASS chromium desktop-normal /privacy/ http ok: 200
+- PASS chromium desktop-normal /privacy/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium desktop-normal /privacy/ main exists: {"x":300,"y":52,"width":860,"height":529.984375}
+- PASS chromium desktop-normal /privacy/ topbar width ok: {"x":300,"y":0,"width":1140,"height":52}
+- PASS chromium desktop-normal /privacy/ tabbar width ok: {"x":0,"y":0,"width":0,"height":0}
+- PASS chromium desktop-normal /privacy/ no visible overwide elements: []
+- PASS chromium desktop-normal /translators/ http ok: 200
+- PASS chromium desktop-normal /translators/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium desktop-normal /translators/ main exists: {"x":300,"y":52,"width":860,"height":666.984375}
+- PASS chromium desktop-normal /translators/ topbar width ok: {"x":300,"y":0,"width":1140,"height":52}
+- PASS chromium desktop-normal /translators/ tabbar width ok: {"x":0,"y":0,"width":0,"height":0}
+- PASS chromium desktop-normal /translators/ no visible overwide elements: []
+- PASS chromium desktop-normal /videos/ http ok: 200
+- PASS chromium desktop-normal /videos/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium desktop-normal /videos/ main exists: {"x":300,"y":52,"width":1140,"height":4574.34375}
+- PASS chromium desktop-normal /videos/ topbar width ok: {"x":300,"y":0,"width":1140,"height":52}
+- PASS chromium desktop-normal /videos/ tabbar width ok: {"x":0,"y":0,"width":0,"height":0}
+- PASS chromium desktop-normal /videos/ no visible overwide elements: []
+- PASS chromium desktop-normal drawer scenario desktop state: {"beforeSidebar":"open","after":{"open":false,"overflow":"clip visible","pos":"static","active":"BUTTON","sidebar":"closed","pageOverflow":0},"beforeDrawer":{"x":0,"y":0,"width":300,"height":900}}
+- PASS chromium desktop-normal settings scenario opens/locks: {"open":true,"overflow":"hidden","pos":"static","active":"BUTTON","pageOverflow":0}
+- PASS chromium desktop-normal settings tajweed toggles: clicked
+- PASS chromium desktop-normal audio scenario player opens: {"open":true,"player":{"x":0,"y":816,"width":1440,"height":84,"top":816,"right":1440,"bottom":900,"left":0},"tab":{"x":0,"y":0,"width":0,"height":0,"top":0,"right":0,"bottom":0,"left":0}}
+- PASS chromium desktop-normal mushaf zoom scenario: {"zoomed":true,"overflow":0}
+- PASS chromium desktop-normal mushaf immersive scenario: {"immersive":true,"top":"none","footer":"none","overflow":0}
+- PASS chromium desktop-normal no console errors
+- PASS chromium desktop-wide / http ok: 200
+- PASS chromium desktop-wide / no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium desktop-wide / main exists: {"x":300,"y":52,"width":1620,"height":6637.296875}
+- PASS chromium desktop-wide / topbar width ok: {"x":300,"y":0,"width":1620,"height":52}
+- PASS chromium desktop-wide / tabbar width ok: {"x":0,"y":0,"width":0,"height":0}
+- PASS chromium desktop-wide / no visible overwide elements: []
+- PASS chromium desktop-wide /surah/1/ http ok: 200
+- PASS chromium desktop-wide /surah/1/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium desktop-wide /surah/1/ main exists: {"x":300,"y":52,"width":860,"height":2267.125}
+- PASS chromium desktop-wide /surah/1/ topbar width ok: {"x":300,"y":0,"width":1620,"height":52}
+- PASS chromium desktop-wide /surah/1/ tabbar width ok: {"x":0,"y":0,"width":0,"height":0}
+- PASS chromium desktop-wide /surah/1/ no visible overwide elements: []
+- PASS chromium desktop-wide /surah/2/ http ok: 200
+- PASS chromium desktop-wide /surah/2/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium desktop-wide /surah/2/ main exists: {"x":300,"y":52,"width":860,"height":194872.3125}
+- PASS chromium desktop-wide /surah/2/ topbar width ok: {"x":300,"y":0,"width":1620,"height":52}
+- PASS chromium desktop-wide /surah/2/ tabbar width ok: {"x":0,"y":0,"width":0,"height":0}
+- PASS chromium desktop-wide /surah/2/ no visible overwide elements: []
+- PASS chromium desktop-wide /surah/9/ http ok: 200
+- PASS chromium desktop-wide /surah/9/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium desktop-wide /surah/9/ main exists: {"x":300,"y":52,"width":860,"height":87644.25}
+- PASS chromium desktop-wide /surah/9/ topbar width ok: {"x":300,"y":0,"width":1620,"height":52}
+- PASS chromium desktop-wide /surah/9/ tabbar width ok: {"x":0,"y":0,"width":0,"height":0}
+- PASS chromium desktop-wide /surah/9/ no visible overwide elements: []
+- PASS chromium desktop-wide /mushaf/1 http ok: 200
+- PASS chromium desktop-wide /mushaf/1 no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium desktop-wide /mushaf/1 main exists: {"x":300,"y":52,"width":1620,"height":1028}
+- PASS chromium desktop-wide /mushaf/1 topbar width ok: {"x":300,"y":0,"width":1620,"height":52}
+- PASS chromium desktop-wide /mushaf/1 tabbar width ok: {"x":0,"y":0,"width":0,"height":0}
+- PASS chromium desktop-wide /mushaf/1 no visible overwide elements: []
+- PASS chromium desktop-wide /mushaf/1 mushaf sheet exists: {"x":796,"y":122.984375,"width":628,"height":892.03125}
+- PASS chromium desktop-wide /mushaf/1 mushaf fits width: {"x":796,"y":122.984375,"width":628,"height":892.03125}
+- PASS chromium desktop-wide /mushaf/2 http ok: 200
+- PASS chromium desktop-wide /mushaf/2 no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium desktop-wide /mushaf/2 main exists: {"x":300,"y":52,"width":1620,"height":1028}
+- PASS chromium desktop-wide /mushaf/2 topbar width ok: {"x":300,"y":0,"width":1620,"height":52}
+- PASS chromium desktop-wide /mushaf/2 tabbar width ok: {"x":0,"y":0,"width":0,"height":0}
+- PASS chromium desktop-wide /mushaf/2 no visible overwide elements: []
+- PASS chromium desktop-wide /mushaf/2 mushaf sheet exists: {"x":796,"y":122.984375,"width":628,"height":892.03125}
+- PASS chromium desktop-wide /mushaf/2 mushaf fits width: {"x":796,"y":122.984375,"width":628,"height":892.03125}
+- PASS chromium desktop-wide /mushaf/604 http ok: 200
+- PASS chromium desktop-wide /mushaf/604 no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium desktop-wide /mushaf/604 main exists: {"x":300,"y":52,"width":1620,"height":1028}
+- PASS chromium desktop-wide /mushaf/604 topbar width ok: {"x":300,"y":0,"width":1620,"height":52}
+- PASS chromium desktop-wide /mushaf/604 tabbar width ok: {"x":0,"y":0,"width":0,"height":0}
+- PASS chromium desktop-wide /mushaf/604 no visible overwide elements: []
+- PASS chromium desktop-wide /mushaf/604 mushaf sheet exists: {"x":796,"y":122.984375,"width":628,"height":892.03125}
+- PASS chromium desktop-wide /mushaf/604 mushaf fits width: {"x":796,"y":122.984375,"width":628,"height":892.03125}
+- PASS chromium desktop-wide /search/ http ok: 200
+- PASS chromium desktop-wide /search/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium desktop-wide /search/ main exists: {"x":300,"y":52,"width":860,"height":633.109375}
+- PASS chromium desktop-wide /search/ topbar width ok: {"x":300,"y":0,"width":1620,"height":52}
+- PASS chromium desktop-wide /search/ tabbar width ok: {"x":0,"y":0,"width":0,"height":0}
+- PASS chromium desktop-wide /search/ no visible overwide elements: []
+- PASS chromium desktop-wide /progress/ http ok: 200
+- PASS chromium desktop-wide /progress/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium desktop-wide /progress/ main exists: {"x":300,"y":52,"width":860,"height":2915.109375}
+- PASS chromium desktop-wide /progress/ topbar width ok: {"x":300,"y":0,"width":1620,"height":52}
+- PASS chromium desktop-wide /progress/ tabbar width ok: {"x":0,"y":0,"width":0,"height":0}
+- PASS chromium desktop-wide /progress/ no visible overwide elements: []
+- PASS chromium desktop-wide /stats/ http ok: 200
+- PASS chromium desktop-wide /stats/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium desktop-wide /stats/ main exists: {"x":300,"y":52,"width":860,"height":602.3125}
+- PASS chromium desktop-wide /stats/ topbar width ok: {"x":300,"y":0,"width":1620,"height":52}
+- PASS chromium desktop-wide /stats/ tabbar width ok: {"x":0,"y":0,"width":0,"height":0}
+- PASS chromium desktop-wide /stats/ no visible overwide elements: []
+- PASS chromium desktop-wide /audio/ http ok: 200
+- PASS chromium desktop-wide /audio/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium desktop-wide /audio/ main exists: {"x":300,"y":52,"width":860,"height":1078.421875}
+- PASS chromium desktop-wide /audio/ topbar width ok: {"x":300,"y":0,"width":1620,"height":52}
+- PASS chromium desktop-wide /audio/ tabbar width ok: {"x":0,"y":0,"width":0,"height":0}
+- PASS chromium desktop-wide /audio/ no visible overwide elements: []
+- PASS chromium desktop-wide /bookmarks/ http ok: 200
+- PASS chromium desktop-wide /bookmarks/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium desktop-wide /bookmarks/ main exists: {"x":300,"y":52,"width":860,"height":437.1875}
+- PASS chromium desktop-wide /bookmarks/ topbar width ok: {"x":300,"y":0,"width":1620,"height":52}
+- PASS chromium desktop-wide /bookmarks/ tabbar width ok: {"x":0,"y":0,"width":0,"height":0}
+- PASS chromium desktop-wide /bookmarks/ no visible overwide elements: []
+- PASS chromium desktop-wide /topics/ http ok: 200
+- PASS chromium desktop-wide /topics/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium desktop-wide /topics/ main exists: {"x":300,"y":52,"width":860,"height":2212.828125}
+- PASS chromium desktop-wide /topics/ topbar width ok: {"x":300,"y":0,"width":1620,"height":52}
+- PASS chromium desktop-wide /topics/ tabbar width ok: {"x":0,"y":0,"width":0,"height":0}
+- PASS chromium desktop-wide /topics/ no visible overwide elements: []
+- PASS chromium desktop-wide /glossary/ http ok: 200
+- PASS chromium desktop-wide /glossary/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium desktop-wide /glossary/ main exists: {"x":300,"y":52,"width":860,"height":4328.71875}
+- PASS chromium desktop-wide /glossary/ topbar width ok: {"x":300,"y":0,"width":1620,"height":52}
+- PASS chromium desktop-wide /glossary/ tabbar width ok: {"x":0,"y":0,"width":0,"height":0}
+- PASS chromium desktop-wide /glossary/ no visible overwide elements: []
+- PASS chromium desktop-wide /tasbih/ http ok: 200
+- PASS chromium desktop-wide /tasbih/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium desktop-wide /tasbih/ main exists: {"x":300,"y":52,"width":860,"height":934.8125}
+- PASS chromium desktop-wide /tasbih/ topbar width ok: {"x":300,"y":0,"width":1620,"height":52}
+- PASS chromium desktop-wide /tasbih/ tabbar width ok: {"x":0,"y":0,"width":0,"height":0}
+- PASS chromium desktop-wide /tasbih/ no visible overwide elements: []
+- PASS chromium desktop-wide /download/ http ok: 200
+- PASS chromium desktop-wide /download/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium desktop-wide /download/ main exists: {"x":300,"y":52,"width":860,"height":855.734375}
+- PASS chromium desktop-wide /download/ topbar width ok: {"x":300,"y":0,"width":1620,"height":52}
+- PASS chromium desktop-wide /download/ tabbar width ok: {"x":0,"y":0,"width":0,"height":0}
+- PASS chromium desktop-wide /download/ no visible overwide elements: []
+- PASS chromium desktop-wide /backup/ http ok: 200
+- PASS chromium desktop-wide /backup/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium desktop-wide /backup/ main exists: {"x":300,"y":52,"width":860,"height":859.34375}
+- PASS chromium desktop-wide /backup/ topbar width ok: {"x":300,"y":0,"width":1620,"height":52}
+- PASS chromium desktop-wide /backup/ tabbar width ok: {"x":0,"y":0,"width":0,"height":0}
+- PASS chromium desktop-wide /backup/ no visible overwide elements: []
+- PASS chromium desktop-wide /about/ http ok: 200
+- PASS chromium desktop-wide /about/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium desktop-wide /about/ main exists: {"x":300,"y":52,"width":860,"height":1324.46875}
+- PASS chromium desktop-wide /about/ topbar width ok: {"x":300,"y":0,"width":1620,"height":52}
+- PASS chromium desktop-wide /about/ tabbar width ok: {"x":0,"y":0,"width":0,"height":0}
+- PASS chromium desktop-wide /about/ no visible overwide elements: []
+- PASS chromium desktop-wide /privacy/ http ok: 200
+- PASS chromium desktop-wide /privacy/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium desktop-wide /privacy/ main exists: {"x":300,"y":52,"width":860,"height":529.984375}
+- PASS chromium desktop-wide /privacy/ topbar width ok: {"x":300,"y":0,"width":1620,"height":52}
+- PASS chromium desktop-wide /privacy/ tabbar width ok: {"x":0,"y":0,"width":0,"height":0}
+- PASS chromium desktop-wide /privacy/ no visible overwide elements: []
+- PASS chromium desktop-wide /translators/ http ok: 200
+- PASS chromium desktop-wide /translators/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium desktop-wide /translators/ main exists: {"x":300,"y":52,"width":860,"height":666.984375}
+- PASS chromium desktop-wide /translators/ topbar width ok: {"x":300,"y":0,"width":1620,"height":52}
+- PASS chromium desktop-wide /translators/ tabbar width ok: {"x":0,"y":0,"width":0,"height":0}
+- PASS chromium desktop-wide /translators/ no visible overwide elements: []
+- PASS chromium desktop-wide /videos/ http ok: 200
+- PASS chromium desktop-wide /videos/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS chromium desktop-wide /videos/ main exists: {"x":300,"y":52,"width":1620,"height":4574.34375}
+- PASS chromium desktop-wide /videos/ topbar width ok: {"x":300,"y":0,"width":1620,"height":52}
+- PASS chromium desktop-wide /videos/ tabbar width ok: {"x":0,"y":0,"width":0,"height":0}
+- PASS chromium desktop-wide /videos/ no visible overwide elements: []
+- PASS chromium desktop-wide drawer scenario desktop state: {"beforeSidebar":"open","after":{"open":false,"overflow":"clip visible","pos":"static","active":"BUTTON","sidebar":"closed","pageOverflow":0},"beforeDrawer":{"x":0,"y":0,"width":300,"height":1080}}
+- PASS chromium desktop-wide settings scenario opens/locks: {"open":true,"overflow":"hidden","pos":"static","active":"BUTTON","pageOverflow":0}
+- PASS chromium desktop-wide settings tajweed toggles: clicked
+- PASS chromium desktop-wide audio scenario player opens: {"open":true,"player":{"x":0,"y":996,"width":1920,"height":84,"top":996,"right":1920,"bottom":1080,"left":0},"tab":{"x":0,"y":0,"width":0,"height":0,"top":0,"right":0,"bottom":0,"left":0}}
+- PASS chromium desktop-wide mushaf zoom scenario: {"zoomed":true,"overflow":0}
+- PASS chromium desktop-wide mushaf immersive scenario: {"immersive":true,"top":"none","footer":"none","overflow":0}
+- PASS chromium desktop-wide no console errors
+- PASS webkit-smoke iphone-se / http ok: 200
+- PASS webkit-smoke iphone-se / no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS webkit-smoke iphone-se / main exists: {"x":0,"y":66,"width":375,"height":12703.09375}
+- PASS webkit-smoke iphone-se / topbar width ok: {"x":0,"y":0,"width":375,"height":66}
+- PASS webkit-smoke iphone-se / tabbar width ok: {"x":0,"y":601,"width":375,"height":66}
+- PASS webkit-smoke iphone-se / no visible overwide elements: []
+- PASS webkit-smoke iphone-se /surah/1/ http ok: 200
+- PASS webkit-smoke iphone-se /surah/1/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS webkit-smoke iphone-se /surah/1/ main exists: {"x":0,"y":66,"width":375,"height":4978.78125}
+- PASS webkit-smoke iphone-se /surah/1/ topbar width ok: {"x":0,"y":0,"width":375,"height":66}
+- PASS webkit-smoke iphone-se /surah/1/ tabbar width ok: {"x":0,"y":601,"width":375,"height":66}
+- PASS webkit-smoke iphone-se /surah/1/ no visible overwide elements: []
+- PASS webkit-smoke iphone-se /surah/2/ http ok: 200
+- PASS webkit-smoke iphone-se /surah/2/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS webkit-smoke iphone-se /surah/2/ main exists: {"x":0,"y":66,"width":375,"height":196552.9375}
+- PASS webkit-smoke iphone-se /surah/2/ topbar width ok: {"x":0,"y":0,"width":375,"height":66}
+- PASS webkit-smoke iphone-se /surah/2/ tabbar width ok: {"x":0,"y":601,"width":375,"height":66}
+- PASS webkit-smoke iphone-se /surah/2/ no visible overwide elements: []
+- PASS webkit-smoke iphone-se /surah/9/ http ok: 200
+- PASS webkit-smoke iphone-se /surah/9/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS webkit-smoke iphone-se /surah/9/ main exists: {"x":0,"y":66,"width":375,"height":88825.3125}
+- PASS webkit-smoke iphone-se /surah/9/ topbar width ok: {"x":0,"y":0,"width":375,"height":66}
+- PASS webkit-smoke iphone-se /surah/9/ tabbar width ok: {"x":0,"y":601,"width":375,"height":66}
+- PASS webkit-smoke iphone-se /surah/9/ no visible overwide elements: []
+- PASS webkit-smoke iphone-se /mushaf/1 http ok: 200
+- PASS webkit-smoke iphone-se /mushaf/1 no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS webkit-smoke iphone-se /mushaf/1 main exists: {"x":0,"y":66,"width":375,"height":613}
+- PASS webkit-smoke iphone-se /mushaf/1 topbar width ok: {"x":0,"y":0,"width":375,"height":66}
+- PASS webkit-smoke iphone-se /mushaf/1 tabbar width ok: {"x":0,"y":673.5999755859375,"width":375,"height":66}
+- PASS webkit-smoke iphone-se /mushaf/1 no visible overwide elements: []
+- PASS webkit-smoke iphone-se /mushaf/1 mushaf sheet exists: {"x":16.78125,"y":70,"width":341.4375,"height":484.984375}
+- PASS webkit-smoke iphone-se /mushaf/1 mushaf fits width: {"x":16.78125,"y":70,"width":341.4375,"height":484.984375}
+- PASS webkit-smoke iphone-se /mushaf/2 http ok: 200
+- PASS webkit-smoke iphone-se /mushaf/2 no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS webkit-smoke iphone-se /mushaf/2 main exists: {"x":0,"y":66,"width":375,"height":613}
+- PASS webkit-smoke iphone-se /mushaf/2 topbar width ok: {"x":0,"y":0,"width":375,"height":66}
+- PASS webkit-smoke iphone-se /mushaf/2 tabbar width ok: {"x":0,"y":673.5999755859375,"width":375,"height":66}
+- PASS webkit-smoke iphone-se /mushaf/2 no visible overwide elements: []
+- PASS webkit-smoke iphone-se /mushaf/2 mushaf sheet exists: {"x":16.78125,"y":70,"width":341.4375,"height":484.984375}
+- PASS webkit-smoke iphone-se /mushaf/2 mushaf fits width: {"x":16.78125,"y":70,"width":341.4375,"height":484.984375}
+- PASS webkit-smoke iphone-se /mushaf/604 http ok: 200
+- PASS webkit-smoke iphone-se /mushaf/604 no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS webkit-smoke iphone-se /mushaf/604 main exists: {"x":0,"y":66,"width":375,"height":613}
+- PASS webkit-smoke iphone-se /mushaf/604 topbar width ok: {"x":0,"y":0,"width":375,"height":66}
+- PASS webkit-smoke iphone-se /mushaf/604 tabbar width ok: {"x":0,"y":673.5999755859375,"width":375,"height":66}
+- PASS webkit-smoke iphone-se /mushaf/604 no visible overwide elements: []
+- PASS webkit-smoke iphone-se /mushaf/604 mushaf sheet exists: {"x":16.78125,"y":70,"width":341.4375,"height":484.984375}
+- PASS webkit-smoke iphone-se /mushaf/604 mushaf fits width: {"x":16.78125,"y":70,"width":341.4375,"height":484.984375}
+- PASS webkit-smoke iphone-se /search/ http ok: 200
+- PASS webkit-smoke iphone-se /search/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS webkit-smoke iphone-se /search/ main exists: {"x":0,"y":64,"width":375,"height":1031.5}
+- PASS webkit-smoke iphone-se /search/ topbar width ok: {"x":0,"y":0,"width":375,"height":64}
+- PASS webkit-smoke iphone-se /search/ tabbar width ok: {"x":0,"y":601,"width":375,"height":66}
+- PASS webkit-smoke iphone-se /search/ no visible overwide elements: []
+- PASS webkit-smoke iphone-se /progress/ http ok: 200
+- PASS webkit-smoke iphone-se /progress/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS webkit-smoke iphone-se /progress/ main exists: {"x":0,"y":66,"width":375,"height":3698.59375}
+- PASS webkit-smoke iphone-se /progress/ topbar width ok: {"x":0,"y":0,"width":375,"height":66}
+- PASS webkit-smoke iphone-se /progress/ tabbar width ok: {"x":0,"y":601,"width":375,"height":66}
+- PASS webkit-smoke iphone-se /progress/ no visible overwide elements: []
+- PASS webkit-smoke iphone-se /stats/ http ok: 200
+- PASS webkit-smoke iphone-se /stats/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS webkit-smoke iphone-se /stats/ main exists: {"x":0,"y":66,"width":375,"height":799.546875}
+- PASS webkit-smoke iphone-se /stats/ topbar width ok: {"x":0,"y":0,"width":375,"height":66}
+- PASS webkit-smoke iphone-se /stats/ tabbar width ok: {"x":0,"y":601,"width":375,"height":66}
+- PASS webkit-smoke iphone-se /stats/ no visible overwide elements: []
+- PASS webkit-smoke iphone-se /audio/ http ok: 200
+- PASS webkit-smoke iphone-se /audio/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS webkit-smoke iphone-se /audio/ main exists: {"x":0,"y":66,"width":375,"height":1247.84375}
+- PASS webkit-smoke iphone-se /audio/ topbar width ok: {"x":0,"y":0,"width":375,"height":66}
+- PASS webkit-smoke iphone-se /audio/ tabbar width ok: {"x":0,"y":601,"width":375,"height":66}
+- PASS webkit-smoke iphone-se /audio/ no visible overwide elements: []
+- PASS webkit-smoke iphone-se /bookmarks/ http ok: 200
+- PASS webkit-smoke iphone-se /bookmarks/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS webkit-smoke iphone-se /bookmarks/ main exists: {"x":0,"y":66,"width":375,"height":509.65625}
+- PASS webkit-smoke iphone-se /bookmarks/ topbar width ok: {"x":0,"y":0,"width":375,"height":66}
+- PASS webkit-smoke iphone-se /bookmarks/ tabbar width ok: {"x":0,"y":601,"width":375,"height":66}
+- PASS webkit-smoke iphone-se /bookmarks/ no visible overwide elements: []
+- PASS webkit-smoke iphone-se /topics/ http ok: 200
+- PASS webkit-smoke iphone-se /topics/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS webkit-smoke iphone-se /topics/ main exists: {"x":0,"y":66,"width":375,"height":4746.359375}
+- PASS webkit-smoke iphone-se /topics/ topbar width ok: {"x":0,"y":0,"width":375,"height":66}
+- PASS webkit-smoke iphone-se /topics/ tabbar width ok: {"x":0,"y":601,"width":375,"height":66}
+- PASS webkit-smoke iphone-se /topics/ no visible overwide elements: []
+- PASS webkit-smoke iphone-se /glossary/ http ok: 200
+- PASS webkit-smoke iphone-se /glossary/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS webkit-smoke iphone-se /glossary/ main exists: {"x":0,"y":66,"width":375,"height":5046.65625}
+- PASS webkit-smoke iphone-se /glossary/ topbar width ok: {"x":0,"y":0,"width":375,"height":66}
+- PASS webkit-smoke iphone-se /glossary/ tabbar width ok: {"x":0,"y":601,"width":375,"height":66}
+- PASS webkit-smoke iphone-se /glossary/ no visible overwide elements: []
+- PASS webkit-smoke iphone-se /tasbih/ http ok: 200
+- PASS webkit-smoke iphone-se /tasbih/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS webkit-smoke iphone-se /tasbih/ main exists: {"x":0,"y":66,"width":375,"height":1101.6875}
+- PASS webkit-smoke iphone-se /tasbih/ topbar width ok: {"x":0,"y":0,"width":375,"height":66}
+- PASS webkit-smoke iphone-se /tasbih/ tabbar width ok: {"x":0,"y":601,"width":375,"height":66}
+- PASS webkit-smoke iphone-se /tasbih/ no visible overwide elements: []
+- PASS webkit-smoke iphone-se /download/ http ok: 200
+- PASS webkit-smoke iphone-se /download/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS webkit-smoke iphone-se /download/ main exists: {"x":0,"y":66,"width":375,"height":1131.484375}
+- PASS webkit-smoke iphone-se /download/ topbar width ok: {"x":0,"y":0,"width":375,"height":66}
+- PASS webkit-smoke iphone-se /download/ tabbar width ok: {"x":0,"y":601,"width":375,"height":66}
+- PASS webkit-smoke iphone-se /download/ no visible overwide elements: []
+- PASS webkit-smoke iphone-se /backup/ http ok: 200
+- PASS webkit-smoke iphone-se /backup/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS webkit-smoke iphone-se /backup/ main exists: {"x":0,"y":66,"width":375,"height":939.3125}
+- PASS webkit-smoke iphone-se /backup/ topbar width ok: {"x":0,"y":0,"width":375,"height":66}
+- PASS webkit-smoke iphone-se /backup/ tabbar width ok: {"x":0,"y":601,"width":375,"height":66}
+- PASS webkit-smoke iphone-se /backup/ no visible overwide elements: []
+- PASS webkit-smoke iphone-se /about/ http ok: 200
+- PASS webkit-smoke iphone-se /about/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS webkit-smoke iphone-se /about/ main exists: {"x":0,"y":66,"width":375,"height":2138.53125}
+- PASS webkit-smoke iphone-se /about/ topbar width ok: {"x":0,"y":0,"width":375,"height":66}
+- PASS webkit-smoke iphone-se /about/ tabbar width ok: {"x":0,"y":601,"width":375,"height":66}
+- PASS webkit-smoke iphone-se /about/ no visible overwide elements: []
+- PASS webkit-smoke iphone-se /privacy/ http ok: 200
+- PASS webkit-smoke iphone-se /privacy/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS webkit-smoke iphone-se /privacy/ main exists: {"x":0,"y":66,"width":375,"height":848.765625}
+- PASS webkit-smoke iphone-se /privacy/ topbar width ok: {"x":0,"y":0,"width":375,"height":66}
+- PASS webkit-smoke iphone-se /privacy/ tabbar width ok: {"x":0,"y":601,"width":375,"height":66}
+- PASS webkit-smoke iphone-se /privacy/ no visible overwide elements: []
+- PASS webkit-smoke iphone-se /translators/ http ok: 200
+- PASS webkit-smoke iphone-se /translators/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS webkit-smoke iphone-se /translators/ main exists: {"x":0,"y":66,"width":375,"height":903.21875}
+- PASS webkit-smoke iphone-se /translators/ topbar width ok: {"x":0,"y":0,"width":375,"height":66}
+- PASS webkit-smoke iphone-se /translators/ tabbar width ok: {"x":0,"y":601,"width":375,"height":66}
+- PASS webkit-smoke iphone-se /translators/ no visible overwide elements: []
+- PASS webkit-smoke iphone-se /videos/ http ok: 200
+- PASS webkit-smoke iphone-se /videos/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS webkit-smoke iphone-se /videos/ main exists: {"x":0,"y":66,"width":375,"height":9088.671875}
+- PASS webkit-smoke iphone-se /videos/ topbar width ok: {"x":0,"y":0,"width":375,"height":66}
+- PASS webkit-smoke iphone-se /videos/ tabbar width ok: {"x":0,"y":601,"width":375,"height":66}
+- PASS webkit-smoke iphone-se /videos/ no visible overwide elements: []
+- PASS webkit-smoke iphone-se drawer scenario opens/locks: {"open":true,"overflow":"hidden","pos":"fixed","active":"BODY","sidebar":"","pageOverflow":0}
+- PASS webkit-smoke iphone-se drawer search filters: hits=11
+- PASS webkit-smoke iphone-se settings scenario opens/locks: {"open":true,"overflow":"hidden","pos":"fixed","active":"BODY","pageOverflow":0}
+- PASS webkit-smoke iphone-se settings tajweed toggles: clicked
+- PASS webkit-smoke iphone-se audio scenario player opens: {"open":true,"player":{"x":0,"y":590,"width":375,"height":76,"top":590,"right":375,"bottom":666,"left":0},"tab":{"x":0,"y":673.5999755859375,"width":375,"height":66,"top":673.5999755859375,"right":375,"bottom":739.5999755859375,"left":0}}
+- PASS webkit-smoke iphone-se mushaf zoom scenario: {"zoomed":true,"overflow":0}
+- PASS webkit-smoke iphone-se mushaf immersive scenario: {"immersive":true,"top":"none","footer":"none","overflow":0}
+- PASS webkit-smoke iphone-se no console errors
+- PASS webkit-smoke iphone-large / http ok: 200
+- PASS webkit-smoke iphone-large / no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS webkit-smoke iphone-large / main exists: {"x":0,"y":66,"width":430,"height":12703.09375}
+- PASS webkit-smoke iphone-large / topbar width ok: {"x":0,"y":0,"width":430,"height":66}
+- PASS webkit-smoke iphone-large / tabbar width ok: {"x":0,"y":866,"width":430,"height":66}
+- PASS webkit-smoke iphone-large / no visible overwide elements: []
+- PASS webkit-smoke iphone-large /surah/1/ http ok: 200
+- PASS webkit-smoke iphone-large /surah/1/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS webkit-smoke iphone-large /surah/1/ main exists: {"x":0,"y":66,"width":430,"height":4592.4375}
+- PASS webkit-smoke iphone-large /surah/1/ topbar width ok: {"x":0,"y":0,"width":430,"height":66}
+- PASS webkit-smoke iphone-large /surah/1/ tabbar width ok: {"x":0,"y":866,"width":430,"height":66}
+- PASS webkit-smoke iphone-large /surah/1/ no visible overwide elements: []
+- PASS webkit-smoke iphone-large /surah/2/ http ok: 200
+- PASS webkit-smoke iphone-large /surah/2/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS webkit-smoke iphone-large /surah/2/ main exists: {"x":0,"y":66,"width":430,"height":196224.90625}
+- PASS webkit-smoke iphone-large /surah/2/ topbar width ok: {"x":0,"y":0,"width":430,"height":66}
+- PASS webkit-smoke iphone-large /surah/2/ tabbar width ok: {"x":0,"y":866,"width":430,"height":66}
+- PASS webkit-smoke iphone-large /surah/2/ no visible overwide elements: []
+- PASS webkit-smoke iphone-large /surah/9/ http ok: 200
+- PASS webkit-smoke iphone-large /surah/9/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS webkit-smoke iphone-large /surah/9/ main exists: {"x":0,"y":66,"width":430,"height":88643.4375}
+- PASS webkit-smoke iphone-large /surah/9/ topbar width ok: {"x":0,"y":0,"width":430,"height":66}
+- PASS webkit-smoke iphone-large /surah/9/ tabbar width ok: {"x":0,"y":866,"width":430,"height":66}
+- PASS webkit-smoke iphone-large /surah/9/ no visible overwide elements: []
+- PASS webkit-smoke iphone-large /mushaf/1 http ok: 200
+- PASS webkit-smoke iphone-large /mushaf/1 no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS webkit-smoke iphone-large /mushaf/1 main exists: {"x":0,"y":66,"width":430,"height":878}
+- PASS webkit-smoke iphone-large /mushaf/1 topbar width ok: {"x":0,"y":0,"width":430,"height":66}
+- PASS webkit-smoke iphone-large /mushaf/1 tabbar width ok: {"x":0,"y":938.5999755859375,"width":430,"height":66}
+- PASS webkit-smoke iphone-large /mushaf/1 no visible overwide elements: []
+- PASS webkit-smoke iphone-large /mushaf/1 mushaf sheet exists: {"x":6,"y":70,"width":418,"height":593.75}
+- PASS webkit-smoke iphone-large /mushaf/1 mushaf fits width: {"x":6,"y":70,"width":418,"height":593.75}
+- PASS webkit-smoke iphone-large /mushaf/2 http ok: 200
+- PASS webkit-smoke iphone-large /mushaf/2 no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS webkit-smoke iphone-large /mushaf/2 main exists: {"x":0,"y":66,"width":430,"height":878}
+- PASS webkit-smoke iphone-large /mushaf/2 topbar width ok: {"x":0,"y":0,"width":430,"height":66}
+- PASS webkit-smoke iphone-large /mushaf/2 tabbar width ok: {"x":0,"y":938.5999755859375,"width":430,"height":66}
+- PASS webkit-smoke iphone-large /mushaf/2 no visible overwide elements: []
+- PASS webkit-smoke iphone-large /mushaf/2 mushaf sheet exists: {"x":6,"y":70,"width":418,"height":593.75}
+- PASS webkit-smoke iphone-large /mushaf/2 mushaf fits width: {"x":6,"y":70,"width":418,"height":593.75}
+- PASS webkit-smoke iphone-large /mushaf/604 http ok: 200
+- PASS webkit-smoke iphone-large /mushaf/604 no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS webkit-smoke iphone-large /mushaf/604 main exists: {"x":0,"y":66,"width":430,"height":878}
+- PASS webkit-smoke iphone-large /mushaf/604 topbar width ok: {"x":0,"y":0,"width":430,"height":66}
+- PASS webkit-smoke iphone-large /mushaf/604 tabbar width ok: {"x":0,"y":938.5999755859375,"width":430,"height":66}
+- PASS webkit-smoke iphone-large /mushaf/604 no visible overwide elements: []
+- PASS webkit-smoke iphone-large /mushaf/604 mushaf sheet exists: {"x":6,"y":70,"width":418,"height":593.75}
+- PASS webkit-smoke iphone-large /mushaf/604 mushaf fits width: {"x":6,"y":70,"width":418,"height":593.75}
+- PASS webkit-smoke iphone-large /search/ http ok: 200
+- PASS webkit-smoke iphone-large /search/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS webkit-smoke iphone-large /search/ main exists: {"x":0,"y":66,"width":430,"height":954.671875}
+- PASS webkit-smoke iphone-large /search/ topbar width ok: {"x":0,"y":0,"width":430,"height":66}
+- PASS webkit-smoke iphone-large /search/ tabbar width ok: {"x":0,"y":866,"width":430,"height":66}
+- PASS webkit-smoke iphone-large /search/ no visible overwide elements: []
+- PASS webkit-smoke iphone-large /progress/ http ok: 200
+- PASS webkit-smoke iphone-large /progress/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS webkit-smoke iphone-large /progress/ main exists: {"x":0,"y":66,"width":430,"height":3605.546875}
+- PASS webkit-smoke iphone-large /progress/ topbar width ok: {"x":0,"y":0,"width":430,"height":66}
+- PASS webkit-smoke iphone-large /progress/ tabbar width ok: {"x":0,"y":866,"width":430,"height":66}
+- PASS webkit-smoke iphone-large /progress/ no visible overwide elements: []
+- PASS webkit-smoke iphone-large /stats/ http ok: 200
+- PASS webkit-smoke iphone-large /stats/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS webkit-smoke iphone-large /stats/ main exists: {"x":0,"y":66,"width":430,"height":748.359375}
+- PASS webkit-smoke iphone-large /stats/ topbar width ok: {"x":0,"y":0,"width":430,"height":66}
+- PASS webkit-smoke iphone-large /stats/ tabbar width ok: {"x":0,"y":866,"width":430,"height":66}
+- PASS webkit-smoke iphone-large /stats/ no visible overwide elements: []
+- PASS webkit-smoke iphone-large /audio/ http ok: 200
+- PASS webkit-smoke iphone-large /audio/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS webkit-smoke iphone-large /audio/ main exists: {"x":0,"y":66,"width":430,"height":1247.84375}
+- PASS webkit-smoke iphone-large /audio/ topbar width ok: {"x":0,"y":0,"width":430,"height":66}
+- PASS webkit-smoke iphone-large /audio/ tabbar width ok: {"x":0,"y":866,"width":430,"height":66}
+- PASS webkit-smoke iphone-large /audio/ no visible overwide elements: []
+- PASS webkit-smoke iphone-large /bookmarks/ http ok: 200
+- PASS webkit-smoke iphone-large /bookmarks/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS webkit-smoke iphone-large /bookmarks/ main exists: {"x":0,"y":66,"width":430,"height":487.296875}
+- PASS webkit-smoke iphone-large /bookmarks/ topbar width ok: {"x":0,"y":0,"width":430,"height":66}
+- PASS webkit-smoke iphone-large /bookmarks/ tabbar width ok: {"x":0,"y":866,"width":430,"height":66}
+- PASS webkit-smoke iphone-large /bookmarks/ no visible overwide elements: []
+- PASS webkit-smoke iphone-large /topics/ http ok: 200
+- PASS webkit-smoke iphone-large /topics/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS webkit-smoke iphone-large /topics/ main exists: {"x":0,"y":66,"width":430,"height":4715.359375}
+- PASS webkit-smoke iphone-large /topics/ topbar width ok: {"x":0,"y":0,"width":430,"height":66}
+- PASS webkit-smoke iphone-large /topics/ tabbar width ok: {"x":0,"y":866,"width":430,"height":66}
+- PASS webkit-smoke iphone-large /topics/ no visible overwide elements: []
+- PASS webkit-smoke iphone-large /glossary/ http ok: 200
+- PASS webkit-smoke iphone-large /glossary/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS webkit-smoke iphone-large /glossary/ main exists: {"x":0,"y":66,"width":430,"height":4894.84375}
+- PASS webkit-smoke iphone-large /glossary/ topbar width ok: {"x":0,"y":0,"width":430,"height":66}
+- PASS webkit-smoke iphone-large /glossary/ tabbar width ok: {"x":0,"y":866,"width":430,"height":66}
+- PASS webkit-smoke iphone-large /glossary/ no visible overwide elements: []
+- PASS webkit-smoke iphone-large /tasbih/ http ok: 200
+- PASS webkit-smoke iphone-large /tasbih/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS webkit-smoke iphone-large /tasbih/ main exists: {"x":0,"y":66,"width":430,"height":1086.1875}
+- PASS webkit-smoke iphone-large /tasbih/ topbar width ok: {"x":0,"y":0,"width":430,"height":66}
+- PASS webkit-smoke iphone-large /tasbih/ tabbar width ok: {"x":0,"y":866,"width":430,"height":66}
+- PASS webkit-smoke iphone-large /tasbih/ no visible overwide elements: []
+- PASS webkit-smoke iphone-large /download/ http ok: 200
+- PASS webkit-smoke iphone-large /download/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS webkit-smoke iphone-large /download/ main exists: {"x":0,"y":66,"width":430,"height":1021.421875}
+- PASS webkit-smoke iphone-large /download/ topbar width ok: {"x":0,"y":0,"width":430,"height":66}
+- PASS webkit-smoke iphone-large /download/ tabbar width ok: {"x":0,"y":866,"width":430,"height":66}
+- PASS webkit-smoke iphone-large /download/ no visible overwide elements: []
+- PASS webkit-smoke iphone-large /backup/ http ok: 200
+- PASS webkit-smoke iphone-large /backup/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS webkit-smoke iphone-large /backup/ main exists: {"x":0,"y":66,"width":430,"height":919.8125}
+- PASS webkit-smoke iphone-large /backup/ topbar width ok: {"x":0,"y":0,"width":430,"height":66}
+- PASS webkit-smoke iphone-large /backup/ tabbar width ok: {"x":0,"y":866,"width":430,"height":66}
+- PASS webkit-smoke iphone-large /backup/ no visible overwide elements: []
+- PASS webkit-smoke iphone-large /about/ http ok: 200
+- PASS webkit-smoke iphone-large /about/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS webkit-smoke iphone-large /about/ main exists: {"x":0,"y":66,"width":430,"height":1890.890625}
+- PASS webkit-smoke iphone-large /about/ topbar width ok: {"x":0,"y":0,"width":430,"height":66}
+- PASS webkit-smoke iphone-large /about/ tabbar width ok: {"x":0,"y":866,"width":430,"height":66}
+- PASS webkit-smoke iphone-large /about/ no visible overwide elements: []
+- PASS webkit-smoke iphone-large /privacy/ http ok: 200
+- PASS webkit-smoke iphone-large /privacy/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS webkit-smoke iphone-large /privacy/ main exists: {"x":0,"y":66,"width":430,"height":766.21875}
+- PASS webkit-smoke iphone-large /privacy/ topbar width ok: {"x":0,"y":0,"width":430,"height":66}
+- PASS webkit-smoke iphone-large /privacy/ tabbar width ok: {"x":0,"y":866,"width":430,"height":66}
+- PASS webkit-smoke iphone-large /privacy/ no visible overwide elements: []
+- PASS webkit-smoke iphone-large /translators/ http ok: 200
+- PASS webkit-smoke iphone-large /translators/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS webkit-smoke iphone-large /translators/ main exists: {"x":0,"y":66,"width":430,"height":848.1875}
+- PASS webkit-smoke iphone-large /translators/ topbar width ok: {"x":0,"y":0,"width":430,"height":66}
+- PASS webkit-smoke iphone-large /translators/ tabbar width ok: {"x":0,"y":866,"width":430,"height":66}
+- PASS webkit-smoke iphone-large /translators/ no visible overwide elements: []
+- PASS webkit-smoke iphone-large /videos/ http ok: 200
+- PASS webkit-smoke iphone-large /videos/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS webkit-smoke iphone-large /videos/ main exists: {"x":0,"y":66,"width":430,"height":8848.046875}
+- PASS webkit-smoke iphone-large /videos/ topbar width ok: {"x":0,"y":0,"width":430,"height":66}
+- PASS webkit-smoke iphone-large /videos/ tabbar width ok: {"x":0,"y":866,"width":430,"height":66}
+- PASS webkit-smoke iphone-large /videos/ no visible overwide elements: []
+- PASS webkit-smoke iphone-large drawer scenario opens/locks: {"open":true,"overflow":"hidden","pos":"fixed","active":"BODY","sidebar":"","pageOverflow":0}
+- PASS webkit-smoke iphone-large drawer search filters: hits=11
+- PASS webkit-smoke iphone-large settings scenario opens/locks: {"open":true,"overflow":"hidden","pos":"fixed","active":"BODY","pageOverflow":0}
+- PASS webkit-smoke iphone-large settings tajweed toggles: clicked
+- PASS webkit-smoke iphone-large audio scenario player opens: {"open":true,"player":{"x":0,"y":853,"width":430,"height":78,"top":853,"right":430,"bottom":931,"left":0},"tab":{"x":0,"y":938.5999755859375,"width":430,"height":66,"top":938.5999755859375,"right":430,"bottom":1004.5999755859375,"left":0}}
+- PASS webkit-smoke iphone-large mushaf zoom scenario: {"zoomed":true,"overflow":0}
+- PASS webkit-smoke iphone-large mushaf immersive scenario: {"immersive":true,"top":"none","footer":"none","overflow":0}
+- PASS webkit-smoke iphone-large no console errors
+- PASS webkit-smoke desktop-normal / http ok: 200
+- PASS webkit-smoke desktop-normal / no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS webkit-smoke desktop-normal / main exists: {"x":300,"y":52,"width":1140,"height":6637.296875}
+- PASS webkit-smoke desktop-normal / topbar width ok: {"x":300,"y":0,"width":1140,"height":52}
+- PASS webkit-smoke desktop-normal / tabbar width ok: {"x":0,"y":0,"width":0,"height":0}
+- PASS webkit-smoke desktop-normal / no visible overwide elements: []
+- PASS webkit-smoke desktop-normal /surah/1/ http ok: 200
+- PASS webkit-smoke desktop-normal /surah/1/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS webkit-smoke desktop-normal /surah/1/ main exists: {"x":300,"y":52,"width":860,"height":4470.25}
+- PASS webkit-smoke desktop-normal /surah/1/ topbar width ok: {"x":300,"y":0,"width":1140,"height":52}
+- PASS webkit-smoke desktop-normal /surah/1/ tabbar width ok: {"x":0,"y":0,"width":0,"height":0}
+- PASS webkit-smoke desktop-normal /surah/1/ no visible overwide elements: []
+- PASS webkit-smoke desktop-normal /surah/2/ http ok: 200
+- PASS webkit-smoke desktop-normal /surah/2/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS webkit-smoke desktop-normal /surah/2/ main exists: {"x":300,"y":52,"width":860,"height":197777.4375}
+- PASS webkit-smoke desktop-normal /surah/2/ topbar width ok: {"x":300,"y":0,"width":1140,"height":52}
+- PASS webkit-smoke desktop-normal /surah/2/ tabbar width ok: {"x":0,"y":0,"width":0,"height":0}
+- PASS webkit-smoke desktop-normal /surah/2/ no visible overwide elements: []
+- PASS webkit-smoke desktop-normal /surah/9/ http ok: 200
+- PASS webkit-smoke desktop-normal /surah/9/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS webkit-smoke desktop-normal /surah/9/ main exists: {"x":300,"y":52,"width":860,"height":89079.375}
+- PASS webkit-smoke desktop-normal /surah/9/ topbar width ok: {"x":300,"y":0,"width":1140,"height":52}
+- PASS webkit-smoke desktop-normal /surah/9/ tabbar width ok: {"x":0,"y":0,"width":0,"height":0}
+- PASS webkit-smoke desktop-normal /surah/9/ no visible overwide elements: []
+- PASS webkit-smoke desktop-normal /mushaf/1 http ok: 200
+- PASS webkit-smoke desktop-normal /mushaf/1 no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS webkit-smoke desktop-normal /mushaf/1 main exists: {"x":300,"y":52,"width":1140,"height":848}
+- PASS webkit-smoke desktop-normal /mushaf/1 topbar width ok: {"x":300,"y":0,"width":1140,"height":52}
+- PASS webkit-smoke desktop-normal /mushaf/1 tabbar width ok: {"x":0,"y":0,"width":0,"height":0}
+- PASS webkit-smoke desktop-normal /mushaf/1 no visible overwide elements: []
+- PASS webkit-smoke desktop-normal /mushaf/1 mushaf sheet exists: {"x":619.5,"y":123.1875,"width":501,"height":711.640625}
+- PASS webkit-smoke desktop-normal /mushaf/1 mushaf fits width: {"x":619.5,"y":123.1875,"width":501,"height":711.640625}
+- PASS webkit-smoke desktop-normal /mushaf/2 http ok: 200
+- PASS webkit-smoke desktop-normal /mushaf/2 no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS webkit-smoke desktop-normal /mushaf/2 main exists: {"x":300,"y":52,"width":1140,"height":848}
+- PASS webkit-smoke desktop-normal /mushaf/2 topbar width ok: {"x":300,"y":0,"width":1140,"height":52}
+- PASS webkit-smoke desktop-normal /mushaf/2 tabbar width ok: {"x":0,"y":0,"width":0,"height":0}
+- PASS webkit-smoke desktop-normal /mushaf/2 no visible overwide elements: []
+- PASS webkit-smoke desktop-normal /mushaf/2 mushaf sheet exists: {"x":619.5,"y":123.1875,"width":501,"height":711.640625}
+- PASS webkit-smoke desktop-normal /mushaf/2 mushaf fits width: {"x":619.5,"y":123.1875,"width":501,"height":711.640625}
+- PASS webkit-smoke desktop-normal /mushaf/604 http ok: 200
+- PASS webkit-smoke desktop-normal /mushaf/604 no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS webkit-smoke desktop-normal /mushaf/604 main exists: {"x":300,"y":52,"width":1140,"height":848}
+- PASS webkit-smoke desktop-normal /mushaf/604 topbar width ok: {"x":300,"y":0,"width":1140,"height":52}
+- PASS webkit-smoke desktop-normal /mushaf/604 tabbar width ok: {"x":0,"y":0,"width":0,"height":0}
+- PASS webkit-smoke desktop-normal /mushaf/604 no visible overwide elements: []
+- PASS webkit-smoke desktop-normal /mushaf/604 mushaf sheet exists: {"x":619.5,"y":123.1875,"width":501,"height":711.640625}
+- PASS webkit-smoke desktop-normal /mushaf/604 mushaf fits width: {"x":619.5,"y":123.1875,"width":501,"height":711.640625}
+- PASS webkit-smoke desktop-normal /search/ http ok: 200
+- PASS webkit-smoke desktop-normal /search/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS webkit-smoke desktop-normal /search/ main exists: {"x":300,"y":52,"width":860,"height":633.109375}
+- PASS webkit-smoke desktop-normal /search/ topbar width ok: {"x":300,"y":0,"width":1140,"height":52}
+- PASS webkit-smoke desktop-normal /search/ tabbar width ok: {"x":0,"y":0,"width":0,"height":0}
+- PASS webkit-smoke desktop-normal /search/ no visible overwide elements: []
+- PASS webkit-smoke desktop-normal /progress/ http ok: 200
+- PASS webkit-smoke desktop-normal /progress/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS webkit-smoke desktop-normal /progress/ main exists: {"x":300,"y":52,"width":860,"height":2915.109375}
+- PASS webkit-smoke desktop-normal /progress/ topbar width ok: {"x":300,"y":0,"width":1140,"height":52}
+- PASS webkit-smoke desktop-normal /progress/ tabbar width ok: {"x":0,"y":0,"width":0,"height":0}
+- PASS webkit-smoke desktop-normal /progress/ no visible overwide elements: []
+- PASS webkit-smoke desktop-normal /stats/ http ok: 200
+- PASS webkit-smoke desktop-normal /stats/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS webkit-smoke desktop-normal /stats/ main exists: {"x":300,"y":52,"width":860,"height":602.3125}
+- PASS webkit-smoke desktop-normal /stats/ topbar width ok: {"x":300,"y":0,"width":1140,"height":52}
+- PASS webkit-smoke desktop-normal /stats/ tabbar width ok: {"x":0,"y":0,"width":0,"height":0}
+- PASS webkit-smoke desktop-normal /stats/ no visible overwide elements: []
+- PASS webkit-smoke desktop-normal /audio/ http ok: 200
+- PASS webkit-smoke desktop-normal /audio/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS webkit-smoke desktop-normal /audio/ main exists: {"x":300,"y":52,"width":860,"height":1078.421875}
+- PASS webkit-smoke desktop-normal /audio/ topbar width ok: {"x":300,"y":0,"width":1140,"height":52}
+- PASS webkit-smoke desktop-normal /audio/ tabbar width ok: {"x":0,"y":0,"width":0,"height":0}
+- PASS webkit-smoke desktop-normal /audio/ no visible overwide elements: []
+- PASS webkit-smoke desktop-normal /bookmarks/ http ok: 200
+- PASS webkit-smoke desktop-normal /bookmarks/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS webkit-smoke desktop-normal /bookmarks/ main exists: {"x":300,"y":52,"width":860,"height":437.1875}
+- PASS webkit-smoke desktop-normal /bookmarks/ topbar width ok: {"x":300,"y":0,"width":1140,"height":52}
+- PASS webkit-smoke desktop-normal /bookmarks/ tabbar width ok: {"x":0,"y":0,"width":0,"height":0}
+- PASS webkit-smoke desktop-normal /bookmarks/ no visible overwide elements: []
+- PASS webkit-smoke desktop-normal /topics/ http ok: 200
+- PASS webkit-smoke desktop-normal /topics/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS webkit-smoke desktop-normal /topics/ main exists: {"x":300,"y":52,"width":860,"height":2212.828125}
+- PASS webkit-smoke desktop-normal /topics/ topbar width ok: {"x":300,"y":0,"width":1140,"height":52}
+- PASS webkit-smoke desktop-normal /topics/ tabbar width ok: {"x":0,"y":0,"width":0,"height":0}
+- PASS webkit-smoke desktop-normal /topics/ no visible overwide elements: []
+- PASS webkit-smoke desktop-normal /glossary/ http ok: 200
+- PASS webkit-smoke desktop-normal /glossary/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS webkit-smoke desktop-normal /glossary/ main exists: {"x":300,"y":52,"width":860,"height":4342.375}
+- PASS webkit-smoke desktop-normal /glossary/ topbar width ok: {"x":300,"y":0,"width":1140,"height":52}
+- PASS webkit-smoke desktop-normal /glossary/ tabbar width ok: {"x":0,"y":0,"width":0,"height":0}
+- PASS webkit-smoke desktop-normal /glossary/ no visible overwide elements: []
+- PASS webkit-smoke desktop-normal /tasbih/ http ok: 200
+- PASS webkit-smoke desktop-normal /tasbih/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS webkit-smoke desktop-normal /tasbih/ main exists: {"x":300,"y":52,"width":860,"height":934.8125}
+- PASS webkit-smoke desktop-normal /tasbih/ topbar width ok: {"x":300,"y":0,"width":1140,"height":52}
+- PASS webkit-smoke desktop-normal /tasbih/ tabbar width ok: {"x":0,"y":0,"width":0,"height":0}
+- PASS webkit-smoke desktop-normal /tasbih/ no visible overwide elements: []
+- PASS webkit-smoke desktop-normal /download/ http ok: 200
+- PASS webkit-smoke desktop-normal /download/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS webkit-smoke desktop-normal /download/ main exists: {"x":300,"y":52,"width":860,"height":855.734375}
+- PASS webkit-smoke desktop-normal /download/ topbar width ok: {"x":300,"y":0,"width":1140,"height":52}
+- PASS webkit-smoke desktop-normal /download/ tabbar width ok: {"x":0,"y":0,"width":0,"height":0}
+- PASS webkit-smoke desktop-normal /download/ no visible overwide elements: []
+- PASS webkit-smoke desktop-normal /backup/ http ok: 200
+- PASS webkit-smoke desktop-normal /backup/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS webkit-smoke desktop-normal /backup/ main exists: {"x":300,"y":52,"width":860,"height":859.0625}
+- PASS webkit-smoke desktop-normal /backup/ topbar width ok: {"x":300,"y":0,"width":1140,"height":52}
+- PASS webkit-smoke desktop-normal /backup/ tabbar width ok: {"x":0,"y":0,"width":0,"height":0}
+- PASS webkit-smoke desktop-normal /backup/ no visible overwide elements: []
+- PASS webkit-smoke desktop-normal /about/ http ok: 200
+- PASS webkit-smoke desktop-normal /about/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS webkit-smoke desktop-normal /about/ main exists: {"x":300,"y":52,"width":860,"height":1324.46875}
+- PASS webkit-smoke desktop-normal /about/ topbar width ok: {"x":300,"y":0,"width":1140,"height":52}
+- PASS webkit-smoke desktop-normal /about/ tabbar width ok: {"x":0,"y":0,"width":0,"height":0}
+- PASS webkit-smoke desktop-normal /about/ no visible overwide elements: []
+- PASS webkit-smoke desktop-normal /privacy/ http ok: 200
+- PASS webkit-smoke desktop-normal /privacy/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS webkit-smoke desktop-normal /privacy/ main exists: {"x":300,"y":52,"width":860,"height":529.984375}
+- PASS webkit-smoke desktop-normal /privacy/ topbar width ok: {"x":300,"y":0,"width":1140,"height":52}
+- PASS webkit-smoke desktop-normal /privacy/ tabbar width ok: {"x":0,"y":0,"width":0,"height":0}
+- PASS webkit-smoke desktop-normal /privacy/ no visible overwide elements: []
+- PASS webkit-smoke desktop-normal /translators/ http ok: 200
+- PASS webkit-smoke desktop-normal /translators/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS webkit-smoke desktop-normal /translators/ main exists: {"x":300,"y":52,"width":860,"height":666.984375}
+- PASS webkit-smoke desktop-normal /translators/ topbar width ok: {"x":300,"y":0,"width":1140,"height":52}
+- PASS webkit-smoke desktop-normal /translators/ tabbar width ok: {"x":0,"y":0,"width":0,"height":0}
+- PASS webkit-smoke desktop-normal /translators/ no visible overwide elements: []
+- PASS webkit-smoke desktop-normal /videos/ http ok: 200
+- PASS webkit-smoke desktop-normal /videos/ no horizontal overflow: {"overflow":0,"badFixed":[]}
+- PASS webkit-smoke desktop-normal /videos/ main exists: {"x":300,"y":52,"width":1140,"height":4574.34375}
+- PASS webkit-smoke desktop-normal /videos/ topbar width ok: {"x":300,"y":0,"width":1140,"height":52}
+- PASS webkit-smoke desktop-normal /videos/ tabbar width ok: {"x":0,"y":0,"width":0,"height":0}
+- PASS webkit-smoke desktop-normal /videos/ no visible overwide elements: []
+- PASS webkit-smoke desktop-normal drawer scenario desktop state: {"beforeSidebar":"open","after":{"open":false,"overflow":"clip visible","pos":"static","active":"BODY","sidebar":"closed","pageOverflow":0},"beforeDrawer":{"x":0,"y":0,"width":300,"height":900}}
+- PASS webkit-smoke desktop-normal settings scenario opens/locks: {"open":true,"overflow":"hidden","pos":"static","active":"BODY","pageOverflow":0}
+- PASS webkit-smoke desktop-normal settings tajweed toggles: clicked
+- PASS webkit-smoke desktop-normal audio scenario player opens: {"open":true,"player":{"x":0,"y":816,"width":1440,"height":84,"top":816,"right":1440,"bottom":900,"left":0},"tab":{"x":0,"y":0,"width":0,"height":0,"top":0,"right":0,"bottom":0,"left":0}}
+- PASS webkit-smoke desktop-normal mushaf zoom scenario: {"zoomed":true,"overflow":0}
+- PASS webkit-smoke desktop-normal mushaf immersive scenario: {"immersive":true,"top":"none","footer":"none","overflow":0}
+- PASS webkit-smoke desktop-normal no console errors

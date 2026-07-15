@@ -228,10 +228,17 @@
   - drawer search фокусируется только после ручного tap;
   - нижний player теперь ставит `body.player-open`, поэтому mobile tabbar уезжает независимо от DOM-соседства;
   - проверено в `qa-screens/2026-07-15-extended-mobile-ios-audit/`: 52 автоматические проверки, 0 падений.
+- Финальная QA-матрица из раздела 8 закрыта:
+  - проверен 21 маршрут: `/`, `/surah/1/`, `/surah/2/`, `/surah/9/`, `/mushaf/1`, `/mushaf/2`, `/mushaf/604`, `/search/`, `/progress/`, `/stats/`, `/audio/`, `/bookmarks/`, `/topics/`, `/glossary/`, `/tasbih/`, `/download/`, `/backup/`, `/about/`, `/privacy/`, `/translators/`, `/videos/`;
+  - проверены размеры 375x667, 390x844, 430x932, 768x1024, 1024x768, 1440x900 и 1920x1080;
+  - дополнительно пройден WebKit smoke для Safari-like поведения на 375x667, 430x932 и 1440x900;
+  - проверены загрузка маршрутов, отсутствие horizontal overflow, topbar/tabbar bounds, overwide elements, drawer/settings сценарии, аудиоплеер, zoom и immersive мушафа;
+  - viewport meta очищен от `interactive-widget=resizes-content`, чтобы WebKit не писал runtime-warning;
+  - проверено в `qa-screens/2026-07-15-final-apple-ui-matrix/`: 1396 автоматических проверок, 0 падений.
 
 ### Остаётся
 
-- Провести расширенную QA-матрицу из раздела 8: 375x667, 430x932, 768x1024, 1024x768, 1440x900, 1920x1080, плюс ручной mobile Safari.
+Открытых пунктов из этого плана не осталось. Дальше имеет смысл заводить уже новые продуктовые задачи, а не продолжать этот cleanup-план.
 
 ## Что уже сделано
 
