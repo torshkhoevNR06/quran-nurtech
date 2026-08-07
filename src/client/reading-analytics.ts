@@ -157,7 +157,7 @@ let progressIndex: SurahMeta[] = [];
 export function renderReadingProgress(idx?: SurahMeta[]) {
   if (idx) progressIndex = idx;
   const pbox = $('[data-drawer-progress]');
-  if (!pbox || !progressIndex.length) return;
+  if (!pbox) return;
   const prog = getProgress();
   const readAyahs = readAyahCount(prog);
   const pct = Math.round((readAyahs / TOTAL_AYAHS) * 100);

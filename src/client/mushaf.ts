@@ -14,17 +14,25 @@
   var body = document.body;
   var reader = document.querySelector('.mushaf-reader');
   var sheet = document.querySelector('.mushaf-sheet');
+  var toolbar = document.querySelector('.mushaf-toolbar');
   var pageEl = document.querySelector('.qcf-page');
   var range = document.querySelector('[data-mushaf-zoom-range]');
   var fitEls = document.querySelectorAll('[data-mushaf-fit]');
   var ZOOM_KEY = 'q_mushaf_zoom';
   var STATE_KEY = 'q_mushaf_zoom_state';
   var IMM_KEY = 'q_mushaf_reader';
+  var PAGE_RATIO = 0.704;
   var MIN_SCALE = 1;
   var MAX_SCALE = 3;
   var scale = 1;
   var panX = 0;
   var panY = 0;
+  var fitTimer = 0;
+  var jumpTimer = 0;
+  var pageLoadToken = 0;
+  var pageCache = {};
+  var activePage = currentPage();
+  var lastImmersiveNavAt = 0;
 
   function clamp(n, min, max) {
     return Math.max(min, Math.min(max, n));
@@ -38,6 +46,31 @@
     var vv = window.visualViewport;
     var height = Math.max(360, Math.floor((vv && vv.height) || window.innerHeight || 0));
     root.style.setProperty('--mushaf-vvh', height + 'px');
+  }
+
+  function px(value) {
+    return parseFloat(value || '0') || 0;
+  }
+
+  function elementOuterSize(el, axis) {
+    if (!el) return 0;
+    var style = getComputedStyle(el);
+    var rect = el.getBoundingClientRect();
+    if (axis === 'width') return rect.width + px(style.marginLeft) + px(style.marginRight);
+    return rect.height + px(style.marginTop) + px(style.marginBottom);
+  }
+
+  function isFixed(el) {
+    return el && getComputedStyle(el).position === 'fixed';
+  }
+
+  function safeInset(name) {
+    var probe = document.createElement('div');
+    probe.style.cssText = 'position:absolute;visibility:hidden;pointer-events:none;' + name + ':env(safe-area-inset-' + name + ');';
+    document.body.appendChild(probe);
+    var value = px(getComputedStyle(probe).getPropertyValue(name));
+    probe.remove();
+    return value;
   }
 
   function preserveCenter() {
@@ -56,26 +89,100 @@
     });
   }
 
+  function scrollZoomToStart() {
+    if (!reader) return;
+    var sync = function () {
+      reader.scrollLeft = Math.max(0, (reader.scrollWidth - reader.clientWidth) / 2);
+      reader.scrollTop = 0;
+    };
+    requestAnimationFrame(function () {
+      sync();
+      requestAnimationFrame(function () {
+        sync();
+        window.setTimeout(sync, 80);
+        window.setTimeout(sync, 220);
+      });
+    });
+  }
+
   function layoutMushaf(center) {
     if (!reader || !sheet) return;
     syncViewportHeight();
     var isMobile = window.matchMedia('(max-width: 650px)').matches;
     var isImmersive = body.classList.contains('mushaf-immersive');
-    var widthSpace = Math.max(280, reader.clientWidth - (isMobile ? 12 : 56));
-    var heightReserve = isImmersive ? (isMobile ? 96 : 118) : isMobile ? 118 : 136;
-    var heightSpace = Math.max(420, reader.clientHeight - heightReserve);
-    var fitWidth = Math.min(widthSpace, heightSpace * 0.704, isMobile ? 620 : 760);
-    var minWidth = isMobile ? Math.min(330, widthSpace) : 390;
-    var pageWidth = Math.round(Math.max(minWidth, fitWidth));
+    var style = getComputedStyle(reader);
+    var bottom = document.querySelector('.mushaf-bottom');
+    var gap = px(style.rowGap || style.gap);
+    var horizontalChrome = px(style.paddingLeft) + px(style.paddingRight);
+    var verticalChrome = px(style.paddingTop) + px(style.paddingBottom);
+    var sideControls = 0;
+    var flowRows = 0;
+    if (!isFixed(toolbar) && toolbar && !isImmersive) flowRows += elementOuterSize(toolbar, 'height') + gap;
+    if (bottom && getComputedStyle(bottom).display !== 'none' && !isImmersive) flowRows += elementOuterSize(bottom, 'height') + gap;
+
+    var widthSpace = Math.max(1, reader.clientWidth - horizontalChrome - sideControls - 2);
+    var heightSpace = Math.max(1, reader.clientHeight - verticalChrome - flowRows - 2);
+    var maxPageWidth = isMobile ? 620 : isImmersive ? 920 : 760;
+    var pageWidth = Math.floor(Math.min(widthSpace, heightSpace * PAGE_RATIO, maxPageWidth));
+    if (isMobile) pageWidth = Math.min(pageWidth, Math.max(1, window.innerWidth - safeInset('left') - safeInset('right') - 12));
+    pageWidth = Math.max(1, pageWidth);
 
     root.style.setProperty('--mushaf-page-w', pageWidth + 'px');
-    root.style.setProperty('--mushaf-qcf-size', clamp(pageWidth * 0.048, isMobile ? 15.5 : 18, isMobile ? 36 : 44).toFixed(2) + 'px');
-    clampPan();
+    var qcfRatio = isMobile ? 0.041 : 0.048;
+    var qcfMin = isMobile ? 10.5 : 18;
+    var qcfMax = isMobile ? 29 : 44;
+    root.style.setProperty('--mushaf-qcf-size', clamp(pageWidth * qcfRatio, qcfMin, qcfMax).toFixed(2) + 'px');
     applyZoom();
+    scheduleLineFit();
+    if (isImmersive) {
+      reader.scrollLeft = 0;
+      reader.scrollTop = 0;
+      return;
+    }
     restoreCenter(center);
   }
 
-  // --- Zoom (transform: scale on .qcf-page inside the fixed paper frame) ---
+  function measureLineContentWidth(line) {
+    var items = line.querySelectorAll('.qcf-word, .qcf-surah-title, .qcf-basmala');
+    if (!items.length) return 0;
+    var min = Infinity;
+    var max = -Infinity;
+    for (var i = 0; i < items.length; i++) {
+      var r = items[i].getBoundingClientRect();
+      min = Math.min(min, r.left);
+      max = Math.max(max, r.right);
+    }
+    return Math.max(0, max - min);
+  }
+
+  function fitQcfLines() {
+    if (!pageEl) return;
+    root.style.setProperty('--mushaf-qcf-fit', '1');
+    var lines = pageEl.querySelectorAll('.qcf-line:not(.is-empty):not(.qcf-line-deco)');
+    var fit = 1;
+    for (var i = 0; i < lines.length; i++) {
+      var line = lines[i];
+      var available = Math.max(1, line.clientWidth - 2);
+      var contentWidth = Math.max(line.scrollWidth || 0, measureLineContentWidth(line));
+      if (contentWidth > available) {
+        fit = Math.min(fit, (available / contentWidth) * 0.985);
+      }
+    }
+    var isMobile = window.matchMedia('(max-width: 650px)').matches;
+    fit = clamp(fit, isMobile ? 0.62 : 0.84, 1);
+    root.style.setProperty('--mushaf-qcf-fit', fit.toFixed(4));
+  }
+
+  function scheduleLineFit() {
+    window.clearTimeout(fitTimer);
+    fitTimer = window.setTimeout(function () {
+      requestAnimationFrame(function () {
+        fitQcfLines();
+      });
+    }, 0);
+  }
+
+  // --- Zoom (scales the whole paper frame, not just text inside it) ---
   function clampPan() {
     if (!pageEl) return;
     var w = pageEl.clientWidth;
@@ -93,27 +200,31 @@
   function saveViewState() {
     try {
       localStorage.setItem(ZOOM_KEY, String(scale));
-      localStorage.setItem(STATE_KEY, JSON.stringify({ page: currentPage(), scale: scale, panX: panX, panY: panY }));
+      localStorage.setItem(STATE_KEY, JSON.stringify({ page: activePage, scale: scale, panX: panX, panY: panY }));
     } catch (e) {}
   }
 
   function applyZoom() {
-    if (!pageEl) return;
+    root.style.setProperty('--mushaf-page-zoom', scale.toFixed(4));
     if (scale <= 1.001) {
       panX = 0;
       panY = 0;
-      pageEl.style.transform = '';
-      pageEl.style.transformOrigin = '';
-      pageEl.style.willChange = '';
+      if (pageEl) {
+        pageEl.style.transform = '';
+        pageEl.style.transformOrigin = '';
+        pageEl.style.willChange = '';
+      }
       body.classList.remove('mushaf-zoomed');
     } else {
-      clampPan();
-      pageEl.style.transformOrigin = '0 0';
-      pageEl.style.transform = 'translate(' + panX + 'px,' + panY + 'px) scale(' + scale + ')';
-      pageEl.style.willChange = 'transform';
+      if (pageEl) {
+        pageEl.style.transform = '';
+        pageEl.style.transformOrigin = '';
+        pageEl.style.willChange = '';
+      }
       body.classList.add('mushaf-zoomed');
     }
     updateZoomUi();
+    scheduleLineFit();
   }
 
   function setScale(next, focalX, focalY, keepCenter) {
@@ -123,16 +234,11 @@
       if (keepCenter) layoutMushaf(preserveCenter());
       return;
     }
-    if (pageEl && focalX != null && oldS > 0) {
-      var r = pageEl.getBoundingClientRect();
-      var relX = focalX - r.left;
-      var relY = focalY - r.top;
-      var k = 1 - newS / oldS;
-      panX += relX * k;
-      panY += relY * k;
-    }
+    var center = preserveCenter();
     scale = newS;
     applyZoom();
+    if (newS > 1.001) scrollZoomToStart();
+    else restoreCenter(center);
     saveViewState();
   }
 
@@ -151,6 +257,309 @@
     setScale(1);
   }
 
+  function goToPage(page) {
+    var next = clamp(parseInt(page, 10) || 1, 1, 604);
+    if (next === activePage) return;
+    navigateMushafPage(next);
+  }
+
+  function isImmersive() {
+    return body.classList.contains('mushaf-immersive');
+  }
+
+  function findPageFontCss(doc, page) {
+    var needle = 'MushafTajweed' + page;
+    var styles = doc.querySelectorAll('style');
+    for (var i = 0; i < styles.length; i++) {
+      var css = styles[i].textContent || '';
+      if (css.indexOf(needle) !== -1) return css;
+    }
+    return '';
+  }
+
+  function setPageLink(link, page, visible) {
+    if (!link) return;
+    link.classList.toggle('disabled', !visible);
+    link.setAttribute('aria-hidden', visible ? 'false' : 'true');
+    link.style.display = visible ? '' : 'none';
+    if (visible) {
+      link.setAttribute('href', '/mushaf/' + page);
+    } else {
+      link.removeAttribute('href');
+    }
+  }
+
+  function ensureImmersiveNav(className, sourceSelector) {
+    var link = document.querySelector(className);
+    if (link || !reader) return link;
+    var source = document.querySelector(sourceSelector);
+    link = document.createElement('a');
+    link.className = 'mushaf-imm-nav ' + className.replace('.', '');
+    link.innerHTML = source ? source.innerHTML : '';
+    link.setAttribute('aria-label', className.indexOf('prev') !== -1 ? 'Previous page' : 'Next page');
+    link.setAttribute('title', className.indexOf('prev') !== -1 ? 'Previous page' : 'Next page');
+    reader.insertBefore(link, sheet || null);
+    return link;
+  }
+
+  function handleImmersivePageNav(event) {
+    var pageLink = event.target && event.target.closest && event.target.closest('a[href^="/mushaf/"]');
+    if (!pageLink || !isImmersive()) return;
+    var match = (pageLink.getAttribute('href') || '').match(/\/mushaf\/(\d+)/);
+    if (!match) return;
+    if (event.type === 'click' && Date.now() - lastImmersiveNavAt < 1500) {
+      event.preventDefault();
+      event.stopImmediatePropagation();
+      return;
+    }
+    if (event.type === 'pointerup') {
+      if (event.button != null && event.button !== 0) return;
+      lastImmersiveNavAt = Date.now();
+    }
+    event.preventDefault();
+    event.stopImmediatePropagation();
+    navigateMushafPage(match[1], { inline: true });
+  }
+
+  function bindImmersiveNavLinks() {
+    document.querySelectorAll('.mushaf-imm-nav').forEach(function (link) {
+      if (link.getAttribute('data-mushaf-inline-nav') === '1') return;
+      link.setAttribute('data-mushaf-inline-nav', '1');
+      link.addEventListener('pointerup', handleImmersivePageNav, true);
+      link.addEventListener('click', handleImmersivePageNav, true);
+    });
+  }
+
+  function syncPageControls(page) {
+    var prev = page > 1 ? page - 1 : null;
+    var next = page < 604 ? page + 1 : null;
+    document.querySelectorAll('[data-mushaf-jump] input[name="page"]').forEach(function (input) {
+      input.value = String(page);
+    });
+
+    var groupLinks = document.querySelectorAll('.mushaf-page-group .icon-btn');
+    setPageLink(groupLinks[0], prev, !!prev);
+    setPageLink(groupLinks[groupLinks.length - 1], next, !!next);
+
+    var prevImm = ensureImmersiveNav('.mushaf-imm-prev', '.mushaf-page-group .icon-btn:first-child');
+    var nextImm = ensureImmersiveNav('.mushaf-imm-next', '.mushaf-page-group .icon-btn:last-child');
+    setPageLink(prevImm, prev, !!prev);
+    setPageLink(nextImm, next, !!next);
+    bindImmersiveNavLinks();
+
+    document.querySelectorAll('.mushaf-bottom .btn:first-child').forEach(function (link) {
+      setPageLink(link, prev, !!prev);
+    });
+    document.querySelectorAll('.mushaf-bottom .btn.primary').forEach(function (link) {
+      setPageLink(link, next, !!next);
+    });
+    syncTopbarState(page);
+  }
+
+  function readJsonStorage(key) {
+    try {
+      var raw = localStorage.getItem(key);
+      return raw ? JSON.parse(raw) : null;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  function syncTopbarState(page) {
+    var context = document.querySelector('[data-context]');
+    if (context) {
+      context.innerHTML = '<span class="tc-t"></span><span class="tc-s"></span>';
+      var title = context.querySelector('.tc-t');
+      var subtitle = context.querySelector('.tc-s');
+      if (title) title.textContent = '\u041c\u0443\u0441\u0445\u0430\u0444';
+      if (subtitle) subtitle.textContent = '\u0421\u0442\u0440\u0430\u043d\u0438\u0446\u0430 ' + page + ' \u0438\u0437 604';
+    }
+
+    var continueBtn = document.querySelector('[data-continue]');
+    if (continueBtn) {
+      var readpos = readJsonStorage('q_readpos');
+      var last = readJsonStorage('q_last');
+      var pos = readpos && readpos.s ? readpos : last;
+      if (pos && pos.s) {
+        continueBtn.setAttribute('href', '/surah/' + pos.s + '#ayah-' + (pos.a || 1));
+        continueBtn.setAttribute('title', '\u041f\u0440\u043e\u0434\u043e\u043b\u0436\u0438\u0442\u044c: \u0441\u0443\u0440\u0430 ' + pos.s + ', \u0430\u044f\u0442 ' + (pos.a || 1));
+        continueBtn.classList.remove('hide');
+        continueBtn.removeAttribute('hidden');
+      }
+    }
+  }
+
+  function waitForPageFont(page) {
+    if (!document.fonts || !document.fonts.load) return Promise.resolve();
+    return Promise.race([
+      document.fonts.load('24px MushafTajweed' + page),
+      new Promise(function (resolve) {
+        window.setTimeout(resolve, 200);
+      }),
+    ]).catch(function () {});
+  }
+
+  function preloadMushafPage(page) {
+    var next = clamp(parseInt(page, 10) || 1, 1, 604);
+    var url = '/mushaf/' + next;
+    if (pageCache[url]) return;
+    fetch(url, { credentials: 'same-origin' })
+      .then(function (response) {
+        if (!response.ok) return '';
+        return response.text();
+      })
+      .then(function (html) {
+        if (html) pageCache[url] = html;
+      })
+      .catch(function () {});
+  }
+
+  function preloadAdjacentPages(page) {
+    if (!isImmersive()) return;
+    if (page > 1) preloadMushafPage(page - 1);
+    if (page < 604) preloadMushafPage(page + 1);
+  }
+
+  function swapMushafPage(doc, page) {
+    var nextSheet = doc.querySelector('.mushaf-sheet');
+    var nextMeta = doc.querySelector('.mushaf-meta');
+    var nextPage = doc.querySelector('.qcf-page');
+    if (!nextSheet || !nextMeta || !nextPage || !sheet || !pageEl) return false;
+
+    var fontCss = findPageFontCss(doc, page);
+    if (fontCss) {
+      var style = document.getElementById('mushaf-page-font-css');
+      if (!style) {
+        style = document.createElement('style');
+        style.id = 'mushaf-page-font-css';
+        document.head.appendChild(style);
+      }
+      style.textContent = fontCss;
+    }
+
+    sheet.setAttribute('aria-label', nextSheet.getAttribute('aria-label') || 'Mushaf page ' + page);
+    var meta = sheet.querySelector('.mushaf-meta');
+    if (meta) meta.innerHTML = nextMeta.innerHTML;
+    pageEl.innerHTML = nextPage.innerHTML;
+    pageEl.setAttribute('data-mushaf-page', String(page));
+    pageEl.setAttribute('dir', nextPage.getAttribute('dir') || 'rtl');
+    if (/firefox/i.test(navigator.userAgent)) pageEl.setAttribute('data-mushaf-firefox', '1');
+    else pageEl.removeAttribute('data-mushaf-firefox');
+    if (doc.title) document.title = doc.title;
+    return true;
+  }
+
+  function navigateMushafPage(page, opts) {
+    var next = clamp(parseInt(page, 10) || 1, 1, 604);
+    if (next === activePage) return Promise.resolve(false);
+
+    var token = ++pageLoadToken;
+    var url = '/mushaf/' + next;
+    body.classList.add('mushaf-page-loading');
+
+    var load = pageCache[url]
+      ? Promise.resolve(pageCache[url])
+      : fetch(url, { credentials: 'same-origin' })
+          .then(function (response) {
+            if (!response.ok) throw new Error('Failed to load page ' + next);
+            return response.text();
+          })
+          .then(function (html) {
+            pageCache[url] = html;
+            return html;
+          });
+
+    return load
+      .then(function (html) {
+        if (token !== pageLoadToken) return false;
+        var doc = new DOMParser().parseFromString(html, 'text/html');
+        var fontCss = findPageFontCss(doc, next);
+        if (fontCss) {
+          var style = document.getElementById('mushaf-page-font-css');
+          if (!style) {
+            style = document.createElement('style');
+            style.id = 'mushaf-page-font-css';
+            document.head.appendChild(style);
+          }
+          style.textContent = fontCss;
+        }
+        return waitForPageFont(next).then(function () {
+          if (token !== pageLoadToken) return false;
+          if (!swapMushafPage(doc, next)) {
+            location.href = url;
+            return false;
+          }
+          activePage = next;
+          if (location.pathname !== url) history.pushState({ mushafPage: next }, '', url);
+          syncPageControls(next);
+          resetZoom();
+          layoutMushaf(null);
+          scheduleLineFit();
+          preloadAdjacentPages(next);
+          return true;
+        });
+      })
+      .catch(function () {
+        location.href = url;
+        return false;
+      })
+      .finally(function () {
+        if (token === pageLoadToken) body.classList.remove('mushaf-page-loading');
+      });
+  }
+
+  function schedulePageJump(input) {
+    if (!input) return;
+    var raw = String(input.value || '').trim();
+    window.clearTimeout(jumpTimer);
+    if (!/^\d{1,3}$/.test(raw)) return;
+    jumpTimer = window.setTimeout(function () {
+      goToPage(raw);
+    }, 700);
+  }
+
+  function exitBrowserFullscreen() {
+    var exit = document.exitFullscreen || document.webkitExitFullscreen || document.msExitFullscreen;
+    if (!exit) return;
+    if (!document.fullscreenElement && !document.webkitFullscreenElement && !document.msFullscreenElement) return;
+    try {
+      var result = exit.call(document);
+      if (result && result.catch) result.catch(function () {});
+    } catch (e) {}
+  }
+
+  function setImmersive(enabled) {
+    body.classList.toggle('mushaf-immersive', enabled);
+    root.classList.toggle('mushaf-immersive', enabled);
+    body.setAttribute('data-mushaf-immersive-state', enabled ? '1' : '0');
+    root.setAttribute('data-mushaf-immersive-state', enabled ? '1' : '0');
+    if (toolbar) {
+      toolbar.hidden = enabled;
+      toolbar.setAttribute('aria-hidden', enabled ? 'true' : 'false');
+      toolbar.style.display = enabled ? 'none' : '';
+    }
+    if (enabled) {
+      bindImmersiveNavLinks();
+      if (reader) {
+        reader.scrollLeft = 0;
+        reader.scrollTop = 0;
+      }
+      resetZoom();
+      try {
+        sessionStorage.setItem(IMM_KEY, '1');
+      } catch (e) {}
+      preloadAdjacentPages(activePage);
+    } else {
+      try {
+        sessionStorage.removeItem(IMM_KEY);
+      } catch (e) {}
+      exitBrowserFullscreen();
+    }
+    requestAnimationFrame(function () {
+      layoutMushaf(null);
+    });
+  }
+
   try {
     var stored = parseFloat(localStorage.getItem(ZOOM_KEY) || '1');
     scale = stored >= MIN_SCALE && stored <= MAX_SCALE ? stored : 1;
@@ -162,14 +571,29 @@
       scale = state.scale >= MIN_SCALE && state.scale <= MAX_SCALE ? state.scale : scale;
       panX = typeof state.panX === 'number' ? state.panX : 0;
       panY = typeof state.panY === 'number' ? state.panY : 0;
+    } else {
+      scale = 1;
+      panX = 0;
+      panY = 0;
     }
   } catch (e) {}
 
   try {
-    if (sessionStorage.getItem(IMM_KEY) === '1') body.classList.add('mushaf-immersive');
+    if (sessionStorage.getItem(IMM_KEY) === '1') setImmersive(true);
   } catch (e) {}
 
-  layoutMushaf(null);
+  syncTopbarState(activePage);
+  if (root.style.getPropertyValue('--mushaf-page-w')) {
+    syncViewportHeight();
+    applyZoom();
+    } else {
+      layoutMushaf(null);
+  }
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(scheduleLineFit).catch(function () {});
+  } else {
+    scheduleLineFit();
+  }
   window.addEventListener('resize', function () {
     layoutMushaf(preserveCenter());
   }, { passive: true });
@@ -188,25 +612,59 @@
     if (!form) return;
     event.preventDefault();
     var input = form.querySelector('input[name="page"]');
-    var page = clamp(parseInt(input && input.value, 10) || 1, 1, 604);
-    location.href = '/mushaf/' + page;
+    window.clearTimeout(jumpTimer);
+    goToPage(input && input.value);
   });
 
   document.addEventListener('change', function (event) {
     var sel = event.target && event.target.closest && event.target.closest('[data-mushaf-goto]');
     if (!sel || !sel.value) return;
     var page = clamp(parseInt(sel.value, 10) || 1, 1, 604);
-    location.href = '/mushaf/' + page;
+    navigateMushafPage(page);
   });
 
   document.addEventListener('input', function (event) {
     var control = event.target && event.target.closest && event.target.closest('[data-mushaf-zoom-range]');
-    if (!control) return;
-    var c = sheetCenter();
-    setScale((parseInt(control.value, 10) || 100) / 100, c && c.x, c && c.y);
+    if (control) {
+      var c = sheetCenter();
+      setScale((parseInt(control.value, 10) || 100) / 100, c && c.x, c && c.y);
+      return;
+    }
+
+    var pageInput = event.target && event.target.closest && event.target.closest('[data-mushaf-jump] input[name="page"]');
+    if (pageInput) schedulePageJump(pageInput);
   });
 
+  document.addEventListener(
+    'click',
+    function (event) {
+      var pageLink = event.target && event.target.closest && event.target.closest('a[href^="/mushaf/"]');
+      if (!pageLink || (!isImmersive() && !pageLink.closest('.mushaf-reader'))) return;
+      var match = (pageLink.getAttribute('href') || '').match(/\/mushaf\/(\d+)/);
+      if (!match) return;
+      if (isImmersive() && Date.now() - lastImmersiveNavAt < 1500) {
+        event.preventDefault();
+        event.stopImmediatePropagation();
+        return;
+      }
+      event.preventDefault();
+      event.stopImmediatePropagation();
+      navigateMushafPage(match[1], { inline: true });
+    },
+    true
+  );
+
   document.addEventListener('click', function (event) {
+    var pageLink = event.target && event.target.closest && event.target.closest('a[href^="/mushaf/"]');
+    if (pageLink && (isImmersive() || pageLink.closest('.mushaf-reader'))) {
+      var match = (pageLink.getAttribute('href') || '').match(/\/mushaf\/(\d+)/);
+      if (match) {
+        event.preventDefault();
+        navigateMushafPage(match[1], { inline: true });
+        return;
+      }
+    }
+
     var zoomBtn = event.target && event.target.closest && event.target.closest('[data-mushaf-zoom-step]');
     if (zoomBtn) {
       zoomBy(parseInt(zoomBtn.getAttribute('data-mushaf-zoom-step'), 10) || 0);
@@ -219,20 +677,9 @@
       return;
     }
 
-    var immersiveBtn = event.target && event.target.closest && event.target.closest('[data-mushaf-immersive]');
+    var immersiveBtn = event.target && event.target.closest && event.target.closest('button[data-mushaf-immersive]');
     if (!immersiveBtn) return;
-    if (body.classList.contains('mushaf-immersive')) {
-      body.classList.remove('mushaf-immersive');
-      try {
-        sessionStorage.removeItem(IMM_KEY);
-      } catch (e) {}
-    } else {
-      body.classList.add('mushaf-immersive');
-      try {
-        sessionStorage.setItem(IMM_KEY, '1');
-      } catch (e) {}
-    }
-    layoutMushaf(null);
+    setImmersive(!body.classList.contains('mushaf-immersive'));
   });
 
   var sx = 0;
@@ -256,9 +703,9 @@
         var maxScroll = reader.scrollWidth - reader.clientWidth;
         if (reader.scrollLeft > 4 && reader.scrollLeft < maxScroll - 4) return;
       }
-      var cur = currentPage();
-      if (dx < 0 && cur < 604) location.href = '/mushaf/' + (cur + 1);
-      else if (dx > 0 && cur > 1) location.href = '/mushaf/' + (cur - 1);
+      var cur = activePage;
+      if (dx < 0 && cur < 604) navigateMushafPage(cur + 1);
+      else if (dx > 0 && cur > 1) navigateMushafPage(cur - 1);
     }, { passive: true });
   }
 
@@ -317,7 +764,7 @@
     var dragPanX = 0;
     var dragPanY = 0;
     sheet.addEventListener('pointerdown', function (e) {
-      if (scale <= 1.001) return;
+      return;
       dragging = true;
       dragId = e.pointerId;
       dragStartX = e.clientX;
@@ -334,7 +781,7 @@
       panX = dragPanX + (e.clientX - dragStartX);
       panY = dragPanY + (e.clientY - dragStartY);
       clampPan();
-      pageEl.style.transform = 'translate(' + panX + 'px,' + panY + 'px) scale(' + scale + ')';
+      pageEl.style.transform = '';
     });
     function endDrag(e) {
       if (!dragging || (e && e.pointerId !== dragId)) return;
@@ -416,17 +863,13 @@
   document.addEventListener('keydown', function (e) {
     var tag = (e.target && e.target.tagName) || '';
     if (/INPUT|TEXTAREA|SELECT/.test(tag) || e.metaKey || e.ctrlKey || e.altKey) return;
-    var cur = currentPage();
+    var cur = activePage;
     if (e.key === 'Escape' && body.classList.contains('mushaf-immersive')) {
-      body.classList.remove('mushaf-immersive');
-      try {
-        sessionStorage.removeItem(IMM_KEY);
-      } catch (err) {}
-      layoutMushaf(null);
+      setImmersive(false);
     } else if (e.key === 'ArrowLeft' && cur < 604) {
-      location.href = '/mushaf/' + (cur + 1);
+      navigateMushafPage(cur + 1);
     } else if (e.key === 'ArrowRight' && cur > 1) {
-      location.href = '/mushaf/' + (cur - 1);
+      navigateMushafPage(cur - 1);
     } else if (e.key === '+' || e.key === '=') {
       zoomBy(25);
     } else if (e.key === '-' || e.key === '_') {
@@ -434,5 +877,15 @@
     } else if (e.key === '0') {
       resetZoom();
     }
+  });
+
+  document.addEventListener('fullscreenchange', function () {
+    layoutMushaf(null);
+  });
+
+  window.addEventListener('popstate', function () {
+    if (!isImmersive()) return;
+    var page = currentPage();
+    navigateMushafPage(page, { inline: true });
   });
 })();

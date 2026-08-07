@@ -5,6 +5,8 @@
 
 body.mushaf-immersive {
   height: var(--mushaf-vvh);
+  padding-left: 0 !important;
+  padding-right: 0 !important;
   overflow: hidden;
 }
 
@@ -15,37 +17,53 @@ body.mushaf-immersive .drawer,
 body.mushaf-immersive .drawer-backdrop,
 body.mushaf-immersive .mobile-tabbar,
 body.mushaf-immersive .mushaf-bottom,
-body.mushaf-immersive .mushaf-zoom-fab {
+body.mushaf-immersive .mushaf-zoom-fab,
+body.mushaf-immersive .mushaf-toolbar {
   display: none !important;
 }
 
+html.mushaf-immersive body[data-page-mode='mushaf'] .mushaf-toolbar,
+html[data-mushaf-immersive-state='1'] body[data-page-mode='mushaf'] .mushaf-toolbar,
+body[data-mushaf-immersive-state='1'] .mushaf-toolbar,
+body[data-page-mode='mushaf'] .mushaf-toolbar[hidden],
+:fullscreen body[data-page-mode='mushaf'] .mushaf-toolbar {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+:-webkit-full-screen body[data-page-mode='mushaf'] .mushaf-toolbar {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
 body.mushaf-immersive main.wide {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
   height: var(--mushaf-vvh) !important;
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
 body.mushaf-immersive .mushaf-reader {
+  box-sizing: border-box;
+  display: grid;
   height: var(--mushaf-vvh);
   padding: 18px;
+  align-items: center;
+  justify-items: center;
+  place-items: center;
   grid-template-rows: minmax(0, 1fr);
-  background: radial-gradient(circle at 50% 18%, color-mix(in srgb, var(--sys-fill-vibrant) 70%, transparent), transparent 42%),
-    var(--mushaf-stage);
+  overflow: hidden;
+  background: var(--mushaf-stage);
+  scrollbar-gutter: auto;
 }
 
-body.mushaf-immersive .mushaf-toolbar {
-  position: fixed;
-  top: max(14px, env(safe-area-inset-top));
-  left: 50%;
-  width: min(720px, calc(100vw - 120px));
-  transform: translateX(-50%);
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.18s ease;
-}
-
-body.mushaf-immersive .mushaf-reader:hover .mushaf-toolbar,
-body.mushaf-immersive .mushaf-toolbar:focus-within {
-  opacity: 1;
-  pointer-events: auto;
+body.mushaf-immersive .mushaf-sheet {
+  margin: 0;
+  place-self: center;
 }
 
 body.mushaf-immersive .mushaf-meta {
@@ -67,6 +85,15 @@ body.mushaf-immersive .mushaf-imm-nav {
   -webkit-backdrop-filter: var(--material-blur);
   backdrop-filter: var(--material-blur);
   box-shadow: var(--shadow-card);
+  touch-action: manipulation;
+}
+
+body.mushaf-immersive .mushaf-immersive-exit:hover,
+body.mushaf-immersive .mushaf-imm-nav:hover,
+body.mushaf-immersive .mushaf-immersive-exit:focus-visible,
+body.mushaf-immersive .mushaf-imm-nav:focus-visible {
+  color: var(--sys-label);
+  background: var(--sys-fill-strong);
 }
 
 body.mushaf-immersive .mushaf-immersive-exit {

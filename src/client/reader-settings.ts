@@ -15,7 +15,7 @@ interface Layers {
   tr: boolean;
 }
 
-let layersState: Layers = { ar: true, tl: false, tr: true };
+let layersState: Layers = { ar: true, tl: true, tr: true };
 
 function applyTheme(t: string) {
   const eff =
@@ -66,13 +66,13 @@ function applyLayers(l: Layers) {
 export function initTheme() {
   const cur = LS.get<string>(K.theme, 'system');
   applyTheme(cur);
-  markMenu('theme', 'theme-set', cur);
+  markMenu('settings', 'theme-set', cur);
   $$('[data-theme-set]').forEach((b) =>
     b.addEventListener('click', () => {
       const v = b.getAttribute('data-theme-set')!;
       LS.set(K.theme, v);
       applyTheme(v);
-      markMenu('theme', 'theme-set', v);
+      markMenu('settings', 'theme-set', v);
     })
   );
   $$('[data-theme-toggle]').forEach((b) =>
@@ -81,7 +81,7 @@ export function initTheme() {
       const next = effNow === 'dark' ? 'light' : 'dark';
       LS.set(K.theme, next);
       applyTheme(next);
-      markMenu('theme', 'theme-set', next);
+      markMenu('settings', 'theme-set', next);
     })
   );
   matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
@@ -140,7 +140,9 @@ export function initReading() {
 }
 
 export function initView() {
-  layersState = LS.get<Layers>(K.layers, { ar: true, tl: false, tr: true });
+  layersState = LS.get<Layers>(K.layers, { ar: true, tl: true, tr: true });
+  layersState.tl = true;
+  LS.set(K.layers, layersState);
   applyLayers(layersState);
   $$('[data-layer]').forEach((b) =>
     b.addEventListener('click', () => {
@@ -153,10 +155,12 @@ export function initView() {
 }
 
 export function initTranslation() {
-  const cur = document.body.getAttribute('data-tr') || LS.get<string>(K.tr, 'saadi');
+  const routeTr = document.body.getAttribute('data-tr') || '';
+  const cur = routeTr || LS.get<string>(K.tr, 'saadi');
+  if (routeTr && routeTr !== LS.get<string>(K.tr, '')) LS.set(K.tr, routeTr);
   const names: Dict<string> = {
     kuliev: 'Кулиев',
-    saadi: 'Тафсир',
+    saadi: 'ас-Саади',
     abuadel: 'Абу Адель',
     'ibn-kathir': 'Ибн Касир',
   };

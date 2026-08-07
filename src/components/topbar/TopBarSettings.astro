@@ -131,3 +131,45 @@ const themes = [
   </div>
   <button class="settings-panel-backdrop" type="button" data-settings-panel-backdrop aria-label="Закрыть настройки"></button>
 </div>
+
+<script>
+  const themeStorageKey = 'q_theme';
+  const readThemeChoice = () => {
+    try {
+      return JSON.parse(localStorage.getItem(themeStorageKey) || '"system"');
+    } catch {
+      return 'system';
+    }
+  };
+  const applyThemeChoice = (choice: string) => {
+    const effective =
+      choice === 'system'
+        ? matchMedia('(prefers-color-scheme: dark)').matches
+          ? 'dark'
+          : 'light'
+        : choice;
+    document.documentElement.setAttribute('data-theme', effective);
+    document.querySelectorAll<HTMLButtonElement>('[data-theme-set]').forEach((button) => {
+      const isActive = button.dataset.themeSet === choice;
+      button.classList.toggle('on', isActive);
+      button.setAttribute('aria-selected', isActive ? 'true' : 'false');
+      button.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+    });
+  };
+
+  applyThemeChoice(readThemeChoice());
+
+  document.addEventListener('click', (event) => {
+    const button = (event.target as Element | null)?.closest<HTMLButtonElement>('[data-theme-set]');
+    if (!button) return;
+    const choice = button.dataset.themeSet || 'system';
+    try {
+      localStorage.setItem(themeStorageKey, JSON.stringify(choice));
+    } catch {}
+    applyThemeChoice(choice);
+  });
+
+  matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+    if (readThemeChoice() === 'system') applyThemeChoice('system');
+  });
+</script>

@@ -1,9 +1,12 @@
 import { $, $$ } from './shared';
 
 export function markMenu(menu: string, attr: string, val: string) {
-  $$(`[data-menu="${menu}"] [data-${attr}]`).forEach((b) =>
-    b.classList.toggle('on', b.getAttribute(`data-${attr}`) === val)
-  );
+  $$(`[data-menu="${menu}"] [data-${attr}]`).forEach((b) => {
+    const isOn = b.getAttribute(`data-${attr}`) === val;
+    b.classList.toggle('on', isOn);
+    if (b.getAttribute('role') === 'tab') b.setAttribute('aria-selected', isOn ? 'true' : 'false');
+    b.setAttribute('aria-pressed', isOn ? 'true' : 'false');
+  });
 }
 
 let mobileScrollY = 0;

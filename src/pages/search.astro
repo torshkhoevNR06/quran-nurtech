@@ -4,8 +4,17 @@ import Button from '../components/ui/Button.astro';
 import PageHeader from '../components/ui/PageHeader.astro';
 import PageShell from '../components/ui/PageShell.astro';
 import { icons } from '../lib/icons';
+import { getSurahs } from '../lib/quran';
 const title = 'Поиск по Корану — по русскому переводу';
 const description = 'Поиск по Корану на русском языке (перевод Кулиева). Фильтр по суре, точное и частичное совпадение, ссылки на аяты.';
+const surahs = getSurahs();
+const sourceOptions = [
+  { value: 'all', label: 'Везде' },
+  { value: 'r', label: 'Кулиев' },
+  { value: 'aa', label: 'Абу Адель' },
+  { value: 'tl', label: 'Транслит' },
+  { value: 'ar', label: 'Арабский' },
+];
 ---
 
 <Base {title} {description}>
@@ -27,20 +36,62 @@ const description = 'Поиск по Корану на русском языке
           data-search-input
         />
       </div>
-      <select class="sel" data-search-source aria-label="Где искать">
-        <option value="all">Везде</option>
-        <option value="r">Кулиев</option>
-        <option value="aa">Абу Адель</option>
-        <option value="tl">Транслит</option>
-        <option value="ar">Арабский</option>
-      </select>
-      <select class="sel" data-search-surah aria-label="Сура">
+      <div class="search-select" data-custom-select>
+        <select class="sel native-select-hidden" data-search-source data-native-select aria-label="Где искать" tabindex="-1">
+          {sourceOptions.map((option) => <option value={option.value}>{option.label}</option>)}
+        </select>
+        <button type="button" class="search-select-trigger" data-select-trigger aria-haspopup="listbox" aria-expanded="false">
+          <span data-select-label>Везде</span>
+          <span class="ui-inline-icon-sm" set:html={icons.chevron} />
+        </button>
+        <div class="search-select-menu" role="listbox" data-select-menu>
+          {
+            sourceOptions.map((option, index) => (
+              <button
+                type="button"
+                class={index === 0 ? 'is-selected' : ''}
+                role="option"
+                aria-selected={index === 0 ? 'true' : 'false'}
+                data-select-option
+                data-value={option.value}
+              >
+                <span>{option.label}</span>
+              </button>
+            ))
+          }
+        </div>
+      </div>
+      <div class="search-select search-select-wide" data-custom-select>
+        <select class="sel native-select-hidden" data-search-surah data-native-select aria-label="Сура" tabindex="-1">
         <option value="">Все суры</option>
-      </select>
-      <label class="chip search-exact">
-        <input type="checkbox" data-search-exact /> Точное слово
+        {surahs.map((s) => <option value={s.n}>{s.n}. {s.nr}</option>)}
+        </select>
+        <button type="button" class="search-select-trigger" data-select-trigger aria-haspopup="listbox" aria-expanded="false">
+          <span data-select-label>Все суры</span>
+          <span class="ui-inline-icon-sm" set:html={icons.chevron} />
+        </button>
+        <div class="search-select-menu" role="listbox" data-select-menu>
+          <button type="button" class="is-selected" role="option" aria-selected="true" data-select-option data-value="">
+            <span>Все суры</span>
+          </button>
+          {
+            surahs.map((s) => (
+              <button type="button" role="option" aria-selected="false" data-select-option data-value={s.n}>
+                <span>{s.n}. {s.nr}</span>
+                <small>{s.c} аятов</small>
+              </button>
+            ))
+          }
+        </div>
+      </div>
+      <label class="search-exact">
+        <input type="checkbox" data-search-exact />
+        <span class="exact-box" aria-hidden="true"></span>
+        <span>Точное слово</span>
       </label>
-      <Button variant="primary" type="submit">Найти</Button>
+      <Button variant="primary" class="search-submit" type="submit">
+        <span>Найти</span>
+      </Button>
     </form>
 
     <div class="search-empty" data-search-empty>

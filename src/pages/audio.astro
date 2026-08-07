@@ -4,8 +4,12 @@ import IconButton from '../components/ui/IconButton.astro';
 import PageHeader from '../components/ui/PageHeader.astro';
 import PageShell from '../components/ui/PageShell.astro';
 import { icons } from '../lib/icons';
+import { getReciters, getSurahs } from '../lib/quran';
 const title = 'Аудио Корана — чтецы, суры, скачивание';
 const description = 'Слушайте и скачивайте аудио Корана: чтецы (Мишари Рашид, аль-Хусари, аль-Катами и другие), выбор суры и аята, повтор, скорость.';
+const reciters = getReciters();
+const surahs = getSurahs();
+const firstSurah = surahs[0];
 ---
 
 <Base {title} {description}>
@@ -19,11 +23,15 @@ const description = 'Слушайте и скачивайте аудио Кор�
     <div class="audio-selectors">
       <label>
         <span>Чтец</span>
-        <select class="sel" data-audio-reciter aria-label="Чтец"></select>
+        <select class="sel" data-audio-reciter aria-label="Чтец">
+          {reciters.map((r) => <option value={r.id} selected={r.id === 'binhumaid'}>{r.name}</option>)}
+        </select>
       </label>
       <label>
         <span>Сура</span>
-        <select class="sel" data-audio-surah aria-label="Сура"></select>
+        <select class="sel" data-audio-surah aria-label="Сура">
+          {surahs.map((s) => <option value={s.n}>{s.n}. {s.nr} ({s.c})</option>)}
+        </select>
       </label>
     </div>
 
@@ -43,7 +51,20 @@ const description = 'Слушайте и скачивайте аудио Кор�
       <audio data-a-audio preload="none"></audio>
     </section>
 
-    <div class="audio-list" data-a-rows></div>
+    <div class="audio-list" data-a-rows>
+      {
+        Array.from({ length: firstSurah?.c ?? 7 }, (_, index) => (
+          <div class="audio-row audio-row-skeleton" aria-hidden="true">
+            <button type="button" class="icon-btn audio-skeleton-dot" tabindex="-1" disabled set:html={icons.play}></button>
+            <span class="audio-row-text">
+              <b>{firstSurah?.nr ?? 'Аль-Фатиха'}</b>
+              <small>аят 1:{index + 1}</small>
+            </span>
+            <a class="icon-btn audio-skeleton-dot" href="#" tabindex="-1" aria-disabled="true" set:html={icons.download}></a>
+          </div>
+        ))
+      }
+    </div>
   </PageShell>
 
   <script>

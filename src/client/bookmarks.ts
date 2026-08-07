@@ -78,9 +78,10 @@ export function initContinue() {
   const last = LS.get<{ s: number; a: number } | null>(K.last, null);
   const pos = readpos && readpos.s ? readpos : last;
   if (btn && pos && pos.s) {
-    btn.href = `/surah/${pos.s}#ayah-${pos.a}`;
+    const ayah = pos.a || 1;
+    btn.href = `/surah/${pos.s}#ayah-${ayah}`;
     btn.classList.remove('hide');
-    btn.title = `Продолжить: сура ${pos.s}, аят ${pos.a}`;
+    btn.title = `Продолжить: сура ${pos.s}, аят ${ayah}`;
   }
   rememberLast();
 }

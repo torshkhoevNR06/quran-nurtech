@@ -24,6 +24,25 @@
   border: 1px solid var(--glass-border);
   box-shadow: var(--glass-elev);
 }
+
+.topbar-cluster {
+  display: flex;
+  width: fit-content;
+  max-width: 100%;
+  min-width: 0;
+  align-items: center;
+  justify-content: center;
+  gap: inherit;
+  margin-inline: auto;
+}
+
+.topbar-cluster > .brand,
+.topbar-cluster > .icon-btn,
+.topbar-cluster > a.icon-btn,
+.topbar-cluster > .menu-wrap,
+.topbar-cluster > .btn {
+  flex: none;
+}
 .topbar-inner::before {
   content: '';
   position: absolute;
@@ -40,6 +59,26 @@
 .topbar-inner > .menu-wrap,
 .topbar-inner > .btn {
   flex: none;
+}
+
+.topbar-inner > .menu-wrap,
+.topbar-cluster > .menu-wrap {
+  display: inline-flex;
+  height: var(--control-h);
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+}
+
+.topbar-inner .icon-btn {
+  align-self: center;
+  line-height: 0;
+}
+
+.topbar-inner .icon-btn > svg,
+.topbar-inner .icon-btn .th-ic svg {
+  display: block;
+  margin: auto;
 }
 .brand {
   display: flex;
@@ -120,6 +159,14 @@ html[data-theme='sepia'] .brand-mark img {
   display: none;
 }
 
+.topbar-inner [data-act='drawer'].only-mobile {
+  flex: 0 0 var(--control-h);
+  display: none;
+  place-items: center;
+  align-self: center;
+  min-width: var(--control-h);
+}
+
 .topbar .grow {
   flex: 1;
 }
@@ -162,9 +209,17 @@ html[data-theme='sepia'] .brand-mark img {
     display: none !important;
   }
   .only-mobile {
-    display: inline-flex;
+    display: inline-grid;
     align-items: center;
     justify-content: center;
+  }
+
+  .topbar-inner [data-act='drawer'].only-mobile {
+    display: inline-grid;
+    flex-basis: var(--touch-h);
+    width: var(--touch-h);
+    min-width: var(--touch-h);
+    height: var(--touch-h);
   }
   .quick {
     max-width: none;
@@ -172,6 +227,14 @@ html[data-theme='sepia'] .brand-mark img {
   /* необязательные кнопки панели прячем — их функции есть в меню «Настройки» */
   .t-opt {
     display: none !important;
+  }
+
+  body[data-page-mode='mushaf'] .topbar-inner.is-mushaf .quick {
+    display: none;
+  }
+
+  body[data-page-mode='mushaf'] .topbar-inner.is-mushaf .t-opt {
+    display: inline-flex !important;
   }
 }
 @media (max-width: 560px) {
@@ -213,7 +276,23 @@ html[data-theme='sepia'] .brand-mark img {
   }
 
   .brand-copy {
-    display: none;
+    display: grid;
+    min-width: 0;
+  }
+
+  .brand {
+    flex: 0 1 150px;
+    min-width: 122px;
+    gap: 7px;
+    padding-right: 2px;
+  }
+
+  .brand .brand-name {
+    font-size: 12.5px;
+  }
+
+  .brand-domain {
+    font-size: 10px;
   }
 }
 
@@ -226,20 +305,23 @@ html[data-theme='sepia'] .brand-mark img {
   position: relative;
 }
 .theme-toggle .th-ic {
+  position: absolute;
+  inset: 0;
   display: none;
   align-items: center;
   justify-content: center;
+  place-items: center;
 }
 .theme-toggle .th-ic svg {
   width: 20px;
   height: 20px;
 }
-html[data-theme='dark'] .theme-toggle .th-sun {
-  display: inline-flex;
+html[data-theme='dark'] .topbar-inner .theme-toggle .th-sun {
+  display: grid;
 }
-html[data-theme='light'] .theme-toggle .th-moon,
-html[data-theme='sepia'] .theme-toggle .th-moon {
-  display: inline-flex;
+html[data-theme='light'] .topbar-inner .theme-toggle .th-moon,
+html[data-theme='sepia'] .topbar-inner .theme-toggle .th-moon {
+  display: grid;
 }
 
 /* Меню чтеца: поиск + прокручиваемый список (44 чтеца) */

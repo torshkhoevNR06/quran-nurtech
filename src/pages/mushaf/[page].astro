@@ -68,8 +68,6 @@ const juzList = Array.from({ length: 30 }, (_, i) => i + 1).map((n) => ({
 
   <div class="mushaf-reader">
     <nav class="mushaf-toolbar container" aria-label="Навигация по мусхафу">
-      <a class={`icon-btn ${prevPage ? '' : 'disabled'}`} href={prevPage ? `/mushaf/${prevPage}` : undefined} aria-label="Предыдущая страница" title="Предыдущая страница" set:html={icons.arrowLeft} />
-
       <select class="mushaf-nav-sel" data-mushaf-goto aria-label="Перейти к суре">
         <option value="">Сура…</option>
         {
@@ -92,12 +90,14 @@ const juzList = Array.from({ length: 30 }, (_, i) => i + 1).map((n) => ({
         }
       </select>
 
-      <form class="mushaf-jump" action="/mushaf/1" data-mushaf-jump>
-        <input id="mushaf-page" name="page" type="number" inputmode="numeric" min="1" max={MUSHAF_TOTAL_PAGES} value={pageNum} aria-label="Номер страницы" />
-        <span>/ {MUSHAF_TOTAL_PAGES}</span>
-      </form>
-
-      <a class={`icon-btn ${nextPage ? '' : 'disabled'}`} href={nextPage ? `/mushaf/${nextPage}` : undefined} aria-label="Следующая страница" title="Следующая страница" set:html={icons.arrowRight} />
+      <div class="mushaf-page-group" aria-label="Переключение страниц">
+        <a class={`icon-btn ${prevPage ? '' : 'disabled'}`} href={prevPage ? `/mushaf/${prevPage}` : undefined} aria-label="Предыдущая страница" title="Предыдущая страница" set:html={icons.arrowLeft} />
+        <form class="mushaf-jump" action="/mushaf/1" data-mushaf-jump>
+          <input id="mushaf-page" name="page" type="number" inputmode="numeric" min="1" max={MUSHAF_TOTAL_PAGES} value={pageNum} aria-label="Номер страницы" />
+          <span>/ {MUSHAF_TOTAL_PAGES}</span>
+        </form>
+        <a class={`icon-btn ${nextPage ? '' : 'disabled'}`} href={nextPage ? `/mushaf/${nextPage}` : undefined} aria-label="Следующая страница" title="Следующая страница" set:html={icons.arrowRight} />
+      </div>
 
       <div class="mushaf-zoom" aria-label="Масштаб страницы">
         <button type="button" class="icon-btn mushaf-zoom-btn" data-mushaf-zoom-step="-10" aria-label="Уменьшить масштаб" title="Уменьшить" set:html={icons.minus}></button>

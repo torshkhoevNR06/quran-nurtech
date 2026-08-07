@@ -193,7 +193,7 @@ const topics = [
             <p>{topic.d}</p>
             <div class="tp-ayahs">
               {topic.a.map(([s, a]) => (
-                <a href={`/${s}:${a}`}>
+                <a href={`/${s}:${a}`} data-ref={`${s}:${a}`}>
                   {s}:{a}
                 </a>
               ))}
@@ -203,4 +203,18 @@ const topics = [
       }
     </div>
   </PageShell>
+  <script is:inline>
+    (function () {
+      try {
+        var progress = JSON.parse(localStorage.getItem('q_progress') || '{}');
+        document.querySelectorAll('.tp-ayahs a[data-ref]').forEach(function (link) {
+          var ref = link.getAttribute('data-ref');
+          if (ref && progress[ref] === true) {
+            link.classList.add('is-read');
+            link.setAttribute('aria-label', ref + ' прочитан');
+          }
+        });
+      } catch (e) {}
+    })();
+  </script>
 </Base>

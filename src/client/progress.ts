@@ -278,12 +278,12 @@
   function renderCalendar() {
     var cal = $('[data-cal]');
     var end = dayNum(dayKey());
-    // выравниваем к неделе: заканчиваем сегодня, показываем 18 недель
+    // Keep a fixed 18x7 grid so hydration never changes the calendar footprint.
     var weeks = 18;
-    var dow = new Date(end * 86400000).getDay(); // 0=вс
-    var startDn = end - (weeks * 7 - 1 - (6 - dow));
+    var startDn = end - (weeks * 7 - 1);
     var html = '';
-    for (var dn = startDn; dn <= end; dn++) {
+    for (var i = 0; i < weeks * 7; i++) {
+      var dn = startDn + i;
       var key = dayKey(new Date(dn * 86400000));
       var a = (days[key] && days[key].ayahs) || 0;
       var lv = a === 0 ? 0 : a < 5 ? 1 : a < 15 ? 2 : a < 40 ? 3 : 4;

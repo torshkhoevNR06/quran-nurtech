@@ -161,11 +161,47 @@
 
   @media (max-width: 1380px) {
     .brand-copy {
-      display: none;
+      display: grid;
     }
 
     .topbar-inner .desktop-comfort {
       display: none;
     }
+  }
+}
+
+@media (min-width: 1120px) {
+  .topbar {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    background: var(--sys-toolbar);
+    border-bottom: 1px solid var(--sys-separator);
+    -webkit-backdrop-filter: var(--material-blur);
+    backdrop-filter: var(--material-blur);
+  }
+
+  html[data-sidebar='open'] body:not(.settings-panel-open) .topbar {
+    width: calc(100% + var(--sidebar-w));
+    margin-left: calc(-1 * var(--sidebar-w));
+  }
+
+  .topbar-inner {
+    flex: 1 1 auto;
+    width: 100%;
+    max-width: none;
+    margin-inline: 0;
+    justify-content: center;
+    border-bottom: 0;
+    background: transparent;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+
+  .topbar-cluster {
+    width: fit-content;
+    max-width: min(1200px, calc(100vw - 32px));
+    margin-inline: auto;
+    justify-content: center;
   }
 }

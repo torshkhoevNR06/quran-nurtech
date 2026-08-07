@@ -3,13 +3,25 @@
    ========================================================================== */
 @media (min-width: 821px) and (max-width: 1119px) {
   /* планшетная «дыра»: сайдбара ещё нет — возвращаем кнопку-гамбургер */
-  [data-act='drawer'].only-mobile {
-    display: inline-flex;
+  .topbar-inner [data-act='drawer'].only-mobile {
+    display: inline-grid;
+    flex: 0 0 var(--control-h-comfort);
+    width: var(--control-h-comfort);
+    min-width: var(--control-h-comfort);
+    height: var(--control-h-comfort);
+    place-items: center;
+    border: 1px solid var(--sys-separator);
+    border-radius: 12px;
+    background: var(--sys-fill);
+    color: var(--sys-secondary-label);
   }
 }
 @media (min-width: 1120px) {
   :root {
     --sidebar-w: 300px;
+    --sidebar-current-w: 0px;
+  }
+  :root[data-sidebar='open'] {
     --sidebar-current-w: var(--sidebar-w);
   }
   :root[data-sidebar='closed'] {
@@ -26,9 +38,8 @@
      он есть в «Настройках». */
   .topbar-inner {
     max-width: 100%;
-    width: -moz-fit-content;
-    width: fit-content;
-    margin-inline: auto;
+    width: 100%;
+    margin-inline: 0;
   }
   .topbar .seg.desktop-only[data-view-seg] {
     display: none;
@@ -48,8 +59,8 @@
     border-right: 1px solid var(--hairline);
     border-radius: 0;
     box-shadow: none;
-    transform: translateX(0) !important;
-    visibility: visible;
+    transform: translateX(calc(-100% - 1px)) !important;
+    visibility: hidden;
     transition:
       transform 0.28s cubic-bezier(0.2, 0, 0, 1),
       visibility 0.28s ease;
@@ -59,6 +70,10 @@
   :root[data-sidebar='closed'] .drawer {
     transform: translateX(calc(-100% - 1px)) !important;
     visibility: hidden;
+  }
+  :root[data-sidebar='open'] .drawer {
+    transform: translateX(0) !important;
+    visibility: visible;
   }
   .drawer-backdrop {
     display: none !important;
@@ -112,6 +127,7 @@
   }
 }
 
+
 @media (min-width: 1120px) and (max-width: 1879px) {
   body.settings-panel-open {
     --sidebar-current-w: 0px;
@@ -141,6 +157,20 @@
     color: var(--ink);
     transform: none;
   }
+  .topbar-inner [data-act='drawer'].only-mobile {
+    width: var(--control-h-compact);
+    min-width: var(--control-h-compact);
+    height: var(--control-h-compact);
+    place-items: center;
+    border: 1px solid var(--sys-separator);
+    border-radius: var(--radius-s);
+    background: var(--sys-fill);
+    color: var(--sys-secondary-label);
+  }
+  .topbar-inner [data-act='drawer'].only-mobile:hover {
+    background: var(--sys-fill-strong);
+    color: var(--sys-label);
+  }
   .topbar-inner .btn {
     height: 32px;
     padding: 0 12px;
@@ -154,5 +184,9 @@
     width: 32px;
     height: 32px;
     padding: 0;
+  }
+  .topbar-inner > .menu-wrap,
+  .topbar-cluster > .menu-wrap {
+    height: 32px;
   }
 }

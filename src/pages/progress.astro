@@ -1,8 +1,10 @@
 ---
 import Base from '../layouts/Base.astro';
+import { getSurahs } from '../lib/quran';
 const title = 'Мой прогресс чтения Корана — хатм, стрик, статистика';
 const description =
   'Личный прогресс: хатм (сколько прочитано из 6236 аятов), план «дочитать за N дней», стрик, календарь активности, карта 114 сур и разбивка по джузам. Всё локально, без входа.';
+const surahs = getSurahs();
 ---
 
 <Base {title} {description}>
@@ -95,7 +97,9 @@ const description =
     <section class="prog-card">
       <div class="card-h"><h2>Активность</h2></div>
       <div class="cal-wrap">
-        <div class="cal" data-cal></div>
+        <div class="cal" data-cal>
+          {Array.from({ length: 126 }, () => <i class="l0" aria-hidden="true"></i>)}
+        </div>
       </div>
       <div class="cal-legend">
         меньше
@@ -112,13 +116,25 @@ const description =
         <span><i class="sw sw1"></i>частично</span>
         <span><i class="sw sw2"></i>прочитана</span>
       </div>
-      <div class="map" data-map></div>
+      <div class="map" data-map>
+        {surahs.map((s) => <a href={`/surah/${s.n}`} data-nm={`${s.nr} · 0/${s.c}`}>{s.n}</a>)}
+      </div>
     </section>
 
     <!-- По джузам -->
     <section class="prog-card">
       <div class="card-h"><h2>По джузам</h2></div>
-      <div class="juz" data-juz></div>
+      <div class="juz" data-juz>
+        {
+          Array.from({ length: 30 }, (_, index) => (
+            <div class="juz-row">
+              <span class="jn">Джуз {index + 1}</span>
+              <div class="juz-bar"><span style="width:0%"></span></div>
+              <span class="jp">0%</span>
+            </div>
+          ))
+        }
+      </div>
     </section>
   </div>
 </Base>

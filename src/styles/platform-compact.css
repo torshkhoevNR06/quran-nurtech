@@ -13,6 +13,26 @@
     height: 42px;
   }
 
+  .topbar-inner .brand {
+    flex-basis: 138px;
+    min-width: 112px;
+    gap: 6px;
+  }
+
+  .topbar-inner .brand-mark,
+  .topbar-inner .brand-mark img {
+    width: 28px;
+    height: 28px;
+  }
+
+  .topbar-inner .brand-name {
+    font-size: 12px;
+  }
+
+  .topbar-inner .brand-domain {
+    font-size: 9.5px;
+  }
+
   .mobile-tabbar {
     padding-inline: 6px;
   }

@@ -89,6 +89,23 @@
   background: var(--surface);
 }
 
+.audio-row-skeleton {
+  color: var(--ink-faint);
+  background: color-mix(in srgb, var(--surface) 62%, transparent);
+}
+
+.audio-row-skeleton .audio-skeleton-dot {
+  display: inline-grid;
+  pointer-events: none;
+  opacity: 0.72;
+  border-color: transparent;
+}
+
+.audio-row-skeleton .audio-skeleton-dot svg {
+  width: 18px;
+  height: 18px;
+}
+
 .audio-row-text {
   flex: 1;
   min-width: 0;

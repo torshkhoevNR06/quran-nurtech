@@ -46,6 +46,92 @@ const results = $('[data-search-results]');
 const form = $('[data-search-form]');
 const empty = $('[data-search-empty]');
 
+function initCustomSelects() {
+  const closeAll = (except?: HTMLElement) => {
+    document.querySelectorAll<HTMLElement>('[data-custom-select].is-open').forEach((root) => {
+      if (root === except) return;
+      root.classList.remove('is-open');
+      root.querySelector<HTMLButtonElement>('[data-select-trigger]')?.setAttribute('aria-expanded', 'false');
+    });
+  };
+
+  document.querySelectorAll<HTMLElement>('[data-custom-select]').forEach((root) => {
+    const select = root.querySelector<HTMLSelectElement>('[data-native-select]');
+    const trigger = root.querySelector<HTMLButtonElement>('[data-select-trigger]');
+    const label = root.querySelector<HTMLElement>('[data-select-label]');
+    const options = Array.from(root.querySelectorAll<HTMLButtonElement>('[data-select-option]'));
+    if (!select || !trigger || !label || !options.length) return;
+
+    const sync = (value = select.value) => {
+      const selected = options.find((option) => (option.dataset.value || '') === value) || options[0];
+      label.textContent = selected?.querySelector('span')?.textContent || '';
+      options.forEach((option) => {
+        const isSelected = option === selected;
+        option.classList.toggle('is-selected', isSelected);
+        option.setAttribute('aria-selected', isSelected ? 'true' : 'false');
+      });
+    };
+
+    const close = () => {
+      root.classList.remove('is-open');
+      trigger.setAttribute('aria-expanded', 'false');
+    };
+
+    const open = () => {
+      closeAll(root);
+      root.classList.add('is-open');
+      trigger.setAttribute('aria-expanded', 'true');
+    };
+
+    trigger.addEventListener('click', (event) => {
+      event.stopPropagation();
+      root.classList.contains('is-open') ? close() : open();
+    });
+
+    options.forEach((option) => {
+      option.addEventListener('click', (event) => {
+        event.stopPropagation();
+        select.value = option.dataset.value || '';
+        sync(select.value);
+        select.dispatchEvent(new Event('change', { bubbles: true }));
+        close();
+        trigger.focus();
+      });
+    });
+
+    root.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') {
+        close();
+        trigger.focus();
+        return;
+      }
+      if (event.key !== 'ArrowDown' && event.key !== 'ArrowUp' && event.key !== 'Enter' && event.key !== ' ') return;
+      if (!root.classList.contains('is-open')) {
+        event.preventDefault();
+        open();
+        return;
+      }
+      const currentIndex = Math.max(
+        0,
+        options.findIndex((option) => option.classList.contains('is-selected')),
+      );
+      const direction = event.key === 'ArrowUp' ? -1 : 1;
+      const next = options[Math.min(options.length - 1, Math.max(0, currentIndex + direction))];
+      if ((event.key === 'Enter' || event.key === ' ') && document.activeElement !== trigger) {
+        (document.activeElement as HTMLButtonElement | null)?.click();
+      } else if (next) {
+        event.preventDefault();
+        next.focus();
+      }
+    });
+
+    select.addEventListener('change', () => sync(select.value));
+    sync();
+  });
+
+  document.addEventListener('click', () => closeAll());
+}
+
 async function ensureData() {
   if (loaded) return;
   status && (status.textContent = 'Загрузка индекса…');
@@ -170,6 +256,8 @@ document.querySelectorAll<HTMLButtonElement>('[data-search-example]').forEach((b
     run(input.value);
   });
 });
+
+initCustomSelects();
 
 const initial = new URLSearchParams(location.search).get('q');
 if (initial && input) {

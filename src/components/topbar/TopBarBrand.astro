@@ -1,12 +1,37 @@
 ---
 import { icons } from '../../lib/icons';
+import { getSurahMeta } from '../../lib/quran';
+
+const pathname = Astro.url.pathname;
+const mushafPage = pathname.match(/^\/mushaf\/(\d+)/)?.[1] ?? '';
+const readerSurah = pathname.match(/^\/surah\/(\d+)/)?.[1] ?? pathname.match(/^\/(\d+):\d+/)?.[1] ?? '';
+const readerMeta = readerSurah ? getSurahMeta(Number(readerSurah)) : undefined;
+const contextMap: Record<string, string> = {
+  '/': 'Главная',
+  '/search': 'Поиск',
+  '/progress': 'Мой прогресс',
+  '/bookmarks': 'Закладки',
+  '/audio': 'Аудио',
+  '/glossary': 'Словарь терминов',
+  '/topics': 'Аяты по темам',
+  '/tasbih': 'Тасбих',
+  '/stats': 'Статистика',
+  '/download': 'Скачать',
+  '/backup': 'Резервная копия',
+  '/about': 'О проекте',
+  '/videos': 'Видео',
+  '/translators': 'Переводчики',
+  '/privacy': 'Конфиденциальность',
+  '/howto': 'Как пользоваться',
+};
+const sectionTitle = contextMap[pathname] ?? '';
 ---
 
 <button class="icon-btn only-mobile" data-act="drawer" aria-label="Список сур" set:html={icons.menu} />
 
 <a href="/" class="brand" aria-label="Коран онлайн — главная" title="На главную — выбор суры">
   <span class="brand-mark" aria-hidden="true">
-    <img src="/brand-mark.png?v=g2" width="42" height="42" alt="" />
+    <img src="/brand-mark.png?v=g2" width="42" height="42" alt="" loading="eager" decoding="sync" fetchpriority="high" />
   </span>
   <span class="brand-copy">
     <span class="brand-name">Коран онлайн</span>
@@ -14,5 +39,20 @@ import { icons } from '../../lib/icons';
   </span>
 </a>
 
-<div class="toolbar-context" data-context aria-live="polite"></div>
-
+<div class="toolbar-context" data-context aria-live="polite">
+  {
+    mushafPage ? (
+      <>
+        <span class="tc-t">Мусхаф</span>
+        <span class="tc-s">Страница {mushafPage} из 604</span>
+      </>
+    ) : readerMeta ? (
+      <>
+        <span class="tc-t">{readerMeta.nr}</span>
+        <span class="tc-s">Сура {readerMeta.n}</span>
+      </>
+    ) : sectionTitle ? (
+      <span class="tc-t">{sectionTitle}</span>
+    ) : null
+  }
+</div>

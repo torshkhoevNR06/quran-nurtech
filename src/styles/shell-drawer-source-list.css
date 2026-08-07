@@ -12,6 +12,30 @@
   overflow-y: auto;
   overscroll-behavior: contain;
   padding-bottom: 6px;
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in srgb, var(--ink) 32%, transparent) transparent;
+}
+
+.drawer .dscroll::-webkit-scrollbar {
+  width: 10px;
+}
+
+.drawer .dscroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.drawer .dscroll::-webkit-scrollbar-thumb {
+  border: 3px solid transparent;
+  border-radius: 999px;
+  background:
+    linear-gradient(color-mix(in srgb, var(--ink) 28%, transparent), color-mix(in srgb, var(--ink) 28%, transparent))
+    content-box;
+}
+
+.drawer .dscroll::-webkit-scrollbar-thumb:hover {
+  background:
+    linear-gradient(color-mix(in srgb, var(--ink) 42%, transparent), color-mix(in srgb, var(--ink) 42%, transparent))
+    content-box;
 }
 
 .drawer .dgroup {

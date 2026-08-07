@@ -6,13 +6,15 @@ interface Props {
 }
 const { showReaderTools } = Astro.props;
 const reciters = getReciters();
+const routeTranslation = Astro.url.pathname.match(/^\/surah\/\d+\/([^/]+)/)?.[1] ?? '';
+const currentTranslation = TRANSLATIONS.find((t) => t.id === routeTranslation) ?? TRANSLATIONS.find((t) => t.id === 'kuliev');
 ---
 
 <!-- Перевод -->
 {showReaderTools && (
   <div class="menu-wrap desktop-only reader-tool" data-menu-wrap>
     <button class="btn" data-menu-toggle aria-haspopup="true">
-      <span data-tr-current>Тафсир</span>
+      <span data-tr-current>{currentTranslation?.short ?? 'Тафсир'}</span>
       <span class="ui-inline-icon-xs" set:html={icons.chevron} />
     </button>
     <div class="menu" data-menu="tr">

@@ -14,8 +14,9 @@
 
 .seg button,
 .ui-segmented button {
+  position: relative;
   min-width: 0;
-  border: 0;
+  border: 1px solid transparent;
   border-radius: 7px;
   background: transparent;
   color: var(--sys-secondary-label);
@@ -25,6 +26,7 @@
   padding: 7px 12px;
   text-overflow: ellipsis;
   white-space: nowrap;
+  transition: background-color 0.16s ease, border-color 0.16s ease, color 0.16s ease, box-shadow 0.16s ease;
 }
 
 .seg button:hover,
@@ -35,9 +37,28 @@
 .seg button.on,
 .ui-segmented button.on,
 .ui-segmented button[aria-selected='true'] {
-  background: var(--seg-thumb);
+  border-color: color-mix(in srgb, var(--sys-accent) 48%, var(--sys-separator));
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--sys-accent) 18%, transparent), transparent 74%),
+    var(--seg-thumb);
   color: var(--sys-label);
-  box-shadow: 0 1px 1px color-mix(in srgb, var(--sys-label) 10%, transparent);
+  box-shadow:
+    inset 0 0 0 1px color-mix(in srgb, var(--sys-accent) 20%, transparent),
+    0 1px 2px color-mix(in srgb, var(--sys-label) 14%, transparent);
+}
+
+.seg button.on::before,
+.ui-segmented button.on::before,
+.ui-segmented button[aria-selected='true']::before {
+  content: '';
+  position: absolute;
+  top: 5px;
+  right: 7px;
+  width: 5px;
+  height: 5px;
+  border-radius: 999px;
+  background: var(--sys-accent);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--sys-accent) 16%, transparent);
 }
 
 .seg-grid2,

@@ -46,6 +46,7 @@
 }
 
 .tp-ayahs a {
+  position: relative;
   border: 1px solid var(--hairline);
   background: color-mix(in srgb, var(--accent) 8%, transparent);
   color: var(--accent);
@@ -54,6 +55,25 @@
   font: var(--weight-semibold) var(--fs-13) / 1 var(--sans);
   font-variant-numeric: tabular-nums;
   text-decoration: none;
+}
+
+.tp-ayahs a.is-read {
+  padding-left: 27px;
+  border-color: color-mix(in srgb, var(--good) 42%, var(--hairline));
+  background: color-mix(in srgb, var(--good) 13%, var(--surface));
+  color: var(--ink);
+}
+
+.tp-ayahs a.is-read::before {
+  content: '';
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  width: 10px;
+  height: 6px;
+  border-left: 2px solid var(--good);
+  border-bottom: 2px solid var(--good);
+  transform: translateY(-62%) rotate(-45deg);
 }
 
 .tp-ayahs a:hover {

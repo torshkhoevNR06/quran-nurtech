@@ -30,14 +30,46 @@
     box-shadow: 0 10px 28px -24px rgba(0, 0, 0, 0.32);
   }
 
-  .topbar-inner .brand,
   .topbar-title,
   .toolbar-context {
     display: none !important;
   }
 
+  .topbar-inner .brand {
+    display: flex;
+    flex: 0 1 182px;
+    min-width: 132px;
+    max-width: 190px;
+    overflow: hidden;
+  }
+
+  .topbar-inner .brand-copy {
+    display: grid;
+    min-width: 0;
+  }
+
+  .topbar-inner .brand-name,
+  .topbar-inner .brand-domain {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
   .topbar-inner .only-mobile {
     display: inline-grid;
+  }
+
+  .topbar-inner [data-act='drawer'].only-mobile {
+    flex: 0 0 var(--touch-h);
+    width: var(--touch-h);
+    min-width: var(--touch-h);
+    height: var(--touch-h);
+    place-items: center;
+    border: 1px solid var(--sys-separator);
+    border-radius: 15px;
+    background: var(--sys-fill);
+    color: var(--sys-secondary-label);
   }
 
   .topbar-inner > a.icon-btn[aria-label='Мусхаф'],
@@ -64,6 +96,16 @@
     width: var(--touch-h);
     height: var(--touch-h);
     border-radius: 15px;
+  }
+
+  .topbar-inner [data-act='drawer'].only-mobile svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .topbar-cluster > .desktop-comfort,
+  .topbar-cluster > .menu-wrap:not(.settings-menu-wrap) {
+    display: none !important;
   }
 
   .mobile-tabbar {

@@ -21,6 +21,24 @@
       t = 'Поиск';
     } else if (p.indexOf('/progress') === 0) {
       t = 'Мой прогресс';
+    } else {
+      var labels = {
+        '/': 'Главная',
+        '/bookmarks': 'Закладки',
+        '/audio': 'Аудио',
+        '/glossary': 'Словарь терминов',
+        '/topics': 'Аяты по темам',
+        '/tasbih': 'Тасбих',
+        '/stats': 'Статистика',
+        '/download': 'Скачать',
+        '/backup': 'Резервная копия',
+        '/about': 'О проекте',
+        '/videos': 'Видео',
+        '/translators': 'Переводчики',
+        '/privacy': 'Конфиденциальность',
+        '/howto': 'Как пользоваться',
+      };
+      t = labels[p] || '';
     }
     if (t) el.innerHTML = '<span class="tc-t"></span><span class="tc-s"></span>';
     if (t) el.querySelector('.tc-t').textContent = t;

@@ -115,6 +115,7 @@ const tab = (name: 'home' | 'read' | 'mushaf' | 'search') => {
     <link rel="icon" href="/favicon.png?v=g2" type="image/png" />
     <link rel="manifest" href="/manifest.webmanifest" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=g2" />
+    <link rel="preload" href="/brand-mark.png?v=g2" as="image" fetchpriority="high" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-title" content="Коран" />
@@ -142,18 +143,79 @@ const tab = (name: 'home' | 'read' | 'mushaf' | 'search') => {
           if (r.ru) el.setProperty('--ru-size', r.ru + 'px');
           if (r.lh) el.setProperty('--lh', r.lh);
           if (r.font) el.setProperty('--ar-font', r.font);
+          if (/^(\/surah\/|\/ayah\/|\/\d+:\d+)/.test(location.pathname)) {
+            var layers = JSON.parse(localStorage.getItem('q_layers') || '{}');
+            layers.ar = layers.ar !== false;
+            layers.tr = layers.tr !== false;
+            layers.tl = true;
+            localStorage.setItem('q_layers', JSON.stringify(layers));
+          }
+          var plainSurah = location.pathname.match(/^\/surah\/(\d+)\/?$/);
+          if (plainSurah) {
+            var savedTr = localStorage.getItem('q_tr');
+            if (savedTr) {
+              try {
+                savedTr = JSON.parse(savedTr);
+              } catch (e) {}
+            }
+            if (/^(abuadel|saadi|ibn-kathir)$/.test(savedTr || '')) {
+              location.replace('/surah/' + plainSurah[1] + '/' + savedTr);
+              return;
+            }
+          }
           var sidebar = localStorage.getItem('q_sidebar');
-          if (sidebar === 'closed' || sidebar === 'open')
-            document.documentElement.setAttribute('data-sidebar', sidebar);
+          if (sidebar === 'open') localStorage.setItem('q_sidebar', 'closed');
+          document.documentElement.setAttribute('data-sidebar', 'closed');
+          if (/^\/mushaf\/\d+/.test(location.pathname)) {
+            var vw = Math.max(320, window.innerWidth || 0);
+            var vh = Math.max(360, window.innerHeight || 0);
+            var mobile = vw <= 650;
+            var sidebarOpen = false;
+            var availableWidth = vw - (sidebarOpen ? 292 : 0) - (mobile ? 14 : 56);
+            var availableHeight = vh - (mobile ? 153 : 224);
+            var maxWidth = mobile ? 620 : 760;
+            var pageWidth = Math.floor(Math.min(availableWidth, availableHeight * 0.704, maxWidth));
+            pageWidth = Math.max(1, pageWidth);
+            el.setProperty('--mushaf-vvh', vh + 'px');
+            el.setProperty('--mushaf-page-w', pageWidth + 'px');
+            el.setProperty('--mushaf-qcf-size', Math.max(mobile ? 13.8 : 18, Math.min(mobile ? 34 : 44, pageWidth * 0.048)).toFixed(2) + 'px');
+          }
         } catch (e) {}
       })();
     </script>
     <!-- PWA: офлайн-доступ -->
     <script is:inline>
       if ('serviceWorker' in navigator) {
-        addEventListener('load', function () {
-          navigator.serviceWorker.register('/sw.js?v=mobile-mushaf-fit-3').catch(function () {});
-        });
+        (function () {
+          var isLocal = /^(localhost|127\.0\.0\.1|\[::1\])$/.test(location.hostname);
+          if (isLocal) {
+            addEventListener('load', function () {
+              Promise.all([
+                navigator.serviceWorker.getRegistrations().then(function (registrations) {
+                  return Promise.all(registrations.map(function (registration) {
+                    return registration.unregister();
+                  }));
+                }),
+                'caches' in window
+                  ? caches.keys().then(function (keys) {
+                      return Promise.all(keys.map(function (key) { return caches.delete(key); }));
+                    })
+                  : Promise.resolve(),
+              ]).then(function () {
+                if (navigator.serviceWorker.controller && !sessionStorage.getItem('q_local_sw_reset')) {
+                  sessionStorage.setItem('q_local_sw_reset', '1');
+                  location.reload();
+                } else {
+                  sessionStorage.removeItem('q_local_sw_reset');
+                }
+              }).catch(function () {});
+            });
+            return;
+          }
+          addEventListener('load', function () {
+            navigator.serviceWorker.register('/sw.js?v=mushaf-css-immersive-5').catch(function () {});
+          });
+        })();
       }
     </script>
   </head>

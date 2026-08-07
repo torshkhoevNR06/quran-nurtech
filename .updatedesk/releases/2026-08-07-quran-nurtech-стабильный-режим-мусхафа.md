@@ -1,0 +1,148 @@
+---
+project: quran-nurtech
+public: true
+type: fix
+audience: users
+title: Стабильный режим чтения и навигации
+summary: Страницы чтения стабильнее сохраняют выбранный перевод или тафсир, боковое меню быстрее показывает прогресс, а элементы навигации не смещаются на мобильных ширинах.
+user_impact:
+  - Страница Мусхафа сохраняет пропорции и не выходит за ширину экрана на мобильных устройствах.
+  - При перелистывании обычный режим возвращается к подогнанному масштабу, поэтому новая страница не открывается обрезанной.
+  - В полноэкранном чтении скрываются основные элементы приложения и панель инструментов Мусхафа; остаются только выход и стрелки перелистывания.
+  - Поле номера страницы автоматически переходит к введенной странице после короткой паузы без обязательного Enter.
+  - Переключатель Суры / Джузы больше не оставляет визуальный след неактивной вкладки.
+  - Список сур в боковом меню остается видимым сразу после обновления страницы, даже если асинхронный индекс Корана еще не загрузился.
+  - Верхний контекст Мусхафа и кнопка «Продолжить» больше не исчезают на обновлении страницы.
+  - Размер страницы Мусхафа остается одинаковым на старте и после инициализации интерфейса.
+  - На мобильной ширине устранен оставшийся микроскачок размера после загрузки шрифта Мусхафа.
+  - Выбранный перевод или тафсир сохраняется при переходе между сурами из бокового меню и при прямом открытии /surah/номер.
+  - Прогресс чтения в боковом меню виден сразу на страницах вроде «Словарь терминов» и обновляется из локального прогресса без ожидания индекса сур.
+  - Кнопка бургера в верхней панели остается квадратной и центрирует иконку на мобильных ширинах.
+screenshots:
+  - qa-screens/mushaf-immersive-click-fixed.png
+  - qa-screens/mushaf-immersive-inline-nav.png
+  - qa-screens/mushaf-normal-inline-topbar.png
+  - qa-screens/drawer-ssr-surahs-index-blocked.png
+  - qa-screens/drawer-ssr-surahs-desktop-index-blocked.png
+  - qa-screens/mushaf-refresh-topbar-stable-390.png
+  - qa-screens/mushaf-refresh-topbar-stable-535.png
+  - qa-screens/mushaf-refresh-topbar-stable-1280.png
+  - qa-screens/mushaf-refresh-size-static-390.png
+  - qa-screens/mushaf-refresh-size-static-535.png
+  - qa-screens/mushaf-refresh-size-static-1280.png
+  - qa-screens/glossary-drawer-progress-tafsir-mobile.png
+  - qa-screens/ui-audit-audio-stable.png
+  - qa-screens/ui-audit-progress-stable.png
+  - qa-screens/search-custom-selects.png
+  - qa-screens/topics-read-check-initial.png
+  - qa-screens/search-focus-topbar-polish.png
+  - qa-screens/topbar-topics-brand-stable.png
+  - qa-screens/search-topbar-quick-burger-icons.png
+  - qa-screens/search-topbar-icons-aligned.png
+  - qa-screens/theme-toggle-single-icon-burger-compact.png
+  - qa-screens/drawer-no-auto-open-click-only.png
+  - qa-screens/search-exact-no-focus-topbar-centered.png
+  - qa-screens/surah-context-translit-stable.png
+  - qa-screens/search-exact-hover-after-click.png
+  - qa-screens/topbar-desktop-centered-fullwidth-bg.png
+  - qa-screens/header-fullwidth-centered-drawer-scrollbar.png
+  - qa-screens/mushaf-page-11-lines-contained.png
+  - qa-screens/mushaf-page-11-zoom-175-whole-page.png
+  - qa-screens/topbar-width-audit-final2/mushaf-11-1440.png
+  - qa-screens/topbar-width-audit-final2/mushaf-11-1200.png
+  - qa-screens/topbar-width-audit-final2/mushaf-11-1120.png
+  - qa-screens/topbar-width-audit-final2/mushaf-11-1119.png
+  - qa-screens/topbar-width-audit-final2/mushaf-11-1024.png
+  - qa-screens/topbar-width-audit-final2/mushaf-11-820.png
+  - qa-screens/topbar-width-audit-final2/mushaf-11-390.png
+  - qa-screens/topbar-width-audit-final2/mushaf-11-320.png
+  - qa-screens/mushaf-zoom-300-scroll-top.png
+  - qa-screens/mushaf-zoom-300-scroll-bottom.png
+  - qa-screens/mushaf-zoom-120-centered.png
+  - qa-screens/mushaf-zoom-scrollbar-edge.png
+  - qa-screens/topbar-context-gap-tasbih-1280.png
+  - qa-screens/topbar-context-gap-bookmarks-1120.png
+  - qa-screens/settings-theme-selected-state.png
+  - qa-screens/mushaf-zoom-bottom-nav-visible.png
+  - qa-screens/mushaf-toolbar-155-stable.png
+checks:
+  - npm run build (blocked by existing Windows route output issue: cannot create dist/1:1)
+  - GET http://127.0.0.1:4321/mushaf/1 -> 200
+  - Playwright Chrome: enter immersive mode, click empty area, verify immersive remains true and sheet center delta is 0px
+  - Playwright Chrome: enter immersive mode on /mushaf/16, click fullscreen next arrow with a real mouse event, verify /mushaf/17 renders without browser reload by preserving window.__mushafTestMarker
+  - Playwright Chrome: open /mushaf/15 in normal mode, click next page with a real mouse event, verify /mushaf/16 renders without browser reload, topbar context remains visible, Continue remains visible, and early/final Mushaf sheet width stays equal
+  - Playwright Chrome mobile 390px: block /data/index.json, open drawer on /mushaf/15, verify 114 surahs are still rendered
+  - Playwright Chrome desktop 1280px: block /data/index.json with opened drawer, verify 114 surahs are still rendered and Continue remains visible
+  - Playwright Chrome refresh timing at 390px, 535px, and 1280px: verify topbar context and Continue are visible from the first sample, document width equals viewport, and Mushaf sheet width stays unchanged through 1000ms
+  - Playwright Chrome commit-to-2400ms timing at 390px, 535px, and 1280px: verify Mushaf sheet width and QCF font size stay unchanged while fonts move from loading to loaded
+  - Playwright Chrome mobile 390px: with saved q_tr=saadi, open glossary, verify drawer progress is visible immediately, burger is 44x44 with centered icon, drawer surah link points to /surah/2/saadi, and final reader label stays ас-Саади
+  - Playwright Chrome desktop 900px: with saved q_tr=saadi, open /surah/3 and verify early redirect to /surah/3/saadi with label ас-Саади
+  - Browser UI audit: /search, /audio, /progress, /glossary, /topics, /bookmarks, /mushaf/1, /surah/2/saadi, and /ayah/2/255 keep visible icon/control counts stable between first render and hydrated state; empty visible controls = 0
+  - Browser UI audit: /search custom dropdowns open, select source/surah values, sync hidden native selects, and return filtered results without native dropdown UI
+  - Browser HTML audit: /topics ships read-marker data-ref links and parser-time q_progress hydration before client modules
+  - Browser UI audit: /search focused input has no overlay shadow, exact-word checkbox keeps natural width, and topbar brand/drawer controls are visible
+  - Browser UI audit: /topics brand logo is present and loaded at DOMContentLoaded; brand copy and drawer button remain visible after hydration
+  - Browser UI audit: /search topbar shows the quick search form instead of static search text; drawer button is visible at 895px; settings/theme/bookmark icon centers all have 0px vertical delta
+  - Browser UI audit: /search drawer button is 36x36 in the 821-1119px range; theme toggle shows exactly one icon before and after switching theme
+  - Browser UI audit: /search drawer starts closed after load, opens only after an explicit burger click, and closes again with Escape
+  - Browser UI audit: /search exact-word control keeps the default border and no shadow after focus/click; desktop topbar centering rule is applied from 1200px in the late platform stylesheet
+  - Browser UI audit: /surah/1/abuadel renders the topbar surah context at DOMContentLoaded and keeps 7 transliteration rows visible after hydration
+  - Browser UI audit: /search exact-word control keeps no focus shadow after click, while hover border is explicitly preserved over focus state
+  - Browser UI audit: /search at 895px keeps the old full-width topbar layout with no horizontal overflow; CSS review confirms the >=1200px rule now centers only topbar content while the toolbar background and separator remain full width
+  - Browser UI audit: /search at 910px keeps the pre-1200px full-width topbar layout, drawer starts closed, drawer opens only from burger, and drawer scroll area uses thin app-colored scrollbar styling
+  - CSS audit: the >=1200px desktop topbar block now centers the visible controls inside the 1200px inner area instead of only centering the inner area itself
+  - CSS audit: desktop topbar centering now starts at 1199px to cover the exact width where the controls were still left-shifted
+  - CSS audit: desktop topbar centering now starts at the app desktop breakpoint 1120px, so the layout is centered at real browser viewports around 1190-1200px
+  - Browser UI audit: /mushaf/11 keeps the percent zoom button at 30px, matching neighboring zoom buttons; QCF lines have no positive edge overflow at 100%
+  - Browser UI audit: /mushaf/11 at 175% zoom scales the whole Mushaf sheet instead of transforming only .qcf-page; page transform is none, reader overflow is auto, and QCF lines stay inside the page
+  - Browser UI audit: sampled /mushaf/1, /mushaf/4, /mushaf/11, /mushaf/15, /mushaf/16, and /mushaf/604; all sampled pages reported non-positive line overflow and no document horizontal overflow
+  - Chrome CDP layout audit: /mushaf/11 topbar cluster center delta is 0px at 1440, 1280, 1200, 1120, 1119, 1024, 900, 820, and 768px; document horizontal overflow is 0px
+  - Chrome CDP layout audit: /mushaf/11 topbar cluster center delta remains 0px at mobile widths 414, 390, 360, and 320px; document horizontal overflow is 0px
+  - Chrome CDP layout audit: /mushaf/11 with html[data-sidebar='open'] still keeps the topbar cluster centered at desktop widths, preventing body sidebar padding from shifting the header left/right
+  - Chrome CDP layout audit: /mushaf/11 mobile QCF text uses the narrow-screen guard and reports non-positive line overflow at 414, 390, 360, and 320px
+  - Chrome CDP interaction audit: clicked the Mushaf zoom plus control to 300%; zoomed reader starts at scrollTop 0, exposes max vertical scroll, and reaches the page bottom at scrollTop=maxTop
+  - Chrome CDP interaction audit: clicked zoom controls to 120% and 300% at 1920px; Mushaf sheet center delta is 0px and document horizontal overflow is 0px
+  - Chrome CDP interaction audit: clicked zoom controls to 300% at 820px; horizontal scrollLeft is centered in the available range and vertical scroll reaches the bottom
+  - Chrome CDP interaction audit: clicked Mushaf zoom controls at 1920px, 1280px, 1120px, and 820px; zoomed reader left edge is 0px, right edge equals viewport right edge, document horizontal overflow is 0px, and the Mushaf sheet remains centered when it fits
+  - Chrome CDP layout audit: /tasbih, /bookmarks, /glossary, /topics, and /mushaf/11 keep at least 20px between the visible section title text and quick-search field at 1440px, 1280px, 1120px, 1000px, and 900px; horizontal overflow remains 0
+  - Chrome CDP interaction audit: selecting the dark theme marks exactly one theme segment with .on, aria-selected=true, aria-pressed=true, visible selected background, border, and indicator
+  - Chrome CDP interaction audit: /mushaf/11 at 300% zoom keeps the bottom navigation after the enlarged Mushaf sheet; after scrolling to the bottom all three buttons are visible, the sheet-to-nav gap is 18px, and document horizontal overflow is 0
+  - Chrome CDP layout audit: /mushaf/11 at 155% zoom keeps the Mushaf toolbar at 58px height; toolbar controls keep fixed dimensions at 900px, 1120px, 1200px, and 1440px, and document horizontal overflow remains 0
+deploy_url: http://127.0.0.1:4321/mushaf/1
+---
+
+Notes for editor:
+- What changed: responsive Mushaf scaling now uses one JS-controlled page width based on available width and height; fullscreen hides the toolbar through body/html state plus direct hidden/display updates; page arrows are grouped with the page input; drawer tabs sync aria-selected with visual state; service worker cache version was bumped so stale assets are replaced.
+- Follow-up fix: immersive reading now uses the app CSS fullscreen mode without requesting native Fullscreen API, because the in-app browser can exit native fullscreen on ordinary clicks. The reader scroll position is reset on entry so the Mushaf sheet stays centered.
+- Verified fix: empty-area clicks no longer close immersive mode; the app now distinguishes the exit button from the body state attribute, and immersive mode overrides desktop sidebar padding so the sheet centers in the full viewport.
+- Verified fix: fullscreen page switching now fetches the next Mushaf page, swaps the page markup in place, updates history with pushState, keeps immersive mode active, and preloads adjacent pages.
+- Verified fix: normal Mushaf page switching now also swaps page content in place, keeps the topbar context and Continue button stable, and initializes Mushaf sizing before first paint to avoid the temporary paper-size jump.
+- Verified fix: drawer now server-renders the surah list from local Quran metadata and the client only enhances the existing rows, so the list does not disappear while /data/index.json is loading or unavailable.
+- Verified fix: Mushaf topbar context is server-rendered, Continue is visible by default, and the early page-size calculation now matches the runtime layout calculation.
+- Follow-up fix: the initial Mushaf page width now accounts for the same mobile padding guard as the runtime layout, and the client no longer performs a redundant first layout pass when the early size is already set.
+- Follow-up fix: reader translation preference now updates links and direct surah routes before they can fall back to the default Kuliev route; drawer progress has a server fallback plus parser-time localStorage hydration.
+- Follow-up fix: audio/search/progress now render stable server-side controls or same-size placeholders before async hydration, and topbar context labels are present on all main sections.
+- Follow-up fix: topic ayah read markers now hydrate at parser time, and Quran search uses app-styled custom dropdowns over synchronized native selects.
+- Follow-up fix: search focus styling no longer draws a heavy overlay, the exact-word chip no longer stretches on responsive layouts, and topbar branding/drawer controls stay visible across compact widths.
+- Follow-up fix: the search page topbar now keeps the working quick-search input and submit button, the drawer button is visible through the 821-1119px range, and topbar action icons share the same visual center.
+- Follow-up fix: compacted the tablet/desktop drawer button and fixed the theme toggle so sun and moon replace each other instead of overlapping.
+- Follow-up fix: drawer no longer restores a saved open sidebar state on page load; the menu starts closed and opens only from the burger button.
+- Follow-up fix: exact-word search control no longer receives a focus border after click, and topbar contents are centered as a group on desktop widths from 1200px.
+- Follow-up fix: topbar centering no longer starts before 1200px, reader surah context is server-rendered, and transliteration stays visible on surah pages.
+- Follow-up fix: desktop topbar background/separator now stays full width at >=1200px; only the inner controls are centered, and widths below 1200px keep the previous full-width layout.
+- Follow-up fix: reinforced the desktop topbar as a full-width system bar and restyled the drawer scroll thumb to match the dark app surface.
+- Follow-up fix: desktop topbar controls are now centered inside the centered toolbar container at >=1200px, fixing the left-shifted group on wide screens.
+- Follow-up fix: adjusted the topbar centering breakpoint from 1200px to 1199px so the wide desktop layout is active at the reported width.
+- Follow-up fix: Mushaf zoom now scales the whole page frame and uses page scrolling instead of enlarging only the text layer; QCF lines are measured after font load and fitted so wide lines stay inside the page.
+- Follow-up fix: moved topbar content centering to the 1120px desktop breakpoint so it covers the user's 1200px window after scrollbar/browser chrome reduce the CSS viewport.
+- Follow-up fix: removed the 1119/1120px centering gap by centering the topbar controls as a single cluster, and compensated desktop sidebar body padding so the header stays centered relative to the viewport.
+- Follow-up fix: tightened mobile Mushaf QCF sizing and added a narrow-screen fit guard so lines do not overflow during the first render on 320-420px screens.
+- Follow-up fix: zoomed Mushaf pages now use a scroll-canvas layout instead of centered grid overflow, so the user can scroll from the top ayats to the bottom ayats at 300% zoom.
+- Follow-up fix: zoomed Mushaf pages now stay horizontally centered when they fit the viewport, and center the horizontal scroll range when the zoomed page becomes wider than the reader.
+- Follow-up fix: zoomed Mushaf reader now expands to the full viewport width so its vertical scrollbar is fixed against the browser's right edge instead of being inset by the centered reader container.
+- Follow-up fix: topbar section labels now have a fixed responsive lane, ellipsis, and right-side breathing room so labels like Tasbih, Bookmarks, Mushaf, Topics, and Glossary no longer press into the quick-search field.
+- Follow-up fix: theme segmented controls now clearly show the selected option after click with a stronger active surface, accent border, small indicator, and synchronized ARIA state.
+- Follow-up fix: zoomed Mushaf reader now uses a vertical flex flow so the bottom navigation sits after the enlarged page instead of being overlapped by it, keeping Back, Surahs, and Forward reachable at high zoom.
+- Follow-up fix: Mushaf toolbar controls now opt out of flex shrinking and the toolbar uses its own horizontal overflow, so the panel no longer becomes flattened or deformed when the Mushaf page is zoomed.
+- Where to verify: http://127.0.0.1:4321/mushaf/1
+- Risks: browser Fullscreen API depends on browser permissions, but the app reading mode works without it. If a browser has the old service worker active, one hard refresh may be needed for the new worker to take control immediately.

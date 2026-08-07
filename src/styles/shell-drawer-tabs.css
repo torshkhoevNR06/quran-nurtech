@@ -4,27 +4,32 @@
 .drawer .dtabs {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  gap: 2px;
+  gap: 3px;
   width: calc(100% - 20px);
   margin: 8px 10px 2px;
   padding: 3px;
   box-sizing: border-box;
+  border-radius: 10px;
+  overflow: hidden;
 }
 .drawer .dtabs button {
   min-width: 0;
   flex: 1;
   padding: 7px;
   border: 0;
-  background: transparent;
+  background: transparent !important;
   color: var(--ink-faint);
   font: var(--weight-semibold) var(--fs-13) / 1 var(--sans);
-  border-radius: var(--radius-s);
+  border-radius: 7px;
+  box-shadow: none;
   cursor: pointer;
-  transition: background 0.12s, color 0.12s;
+  transition: background-color 0.12s, color 0.12s;
 }
-.drawer .dtabs button.on {
-  background: var(--seg-track);
+.drawer .dtabs button.on,
+.drawer .dtabs button[aria-selected='true'] {
+  background: var(--seg-thumb) !important;
   color: var(--ink);
+  box-shadow: 0 1px 1px color-mix(in srgb, var(--sys-label) 10%, transparent);
 }
 .drawer[data-dtab-active='surah'] [data-drawer-juz] {
   display: none;

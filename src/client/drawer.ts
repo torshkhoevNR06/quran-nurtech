@@ -72,6 +72,58 @@ function buildDrawerLink({
   return link;
 }
 
+function preferredTranslationPath(surah: string | number) {
+  let tr = '';
+  try {
+    tr = localStorage.getItem('q_tr') || '';
+    if (tr) tr = JSON.parse(tr);
+  } catch {
+    tr = '';
+  }
+  return /^(abuadel|saadi|ibn-kathir)$/.test(tr) ? `/surah/${surah}/${tr}` : `/surah/${surah}`;
+}
+
+function enhanceDrawerList(listEl: Element, idx: SurahMeta[], sid: string | null, prog: ReturnType<typeof getProgress>) {
+  const existing = Array.from(listEl.querySelectorAll<HTMLAnchorElement>('a[data-n]'));
+  if (!existing.length) {
+    listEl.replaceChildren(
+      ...idx.map((s) =>
+        buildDrawerLink({
+          href: preferredTranslationPath(s.n),
+          number: s.n,
+          title: s.nr,
+          subtitle: `${s.nm} · ${s.c} аятов`,
+          arabic: s.na.replace('سُورَةُ ', ''),
+          active: String(s.n) === sid,
+          read: surahReadCount(s.n, s.c, prog) >= s.c,
+          attrs: {
+            'data-n': s.n,
+            'data-name': `${s.nr} ${s.ne} ${s.nm}`.toLowerCase(),
+          },
+        })
+      )
+    );
+    return;
+  }
+
+  const byNumber = new Map(idx.map((s) => [String(s.n), s]));
+  existing.forEach((link) => {
+    const surah = byNumber.get(link.getAttribute('data-n') || '');
+    if (!surah) return;
+    link.href = preferredTranslationPath(surah.n);
+    link.classList.toggle('on', String(surah.n) === sid);
+    link.classList.toggle('read', surahReadCount(surah.n, surah.c, prog) >= surah.c);
+    link.setAttribute('data-name', `${surah.nr} ${surah.ne} ${surah.nm}`.toLowerCase());
+  });
+}
+
+function syncPreferredSurahLinks(listEl: Element | null) {
+  listEl?.querySelectorAll<HTMLAnchorElement>('a[data-n]').forEach((link) => {
+    const n = link.getAttribute('data-n');
+    if (n) link.href = preferredTranslationPath(n);
+  });
+}
+
 export async function initDrawer({ dataVersion, loadIndex }: DrawerOptions) {
   const drawer = $('[data-drawer]');
   const backdrop = $('[data-drawer-backdrop]');
@@ -83,14 +135,14 @@ export async function initDrawer({ dataVersion, loadIndex }: DrawerOptions) {
     drawer?.classList.toggle('show', open);
     document.body.classList.remove('drawer-open');
     backdrop?.classList.remove('show');
-    if (persist) localStorage.setItem('q_sidebar', open ? 'open' : 'closed');
+    if (persist) localStorage.setItem('q_sidebar', 'closed');
     updateMobileScrollLock();
   };
 
   const syncDesktopSidebar = () => {
     if (!desktopMq.matches) return;
-    const saved = localStorage.getItem('q_sidebar');
-    setDesktopSidebar(saved !== 'closed', false);
+    if (localStorage.getItem('q_sidebar') === 'open') localStorage.setItem('q_sidebar', 'closed');
+    setDesktopSidebar(false, false);
   };
 
   const open = () => {
@@ -126,17 +178,38 @@ export async function initDrawer({ dataVersion, loadIndex }: DrawerOptions) {
     if (e.key === 'Escape' && document.body.classList.contains('drawer-open')) close();
   });
 
+  listEl?.addEventListener('click', (event) => {
+    const link = (event.target as Element | null)?.closest<HTMLAnchorElement>('a[data-n]');
+    if (!link) return;
+    const href = preferredTranslationPath(link.getAttribute('data-n') || '');
+    if (href) {
+      link.setAttribute('href', href);
+      event.preventDefault();
+      location.href = href;
+    }
+  }, true);
+
+  syncPreferredSurahLinks(listEl);
   const sid = document.body.getAttribute('data-surah');
-  const idx = await loadIndex();
+  let idx: SurahMeta[] = [];
+  try {
+    idx = await loadIndex();
+  } catch {
+    idx = [];
+  }
   const prog = getProgress();
   renderReadingProgress(idx);
-  loadPublicReadSummary();
+  if (idx.length) {
+    loadPublicReadSummary();
+  }
 
-  if (listEl) {
+  if (listEl && idx.length && listEl.childElementCount) {
+    enhanceDrawerList(listEl, idx, sid, prog);
+  } else if (listEl && idx.length) {
     listEl.replaceChildren(
       ...idx.map((s) =>
         buildDrawerLink({
-          href: `/surah/${s.n}`,
+          href: preferredTranslationPath(s.n),
           number: s.n,
           title: s.nr,
           subtitle: `${s.nm} · ${s.c} аятов`,
@@ -182,7 +255,11 @@ export async function initDrawer({ dataVersion, loadIndex }: DrawerOptions) {
   const drawerRoot = $('[data-drawer]');
   $$('[data-dtab]').forEach((t) =>
     t.addEventListener('click', () => {
-      $$('[data-dtab]').forEach((x) => x.classList.toggle('on', x === t));
+      $$('[data-dtab]').forEach((x) => {
+        const selected = x === t;
+        x.classList.toggle('on', selected);
+        x.setAttribute('aria-selected', selected ? 'true' : 'false');
+      });
       drawerRoot?.setAttribute('data-dtab-active', t.getAttribute('data-dtab') || 'surah');
     })
   );
