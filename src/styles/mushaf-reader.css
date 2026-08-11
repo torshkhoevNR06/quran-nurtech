@@ -54,7 +54,7 @@ body[data-page-mode='mushaf'] .mushaf-toolbar {
   min-height: 58px;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   flex-wrap: nowrap;
   gap: 7px;
   padding: 8px 10px;
@@ -218,17 +218,24 @@ body[data-page-mode='mushaf'] .qcf-page {
 }
 
 body[data-page-mode='mushaf'] .qcf-line {
+  width: min(100%, var(--mushaf-line-w, 88%));
+  margin-inline: auto;
   min-width: 0;
   max-width: 100%;
+  gap: 0;
   white-space: nowrap;
   overflow: visible;
+  justify-content: space-between;
+  text-align: justify;
   text-align-last: justify;
 }
 
 body[data-page-mode='mushaf'] .qcf-line.center,
 body[data-page-mode='mushaf'] .qcf-line-deco {
+  width: fit-content;
   text-align: center;
   text-align-last: center;
+  justify-content: center;
 }
 
 body[data-page-mode='mushaf'] .qcf-surah-title {

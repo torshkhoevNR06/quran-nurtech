@@ -52,18 +52,6 @@
     return parseFloat(value || '0') || 0;
   }
 
-  function elementOuterSize(el, axis) {
-    if (!el) return 0;
-    var style = getComputedStyle(el);
-    var rect = el.getBoundingClientRect();
-    if (axis === 'width') return rect.width + px(style.marginLeft) + px(style.marginRight);
-    return rect.height + px(style.marginTop) + px(style.marginBottom);
-  }
-
-  function isFixed(el) {
-    return el && getComputedStyle(el).position === 'fixed';
-  }
-
   function safeInset(name) {
     var probe = document.createElement('div');
     probe.style.cssText = 'position:absolute;visibility:hidden;pointer-events:none;' + name + ':env(safe-area-inset-' + name + ');';
@@ -71,6 +59,17 @@
     var value = px(getComputedStyle(probe).getPropertyValue(name));
     probe.remove();
     return value;
+  }
+
+  function nonImmersivePageWidth(isMobile) {
+    var vw = Math.max(320, window.innerWidth || 0);
+    var vh = Math.max(360, window.innerHeight || 0);
+    var reservedWidth = isMobile ? 56 : 88;
+    var reservedHeight = isMobile ? 152 : vw >= 900 ? 225 : 246;
+    var widthSpace = Math.max(1, vw - safeInset('left') - safeInset('right') - reservedWidth);
+    var heightSpace = Math.max(1, vh - reservedHeight);
+    var maxPageWidth = isMobile ? 620 : 760;
+    return Math.floor(Math.min(widthSpace, heightSpace * PAGE_RATIO, maxPageWidth));
   }
 
   function preserveCenter() {
@@ -110,21 +109,15 @@
     syncViewportHeight();
     var isMobile = window.matchMedia('(max-width: 650px)').matches;
     var isImmersive = body.classList.contains('mushaf-immersive');
-    var style = getComputedStyle(reader);
-    var bottom = document.querySelector('.mushaf-bottom');
-    var gap = px(style.rowGap || style.gap);
-    var horizontalChrome = px(style.paddingLeft) + px(style.paddingRight);
-    var verticalChrome = px(style.paddingTop) + px(style.paddingBottom);
-    var sideControls = 0;
-    var flowRows = 0;
-    if (!isFixed(toolbar) && toolbar && !isImmersive) flowRows += elementOuterSize(toolbar, 'height') + gap;
-    if (bottom && getComputedStyle(bottom).display !== 'none' && !isImmersive) flowRows += elementOuterSize(bottom, 'height') + gap;
-
-    var widthSpace = Math.max(1, reader.clientWidth - horizontalChrome - sideControls - 2);
-    var heightSpace = Math.max(1, reader.clientHeight - verticalChrome - flowRows - 2);
-    var maxPageWidth = isMobile ? 620 : isImmersive ? 920 : 760;
-    var pageWidth = Math.floor(Math.min(widthSpace, heightSpace * PAGE_RATIO, maxPageWidth));
-    if (isMobile) pageWidth = Math.min(pageWidth, Math.max(1, window.innerWidth - safeInset('left') - safeInset('right') - 12));
+    var pageWidth = nonImmersivePageWidth(isMobile);
+    if (isImmersive) {
+      var style = getComputedStyle(reader);
+      var horizontalChrome = px(style.paddingLeft) + px(style.paddingRight);
+      var verticalChrome = px(style.paddingTop) + px(style.paddingBottom);
+      var widthSpace = Math.max(1, reader.clientWidth - horizontalChrome - 2);
+      var heightSpace = Math.max(1, reader.clientHeight - verticalChrome - 2);
+      pageWidth = Math.floor(Math.min(widthSpace, heightSpace * PAGE_RATIO, 920));
+    }
     pageWidth = Math.max(1, pageWidth);
 
     root.style.setProperty('--mushaf-page-w', pageWidth + 'px');
@@ -142,9 +135,9 @@
     restoreCenter(center);
   }
 
-  function measureLineContentWidth(line) {
+  function measureLineContentBounds(line) {
     var items = line.querySelectorAll('.qcf-word, .qcf-surah-title, .qcf-basmala');
-    if (!items.length) return 0;
+    if (!items.length) return { left: 0, right: 0, width: 0 };
     var min = Infinity;
     var max = -Infinity;
     for (var i = 0; i < items.length; i++) {
@@ -152,25 +145,68 @@
       min = Math.min(min, r.left);
       max = Math.max(max, r.right);
     }
-    return Math.max(0, max - min);
+    return { left: min, right: max, width: Math.max(0, max - min) };
+  }
+
+  function measureLineNaturalWidth(line) {
+    var items = line.querySelectorAll('.qcf-word');
+    var width = 0;
+    for (var i = 0; i < items.length; i++) {
+      width += items[i].getBoundingClientRect().width;
+    }
+    return width;
+  }
+
+  function syncLineTargetWidth() {
+    if (!pageEl) return 0;
+    var lines = pageEl.querySelectorAll('.qcf-line:not(.is-empty):not(.qcf-line-deco):not(.center)');
+    var maxNatural = 0;
+    for (var i = 0; i < lines.length; i++) {
+      maxNatural = Math.max(maxNatural, measureLineNaturalWidth(lines[i]));
+    }
+    var available = Math.max(1, pageEl.clientWidth - 2);
+    var target = Math.min(available, Math.ceil(maxNatural + 1));
+    if (target > 0) root.style.setProperty('--mushaf-line-w', target + 'px');
+    return target;
   }
 
   function fitQcfLines() {
     if (!pageEl) return;
     root.style.setProperty('--mushaf-qcf-fit', '1');
+    syncLineTargetWidth();
     var lines = pageEl.querySelectorAll('.qcf-line:not(.is-empty):not(.qcf-line-deco)');
     var fit = 1;
-    for (var i = 0; i < lines.length; i++) {
-      var line = lines[i];
-      var available = Math.max(1, line.clientWidth - 2);
-      var contentWidth = Math.max(line.scrollWidth || 0, measureLineContentWidth(line));
-      if (contentWidth > available) {
-        fit = Math.min(fit, (available / contentWidth) * 0.985);
-      }
-    }
     var isMobile = window.matchMedia('(max-width: 650px)').matches;
-    fit = clamp(fit, isMobile ? 0.62 : 0.84, 1);
+    var minFit = isMobile ? 0.56 : 0.72;
+
+    for (var pass = 0; pass < 4; pass++) {
+      syncLineTargetWidth();
+      var nextFit = fit;
+      var pageRect = pageEl.getBoundingClientRect();
+      for (var i = 0; i < lines.length; i++) {
+        var line = lines[i];
+        var available = Math.max(1, pageEl.clientWidth - 2);
+        var bounds = measureLineContentBounds(line);
+        var contentWidth = measureLineNaturalWidth(line);
+        if (contentWidth > available) {
+          nextFit = Math.min(nextFit, fit * (available / contentWidth) * 0.955);
+        }
+        var overLeft = Math.max(0, pageRect.left - bounds.left);
+        var overRight = Math.max(0, bounds.right - pageRect.right);
+        if (overLeft > 0 || overRight > 0) {
+          var pageAvailable = Math.max(1, pageEl.clientWidth - 2);
+          var visibleWidth = contentWidth + overLeft + overRight;
+          nextFit = Math.min(nextFit, fit * (pageAvailable / visibleWidth) * 0.955);
+        }
+      }
+      nextFit = clamp(nextFit, minFit, 1);
+      if (Math.abs(nextFit - fit) < 0.001) break;
+      fit = nextFit;
+      root.style.setProperty('--mushaf-qcf-fit', fit.toFixed(4));
+      pageEl.offsetWidth;
+    }
     root.style.setProperty('--mushaf-qcf-fit', fit.toFixed(4));
+    syncLineTargetWidth();
   }
 
   function scheduleLineFit() {
@@ -394,7 +430,7 @@
     return Promise.race([
       document.fonts.load('24px MushafTajweed' + page),
       new Promise(function (resolve) {
-        window.setTimeout(resolve, 200);
+        window.setTimeout(resolve, 1800);
       }),
     ]).catch(function () {});
   }
@@ -583,12 +619,12 @@
   } catch (e) {}
 
   syncTopbarState(activePage);
-  if (root.style.getPropertyValue('--mushaf-page-w')) {
-    syncViewportHeight();
-    applyZoom();
-    } else {
-      layoutMushaf(null);
-  }
+  layoutMushaf(null);
+  waitForPageFont(activePage).then(function () {
+    fitQcfLines();
+    scheduleLineFit();
+    if (scale > 1.001) scrollZoomToStart();
+  });
   if (document.fonts && document.fonts.ready) {
     document.fonts.ready.then(scheduleLineFit).catch(function () {});
   } else {

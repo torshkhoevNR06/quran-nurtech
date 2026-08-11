@@ -77,10 +77,12 @@ main[role='main']:not(.wide) > .container {
 
 .toolbar-context {
   display: grid;
-  flex: 0 1 clamp(82px, 13vw, 210px);
-  min-width: 0;
-  max-width: clamp(82px, 13vw, 210px);
-  padding-inline-end: 10px;
+  flex: 0 1 max-content;
+  width: max-content;
+  min-width: max-content;
+  max-width: clamp(120px, 24vw, 240px);
+  margin-inline-end: 2px;
+  padding-inline-end: 0;
   gap: 1px;
   line-height: 1.08;
   overflow: hidden;

@@ -1,0 +1,245 @@
+[
+  {
+    "pageNum": 56,
+    "width": 704,
+    "height": 920,
+    "shot": "C:\\FRONTEND\\1_it_projects\\1__it-simulator\\4__quran-nurtech\\qa-screens\\mushaf-56-transform-fill-704.png",
+    "metrics": {
+      "spreadLeft": 0.143157958984375,
+      "spreadRight": 0.1431884765625,
+      "maxScale": 1.4879603354607311,
+      "maxGapEm": 0.04854461794015875,
+      "overflow": 0,
+      "rows": []
+    }
+  },
+  {
+    "pageNum": 57,
+    "width": 704,
+    "height": 920,
+    "shot": "C:\\FRONTEND\\1_it_projects\\1__it-simulator\\4__quran-nurtech\\qa-screens\\mushaf-57-transform-fill-704.png",
+    "metrics": {
+      "spreadLeft": 0.1353759765625,
+      "spreadRight": 0.13525390625,
+      "maxScale": 1.4869407547965423,
+      "maxGapEm": 0.05087058495187546,
+      "overflow": 0,
+      "rows": []
+    }
+  },
+  {
+    "pageNum": 108,
+    "width": 704,
+    "height": 920,
+    "shot": "C:\\FRONTEND\\1_it_projects\\1__it-simulator\\4__quran-nurtech\\qa-screens\\mushaf-108-transform-fill-704.png",
+    "metrics": {
+      "spreadLeft": 0.0111083984375,
+      "spreadRight": 0.01116943359375,
+      "maxScale": 1.4277159775292272,
+      "maxGapEm": 0.048388704966733136,
+      "overflow": 0,
+      "rows": []
+    }
+  },
+  {
+    "pageNum": 453,
+    "width": 704,
+    "height": 920,
+    "shot": "C:\\FRONTEND\\1_it_projects\\1__it-simulator\\4__quran-nurtech\\qa-screens\\mushaf-453-transform-fill-704.png",
+    "metrics": {
+      "spreadLeft": 0.14892578125,
+      "spreadRight": 0.14898681640625,
+      "maxScale": 1.7363353234443282,
+      "maxGapEm": 0.0594028428751564,
+      "overflow": 0,
+      "rows": [
+        {
+          "line": 4,
+          "scale": 1.5500983570525853,
+          "leftEdge": 8.287185668945312,
+          "rightEdge": 8.2716064453125,
+          "maxGapEm": 0.05303188877227023,
+          "overLeft": 0,
+          "overRight": 0
+        },
+        {
+          "line": 11,
+          "scale": 1.601580560917452,
+          "leftEdge": 8.2996826171875,
+          "rightEdge": 8.259033203125,
+          "maxGapEm": 0.05479227351814201,
+          "overLeft": 0,
+          "overRight": 0
+        },
+        {
+          "line": 12,
+          "scale": 1.6043130118289353,
+          "leftEdge": 8.299713134765625,
+          "rightEdge": 8.259033203125,
+          "maxGapEm": 0.05488613949193906,
+          "overLeft": 0,
+          "overRight": 0
+        },
+        {
+          "line": 13,
+          "scale": 1.7363353234443282,
+          "leftEdge": 8.287185668945312,
+          "rightEdge": 8.2716064453125,
+          "maxGapEm": 0.0594028428751564,
+          "overLeft": 0,
+          "overRight": 0
+        },
+        {
+          "line": 14,
+          "scale": 1.564194067091766,
+          "leftEdge": 8.28717041015625,
+          "rightEdge": 8.27154541015625,
+          "maxGapEm": 0.053513150756568664,
+          "overLeft": 0,
+          "overRight": 0
+        }
+      ]
+    }
+  },
+  {
+    "pageNum": 53,
+    "width": 390,
+    "height": 844,
+    "shot": "C:\\FRONTEND\\1_it_projects\\1__it-simulator\\4__quran-nurtech\\qa-screens\\mushaf-53-transform-fill-390.png",
+    "metrics": {
+      "spreadLeft": 0.0143585205078125,
+      "spreadRight": 0.014373779296875,
+      "maxScale": 1.8343594037849607,
+      "maxGapEm": 0.06246751715766296,
+      "overflow": 0,
+      "rows": [
+        {
+          "line": 1,
+          "scale": 1.82078962679744,
+          "leftEdge": 5.3521881103515625,
+          "rightEdge": 5.336578369140625,
+          "maxGapEm": 0.044734286638820585,
+          "overLeft": 0,
+          "overRight": 0
+        },
+        {
+          "line": 2,
+          "scale": 1.8251891351441425,
+          "leftEdge": 5.3664398193359375,
+          "rightEdge": 5.32232666015625,
+          "maxGapEm": 0.06228090769640034,
+          "overLeft": 0,
+          "overRight": 0
+        },
+        {
+          "line": 3,
+          "scale": 1.8218496340652028,
+          "leftEdge": 5.3664093017578125,
+          "rightEdge": 5.322357177734375,
+          "maxGapEm": 0.044762278058009974,
+          "overLeft": 0,
+          "overRight": 0
+        },
+        {
+          "line": 4,
+          "scale": 1.813253869712772,
+          "leftEdge": 5.352203369140625,
+          "rightEdge": 5.3365478515625,
+          "maxGapEm": 0.06187436565579248,
+          "overLeft": 0,
+          "overRight": 0
+        },
+        {
+          "line": 5,
+          "scale": 1.8251891351441425,
+          "leftEdge": 5.3664398193359375,
+          "rightEdge": 5.32232666015625,
+          "maxGapEm": 0.04484225354140824,
+          "overLeft": 0,
+          "overRight": 0
+        },
+        {
+          "line": 6,
+          "scale": 1.8273206539873206,
+          "leftEdge": 5.3664703369140625,
+          "rightEdge": 5.322265625,
+          "maxGapEm": 0.06235421855618208,
+          "overLeft": 0,
+          "overRight": 0
+        },
+        {
+          "line": 7,
+          "scale": 1.8331313807531382,
+          "leftEdge": 5.3665008544921875,
+          "rightEdge": 5.322235107421875,
+          "maxGapEm": 0.045038193475734,
+          "overLeft": 0,
+          "overRight": 0
+        },
+        {
+          "line": 8,
+          "scale": 1.828235686863629,
+          "leftEdge": 5.3664703369140625,
+          "rightEdge": 5.322265625,
+          "maxGapEm": 0.062383542900094784,
+          "overLeft": 0,
+          "overRight": 0
+        },
+        {
+          "line": 9,
+          "scale": 1.8224559068219635,
+          "leftEdge": 5.3664398193359375,
+          "rightEdge": 5.32232666015625,
+          "maxGapEm": 0.04477560730524302,
+          "overLeft": 0,
+          "overRight": 0
+        },
+        {
+          "line": 10,
+          "scale": 1.8218496340652028,
+          "leftEdge": 5.3664093017578125,
+          "rightEdge": 5.322357177734375,
+          "maxGapEm": 0.06216760909491946,
+          "overLeft": 0,
+          "overRight": 0
+        },
+        {
+          "line": 11,
+          "scale": 1.8317518187139392,
+          "leftEdge": 5.3521728515625,
+          "rightEdge": 5.336578369140625,
+          "maxGapEm": 0.04500487035765139,
+          "overLeft": 0,
+          "overRight": 0
+        },
+        {
+          "line": 12,
+          "scale": 1.8155080391181833,
+          "leftEdge": 5.3663787841796875,
+          "rightEdge": 5.3223876953125,
+          "maxGapEm": 0.04460499294066005,
+          "overLeft": 0,
+          "overRight": 0
+        },
+        {
+          "line": 13,
+          "scale": 1.8306802607387598,
+          "leftEdge": 5.366485595703125,
+          "rightEdge": 5.322265625,
+          "maxGapEm": 0.06246751715766296,
+          "overLeft": 0,
+          "overRight": 0
+        },
+        {
+          "line": 14,
+          "scale": 1.8343594037849607,
+          "leftEdge": 5.3665313720703125,
+          "rightEdge": 5.32220458984375,
+          "maxGapEm": 0.045068850744370004,
+          "overLeft": 0,
+          "overRight": 0
+        }
+      ]
+    }
+  }
+]

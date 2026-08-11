@@ -1,0 +1,87 @@
+[
+  {
+    "url": "/mushaf/57",
+    "name": "custom-select-dark-mushaf-surah-open",
+    "file": "C:\\FRONTEND\\1_it_projects\\1__it-simulator\\4__quran-nurtech\\qa-screens\\custom-select-dark-mushaf-surah-open.png",
+    "m": {
+      "theme": "dark",
+      "location": "/mushaf/57",
+      "uiSelects": 3,
+      "openMenus": [
+        {
+          "w": 240,
+          "h": 360,
+          "left": 8,
+          "right": 248,
+          "top": 136,
+          "bottom": 496,
+          "bg": "rgba(28, 32, 39, 0.94)",
+          "text": "Сура…1. Аль-Фатиха2. Аль-Бакара3. Аль Имран4. Ан-Ниса5. Аль-"
+        }
+      ],
+      "nativeVisible": 0,
+      "overflow": 0
+    }
+  },
+  {
+    "url": "/mushaf/57",
+    "name": "custom-select-dark-mushaf-surah-change",
+    "file": "C:\\FRONTEND\\1_it_projects\\1__it-simulator\\4__quran-nurtech\\qa-screens\\custom-select-dark-mushaf-surah-change.png",
+    "m": {
+      "theme": "dark",
+      "location": "/mushaf/1",
+      "uiSelects": 3,
+      "openMenus": [],
+      "nativeVisible": 0,
+      "overflow": 0
+    }
+  },
+  {
+    "url": "/audio",
+    "name": "custom-select-dark-audio-open",
+    "file": "C:\\FRONTEND\\1_it_projects\\1__it-simulator\\4__quran-nurtech\\qa-screens\\custom-select-dark-audio-open.png",
+    "m": {
+      "theme": "dark",
+      "location": "/audio",
+      "uiSelects": 3,
+      "openMenus": [
+        {
+          "w": 350.6,
+          "h": 360,
+          "left": 513.4,
+          "right": 864,
+          "top": 366.1,
+          "bottom": 726.1,
+          "bg": "rgba(28, 32, 39, 0.94)",
+          "text": "1. Аль-Фатиха (7)2. Аль-Бакара (286)3. Аль Имран (200)4. Ан-"
+        }
+      ],
+      "nativeVisible": 0,
+      "overflow": 0
+    }
+  },
+  {
+    "url": "/videos",
+    "name": "custom-select-dark-videos-open",
+    "file": "C:\\FRONTEND\\1_it_projects\\1__it-simulator\\4__quran-nurtech\\qa-screens\\custom-select-dark-videos-open.png",
+    "m": {
+      "theme": "dark",
+      "location": "/videos",
+      "uiSelects": 2,
+      "openMenus": [
+        {
+          "w": 280,
+          "h": 360,
+          "left": 36,
+          "right": 316,
+          "top": 219.4,
+          "bottom": 579.4,
+          "bg": "rgba(28, 32, 39, 0.94)",
+          "text": "Любой чтецМишари Рашид аль-АфасиМахмуд Халиль аль-ХусариМуха"
+        }
+      ],
+      "nativeVisible": 0,
+      "overflow": 0
+    }
+  }
+]

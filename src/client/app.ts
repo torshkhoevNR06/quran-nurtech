@@ -19,6 +19,7 @@ import {
   setViewHotkey,
 } from './reader-settings';
 import { initTajweed } from './tajweed';
+import { initCustomSelects } from './custom-selects';
 import { closeMenus, initMenus } from './ui-menus';
 
 const player = createAudioPlayer();
@@ -34,6 +35,7 @@ function boot() {
   initView();
   initTranslation();
   initMenus();
+  initCustomSelects();
   initDrawer({ dataVersion: DV, loadIndex });
   initTransShow();
   initTajweed(DV);

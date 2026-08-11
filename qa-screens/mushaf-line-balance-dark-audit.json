@@ -1,0 +1,104 @@
+[
+  {
+    "p": 57,
+    "w": 704,
+    "h": 920,
+    "z": 100,
+    "file": "C:\\FRONTEND\\1_it_projects\\1__it-simulator\\4__quran-nurtech\\qa-screens\\mushaf-line-balance-dark-p57-704-100.png",
+    "metrics": {
+      "pageW": 442.3,
+      "lineW": "393px",
+      "maxGap": 6.7,
+      "leftSpread": 0,
+      "rightSpread": 0.2,
+      "overflow": 0,
+      "fit": "1.0000",
+      "zoom": "1.0000"
+    }
+  },
+  {
+    "p": 56,
+    "w": 704,
+    "h": 920,
+    "z": 100,
+    "file": "C:\\FRONTEND\\1_it_projects\\1__it-simulator\\4__quran-nurtech\\qa-screens\\mushaf-line-balance-dark-p56-704-100.png",
+    "metrics": {
+      "pageW": 442.3,
+      "lineW": "392px",
+      "maxGap": 4.8,
+      "leftSpread": 0,
+      "rightSpread": 0.2,
+      "overflow": 0,
+      "fit": "1.0000",
+      "zoom": "1.0000"
+    }
+  },
+  {
+    "p": 108,
+    "w": 704,
+    "h": 920,
+    "z": 100,
+    "file": "C:\\FRONTEND\\1_it_projects\\1__it-simulator\\4__quran-nurtech\\qa-screens\\mushaf-line-balance-dark-p108-704-100.png",
+    "metrics": {
+      "pageW": 442.3,
+      "lineW": "369px",
+      "maxGap": 1,
+      "leftSpread": 0,
+      "rightSpread": 0,
+      "overflow": 0,
+      "fit": "1.0000",
+      "zoom": "1.0000"
+    }
+  },
+  {
+    "p": 453,
+    "w": 704,
+    "h": 920,
+    "z": 100,
+    "file": "C:\\FRONTEND\\1_it_projects\\1__it-simulator\\4__quran-nurtech\\qa-screens\\mushaf-line-balance-dark-p453-704-100.png",
+    "metrics": {
+      "pageW": 442.3,
+      "lineW": "375px",
+      "maxGap": 10,
+      "leftSpread": 0,
+      "rightSpread": 0.2,
+      "overflow": 0,
+      "fit": "1.0000",
+      "zoom": "1.0000"
+    }
+  },
+  {
+    "p": 57,
+    "w": 704,
+    "h": 920,
+    "z": 125,
+    "file": "C:\\FRONTEND\\1_it_projects\\1__it-simulator\\4__quran-nurtech\\qa-screens\\mushaf-line-balance-dark-p57-704-125.png",
+    "metrics": {
+      "pageW": 560.3,
+      "lineW": "490px",
+      "maxGap": 8.2,
+      "leftSpread": 0,
+      "rightSpread": 0.3,
+      "overflow": 0,
+      "fit": "1.0000",
+      "zoom": "1.2500"
+    }
+  },
+  {
+    "p": 57,
+    "w": 390,
+    "h": 844,
+    "z": 100,
+    "file": "C:\\FRONTEND\\1_it_projects\\1__it-simulator\\4__quran-nurtech\\qa-screens\\mushaf-line-balance-dark-p57-390-100.png",
+    "metrics": {
+      "pageW": 311,
+      "lineW": "218px",
+      "maxGap": 3.8,
+      "leftSpread": 0,
+      "rightSpread": 0.1,
+      "overflow": 0,
+      "fit": "1.0000",
+      "zoom": "1.0000"
+    }
+  }
+]

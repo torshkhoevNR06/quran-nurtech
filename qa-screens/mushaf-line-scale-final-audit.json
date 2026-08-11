@@ -1,0 +1,215 @@
+[
+  {
+    "pageNum": 53,
+    "width": 704,
+    "height": 920,
+    "zoom": 1,
+    "shot": "C:\\FRONTEND\\1_it_projects\\1__it-simulator\\4__quran-nurtech\\qa-screens\\mushaf-53-line-scale-final-704.png",
+    "metrics": {
+      "fillCount": 14,
+      "spreadLeft": 0.019805908203125,
+      "spreadRight": 0.0257568359375,
+      "maxGapEm": 0.048122221058072026,
+      "maxScale": 1.4095,
+      "overflow": 0,
+      "flagged": []
+    }
+  },
+  {
+    "pageNum": 56,
+    "width": 704,
+    "height": 920,
+    "zoom": 1,
+    "shot": "C:\\FRONTEND\\1_it_projects\\1__it-simulator\\4__quran-nurtech\\qa-screens\\mushaf-56-line-scale-final-704.png",
+    "metrics": {
+      "fillCount": 14,
+      "spreadLeft": 0.151580810546875,
+      "spreadRight": 0.1463623046875,
+      "maxGapEm": 0.04854620888886717,
+      "maxScale": 1.488,
+      "overflow": 0,
+      "flagged": []
+    }
+  },
+  {
+    "pageNum": 57,
+    "width": 704,
+    "height": 920,
+    "zoom": 1,
+    "shot": "C:\\FRONTEND\\1_it_projects\\1__it-simulator\\4__quran-nurtech\\qa-screens\\mushaf-57-line-scale-final-704.png",
+    "metrics": {
+      "fillCount": 14,
+      "spreadLeft": 0.1373748779296875,
+      "spreadRight": 0.14471435546875,
+      "maxGapEm": 0.05086899400316704,
+      "maxScale": 1.4869,
+      "overflow": 0,
+      "flagged": []
+    }
+  },
+  {
+    "pageNum": 108,
+    "width": 704,
+    "height": 920,
+    "zoom": 1,
+    "shot": "C:\\FRONTEND\\1_it_projects\\1__it-simulator\\4__quran-nurtech\\qa-screens\\mushaf-108-line-scale-final-704.png",
+    "metrics": {
+      "fillCount": 14,
+      "spreadLeft": 0.0251312255859375,
+      "spreadRight": 0.0220947265625,
+      "maxGapEm": 0.04839029591544156,
+      "maxScale": 1.4277,
+      "overflow": 0,
+      "flagged": []
+    }
+  },
+  {
+    "pageNum": 453,
+    "width": 704,
+    "height": 920,
+    "zoom": 1,
+    "shot": "C:\\FRONTEND\\1_it_projects\\1__it-simulator\\4__quran-nurtech\\qa-screens\\mushaf-453-line-scale-final-704.png",
+    "metrics": {
+      "fillCount": 13,
+      "spreadLeft": 0.16107177734375,
+      "spreadRight": 0.145751953125,
+      "maxGapEm": 0.0594028428751564,
+      "maxScale": 1.7363,
+      "overflow": 0,
+      "flagged": []
+    }
+  },
+  {
+    "pageNum": 458,
+    "width": 704,
+    "height": 920,
+    "zoom": 1,
+    "shot": "C:\\FRONTEND\\1_it_projects\\1__it-simulator\\4__quran-nurtech\\qa-screens\\mushaf-458-line-scale-final-704.png",
+    "metrics": {
+      "fillCount": 11,
+      "spreadLeft": 0.145416259765625,
+      "spreadRight": 0.13720703125,
+      "maxGapEm": 0.05014670328954228,
+      "maxScale": 1.4803,
+      "overflow": 0,
+      "flagged": []
+    }
+  },
+  {
+    "pageNum": 599,
+    "width": 704,
+    "height": 920,
+    "zoom": 1,
+    "shot": "C:\\FRONTEND\\1_it_projects\\1__it-simulator\\4__quran-nurtech\\qa-screens\\mushaf-599-line-scale-final-704.png",
+    "metrics": {
+      "fillCount": 7,
+      "spreadLeft": 0.1269378662109375,
+      "spreadRight": 0.1412353515625,
+      "maxGapEm": 0.05578441719268156,
+      "maxScale": 1.6498,
+      "overflow": 0,
+      "flagged": []
+    }
+  },
+  {
+    "pageNum": 53,
+    "width": 390,
+    "height": 844,
+    "zoom": 1,
+    "shot": "C:\\FRONTEND\\1_it_projects\\1__it-simulator\\4__quran-nurtech\\qa-screens\\mushaf-53-line-scale-final-390.png",
+    "metrics": {
+      "fillCount": 14,
+      "spreadLeft": 0.023406982421875,
+      "spreadRight": 0.017425537109375,
+      "maxGapEm": 0.06246751715766296,
+      "maxScale": 1.8344,
+      "overflow": 0,
+      "flagged": []
+    }
+  },
+  {
+    "pageNum": 108,
+    "width": 390,
+    "height": 844,
+    "zoom": 1,
+    "shot": "C:\\FRONTEND\\1_it_projects\\1__it-simulator\\4__quran-nurtech\\qa-screens\\mushaf-108-line-scale-final-390.png",
+    "metrics": {
+      "fillCount": 14,
+      "spreadLeft": 0.021331787109375,
+      "spreadRight": 0.0186767578125,
+      "maxGapEm": 0.06283007268240177,
+      "maxScale": 1.8585,
+      "overflow": 0,
+      "flagged": [
+        {
+          "line": 2,
+          "justified": true,
+          "leftEdge": 5.362274169921875,
+          "rightEdge": 5.31768798828125,
+          "overLeft": 0,
+          "overRight": 0,
+          "maxGapEm": 0.045511381752507074,
+          "scale": 1.8524,
+          "justifyContent": "center",
+          "width": 639.3963623046875
+        },
+        {
+          "line": 3,
+          "justified": true,
+          "leftEdge": 5.3504638671875,
+          "rightEdge": 5.334869384765625,
+          "overLeft": 0,
+          "overRight": 0,
+          "maxGapEm": 0.045660669321517175,
+          "scale": 1.8585,
+          "justifyContent": "center",
+          "width": 641.501953125
+        },
+        {
+          "line": 6,
+          "justified": true,
+          "leftEdge": 5.3493804931640625,
+          "rightEdge": 5.333740234375,
+          "overLeft": 0,
+          "overRight": 0,
+          "maxGapEm": 0.04549272080638082,
+          "scale": 1.8516,
+          "justifyContent": "center",
+          "width": 639.1202392578125
+        }
+      ]
+    }
+  },
+  {
+    "pageNum": 53,
+    "width": 704,
+    "height": 920,
+    "zoom": 1.75,
+    "shot": "C:\\FRONTEND\\1_it_projects\\1__it-simulator\\4__quran-nurtech\\qa-screens\\mushaf-53-line-scale-final-704-z175.png",
+    "metrics": {
+      "fillCount": 14,
+      "spreadLeft": 0.0372161865234375,
+      "spreadRight": 0.02081298828125,
+      "maxGapEm": 0.04987969755907234,
+      "maxScale": 1.4429,
+      "overflow": 0,
+      "flagged": []
+    }
+  },
+  {
+    "pageNum": 108,
+    "width": 704,
+    "height": 920,
+    "zoom": 3,
+    "shot": "C:\\FRONTEND\\1_it_projects\\1__it-simulator\\4__quran-nurtech\\qa-screens\\mushaf-108-line-scale-final-704-z300.png",
+    "metrics": {
+      "fillCount": 14,
+      "spreadLeft": 0.0361328125,
+      "spreadRight": 0.033935546875,
+      "maxGapEm": 0.05111675473086343,
+      "maxScale": 1.4795,
+      "overflow": 0,
+      "flagged": []
+    }
+  }
+]

@@ -4,7 +4,7 @@
   }
 
   body[data-page-mode='mushaf'] .mushaf-toolbar {
-    justify-content: center;
+    justify-content: flex-start;
     width: fit-content;
   }
 }
@@ -164,12 +164,12 @@
 
 @media (max-width: 420px) {
   body[data-page-mode='mushaf'] {
-    --mushaf-mobile-fit-guard: 0.78;
+    --mushaf-mobile-fit-guard: 0.92;
   }
 }
 
 @media (max-width: 360px) {
   body[data-page-mode='mushaf'] {
-    --mushaf-mobile-fit-guard: 0.68;
+    --mushaf-mobile-fit-guard: 0.86;
   }
 }

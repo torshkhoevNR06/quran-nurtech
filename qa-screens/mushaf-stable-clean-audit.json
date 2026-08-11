@@ -1,0 +1,233 @@
+[
+  {
+    "case": {
+      "p": 57,
+      "w": 704,
+      "h": 920,
+      "z": 100
+    },
+    "screenshot": "qa-screens/mushaf-57-stable-clean-704-z100.png",
+    "vars": {
+      "w": "474px",
+      "fit": "1.0000",
+      "zoom": "1.0000"
+    },
+    "font": "22.75px",
+    "overflowX": 0,
+    "reader": {
+      "sw": 662,
+      "cw": 662,
+      "sh": 858,
+      "ch": 858
+    },
+    "clip": [
+      25.515625,
+      25.734375
+    ],
+    "widths": [
+      347.71875,
+      391.09375
+    ],
+    "transforms": [
+      "none"
+    ]
+  },
+  {
+    "case": {
+      "p": 57,
+      "w": 704,
+      "h": 920,
+      "z": 125
+    },
+    "screenshot": "qa-screens/mushaf-57-stable-clean-704-z125.png",
+    "vars": {
+      "w": "474px",
+      "fit": "1.0000",
+      "zoom": "1.2500"
+    },
+    "font": "28.4375px",
+    "overflowX": 0,
+    "reader": {
+      "sw": 674,
+      "cw": 674,
+      "sh": 1028,
+      "ch": 858
+    },
+    "clip": [
+      35.640625,
+      35.921875
+    ],
+    "widths": [
+      434.53125,
+      488.71875
+    ],
+    "transforms": [
+      "none"
+    ]
+  },
+  {
+    "case": {
+      "p": 57,
+      "w": 704,
+      "h": 920,
+      "z": 300
+    },
+    "screenshot": "qa-screens/mushaf-57-stable-clean-704-z300.png",
+    "vars": {
+      "w": "474px",
+      "fit": "1.0000",
+      "zoom": "3.0000"
+    },
+    "font": "68.25px",
+    "overflowX": 0,
+    "reader": {
+      "sw": 1466,
+      "cw": 674,
+      "sh": 2206,
+      "ch": 858
+    },
+    "clip": [
+      108,
+      108.671875
+    ],
+    "widths": [
+      1043.03125,
+      1173.109375
+    ],
+    "transforms": [
+      "none"
+    ]
+  },
+  {
+    "case": {
+      "p": 53,
+      "w": 704,
+      "h": 920,
+      "z": 100
+    },
+    "screenshot": "qa-screens/mushaf-53-stable-clean-704-z100.png",
+    "vars": {
+      "w": "474px",
+      "fit": "1.0000",
+      "zoom": "1.0000"
+    },
+    "font": "22.75px",
+    "overflowX": 0,
+    "reader": {
+      "sw": 662,
+      "cw": 662,
+      "sh": 858,
+      "ch": 858
+    },
+    "clip": [
+      36.015625,
+      36
+    ],
+    "widths": [
+      365.921875,
+      370.328125
+    ],
+    "transforms": [
+      "none"
+    ]
+  },
+  {
+    "case": {
+      "p": 108,
+      "w": 704,
+      "h": 920,
+      "z": 100
+    },
+    "screenshot": "qa-screens/mushaf-108-stable-clean-704-z100.png",
+    "vars": {
+      "w": "474px",
+      "fit": "1.0000",
+      "zoom": "1.0000"
+    },
+    "font": "22.75px",
+    "overflowX": 0,
+    "reader": {
+      "sw": 662,
+      "cw": 662,
+      "sh": 858,
+      "ch": 858
+    },
+    "clip": [
+      37.15625,
+      37.140625
+    ],
+    "widths": [
+      362.859375,
+      368.046875
+    ],
+    "transforms": [
+      "none"
+    ]
+  },
+  {
+    "case": {
+      "p": 453,
+      "w": 704,
+      "h": 920,
+      "z": 100
+    },
+    "screenshot": "qa-screens/mushaf-453-stable-clean-704-z100.png",
+    "vars": {
+      "w": "474px",
+      "fit": "1.0000",
+      "zoom": "1.0000"
+    },
+    "font": "22.75px",
+    "overflowX": 0,
+    "reader": {
+      "sw": 662,
+      "cw": 662,
+      "sh": 858,
+      "ch": 858
+    },
+    "clip": [
+      34.328125,
+      34.328125
+    ],
+    "widths": [
+      296.65625,
+      373.6875
+    ],
+    "transforms": [
+      "none"
+    ]
+  },
+  {
+    "case": {
+      "p": 57,
+      "w": 390,
+      "h": 844,
+      "z": 100
+    },
+    "screenshot": "qa-screens/mushaf-57-stable-clean-390-z100.png",
+    "vars": {
+      "w": "334px",
+      "fit": "1.0000",
+      "zoom": "1.0000"
+    },
+    "font": "12.5948px",
+    "overflowX": 0,
+    "reader": {
+      "sw": 348,
+      "cw": 348,
+      "sh": 782,
+      "ch": 782
+    },
+    "clip": [
+      47.203125,
+      47.3125
+    ],
+    "widths": [
+      192.453125,
+      216.453125
+    ],
+    "transforms": [
+      "none"
+    ]
+  }
+]

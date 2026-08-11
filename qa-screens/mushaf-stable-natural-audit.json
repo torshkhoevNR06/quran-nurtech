@@ -1,0 +1,162 @@
+[
+  {
+    "case": {
+      "p": 57,
+      "w": 704,
+      "h": 920,
+      "z": 100
+    },
+    "screenshot": "qa-screens/mushaf-57-stable-natural-704-z100.png",
+    "sheetWidth": 474,
+    "pageWidth": 442.34375,
+    "font": "18.5822px",
+    "overflowX": 0,
+    "clipLeft": 61.375,
+    "clipRight": 61.546875,
+    "minWidth": 283.984375,
+    "maxWidth": 319.421875,
+    "transforms": [
+      "none"
+    ]
+  },
+  {
+    "case": {
+      "p": 57,
+      "w": 704,
+      "h": 920,
+      "z": 125
+    },
+    "screenshot": "qa-screens/mushaf-57-stable-natural-704-z125.png",
+    "sheetWidth": 474,
+    "pageWidth": 442.34375,
+    "font": "22.75px",
+    "overflowX": 0,
+    "clipLeft": 25.515625,
+    "clipRight": 25.734375,
+    "minWidth": 347.71875,
+    "maxWidth": 391.09375,
+    "transforms": [
+      "none"
+    ]
+  },
+  {
+    "case": {
+      "p": 57,
+      "w": 704,
+      "h": 920,
+      "z": 300
+    },
+    "screenshot": "qa-screens/mushaf-57-stable-natural-704-z300.png",
+    "sheetWidth": 474,
+    "pageWidth": 442.34375,
+    "font": "22.75px",
+    "overflowX": 0,
+    "clipLeft": 25.515625,
+    "clipRight": 25.734375,
+    "minWidth": 347.71875,
+    "maxWidth": 391.09375,
+    "transforms": [
+      "none"
+    ]
+  },
+  {
+    "case": {
+      "p": 53,
+      "w": 704,
+      "h": 920,
+      "z": 100
+    },
+    "screenshot": "qa-screens/mushaf-53-stable-natural-704-z100.png",
+    "sheetWidth": 474,
+    "pageWidth": 442.34375,
+    "font": "18.5822px",
+    "overflowX": 0,
+    "clipLeft": 69.953125,
+    "clipRight": 69.9375,
+    "minWidth": 298.84375,
+    "maxWidth": 302.453125,
+    "transforms": [
+      "none"
+    ]
+  },
+  {
+    "case": {
+      "p": 108,
+      "w": 704,
+      "h": 920,
+      "z": 100
+    },
+    "screenshot": "qa-screens/mushaf-108-stable-natural-704-z100.png",
+    "sheetWidth": 474,
+    "pageWidth": 442.34375,
+    "font": "18.5822px",
+    "overflowX": 0,
+    "clipLeft": 70.890625,
+    "clipRight": 70.875,
+    "minWidth": 296.328125,
+    "maxWidth": 300.578125,
+    "transforms": [
+      "none"
+    ]
+  },
+  {
+    "case": {
+      "p": 453,
+      "w": 704,
+      "h": 920,
+      "z": 100
+    },
+    "screenshot": "qa-screens/mushaf-453-stable-natural-704-z100.png",
+    "sheetWidth": 474,
+    "pageWidth": 442.34375,
+    "font": "18.5822px",
+    "overflowX": 0,
+    "clipLeft": 68.578125,
+    "clipRight": 68.5625,
+    "minWidth": 242.296875,
+    "maxWidth": 305.203125,
+    "transforms": [
+      "none"
+    ]
+  },
+  {
+    "case": {
+      "p": 57,
+      "w": 390,
+      "h": 844,
+      "z": 100
+    },
+    "screenshot": "qa-screens/mushaf-57-stable-natural-390-z100.png",
+    "sheetWidth": 334,
+    "pageWidth": 310.96875,
+    "font": "8.65575px",
+    "overflowX": 0,
+    "clipLeft": 81.0625,
+    "clipRight": 81.140625,
+    "minWidth": 132.21875,
+    "maxWidth": 148.765625,
+    "transforms": [
+      "none"
+    ]
+  },
+  {
+    "case": {
+      "p": 57,
+      "w": 390,
+      "h": 844,
+      "z": 175
+    },
+    "screenshot": "qa-screens/mushaf-57-stable-natural-390-z175.png",
+    "sheetWidth": 376,
+    "pageWidth": 352.96875,
+    "font": "14.079px",
+    "overflowX": 0,
+    "clipLeft": 55.484375,
+    "clipRight": 55.609375,
+    "minWidth": 215.046875,
+    "maxWidth": 241.875,
+    "transforms": [
+      "none"
+    ]
+  }
+]

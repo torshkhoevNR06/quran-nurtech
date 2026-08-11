@@ -102,7 +102,9 @@ const description =
       $('[data-ring]').style.strokeDashoffset = 100 - pct;
       $('[data-count-btn]').classList.toggle('done', st.target && st.count >= st.target);
       document.querySelectorAll('[data-target]').forEach(function (b) {
-        b.classList.toggle('on', +b.getAttribute('data-target') === st.target);
+        var selected = +b.getAttribute('data-target') === st.target;
+        b.classList.toggle('on', selected);
+        b.setAttribute('aria-selected', selected ? 'true' : 'false');
       });
       document.querySelectorAll('[data-dhikr]').forEach(function (b) {
         b.classList.toggle('on', b.getAttribute('data-dhikr') === st.dhikr);

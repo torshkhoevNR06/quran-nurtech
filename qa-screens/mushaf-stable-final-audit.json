@@ -1,0 +1,317 @@
+[
+  {
+    "case": {
+      "p": 57,
+      "w": 704,
+      "h": 920,
+      "z": 100
+    },
+    "screenshot": "qa-screens/mushaf-57-stable-final-704-z100.png",
+    "vars": {
+      "w": "474px",
+      "qcf": "22.75px",
+      "fit": "1.0000",
+      "zoom": "1.0000",
+      "guard": ""
+    },
+    "sheetWidth": 474,
+    "pageWidth": 442.34375,
+    "font": "22.75px",
+    "reader": {
+      "cw": 662,
+      "sw": 662,
+      "sh": 858,
+      "ch": 858,
+      "st": 0
+    },
+    "overflowX": 0,
+    "clipLeft": 25.515625,
+    "clipRight": 25.734375,
+    "minWidth": 347.71875,
+    "maxWidth": 391.09375,
+    "maxGap": 0.21875,
+    "transforms": [
+      "none"
+    ]
+  },
+  {
+    "case": {
+      "p": 57,
+      "w": 704,
+      "h": 920,
+      "z": 125
+    },
+    "screenshot": "qa-screens/mushaf-57-stable-final-704-z125.png",
+    "vars": {
+      "w": "474px",
+      "qcf": "22.75px",
+      "fit": "1.0000",
+      "zoom": "1.2500",
+      "guard": ""
+    },
+    "sheetWidth": 592.5,
+    "pageWidth": 560.28125,
+    "font": "28.4375px",
+    "reader": {
+      "cw": 674,
+      "sw": 674,
+      "sh": 1028,
+      "ch": 858,
+      "st": 0
+    },
+    "overflowX": 0,
+    "clipLeft": 35.640625,
+    "clipRight": 35.921875,
+    "minWidth": 434.53125,
+    "maxWidth": 488.71875,
+    "maxGap": 0.28125,
+    "transforms": [
+      "none"
+    ]
+  },
+  {
+    "case": {
+      "p": 57,
+      "w": 704,
+      "h": 920,
+      "z": 300
+    },
+    "screenshot": "qa-screens/mushaf-57-stable-final-704-z300.png",
+    "vars": {
+      "w": "474px",
+      "qcf": "22.75px",
+      "fit": "1.0000",
+      "zoom": "3.0000",
+      "guard": ""
+    },
+    "sheetWidth": 1422,
+    "pageWidth": 1389.78125,
+    "font": "68.25px",
+    "reader": {
+      "cw": 674,
+      "sw": 1466,
+      "sh": 2206,
+      "ch": 858,
+      "st": 0
+    },
+    "overflowX": 0,
+    "clipLeft": 108,
+    "clipRight": 108.671875,
+    "minWidth": 1043.03125,
+    "maxWidth": 1173.109375,
+    "maxGap": 0.671875,
+    "transforms": [
+      "none"
+    ]
+  },
+  {
+    "case": {
+      "p": 53,
+      "w": 704,
+      "h": 920,
+      "z": 100
+    },
+    "screenshot": "qa-screens/mushaf-53-stable-final-704-z100.png",
+    "vars": {
+      "w": "474px",
+      "qcf": "22.75px",
+      "fit": "1.0000",
+      "zoom": "1.0000",
+      "guard": ""
+    },
+    "sheetWidth": 474,
+    "pageWidth": 442.34375,
+    "font": "22.75px",
+    "reader": {
+      "cw": 662,
+      "sw": 662,
+      "sh": 858,
+      "ch": 858,
+      "st": 0
+    },
+    "overflowX": 0,
+    "clipLeft": 36.015625,
+    "clipRight": 36,
+    "minWidth": 365.921875,
+    "maxWidth": 370.328125,
+    "maxGap": 0.21875,
+    "transforms": [
+      "none"
+    ]
+  },
+  {
+    "case": {
+      "p": 108,
+      "w": 704,
+      "h": 920,
+      "z": 100
+    },
+    "screenshot": "qa-screens/mushaf-108-stable-final-704-z100.png",
+    "vars": {
+      "w": "474px",
+      "qcf": "22.75px",
+      "fit": "1.0000",
+      "zoom": "1.0000",
+      "guard": ""
+    },
+    "sheetWidth": 474,
+    "pageWidth": 442.34375,
+    "font": "22.75px",
+    "reader": {
+      "cw": 662,
+      "sw": 662,
+      "sh": 858,
+      "ch": 858,
+      "st": 0
+    },
+    "overflowX": 0,
+    "clipLeft": 37.15625,
+    "clipRight": 37.140625,
+    "minWidth": 362.859375,
+    "maxWidth": 368.046875,
+    "maxGap": 0.21875,
+    "transforms": [
+      "none"
+    ]
+  },
+  {
+    "case": {
+      "p": 453,
+      "w": 704,
+      "h": 920,
+      "z": 100
+    },
+    "screenshot": "qa-screens/mushaf-453-stable-final-704-z100.png",
+    "vars": {
+      "w": "474px",
+      "qcf": "22.75px",
+      "fit": "1.0000",
+      "zoom": "1.0000",
+      "guard": ""
+    },
+    "sheetWidth": 474,
+    "pageWidth": 442.34375,
+    "font": "22.75px",
+    "reader": {
+      "cw": 662,
+      "sw": 662,
+      "sh": 858,
+      "ch": 858,
+      "st": 0
+    },
+    "overflowX": 0,
+    "clipLeft": 34.328125,
+    "clipRight": 34.328125,
+    "minWidth": 296.65625,
+    "maxWidth": 373.6875,
+    "maxGap": 0.21875,
+    "transforms": [
+      "none"
+    ]
+  },
+  {
+    "case": {
+      "p": 57,
+      "w": 390,
+      "h": 844,
+      "z": 100
+    },
+    "screenshot": "qa-screens/mushaf-57-stable-final-390-z100.png",
+    "vars": {
+      "w": "334px",
+      "qcf": "13.69px",
+      "fit": "1.0000",
+      "zoom": "1.0000",
+      "guard": "0.92"
+    },
+    "sheetWidth": 334,
+    "pageWidth": 310.96875,
+    "font": "12.5948px",
+    "reader": {
+      "cw": 348,
+      "sw": 348,
+      "sh": 782,
+      "ch": 782,
+      "st": 0
+    },
+    "overflowX": 0,
+    "clipLeft": 47.203125,
+    "clipRight": 47.3125,
+    "minWidth": 192.453125,
+    "maxWidth": 216.453125,
+    "maxGap": 0.125,
+    "transforms": [
+      "none"
+    ]
+  },
+  {
+    "case": {
+      "p": 57,
+      "w": 360,
+      "h": 800,
+      "z": 100
+    },
+    "screenshot": "qa-screens/mushaf-57-stable-final-360-z100.png",
+    "vars": {
+      "w": "304px",
+      "qcf": "12.46px",
+      "fit": "1.0000",
+      "zoom": "1.0000",
+      "guard": "0.86"
+    },
+    "sheetWidth": 304,
+    "pageWidth": 282.5625,
+    "font": "10.7156px",
+    "reader": {
+      "cw": 318,
+      "sw": 318,
+      "sh": 738,
+      "ch": 738,
+      "st": 0
+    },
+    "overflowX": 0,
+    "clipLeft": 49.15625,
+    "clipRight": 49.25,
+    "minWidth": 163.6875,
+    "maxWidth": 184.15625,
+    "maxGap": 0.09375,
+    "transforms": [
+      "none"
+    ]
+  },
+  {
+    "case": {
+      "p": 57,
+      "w": 390,
+      "h": 844,
+      "z": 175
+    },
+    "screenshot": "qa-screens/mushaf-57-stable-final-390-z175.png",
+    "vars": {
+      "w": "334px",
+      "qcf": "13.69px",
+      "fit": "1.0000",
+      "zoom": "1.7500",
+      "guard": "0.92"
+    },
+    "sheetWidth": 584.5,
+    "pageWidth": 561.46875,
+    "font": "22.0409px",
+    "reader": {
+      "cw": 360,
+      "sw": 597,
+      "sh": 870,
+      "ch": 782,
+      "st": 0
+    },
+    "overflowX": 0,
+    "clipLeft": 91.1875,
+    "clipRight": 91.40625,
+    "minWidth": 336.875,
+    "maxWidth": 378.875,
+    "maxGap": 0.21875,
+    "transforms": [
+      "none"
+    ]
+  }
+]

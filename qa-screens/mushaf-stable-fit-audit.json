@@ -1,0 +1,290 @@
+[
+  {
+    "case": {
+      "p": 57,
+      "w": 704,
+      "h": 920,
+      "z": 100
+    },
+    "screenshot": "qa-screens/mushaf-57-stable-fit-704-z100.png",
+    "vars": {
+      "w": "474px",
+      "qcf": "22.75px",
+      "fit": "1.0000",
+      "zoom": "1.0000"
+    },
+    "sheetWidth": 474,
+    "pageWidth": 442.34375,
+    "font": "22.75px",
+    "reader": {
+      "cw": 662,
+      "sw": 662,
+      "st": 0
+    },
+    "overflowX": 0,
+    "clipLeft": 25.515625,
+    "clipRight": 25.734375,
+    "minWidth": 347.71875,
+    "maxWidth": 391.09375,
+    "maxGap": 0.21875,
+    "transforms": [
+      "none"
+    ]
+  },
+  {
+    "case": {
+      "p": 57,
+      "w": 704,
+      "h": 920,
+      "z": 125
+    },
+    "screenshot": "qa-screens/mushaf-57-stable-fit-704-z125.png",
+    "vars": {
+      "w": "474px",
+      "qcf": "22.75px",
+      "fit": "1.0000",
+      "zoom": "1.2500"
+    },
+    "sheetWidth": 592.5,
+    "pageWidth": 560.28125,
+    "font": "28.4375px",
+    "reader": {
+      "cw": 674,
+      "sw": 674,
+      "st": 0
+    },
+    "overflowX": 0,
+    "clipLeft": 35.640625,
+    "clipRight": 35.921875,
+    "minWidth": 434.53125,
+    "maxWidth": 488.71875,
+    "maxGap": 0.28125,
+    "transforms": [
+      "none"
+    ]
+  },
+  {
+    "case": {
+      "p": 57,
+      "w": 704,
+      "h": 920,
+      "z": 300
+    },
+    "screenshot": "qa-screens/mushaf-57-stable-fit-704-z300.png",
+    "vars": {
+      "w": "474px",
+      "qcf": "22.75px",
+      "fit": "1.0000",
+      "zoom": "3.0000"
+    },
+    "sheetWidth": 1422,
+    "pageWidth": 1389.78125,
+    "font": "68.25px",
+    "reader": {
+      "cw": 674,
+      "sw": 1466,
+      "st": 0
+    },
+    "overflowX": 0,
+    "clipLeft": 108,
+    "clipRight": 108.671875,
+    "minWidth": 1043.03125,
+    "maxWidth": 1173.109375,
+    "maxGap": 0.671875,
+    "transforms": [
+      "none"
+    ]
+  },
+  {
+    "case": {
+      "p": 53,
+      "w": 704,
+      "h": 920,
+      "z": 100
+    },
+    "screenshot": "qa-screens/mushaf-53-stable-fit-704-z100.png",
+    "vars": {
+      "w": "474px",
+      "qcf": "22.75px",
+      "fit": "1.0000",
+      "zoom": "1.0000"
+    },
+    "sheetWidth": 474,
+    "pageWidth": 442.34375,
+    "font": "22.75px",
+    "reader": {
+      "cw": 662,
+      "sw": 662,
+      "st": 0
+    },
+    "overflowX": 0,
+    "clipLeft": 36.015625,
+    "clipRight": 36,
+    "minWidth": 365.921875,
+    "maxWidth": 370.328125,
+    "maxGap": 0.21875,
+    "transforms": [
+      "none"
+    ]
+  },
+  {
+    "case": {
+      "p": 108,
+      "w": 704,
+      "h": 920,
+      "z": 100
+    },
+    "screenshot": "qa-screens/mushaf-108-stable-fit-704-z100.png",
+    "vars": {
+      "w": "474px",
+      "qcf": "22.75px",
+      "fit": "1.0000",
+      "zoom": "1.0000"
+    },
+    "sheetWidth": 474,
+    "pageWidth": 442.34375,
+    "font": "22.75px",
+    "reader": {
+      "cw": 662,
+      "sw": 662,
+      "st": 0
+    },
+    "overflowX": 0,
+    "clipLeft": 37.15625,
+    "clipRight": 37.140625,
+    "minWidth": 362.859375,
+    "maxWidth": 368.046875,
+    "maxGap": 0.21875,
+    "transforms": [
+      "none"
+    ]
+  },
+  {
+    "case": {
+      "p": 453,
+      "w": 704,
+      "h": 920,
+      "z": 100
+    },
+    "screenshot": "qa-screens/mushaf-453-stable-fit-704-z100.png",
+    "vars": {
+      "w": "474px",
+      "qcf": "22.75px",
+      "fit": "1.0000",
+      "zoom": "1.0000"
+    },
+    "sheetWidth": 474,
+    "pageWidth": 442.34375,
+    "font": "22.75px",
+    "reader": {
+      "cw": 662,
+      "sw": 662,
+      "st": 0
+    },
+    "overflowX": 0,
+    "clipLeft": 34.328125,
+    "clipRight": 34.328125,
+    "minWidth": 296.65625,
+    "maxWidth": 373.6875,
+    "maxGap": 0.21875,
+    "transforms": [
+      "none"
+    ]
+  },
+  {
+    "case": {
+      "p": 458,
+      "w": 704,
+      "h": 920,
+      "z": 100
+    },
+    "screenshot": "qa-screens/mushaf-458-stable-fit-704-z100.png",
+    "vars": {
+      "w": "474px",
+      "qcf": "22.75px",
+      "fit": "1.0000",
+      "zoom": "1.0000"
+    },
+    "sheetWidth": 474,
+    "pageWidth": 442.34375,
+    "font": "22.75px",
+    "reader": {
+      "cw": 662,
+      "sw": 662,
+      "st": 0
+    },
+    "overflowX": 0,
+    "clipLeft": 25.359375,
+    "clipRight": 25.5625,
+    "minWidth": 348.75,
+    "maxWidth": 391.421875,
+    "maxGap": 0.21875,
+    "transforms": [
+      "none"
+    ]
+  },
+  {
+    "case": {
+      "p": 57,
+      "w": 390,
+      "h": 844,
+      "z": 100
+    },
+    "screenshot": "qa-screens/mushaf-57-stable-fit-390-z100.png",
+    "vars": {
+      "w": "334px",
+      "qcf": "13.69px",
+      "fit": "1.0000",
+      "zoom": "1.0000"
+    },
+    "sheetWidth": 334,
+    "pageWidth": 310.96875,
+    "font": "10.6782px",
+    "reader": {
+      "cw": 348,
+      "sw": 348,
+      "st": 0
+    },
+    "overflowX": 0,
+    "clipLeft": 63.71875,
+    "clipRight": 63.796875,
+    "minWidth": 163.109375,
+    "maxWidth": 183.453125,
+    "maxGap": 0.09375,
+    "transforms": [
+      "none"
+    ]
+  },
+  {
+    "case": {
+      "p": 57,
+      "w": 390,
+      "h": 844,
+      "z": 175
+    },
+    "screenshot": "qa-screens/mushaf-57-stable-fit-390-z175.png",
+    "vars": {
+      "w": "334px",
+      "qcf": "13.69px",
+      "fit": "1.0000",
+      "zoom": "1.7500"
+    },
+    "sheetWidth": 584.5,
+    "pageWidth": 561.46875,
+    "font": "18.6868px",
+    "reader": {
+      "cw": 360,
+      "sw": 597,
+      "st": 0
+    },
+    "overflowX": 0,
+    "clipLeft": 120.09375,
+    "clipRight": 120.265625,
+    "minWidth": 285.5,
+    "maxWidth": 321.109375,
+    "maxGap": 0.171875,
+    "transforms": [
+      "none"
+    ]
+  }
+]

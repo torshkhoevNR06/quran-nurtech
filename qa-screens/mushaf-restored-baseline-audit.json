@@ -1,0 +1,1379 @@
+[
+  {
+    "pageNum": 53,
+    "width": 704,
+    "height": 920,
+    "zoom": 1,
+    "shot": "C:\\FRONTEND\\1_it_projects\\1__it-simulator\\4__quran-nurtech\\qa-screens\\mushaf-53-restored-baseline-704.png",
+    "metrics": {
+      "pageWidth": 457.34,
+      "fillCount": 14,
+      "spreadLeft": 0,
+      "spreadRight": 0,
+      "worstGaps": [],
+      "rows": [
+        {
+          "line": 1,
+          "justified": true,
+          "lineWidth": 444.3,
+          "contentWidth": 444.3,
+          "leftEdge": 6.53,
+          "rightEdge": 6.52,
+          "justifyContent": "space-between",
+          "gap": "0.479551px",
+          "wordCount": 11,
+          "maxGapEm": 0.6980828380773643
+        },
+        {
+          "line": 2,
+          "justified": true,
+          "lineWidth": 444.3,
+          "contentWidth": 444.3,
+          "leftEdge": 6.53,
+          "rightEdge": 6.52,
+          "justifyContent": "space-between",
+          "gap": "0.479551px",
+          "wordCount": 10,
+          "maxGapEm": 0.7868705035971224
+        },
+        {
+          "line": 3,
+          "justified": true,
+          "lineWidth": 444.3,
+          "contentWidth": 444.3,
+          "leftEdge": 6.53,
+          "rightEdge": 6.52,
+          "justifyContent": "space-between",
+          "gap": "0.479551px",
+          "wordCount": 9,
+          "maxGapEm": 0.86832707746846
+        },
+        {
+          "line": 4,
+          "justified": true,
+          "lineWidth": 444.3,
+          "contentWidth": 444.3,
+          "leftEdge": 6.53,
+          "rightEdge": 6.52,
+          "justifyContent": "space-between",
+          "gap": "0.479551px",
+          "wordCount": 10,
+          "maxGapEm": 0.7746520175164217
+        },
+        {
+          "line": 5,
+          "justified": true,
+          "lineWidth": 444.3,
+          "contentWidth": 444.3,
+          "leftEdge": 6.53,
+          "rightEdge": 6.52,
+          "justifyContent": "space-between",
+          "gap": "0.479551px",
+          "wordCount": 10,
+          "maxGapEm": 0.7779102804712752
+        },
+        {
+          "line": 6,
+          "justified": true,
+          "lineWidth": 444.3,
+          "contentWidth": 444.3,
+          "leftEdge": 6.53,
+          "rightEdge": 6.52,
+          "justifyContent": "space-between",
+          "gap": "0.479551px",
+          "wordCount": 10,
+          "maxGapEm": 0.7893142008132625
+        },
+        {
+          "line": 7,
+          "justified": true,
+          "lineWidth": 444.3,
+          "contentWidth": 444.3,
+          "leftEdge": 6.53,
+          "rightEdge": 6.52,
+          "justifyContent": "space-between",
+          "gap": "0.479551px",
+          "wordCount": 10,
+          "maxGapEm": 0.7852413721196956
+        },
+        {
+          "line": 8,
+          "justified": true,
+          "lineWidth": 444.3,
+          "contentWidth": 444.3,
+          "leftEdge": 6.53,
+          "rightEdge": 6.52,
+          "justifyContent": "space-between",
+          "gap": "0.479551px",
+          "wordCount": 11,
+          "maxGapEm": 0.7151887185903452
+        },
+        {
+          "line": 9,
+          "justified": true,
+          "lineWidth": 444.3,
+          "contentWidth": 444.3,
+          "leftEdge": 6.53,
+          "rightEdge": 6.52,
+          "justifyContent": "space-between",
+          "gap": "0.479551px",
+          "wordCount": 10,
+          "maxGapEm": 0.7746520175164217
+        },
+        {
+          "line": 10,
+          "justified": true,
+          "lineWidth": 444.3,
+          "contentWidth": 444.3,
+          "leftEdge": 6.53,
+          "rightEdge": 6.52,
+          "justifyContent": "space-between",
+          "gap": "0.479551px",
+          "wordCount": 10,
+          "maxGapEm": 0.7836122406422689
+        },
+        {
+          "line": 11,
+          "justified": true,
+          "lineWidth": 444.3,
+          "contentWidth": 444.3,
+          "leftEdge": 6.53,
+          "rightEdge": 6.52,
+          "justifyContent": "space-between",
+          "gap": "0.479551px",
+          "wordCount": 8,
+          "maxGapEm": 1.0011012928787406
+        },
+        {
+          "line": 12,
+          "justified": true,
+          "lineWidth": 444.3,
+          "contentWidth": 444.3,
+          "leftEdge": 6.53,
+          "rightEdge": 6.52,
+          "justifyContent": "space-between",
+          "gap": "0.479551px",
+          "wordCount": 12,
+          "maxGapEm": 0.6329175789802941
+        },
+        {
+          "line": 13,
+          "justified": true,
+          "lineWidth": 444.3,
+          "contentWidth": 444.3,
+          "leftEdge": 6.53,
+          "rightEdge": 6.52,
+          "justifyContent": "space-between",
+          "gap": "0.479551px",
+          "wordCount": 9,
+          "maxGapEm": 0.8878766551975811
+        },
+        {
+          "line": 14,
+          "justified": true,
+          "lineWidth": 444.3,
+          "contentWidth": 444.3,
+          "leftEdge": 6.53,
+          "rightEdge": 6.52,
+          "justifyContent": "space-between",
+          "gap": "0.479551px",
+          "wordCount": 10,
+          "maxGapEm": 0.7868705035971224
+        }
+      ]
+    }
+  },
+  {
+    "pageNum": 56,
+    "width": 704,
+    "height": 920,
+    "zoom": 1,
+    "shot": "C:\\FRONTEND\\1_it_projects\\1__it-simulator\\4__quran-nurtech\\qa-screens\\mushaf-56-restored-baseline-704.png",
+    "metrics": {
+      "pageWidth": 457.34,
+      "fillCount": 14,
+      "spreadLeft": 0,
+      "spreadRight": 0.18,
+      "worstGaps": [
+        {
+          "line": 4,
+          "maxGapEm": 1.4
+        }
+      ],
+      "rows": [
+        {
+          "line": 1,
+          "justified": true,
+          "lineWidth": 444.3,
+          "contentWidth": 444.3,
+          "leftEdge": 6.53,
+          "rightEdge": 6.52,
+          "justifyContent": "space-between",
+          "gap": "0.479551px",
+          "wordCount": 8,
+          "maxGapEm": 0.9921410697528934
+        },
+        {
+          "line": 2,
+          "justified": true,
+          "lineWidth": 444.3,
+          "contentWidth": 444.3,
+          "leftEdge": 6.53,
+          "rightEdge": 6.52,
+          "justifyContent": "space-between",
+          "gap": "0.479551px",
+          "wordCount": 11,
+          "maxGapEm": 0.6980828380773643
+        },
+        {
+          "line": 3,
+          "justified": true,
+          "lineWidth": 444.3,
+          "contentWidth": 444.3,
+          "leftEdge": 6.53,
+          "rightEdge": 6.52,
+          "justifyContent": "space-between",
+          "gap": "0.479551px",
+          "wordCount": 12,
+          "maxGapEm": 0.7265926389323325
+        },
+        {
+          "line": 4,
+          "justified": true,
+          "lineWidth": 444.3,
+          "contentWidth": 444.11,
+          "leftEdge": 6.53,
+          "rightEdge": 6.7,
+          "justifyContent": "space-between",
+          "gap": "0.479551px",
+          "wordCount": 6,
+          "maxGapEm": 1.395351110416015
+        },
+        {
+          "line": 5,
+          "justified": true,
+          "lineWidth": 444.3,
+          "contentWidth": 444.11,
+          "leftEdge": 6.53,
+          "rightEdge": 6.7,
+          "justifyContent": "space-between",
+          "gap": "0.479551px",
+          "wordCount": 10,
+          "maxGapEm": 0.6663147742675425
+        },
+        {
+          "line": 6,
+          "justified": true,
+          "lineWidth": 444.3,
+          "contentWidth": 444.3,
+          "leftEdge": 6.53,
+          "rightEdge": 6.52,
+          "justifyContent": "space-between",
+          "gap": "0.479551px",
+          "wordCount": 9,
+          "maxGapEm": 0.8732144719007403
+        },
+        {
+          "line": 7,
+          "justified": true,
+          "lineWidth": 444.3,
+          "contentWidth": 444.3,
+          "leftEdge": 6.53,
+          "rightEdge": 6.52,
+          "justifyContent": "space-between",
+          "gap": "0.479551px",
+          "wordCount": 8,
+          "maxGapEm": 1.0051741215723073
+        },
+        {
+          "line": 8,
+          "justified": true,
+          "lineWidth": 444.3,
+          "contentWidth": 444.3,
+          "leftEdge": 6.53,
+          "rightEdge": 6.52,
+          "justifyContent": "space-between",
+          "gap": "0.479551px",
+          "wordCount": 9,
+          "maxGapEm": 0.8715853404233136
+        },
+        {
+          "line": 9,
+          "justified": true,
+          "lineWidth": 444.3,
+          "contentWidth": 444.3,
+          "leftEdge": 6.53,
+          "rightEdge": 6.52,
+          "justifyContent": "space-between",
+          "gap": "0.479551px",
+          "wordCount": 11,
+          "maxGapEm": 0.7119304556354916
+        },
+        {
+          "line": 10,
+          "justified": true,
+          "lineWidth": 444.3,
+          "contentWidth": 444.3,
+          "leftEdge": 6.53,
+          "rightEdge": 6.52,
+          "justifyContent": "space-between",
+          "gap": "0.479551px",
+          "wordCount": 8,
+          "maxGapEm": 0.9978430299238871
+        },
+        {
+          "line": 11,
+          "justified": true,
+          "lineWidth": 444.3,
+          "contentWidth": 444.3,
+          "leftEdge": 6.53,
+          "rightEdge": 6.52,
+          "justifyContent": "space-between",
+          "gap": "0.479551px",
+          "wordCount": 8,
+          "maxGapEm": 1.000286727140027
+        },
+        {
+          "line": 12,
+          "justified": true,
+          "lineWidth": 444.3,
+          "contentWidth": 444.3,
+          "leftEdge": 6.53,
+          "rightEdge": 6.52,
+          "justifyContent": "space-between",
+          "gap": "0.479551px",
+          "wordCount": 9,
+          "maxGapEm": 0.9049825357105621
+        },
+        {
+          "line": 13,
+          "justified": true,
+          "lineWidth": 444.3,
+          "contentWidth": 444.3,
+          "leftEdge": 6.53,
+          "rightEdge": 6.52,
+          "justifyContent": "space-between",
+          "gap": "0.479551px",
+          "wordCount": 8,
+          "maxGapEm": 0.9994721614013138
+        },
+        {
+          "line": 14,
+          "justified": true,
+          "lineWidth": 444.3,
+          "contentWidth": 444.3,
+          "leftEdge": 6.53,
+          "rightEdge": 6.52,
+          "justifyContent": "space-between",
+          "gap": "0.479551px",
+          "wordCount": 9,
+          "maxGapEm": 0.8715853404233136
+        }
+      ]
+    }
+  },
+  {
+    "pageNum": 57,
+    "width": 704,
+    "height": 920,
+    "zoom": 1,
+    "shot": "C:\\FRONTEND\\1_it_projects\\1__it-simulator\\4__quran-nurtech\\qa-screens\\mushaf-57-restored-baseline-704.png",
+    "metrics": {
+      "pageWidth": 457.34,
+      "fillCount": 14,
+      "spreadLeft": 0,
+      "spreadRight": 0.18,
+      "worstGaps": [
+        {
+          "line": 2,
+          "maxGapEm": 1.14
+        },
+        {
+          "line": 14,
+          "maxGapEm": 1.4
+        }
+      ],
+      "rows": [
+        {
+          "line": 1,
+          "justified": true,
+          "lineWidth": 444.3,
+          "contentWidth": 444.3,
+          "leftEdge": 6.53,
+          "rightEdge": 6.52,
+          "justifyContent": "space-between",
+          "gap": "0.479551px",
+          "wordCount": 8,
+          "maxGapEm": 0.9945847669690335
+        },
+        {
+          "line": 2,
+          "justified": true,
+          "lineWidth": 444.3,
+          "contentWidth": 444.3,
+          "leftEdge": 6.53,
+          "rightEdge": 6.52,
+          "justifyContent": "space-between",
+          "gap": "0.479551px",
+          "wordCount": 8,
+          "maxGapEm": 1.1355046397664479
+        },
+        {
+          "line": 3,
+          "justified": true,
+          "lineWidth": 444.3,
+          "contentWidth": 444.11,
+          "leftEdge": 6.53,
+          "rightEdge": 6.7,
+          "justifyContent": "space-between",
+          "gap": "0.479551px",
+          "wordCount": 10,
+          "maxGapEm": 0.6630565113126891
+        },
+        {
+          "line": 4,
+          "justified": true,
+          "lineWidth": 444.3,
+          "contentWidth": 444.3,
+          "leftEdge": 6.53,
+          "rightEdge": 6.52,
+          "justifyContent": "space-between",
+          "gap": "0.479551px",
+          "wordCount": 8,
+          "maxGapEm": 0.9986575956626004
+        },
+        {
+          "line": 5,
+          "justified": true,
+          "lineWidth": 444.3,
+          "contentWidth": 444.3,
+          "leftEdge": 6.53,
+          "rightEdge": 6.52,
+          "justifyContent": "space-between",
+          "gap": "0.479551px",
+          "wordCount": 8,
+          "maxGapEm": 0.9937702012303201
+        },
+        {
+          "line": 6,
+          "justified": true,
+          "lineWidth": 444.3,
+          "contentWidth": 444.3,
+          "leftEdge": 6.53,
+          "rightEdge": 6.52,
+          "justifyContent": "space-between",
+          "gap": "0.479551px",
+          "wordCount": 9,
+          "maxGapEm": 0.8732144719007403
+        },
+        {
+          "line": 7,
+          "justified": true,
+          "lineWidth": 444.3,
+          "contentWidth": 444.3,
+          "leftEdge": 6.53,
+          "rightEdge": 6.52,
+          "justifyContent": "space-between",
+          "gap": "0.479551px",
+          "wordCount": 8,
+          "maxGapEm": 1.000286727140027
+        },
+        {
+          "line": 8,
+          "justified": true,
+          "lineWidth": 444.3,
+          "contentWidth": 444.3,
+          "leftEdge": 6.53,
+          "rightEdge": 6.52,
+          "justifyContent": "space-between",
+          "gap": "0.479551px",
+          "wordCount": 8,
+          "maxGapEm": 1.0247236993014286
+        },
+        {
+          "line": 9,
+          "justified": true,
+          "lineWidth": 444.3,
+          "contentWidth": 444.3,
+          "leftEdge": 6.53,
+          "rightEdge": 6.52,
+          "justifyContent": "space-between",
+          "gap": "0.479551px",
+          "wordCount": 9,
+          "maxGapEm": 0.8829892607653008
+        },
+        {
+          "line": 10,
+          "justified": true,
+          "lineWidth": 444.3,
+          "contentWidth": 444.3,
+          "leftEdge": 6.53,
+          "rightEdge": 6.52,
+          "justifyContent": "space-between",
+          "gap": "0.479551px",
+          "wordCount": 8,
+          "maxGapEm": 1.0133197789594413
+        },
+        {
+          "line": 11,
+          "justified": true,
+          "lineWidth": 444.3,
+          "contentWidth": 444.3,
+          "leftEdge": 6.53,
+          "rightEdge": 6.52,
+          "justifyContent": "space-between",
+          "gap": "0.479551px",
+          "wordCount": 11,
+          "maxGapEm": 0.6948245751225107
+        },
+        {
+          "line": 12,
+          "justified": true,
+          "lineWidth": 444.3,
+          "contentWidth": 444.3,
+          "leftEdge": 6.53,
+          "rightEdge": 6.52,
+          "justifyContent": "space-between",
+          "gap": "0.479551px",
+          "wordCount": 10,
+          "maxGapEm": 0.8846183922427276
+        },
+        {
+          "line": 13,
+          "justified": true,
+          "lineWidth": 444.3,
+          "contentWidth": 444.11,
+          "leftEdge": 6.53,
+          "rightEdge": 6.7,
+          "justifyContent": "space-between",
+          "gap": "0.479551px",
+          "wordCount": 12,
+          "maxGapEm": 0.5449444791992494
+        },
+        {
+          "line": 14,
+          "justified": true,
+          "lineWidth": 444.3,
+          "contentWidth": 444.3,
+          "leftEdge": 6.53,
+          "rightEdge": 6.52,
+          "justifyContent": "space-between",
+          "gap": "0.479551px",
+          "wordCount": 6,
+          "maxGapEm": 1.3961656761547285
+        }
+      ]
+    }
+  },
+  {
+    "pageNum": 108,
+    "width": 704,
+    "height": 920,
+    "zoom": 1,
+    "shot": "C:\\FRONTEND\\1_it_projects\\1__it-simulator\\4__quran-nurtech\\qa-screens\\mushaf-108-restored-baseline-704.png",
+    "metrics": {
+      "pageWidth": 457.34,
+      "fillCount": 14,
+      "spreadLeft": 0,
+      "spreadRight": 0,
+      "worstGaps": [
+        {
+          "line": 2,
+          "maxGapEm": 1.43
+        },
+        {
+          "line": 3,
+          "maxGapEm": 1.2
+        },
+        {
+          "line": 7,
+          "maxGapEm": 1.19
+        },
+        {
+          "line": 8,
+          "maxGapEm": 1.42
+        },
+        {
+          "line": 9,
+          "maxGapEm": 1.19
+        }
+      ],
+      "rows": [
+        {
+          "line": 1,
+          "justified": true,
+          "lineWidth": 444.3,
+          "contentWidth": 444.3,
+          "leftEdge": 6.53,
+          "rightEdge": 6.52,
+          "justifyContent": "space-between",
+          "gap": "0.479551px",
+          "wordCount": 8,
+          "maxGapEm": 1.0190217391304348
+        },
+        {
+          "line": 2,
+          "justified": true,
+          "lineWidth": 444.3,
+          "contentWidth": 444.3,
+          "leftEdge": 6.53,
+          "rightEdge": 6.52,
+          "justifyContent": "space-between",
+          "gap": "0.479551px",
+          "wordCount": 6,
+          "maxGapEm": 1.4279337399645502
+        },
+        {
+          "line": 3,
+          "justified": true,
+          "lineWidth": 444.3,
+          "contentWidth": 444.3,
+          "leftEdge": 6.53,
+          "rightEdge": 6.52,
+          "justifyContent": "space-between",
+          "gap": "0.479551px",
+          "wordCount": 7,
+          "maxGapEm": 1.2022990303409447
+        },
+        {
+          "line": 4,
+          "justified": true,
+          "lineWidth": 444.3,
+          "contentWidth": 444.3,
+          "leftEdge": 6.53,
+          "rightEdge": 6.52,
+          "justifyContent": "space-between",
+          "gap": "0.479551px",
+          "wordCount": 11,
+          "maxGapEm": 0.7135595871129184
+        },
+        {
+          "line": 5,
+          "justified": true,
+          "lineWidth": 444.3,
+          "contentWidth": 444.3,
+          "leftEdge": 6.53,
+          "rightEdge": 6.52,
+          "justifyContent": "space-between",
+          "gap": "0.479551px",
+          "wordCount": 9,
+          "maxGapEm": 0.8960223125847149
+        },
+        {
+          "line": 6,
+          "justified": true,
+          "lineWidth": 444.3,
+          "contentWidth": 444.3,
+          "leftEdge": 6.53,
+          "rightEdge": 6.52,
+          "justifyContent": "space-between",
+          "gap": "0.479551px",
+          "wordCount": 8,
+          "maxGapEm": 1.025538265040142
+        },
+        {
+          "line": 7,
+          "justified": true,
+          "lineWidth": 444.3,
+          "contentWidth": 444.3,
+          "leftEdge": 6.53,
+          "rightEdge": 6.52,
+          "justifyContent": "space-between",
+          "gap": "0.479551px",
+          "wordCount": 7,
+          "maxGapEm": 1.1892659785215307
+        },
+        {
+          "line": 8,
+          "justified": true,
+          "lineWidth": 444.3,
+          "contentWidth": 444.3,
+          "leftEdge": 6.53,
+          "rightEdge": 6.52,
+          "justifyContent": "space-between",
+          "gap": "0.479551px",
+          "wordCount": 6,
+          "maxGapEm": 1.4173443853612764
+        },
+        {
+          "line": 9,
+          "justified": true,
+          "lineWidth": 444.3,
+          "contentWidth": 444.3,
+          "leftEdge": 6.53,
+          "rightEdge": 6.52,
+          "justifyContent": "space-between",
+          "gap": "0.479551px",
+          "wordCount": 7,
+          "maxGapEm": 1.1860077155666773
+        },
+        {
+          "line": 10,
+          "justified": true,
+          "lineWidth": 444.3,
+          "contentWidth": 444.3,
+          "leftEdge": 6.53,
+          "rightEdge": 6.52,
+          "justifyContent": "space-between",
+          "gap": "0.479551px",
+          "wordCount": 10,
+          "maxGapEm": 0.7933870295068294
+        },
+        {
+          "line": 11,
+          "justified": true,
+          "lineWidth": 444.3,
+          "contentWidth": 444.3,
+          "leftEdge": 6.53,
+          "rightEdge": 6.52,
+          "justifyContent": "space-between",
+          "gap": "0.479551px",
+          "wordCount": 8,
+          "maxGapEm": 1.0133197789594413
+        },
+        {
+          "line": 12,
+          "justified": true,
+          "lineWidth": 444.3,
+          "contentWidth": 444.3,
+          "leftEdge": 6.53,
+          "rightEdge": 6.52,
+          "justifyContent": "space-between",
+          "gap": "0.479551px",
+          "wordCount": 8,
+          "maxGapEm": 1.0222800020852885
+        },
+        {
+          "line": 13,
+          "justified": true,
+          "lineWidth": 444.3,
+          "contentWidth": 444.3,
+          "leftEdge": 6.53,
+          "rightEdge": 6.52,
+          "justifyContent": "space-between",
+          "gap": "0.479551px",
+          "wordCount": 9,
+          "maxGapEm": 0.8968368783234283
+        },
+        {
+          "line": 14,
+          "justified": true,
+          "lineWidth": 444.3,
+          "contentWidth": 444.3,
+          "leftEdge": 6.53,
+          "rightEdge": 6.52,
+          "justifyContent": "space-between",
+          "gap": "0.479551px",
+          "wordCount": 9,
+          "maxGapEm": 0.8829892607653008
+        }
+      ]
+    }
+  },
+  {
+    "pageNum": 453,
+    "width": 704,
+    "height": 920,
+    "zoom": 1,
+    "shot": "C:\\FRONTEND\\1_it_projects\\1__it-simulator\\4__quran-nurtech\\qa-screens\\mushaf-453-restored-baseline-704.png",
+    "metrics": {
+      "pageWidth": 457.34,
+      "fillCount": 13,
+      "spreadLeft": 0,
+      "spreadRight": 0.18,
+      "worstGaps": [
+        {
+          "line": 12,
+          "maxGapEm": 1.14
+        },
+        {
+          "line": 13,
+          "maxGapEm": 1.28
+        }
+      ],
+      "rows": [
+        {
+          "line": 2,
+          "justified": true,
+          "lineWidth": 444.3,
+          "contentWidth": 444.3,
+          "leftEdge": 6.53,
+          "rightEdge": 6.52,
+          "justifyContent": "space-between",
+          "gap": "0.479551px",
+          "wordCount": 12,
+          "maxGapEm": 0.6223282243770202
+        },
+        {
+          "line": 3,
+          "justified": true,
+          "lineWidth": 444.3,
+          "contentWidth": 444.3,
+          "leftEdge": 6.53,
+          "rightEdge": 6.52,
+          "justifyContent": "space-between",
+          "gap": "0.479551px",
+          "wordCount": 12,
+          "maxGapEm": 0.6329175789802941
+        },
+        {
+          "line": 4,
+          "justified": true,
+          "lineWidth": 444.3,
+          "contentWidth": 444.3,
+          "leftEdge": 6.53,
+          "rightEdge": 6.52,
+          "justifyContent": "space-between",
+          "gap": "0.479551px",
+          "wordCount": 10,
+          "maxGapEm": 0.9603730059430717
+        },
+        {
+          "line": 5,
+          "justified": true,
+          "lineWidth": 444.3,
+          "contentWidth": 444.3,
+          "leftEdge": 6.53,
+          "rightEdge": 6.52,
+          "justifyContent": "space-between",
+          "gap": "0.479551px",
+          "wordCount": 11,
+          "maxGapEm": 0.7436985194453134
+        },
+        {
+          "line": 6,
+          "justified": true,
+          "lineWidth": 444.3,
+          "contentWidth": 444.3,
+          "leftEdge": 6.53,
+          "rightEdge": 6.52,
+          "justifyContent": "space-between",
+          "gap": "0.479551px",
+          "wordCount": 11,
+          "maxGapEm": 0.7355528620581796
+        },
+        {
+          "line": 7,
+          "justified": true,
+          "lineWidth": 444.3,
+          "contentWidth": 444.3,
+          "leftEdge": 6.53,
+          "rightEdge": 6.52,
+          "justifyContent": "space-between",
+          "gap": "0.479551px",
+          "wordCount": 12,
+          "maxGapEm": 0.6744604316546763
+        },
+        {
+          "line": 8,
+          "justified": true,
+          "lineWidth": 444.3,
+          "contentWidth": 444.3,
+          "leftEdge": 6.53,
+          "rightEdge": 6.52,
+          "justifyContent": "space-between",
+          "gap": "0.479551px",
+          "wordCount": 14,
+          "maxGapEm": 0.5604212282348034
+        },
+        {
+          "line": 9,
+          "justified": true,
+          "lineWidth": 444.3,
+          "contentWidth": 444.11,
+          "leftEdge": 6.53,
+          "rightEdge": 6.7,
+          "justifyContent": "space-between",
+          "gap": "0.479551px",
+          "wordCount": 12,
+          "maxGapEm": 0.7037847982483579
+        },
+        {
+          "line": 10,
+          "justified": true,
+          "lineWidth": 444.3,
+          "contentWidth": 444.3,
+          "leftEdge": 6.53,
+          "rightEdge": 6.52,
+          "justifyContent": "space-between",
+          "gap": "0.479551px",
+          "wordCount": 9,
+          "maxGapEm": 0.9823662808883329
+        },
+        {
+          "line": 11,
+          "justified": true,
+          "lineWidth": 444.3,
+          "contentWidth": 444.3,
+          "leftEdge": 6.53,
+          "rightEdge": 6.52,
+          "justifyContent": "space-between",
+          "gap": "0.479551px",
+          "wordCount": 10,
+          "maxGapEm": 1.0141343446981546
+        },
+        {
+          "line": 12,
+          "justified": true,
+          "lineWidth": 444.3,
+          "contentWidth": 444.3,
+          "leftEdge": 6.53,
+          "rightEdge": 6.52,
+          "justifyContent": "space-between",
+          "gap": "0.479551px",
+          "wordCount": 9,
+          "maxGapEm": 1.1395774684600146
+        },
+        {
+          "line": 13,
+          "justified": true,
+          "lineWidth": 444.3,
+          "contentWidth": 444.3,
+          "leftEdge": 6.53,
+          "rightEdge": 6.52,
+          "justifyContent": "space-between",
+          "gap": "0.479551px",
+          "wordCount": 9,
+          "maxGapEm": 1.2756099468251487
+        },
+        {
+          "line": 14,
+          "justified": true,
+          "lineWidth": 444.3,
+          "contentWidth": 444.3,
+          "leftEdge": 6.53,
+          "rightEdge": 6.52,
+          "justifyContent": "space-between",
+          "gap": "0.479551px",
+          "wordCount": 11,
+          "maxGapEm": 0.8813601292878741
+        }
+      ]
+    }
+  },
+  {
+    "pageNum": 53,
+    "width": 390,
+    "height": 844,
+    "zoom": 1,
+    "shot": "C:\\FRONTEND\\1_it_projects\\1__it-simulator\\4__quran-nurtech\\qa-screens\\mushaf-53-restored-baseline-390.png",
+    "metrics": {
+      "pageWidth": 352.97,
+      "fillCount": 14,
+      "spreadLeft": 0,
+      "spreadRight": 0,
+      "worstGaps": [
+        {
+          "line": 1,
+          "maxGapEm": 1.4
+        },
+        {
+          "line": 2,
+          "maxGapEm": 1.56
+        },
+        {
+          "line": 3,
+          "maxGapEm": 1.74
+        },
+        {
+          "line": 4,
+          "maxGapEm": 1.55
+        },
+        {
+          "line": 5,
+          "maxGapEm": 1.55
+        },
+        {
+          "line": 6,
+          "maxGapEm": 1.57
+        },
+        {
+          "line": 7,
+          "maxGapEm": 1.56
+        },
+        {
+          "line": 8,
+          "maxGapEm": 1.41
+        },
+        {
+          "line": 9,
+          "maxGapEm": 1.55
+        },
+        {
+          "line": 10,
+          "maxGapEm": 1.56
+        },
+        {
+          "line": 11,
+          "maxGapEm": 2
+        },
+        {
+          "line": 12,
+          "maxGapEm": 1.27
+        },
+        {
+          "line": 13,
+          "maxGapEm": 1.76
+        },
+        {
+          "line": 14,
+          "maxGapEm": 1.56
+        }
+      ],
+      "rows": [
+        {
+          "line": 1,
+          "justified": true,
+          "lineWidth": 345.17,
+          "contentWidth": 345.17,
+          "leftEdge": 3.91,
+          "rightEdge": 3.89,
+          "justifyContent": "space-between",
+          "gap": "0.286191px",
+          "wordCount": 11,
+          "maxGapEm": 1.397672874663685
+        },
+        {
+          "line": 2,
+          "justified": true,
+          "lineWidth": 345.17,
+          "contentWidth": 345.17,
+          "leftEdge": 3.91,
+          "rightEdge": 3.89,
+          "justifyContent": "space-between",
+          "gap": "0.286191px",
+          "wordCount": 10,
+          "maxGapEm": 1.5641924944966632
+        },
+        {
+          "line": 3,
+          "justified": true,
+          "lineWidth": 345.17,
+          "contentWidth": 345.17,
+          "leftEdge": 3.91,
+          "rightEdge": 3.89,
+          "justifyContent": "space-between",
+          "gap": "0.286191px",
+          "wordCount": 9,
+          "maxGapEm": 1.742996348579615
+        },
+        {
+          "line": 4,
+          "justified": true,
+          "lineWidth": 345.17,
+          "contentWidth": 345.17,
+          "leftEdge": 3.91,
+          "rightEdge": 3.89,
+          "justifyContent": "space-between",
+          "gap": "0.286191px",
+          "wordCount": 10,
+          "maxGapEm": 1.5519082602466894
+        },
+        {
+          "line": 5,
+          "justified": true,
+          "lineWidth": 345.17,
+          "contentWidth": 345.17,
+          "leftEdge": 3.91,
+          "rightEdge": 3.89,
+          "justifyContent": "space-between",
+          "gap": "0.286191px",
+          "wordCount": 10,
+          "maxGapEm": 1.5546380900800167
+        },
+        {
+          "line": 6,
+          "justified": true,
+          "lineWidth": 345.17,
+          "contentWidth": 345.17,
+          "leftEdge": 3.91,
+          "rightEdge": 3.89,
+          "justifyContent": "space-between",
+          "gap": "0.286191px",
+          "wordCount": 10,
+          "maxGapEm": 1.5655574094133269
+        },
+        {
+          "line": 7,
+          "justified": true,
+          "lineWidth": 345.17,
+          "contentWidth": 345.17,
+          "leftEdge": 3.91,
+          "rightEdge": 3.89,
+          "justifyContent": "space-between",
+          "gap": "0.286191px",
+          "wordCount": 10,
+          "maxGapEm": 1.5628275795799993
+        },
+        {
+          "line": 8,
+          "justified": true,
+          "lineWidth": 345.17,
+          "contentWidth": 345.17,
+          "leftEdge": 3.91,
+          "rightEdge": 3.89,
+          "justifyContent": "space-between",
+          "gap": "0.286191px",
+          "wordCount": 11,
+          "maxGapEm": 1.4140518536636502
+        },
+        {
+          "line": 9,
+          "justified": true,
+          "lineWidth": 345.17,
+          "contentWidth": 345.17,
+          "leftEdge": 3.91,
+          "rightEdge": 3.89,
+          "justifyContent": "space-between",
+          "gap": "0.286191px",
+          "wordCount": 10,
+          "maxGapEm": 1.5519082602466894
+        },
+        {
+          "line": 10,
+          "justified": true,
+          "lineWidth": 345.17,
+          "contentWidth": 345.17,
+          "leftEdge": 3.91,
+          "rightEdge": 3.89,
+          "justifyContent": "space-between",
+          "gap": "0.286191px",
+          "wordCount": 10,
+          "maxGapEm": 1.5614626646633356
+        },
+        {
+          "line": 11,
+          "justified": true,
+          "lineWidth": 345.17,
+          "contentWidth": 345.17,
+          "leftEdge": 3.91,
+          "rightEdge": 3.89,
+          "justifyContent": "space-between",
+          "gap": "0.286191px",
+          "wordCount": 8,
+          "maxGapEm": 2.0009652678290646
+        },
+        {
+          "line": 12,
+          "justified": true,
+          "lineWidth": 345.17,
+          "contentWidth": 345.17,
+          "leftEdge": 3.91,
+          "rightEdge": 3.89,
+          "justifyContent": "space-between",
+          "gap": "0.286191px",
+          "wordCount": 12,
+          "maxGapEm": 1.269370872497292
+        },
+        {
+          "line": 13,
+          "justified": true,
+          "lineWidth": 345.17,
+          "contentWidth": 345.17,
+          "leftEdge": 3.91,
+          "rightEdge": 3.89,
+          "justifyContent": "space-between",
+          "gap": "0.286191px",
+          "wordCount": 9,
+          "maxGapEm": 1.7607402424962437
+        },
+        {
+          "line": 14,
+          "justified": true,
+          "lineWidth": 345.17,
+          "contentWidth": 345.17,
+          "leftEdge": 3.91,
+          "rightEdge": 3.89,
+          "justifyContent": "space-between",
+          "gap": "0.286191px",
+          "wordCount": 10,
+          "maxGapEm": 1.5641924944966632
+        }
+      ]
+    }
+  },
+  {
+    "pageNum": 53,
+    "width": 704,
+    "height": 920,
+    "zoom": 1.75,
+    "shot": "C:\\FRONTEND\\1_it_projects\\1__it-simulator\\4__quran-nurtech\\qa-screens\\mushaf-53-restored-baseline-704-z175.png",
+    "metrics": {
+      "pageWidth": 439.34,
+      "fillCount": 14,
+      "spreadLeft": 0,
+      "spreadRight": 0,
+      "worstGaps": [],
+      "rows": [
+        {
+          "line": 1,
+          "justified": true,
+          "lineWidth": 426.78,
+          "contentWidth": 426.78,
+          "leftEdge": 6.28,
+          "rightEdge": 6.28,
+          "justifyContent": "space-between",
+          "gap": "0.46164px",
+          "wordCount": 11,
+          "maxGapEm": 0.693857767957716
+        },
+        {
+          "line": 2,
+          "justified": true,
+          "lineWidth": 426.78,
+          "contentWidth": 426.78,
+          "leftEdge": 6.28,
+          "rightEdge": 6.28,
+          "justifyContent": "space-between",
+          "gap": "0.46164px",
+          "wordCount": 10,
+          "maxGapEm": 0.7818592409669873
+        },
+        {
+          "line": 3,
+          "justified": true,
+          "lineWidth": 426.78,
+          "contentWidth": 426.78,
+          "leftEdge": 6.28,
+          "rightEdge": 6.28,
+          "justifyContent": "space-between",
+          "gap": "0.46164px",
+          "wordCount": 9,
+          "maxGapEm": 0.8622452018889178
+        },
+        {
+          "line": 4,
+          "justified": true,
+          "lineWidth": 426.78,
+          "contentWidth": 426.78,
+          "leftEdge": 6.28,
+          "rightEdge": 6.28,
+          "justifyContent": "space-between",
+          "gap": "0.46164px",
+          "wordCount": 10,
+          "maxGapEm": 0.7691667208214193
+        },
+        {
+          "line": 5,
+          "justified": true,
+          "lineWidth": 426.78,
+          "contentWidth": 426.78,
+          "leftEdge": 6.28,
+          "rightEdge": 6.28,
+          "justifyContent": "space-between",
+          "gap": "0.46164px",
+          "wordCount": 10,
+          "maxGapEm": 0.7725513928602374
+        },
+        {
+          "line": 6,
+          "justified": true,
+          "lineWidth": 426.78,
+          "contentWidth": 426.78,
+          "leftEdge": 6.28,
+          "rightEdge": 6.28,
+          "justifyContent": "space-between",
+          "gap": "0.46164px",
+          "wordCount": 10,
+          "maxGapEm": 0.7835515769863964
+        },
+        {
+          "line": 7,
+          "justified": true,
+          "lineWidth": 426.78,
+          "contentWidth": 426.78,
+          "leftEdge": 6.28,
+          "rightEdge": 6.28,
+          "justifyContent": "space-between",
+          "gap": "0.46164px",
+          "wordCount": 10,
+          "maxGapEm": 0.7801669049475782
+        },
+        {
+          "line": 8,
+          "justified": true,
+          "lineWidth": 426.78,
+          "contentWidth": 426.78,
+          "leftEdge": 6.28,
+          "rightEdge": 6.28,
+          "justifyContent": "space-between",
+          "gap": "0.46164px",
+          "wordCount": 11,
+          "maxGapEm": 0.7090887921323976
+        },
+        {
+          "line": 9,
+          "justified": true,
+          "lineWidth": 426.78,
+          "contentWidth": 426.78,
+          "leftEdge": 6.28,
+          "rightEdge": 6.28,
+          "justifyContent": "space-between",
+          "gap": "0.46164px",
+          "wordCount": 10,
+          "maxGapEm": 0.7691667208214193
+        },
+        {
+          "line": 10,
+          "justified": true,
+          "lineWidth": 426.78,
+          "contentWidth": 426.78,
+          "leftEdge": 6.28,
+          "rightEdge": 6.28,
+          "justifyContent": "space-between",
+          "gap": "0.46164px",
+          "wordCount": 10,
+          "maxGapEm": 0.7784745689281692
+        },
+        {
+          "line": 11,
+          "justified": true,
+          "lineWidth": 426.78,
+          "contentWidth": 426.78,
+          "leftEdge": 6.28,
+          "rightEdge": 6.28,
+          "justifyContent": "space-between",
+          "gap": "0.46164px",
+          "wordCount": 8,
+          "maxGapEm": 0.9942474114028248
+        },
+        {
+          "line": 12,
+          "justified": true,
+          "lineWidth": 426.78,
+          "contentWidth": 426.78,
+          "leftEdge": 6.28,
+          "rightEdge": 6.28,
+          "justifyContent": "space-between",
+          "gap": "0.46164px",
+          "wordCount": 12,
+          "maxGapEm": 0.6287028312104671
+        },
+        {
+          "line": 13,
+          "justified": true,
+          "lineWidth": 426.78,
+          "contentWidth": 426.78,
+          "leftEdge": 6.28,
+          "rightEdge": 6.28,
+          "justifyContent": "space-between",
+          "gap": "0.46164px",
+          "wordCount": 9,
+          "maxGapEm": 0.8808608981024175
+        },
+        {
+          "line": 14,
+          "justified": true,
+          "lineWidth": 426.78,
+          "contentWidth": 426.78,
+          "leftEdge": 6.28,
+          "rightEdge": 6.28,
+          "justifyContent": "space-between",
+          "gap": "0.46164px",
+          "wordCount": 10,
+          "maxGapEm": 0.7818592409669873
+        }
+      ]
+    }
+  }
+]

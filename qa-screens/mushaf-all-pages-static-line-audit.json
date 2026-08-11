@@ -1,0 +1,120 @@
+{
+  "stats": {
+    "pages": 604,
+    "fullMeasurePages": 591,
+    "lines": 8819,
+    "fill": 8138,
+    "centered": 669,
+    "shortUnfilled": [
+      {
+        "page": 1,
+        "line": 2,
+        "units": 5,
+        "full": false,
+        "starts": 1,
+        "maxLineUnits": 7,
+        "keys": "1:1-1:1"
+      },
+      {
+        "page": 1,
+        "line": 3,
+        "units": 5,
+        "full": false,
+        "starts": 1,
+        "maxLineUnits": 7,
+        "keys": "1:2-1:2"
+      },
+      {
+        "page": 1,
+        "line": 4,
+        "units": 7,
+        "full": false,
+        "starts": 1,
+        "maxLineUnits": 7,
+        "keys": "1:3-1:4"
+      },
+      {
+        "page": 1,
+        "line": 5,
+        "units": 6,
+        "full": false,
+        "starts": 1,
+        "maxLineUnits": 7,
+        "keys": "1:5-1:6"
+      },
+      {
+        "page": 1,
+        "line": 6,
+        "units": 6,
+        "full": false,
+        "starts": 1,
+        "maxLineUnits": 7,
+        "keys": "1:6-1:7"
+      },
+      {
+        "page": 1,
+        "line": 7,
+        "units": 4,
+        "full": false,
+        "starts": 1,
+        "maxLineUnits": 7,
+        "keys": "1:7-1:7"
+      },
+      {
+        "page": 599,
+        "line": 3,
+        "units": 1,
+        "full": false,
+        "starts": 2,
+        "maxLineUnits": 14,
+        "keys": "98:8-98:8"
+      },
+      {
+        "page": 599,
+        "line": 14,
+        "units": 7,
+        "full": false,
+        "starts": 2,
+        "maxLineUnits": 14,
+        "keys": "100:1-100:3"
+      },
+      {
+        "page": 600,
+        "line": 7,
+        "units": 7,
+        "full": false,
+        "starts": 2,
+        "maxLineUnits": 13,
+        "keys": "101:4-101:5"
+      },
+      {
+        "page": 602,
+        "line": 3,
+        "units": 7,
+        "full": false,
+        "starts": 3,
+        "maxLineUnits": 9,
+        "keys": "106:1-106:2"
+      },
+      {
+        "page": 602,
+        "line": 10,
+        "units": 7,
+        "full": false,
+        "starts": 3,
+        "maxLineUnits": 9,
+        "keys": "107:4-107:5"
+      },
+      {
+        "page": 604,
+        "line": 14,
+        "units": 5,
+        "full": false,
+        "starts": 3,
+        "maxLineUnits": 13,
+        "keys": "114:5-114:5"
+      }
+    ]
+  },
+  "failures": []
+}

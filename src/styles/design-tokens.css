@@ -131,6 +131,9 @@
   /* Mushaf palettes */
   --mushaf-vvh: 100dvh;
   --mushaf-page-w: 560px;
+  --mushaf-page-zoom: 1;
+  --mushaf-qcf-fit: 1;
+  --mushaf-mobile-fit-guard: 1;
   --mushaf-qcf-size: 27px;
   --mushaf-paper: #fbfaf6;
   --mushaf-ink: #1d2229;

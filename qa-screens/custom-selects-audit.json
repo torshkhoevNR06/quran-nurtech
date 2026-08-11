@@ -1,0 +1,212 @@
+[
+  {
+    "url": "/mushaf/57",
+    "name": "custom-select-mushaf-surah-open",
+    "file": "C:\\FRONTEND\\1_it_projects\\1__it-simulator\\4__quran-nurtech\\qa-screens\\custom-select-mushaf-surah-open.png",
+    "m": {
+      "selects": [
+        {
+          "hidden": true,
+          "enhanced": true,
+          "custom": false,
+          "cls": "mushaf-nav-sel ui-select-native",
+          "value": "50"
+        },
+        {
+          "hidden": true,
+          "enhanced": true,
+          "custom": false,
+          "cls": "mushaf-nav-sel ui-select-native",
+          "value": "42"
+        },
+        {
+          "hidden": true,
+          "enhanced": true,
+          "custom": false,
+          "cls": "sel ui-select-native",
+          "value": "binhumaid"
+        }
+      ],
+      "uiSelects": 3,
+      "openMenus": [
+        {
+          "w": 240,
+          "h": 360,
+          "left": 8,
+          "top": 136,
+          "right": 248,
+          "bottom": 496,
+          "text": "Сура…1. Аль-Фатиха2. Аль-Бакара3. Аль Им"
+        }
+      ],
+      "overflow": 0,
+      "errors": []
+    }
+  },
+  {
+    "url": "/mushaf/57",
+    "name": "custom-select-mushaf-juz-open-mobile",
+    "file": "C:\\FRONTEND\\1_it_projects\\1__it-simulator\\4__quran-nurtech\\qa-screens\\custom-select-mushaf-juz-open-mobile.png",
+    "m": {
+      "selects": [
+        {
+          "hidden": true,
+          "enhanced": true,
+          "custom": false,
+          "cls": "mushaf-nav-sel ui-select-native",
+          "value": "50"
+        },
+        {
+          "hidden": true,
+          "enhanced": true,
+          "custom": false,
+          "cls": "mushaf-nav-sel ui-select-native",
+          "value": "42"
+        },
+        {
+          "hidden": true,
+          "enhanced": true,
+          "custom": false,
+          "cls": "sel ui-select-native",
+          "value": "binhumaid"
+        }
+      ],
+      "uiSelects": 3,
+      "openMenus": [
+        {
+          "w": 240,
+          "h": 360,
+          "left": 66.5,
+          "top": 417,
+          "right": 306.5,
+          "bottom": 777,
+          "text": "Джуз…Джуз 1Джуз 2Джуз 3Джуз 4Джуз 5Джуз "
+        }
+      ],
+      "overflow": 0,
+      "errors": []
+    }
+  },
+  {
+    "url": "/audio",
+    "name": "custom-select-audio-open",
+    "file": "C:\\FRONTEND\\1_it_projects\\1__it-simulator\\4__quran-nurtech\\qa-screens\\custom-select-audio-open.png",
+    "m": {
+      "selects": [
+        {
+          "hidden": true,
+          "enhanced": true,
+          "custom": false,
+          "cls": "sel ui-select-native",
+          "value": "binhumaid"
+        },
+        {
+          "hidden": true,
+          "enhanced": true,
+          "custom": false,
+          "cls": "sel ui-select-native",
+          "value": "1"
+        },
+        {
+          "hidden": true,
+          "enhanced": true,
+          "custom": false,
+          "cls": "sel ui-select-native",
+          "value": "binhumaid"
+        }
+      ],
+      "uiSelects": 3,
+      "openMenus": [
+        {
+          "w": 467.421875,
+          "h": 360,
+          "left": 36,
+          "top": 366.078125,
+          "right": 503.421875,
+          "bottom": 726.078125,
+          "text": "Мишари Рашид аль-АфасиМахмуд Халиль аль-"
+        }
+      ],
+      "overflow": 0,
+      "errors": []
+    }
+  },
+  {
+    "url": "/search",
+    "name": "custom-select-search-existing",
+    "file": "C:\\FRONTEND\\1_it_projects\\1__it-simulator\\4__quran-nurtech\\qa-screens\\custom-select-search-existing.png",
+    "m": {
+      "selects": [
+        {
+          "hidden": true,
+          "enhanced": false,
+          "custom": true,
+          "cls": "sel native-select-hidden",
+          "value": "all"
+        },
+        {
+          "hidden": true,
+          "enhanced": false,
+          "custom": true,
+          "cls": "sel native-select-hidden",
+          "value": ""
+        },
+        {
+          "hidden": true,
+          "enhanced": true,
+          "custom": false,
+          "cls": "sel ui-select-native",
+          "value": "binhumaid"
+        }
+      ],
+      "uiSelects": 1,
+      "openMenus": [
+        {
+          "w": 409,
+          "h": 239.96875,
+          "left": 36,
+          "top": 448.515625,
+          "right": 445,
+          "bottom": 688.484375,
+          "text": "  Везде  Кулиев  Абу Адель  Транслит  Ар"
+        }
+      ],
+      "overflow": 0,
+      "errors": []
+    }
+  },
+  {
+    "url": "/mushaf/57",
+    "name": "custom-select-mushaf-surah-change",
+    "file": "C:\\FRONTEND\\1_it_projects\\1__it-simulator\\4__quran-nurtech\\qa-screens\\custom-select-mushaf-surah-change.png",
+    "m": {
+      "selects": [
+        {
+          "hidden": true,
+          "enhanced": true,
+          "custom": false,
+          "cls": "mushaf-nav-sel ui-select-native",
+          "value": "1"
+        },
+        {
+          "hidden": true,
+          "enhanced": true,
+          "custom": false,
+          "cls": "mushaf-nav-sel ui-select-native",
+          "value": "42"
+        },
+        {
+          "hidden": true,
+          "enhanced": true,
+          "custom": false,
+          "cls": "sel ui-select-native",
+          "value": "binhumaid"
+        }
+      ],
+      "uiSelects": 3,
+      "openMenus": [],
+      "overflow": 0,
+      "errors": []
+    }
+  }
+]

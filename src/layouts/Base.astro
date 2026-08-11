@@ -4,6 +4,7 @@ import '../styles/global.css';
 import '../styles/utilities.css';
 import '../styles/component-primitives.css';
 import '../styles/component-controls.css';
+import '../styles/component-selects.css';
 import '../styles/component-segmented.css';
 import '../styles/component-lists.css';
 import '../styles/component-switches.css';
@@ -170,15 +171,19 @@ const tab = (name: 'home' | 'read' | 'mushaf' | 'search') => {
             var vw = Math.max(320, window.innerWidth || 0);
             var vh = Math.max(360, window.innerHeight || 0);
             var mobile = vw <= 650;
-            var sidebarOpen = false;
-            var availableWidth = vw - (sidebarOpen ? 292 : 0) - (mobile ? 14 : 56);
-            var availableHeight = vh - (mobile ? 153 : 224);
+            var availableWidth = vw - (mobile ? 56 : 88);
+            var availableHeight = vh - (mobile ? 152 : vw >= 900 ? 225 : 246);
             var maxWidth = mobile ? 620 : 760;
             var pageWidth = Math.floor(Math.min(availableWidth, availableHeight * 0.704, maxWidth));
             pageWidth = Math.max(1, pageWidth);
             el.setProperty('--mushaf-vvh', vh + 'px');
             el.setProperty('--mushaf-page-w', pageWidth + 'px');
-            el.setProperty('--mushaf-qcf-size', Math.max(mobile ? 13.8 : 18, Math.min(mobile ? 34 : 44, pageWidth * 0.048)).toFixed(2) + 'px');
+            el.setProperty('--mushaf-page-zoom', '1');
+            el.setProperty('--mushaf-qcf-fit', '1');
+            var qcfRatio = mobile ? 0.041 : 0.048;
+            var qcfMin = mobile ? 10.5 : 18;
+            var qcfMax = mobile ? 29 : 44;
+            el.setProperty('--mushaf-qcf-size', Math.max(qcfMin, Math.min(qcfMax, pageWidth * qcfRatio)).toFixed(2) + 'px');
           }
         } catch (e) {}
       })();

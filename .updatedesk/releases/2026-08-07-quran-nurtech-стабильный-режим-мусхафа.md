@@ -65,6 +65,49 @@ screenshots:
   - qa-screens/settings-theme-selected-state.png
   - qa-screens/mushaf-zoom-bottom-nav-visible.png
   - qa-screens/mushaf-toolbar-155-stable.png
+  - qa-screens/mushaf-458-line-boundaries-final4-704.png
+  - qa-screens/mushaf-458-line-boundaries-final4-390.png
+  - qa-screens/mushaf-11-line-boundaries-final4-704.png
+  - qa-screens/mushaf-1-line-boundaries-final4-390.png
+  - qa-screens/mushaf-604-line-boundaries-final4-390.png
+  - qa-screens/mushaf-453-line-boundaries-fixed-704.png
+  - qa-screens/mushaf-all-pages-static-line-audit.json
+  - qa-screens/mushaf-selected-browser-line-audit.json
+  - qa-screens/mushaf-108-natural-gaps-704.png
+  - qa-screens/mushaf-108-natural-gaps-390.png
+  - qa-screens/mushaf-gap-browser-audit.json
+  - qa-screens/mushaf-56-balanced-lines-704.png
+  - qa-screens/mushaf-56-balanced-lines-390.png
+  - qa-screens/mushaf-balanced-line-audit.json
+  - qa-screens/mushaf-53-line-scale-final-704.png
+  - qa-screens/mushaf-56-line-scale-final-704.png
+  - qa-screens/mushaf-57-line-scale-final-704.png
+  - qa-screens/mushaf-108-line-scale-final-704.png
+  - qa-screens/mushaf-453-line-scale-final-704.png
+  - qa-screens/mushaf-line-scale-final-audit.json
+  - qa-screens/mushaf-57-stable-clean-704-z100.png
+  - qa-screens/mushaf-57-stable-clean-704-z125.png
+  - qa-screens/mushaf-57-stable-clean-704-z300.png
+  - qa-screens/mushaf-57-stable-clean-390-z100.png
+  - qa-screens/mushaf-stable-clean-audit.json
+  - qa-screens/mushaf-57-refresh-static-final-704.png
+  - qa-screens/mushaf-57-refresh-static-final-390.png
+  - qa-screens/mushaf-57-refresh-static-final-1120.png
+  - qa-screens/mushaf-refresh-static-final-audit.json
+  - qa-screens/mushaf-line-balance-dark-p57-704-100.png
+  - qa-screens/mushaf-line-balance-dark-p56-704-100.png
+  - qa-screens/mushaf-line-balance-dark-p108-704-100.png
+  - qa-screens/mushaf-line-balance-dark-p453-704-100.png
+  - qa-screens/mushaf-line-balance-dark-p57-704-125.png
+  - qa-screens/mushaf-line-balance-dark-p57-390-100.png
+  - qa-screens/mushaf-line-balance-dark-audit.json
+  - qa-screens/custom-select-final-mushaf-704.png
+  - qa-screens/custom-select-final-mushaf-390.png
+  - qa-screens/custom-select-final-audio.png
+  - qa-screens/custom-select-final-videos.png
+  - qa-screens/custom-select-final-bookmarks-dynamic.png
+  - qa-screens/custom-select-final-search-existing.png
+  - qa-screens/custom-selects-final-audit.json
 checks:
   - npm run build (blocked by existing Windows route output issue: cannot create dist/1:1)
   - GET http://127.0.0.1:4321/mushaf/1 -> 200
@@ -108,6 +151,21 @@ checks:
   - Chrome CDP interaction audit: selecting the dark theme marks exactly one theme segment with .on, aria-selected=true, aria-pressed=true, visible selected background, border, and indicator
   - Chrome CDP interaction audit: /mushaf/11 at 300% zoom keeps the bottom navigation after the enlarged Mushaf sheet; after scrolling to the bottom all three buttons are visible, the sheet-to-nav gap is 18px, and document horizontal overflow is 0
   - Chrome CDP layout audit: /mushaf/11 at 155% zoom keeps the Mushaf toolbar at 58px height; toolbar controls keep fixed dimensions at 900px, 1120px, 1200px, and 1440px, and document horizontal overflow remains 0
+  - Chrome CDP layout audit: /mushaf/458 and /mushaf/11 keep dense QCF line boundaries aligned within 0.2px at 704px and 1280px viewports, while centered short lines remain centered and document horizontal overflow remains 0
+  - Chrome CDP layout audit: /mushaf/458, /mushaf/11, /mushaf/1, and /mushaf/604 at 390px keep dense lines justified, short surah lines centered, all glyph bounds inside the page, and document horizontal overflow at 0
+  - Static corpus audit: all 604 Mushaf pages / 8819 QCF lines were classified from local page data; 591 full-measure pages fill ordinary rows, compact short-surah pages keep short rows centered, and there are 0 center/fill conflicts
+  - Chrome CDP layout audit: /mushaf/1, /mushaf/2, /mushaf/11, /mushaf/69, /mushaf/81, /mushaf/453, /mushaf/458, /mushaf/599, /mushaf/600, /mushaf/602, and /mushaf/604 at 704px and 390px have 0 missing justified rows, 0 glyph overflow, and 0 document horizontal overflow
+  - Chrome CDP zoom audit: /mushaf/11, /mushaf/453, /mushaf/458, /mushaf/599, and /mushaf/604 at 175% and 300% have 0 glyph overflow and start with the horizontal scroll range centered
+  - Chrome CDP gap audit: /mushaf/1, /mushaf/11, /mushaf/108, /mushaf/453, /mushaf/458, /mushaf/599, and /mushaf/604 at 704px/390px, plus /mushaf/108, /mushaf/453, and /mushaf/599 at 175%/300%, report 0 excessive word gaps, 0 glyph overflow, and 0 document horizontal overflow
+  - Chrome CDP balanced line audit: /mushaf/56, /mushaf/108, /mushaf/453, /mushaf/458, and /mushaf/599 at 704px/390px, plus /mushaf/56 and /mushaf/108 at 175%/300%, report 0 excessive gaps, 0 horizontal overflow, and bounded visual edge spread
+  - Chrome Playwright line-scale audit: /mushaf/53, /mushaf/56, /mushaf/57, /mushaf/108, /mushaf/453, /mushaf/458, and /mushaf/599 at 704px; /mushaf/53 and /mushaf/108 at 390px; /mushaf/53 at 175% and /mushaf/108 at 300%; edge spread stayed within 0.16px, max gap stayed near 0.06em, and horizontal overflow stayed 0
+  - Chrome Playwright regression audit: /mushaf/57 at 100%, 125%, and 300%; /mushaf/53, /mushaf/108, and /mushaf/453 at 704px; /mushaf/57 at 390px. QCF line transforms are none, --mushaf-qcf-fit stays 1.0000 where there is no true glyph overflow, document horizontal overflow stays 0, and the zoomed reader exposes scrollable width/height at 300%.
+  - Chrome Playwright refresh stability audit: /mushaf/57 sampled at 0ms, 50ms, 100ms, 200ms, 500ms, 1000ms, 1800ms, 2600ms, and 4000ms on 704px, 390px, 1120px, and 360px; --mushaf-page-w, --mushaf-qcf-size, sheet width, and QCF font size stayed unchanged after the page markup appeared.
+  - Chrome Playwright fullscreen stability audit: /mushaf/57 at 704px returns from immersive mode to the exact same normal size: sheet 474px and QCF font 22.75px before entry and after exit.
+  - Chrome Playwright line-balance audit: /mushaf/57, /mushaf/56, /mushaf/108, and /mushaf/453 at 704px keep ordinary row edge spread within 0.3px, max added word gap at or below 10px, and document horizontal overflow at 0.
+  - Chrome Playwright responsive/zoom line-balance audit: /mushaf/57 at 125% zoom and at 390px mobile width keeps ordinary row edge spread within 0.3px and document horizontal overflow at 0.
+  - Chrome Playwright custom-select audit: /mushaf/57 at 704px and 390px, /audio, /videos, /bookmarks with dynamic collections, and /search show 0 visible native selects outside existing custom search controls, open app-styled dark popovers, and keep document horizontal overflow at 0.
+  - Chrome Playwright custom-select interaction audit: selecting a surah from the custom Mushaf dropdown updates the hidden native select, dispatches the existing change handler, and navigates from /mushaf/57 to /mushaf/1.
 deploy_url: http://127.0.0.1:4321/mushaf/1
 ---
 
@@ -144,5 +202,15 @@ Notes for editor:
 - Follow-up fix: theme segmented controls now clearly show the selected option after click with a stronger active surface, accent border, small indicator, and synchronized ARIA state.
 - Follow-up fix: zoomed Mushaf reader now uses a vertical flex flow so the bottom navigation sits after the enlarged page instead of being overlapped by it, keeping Back, Surahs, and Forward reachable at high zoom.
 - Follow-up fix: Mushaf toolbar controls now opt out of flex shrinking and the toolbar uses its own horizontal overflow, so the panel no longer becomes flattened or deformed when the Mushaf page is zoomed.
+- Follow-up fix: QCF Mushaf lines now distinguish dense text rows from short centered rows. Dense rows use full-width word distribution with a small glyph safety inset, while short surah endings and decorative rows stay centered; the client rechecks this after the page-specific QCF font is loaded.
+- Follow-up fix: QCF line filling now works at page-measure level across the full 604-page Mushaf corpus; ordinary rows on full-measure pages fill the text block, compact short-surah pages keep short rows centered, and iterative glyph-bound fitting prevents wide QCF overhang during responsive layout and zoom.
+- Follow-up fix: Mushaf line filling no longer uses unbounded flex space-between. Dense QCF rows now use a capped measured gap, so Arabic words keep natural spacing while the page still avoids glyph overflow on responsive widths and zoomed views.
+- Follow-up fix: balanced Mushaf line filling now combines capped word gaps with a small capped horizontal line scale. This keeps QCF rows visually rectangular without reintroducing the oversized inter-word gaps caused by flex space-between.
+- Follow-up fix: restored fixed Mushaf line measure after the centered-gap regression. Dense QCF rows now keep their page-width line boxes and use measured line-level scaleX instead of flex space-between, preserving straight visual edges without large inter-word gaps or Quran text changes.
+- Follow-up fix: removed the line-level scaleX regression. Mushaf zoom now changes the page/text scale globally, QCF lines keep natural glyph proportions, fit checks use real glyph bounds instead of line scrollWidth, and the initial page width formula matches the runtime layout after fullscreen exit.
+- Follow-up fix: removed the remaining first-load size jump by setting Mushaf zoom/fit defaults before first paint and using the same deterministic non-fullscreen page-width formula in the inline startup script and runtime layout code.
+- Follow-up fix: ordinary QCF rows now share a measured page text width based on the longest natural row instead of filling the whole paper width or centering independently. This restores straight row boundaries while avoiding the huge inter-word gaps from full-width space-between.
+- Follow-up fix: native select dropdowns are now enhanced app-wide into custom themed controls with floating popovers, selected states, keyboard support, thin app-colored scrollbars, and hidden native selects preserved for existing change logic.
+- Follow-up fix: the Mushaf toolbar no longer centers overflowing controls inside its own scroll area, so custom dropdown triggers stay visible instead of being clipped on tablet-width screens.
 - Where to verify: http://127.0.0.1:4321/mushaf/1
 - Risks: browser Fullscreen API depends on browser permissions, but the app reading mode works without it. If a browser has the old service worker active, one hard refresh may be needed for the new worker to take control immediately.
