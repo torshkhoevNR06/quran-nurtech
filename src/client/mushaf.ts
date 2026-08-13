@@ -145,8 +145,8 @@
     pageWidth = Math.max(1, pageWidth);
 
     root.style.setProperty('--mushaf-page-w', pageWidth + 'px');
-    var qcfRatio = isMobile ? 0.041 : 0.048;
-    var qcfMin = isMobile ? 10.5 : 18;
+    var qcfRatio = isMobile ? 0.05 : 0.052;
+    var qcfMin = isMobile ? 12.5 : 20;
     var qcfMax = isMobile ? 29 : 44;
     root.style.setProperty('--mushaf-qcf-size', clamp(pageWidth * qcfRatio, qcfMin, qcfMax).toFixed(2) + 'px');
     applyZoom();
@@ -173,25 +173,46 @@
   }
 
   function measureLineNaturalWidth(line) {
-    var items = line.querySelectorAll('.qcf-word');
-    var width = 0;
-    for (var i = 0; i < items.length; i++) {
-      width += items[i].getBoundingClientRect().width;
-    }
+    var previous = line.style.getPropertyValue('--qcf-line-scale');
+    line.style.setProperty('--qcf-line-scale', '1');
+    var width = line.scrollWidth || line.getBoundingClientRect().width || 0;
+    if (previous) line.style.setProperty('--qcf-line-scale', previous);
+    else line.style.removeProperty('--qcf-line-scale');
     return width;
   }
 
   function syncLineTargetWidth() {
     if (!pageEl) return 0;
     var lines = pageEl.querySelectorAll('.qcf-line:not(.is-empty):not(.qcf-line-deco):not(.center)');
-    var maxNatural = 0;
+    var widths = [];
     for (var i = 0; i < lines.length; i++) {
-      maxNatural = Math.max(maxNatural, measureLineNaturalWidth(lines[i]));
+      widths.push(measureLineNaturalWidth(lines[i]));
     }
-    var available = Math.max(1, pageEl.clientWidth - 2);
-    var target = Math.min(available, Math.ceil(maxNatural + 1));
+    widths.sort(function (a, b) { return a - b; });
+    var available = Math.max(1, pageEl.clientWidth - 4);
+    var median = widths.length ? widths[Math.floor(widths.length * 0.62)] : available;
+    var maxNatural = widths.length ? widths[widths.length - 1] : available;
+    var target = Math.min(available, Math.max(median, Math.min(maxNatural, available * 0.92)));
     if (target > 0) root.style.setProperty('--mushaf-line-w', target + 'px');
     return target;
+  }
+
+  function applyLineScales(target) {
+    if (!pageEl || !target) return;
+    var isMobile = window.matchMedia('(max-width: 650px)').matches;
+    var maxStretch = isMobile ? 1.045 : 1.055;
+    var minCompress = isMobile ? 0.9 : 0.93;
+    var lines = pageEl.querySelectorAll('.qcf-line:not(.is-empty):not(.qcf-line-deco):not(.center)');
+    for (var i = 0; i < lines.length; i++) {
+      var line = lines[i];
+      var natural = Math.max(1, measureLineNaturalWidth(line));
+      var scaleLine = clamp(target / natural, minCompress, maxStretch);
+      var visualWidth = natural * scaleLine;
+      if (visualWidth > pageEl.clientWidth - 4) {
+        scaleLine = Math.min(scaleLine, (pageEl.clientWidth - 4) / natural);
+      }
+      line.style.setProperty('--qcf-line-scale', scaleLine.toFixed(4));
+    }
   }
 
   function fitQcfLines() {
@@ -204,7 +225,8 @@
     var minFit = isMobile ? 0.56 : 0.72;
 
     for (var pass = 0; pass < 4; pass++) {
-      syncLineTargetWidth();
+      var targetWidth = syncLineTargetWidth();
+      applyLineScales(targetWidth);
       var nextFit = fit;
       var pageRect = pageEl.getBoundingClientRect();
       for (var i = 0; i < lines.length; i++) {

@@ -180,8 +180,8 @@ const tab = (name: 'home' | 'read' | 'mushaf' | 'search') => {
             el.setProperty('--mushaf-page-w', pageWidth + 'px');
             el.setProperty('--mushaf-page-zoom', '1');
             el.setProperty('--mushaf-qcf-fit', '1');
-            var qcfRatio = mobile ? 0.041 : 0.048;
-            var qcfMin = mobile ? 10.5 : 18;
+            var qcfRatio = mobile ? 0.05 : 0.052;
+            var qcfMin = mobile ? 12.5 : 20;
             var qcfMax = mobile ? 29 : 44;
             el.setProperty('--mushaf-qcf-size', Math.max(qcfMin, Math.min(qcfMax, pageWidth * qcfRatio)).toFixed(2) + 'px');
           }

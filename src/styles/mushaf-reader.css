@@ -387,21 +387,24 @@ body[data-page-mode='mushaf'] .mushaf-skeleton-line::after {
 }
 
 body[data-page-mode='mushaf'] .qcf-line {
-  width: min(100%, var(--mushaf-line-w, 88%));
+  width: max-content;
   margin-inline: auto;
   min-width: 0;
-  max-width: 100%;
+  max-width: none;
   gap: 0;
   white-space: nowrap;
   overflow: visible;
-  justify-content: space-between;
-  text-align: justify;
-  text-align-last: justify;
+  justify-content: center;
+  text-align: center;
+  text-align-last: center;
+  transform: scaleX(var(--qcf-line-scale, 1));
+  transform-origin: center center;
 }
 
 body[data-page-mode='mushaf'] .qcf-line.center,
 body[data-page-mode='mushaf'] .qcf-line-deco {
   width: fit-content;
+  --qcf-line-scale: 1;
   text-align: center;
   text-align-last: center;
   justify-content: center;
