@@ -115,7 +115,7 @@
   function scrollZoomToStart() {
     if (!reader) return;
     var sync = function () {
-      reader.scrollLeft = Math.max(0, (reader.scrollWidth - reader.clientWidth) / 2);
+      reader.scrollLeft = 0;
       reader.scrollTop = 0;
     };
     requestAnimationFrame(function () {
