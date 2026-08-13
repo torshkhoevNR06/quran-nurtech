@@ -107,8 +107,37 @@
   }
 
   body[data-page-mode='mushaf'] .mushaf-zoom,
-  body[data-page-mode='mushaf'] .mushaf-fit-btn {
+  body[data-page-mode='mushaf'] .mushaf-fit-btn,
+  body[data-page-mode='mushaf'] .mushaf-preload-btn span:not(.ui-inline-icon) {
     display: none;
+  }
+
+  body[data-page-mode='mushaf'] .mushaf-preload-btn {
+    flex: 0 0 var(--touch-h);
+    width: var(--touch-h);
+    min-height: var(--touch-h);
+    padding: 0;
+    border-radius: 16px;
+  }
+
+  body[data-page-mode='mushaf'] .mushaf-preload-status {
+    position: fixed;
+    left: max(10px, env(safe-area-inset-left));
+    right: max(10px, env(safe-area-inset-right));
+    bottom: calc(74px + env(safe-area-inset-bottom));
+    z-index: 57;
+    width: auto;
+    transform: none;
+  }
+
+  body[data-page-mode='mushaf'] .mushaf-preload-copy {
+    grid-template-columns: 1fr;
+    gap: 3px;
+  }
+
+  body[data-page-mode='mushaf'] .mushaf-preload-copy span {
+    text-align: left;
+    white-space: normal;
   }
 
   body[data-page-mode='mushaf'] .mushaf-zoom-fab {

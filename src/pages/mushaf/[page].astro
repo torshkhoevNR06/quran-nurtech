@@ -8,6 +8,7 @@ import {
   getMushafSurah,
   mushafTajweedFontFamily,
   mushafTajweedFontCss,
+  mushafTajweedFontAssets,
   MUSHAF_TOTAL_PAGES,
 } from '../../lib/mushaf';
 
@@ -53,6 +54,9 @@ const surahLabel = starts.length
       .join(' · ');
 const fontCss = mushafTajweedFontCss(pageNum);
 const fontFamily = mushafTajweedFontFamily(pageNum);
+const fontAssets = mushafTajweedFontAssets(pageNum);
+const nextFontAssets = nextPage ? mushafTajweedFontAssets(nextPage) : null;
+const skeletonLines = ['62%', '78%', '70%', '84%', '74%', '88%', '80%', '86%', '76%', '82%', '68%', '78%'];
 
 // навигация по сурам/джузам: текущие сура и джуз для предвыбора + список джузов→страниц
 const currentSurah = starts[0]?.s ?? Number(page.lines[0]?.w[0]?.k.split(':')[0]) ?? 1;
@@ -109,7 +113,23 @@ const juzList = Array.from({ length: 30 }, (_, i) => i + 1).map((n) => ({
       <button type="button" class="icon-btn" data-mushaf-immersive aria-label="Режим чтения на весь экран" title="Во весь экран (режим чтения)">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3M16 3h3a2 2 0 0 1 2 2v3M8 21H5a2 2 0 0 1-2-2v-3M16 21h3a2 2 0 0 0 2-2v-3"/></svg>
       </button>
+      {nextPage && (
+        <button type="button" class="mushaf-preload-btn" data-mushaf-preload-next={nextPage} data-mushaf-preload-font={nextFontAssets?.colrUrl} aria-label={`Preload Mushaf page ${nextPage}`} title={`Preload Mushaf page ${nextPage}`}>
+          <span class="ui-inline-icon" set:html={icons.download} />
+          <span>Подгрузить</span>
+        </button>
+      )}
     </nav>
+
+    <div class="mushaf-preload-status" data-mushaf-preload-status hidden aria-live="polite">
+      <div class="mushaf-preload-copy">
+        <b data-mushaf-preload-title>Предзагрузка</b>
+        <span data-mushaf-preload-detail>Готовим следующую страницу</span>
+      </div>
+      <div class="mushaf-preload-meter" aria-hidden="true">
+        <span data-mushaf-preload-bar></span>
+      </div>
+    </div>
 
     <div class="mushaf-zoom-fab" aria-label="Масштаб страницы">
       <button type="button" class="icon-btn" data-mushaf-zoom-step="10" aria-label="Увеличить масштаб" title="Увеличить" set:html={icons.plus}></button>
@@ -133,7 +153,11 @@ const juzList = Array.from({ length: 30 }, (_, i) => i + 1).map((n) => ({
         <b>{pageNum}</b>
       </div>
 
-      <div class="qcf-page" dir="rtl" data-mushaf-page={pageNum}>
+      <div class="qcf-page is-font-loading" dir="rtl" data-mushaf-page={pageNum} data-mushaf-font-url={fontAssets.colrUrl} data-mushaf-font-family={fontFamily}>
+        <div class="mushaf-font-skeleton" aria-hidden="true">
+          <span class="mushaf-skeleton-title"></span>
+          {skeletonLines.map((width) => <span class="mushaf-skeleton-line" style={`--skeleton-line-w:${width}`}></span>)}
+        </div>
         {
           slots.map((lineNumber) => {
             const line = linesByNumber.get(lineNumber);

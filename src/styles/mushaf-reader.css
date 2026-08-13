@@ -162,6 +162,104 @@ body[data-page-mode='mushaf'] .mushaf-fit-btn {
   font: var(--weight-strong) var(--text-sm) / 1 var(--font-ui);
 }
 
+body[data-page-mode='mushaf'] .mushaf-preload-btn {
+  flex: 0 0 auto;
+  min-height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 0 12px;
+  border: 1px solid var(--sys-separator);
+  border-radius: 12px;
+  background: var(--sys-fill);
+  color: var(--sys-label);
+  font: var(--weight-strong) var(--text-sm) / 1 var(--font-ui);
+  white-space: nowrap;
+  box-shadow: none;
+  cursor: pointer;
+  touch-action: manipulation;
+  transition: background-color 180ms ease, border-color 180ms ease, color 180ms ease, opacity 180ms ease;
+}
+
+body[data-page-mode='mushaf'] .mushaf-preload-btn:hover,
+body[data-page-mode='mushaf'] .mushaf-preload-btn:focus-visible {
+  border-color: color-mix(in srgb, var(--accent) 52%, var(--sys-separator));
+  background: var(--sys-fill-strong);
+}
+
+body[data-page-mode='mushaf'] .mushaf-preload-btn.is-loading {
+  color: var(--sys-secondary-label);
+  pointer-events: none;
+}
+
+body[data-page-mode='mushaf'] .mushaf-preload-btn.is-ready {
+  border-color: color-mix(in srgb, var(--accent) 46%, var(--sys-separator));
+  background: color-mix(in srgb, var(--accent) 16%, var(--sys-fill));
+}
+
+body[data-page-mode='mushaf'] .mushaf-preload-status {
+  position: fixed;
+  left: 50%;
+  bottom: max(20px, env(safe-area-inset-bottom));
+  z-index: 58;
+  transform: translateX(-50%);
+  width: min(420px, calc(100vw - env(safe-area-inset-left) - env(safe-area-inset-right) - 28px));
+  min-height: 54px;
+  display: grid;
+  gap: 9px;
+  padding: 11px 13px;
+  border: 1px solid var(--sys-separator);
+  border-radius: 16px;
+  background: var(--sys-material-strong);
+  color: var(--sys-label);
+  -webkit-backdrop-filter: var(--material-blur);
+  backdrop-filter: var(--material-blur);
+  box-shadow: var(--shadow-accessory);
+}
+
+body[data-page-mode='mushaf'] .mushaf-preload-status[hidden] {
+  display: none;
+}
+
+body[data-page-mode='mushaf'] .mushaf-preload-copy {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: baseline;
+  gap: 12px;
+  min-width: 0;
+}
+
+body[data-page-mode='mushaf'] .mushaf-preload-copy b {
+  font: var(--weight-strong) var(--text-sm) / 1.15 var(--font-ui);
+}
+
+body[data-page-mode='mushaf'] .mushaf-preload-copy span {
+  min-width: 0;
+  color: var(--sys-secondary-label);
+  font: var(--weight-semibold) var(--text-xs) / 1.2 var(--font-ui);
+  text-align: right;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+body[data-page-mode='mushaf'] .mushaf-preload-meter {
+  height: 5px;
+  overflow: hidden;
+  border-radius: var(--radius-pill);
+  background: color-mix(in srgb, var(--sys-label) 10%, transparent);
+}
+
+body[data-page-mode='mushaf'] .mushaf-preload-meter span {
+  display: block;
+  width: var(--mushaf-preload-progress, 0%);
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--accent), color-mix(in srgb, var(--accent) 55%, #fff));
+  transition: width 180ms ease;
+}
+
 body[data-page-mode='mushaf'] .mushaf-sheet {
   box-sizing: border-box;
   position: relative;
@@ -201,6 +299,7 @@ body[data-page-mode='mushaf'] .mushaf-meta b {
 
 body[data-page-mode='mushaf'] .qcf-page {
   box-sizing: border-box;
+  position: relative;
   width: 100%;
   height: 100%;
   display: grid;
@@ -215,6 +314,76 @@ body[data-page-mode='mushaf'] .qcf-page {
   direction: rtl;
   text-align: justify;
   text-rendering: geometricPrecision;
+}
+
+body[data-page-mode='mushaf'] .qcf-page.is-font-loading .qcf-line {
+  opacity: 0;
+}
+
+body[data-page-mode='mushaf'] .qcf-page:not(.is-font-loading) .mushaf-font-skeleton {
+  opacity: 0;
+  visibility: hidden;
+}
+
+body[data-page-mode='mushaf'] .mushaf-font-skeleton {
+  position: absolute;
+  inset: clamp(34px, 7%, 58px) clamp(18px, 7%, 46px) clamp(34px, 7%, 58px);
+  z-index: 3;
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  gap: clamp(9px, 1.65cqw, 15px);
+  pointer-events: none;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 160ms ease, visibility 160ms ease;
+}
+
+body[data-page-mode='mushaf'] .mushaf-skeleton-title,
+body[data-page-mode='mushaf'] .mushaf-skeleton-line {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  border-radius: var(--radius-pill);
+  background: color-mix(in srgb, var(--mushaf-ornament) 13%, transparent);
+}
+
+body[data-page-mode='mushaf'] .mushaf-skeleton-title {
+  width: min(54%, 260px);
+  height: clamp(16px, 2.2cqw, 24px);
+  margin-bottom: clamp(7px, 1.2cqw, 14px);
+}
+
+body[data-page-mode='mushaf'] .mushaf-skeleton-line {
+  width: min(var(--skeleton-line-w, 78%), 96%);
+  height: clamp(9px, 1.35cqw, 14px);
+}
+
+body[data-page-mode='mushaf'] .mushaf-skeleton-title::after,
+body[data-page-mode='mushaf'] .mushaf-skeleton-line::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  transform: translateX(-120%);
+  background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--sys-label) 16%, transparent), transparent);
+  animation: mushaf-skeleton-wave 1350ms ease-in-out infinite;
+}
+
+@keyframes mushaf-skeleton-wave {
+  to {
+    transform: translateX(120%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body[data-page-mode='mushaf'] .mushaf-skeleton-title::after,
+  body[data-page-mode='mushaf'] .mushaf-skeleton-line::after {
+    animation: none;
+  }
+
+  body[data-page-mode='mushaf'] .mushaf-preload-meter span {
+    transition: none;
+  }
 }
 
 body[data-page-mode='mushaf'] .qcf-line {

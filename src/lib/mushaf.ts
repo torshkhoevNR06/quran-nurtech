@@ -60,15 +60,7 @@ export function getMushafSurah(meta: MushafMeta, surah: number) {
 }
 
 export function mushafTajweedFontCss(page: number): string {
-  const n = Math.max(1, Math.min(MUSHAF_TOTAL_PAGES, Math.trunc(page || 1)));
-  const family = `MushafTajweed${n}`;
-  const lightSvg = `MushafTajweed${n}LightSvg`;
-  const darkSvg = `MushafTajweed${n}DarkSvg`;
-  const sepiaSvg = `MushafTajweed${n}SepiaSvg`;
-  const colrUrl = `${QURAN_FOUNDATION_FONTS}/v4/colrv1/woff2/p${n}.woff2`;
-  const lightSvgUrl = `${QURAN_FOUNDATION_FONTS}/v4/ot-svg/light/woff2/p${n}.woff2`;
-  const darkSvgUrl = `${QURAN_FOUNDATION_FONTS}/v4/ot-svg/dark/woff2/p${n}.woff2`;
-  const sepiaSvgUrl = `${QURAN_FOUNDATION_FONTS}/v4/ot-svg/sepia/woff2/p${n}.woff2`;
+  const { n, family, lightSvg, darkSvg, sepiaSvg, colrUrl, lightSvgUrl, darkSvgUrl, sepiaSvgUrl } = mushafTajweedFontAssets(page);
 
   return `
 @font-face{font-family:'${family}';src:url('${colrUrl}') format('woff2');font-display:block;}
@@ -93,4 +85,19 @@ export function mushafTajweedFontCss(page: number): string {
 export function mushafTajweedFontFamily(page: number): string {
   const n = Math.max(1, Math.min(MUSHAF_TOTAL_PAGES, Math.trunc(page || 1)));
   return `MushafTajweed${n}`;
+}
+
+export function mushafTajweedFontAssets(page: number) {
+  const n = Math.max(1, Math.min(MUSHAF_TOTAL_PAGES, Math.trunc(page || 1)));
+  return {
+    n,
+    family: `MushafTajweed${n}`,
+    lightSvg: `MushafTajweed${n}LightSvg`,
+    darkSvg: `MushafTajweed${n}DarkSvg`,
+    sepiaSvg: `MushafTajweed${n}SepiaSvg`,
+    colrUrl: `${QURAN_FOUNDATION_FONTS}/v4/colrv1/woff2/p${n}.woff2`,
+    lightSvgUrl: `${QURAN_FOUNDATION_FONTS}/v4/ot-svg/light/woff2/p${n}.woff2`,
+    darkSvgUrl: `${QURAN_FOUNDATION_FONTS}/v4/ot-svg/dark/woff2/p${n}.woff2`,
+    sepiaSvgUrl: `${QURAN_FOUNDATION_FONTS}/v4/ot-svg/sepia/woff2/p${n}.woff2`,
+  };
 }
