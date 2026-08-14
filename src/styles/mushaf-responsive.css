@@ -11,7 +11,7 @@
 
 @media (max-width: 760px) and (min-width: 651px) {
   body[data-page-mode='mushaf'] .mushaf-toolbar {
-    gap: 6px;
+    gap: 4px;
     padding-inline: 8px;
   }
 
@@ -51,7 +51,7 @@
     grid-template-rows: minmax(0, 1fr);
     align-items: start;
     justify-items: center;
-    padding: 6px max(6px, env(safe-area-inset-right)) calc(82px + env(safe-area-inset-bottom)) max(6px, env(safe-area-inset-left));
+    padding: 6px max(6px, env(safe-area-inset-right)) calc(68px + env(safe-area-inset-bottom)) max(6px, env(safe-area-inset-left));
     overflow: hidden auto;
     -webkit-overflow-scrolling: touch;
     touch-action: pan-y pinch-zoom;
@@ -66,29 +66,51 @@
     z-index: 58;
     width: auto;
     max-width: none;
-    padding: 8px;
-    gap: 7px;
-    border-radius: 22px;
+    min-height: 54px;
+    padding: 6px;
+    gap: 6px;
+    border-radius: 20px;
     box-shadow: var(--shadow-accessory);
+    overflow: hidden;
+  }
+
+  body[data-page-mode='mushaf'] .mushaf-toolbar .ui-select-mushaf {
+    flex: 1 1 108px;
+    width: 108px;
+    min-width: 0;
+    max-width: 116px;
+  }
+
+  body[data-page-mode='mushaf'] .mushaf-toolbar .ui-select-mushaf .ui-select-trigger {
+    height: 42px;
+    padding-inline: 9px 7px;
+    border-radius: 14px;
   }
 
   body[data-page-mode='mushaf'] .mushaf-toolbar .icon-btn,
   body[data-page-mode='mushaf'] .mushaf-page-group .icon-btn {
-    width: var(--touch-h);
-    height: var(--touch-h);
-    border-radius: 16px;
+    width: 42px;
+    height: 42px;
+    border-radius: 14px;
   }
 
   body[data-page-mode='mushaf'] .mushaf-page-group {
-    flex: 1 1 auto;
+    flex: 0 0 92px;
     justify-content: center;
   }
 
+  body[data-page-mode='mushaf'] .mushaf-page-group .icon-btn {
+    display: none;
+  }
+
   body[data-page-mode='mushaf'] .mushaf-jump {
-    flex: 0 1 118px;
+    flex: 0 0 92px;
     min-width: 0;
-    max-width: 118px;
-    min-height: var(--touch-h);
+    max-width: 92px;
+    min-height: 42px;
+    width: 92px;
+    padding-inline: 6px;
+    gap: 4px;
     background: var(--sys-secondary-grouped-bg);
   }
 
@@ -101,9 +123,13 @@
   }
 
   body[data-page-mode='mushaf'] .mushaf-jump input {
-    width: 64px;
+    width: 45px;
     height: 32px;
     font-size: 16px;
+  }
+
+  body[data-page-mode='mushaf'] .mushaf-jump span {
+    font-size: 11px;
   }
 
   body[data-page-mode='mushaf'] .mushaf-zoom,
@@ -113,11 +139,7 @@
   }
 
   body[data-page-mode='mushaf'] .mushaf-preload-btn {
-    flex: 0 0 var(--touch-h);
-    width: var(--touch-h);
-    min-height: var(--touch-h);
-    padding: 0;
-    border-radius: 16px;
+    display: none;
   }
 
   body[data-page-mode='mushaf'] .mushaf-preload-status {
@@ -145,7 +167,7 @@
   }
 
   body[data-page-mode='mushaf'] .mushaf-sheet {
-    width: calc(var(--mushaf-page-w) * var(--mushaf-page-zoom, 1));
+    width: var(--mushaf-page-w);
     max-width: calc(100vw - env(safe-area-inset-left) - env(safe-area-inset-right) - 12px);
     min-width: 0;
     margin: 0;
@@ -165,6 +187,9 @@
 
   body[data-page-mode='mushaf'] .qcf-page {
     font-size: calc(var(--mushaf-qcf-size) * var(--mushaf-qcf-fit, 1) * var(--mushaf-mobile-fit-guard, 1));
+    width: 100%;
+    height: 100%;
+    transform: none;
   }
 
   body[data-page-mode='mushaf'] .mushaf-bottom {
@@ -172,12 +197,60 @@
   }
 
   body.mushaf-immersive .mushaf-reader {
-    align-items: center;
-    padding: max(10px, env(safe-area-inset-top)) max(6px, env(safe-area-inset-right)) max(10px, env(safe-area-inset-bottom)) max(6px, env(safe-area-inset-left));
+    align-items: stretch;
+    justify-items: stretch;
+    width: 100vw;
+    max-width: 100vw;
+    margin-inline: 0;
+    padding: 0;
+    overflow: hidden auto;
+    background: #0d0f12;
   }
 
   body.mushaf-immersive .mushaf-toolbar {
     display: none;
+  }
+
+  body.mushaf-immersive .mushaf-sheet {
+    --mushaf-ink: #f5f7fb;
+    --mushaf-ornament: rgba(245, 247, 251, 0.72);
+    --mushaf-paper-line: rgba(245, 247, 251, 0.16);
+    width: 100vw;
+    max-width: 100vw;
+    min-height: var(--mushaf-vvh);
+    aspect-ratio: auto;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    background: #0d0f12;
+    padding: max(40px, env(safe-area-inset-top)) 18px max(34px, env(safe-area-inset-bottom));
+  }
+
+  body.mushaf-immersive .qcf-page {
+    --mushaf-ink: #f5f7fb;
+    --mushaf-ornament: rgba(245, 247, 251, 0.72);
+    --mushaf-paper-line: rgba(245, 247, 251, 0.16);
+    height: 100%;
+    min-height: calc(var(--mushaf-vvh) - max(40px, env(safe-area-inset-top)) - max(34px, env(safe-area-inset-bottom)));
+    grid-template-rows: repeat(15, minmax(0, 1fr));
+    filter: invert(1) hue-rotate(180deg) saturate(1.18);
+  }
+
+  body.mushaf-immersive .qcf-word,
+  body.mushaf-immersive .qcf-basmala {
+    color: #f5f7fb;
+    -webkit-text-fill-color: #f5f7fb;
+    font-palette: dark;
+  }
+
+  body.mushaf-immersive .mushaf-meta {
+    inset: max(14px, env(safe-area-inset-top)) 20px auto;
+    color: #f5f7fb;
+    opacity: 0.82;
+  }
+
+  body.mushaf-immersive .mushaf-imm-nav {
+    display: none !important;
   }
 
   body.mushaf-immersive .mushaf-imm-nav {
@@ -188,6 +261,59 @@
   body.mushaf-immersive .mushaf-immersive-exit {
     width: 40px;
     height: 40px;
+    opacity: 0.78;
+  }
+}
+
+@media (max-width: 650px) {
+  body[data-page-mode='mushaf'].mushaf-mobile-reflow-zoom .mushaf-reader {
+    align-items: start;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  body[data-page-mode='mushaf'].mushaf-mobile-reflow-zoom .mushaf-sheet {
+    width: calc(100vw - env(safe-area-inset-left) - env(safe-area-inset-right) - 12px);
+    max-width: calc(100vw - env(safe-area-inset-left) - env(safe-area-inset-right) - 12px);
+    aspect-ratio: auto;
+    min-height: calc((100vw - env(safe-area-inset-left) - env(safe-area-inset-right) - 12px) / 0.704);
+    overflow: visible;
+  }
+
+  body[data-page-mode='mushaf'].mushaf-mobile-reflow-zoom .qcf-page {
+    display: block;
+    width: 100%;
+    height: auto;
+    min-height: calc((100vw - env(safe-area-inset-left) - env(safe-area-inset-right) - 12px) / 0.704);
+    overflow: visible;
+    font-size: calc(var(--mushaf-qcf-size) * var(--mushaf-page-zoom, 1) * var(--mushaf-mobile-fit-guard, 1));
+    line-height: 1.34;
+  }
+
+  body[data-page-mode='mushaf'].mushaf-mobile-reflow-zoom .qcf-line {
+    width: 100%;
+    max-width: 100%;
+    min-height: auto;
+    margin: 0 auto 0.32em;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: baseline;
+    row-gap: 0.08em;
+    white-space: normal;
+    overflow: visible;
+    transform: none !important;
+    text-align: center;
+  }
+
+  body[data-page-mode='mushaf'].mushaf-mobile-reflow-zoom .qcf-line.center,
+  body[data-page-mode='mushaf'].mushaf-mobile-reflow-zoom .qcf-line-deco {
+    width: 100%;
+  }
+
+  body[data-page-mode='mushaf'].mushaf-mobile-reflow-zoom .qcf-word {
+    flex: 0 0 auto;
+    min-width: 0;
   }
 }
 

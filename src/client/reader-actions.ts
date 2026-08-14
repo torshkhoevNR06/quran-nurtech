@@ -333,6 +333,8 @@ async function loadAyahTranslations(): Promise<Record<string, AyahTr>> {
 export function initMushafAyahSheet({ player }: ReaderActionsDeps) {
   const words = $$('.qcf-word[data-ayah-key]');
   if (!words.length) return;
+  if (document.body.getAttribute('data-mushaf-ayah-sheet-ready') === '1') return;
+  document.body.setAttribute('data-mushaf-ayah-sheet-ready', '1');
   const sheet = document.createElement('div');
   sheet.className = 'mas';
   const backdrop = document.createElement('div');
@@ -438,10 +440,11 @@ export function initMushafAyahSheet({ player }: ReaderActionsDeps) {
     }
   };
 
-  words.forEach((w) => {
-    w.addEventListener('click', () => {
-      const [s, a] = w.getAttribute('data-ayah-key')!.split(':').map(Number);
-      open(s, a);
-    });
+  document.addEventListener('click', (event) => {
+    const word = (event.target as Element | null)?.closest?.('.qcf-word[data-ayah-key]') as HTMLElement | null;
+    if (!word) return;
+    event.preventDefault();
+    const [s, a] = word.getAttribute('data-ayah-key')!.split(':').map(Number);
+    open(s, a);
   });
 }

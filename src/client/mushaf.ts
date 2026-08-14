@@ -96,9 +96,14 @@
     var reservedWidth = isMobile ? 56 : 88;
     var reservedHeight = isMobile ? 152 : vw >= 900 ? 225 : 246;
     var widthSpace = Math.max(1, vw - safeInset('left') - safeInset('right') - reservedWidth);
+    if (isMobile) return Math.floor(Math.min(Math.max(1, vw - safeInset('left') - safeInset('right') - 12), 620));
     var heightSpace = Math.max(1, vh - reservedHeight);
     var maxPageWidth = isMobile ? 620 : 760;
     return Math.floor(Math.min(widthSpace, heightSpace * PAGE_RATIO, maxPageWidth));
+  }
+
+  function isMobileViewport() {
+    return window.matchMedia('(max-width: 650px)').matches;
   }
 
   function preserveCenter() {
@@ -136,7 +141,7 @@
   function layoutMushaf(center) {
     if (!reader || !sheet) return;
     syncViewportHeight();
-    var isMobile = window.matchMedia('(max-width: 650px)').matches;
+    var isMobile = isMobileViewport();
     var isImmersive = body.classList.contains('mushaf-immersive');
     var pageWidth = nonImmersivePageWidth(isMobile);
     if (isImmersive) {
@@ -145,14 +150,14 @@
       var verticalChrome = px(style.paddingTop) + px(style.paddingBottom);
       var widthSpace = Math.max(1, reader.clientWidth - horizontalChrome - 2);
       var heightSpace = Math.max(1, reader.clientHeight - verticalChrome - 2);
-      pageWidth = Math.floor(Math.min(widthSpace, heightSpace * PAGE_RATIO, 920));
+      pageWidth = Math.floor(isMobile ? widthSpace : Math.min(widthSpace, heightSpace * PAGE_RATIO, 920));
     }
     pageWidth = Math.max(1, pageWidth);
 
     root.style.setProperty('--mushaf-page-w', pageWidth + 'px');
-    var qcfRatio = isMobile ? 0.05 : 0.052;
+    var qcfRatio = isImmersive && isMobile ? 0.066 : isMobile ? 0.052 : 0.052;
     var qcfMin = isMobile ? 12.5 : 20;
-    var qcfMax = isMobile ? 29 : 44;
+    var qcfMax = isImmersive && isMobile ? 34 : isMobile ? 29 : 44;
     root.style.setProperty('--mushaf-qcf-size', clamp(pageWidth * qcfRatio, qcfMin, qcfMax).toFixed(2) + 'px');
     applyZoom();
     scheduleLineFit();
@@ -204,7 +209,12 @@
 
   function applyLineScales(target) {
     if (!pageEl || !target) return;
-    var isMobile = window.matchMedia('(max-width: 650px)').matches;
+    var isMobile = isMobileViewport();
+    if (isMobile && scale > 1.001 && !isImmersive()) {
+      lines = pageEl.querySelectorAll('.qcf-line');
+      for (i = 0; i < lines.length; i++) lines[i].style.setProperty('--qcf-line-scale', '1');
+      return;
+    }
     var maxStretch = isMobile ? 1.045 : 1.055;
     var minCompress = isMobile ? 0.88 : 0.91;
     var lines = pageEl.querySelectorAll('.qcf-line:not(.is-empty):not(.qcf-line-deco):not(.center)');
@@ -272,6 +282,7 @@
 
   function applyZoom() {
     root.style.setProperty('--mushaf-page-zoom', scale.toFixed(4));
+    body.classList.toggle('mushaf-mobile-reflow-zoom', isMobileViewport() && scale > 1.001 && !isImmersive());
     if (scale <= 1.001) {
       panX = 0;
       panY = 0;
@@ -728,7 +739,7 @@
         activePage = next;
         if (location.pathname !== url) history.pushState({ mushafPage: next }, '', url);
         syncPageControls(next);
-        resetZoom();
+        if (!isImmersive()) resetZoom();
         layoutMushaf(null);
         return waitForPageFont(next).then(function () {
           if (token !== pageLoadToken) return false;
@@ -929,28 +940,110 @@
   var sx = 0;
   var sy = 0;
   var stime = 0;
+  var swiping = false;
+  var swipeDx = 0;
+  var swipePendingPage = null;
+  var swipePeekEl = null;
+  var swipePeekToken = 0;
+
+  function setSwipeOffset(dx) {
+    if (!sheet) return;
+    sheet.style.setProperty('--mushaf-swipe-x', dx.toFixed(1) + 'px');
+    sheet.classList.toggle('is-swiping', Math.abs(dx) > 0.5);
+  }
+
+  function clearSwipe() {
+    if (!sheet) return;
+    sheet.classList.remove('is-swiping', 'is-swipe-commit');
+    sheet.style.removeProperty('--mushaf-swipe-x');
+    if (swipePeekEl) swipePeekEl.remove();
+    swipePeekEl = null;
+    swipePendingPage = null;
+    swipeDx = 0;
+    swiping = false;
+  }
+
+  function ensureSwipePeek(page, dir) {
+    if (!reader || !sheet || !page) return;
+    if (swipePeekEl && swipePendingPage === page) return;
+    if (swipePeekEl) swipePeekEl.remove();
+    swipePendingPage = page;
+    swipePeekEl = sheet.cloneNode(true);
+    swipePeekEl.classList.add('mushaf-swipe-peek', dir < 0 ? 'is-next' : 'is-prev');
+    swipePeekEl.setAttribute('aria-hidden', 'true');
+    var peekPage = swipePeekEl.querySelector('.qcf-page');
+    if (peekPage) {
+      peekPage.classList.add('is-font-loading');
+      peekPage.innerHTML = pageEl ? pageEl.querySelector('.mushaf-font-skeleton')?.outerHTML || '' : '';
+    }
+    reader.insertBefore(swipePeekEl, sheet.nextSibling);
+    var token = ++swipePeekToken;
+    var url = '/mushaf/' + page;
+    var load = pageCache[url] ? Promise.resolve(pageCache[url]) : fetch(url, { credentials: 'same-origin' }).then(function (r) { return r.ok ? r.text() : ''; });
+    load.then(function (html) {
+      if (token !== swipePeekToken || !swipePeekEl || swipePendingPage !== page || !html) return;
+      pageCache[url] = html;
+      var doc = new DOMParser().parseFromString(html, 'text/html');
+      var nextSheet = doc.querySelector('.mushaf-sheet');
+      if (nextSheet && swipePeekEl) swipePeekEl.innerHTML = nextSheet.innerHTML;
+    }).catch(function () {});
+  }
+
+  function commitSwipe(page, dir) {
+    if (!sheet) return navigateMushafPage(page);
+    sheet.classList.add('is-swipe-commit');
+    setSwipeOffset(dir < 0 ? -window.innerWidth : window.innerWidth);
+    window.setTimeout(function () {
+      clearSwipe();
+      navigateMushafPage(page);
+    }, 180);
+  }
+
   if (reader) {
     reader.addEventListener('touchstart', function (e) {
+      if (!isMobileViewport() || e.touches.length !== 1) return;
       var t = e.changedTouches[0];
       sx = t.clientX;
       sy = t.clientY;
       stime = Date.now();
+      swipeDx = 0;
+      swiping = false;
+    }, { passive: true });
+    reader.addEventListener('touchmove', function (e) {
+      if (!isMobileViewport() || e.touches.length !== 1 || scale > 1.001) return;
+      var t = e.touches[0];
+      var dx = t.clientX - sx;
+      var dy = t.clientY - sy;
+      if (!swiping && (Math.abs(dx) < 18 || Math.abs(dx) < Math.abs(dy) * 1.35)) return;
+      var target = dx < 0 ? activePage + 1 : activePage - 1;
+      if (target < 1 || target > 604) return;
+      swiping = true;
+      swipeDx = dx;
+      ensureSwipePeek(target, dx < 0 ? -1 : 1);
+      setSwipeOffset(dx * 0.86);
     }, { passive: true });
     reader.addEventListener('touchend', function (e) {
-      if (scale > 1.001) return;
+      if (!isMobileViewport() || scale > 1.001) return;
       var t = e.changedTouches[0];
       var dx = t.clientX - sx;
       var dy = t.clientY - sy;
-      if (Date.now() - stime > 600) return;
-      if (Math.abs(dx) < 55 || Math.abs(dx) < Math.abs(dy) * 1.6) return;
+      if (Date.now() - stime > 700 || Math.abs(dx) < 55 || Math.abs(dx) < Math.abs(dy) * 1.45) {
+        clearSwipe();
+        return;
+      }
       if (reader.scrollWidth > reader.clientWidth + 6) {
         var maxScroll = reader.scrollWidth - reader.clientWidth;
-        if (reader.scrollLeft > 4 && reader.scrollLeft < maxScroll - 4) return;
+        if (reader.scrollLeft > 4 && reader.scrollLeft < maxScroll - 4) {
+          clearSwipe();
+          return;
+        }
       }
       var cur = activePage;
-      if (dx < 0 && cur < 604) navigateMushafPage(cur + 1);
-      else if (dx > 0 && cur > 1) navigateMushafPage(cur - 1);
+      if (dx < 0 && cur < 604) commitSwipe(cur + 1, -1);
+      else if (dx > 0 && cur > 1) commitSwipe(cur - 1, 1);
+      else clearSwipe();
     }, { passive: true });
+    reader.addEventListener('touchcancel', clearSwipe, { passive: true });
   }
 
   // Zoom with wheel + Ctrl (and trackpad pinch, which reports ctrlKey)
