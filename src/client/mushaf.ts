@@ -66,6 +66,11 @@
     root.classList.toggle('mushaf-font-loading', !!loading);
   }
 
+  function revealMushafPage() {
+    fitQcfLines();
+    setFontLoading(false);
+  }
+
   function syncViewportHeight() {
     var vv = window.visualViewport;
     var height = Math.max(360, Math.floor((vv && vv.height) || window.innerHeight || 0));
@@ -201,8 +206,9 @@
     if (!pageEl || !target) return;
     var isMobile = window.matchMedia('(max-width: 650px)').matches;
     var maxStretch = isMobile ? 1.045 : 1.055;
-    var minCompress = isMobile ? 0.9 : 0.93;
+    var minCompress = isMobile ? 0.88 : 0.91;
     var lines = pageEl.querySelectorAll('.qcf-line:not(.is-empty):not(.qcf-line-deco):not(.center)');
+    var pageRect = pageEl.getBoundingClientRect();
     for (var i = 0; i < lines.length; i++) {
       var line = lines[i];
       var natural = Math.max(1, measureLineNaturalWidth(line));
@@ -212,47 +218,25 @@
         scaleLine = Math.min(scaleLine, (pageEl.clientWidth - 4) / natural);
       }
       line.style.setProperty('--qcf-line-scale', scaleLine.toFixed(4));
+      var bounds = measureLineContentBounds(line);
+      var overLeft = Math.max(0, pageRect.left + 2 - bounds.left);
+      var overRight = Math.max(0, bounds.right - pageRect.right + 2);
+      if (overLeft > 0 || overRight > 0) {
+        var safeWidth = Math.max(1, bounds.width - overLeft - overRight - 4);
+        scaleLine = Math.max(0.72, scaleLine * (safeWidth / Math.max(1, bounds.width)));
+      }
+      line.style.setProperty('--qcf-line-scale', scaleLine.toFixed(4));
     }
   }
 
   function fitQcfLines() {
     if (!pageEl) return;
     root.style.setProperty('--mushaf-qcf-fit', '1');
-    syncLineTargetWidth();
-    var lines = pageEl.querySelectorAll('.qcf-line:not(.is-empty):not(.qcf-line-deco)');
-    var fit = 1;
-    var isMobile = window.matchMedia('(max-width: 650px)').matches;
-    var minFit = isMobile ? 0.56 : 0.72;
-
-    for (var pass = 0; pass < 4; pass++) {
+    for (var pass = 0; pass < 2; pass++) {
       var targetWidth = syncLineTargetWidth();
       applyLineScales(targetWidth);
-      var nextFit = fit;
-      var pageRect = pageEl.getBoundingClientRect();
-      for (var i = 0; i < lines.length; i++) {
-        var line = lines[i];
-        var available = Math.max(1, pageEl.clientWidth - 2);
-        var bounds = measureLineContentBounds(line);
-        var contentWidth = measureLineNaturalWidth(line);
-        if (contentWidth > available) {
-          nextFit = Math.min(nextFit, fit * (available / contentWidth) * 0.955);
-        }
-        var overLeft = Math.max(0, pageRect.left - bounds.left);
-        var overRight = Math.max(0, bounds.right - pageRect.right);
-        if (overLeft > 0 || overRight > 0) {
-          var pageAvailable = Math.max(1, pageEl.clientWidth - 2);
-          var visibleWidth = contentWidth + overLeft + overRight;
-          nextFit = Math.min(nextFit, fit * (pageAvailable / visibleWidth) * 0.955);
-        }
-      }
-      nextFit = clamp(nextFit, minFit, 1);
-      if (Math.abs(nextFit - fit) < 0.001) break;
-      fit = nextFit;
-      root.style.setProperty('--mushaf-qcf-fit', fit.toFixed(4));
       pageEl.offsetWidth;
     }
-    root.style.setProperty('--mushaf-qcf-fit', fit.toFixed(4));
-    syncLineTargetWidth();
   }
 
   function scheduleLineFit() {
@@ -491,12 +475,10 @@
     if (/firefox/i.test(navigator.userAgent) && target) target.setAttribute('data-mushaf-firefox', '1');
     var family = getActiveMushafFont(target) || ('MushafTajweed' + page);
     if (!document.fonts || !document.fonts.load || !family) {
-      setFontLoading(false);
       return Promise.resolve();
     }
     var spec = '28px ' + cssFontName(family);
     if (document.fonts.check && document.fonts.check(spec)) {
-      setFontLoading(false);
       return Promise.resolve();
     }
     return Promise.race([
@@ -508,7 +490,6 @@
       .catch(function () {})
       .then(function () {
         if (token !== fontLoadToken) return;
-        if (!document.fonts.check || document.fonts.check(spec)) setFontLoading(false);
       });
   }
 
@@ -751,8 +732,7 @@
         layoutMushaf(null);
         return waitForPageFont(next).then(function () {
           if (token !== pageLoadToken) return false;
-          fitQcfLines();
-          scheduleLineFit();
+          revealMushafPage();
           preloadAdjacentPages(next);
           return true;
         });
@@ -843,8 +823,7 @@
   syncTopbarState(activePage);
   layoutMushaf(null);
   waitForPageFont(activePage).then(function () {
-    fitQcfLines();
-    scheduleLineFit();
+    revealMushafPage();
     if (scale > 1.001) scrollZoomToStart();
   });
   if (document.fonts && document.fonts.ready) {

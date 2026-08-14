@@ -164,7 +164,7 @@
   }
 
   body[data-page-mode='mushaf'] .qcf-page {
-    font-size: calc(var(--mushaf-qcf-size) * var(--mushaf-page-zoom, 1) * var(--mushaf-qcf-fit, 1) * var(--mushaf-mobile-fit-guard, 1));
+    font-size: calc(var(--mushaf-qcf-size) * var(--mushaf-qcf-fit, 1) * var(--mushaf-mobile-fit-guard, 1));
   }
 
   body[data-page-mode='mushaf'] .mushaf-bottom {
