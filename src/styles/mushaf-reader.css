@@ -290,6 +290,10 @@ body[data-page-mode='mushaf'] .mushaf-sheet {
   will-change: transform;
 }
 
+body[data-page-mode='mushaf'] .mushaf-sheet:not(.mushaf-swipe-peek) {
+  z-index: 2;
+}
+
 body[data-page-mode='mushaf'] .mushaf-sheet.is-swiping {
   transition: none;
 }
@@ -299,11 +303,16 @@ body[data-page-mode='mushaf'] .mushaf-sheet.is-swipe-commit {
 }
 
 body[data-page-mode='mushaf'] .mushaf-swipe-peek {
-  position: absolute;
-  z-index: 0;
+  position: fixed;
+  top: var(--mushaf-peek-top, 0);
+  left: var(--mushaf-peek-left, 0);
+  z-index: 1;
+  width: var(--mushaf-peek-width, var(--mushaf-page-w));
+  height: var(--mushaf-peek-height, auto);
   pointer-events: none;
   opacity: 0.72;
   transform: translateX(calc(var(--mushaf-swipe-x, 0px) + var(--mushaf-peek-offset, 100vw)));
+  transition: none;
 }
 
 body[data-page-mode='mushaf'] .mushaf-swipe-peek.is-next {

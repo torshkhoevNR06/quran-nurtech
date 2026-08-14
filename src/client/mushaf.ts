@@ -96,7 +96,7 @@
     var reservedWidth = isMobile ? 56 : 88;
     var reservedHeight = isMobile ? 152 : vw >= 900 ? 225 : 246;
     var widthSpace = Math.max(1, vw - safeInset('left') - safeInset('right') - reservedWidth);
-    if (isMobile) return Math.floor(Math.min(Math.max(1, vw - safeInset('left') - safeInset('right') - 12), 620));
+    if (isMobile) return Math.floor(Math.min(Math.max(1, vw - safeInset('left') - safeInset('right') - 6), 620));
     var heightSpace = Math.max(1, vh - reservedHeight);
     var maxPageWidth = isMobile ? 620 : 760;
     return Math.floor(Math.min(widthSpace, heightSpace * PAGE_RATIO, maxPageWidth));
@@ -211,8 +211,8 @@
     if (!pageEl || !target) return;
     var isMobile = isMobileViewport();
     if (isMobile && scale > 1.001 && !isImmersive()) {
-      lines = pageEl.querySelectorAll('.qcf-line');
-      for (i = 0; i < lines.length; i++) lines[i].style.setProperty('--qcf-line-scale', '1');
+      var resetLines = pageEl.querySelectorAll('.qcf-line');
+      for (var resetIndex = 0; resetIndex < resetLines.length; resetIndex++) resetLines[resetIndex].style.setProperty('--qcf-line-scale', '1');
       return;
     }
     var maxStretch = isMobile ? 1.045 : 1.055;
@@ -256,6 +256,21 @@
         fitQcfLines();
       });
     }, 0);
+  }
+
+  function settleMushafLayout(center) {
+    requestAnimationFrame(function () {
+      layoutMushaf(center || null);
+      fitQcfLines();
+      requestAnimationFrame(function () {
+        layoutMushaf(null);
+        fitQcfLines();
+        window.setTimeout(function () {
+          layoutMushaf(null);
+          fitQcfLines();
+        }, 120);
+      });
+    });
   }
 
   // --- Zoom (scales the whole paper frame, not just text inside it) ---
@@ -799,14 +814,14 @@
       } catch (e) {}
       preloadAdjacentPages(activePage);
     } else {
+      scale = 1;
+      applyZoom();
       try {
         sessionStorage.removeItem(IMM_KEY);
       } catch (e) {}
       exitBrowserFullscreen();
     }
-    requestAnimationFrame(function () {
-      layoutMushaf(null);
-    });
+    settleMushafLayout(null);
   }
 
   try {
@@ -948,6 +963,7 @@
 
   function setSwipeOffset(dx) {
     if (!sheet) return;
+    if (reader) reader.style.setProperty('--mushaf-swipe-x', dx.toFixed(1) + 'px');
     sheet.style.setProperty('--mushaf-swipe-x', dx.toFixed(1) + 'px');
     sheet.classList.toggle('is-swiping', Math.abs(dx) > 0.5);
   }
@@ -956,6 +972,7 @@
     if (!sheet) return;
     sheet.classList.remove('is-swiping', 'is-swipe-commit');
     sheet.style.removeProperty('--mushaf-swipe-x');
+    if (reader) reader.style.removeProperty('--mushaf-swipe-x');
     if (swipePeekEl) swipePeekEl.remove();
     swipePeekEl = null;
     swipePendingPage = null;
@@ -971,6 +988,11 @@
     swipePeekEl = sheet.cloneNode(true);
     swipePeekEl.classList.add('mushaf-swipe-peek', dir < 0 ? 'is-next' : 'is-prev');
     swipePeekEl.setAttribute('aria-hidden', 'true');
+    var rect = sheet.getBoundingClientRect();
+    swipePeekEl.style.setProperty('--mushaf-peek-top', rect.top + 'px');
+    swipePeekEl.style.setProperty('--mushaf-peek-left', rect.left + 'px');
+    swipePeekEl.style.setProperty('--mushaf-peek-width', rect.width + 'px');
+    swipePeekEl.style.setProperty('--mushaf-peek-height', rect.height + 'px');
     var peekPage = swipePeekEl.querySelector('.qcf-page');
     if (peekPage) {
       peekPage.classList.add('is-font-loading');
@@ -1217,7 +1239,7 @@
   });
 
   document.addEventListener('fullscreenchange', function () {
-    layoutMushaf(null);
+    settleMushafLayout(null);
   });
 
   window.addEventListener('popstate', function () {
