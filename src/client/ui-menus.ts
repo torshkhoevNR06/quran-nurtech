@@ -12,6 +12,65 @@ export function markMenu(menu: string, attr: string, val: string) {
 let mobileScrollY = 0;
 let mobileScrollLocked = false;
 
+function installMenuSwipeDismiss(menu: HTMLElement) {
+  const scrollEl = menu.querySelector<HTMLElement>('.settings-panel-body');
+  let pointerId: number | null = null;
+  let startX = 0;
+  let startY = 0;
+  let lastY = 0;
+  let startTime = 0;
+  let dragging = false;
+
+  menu.addEventListener('pointerdown', (event) => {
+    if (event.pointerType === 'mouse' || window.innerWidth > 1023 || !menu.classList.contains('open')) return;
+    if ((scrollEl?.scrollTop || menu.scrollTop) > 0) return;
+    pointerId = event.pointerId;
+    startX = event.clientX;
+    startY = event.clientY;
+    lastY = startY;
+    startTime = performance.now();
+    dragging = false;
+  });
+
+  menu.addEventListener(
+    'pointermove',
+    (event) => {
+      if (pointerId !== event.pointerId) return;
+      const dx = event.clientX - startX;
+      const dy = event.clientY - startY;
+      if (!dragging && dy > 10 && dy > Math.abs(dx) * 1.25) {
+        dragging = true;
+        menu.classList.add('is-dragging');
+        try {
+          menu.setPointerCapture?.(event.pointerId);
+        } catch {
+          // Capture can be unavailable for synthetic/mobile pointer streams.
+        }
+      }
+      if (!dragging) return;
+      event.preventDefault();
+      lastY = event.clientY;
+      menu.style.setProperty('--settings-drag-y', `${Math.max(0, dy)}px`);
+    },
+    { passive: false }
+  );
+
+  const finish = (event: PointerEvent) => {
+    if (pointerId !== event.pointerId) return;
+    const dy = Math.max(0, lastY - startY);
+    const elapsed = Math.max(1, performance.now() - startTime);
+    const velocity = dy / elapsed;
+    pointerId = null;
+    if (dragging && (dy > 92 || velocity > 0.5)) closeMenus();
+    dragging = false;
+    menu.classList.remove('is-dragging');
+    menu.style.removeProperty('--settings-drag-y');
+  };
+
+  menu.addEventListener('pointerup', finish);
+  menu.addEventListener('pointercancel', finish);
+}
+
 export function updateMobileScrollLock() {
   const viewportWidth = Math.min(window.innerWidth || 0, document.documentElement.clientWidth || Infinity);
   const shouldLock =
@@ -52,6 +111,7 @@ export function initMenus() {
     if (isSettings) {
       document.body.append(menu);
       if (backdrop) document.body.append(backdrop);
+      installMenuSwipeDismiss(menu as HTMLElement);
     }
 
     menu.addEventListener('click', (e) => e.stopPropagation());

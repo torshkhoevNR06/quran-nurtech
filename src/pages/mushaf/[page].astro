@@ -40,6 +40,8 @@ for (const start of starts) {
     decorationByLine.set(Math.max(1, start.line - 1), { type: 'basmala', surah: start.s });
   }
 }
+const occupiedLineNumbers = [...page.lines.map((line) => line.n), ...decorationByLine.keys()];
+const firstOccupiedLine = occupiedLineNumbers.length ? Math.min(...occupiedLineNumbers) : 1;
 const lineNumbers = page.lines.map((line) => line.n).sort((a, b) => a - b);
 const centeredLines = new Set(
   lineNumbers.filter((lineNumber, i) => {
@@ -114,7 +116,7 @@ const juzList = Array.from({ length: 30 }, (_, i) => i + 1).map((n) => ({
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3M16 3h3a2 2 0 0 1 2 2v3M8 21H5a2 2 0 0 1-2-2v-3M16 21h3a2 2 0 0 0 2-2v-3"/></svg>
       </button>
       {nextPage && (
-        <button type="button" class="mushaf-preload-btn" data-mushaf-preload-next={nextPage} data-mushaf-preload-font={nextFontAssets?.colrUrl} aria-label={`Preload Mushaf page ${nextPage}`} title={`Preload Mushaf page ${nextPage}`}>
+        <button type="button" class="mushaf-preload-btn" data-mushaf-preload-next={nextPage} data-mushaf-preload-font={nextFontAssets?.colrUrl} aria-label={`Подгрузить страницу ${nextPage}`} title={`Подгрузить страницу ${nextPage}`}>
           <span class="ui-inline-icon" set:html={icons.download} />
           <span>Подгрузить</span>
         </button>
@@ -153,7 +155,7 @@ const juzList = Array.from({ length: 30 }, (_, i) => i + 1).map((n) => ({
         <b>{pageNum}</b>
       </div>
 
-      <div class="qcf-page is-font-loading" dir="rtl" data-mushaf-page={pageNum} data-mushaf-font-url={fontAssets.colrUrl} data-mushaf-font-family={fontFamily}>
+      <div class="qcf-page is-font-loading" dir="rtl" data-mushaf-page={pageNum} data-mushaf-font-url={fontAssets.colrUrl} data-mushaf-font-family={fontFamily} style={`--mushaf-visible-lines:${16 - firstOccupiedLine}`}>
         <div class="mushaf-font-skeleton" aria-hidden="true">
           <span class="mushaf-skeleton-title"></span>
           {skeletonLines.map((width) => <span class="mushaf-skeleton-line" style={`--skeleton-line-w:${width}`}></span>)}
@@ -178,7 +180,7 @@ const juzList = Array.from({ length: 30 }, (_, i) => i + 1).map((n) => ({
               );
             }
             return (
-              <div class={`qcf-line ${line ? '' : 'is-empty'} ${centeredLines.has(lineNumber) ? 'center' : ''}`} data-line={lineNumber}>
+              <div class={`qcf-line ${line ? '' : 'is-empty'} ${lineNumber < firstOccupiedLine ? 'is-leading-empty' : ''} ${centeredLines.has(lineNumber) ? 'center' : ''}`} data-line={lineNumber}>
                 {line?.w.map((word) => (
                   <span
                     class={`qcf-word ${word.e ? 'qcf-word-end' : ''}`}

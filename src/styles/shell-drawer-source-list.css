@@ -13,23 +13,30 @@
   overscroll-behavior: contain;
   padding-bottom: 6px;
   scrollbar-width: thin;
-  scrollbar-color: color-mix(in srgb, var(--ink) 32%, transparent) transparent;
-}
-
-.drawer .dscroll::-webkit-scrollbar {
-  width: 10px;
-}
-
-.drawer .dscroll::-webkit-scrollbar-track {
+  scrollbar-color: color-mix(in srgb, var(--ink) 28%, transparent) transparent;
   background: transparent;
 }
 
+.drawer .dscroll::-webkit-scrollbar {
+  width: 6px;
+  background: transparent;
+}
+
+.drawer .dscroll::-webkit-scrollbar-track {
+  background: transparent !important;
+}
+
 .drawer .dscroll::-webkit-scrollbar-thumb {
-  border: 3px solid transparent;
+  min-height: 44px;
+  border: 2px solid transparent;
   border-radius: 999px;
   background:
     linear-gradient(color-mix(in srgb, var(--ink) 28%, transparent), color-mix(in srgb, var(--ink) 28%, transparent))
     content-box;
+}
+
+.drawer .dscroll::-webkit-scrollbar-corner {
+  background: transparent;
 }
 
 .drawer .dscroll::-webkit-scrollbar-thumb:hover {
@@ -230,6 +237,12 @@
   .drawer.show {
     transform: translateY(0);
   }
+  .drawer.show.is-dragging {
+    transform: translateY(var(--drawer-drag-y, 0px));
+    transition: none;
+    cursor: grabbing;
+    user-select: none;
+  }
   .drawer::before {
     content: '';
     flex: none;
@@ -257,6 +270,7 @@
     -webkit-overflow-scrolling: touch;
     padding-bottom: 10px;
     touch-action: pan-y;
+    background: transparent;
   }
   .drawer .dgroup {
     padding-inline: 12px;

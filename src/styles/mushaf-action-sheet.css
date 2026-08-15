@@ -19,9 +19,11 @@
   position: absolute;
   left: 50%;
   bottom: env(safe-area-inset-bottom);
-  transform: translateX(-50%);
+  transform: translate(-50%, var(--mas-drag-y, 0px));
   width: min(560px, 100%);
   max-height: 74vh;
+  display: flex;
+  flex-direction: column;
   overflow-y: auto;
   background: var(--panel-bg);
   border: 1px solid var(--hairline);
@@ -29,7 +31,46 @@
   border-radius: 20px 20px 0 0;
   box-shadow: var(--shadow-pop);
   padding: 16px 18px 18px;
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in srgb, var(--ink) 26%, transparent) transparent;
   animation: masIn 0.22s cubic-bezier(0.2, 0, 0, 1);
+}
+.mas-card::-webkit-scrollbar {
+  width: 6px;
+}
+.mas-card::-webkit-scrollbar-track {
+  background: transparent;
+}
+.mas-card::-webkit-scrollbar-thumb {
+  min-height: 44px;
+  border: 2px solid transparent;
+  border-radius: 999px;
+  background:
+    linear-gradient(color-mix(in srgb, var(--ink) 26%, transparent), color-mix(in srgb, var(--ink) 26%, transparent))
+    content-box;
+}
+.mas-card.is-dragging {
+  transition: none;
+  cursor: grabbing;
+  user-select: none;
+}
+@media (max-width: 820px) {
+  .mas-card {
+    padding-top: 0;
+    touch-action: pan-y;
+  }
+
+  .mas-card::before {
+    content: '';
+    display: block;
+    flex: none;
+    width: 36px;
+    height: 4px;
+    margin: 10px auto 10px;
+    border-radius: 999px;
+    background: var(--line);
+    opacity: 0.9;
+  }
 }
 @keyframes masIn {
   from {
@@ -94,14 +135,79 @@
   color: var(--ink);
   font: var(--weight-semibold) var(--fs-12) / 1.1 var(--sans);
   cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition:
+    background-color 0.16s ease,
+    border-color 0.16s ease,
+    color 0.16s ease,
+    transform 0.12s ease;
 }
-.mas-act:hover {
-  background: var(--accent);
-  color: var(--accent-ink);
-  border-color: var(--accent);
+.mas-act:not(.on) {
+  background: var(--panel-bg);
+  color: var(--ink);
 }
-.mas-act:hover .mas-ic {
-  color: var(--accent-ink);
+.mas-act:not(.on) .mas-ic {
+  color: var(--ink-faint);
+}
+.mas-act:focus:not(:focus-visible) {
+  outline: 0;
+  box-shadow: none;
+}
+.mas-act:active {
+  transform: translateY(1px) scale(0.985);
+}
+@media (hover: hover) and (pointer: fine) {
+  .mas-act:hover {
+    background: color-mix(in srgb, var(--accent) 20%, var(--panel-bg));
+    color: var(--ink);
+    border-color: color-mix(in srgb, var(--accent) 45%, var(--hairline));
+  }
+  .mas-act:hover .mas-ic {
+    color: var(--ink-soft);
+  }
+}
+@media (hover: none), (pointer: coarse) {
+  .mas-act:hover:not(.on):not(.is-feedback) {
+    background: var(--panel-bg);
+    color: var(--ink);
+    border-color: var(--hairline);
+  }
+  .mas-act:hover:not(.on):not(.is-feedback) .mas-ic {
+    color: var(--ink-faint);
+  }
+}
+.mas-act.on {
+  border-color: color-mix(in srgb, var(--accent) 52%, transparent);
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--accent) 28%, transparent), color-mix(in srgb, var(--accent) 16%, transparent)),
+    var(--panel-bg);
+  color: var(--ink);
+}
+.mas-act.on .mas-ic {
+  color: var(--accent);
+}
+.mas-act.is-feedback {
+  border-color: color-mix(in srgb, var(--sys-label) 42%, transparent);
+  background: color-mix(in srgb, var(--sys-label) 10%, var(--panel-bg));
+  color: var(--ink);
+  animation: masActionPulse 0.46s ease;
+}
+.mas-act.is-feedback .mas-ic {
+  color: var(--ink-soft);
+}
+.mas-act[data-kind='bookmark'].on {
+  border-color: color-mix(in srgb, #e5b85d 78%, transparent);
+  background:
+    linear-gradient(180deg, color-mix(in srgb, #e5b85d 30%, transparent), color-mix(in srgb, #b98222 22%, transparent)),
+    var(--panel-bg);
+  color: color-mix(in srgb, #f4ca74 92%, var(--ink));
+}
+.mas-act[data-kind='bookmark'].on .mas-ic {
+  color: #e5b85d;
+}
+.mas-act[data-kind='bookmark'].on .mas-ic svg {
+  fill: color-mix(in srgb, #e5b85d 32%, transparent);
+  stroke: #e5b85d;
 }
 .mas-ic {
   width: 20px;
@@ -112,6 +218,17 @@
 .mas-ic svg {
   width: 100%;
   height: 100%;
+}
+@keyframes masActionPulse {
+  0% {
+    transform: scale(0.98);
+  }
+  55% {
+    transform: scale(1.02);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 /* подсветка выбранного аята в мусхафе */
 .qcf-word.qcf-ayah-active {

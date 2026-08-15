@@ -2,21 +2,42 @@
    Меню «Настройки» в стиле macOS (десктоп-поповер)
    ========================================================================== */
 .menu[data-menu='settings'] {
+  --settings-scrollbar-track: var(--panel-bg);
+  --settings-scrollbar-thumb: color-mix(in srgb, var(--ink) 22%, transparent);
   width: min(380px, calc(100vw - 24px));
   max-height: min(76vh, 660px);
   overflow-y: auto;
   overscroll-behavior: contain;
   padding: 0;
   border-radius: 14px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--settings-scrollbar-thumb) var(--settings-scrollbar-track);
+  scrollbar-gutter: auto;
 }
 .menu[data-menu='settings']::-webkit-scrollbar {
-  width: 9px;
+  width: 4px;
+  background: var(--settings-scrollbar-track) !important;
+}
+.menu[data-menu='settings']::-webkit-scrollbar-button {
+  display: none;
+  width: 0;
+  height: 0;
+}
+.menu[data-menu='settings']::-webkit-scrollbar-track,
+.menu[data-menu='settings']::-webkit-scrollbar-track-piece {
+  margin-block: 8px;
+  background: var(--settings-scrollbar-track) !important;
+  border: 0;
+  box-shadow: none;
 }
 .menu[data-menu='settings']::-webkit-scrollbar-thumb {
-  background: color-mix(in srgb, var(--ink) 22%, transparent);
-  border: 2.5px solid transparent;
-  border-radius: 9px;
-  background-clip: padding-box;
+  min-height: 44px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--settings-scrollbar-thumb) !important;
+}
+.menu[data-menu='settings']::-webkit-scrollbar-corner {
+  background: var(--settings-scrollbar-track) !important;
 }
 .settings-panel-head {
   display: flex;

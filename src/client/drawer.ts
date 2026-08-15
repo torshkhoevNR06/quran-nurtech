@@ -21,6 +21,66 @@ interface DrawerOptions {
   loadIndex: () => Promise<SurahMeta[]>;
 }
 
+function installDrawerSwipeDismiss(drawer: HTMLElement | null, close: () => void) {
+  if (!drawer) return;
+  const scrollEl = drawer.querySelector<HTMLElement>('.dscroll');
+  let pointerId: number | null = null;
+  let startX = 0;
+  let startY = 0;
+  let lastY = 0;
+  let startTime = 0;
+  let dragging = false;
+
+  drawer.addEventListener('pointerdown', (event) => {
+    if (event.pointerType === 'mouse' || window.innerWidth > 820 || !drawer.classList.contains('show')) return;
+    if (scrollEl && scrollEl.scrollTop > 0) return;
+    pointerId = event.pointerId;
+    startX = event.clientX;
+    startY = event.clientY;
+    lastY = startY;
+    startTime = performance.now();
+    dragging = false;
+  });
+
+  drawer.addEventListener(
+    'pointermove',
+    (event) => {
+      if (pointerId !== event.pointerId) return;
+      const dx = event.clientX - startX;
+      const dy = event.clientY - startY;
+      if (!dragging && dy > 10 && dy > Math.abs(dx) * 1.25) {
+        dragging = true;
+        drawer.classList.add('is-dragging');
+        try {
+          drawer.setPointerCapture?.(event.pointerId);
+        } catch {
+          // Some touch/synthetic events cannot be captured; drag still works without capture.
+        }
+      }
+      if (!dragging) return;
+      event.preventDefault();
+      lastY = event.clientY;
+      drawer.style.setProperty('--drawer-drag-y', `${Math.max(0, dy)}px`);
+    },
+    { passive: false }
+  );
+
+  const finish = (event: PointerEvent) => {
+    if (pointerId !== event.pointerId) return;
+    const dy = Math.max(0, lastY - startY);
+    const elapsed = Math.max(1, performance.now() - startTime);
+    const velocity = dy / elapsed;
+    pointerId = null;
+    if (dragging && (dy > 94 || velocity > 0.5)) close();
+    dragging = false;
+    drawer.classList.remove('is-dragging');
+    drawer.style.removeProperty('--drawer-drag-y');
+  };
+
+  drawer.addEventListener('pointerup', finish);
+  drawer.addEventListener('pointercancel', finish);
+}
+
 function drawerLine(text: string) {
   const el = document.createElement('span');
   el.className = 'drawer-row-sub';
@@ -177,6 +237,7 @@ export async function initDrawer({ dataVersion, loadIndex }: DrawerOptions) {
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && document.body.classList.contains('drawer-open')) close();
   });
+  installDrawerSwipeDismiss(drawer, close);
 
   listEl?.addEventListener('click', (event) => {
     const link = (event.target as Element | null)?.closest<HTMLAnchorElement>('a[data-n]');

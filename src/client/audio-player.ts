@@ -120,6 +120,11 @@ export class AudioPlayerController {
     return this.playlist.findIndex((t) => t.s === s && t.a === a);
   }
 
+  isPlayingKey(s: number, a: number) {
+    const cur = this.idx >= 0 ? this.playlist[this.idx] : null;
+    return !!(cur && cur.s === s && cur.a === a && this.audio && !this.audio.paused);
+  }
+
   playKey(s: number, a: number) {
     const cur = this.idx >= 0 ? this.playlist[this.idx] : null;
     if (cur && cur.s === s && cur.a === a) return this.toggle();
@@ -288,6 +293,11 @@ export class AudioPlayerController {
       btn.classList.toggle('on', isCur);
       btn.innerHTML = isCur && playing ? ICON_PAUSE : ICON_PLAY;
     });
+    window.dispatchEvent(
+      new CustomEvent('quran:audio-state', {
+        detail: { key: cur ? `${cur.s}:${cur.a}` : '', playing },
+      })
+    );
   }
 
   onError() {

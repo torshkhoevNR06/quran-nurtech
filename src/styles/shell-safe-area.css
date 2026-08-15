@@ -32,6 +32,12 @@ main {
   .drawer.show {
     transform: translateY(0) !important;
   }
+  .drawer.show.is-dragging {
+    transform: translateY(var(--drawer-drag-y, 0px)) !important;
+    transition: none;
+    cursor: grabbing;
+    user-select: none;
+  }
   .drawer .dlist {
     flex: none;
     min-height: 0;

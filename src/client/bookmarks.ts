@@ -19,6 +19,7 @@ export function toggleBookmark(s: number, a: number): boolean {
   LS.set(K.bookmarks, list);
   renderBookmarks();
   syncBookmarkButtons();
+  window.dispatchEvent(new CustomEvent('quran:bookmark-state', { detail: { key: k, on: i < 0 } }));
   return i < 0;
 }
 

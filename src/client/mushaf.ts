@@ -22,19 +22,23 @@
   var STATE_KEY = 'q_mushaf_zoom_state';
   var IMM_KEY = 'q_mushaf_reader';
   var PAGE_RATIO = 0.704;
+  var MOBILE_QCF_FIT = 0.72;
   var MIN_SCALE = 1;
   var MAX_SCALE = 3;
   var scale = 1;
   var panX = 0;
   var panY = 0;
   var fitTimer = 0;
+  var resizeLayoutFrame = 0;
   var jumpTimer = 0;
   var pageLoadToken = 0;
   var fontLoadToken = 0;
   var pageCache = {};
   var fontPreloadCache = {};
+  var mobilePageFitCache = {};
   var activePage = currentPage();
   var lastImmersiveNavAt = 0;
+  var swipeNavigating = false;
 
   function clamp(n, min, max) {
     return Math.max(min, Math.min(max, n));
@@ -67,8 +71,33 @@
   }
 
   function revealMushafPage() {
-    fitQcfLines();
-    setFontLoading(false);
+    if (sheet) {
+      sheet.classList.remove('is-page-pending');
+      sheet.style.removeProperty('--mushaf-pending-height');
+    }
+    // Resolve the final sheet geometry while Quran lines are still hidden.
+    // This prevents the pending-height lock from triggering a visible refit.
+    layoutMushaf(null);
+    if (isMobileViewport() && !isImmersive()) {
+      // Measure the canonical 15-line page at its real 100% geometry while it
+      // is still hidden, then use that stable fit as the zoom baseline.
+      body.classList.remove('mushaf-mobile-reflow-zoom');
+      fitMobilePage();
+      root.style.setProperty('--mushaf-mobile-zoom-fit', getComputedStyle(root).getPropertyValue('--mushaf-qcf-fit').trim() || '1');
+      body.classList.add('mushaf-mobile-reflow-zoom');
+    } else {
+      fitQcfLines(true);
+    }
+    if (pageEl) pageEl.offsetWidth;
+    var revealPage = String(pageEl?.getAttribute('data-mushaf-page') || activePage);
+    // Keep the skeleton for two paint frames after the final font metrics and
+    // geometry are applied. Quran text is never exposed at the temporary fit.
+    requestAnimationFrame(function () {
+      requestAnimationFrame(function () {
+        if (!pageEl || String(pageEl.getAttribute('data-mushaf-page')) !== revealPage || String(activePage) !== revealPage) return;
+        setFontLoading(false);
+      });
+    });
   }
 
   function syncViewportHeight() {
@@ -104,6 +133,21 @@
 
   function isMobileViewport() {
     return window.matchMedia('(max-width: 650px)').matches;
+  }
+
+  function mobileReaderBaseScale() {
+    var vw = Math.max(320, Math.min(520, window.innerWidth || 0));
+    if (vw <= 390) return 1.55;
+    if (vw <= 430) return 1.55 - ((vw - 390) / 40) * 0.12;
+    if (vw <= 480) return 1.43 - ((vw - 430) / 50) * 0.07;
+    return 1.36;
+  }
+
+  function stableMobileSheetHeight() {
+    if (!reader) return 0;
+    var style = getComputedStyle(reader);
+    var verticalChrome = px(style.paddingTop) + px(style.paddingBottom);
+    return Math.max(360, Math.floor(reader.clientHeight - verticalChrome));
   }
 
   function preserveCenter() {
@@ -155,6 +199,11 @@
     pageWidth = Math.max(1, pageWidth);
 
     root.style.setProperty('--mushaf-page-w', pageWidth + 'px');
+    if (isMobile && !isImmersive) {
+      root.style.setProperty('--mushaf-mobile-sheet-h', stableMobileSheetHeight() + 'px');
+    } else {
+      root.style.removeProperty('--mushaf-mobile-sheet-h');
+    }
     var qcfRatio = isImmersive && isMobile ? 0.066 : isMobile ? 0.052 : 0.052;
     var qcfMin = isMobile ? 12.5 : 20;
     var qcfMax = isImmersive && isMobile ? 34 : isMobile ? 29 : 44;
@@ -215,7 +264,9 @@
       for (var resetIndex = 0; resetIndex < resetLines.length; resetIndex++) resetLines[resetIndex].style.setProperty('--qcf-line-scale', '1');
       return;
     }
-    var maxStretch = isMobile ? 1.045 : 1.055;
+    // Mobile Mushaf lines use the full readable measure. Keep the scale bounded,
+    // then let the overflow guard below compress only glyphs that truly exceed it.
+    var maxStretch = isMobile ? 1.14 : 1.055;
     var minCompress = isMobile ? 0.88 : 0.91;
     var lines = pageEl.querySelectorAll('.qcf-line:not(.is-empty):not(.qcf-line-deco):not(.center)');
     var pageRect = pageEl.getBoundingClientRect();
@@ -239,8 +290,51 @@
     }
   }
 
-  function fitQcfLines() {
+  function fitMobilePage() {
     if (!pageEl) return;
+    var lines = pageEl.querySelectorAll('.qcf-line:not(.is-empty):not(.qcf-line-deco)');
+    if (!lines.length) return;
+
+    for (var i = 0; i < lines.length; i++) {
+      lines[i].style.setProperty('--qcf-line-scale', '1');
+    }
+
+    // QCF data already contains the canonical 15 Mushaf lines. Every mobile
+    // page shares one safe font baseline; page content must never make the
+    // same user zoom percentage render at a different physical size.
+    var fitKey = [
+      pageEl.clientWidth,
+      getActiveMushafFont(pageEl),
+      getComputedStyle(root).getPropertyValue('--mushaf-qcf-size').trim(),
+      isImmersive() ? 'immersive' : 'reader',
+    ].join(':');
+    if (mobilePageFitCache[fitKey]) {
+      root.style.setProperty('--mushaf-qcf-fit', mobilePageFitCache[fitKey]);
+      return;
+    }
+
+    root.style.setProperty('--mushaf-qcf-fit', '1');
+    pageEl.offsetWidth;
+
+    var pageFit = MOBILE_QCF_FIT.toFixed(4);
+    mobilePageFitCache[fitKey] = pageFit;
+    root.style.setProperty('--mushaf-qcf-fit', pageFit);
+  }
+
+  function fitQcfLines(force) {
+    if (!pageEl) return;
+    if (pageEl.classList.contains('is-font-loading') && !force) return;
+    if (isMobileViewport() && isImmersive()) {
+      fitMobilePage();
+      return;
+    }
+    if (isMobileViewport() && !isImmersive()) {
+      var zoomLines = pageEl.querySelectorAll('.qcf-line');
+      for (var zoomIndex = 0; zoomIndex < zoomLines.length; zoomIndex++) {
+        zoomLines[zoomIndex].style.setProperty('--qcf-line-scale', '1');
+      }
+      return;
+    }
     root.style.setProperty('--mushaf-qcf-fit', '1');
     for (var pass = 0; pass < 2; pass++) {
       var targetWidth = syncLineTargetWidth();
@@ -256,6 +350,14 @@
         fitQcfLines();
       });
     }, 0);
+  }
+
+  function scheduleViewportLayout() {
+    if (resizeLayoutFrame) cancelAnimationFrame(resizeLayoutFrame);
+    resizeLayoutFrame = requestAnimationFrame(function () {
+      resizeLayoutFrame = 0;
+      layoutMushaf(preserveCenter());
+    });
   }
 
   function settleMushafLayout(center) {
@@ -297,8 +399,12 @@
 
   function applyZoom() {
     root.style.setProperty('--mushaf-page-zoom', scale.toFixed(4));
-    body.classList.toggle('mushaf-mobile-reflow-zoom', isMobileViewport() && scale > 1.001 && !isImmersive());
+    root.style.setProperty('--mushaf-mobile-reader-base', mobileReaderBaseScale().toFixed(4));
+    root.style.setProperty('--mushaf-zoom-top-pad', clamp(scale * 12, 18, 44).toFixed(1) + 'px');
+    var mobileReader = isMobileViewport() && !isImmersive();
+    body.classList.toggle('mushaf-mobile-reflow-zoom', mobileReader);
     if (scale <= 1.001) {
+      if (!mobileReader) root.style.removeProperty('--mushaf-mobile-zoom-fit');
       panX = 0;
       panY = 0;
       if (pageEl) {
@@ -327,6 +433,9 @@
       return;
     }
     var center = preserveCenter();
+    if (isMobileViewport() && oldS <= 1.001 && newS > 1.001 && !isImmersive()) {
+      root.style.setProperty('--mushaf-mobile-zoom-fit', getComputedStyle(root).getPropertyValue('--mushaf-qcf-fit').trim() || '1');
+    }
     scale = newS;
     applyZoom();
     if (newS > 1.001) scrollZoomToStart();
@@ -451,8 +560,8 @@
         button.disabled = false;
         button.setAttribute('data-mushaf-preload-next', String(next));
         button.setAttribute('data-mushaf-preload-font', 'https://verses.quran.foundation/fonts/quran/hafs/v4/colrv1/woff2/p' + next + '.woff2');
-        button.setAttribute('aria-label', 'Preload Mushaf page ' + next);
-        button.setAttribute('title', 'Preload Mushaf page ' + next);
+        button.setAttribute('aria-label', 'Подгрузить страницу ' + next);
+        button.setAttribute('title', 'Подгрузить страницу ' + next);
         updatePreloadButton(next, pageCache['/mushaf/' + next] ? 'ready' : 'idle');
       } else {
         button.hidden = true;
@@ -501,21 +610,32 @@
     if (/firefox/i.test(navigator.userAgent) && target) target.setAttribute('data-mushaf-firefox', '1');
     var family = getActiveMushafFont(target) || ('MushafTajweed' + page);
     if (!document.fonts || !document.fonts.load || !family) {
-      return Promise.resolve();
+      return Promise.resolve(true);
     }
     var spec = '28px ' + cssFontName(family);
-    if (document.fonts.check && document.fonts.check(spec)) {
-      return Promise.resolve();
-    }
+    var sample = target
+      ? Array.prototype.map.call(target.querySelectorAll('.qcf-word'), function (word) { return word.textContent || ''; }).join('').slice(0, 48)
+      : '';
     return Promise.race([
-      document.fonts.load(spec),
+      document.fonts.load(spec, sample),
       new Promise(function (resolve) {
         window.setTimeout(resolve, 9000);
       }),
     ])
       .catch(function () {})
       .then(function () {
-        if (token !== fontLoadToken) return;
+        if (token !== fontLoadToken) return false;
+        return document.fonts.ready;
+      })
+      .then(function () {
+        if (token !== fontLoadToken) return false;
+        return new Promise(function (resolve) {
+          window.setTimeout(function () {
+            requestAnimationFrame(function () {
+              requestAnimationFrame(function () { resolve(true); });
+            });
+          }, 120);
+        });
       });
   }
 
@@ -698,6 +818,8 @@
       style.textContent = fontCss;
     }
 
+    if (!isMobileViewport()) root.style.setProperty('--mushaf-qcf-fit', '1');
+    root.style.removeProperty('--mushaf-line-w');
     sheet.setAttribute('aria-label', nextSheet.getAttribute('aria-label') || 'Mushaf page ' + page);
     var meta = sheet.querySelector('.mushaf-meta');
     if (meta) meta.innerHTML = nextMeta.innerHTML;
@@ -707,6 +829,7 @@
     pageEl.setAttribute('dir', nextPage.getAttribute('dir') || 'rtl');
     pageEl.setAttribute('data-mushaf-font-url', nextPage.getAttribute('data-mushaf-font-url') || '');
     pageEl.setAttribute('data-mushaf-font-family', nextPage.getAttribute('data-mushaf-font-family') || ('MushafTajweed' + page));
+    pageEl.style.setProperty('--mushaf-visible-lines', String(15 - pageEl.querySelectorAll('.qcf-line.is-leading-empty').length));
     if (/firefox/i.test(navigator.userAgent)) pageEl.setAttribute('data-mushaf-firefox', '1');
     else pageEl.removeAttribute('data-mushaf-firefox');
     if (doc.title) document.title = doc.title;
@@ -715,7 +838,10 @@
 
   function navigateMushafPage(page, opts) {
     var next = clamp(parseInt(page, 10) || 1, 1, 604);
-    if (next === activePage) return Promise.resolve(false);
+    if (next === activePage) {
+      swipeNavigating = false;
+      return Promise.resolve(false);
+    }
 
     var token = ++pageLoadToken;
     var url = '/mushaf/' + next;
@@ -754,10 +880,10 @@
         activePage = next;
         if (location.pathname !== url) history.pushState({ mushafPage: next }, '', url);
         syncPageControls(next);
-        if (!isImmersive()) resetZoom();
+        applyZoom();
         layoutMushaf(null);
-        return waitForPageFont(next).then(function () {
-          if (token !== pageLoadToken) return false;
+        return waitForPageFont(next).then(function (ready) {
+          if (!ready || token !== pageLoadToken || activePage !== next) return false;
           revealMushafPage();
           preloadAdjacentPages(next);
           return true;
@@ -768,6 +894,7 @@
         return false;
       })
       .finally(function () {
+        swipeNavigating = false;
         if (token === pageLoadToken) body.classList.remove('mushaf-page-loading');
       });
   }
@@ -793,6 +920,9 @@
   }
 
   function setImmersive(enabled) {
+    if (enabled && toolbar && toolbar.contains(document.activeElement)) {
+      try { document.activeElement.blur(); } catch (e) {}
+    }
     body.classList.toggle('mushaf-immersive', enabled);
     root.classList.toggle('mushaf-immersive', enabled);
     body.setAttribute('data-mushaf-immersive-state', enabled ? '1' : '0');
@@ -848,7 +978,9 @@
 
   syncTopbarState(activePage);
   layoutMushaf(null);
-  waitForPageFont(activePage).then(function () {
+  var initialFontPage = activePage;
+  waitForPageFont(initialFontPage).then(function (ready) {
+    if (!ready || activePage !== initialFontPage || String(pageEl?.getAttribute('data-mushaf-page')) !== String(initialFontPage)) return;
     revealMushafPage();
     if (scale > 1.001) scrollZoomToStart();
   });
@@ -858,16 +990,20 @@
     scheduleLineFit();
   }
   window.addEventListener('resize', function () {
-    layoutMushaf(preserveCenter());
+    scheduleViewportLayout();
   }, { passive: true });
   window.addEventListener('orientationchange', function () {
     layoutMushaf(null);
   }, { passive: true });
   if (window.visualViewport) {
     window.visualViewport.addEventListener('resize', function () {
-      layoutMushaf(preserveCenter());
+      scheduleViewportLayout();
     }, { passive: true });
     window.visualViewport.addEventListener('scroll', syncViewportHeight, { passive: true });
+  }
+  if (reader && 'ResizeObserver' in window) {
+    var readerResizeObserver = new ResizeObserver(scheduleViewportLayout);
+    readerResizeObserver.observe(reader);
   }
 
   document.addEventListener('submit', function (event) {
@@ -980,6 +1116,20 @@
     swiping = false;
   }
 
+  function mushafSkeletonHtml() {
+    var widths = [54, 78, 70, 86, 74, 90, 80, 88, 76, 84, 72, 82];
+    return (
+      '<div class="mushaf-font-skeleton" aria-hidden="true">' +
+      '<span class="mushaf-skeleton-title"></span>' +
+      widths
+        .map(function (width) {
+          return '<span class="mushaf-skeleton-line" style="--skeleton-line-w:' + width + '%"></span>';
+        })
+        .join('') +
+      '</div>'
+    );
+  }
+
   function ensureSwipePeek(page, dir) {
     if (!reader || !sheet || !page) return;
     if (swipePeekEl && swipePendingPage === page) return;
@@ -993,10 +1143,11 @@
     swipePeekEl.style.setProperty('--mushaf-peek-left', rect.left + 'px');
     swipePeekEl.style.setProperty('--mushaf-peek-width', rect.width + 'px');
     swipePeekEl.style.setProperty('--mushaf-peek-height', rect.height + 'px');
+    swipePeekEl.style.setProperty('--mushaf-peek-offset', (dir < 0 ? 1 : -1) * Math.max(1, reader.clientWidth) + 'px');
     var peekPage = swipePeekEl.querySelector('.qcf-page');
     if (peekPage) {
       peekPage.classList.add('is-font-loading');
-      peekPage.innerHTML = pageEl ? pageEl.querySelector('.mushaf-font-skeleton')?.outerHTML || '' : '';
+      peekPage.innerHTML = pageEl ? pageEl.querySelector('.mushaf-font-skeleton')?.outerHTML || mushafSkeletonHtml() : mushafSkeletonHtml();
     }
     reader.insertBefore(swipePeekEl, sheet.nextSibling);
     var token = ++swipePeekToken;
@@ -1005,67 +1156,96 @@
     load.then(function (html) {
       if (token !== swipePeekToken || !swipePeekEl || swipePendingPage !== page || !html) return;
       pageCache[url] = html;
-      var doc = new DOMParser().parseFromString(html, 'text/html');
-      var nextSheet = doc.querySelector('.mushaf-sheet');
-      if (nextSheet && swipePeekEl) swipePeekEl.innerHTML = nextSheet.innerHTML;
     }).catch(function () {});
   }
 
+  function showSwipePlaceholder(page, pendingHeight) {
+    if (!pageEl || !sheet) return;
+    var skeleton = pageEl.querySelector('.mushaf-font-skeleton');
+    var skeletonHtml = skeleton ? skeleton.outerHTML : mushafSkeletonHtml();
+    pageEl.innerHTML = skeletonHtml;
+    pageEl.classList.add('is-font-loading');
+    pageEl.setAttribute('data-mushaf-page', String(page));
+    pageEl.setAttribute('data-mushaf-font-family', 'MushafTajweed' + page);
+    pageEl.style.setProperty('--mushaf-visible-lines', '15');
+    var stableHeight = isMobileViewport() && !isImmersive() ? stableMobileSheetHeight() : pendingHeight;
+    if (stableHeight > 0) {
+      sheet.classList.add('is-page-pending');
+      sheet.style.setProperty('--mushaf-pending-height', stableHeight + 'px');
+    }
+    var meta = sheet.querySelector('.mushaf-meta');
+    var pageNumber = meta && meta.querySelector('b');
+    if (pageNumber) pageNumber.textContent = String(page);
+    sheet.setAttribute('aria-label', 'Страница ' + page + ' мусхафа');
+    setFontLoading(true);
+    syncPageControls(page);
+    var url = '/mushaf/' + page;
+    if (location.pathname !== url) history.pushState({ mushafPage: page }, '', url);
+  }
+
   function commitSwipe(page, dir) {
+    if (swipeNavigating) return;
+    swipeNavigating = true;
     if (!sheet) return navigateMushafPage(page);
     sheet.classList.add('is-swipe-commit');
-    setSwipeOffset(dir < 0 ? -window.innerWidth : window.innerWidth);
+    if (swipePeekEl) swipePeekEl.classList.add('is-swipe-commit');
+    var pendingHeight = sheet.getBoundingClientRect().height;
+    var span = Math.max(1, reader?.clientWidth || window.innerWidth);
+    setSwipeOffset(dir < 0 ? -span : span);
     window.setTimeout(function () {
       clearSwipe();
+      showSwipePlaceholder(page, pendingHeight);
       navigateMushafPage(page);
-    }, 180);
+    }, 160);
   }
 
   if (reader) {
-    reader.addEventListener('touchstart', function (e) {
-      if (!isMobileViewport() || e.touches.length !== 1) return;
-      var t = e.changedTouches[0];
-      sx = t.clientX;
-      sy = t.clientY;
+    var swipePointerId = null;
+    reader.addEventListener('pointerdown', function (e) {
+      if (!isMobileViewport() || !e.isPrimary || swipeNavigating) return;
+      if (e.pointerType === 'mouse' && e.button !== 0) return;
+      swipePointerId = e.pointerId;
+      sx = e.clientX;
+      sy = e.clientY;
       stime = Date.now();
       swipeDx = 0;
       swiping = false;
-    }, { passive: true });
-    reader.addEventListener('touchmove', function (e) {
-      if (!isMobileViewport() || e.touches.length !== 1 || scale > 1.001) return;
-      var t = e.touches[0];
-      var dx = t.clientX - sx;
-      var dy = t.clientY - sy;
+      try { reader.setPointerCapture(e.pointerId); } catch (err) {}
+    });
+    reader.addEventListener('pointermove', function (e) {
+      if (!isMobileViewport() || e.pointerId !== swipePointerId || swipeNavigating) return;
+      var dx = e.clientX - sx;
+      var dy = e.clientY - sy;
       if (!swiping && (Math.abs(dx) < 18 || Math.abs(dx) < Math.abs(dy) * 1.35)) return;
       var target = dx < 0 ? activePage + 1 : activePage - 1;
       if (target < 1 || target > 604) return;
       swiping = true;
       swipeDx = dx;
       ensureSwipePeek(target, dx < 0 ? -1 : 1);
-      setSwipeOffset(dx * 0.86);
-    }, { passive: true });
-    reader.addEventListener('touchend', function (e) {
-      if (!isMobileViewport() || scale > 1.001) return;
-      var t = e.changedTouches[0];
-      var dx = t.clientX - sx;
-      var dy = t.clientY - sy;
-      if (Date.now() - stime > 700 || Math.abs(dx) < 55 || Math.abs(dx) < Math.abs(dy) * 1.45) {
+      setSwipeOffset(dx * 0.92);
+    });
+    reader.addEventListener('pointerup', function (e) {
+      if (!isMobileViewport() || e.pointerId !== swipePointerId || swipeNavigating) return;
+      swipePointerId = null;
+      var dx = e.clientX - sx;
+      var dy = e.clientY - sy;
+      var elapsed = Math.max(1, Date.now() - stime);
+      var velocity = Math.abs(dx) / elapsed;
+      var enoughDistance = Math.abs(dx) >= Math.min(36, reader.clientWidth * 0.09);
+      var enoughVelocity = Math.abs(dx) >= 22 && velocity >= 0.25;
+      if (elapsed > 1200 || (!enoughDistance && !enoughVelocity) || Math.abs(dx) < Math.abs(dy) * 1.1) {
         clearSwipe();
         return;
-      }
-      if (reader.scrollWidth > reader.clientWidth + 6) {
-        var maxScroll = reader.scrollWidth - reader.clientWidth;
-        if (reader.scrollLeft > 4 && reader.scrollLeft < maxScroll - 4) {
-          clearSwipe();
-          return;
-        }
       }
       var cur = activePage;
       if (dx < 0 && cur < 604) commitSwipe(cur + 1, -1);
       else if (dx > 0 && cur > 1) commitSwipe(cur - 1, 1);
       else clearSwipe();
-    }, { passive: true });
-    reader.addEventListener('touchcancel', clearSwipe, { passive: true });
+    });
+    reader.addEventListener('pointercancel', function () {
+      swipePointerId = null;
+      if (!swipeNavigating) clearSwipe();
+    });
   }
 
   // Zoom with wheel + Ctrl (and trackpad pinch, which reports ctrlKey)
@@ -1115,44 +1295,71 @@
   }
 
   // Drag to pan while zoomed (mouse + touch via Pointer Events)
-  if (sheet && pageEl) {
+  if (reader && sheet && pageEl) {
     var dragging = false;
     var dragId = null;
     var dragStartX = 0;
     var dragStartY = 0;
     var dragPanX = 0;
     var dragPanY = 0;
-    sheet.addEventListener('pointerdown', function (e) {
-      return;
+    var dragScrollLeft = 0;
+    var dragScrollTop = 0;
+    var dragMoved = false;
+    var suppressZoomDragClickUntil = 0;
+    reader.addEventListener('pointerdown', function (e) {
+      if (!isMobileViewport() || scale <= 1.001 || !e.isPrimary) return;
+      if (e.pointerType === 'mouse' && e.button !== 0) return;
+      if (e.target && e.target.closest && e.target.closest('button, a, input, select, [role="button"]')) return;
       dragging = true;
       dragId = e.pointerId;
       dragStartX = e.clientX;
       dragStartY = e.clientY;
       dragPanX = panX;
       dragPanY = panY;
-      try {
-        sheet.setPointerCapture(e.pointerId);
-      } catch (err) {}
+      dragScrollLeft = reader ? reader.scrollLeft : 0;
+      dragScrollTop = reader ? reader.scrollTop : 0;
+      dragMoved = false;
     });
-    sheet.addEventListener('pointermove', function (e) {
+    reader.addEventListener('pointermove', function (e) {
       if (!dragging || e.pointerId !== dragId) return;
+      var dx = e.clientX - dragStartX;
+      var dy = e.clientY - dragStartY;
+      if (!dragMoved && Math.hypot(dx, dy) < 6) return;
+      if (!dragMoved && Math.abs(dx) > Math.abs(dy) * 1.15) {
+        dragging = false;
+        dragId = null;
+        return;
+      }
+      if (!dragMoved) {
+        swipePointerId = null;
+        clearSwipe();
+        sheet.classList.add('is-drag-scrolling');
+      }
+      dragMoved = true;
       e.preventDefault();
-      panX = dragPanX + (e.clientX - dragStartX);
-      panY = dragPanY + (e.clientY - dragStartY);
-      clampPan();
-      pageEl.style.transform = '';
+      if (reader) {
+        reader.scrollLeft = dragScrollLeft - dx;
+        reader.scrollTop = dragScrollTop - dy;
+      }
     });
     function endDrag(e) {
       if (!dragging || (e && e.pointerId !== dragId)) return;
       dragging = false;
       dragId = null;
+      sheet.classList.remove('is-drag-scrolling');
+      if (dragMoved) suppressZoomDragClickUntil = Date.now() + 350;
       try {
-        sheet.releasePointerCapture(e.pointerId);
+        reader.releasePointerCapture(e.pointerId);
       } catch (err) {}
       saveViewState();
     }
-    sheet.addEventListener('pointerup', endDrag);
-    sheet.addEventListener('pointercancel', endDrag);
+    reader.addEventListener('pointerup', endDrag);
+    reader.addEventListener('pointercancel', endDrag);
+    sheet.addEventListener('click', function (e) {
+      if (Date.now() >= suppressZoomDragClickUntil) return;
+      e.preventDefault();
+      e.stopImmediatePropagation();
+    }, true);
 
     var pinching = false;
     var pinchStartDist = 0;

@@ -6,10 +6,137 @@ import { updateMobileScrollLock } from './ui-menus';
 
 interface ReaderActionsPlayer {
   playKey(s: number, a: number): void;
+  isPlayingKey?(s: number, a: number): boolean;
 }
 
 interface ReaderActionsDeps {
   player: ReaderActionsPlayer;
+}
+
+function installSwipeDismiss(target: HTMLElement, close: () => void, options: { scrollEl?: HTMLElement | null } = {}) {
+  let pointerId: number | null = null;
+  let startX = 0;
+  let startY = 0;
+  let lastY = 0;
+  let startTime = 0;
+  let dragging = false;
+  let startedInDismissZone = false;
+
+  const canStartDismiss = () => startedInDismissZone || !options.scrollEl || options.scrollEl.scrollTop <= 2;
+  const isDismissZone = (y: number) => y - target.getBoundingClientRect().top <= 96;
+
+  const beginDrag = (x: number, y: number) => {
+    startX = x;
+    startY = y;
+    lastY = y;
+    startTime = performance.now();
+    dragging = false;
+    startedInDismissZone = isDismissZone(y);
+  };
+
+  const updateDrag = (x: number, y: number) => {
+    const dx = x - startX;
+    const dy = y - startY;
+    if (!dragging && dy > 6 && dy > Math.abs(dx) * 1.15 && canStartDismiss()) {
+      dragging = true;
+      target.classList.add('is-dragging');
+      if (options.scrollEl) options.scrollEl.scrollTop = 0;
+    }
+    if (!dragging) return false;
+    lastY = y;
+    target.style.setProperty('--mas-drag-y', `${Math.max(0, dy)}px`);
+    return true;
+  };
+
+  const finishDrag = () => {
+    const dy = Math.max(0, lastY - startY);
+    const elapsed = Math.max(1, performance.now() - startTime);
+    const velocity = dy / elapsed;
+    if (dragging && (dy > 42 || velocity > 0.28)) {
+      close();
+    }
+    dragging = false;
+    startedInDismissZone = false;
+    target.classList.remove('is-dragging');
+    target.style.removeProperty('--mas-drag-y');
+  };
+
+  target.addEventListener('pointerdown', (event) => {
+    if (event.pointerType === 'mouse' || window.innerWidth > 820) return;
+    beginDrag(event.clientX, event.clientY);
+    if (!canStartDismiss()) return;
+    pointerId = event.pointerId;
+  });
+
+  target.addEventListener(
+    'pointermove',
+    (event) => {
+      if (pointerId !== event.pointerId) return;
+      const wasDragging = dragging;
+      if (updateDrag(event.clientX, event.clientY)) {
+        try {
+          target.setPointerCapture?.(event.pointerId);
+        } catch {
+          // Synthetic/mobile browsers can reject capture for non-active pointers.
+        }
+        event.preventDefault();
+      }
+      if (!wasDragging && dragging) event.preventDefault();
+    },
+    { passive: false }
+  );
+
+  const finish = (event: PointerEvent) => {
+    if (pointerId !== event.pointerId) return;
+    pointerId = null;
+    finishDrag();
+  };
+
+  target.addEventListener('pointerup', finish);
+  target.addEventListener('pointercancel', finish);
+
+  target.addEventListener(
+    'touchstart',
+    (event) => {
+      if (window.innerWidth > 820 || event.touches.length !== 1) return;
+      const touch = event.touches[0];
+      beginDrag(touch.clientX, touch.clientY);
+      if (startedInDismissZone) event.preventDefault();
+    },
+    { passive: false }
+  );
+
+  target.addEventListener(
+    'touchmove',
+    (event) => {
+      if (window.innerWidth > 820 || event.touches.length !== 1) return;
+      if (!canStartDismiss() && !dragging) return;
+      const touch = event.touches[0];
+      if (!updateDrag(touch.clientX, touch.clientY)) return;
+      event.preventDefault();
+    },
+    { passive: false }
+  );
+
+  target.addEventListener(
+    'touchend',
+    () => {
+      if (window.innerWidth > 820 || !dragging) return;
+      finishDrag();
+    },
+    { passive: true }
+  );
+
+  target.addEventListener(
+    'touchcancel',
+    () => {
+      dragging = false;
+      startedInDismissZone = false;
+      target.classList.remove('is-dragging');
+      target.style.removeProperty('--mas-drag-y');
+    },
+    { passive: true }
+  );
 }
 
 function ayahText(el: Element): { ar: string; ru: string; s: number; a: number } {
@@ -76,6 +203,7 @@ function copy(text: string) {
 
 const CTX_IC = {
   play: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 5v14l11-7z"/></svg>',
+  pause: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 5h4v14H7zM13 5h4v14h-4z"/></svg>',
   book: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5a2 2 0 0 1 2-2h6v18H6a2 2 0 0 0-2 2zM20 5a2 2 0 0 0-2-2h-6v18h6a2 2 0 0 1 2 2z"/></svg>',
   link: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1"/><path d="M14 11a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/></svg>',
   copy: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>',
@@ -373,14 +501,32 @@ export function initMushafAyahSheet({ player }: ReaderActionsDeps) {
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') close();
   });
+  installSwipeDismiss(card, close, { scrollEl: card });
 
-  const actBtn = (label: string, icon: string, run: () => void) => {
+  const actBtn = (label: string, icon: string, run: (button: HTMLButtonElement) => void, kind?: string) => {
     const b = document.createElement('button');
     b.type = 'button';
     b.className = 'mas-act';
+    if (kind) b.dataset.kind = kind;
     b.innerHTML = `<span class="mas-ic">${icon}</span>${label}`;
-    b.addEventListener('click', run);
+    b.addEventListener('click', () => {
+      run(b);
+      b.blur();
+    });
     return b;
+  };
+
+  const pulseAction = (button: HTMLButtonElement, label?: string) => {
+    const original = button.innerHTML;
+    button.classList.add('is-feedback');
+    if (label) {
+      const icon = button.querySelector('.mas-ic')?.innerHTML || '';
+      button.innerHTML = `<span class="mas-ic">${icon}</span>${label}`;
+    }
+    window.setTimeout(() => {
+      button.classList.remove('is-feedback');
+      button.innerHTML = original;
+    }, 900);
   };
 
   const open = async (s: number, a: number) => {
@@ -398,23 +544,71 @@ export function initMushafAyahSheet({ player }: ReaderActionsDeps) {
 
     actsEl.innerHTML = '';
     let row: AyahTr | undefined;
+    const syncAudioButton = (button: HTMLButtonElement) => {
+      const playing = !!player.isPlayingKey?.(s, a);
+      button.classList.toggle('on', playing);
+      button.setAttribute('aria-pressed', playing ? 'true' : 'false');
+      button.innerHTML = `<span class="mas-ic">${playing ? CTX_IC.pause : CTX_IC.play}</span>Слушать`;
+    };
+    const syncBookmarkButton = (button: HTMLButtonElement) => {
+      const on = isBookmarked(s, a);
+      button.classList.toggle('on', on);
+      button.classList.toggle('is-bookmarked', on);
+      button.setAttribute('aria-pressed', on ? 'true' : 'false');
+      button.innerHTML = `<span class="mas-ic">${CTX_IC.bookmark}</span>${on ? 'В закладках' : 'Закладка'}`;
+    };
+    const syncTafsirButton = (button: HTMLButtonElement, on: boolean) => {
+      button.classList.toggle('on', on);
+      button.setAttribute('aria-pressed', on ? 'true' : 'false');
+    };
     const buildActs = () => {
+      const playButton = actBtn('Слушать', CTX_IC.play, (button) => {
+        const next = !button.classList.contains('on');
+        button.classList.toggle('on', next);
+        button.setAttribute('aria-pressed', next ? 'true' : 'false');
+        button.innerHTML = `<span class="mas-ic">${next ? CTX_IC.pause : CTX_IC.play}</span>Слушать`;
+        player.playKey(s, a);
+      }, 'play');
+      syncAudioButton(playButton);
+      const bookmarkButton = actBtn(isBookmarked(s, a) ? 'В закладках' : 'Закладка', CTX_IC.bookmark, (button) => {
+        const on = toggleBookmark(s, a);
+        syncBookmarkButton(button);
+        toast(on ? 'В закладках' : 'Убрано');
+      }, 'bookmark');
+      bookmarkButton.dataset.bm = `${s}:${a}`;
+      syncBookmarkButton(bookmarkButton);
+      const tafsirButton = actBtn('Тафсир', CTX_IC.book, async (button) => {
+        if (!tafEl.hidden) {
+          tafEl.hidden = true;
+          tafEl.textContent = '';
+          syncTafsirButton(button, false);
+          return;
+        }
+        syncTafsirButton(button, true);
+        await showTafsir(s, a);
+      }, 'tafsir');
+      syncTafsirButton(tafsirButton, false);
       actsEl.append(
-        actBtn('Слушать', CTX_IC.play, () => player.playKey(s, a)),
-        actBtn('Тафсир', CTX_IC.book, () => showTafsir(s, a)),
-        actBtn(isBookmarked(s, a) ? 'В закладках' : 'Закладка', CTX_IC.bookmark, () => {
-          const on = toggleBookmark(s, a);
-          toast(on ? 'В закладках' : 'Убрано');
-        }),
-        actBtn('Копировать', CTX_IC.copy, () => {
+        playButton,
+        tafsirButton,
+        bookmarkButton,
+        actBtn('Копировать', CTX_IC.copy, (button) => {
+          const activeArabic = $$(`.qcf-word[data-ayah-key="${s}:${a}"]`)
+            .map((word) => word.textContent || '')
+            .join('')
+            .trim();
+          const text = row
+            ? `${name} · аят ${s}:${a}\n\n${row.ar}\n\n${row.r}\n\n${location.origin}/${s}:${a}`
+            : `${name} · аят ${s}:${a}\n\n${activeArabic}\n\n${location.origin}/${s}:${a}`;
+          copy(text);
+          pulseAction(button, 'Скопировано');
+        }, 'copy'),
+        actBtn('Картинка', CTX_IC.image, (button) => {
           if (!row) return;
-          copy(`${name} · аят ${s}:${a}\n\n${row.ar}\n\n${row.r}\n\n${location.origin}/${s}:${a}`);
-        }),
-        actBtn('Картинка', CTX_IC.image, () => {
-          if (!row) return;
+          pulseAction(button);
           openAyahEditor({ s, a, ar: row.ar, ru: row.r, aa: row.aa, tl: row.tl, surahName: name });
-        }),
-        actBtn('Открыть аят', CTX_IC.link, () => (location.href = `/${s}:${a}`))
+        }, 'image'),
+        actBtn('Открыть аят', CTX_IC.link, () => (location.href = `/${s}:${a}`), 'link')
       );
     };
     buildActs();
@@ -446,5 +640,26 @@ export function initMushafAyahSheet({ player }: ReaderActionsDeps) {
     event.preventDefault();
     const [s, a] = word.getAttribute('data-ayah-key')!.split(':').map(Number);
     open(s, a);
+  });
+
+  window.addEventListener('quran:audio-state', (event) => {
+    const detail = (event as CustomEvent<{ key: string; playing: boolean }>).detail;
+    const button = actsEl.querySelector<HTMLButtonElement>('[data-kind="play"]');
+    if (!button || !detail) return;
+    const activeKey = refEl.textContent?.match(/(\d+):(\d+)/)?.[0] || '';
+    const playing = detail.key === activeKey && detail.playing;
+    button.classList.toggle('on', playing);
+    button.setAttribute('aria-pressed', playing ? 'true' : 'false');
+    button.innerHTML = `<span class="mas-ic">${playing ? CTX_IC.pause : CTX_IC.play}</span>Слушать`;
+  });
+
+  window.addEventListener('quran:bookmark-state', (event) => {
+    const detail = (event as CustomEvent<{ key: string; on: boolean }>).detail;
+    const button = actsEl.querySelector<HTMLButtonElement>('[data-kind="bookmark"]');
+    if (!button || !detail || button.dataset.bm !== detail.key) return;
+    button.classList.toggle('on', detail.on);
+    button.classList.toggle('is-bookmarked', detail.on);
+    button.setAttribute('aria-pressed', detail.on ? 'true' : 'false');
+    button.innerHTML = `<span class="mas-ic">${CTX_IC.bookmark}</span>${detail.on ? 'В закладках' : 'Закладка'}`;
   });
 }
