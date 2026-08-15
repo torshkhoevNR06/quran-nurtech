@@ -275,9 +275,13 @@
   }
 
   body.mushaf-immersive .mushaf-meta {
-    inset: max(14px, env(safe-area-inset-top)) 20px auto;
+    inset: max(14px, env(safe-area-inset-top)) 64px auto 20px;
     color: #f5f7fb;
     opacity: 0.82;
+  }
+
+  body.mushaf-immersive .qcf-line:not(.center):not(.qcf-line-deco) {
+    transform-origin: right center;
   }
 
   body.mushaf-immersive .mushaf-imm-nav {
