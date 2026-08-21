@@ -111,10 +111,16 @@
     var revealPage = String(pageEl?.getAttribute('data-mushaf-page') || activePage);
     // Keep the skeleton for two paint frames after the final font metrics and
     // geometry are applied. Quran text is never exposed at the temporary fit.
-    requestAnimationFrame(function () {
+    return new Promise(function (resolve) {
       requestAnimationFrame(function () {
-        if (!pageEl || String(pageEl.getAttribute('data-mushaf-page')) !== revealPage || String(activePage) !== revealPage) return;
-        setFontLoading(false);
+        requestAnimationFrame(function () {
+          if (!pageEl || String(pageEl.getAttribute('data-mushaf-page')) !== revealPage || String(activePage) !== revealPage) {
+            resolve(false);
+            return;
+          }
+          setFontLoading(false);
+          resolve(true);
+        });
       });
     });
   }
@@ -255,15 +261,24 @@
   }
 
   function measureLineNaturalWidth(line) {
-    var previous = line.style.getPropertyValue('--qcf-line-scale');
-    var previousWidth = line.style.width;
-    line.style.setProperty('--qcf-line-scale', '1');
-    line.style.width = 'max-content';
-    var bounds = measureLineContentBounds(line);
-    var width = bounds.width || line.scrollWidth || line.getBoundingClientRect().width || 0;
-    line.style.width = previousWidth;
-    if (previous) line.style.setProperty('--qcf-line-scale', previous);
-    else line.style.removeProperty('--qcf-line-scale');
+    var clone = line.cloneNode(true);
+    clone.setAttribute('aria-hidden', 'true');
+    clone.style.setProperty('position', 'fixed', 'important');
+    clone.style.setProperty('inset', '0 auto auto -10000px', 'important');
+    clone.style.setProperty('width', 'max-content', 'important');
+    clone.style.setProperty('max-width', 'none', 'important');
+    clone.style.setProperty('min-width', '0', 'important');
+    clone.style.setProperty('left', '0', 'important');
+    clone.style.setProperty('margin', '0', 'important');
+    clone.style.setProperty('visibility', 'hidden', 'important');
+    clone.style.setProperty('pointer-events', 'none', 'important');
+    clone.style.setProperty('transform', 'none', 'important');
+    clone.style.setProperty('--qcf-line-scale', '1');
+    clone.style.setProperty('--qcf-line-shift', '0px');
+    (pageEl || document.body).appendChild(clone);
+    var bounds = measureLineContentBounds(clone);
+    var width = bounds.width || clone.scrollWidth || clone.getBoundingClientRect().width || 0;
+    clone.remove();
     return width;
   }
 
@@ -291,11 +306,7 @@
   function applyLineScales(target) {
     if (!pageEl || !target) return;
     var isMobile = isMobileViewport();
-    if (isMobile && scale > 1.001 && !isImmersive()) {
-      var resetLines = pageEl.querySelectorAll('.qcf-line');
-      for (var resetIndex = 0; resetIndex < resetLines.length; resetIndex++) resetLines[resetIndex].style.setProperty('--qcf-line-scale', '1');
-      return;
-    }
+    if (scale > 1.001 && !isImmersive()) return;
     // Mobile Mushaf lines use the full readable measure. Keep the scale bounded,
     // then let the overflow guard below compress only glyphs that truly exceed it.
     var immersiveMobile = isMobile && isImmersive();
@@ -310,18 +321,23 @@
     var pageRect = pageEl.getBoundingClientRect();
     for (var i = 0; i < lines.length; i++) {
       var line = lines[i];
-      var natural = Math.max(1, measureLineNaturalWidth(line));
-      var scaleLine;
       line.style.setProperty('--qcf-line-shift', '0px');
       line.offsetWidth;
+      var natural = Math.max(1, measureLineNaturalWidth(line));
+      var scaleLine;
       if (normalMobile) {
         line.style.setProperty('--qcf-line-scale', '1');
         line.offsetWidth;
-        var mobileNatural = Math.max(1, line.scrollWidth || line.getBoundingClientRect().width || natural);
+        var mobileNatural = natural;
         var mobileSafeWidth = Math.max(1, pageEl.clientWidth - 12);
         var mobileDesiredWidth = Math.max(1, pageEl.clientWidth - 28);
-        scaleLine = mobileNatural > mobileSafeWidth ? mobileSafeWidth / mobileNatural : Math.min(1.04, mobileDesiredWidth / mobileNatural);
-        scaleLine = clamp(scaleLine, minCompress, 1.04);
+        scaleLine = mobileNatural > mobileSafeWidth ? mobileSafeWidth / mobileNatural : Math.min(1, mobileDesiredWidth / mobileNatural);
+        scaleLine = clamp(scaleLine, minCompress, 1);
+        line.style.setProperty('--qcf-line-scale', scaleLine.toFixed(4));
+        line.style.setProperty('--qcf-line-shift', '0px');
+        if (regularPage) line.style.justifyContent = 'center';
+        else line.style.removeProperty('justify-content');
+        continue;
       } else {
         scaleLine = clamp(target / natural, minCompress, maxStretch);
         var visualWidth = natural * scaleLine;
@@ -351,15 +367,7 @@
           finalBounds = measureLineContentBounds(line);
         }
       }
-      if (finalBounds.width > 0) {
-        var leftGap = finalBounds.left - pageRect.left;
-        var rightGap = pageRect.right - finalBounds.right;
-        var recenterMobileShortPage = normalMobile && regularPage && pageEl.getAttribute('data-mushaf-visible-lines') === '14';
-        var shift = normalMobile && !recenterMobileShortPage ? 0 : (rightGap - leftGap) / 2;
-        var maxShift = normalMobile ? Math.min(88, Math.max(42, pageEl.clientWidth * 0.22)) : Math.min(42, Math.max(12, pageEl.clientWidth * 0.12));
-        shift = clamp(shift, -maxShift, maxShift);
-        line.style.setProperty('--qcf-line-shift', shift.toFixed(1) + 'px');
-      }
+      line.style.setProperty('--qcf-line-shift', '0px');
       var normalMobileRegular =
         normalMobile &&
         pageEl &&
@@ -377,6 +385,7 @@
 
     for (var i = 0; i < lines.length; i++) {
       lines[i].style.setProperty('--qcf-line-scale', '1');
+      lines[i].style.setProperty('--qcf-line-shift', '0px');
     }
 
     // QCF data already contains the canonical 15 Mushaf lines. Every mobile
@@ -413,10 +422,7 @@
       return;
     }
     if (isMobileViewport() && !isImmersive()) {
-      var zoomLines = pageEl.querySelectorAll('.qcf-line');
-      for (var zoomIndex = 0; zoomIndex < zoomLines.length; zoomIndex++) {
-        zoomLines[zoomIndex].style.setProperty('--qcf-line-scale', '1');
-      }
+      if (scale > 1.001) return;
       resetMobileReaderFit();
       if (scale <= 1.001) {
         for (var mobilePass = 0; mobilePass < 2; mobilePass++) {
@@ -438,7 +444,13 @@
     window.clearTimeout(fitTimer);
     fitTimer = window.setTimeout(function () {
       requestAnimationFrame(function () {
-        fitQcfLines();
+        layoutMushaf(null);
+        requestAnimationFrame(function () {
+          fitQcfLines();
+          window.setTimeout(function () {
+            fitQcfLines();
+          }, 80);
+        });
       });
     }, 0);
   }
@@ -610,7 +622,7 @@
     }
     event.preventDefault();
     event.stopImmediatePropagation();
-    navigateMushafPage(match[1], { inline: true });
+    turnAdjacentMushafPage(match[1], { inline: true });
   }
 
   function bindImmersiveNavLinks() {
@@ -1125,7 +1137,6 @@
   }
 
   function preloadAdjacentPages(page) {
-    if (!isImmersive()) return;
     if (page > 1) preloadMushafPage(page - 1);
     if (page < 604) preloadMushafPage(page + 1);
   }
@@ -1234,10 +1245,12 @@
         layoutMushaf(null);
         return waitForPageFont(next).then(function (ready) {
           if (!ready || token !== pageLoadToken || activePage !== next) return false;
-          revealMushafPage();
-          if (opts && opts.ayah) openAyahOnCurrentPage(opts.ayah);
-          preloadAdjacentPages(next);
-          return true;
+          return revealMushafPage().then(function (revealed) {
+            if (!revealed) return false;
+            if (opts && opts.ayah) openAyahOnCurrentPage(opts.ayah);
+            preloadAdjacentPages(next);
+            return true;
+          });
         });
       })
       .catch(function () {
@@ -1347,7 +1360,9 @@
   waitForPageFont(initialFontPage).then(function (ready) {
     if (!ready || activePage !== initialFontPage || String(pageEl?.getAttribute('data-mushaf-page')) !== String(initialFontPage)) return;
     revealMushafPage();
+    settleMushafLayout(null);
     openAyahOnCurrentPage(new URLSearchParams(location.search).get('ayah'));
+    preloadAdjacentPages(activePage);
     if (scale > 1.001) scrollZoomToStart();
   });
   if (document.fonts && document.fonts.ready) {
@@ -1454,7 +1469,7 @@
         history.replaceState({ mushafPage: activePage }, '', '/mushaf/' + activePage + '?ayah=' + encodeURIComponent(ayah));
         openAyahOnCurrentPage(ayah);
       } else {
-        navigateMushafPage(match[1], { inline: true, ayah: ayah });
+        turnAdjacentMushafPage(match[1], { inline: true, ayah: ayah });
       }
     },
     true
@@ -1491,7 +1506,7 @@
           history.replaceState({ mushafPage: activePage }, '', '/mushaf/' + activePage + '?ayah=' + encodeURIComponent(ayah));
           openAyahOnCurrentPage(ayah);
         } else {
-          navigateMushafPage(match[1], { inline: true, ayah: ayah });
+          turnAdjacentMushafPage(match[1], { inline: true, ayah: ayah });
         }
         return;
       }
@@ -1539,10 +1554,18 @@
 
   function clearSwipe() {
     if (!sheet) return;
+    var hadPeek = !!swipePeekEl;
+    if (hadPeek) sheet.classList.add('is-swipe-resetting');
     sheet.classList.remove('is-swiping', 'is-swipe-commit');
     sheet.style.removeProperty('--mushaf-swipe-x');
     if (reader) reader.style.removeProperty('--mushaf-swipe-x');
+    if (hadPeek) sheet.offsetWidth;
     if (swipePeekEl) swipePeekEl.remove();
+    if (hadPeek) {
+      window.requestAnimationFrame(function () {
+        if (sheet) sheet.classList.remove('is-swipe-resetting');
+      });
+    }
     swipePeekEl = null;
     swipePendingPage = null;
     swipeDx = 0;
@@ -1629,14 +1652,34 @@
     if (!sheet) return navigateMushafPage(page);
     sheet.classList.add('is-swipe-commit');
     if (swipePeekEl) swipePeekEl.classList.add('is-swipe-commit');
-    var pendingHeight = sheet.getBoundingClientRect().height;
     var span = Math.max(1, reader?.clientWidth || window.innerWidth);
     setSwipeOffset(dir < 0 ? -span : span);
     window.setTimeout(function () {
-      clearSwipe();
-      showSwipePlaceholder(page, pendingHeight);
-      navigateMushafPage(page);
+      navigateMushafPage(page, { fromSwipe: true }).finally(function () {
+        clearSwipe();
+      });
     }, 160);
+  }
+
+  function turnAdjacentMushafPage(page, opts) {
+    var next = clamp(parseInt(page, 10) || 1, 1, 604);
+    if (
+      opts &&
+      opts.ayah ||
+      !isMobileViewport() ||
+      !reader ||
+      !sheet ||
+      swipeNavigating ||
+      Math.abs(next - activePage) !== 1
+    ) {
+      return navigateMushafPage(next, opts);
+    }
+    ensureSwipePeek(next, next > activePage ? -1 : 1);
+    setSwipeOffset(0);
+    window.requestAnimationFrame(function () {
+      commitSwipe(next, next > activePage ? -1 : 1);
+    });
+    return Promise.resolve(true);
   }
 
   if (reader) {

@@ -11,6 +11,10 @@ body[data-page-mode='mushaf'].mushaf-zoomed .qcf-page {
   touch-action: none;
 }
 
+body[data-page-mode='mushaf'].mushaf-zoomed .qcf-line {
+  left: 0 !important;
+}
+
 body[data-page-mode='mushaf'].mushaf-zoomed .mushaf-reader {
   width: 100vw;
   max-width: 100vw;

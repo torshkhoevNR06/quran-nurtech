@@ -368,7 +368,9 @@
 
   body.mushaf-immersive .qcf-line:not(.center):not(.qcf-line-deco) {
     max-width: none;
-    transform: translateX(var(--qcf-line-shift, 0px)) scaleX(var(--qcf-line-scale, 1));
+    position: relative;
+    left: var(--qcf-line-shift, 0px);
+    transform: scaleX(var(--qcf-line-scale, 1));
     transform-origin: center center;
   }
 
@@ -524,16 +526,18 @@
     .qcf-page[data-mushaf-compact='0']
     .qcf-line:not(.qcf-line-deco) {
     display: flex;
-    width: max-content;
-    max-width: none;
+    width: 100%;
+    max-width: 100%;
     min-height: 0;
-    justify-self: center;
+    justify-self: stretch;
     justify-content: center;
-    margin-inline: auto;
+    margin-inline: 0;
     line-height: 1;
     white-space: nowrap;
     overflow: visible;
-    transform: translateX(var(--qcf-line-shift, 0px)) scaleX(var(--qcf-line-scale, 1)) !important;
+    position: relative;
+    left: var(--qcf-line-shift, 0px);
+    transform: scaleX(var(--qcf-line-scale, 1)) !important;
     transform-origin: center center;
     text-align: center;
     text-align-last: center;
@@ -568,7 +572,9 @@
     line-height: 1;
     white-space: nowrap;
     overflow: visible;
-    transform: translateX(var(--qcf-line-shift, 0px)) scaleX(var(--qcf-line-scale, 1)) !important;
+    position: relative;
+    left: var(--qcf-line-shift, 0px);
+    transform: scaleX(var(--qcf-line-scale, 1)) !important;
     text-align: center;
     text-align-last: center;
   }

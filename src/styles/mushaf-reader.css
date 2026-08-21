@@ -337,6 +337,10 @@ body[data-page-mode='mushaf'] .mushaf-sheet.is-swipe-commit {
   transition: transform 180ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
+body[data-page-mode='mushaf'] .mushaf-sheet.is-swipe-resetting {
+  transition: none !important;
+}
+
 body[data-page-mode='mushaf'] .mushaf-swipe-peek {
   position: fixed;
   top: var(--mushaf-peek-top, 0);
@@ -507,7 +511,9 @@ body[data-page-mode='mushaf'] .qcf-line {
   justify-content: center;
   text-align: center;
   text-align-last: center;
-  transform: translateX(var(--qcf-line-shift, 0px)) scaleX(var(--qcf-line-scale, 1));
+  position: relative;
+  left: var(--qcf-line-shift, 0px);
+  transform: scaleX(var(--qcf-line-scale, 1));
   transform-origin: center center;
 }
 
