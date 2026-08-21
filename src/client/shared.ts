@@ -26,6 +26,7 @@ export const K = {
   speed: 'q_speed',
   bookmarks: 'q_bookmarks',
   last: 'q_last',
+  mushafLast: 'q_mushaf_last',
   readpos: 'q_readpos',
   progress: 'q_progress',
   uid: 'q_uid',

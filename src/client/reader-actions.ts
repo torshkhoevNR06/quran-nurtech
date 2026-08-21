@@ -24,6 +24,8 @@ function installSwipeDismiss(target: HTMLElement, close: () => void, options: { 
 
   const canStartDismiss = () => startedInDismissZone || !options.scrollEl || options.scrollEl.scrollTop <= 2;
   const isDismissZone = (y: number) => y - target.getBoundingClientRect().top <= 96;
+  const isInteractiveTarget = (eventTarget: EventTarget | null) =>
+    !!(eventTarget instanceof Element && eventTarget.closest('button, a, input, textarea, select, [data-mas-close]'));
 
   const beginDrag = (x: number, y: number) => {
     startX = x;
@@ -63,6 +65,7 @@ function installSwipeDismiss(target: HTMLElement, close: () => void, options: { 
 
   target.addEventListener('pointerdown', (event) => {
     if (event.pointerType === 'mouse' || window.innerWidth > 820) return;
+    if (isInteractiveTarget(event.target)) return;
     beginDrag(event.clientX, event.clientY);
     if (!canStartDismiss()) return;
     pointerId = event.pointerId;
@@ -99,6 +102,7 @@ function installSwipeDismiss(target: HTMLElement, close: () => void, options: { 
     'touchstart',
     (event) => {
       if (window.innerWidth > 820 || event.touches.length !== 1) return;
+      if (isInteractiveTarget(event.target)) return;
       const touch = event.touches[0];
       beginDrag(touch.clientX, touch.clientY);
       if (startedInDismissZone) event.preventDefault();
@@ -498,6 +502,15 @@ export function initMushafAyahSheet({ player }: ReaderActionsDeps) {
   sheet.addEventListener('click', (e) => {
     if ((e.target as Element).closest('[data-mas-close]')) close();
   });
+  sheet.querySelectorAll('[data-mas-close]').forEach((control) => {
+    const closeFromControl = (event: Event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      close();
+    };
+    control.addEventListener('pointerup', closeFromControl);
+    control.addEventListener('touchend', closeFromControl);
+  });
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') close();
   });
@@ -603,6 +616,10 @@ export function initMushafAyahSheet({ player }: ReaderActionsDeps) {
           copy(text);
           pulseAction(button, 'Скопировано');
         }, 'copy'),
+        actBtn('Ссылка', CTX_IC.link, (button) => {
+          copy(`${location.origin}/${s}:${a}`);
+          pulseAction(button, 'Ссылка');
+        }, 'copy-link'),
         actBtn('Картинка', CTX_IC.image, (button) => {
           if (!row) return;
           pulseAction(button);
@@ -639,6 +656,15 @@ export function initMushafAyahSheet({ player }: ReaderActionsDeps) {
     if (!word) return;
     event.preventDefault();
     const [s, a] = word.getAttribute('data-ayah-key')!.split(':').map(Number);
+    open(s, a);
+  });
+
+  window.addEventListener('quran:mushaf-open-ayah', (event) => {
+    const key = (event as CustomEvent<{ key: string }>).detail?.key || '';
+    const [s, a] = key.split(':').map(Number);
+    if (!s || !a) return;
+    const word = $(`.qcf-word[data-ayah-key="${s}:${a}"]`);
+    if (!word) return;
     open(s, a);
   });
 

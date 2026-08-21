@@ -23,6 +23,9 @@ screenshots:
   - qa-screens/mobile-ayah-sheet-bookmark-on.png
   - qa-screens/mobile-ayah-sheet-states.png
   - qa-screens/mobile-ayah-sheet-dark-bookmark-on.png
+  - qa-screens/mobile-ayah-active-rail-320.png
+  - qa-screens/mobile-ayah-active-rail-390.png
+  - qa-screens/mobile-ayah-active-rail-430.png
 checks:
   - Mobile browser checks at 360px, 390px, and 430px
   - Pages 502, 504, 597, 598, and 600 checked in reader and fullscreen modes
@@ -66,5 +69,7 @@ checks:
   - Dark-theme ayah action buttons verified: inactive icons stay muted gray after tap, bookmark active state is gold, copy shows temporary "Скопировано" feedback, and Tafsir toggles on/off
   - Ayah sheet downward dismiss now verified with real TouchEvent flow: touchmove updates drag offset and touchend closes the sheet
   - Ayah sheet single-pull dismiss verified from both handle and title zones with a 48px downward gesture
+  - Ayah sheet close regression fixed and verified: close button tap, backdrop tap, and downward swipe all dismiss the same sheet
+  - Single ayah mobile page active rail verified at 320px, 390px, and 430px with a stable 14px content gap, fixed 20px/22px vertical insets, and no horizontal overflow
   - npm.cmd run build (route generation completed; existing Windows failure on the colon route dist/1:1)
 deploy_url: http://127.0.0.1:4321/mushaf/504

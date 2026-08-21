@@ -1,9 +1,10 @@
 // Service worker: офлайн-доступ к прочитанным страницам + шелл/шрифты/данные.
 // Стратегия: ассеты/шрифты — cache-first; данные — stale-while-revalidate;
 // HTML/навигация — network-first (свежесть онлайн, кэш офлайн). Внешние (аудио CDN) не трогаем.
-const V = 'quran-v5-mushaf-css-immersive';
+const V = 'quran-v6-mushaf-sajda-flow';
 const ASSET = /\/(assets|fonts)\//;
 const DATA = /\/data\//;
+const MUSHAF_FONT_HOST = 'verses.quran.foundation';
 
 self.addEventListener('install', () => self.skipWaiting());
 
@@ -21,7 +22,12 @@ self.addEventListener('fetch', (e) => {
   const req = e.request;
   if (req.method !== 'GET') return;
   const url = new URL(req.url);
-  if (url.origin !== self.location.origin) return; // аудио-CDN и прочие внешние — мимо
+  if (url.origin !== self.location.origin && url.hostname !== MUSHAF_FONT_HOST) return; // аудио-CDN и прочие внешние — мимо
+
+  if (url.hostname === MUSHAF_FONT_HOST && url.pathname.includes('/fonts/quran/hafs/')) {
+    e.respondWith(cacheFirst(req));
+    return;
+  }
 
   if (ASSET.test(url.pathname)) {
     e.respondWith(cacheFirst(req));

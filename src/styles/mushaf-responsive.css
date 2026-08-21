@@ -28,11 +28,12 @@
 
 @media (max-width: 650px) {
   body[data-page-mode='mushaf'] {
+    --mushaf-page-w: calc(100vw - env(safe-area-inset-left) - env(safe-area-inset-right) - 6px);
     --mushaf-mobile-sheet-h: max(
       360px,
-      calc(100dvh - var(--topbar-h, 58px) - 132px - env(safe-area-inset-bottom))
+      calc(100dvh - var(--topbar-h, 58px) - 118px - env(safe-area-inset-bottom))
     );
-    height: var(--mushaf-vvh);
+    height: var(--mushaf-vvh, 100dvh);
     overflow: hidden;
   }
 
@@ -43,7 +44,7 @@
   }
 
   body[data-page-mode='mushaf'] main.wide {
-    height: calc(var(--mushaf-vvh) - var(--topbar-h));
+    height: calc(var(--mushaf-vvh, 100dvh) - var(--topbar-h));
     min-height: 0;
     overflow: hidden;
   }
@@ -57,17 +58,17 @@
     grid-template-rows: minmax(0, 1fr);
     align-items: start;
     justify-items: center;
-    padding: 4px max(3px, env(safe-area-inset-right)) calc(124px + env(safe-area-inset-bottom)) max(3px, env(safe-area-inset-left));
-    overflow: hidden auto;
+    padding: 0 max(3px, env(safe-area-inset-right)) calc(118px + env(safe-area-inset-bottom)) max(3px, env(safe-area-inset-left));
+    overflow: hidden;
     scrollbar-gutter: auto;
     -webkit-overflow-scrolling: touch;
     touch-action: pan-y pinch-zoom;
-    scrollbar-width: thin;
-    scrollbar-color: color-mix(in srgb, var(--sys-secondary-label) 30%, transparent) transparent;
+    scrollbar-width: none;
   }
 
   body[data-page-mode='mushaf'] .mushaf-reader::-webkit-scrollbar {
-    width: 5px;
+    width: 0;
+    height: 0;
   }
 
   body[data-page-mode='mushaf'] .mushaf-reader::-webkit-scrollbar-track {
@@ -88,8 +89,8 @@
 
   body[data-page-mode='mushaf'] .mushaf-toolbar {
     position: fixed;
-    left: max(4px, env(safe-area-inset-left));
-    right: max(4px, env(safe-area-inset-right));
+    left: max(5px, env(safe-area-inset-left));
+    right: max(5px, env(safe-area-inset-right));
     bottom: max(6px, env(safe-area-inset-bottom));
     top: auto;
     z-index: 58;
@@ -101,7 +102,13 @@
     justify-content: center;
     border-radius: 18px;
     box-shadow: var(--shadow-accessory);
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    scrollbar-width: none;
+  }
+
+  body[data-page-mode='mushaf'] .mushaf-toolbar::-webkit-scrollbar {
+    display: none;
   }
 
   body[data-page-mode='mushaf'] .mushaf-toolbar .ui-select-mushaf {
@@ -121,12 +128,17 @@
   body[data-page-mode='mushaf'] .mushaf-page-group .icon-btn {
     width: 40px;
     height: 40px;
+    min-width: 40px;
     border-radius: 14px;
   }
 
   body[data-page-mode='mushaf'] .mushaf-page-group {
     flex: 0 0 82px;
     justify-content: center;
+  }
+
+  body[data-page-mode='mushaf'] .mushaf-mode-group {
+    display: none;
   }
 
   body[data-page-mode='mushaf'] .mushaf-page-group .icon-btn {
@@ -172,6 +184,8 @@
 
   body[data-page-mode='mushaf'] .mushaf-zoom,
   body[data-page-mode='mushaf'] .mushaf-fit-btn,
+  body[data-page-mode='mushaf'] [data-mushaf-ayah-jump],
+  body[data-page-mode='mushaf'] [data-mushaf-continue],
   body[data-page-mode='mushaf'] .mushaf-preload-btn span:not(.ui-inline-icon) {
     display: none;
   }
@@ -187,13 +201,7 @@
   }
 
   body[data-page-mode='mushaf'] .mushaf-preload-status {
-    position: fixed;
-    left: max(10px, env(safe-area-inset-left));
-    right: max(10px, env(safe-area-inset-right));
-    bottom: calc(124px + env(safe-area-inset-bottom));
-    z-index: 90;
-    width: auto;
-    transform: none;
+    display: none !important;
   }
 
   body[data-page-mode='mushaf'] .mushaf-preload-copy {
@@ -234,7 +242,8 @@
   }
 
   body[data-page-mode='mushaf'] .mushaf-sheet {
-    width: var(--mushaf-page-w);
+    grid-row: 1;
+    width: var(--mushaf-page-w, calc(100vw - env(safe-area-inset-left) - env(safe-area-inset-right) - 6px));
     max-width: calc(100vw - env(safe-area-inset-left) - env(safe-area-inset-right) - 6px);
     min-width: 0;
     height: var(--mushaf-mobile-sheet-h);
@@ -281,7 +290,7 @@
   }
 
   body[data-page-mode='mushaf']:not(.mushaf-immersive) .qcf-page {
-    padding-block-start: 12px;
+    padding-block-start: 8px;
   }
 
   body[data-page-mode='mushaf'] .mushaf-bottom {
@@ -358,8 +367,8 @@
   }
 
   body.mushaf-immersive .qcf-line:not(.center):not(.qcf-line-deco) {
-    max-width: 100%;
-    transform: none;
+    max-width: none;
+    transform: translateX(var(--qcf-line-shift, 0px)) scaleX(var(--qcf-line-scale, 1));
     transform-origin: center center;
   }
 
@@ -380,11 +389,43 @@
 }
 
 @media (max-width: 650px) {
-  body[data-page-mode='mushaf'].mushaf-mobile-reflow-zoom .mushaf-reader {
+  body[data-page-mode='mushaf'].mushaf-mobile-reflow-zoom.mushaf-zoomed .mushaf-reader {
     align-items: start;
     padding-bottom: calc(122px + env(safe-area-inset-bottom));
     overflow-x: hidden;
     overflow-y: auto;
+    scrollbar-gutter: stable;
+    scrollbar-width: thin;
+    scrollbar-color: color-mix(in srgb, var(--sys-secondary-label) 34%, transparent)
+      color-mix(in srgb, var(--sys-secondary-label) 10%, transparent);
+  }
+
+  body[data-page-mode='mushaf'].mushaf-mobile-reflow-zoom.mushaf-zoomed .mushaf-reader::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  body[data-page-mode='mushaf'].mushaf-mobile-reflow-zoom.mushaf-zoomed .mushaf-reader::-webkit-scrollbar-track {
+    margin-block: 10px calc(78px + env(safe-area-inset-bottom));
+    border: 3px solid transparent;
+    border-radius: 999px;
+    background:
+      linear-gradient(
+          color-mix(in srgb, var(--sys-secondary-label) 12%, transparent),
+          color-mix(in srgb, var(--sys-secondary-label) 12%, transparent)
+        )
+        content-box;
+  }
+
+  body[data-page-mode='mushaf'].mushaf-mobile-reflow-zoom.mushaf-zoomed .mushaf-reader::-webkit-scrollbar-thumb {
+    min-height: 48px;
+    border: 3px solid transparent;
+    border-radius: 999px;
+    background:
+      linear-gradient(
+          color-mix(in srgb, var(--sys-secondary-label) 42%, transparent),
+          color-mix(in srgb, var(--sys-secondary-label) 42%, transparent)
+        )
+        content-box;
   }
 
   body[data-page-mode='mushaf'].mushaf-mobile-reflow-zoom .mushaf-zoom-fab {
@@ -401,6 +442,15 @@
     overflow: visible;
     touch-action: none;
     cursor: grab;
+  }
+
+  body[data-page-mode='mushaf'].mushaf-mobile-reflow-zoom:not(.mushaf-zoomed) .mushaf-sheet {
+    height: var(--mushaf-mobile-sheet-h, 100%);
+    min-height: var(--mushaf-mobile-sheet-h, 100%);
+    max-height: var(--mushaf-mobile-sheet-h, 100%);
+    overflow: hidden;
+    touch-action: pan-y pinch-zoom;
+    cursor: default;
   }
 
   body[data-page-mode='mushaf'].mushaf-mobile-reflow-zoom .mushaf-sheet.is-drag-scrolling {
@@ -420,6 +470,27 @@
     text-align: center;
     padding-inline: clamp(8px, 2.6vw, 12px);
     padding-block-start: var(--mushaf-zoom-top-pad, 18px);
+  }
+
+  body[data-page-mode='mushaf'].mushaf-mobile-reflow-zoom:not(.mushaf-zoomed) .qcf-page {
+    display: grid;
+    grid-template-rows: repeat(var(--mushaf-visible-lines, 15), minmax(0, 1fr));
+    height: 100%;
+    min-height: 100%;
+    overflow: hidden;
+    line-height: 1;
+    text-align: center;
+    padding-inline: 0;
+    padding-block-start: 8px;
+  }
+
+  body[data-page-mode='mushaf'].mushaf-mobile-reflow-zoom:not(.mushaf-zoomed)
+    .qcf-page[data-mushaf-compact='0'][data-mushaf-visible-lines='14'] {
+    font-size: calc(
+      var(--mushaf-qcf-size) * var(--mushaf-mobile-zoom-fit, var(--mushaf-qcf-fit, 1)) *
+        var(--mushaf-mobile-reader-base, 1.43) * var(--mushaf-page-zoom, 1) *
+        var(--mushaf-mobile-fit-guard, 1) * 1.17
+    );
   }
 
   body[data-page-mode='mushaf'].mushaf-mobile-reflow-zoom .qcf-line {
@@ -448,11 +519,103 @@
     max-width: 100%;
     vertical-align: baseline;
   }
+
+  body[data-page-mode='mushaf'].mushaf-mobile-reflow-zoom:not(.mushaf-zoomed)
+    .qcf-page[data-mushaf-compact='0']
+    .qcf-line:not(.qcf-line-deco) {
+    display: flex;
+    width: max-content;
+    max-width: none;
+    min-height: 0;
+    justify-self: center;
+    justify-content: center;
+    margin-inline: auto;
+    line-height: 1;
+    white-space: nowrap;
+    overflow: visible;
+    transform: translateX(var(--qcf-line-shift, 0px)) scaleX(var(--qcf-line-scale, 1)) !important;
+    transform-origin: center center;
+    text-align: center;
+    text-align-last: center;
+  }
+
+  body[data-page-mode='mushaf'].mushaf-mobile-reflow-zoom:not(.mushaf-zoomed) .qcf-page[data-mushaf-compact='1'] {
+    display: grid;
+    grid-template-rows: repeat(15, minmax(0, 1fr));
+    height: calc(
+      var(--mushaf-mobile-sheet-h, 100vh) - clamp(14px, 4.2vw, 18px) - clamp(18px, 5.3vw, 24px)
+    );
+    min-height: calc(
+      var(--mushaf-mobile-sheet-h, 100vh) - clamp(14px, 4.2vw, 18px) - clamp(18px, 5.3vw, 24px)
+    );
+    max-height: calc(
+      var(--mushaf-mobile-sheet-h, 100vh) - clamp(14px, 4.2vw, 18px) - clamp(18px, 5.3vw, 24px)
+    );
+    overflow: hidden;
+    padding-inline: 0;
+    padding-block-start: 12px;
+    line-height: 1;
+    text-align: center;
+    font-size: calc(var(--mushaf-qcf-size) * var(--mushaf-qcf-fit, 1) * var(--mushaf-mobile-fit-guard, 1));
+  }
+
+  body[data-page-mode='mushaf'].mushaf-mobile-reflow-zoom:not(.mushaf-zoomed) .qcf-page[data-mushaf-compact='1'] .qcf-line {
+    display: flex;
+    width: max-content;
+    max-width: none;
+    min-height: 0;
+    margin-inline: auto;
+    line-height: 1;
+    white-space: nowrap;
+    overflow: visible;
+    transform: translateX(var(--qcf-line-shift, 0px)) scaleX(var(--qcf-line-scale, 1)) !important;
+    text-align: center;
+    text-align-last: center;
+  }
+
+  body[data-page-mode='mushaf'].mushaf-mobile-reflow-zoom:not(.mushaf-zoomed) .qcf-page[data-mushaf-compact='1'] .qcf-line-deco {
+    width: fit-content;
+    margin-block: 0;
+    transform: scaleX(1) !important;
+  }
+
+  body[data-page-mode='mushaf'].mushaf-mobile-reflow-zoom:not(.mushaf-zoomed) .qcf-page[data-mushaf-compact-section] .qcf-line[data-mushaf-compact-section-line='1'] {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    margin-inline: auto;
+    line-height: 1.55;
+    white-space: nowrap;
+    text-align: center;
+    text-align-last: center;
+    transform: none !important;
+  }
+
+  body[data-page-mode='mushaf'].mushaf-mobile-reflow-zoom:not(.mushaf-zoomed) .qcf-page[data-mushaf-compact-section] .qcf-line-deco[data-mushaf-compact-section-line='1'] {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-block: 0.16em;
+  }
+
+  body[data-page-mode='mushaf'].mushaf-mobile-reflow-zoom:not(.mushaf-zoomed) .qcf-page[data-mushaf-compact-section] .qcf-line[data-mushaf-compact-section-start='1'] {
+    margin-block-start: clamp(20px, 5.8vh, 46px);
+  }
+
+  body[data-page-mode='mushaf'].mushaf-mobile-reflow-zoom:not(.mushaf-zoomed) .qcf-page[data-mushaf-compact-section] .qcf-line[data-mushaf-compact-section-end='1'] {
+    margin-block-end: clamp(20px, 5.8vh, 46px);
+  }
 }
 
 @media (max-width: 420px) {
   body[data-page-mode='mushaf'] {
     --mushaf-mobile-fit-guard: 0.92;
+  }
+}
+
+@media (max-width: 359px) {
+  body[data-page-mode='mushaf'] .mushaf-toolbar .ui-select-mushaf {
+    display: none;
   }
 }
 

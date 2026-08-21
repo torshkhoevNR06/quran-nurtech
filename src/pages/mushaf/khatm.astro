@@ -1,0 +1,32 @@
+---
+import Base from '../../layouts/Base.astro';
+import { icons } from '../../lib/icons';
+
+const title = 'Дуа хатма - Коран онлайн';
+const description = 'Спокойный экран после завершения чтения всего Корана: благодарность, дуа и быстрый возврат к мусхафу.';
+---
+
+<Base {title} {description} wide>
+  <section class="page-hero mushaf-khatm">
+    <p class="eyebrow">Завершение чтения</p>
+    <h1>Дуа хатма</h1>
+    <p>
+      Альхамдулиллях. Сделайте короткую паузу, попросите Аллаха принять чтение и закрепить Коран в сердце.
+    </p>
+    <div class="mushaf-khatm-dua" dir="rtl" lang="ar">
+      اللهم تقبل منا تلاوة كتابك، واجعل القرآن نور قلوبنا، وشفاء صدورنا، وهاديا لنا إلى صراطك المستقيم.
+    </div>
+    <p class="mushaf-khatm-ru">
+      О Аллах, прими от нас чтение Твоей Книги, сделай Коран светом наших сердец, исцелением груди и
+      путеводителем к Твоему прямому пути.
+    </p>
+    <div class="actions">
+      <a class="btn primary" href="/mushaf/1">
+        <span class="ui-inline-icon" set:html={icons.mushaf} /> Начать заново
+      </a>
+      <a class="btn" href="/mushaf/604">
+        <span class="ui-inline-icon" set:html={icons.arrowLeft} /> Последняя страница
+      </a>
+    </div>
+  </section>
+</Base>

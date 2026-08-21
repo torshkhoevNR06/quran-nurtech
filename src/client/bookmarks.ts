@@ -75,9 +75,17 @@ function rememberLast() {
 
 export function initContinue() {
   const btn = $<HTMLAnchorElement>('[data-continue]');
+  const mushaf = LS.get<{ page: number; ayah?: string | null } | null>(K.mushafLast, null);
   const readpos = LS.get<{ s: number; a: number } | null>(K.readpos, null);
   const last = LS.get<{ s: number; a: number } | null>(K.last, null);
   const pos = readpos && readpos.s ? readpos : last;
+  if (btn && mushaf?.page) {
+    btn.href = `/mushaf/${mushaf.page}${mushaf.ayah ? `?ayah=${encodeURIComponent(mushaf.ayah)}` : ''}`;
+    btn.classList.remove('hide');
+    btn.title = `Продолжить: страница ${mushaf.page}`;
+    rememberLast();
+    return;
+  }
   if (btn && pos && pos.s) {
     const ayah = pos.a || 1;
     btn.href = `/surah/${pos.s}#ayah-${ayah}`;

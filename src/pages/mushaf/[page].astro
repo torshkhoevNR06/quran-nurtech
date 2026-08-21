@@ -1,6 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
 import { icons } from '../../lib/icons';
+import { getSurahs } from '../../lib/quran';
 import {
   BASMALA,
   getMushafMeta,
@@ -26,7 +27,6 @@ const nextPage = pageNum < MUSHAF_TOTAL_PAGES ? pageNum + 1 : null;
 const title = `Мусхаф, страница ${pageNum} — Коран онлайн`;
 const description = `Оригинальная страничная раскладка мусхафа с цветным таджвидом, страница ${pageNum} из ${MUSHAF_TOTAL_PAGES}: QCF V4-глифы, 15 строк и пословная разметка.`;
 const linesByNumber = new Map(page.lines.map((line) => [line.n, line]));
-const slots = Array.from({ length: 15 }, (_, i) => i + 1);
 const starts = page.starts || [];
 const startByLine = new Map(starts.map((start) => [start.line, start]));
 const decorationByLine = new Map<number, { type: 'surah' | 'basmala'; surah: number }>();
@@ -42,6 +42,61 @@ for (const start of starts) {
 }
 const occupiedLineNumbers = [...page.lines.map((line) => line.n), ...decorationByLine.keys()];
 const firstOccupiedLine = occupiedLineNumbers.length ? Math.min(...occupiedLineNumbers) : 1;
+const lastOccupiedLine = occupiedLineNumbers.length ? Math.max(...occupiedLineNumbers) : 15;
+const occupiedLineSpan = Math.max(1, lastOccupiedLine - firstOccupiedLine + 1);
+const surahCounts = new Map(getSurahs().map((surah) => [surah.n, surah.c]));
+const pageAyahKeys = page.lines.flatMap((line) => line.w.map((word) => word.k));
+const pageSurahNumbers = Array.from(new Set(pageAyahKeys.map((key) => Number(key.split(':')[0]))));
+const lineSurahNumbers = new Map(
+  page.lines.map((line) => [line.n, Array.from(new Set(line.w.map((word) => Number(word.k.split(':')[0]))))])
+);
+const lineHasSurah = (lineNumber: number, surahNumber: number) => lineSurahNumbers.get(lineNumber)?.includes(surahNumber) ?? false;
+const getSurahLineNumbers = (surahNumber: number, fromLine = 1) =>
+  page.lines.filter((line) => line.n >= fromLine && lineHasSurah(line.n, surahNumber)).map((line) => line.n);
+const getDecorationLineNumbers = (surahNumber: number) =>
+  Array.from(decorationByLine.entries())
+    .filter(([, decoration]) => decoration.surah === surahNumber)
+    .map(([lineNumber]) => lineNumber);
+const onlySurahOnPage = pageSurahNumbers.length === 1 ? pageSurahNumbers[0] : null;
+const isCompactStandalonePage =
+  !!onlySurahOnPage &&
+  starts.some((start) => start.s === onlySurahOnPage) &&
+  occupiedLineSpan <= 10;
+const compactLineOffset = isCompactStandalonePage
+  ? Math.max(0, Math.floor((15 - occupiedLineSpan) / 2) - (firstOccupiedLine - 1))
+  : 0;
+const completeShortSurahSections = starts
+  .map((start) => {
+    const ayahNumbers = page.lines.flatMap((line) =>
+      line.n >= start.line
+        ? line.w.filter((word) => Number(word.k.split(':')[0]) === start.s).map((word) => Number(word.k.split(':')[1]))
+        : []
+    );
+    const surahLineNumbers = getSurahLineNumbers(start.s, start.line);
+    const sectionLineNumbers = [...getDecorationLineNumbers(start.s), ...surahLineNumbers];
+    const surahAyahCount = surahCounts.get(start.s) ?? 0;
+    if (
+      !surahAyahCount ||
+      surahAyahCount > 12 ||
+      !ayahNumbers.length ||
+      !surahLineNumbers.length ||
+      Math.min(...ayahNumbers) !== 1 ||
+      Math.max(...ayahNumbers) !== surahAyahCount
+    ) {
+      return null;
+    }
+    return {
+      surah: start.s,
+      first: Math.min(...sectionLineNumbers),
+      last: Math.max(...sectionLineNumbers),
+      lines: new Set(sectionLineNumbers),
+    };
+  })
+  .filter(Boolean) as Array<{ surah: number; first: number; last: number; lines: Set<number> }>;
+const compactSection = !isCompactStandalonePage && completeShortSurahSections.length === 1 ? completeShortSurahSections[0] : null;
+const collapseTrailingEmptyLines = !isCompactStandalonePage && !compactSection && firstOccupiedLine === 1 && lastOccupiedLine < 15;
+const visibleLineCount = collapseTrailingEmptyLines ? lastOccupiedLine : 16 - firstOccupiedLine;
+const slots = Array.from({ length: collapseTrailingEmptyLines ? lastOccupiedLine : 15 }, (_, i) => i + 1);
 const lineNumbers = page.lines.map((line) => line.n).sort((a, b) => a - b);
 const centeredLines = new Set(
   lineNumbers.filter((lineNumber, i) => {
@@ -57,7 +112,6 @@ const surahLabel = starts.length
 const fontCss = mushafTajweedFontCss(pageNum);
 const fontFamily = mushafTajweedFontFamily(pageNum);
 const fontAssets = mushafTajweedFontAssets(pageNum);
-const nextFontAssets = nextPage ? mushafTajweedFontAssets(nextPage) : null;
 const skeletonLines = ['62%', '78%', '70%', '84%', '74%', '88%', '80%', '86%', '76%', '82%', '68%', '78%'];
 
 // навигация по сурам/джузам: текущие сура и джуз для предвыбора + список джузов→страниц
@@ -105,6 +159,16 @@ const juzList = Array.from({ length: 30 }, (_, i) => i + 1).map((n) => ({
         <a class={`icon-btn ${nextPage ? '' : 'disabled'}`} href={nextPage ? `/mushaf/${nextPage}` : undefined} aria-label="Следующая страница" title="Следующая страница" set:html={icons.arrowRight} />
       </div>
 
+      <div class="mushaf-mode-group" aria-label="Режим чтения">
+        <a class="mushaf-mode-btn on" href={`/mushaf/${pageNum}`} aria-current="page" title="Мусхаф">Мусхаф</a>
+        <a class="mushaf-mode-btn" href={`/surah/${currentSurah}`} title="Режим суры">Сура</a>
+      </div>
+
+      <button type="button" class="icon-btn" data-mushaf-ayah-jump aria-label="Перейти к аяту" title="Перейти к аяту" set:html={icons.search}></button>
+      <button type="button" class="icon-btn" data-mushaf-style-cycle aria-label="Сменить стиль мусхафа" title="Стиль страницы" set:html={icons.compare}></button>
+      <button type="button" class="icon-btn" data-mushaf-tajweed-toggle aria-pressed="true" aria-label="Таджвид вкл/выкл" title="Таджвид" set:html={icons.theme}></button>
+      <a class="icon-btn" data-mushaf-continue href={`/mushaf/${pageNum}`} aria-label="Продолжить чтение" title="Продолжить" set:html={icons.continue}></a>
+
       <div class="mushaf-zoom" aria-label="Масштаб страницы">
         <button type="button" class="icon-btn mushaf-zoom-btn" data-mushaf-zoom-step="-10" aria-label="Уменьшить масштаб" title="Уменьшить" set:html={icons.minus}></button>
         <input type="range" min="100" max="300" step="5" value="100" data-mushaf-zoom-range aria-label="Масштаб страницы" />
@@ -115,12 +179,10 @@ const juzList = Array.from({ length: 30 }, (_, i) => i + 1).map((n) => ({
       <button type="button" class="icon-btn" data-mushaf-immersive aria-label="Режим чтения на весь экран" title="Во весь экран (режим чтения)">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3M16 3h3a2 2 0 0 1 2 2v3M8 21H5a2 2 0 0 1-2-2v-3M16 21h3a2 2 0 0 0 2-2v-3"/></svg>
       </button>
-      {nextPage && (
-        <button type="button" class="mushaf-preload-btn" data-mushaf-preload-next={nextPage} data-mushaf-preload-font={nextFontAssets?.colrUrl} aria-label={`Подгрузить страницу ${nextPage}`} title={`Подгрузить страницу ${nextPage}`}>
-          <span class="ui-inline-icon" set:html={icons.download} />
-          <span>Подгрузить</span>
-        </button>
-      )}
+      <button type="button" class="mushaf-preload-btn" data-mushaf-preload-all aria-label="Подгрузить весь мусхаф и суры" title="Подгрузить весь мусхаф и суры">
+        <span class="ui-inline-icon" set:html={icons.download} />
+        <span>Подгрузить</span>
+      </button>
     </nav>
 
     <div class="mushaf-preload-status" data-mushaf-preload-status hidden aria-live="polite">
@@ -155,32 +217,53 @@ const juzList = Array.from({ length: 30 }, (_, i) => i + 1).map((n) => ({
         <b>{pageNum}</b>
       </div>
 
-      <div class="qcf-page is-font-loading" dir="rtl" data-mushaf-page={pageNum} data-mushaf-font-url={fontAssets.colrUrl} data-mushaf-font-family={fontFamily} style={`--mushaf-visible-lines:${16 - firstOccupiedLine}`}>
+      <div
+        class="qcf-page is-font-loading"
+        dir="rtl"
+        data-mushaf-page={pageNum}
+        data-mushaf-font-url={fontAssets.colrUrl}
+        data-mushaf-font-family={fontFamily}
+        data-mushaf-compact={compactLineOffset > 0 ? '1' : '0'}
+        data-mushaf-compact-section={compactSection ? String(compactSection.surah) : undefined}
+        data-mushaf-visible-lines={visibleLineCount}
+        style={`--mushaf-visible-lines:${visibleLineCount};--mushaf-compact-offset:${compactLineOffset}`}
+      >
         <div class="mushaf-font-skeleton" aria-hidden="true">
           <span class="mushaf-skeleton-title"></span>
           {skeletonLines.map((width) => <span class="mushaf-skeleton-line" style={`--skeleton-line-w:${width}`}></span>)}
         </div>
         {
           slots.map((lineNumber) => {
-            const line = linesByNumber.get(lineNumber);
-            const decoration = decorationByLine.get(lineNumber);
+            const sourceLineNumber = lineNumber - compactLineOffset;
+            const line = sourceLineNumber > 0 ? linesByNumber.get(sourceLineNumber) : undefined;
+            const decoration = sourceLineNumber > 0 ? decorationByLine.get(sourceLineNumber) : undefined;
+            const isCompactSectionLine = !!compactSection?.lines.has(sourceLineNumber);
+            const compactSectionAttrs = {
+              'data-mushaf-compact-section-line': isCompactSectionLine ? '1' : undefined,
+              'data-mushaf-compact-section-start': sourceLineNumber === compactSection?.first ? '1' : undefined,
+              'data-mushaf-compact-section-end': sourceLineNumber === compactSection?.last ? '1' : undefined,
+            };
             if (decoration?.type === 'surah') {
               const surah = getMushafSurah(meta, decoration.surah);
               return (
-                <div class="qcf-line qcf-line-deco qcf-surah-line" data-line={lineNumber}>
+                <div class="qcf-line qcf-line-deco qcf-surah-line" data-line={sourceLineNumber} {...compactSectionAttrs}>
                   <span class="qcf-surah-title">{surah?.na || `سورة ${decoration.surah}`}</span>
                 </div>
               );
             }
             if (decoration?.type === 'basmala') {
               return (
-                <div class="qcf-line qcf-line-deco qcf-basmala-line" data-line={lineNumber}>
+                <div class="qcf-line qcf-line-deco qcf-basmala-line" data-line={sourceLineNumber} {...compactSectionAttrs}>
                   <span class="qcf-basmala">{BASMALA}</span>
                 </div>
               );
             }
             return (
-              <div class={`qcf-line ${line ? '' : 'is-empty'} ${lineNumber < firstOccupiedLine ? 'is-leading-empty' : ''} ${centeredLines.has(lineNumber) ? 'center' : ''}`} data-line={lineNumber}>
+              <div
+                class={`qcf-line ${line ? '' : 'is-empty'} ${!compactLineOffset && lineNumber < firstOccupiedLine ? 'is-leading-empty' : ''} ${centeredLines.has(sourceLineNumber) ? 'center' : ''}`}
+                data-line={sourceLineNumber > 0 ? sourceLineNumber : lineNumber}
+                {...compactSectionAttrs}
+              >
                 {line?.w.map((word) => (
                   <span
                     class={`qcf-word ${word.e ? 'qcf-word-end' : ''}`}
@@ -205,8 +288,8 @@ const juzList = Array.from({ length: 30 }, (_, i) => i + 1).map((n) => ({
       <a class="btn" href="/surah/1">
         <span class="ui-inline-icon" set:html={icons.book} /> Суры
       </a>
-      <a class={`btn primary ${nextPage ? '' : 'disabled'}`} href={nextPage ? `/mushaf/${nextPage}` : undefined}>
-        Вперёд <span class="ui-inline-icon" set:html={icons.arrowRight} />
+      <a class={`btn primary ${nextPage ? '' : ''}`} href={nextPage ? `/mushaf/${nextPage}` : '/mushaf/khatm'}>
+        {nextPage ? 'Вперёд' : 'Дуа хатма'} <span class="ui-inline-icon" set:html={nextPage ? icons.arrowRight : icons.book} />
       </a>
     </nav>
   </div>

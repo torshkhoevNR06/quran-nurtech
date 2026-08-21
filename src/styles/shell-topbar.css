@@ -171,6 +171,124 @@ html[data-theme='sepia'] .brand-mark img {
   flex: 1;
 }
 
+.topbar-preload {
+  position: relative;
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.topbar-preload[hidden] {
+  display: none !important;
+}
+
+.topbar-preload-btn {
+  position: relative;
+}
+
+.topbar-preload-btn::after {
+  content: '';
+  position: absolute;
+  right: 8px;
+  top: 8px;
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  background: var(--accent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 16%, transparent);
+}
+
+.topbar-preload.is-running .topbar-preload-btn svg {
+  animation: preloadSpin 1.05s linear infinite;
+}
+
+.topbar-preload.is-done .topbar-preload-btn::after {
+  background: var(--accent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 16%, transparent);
+}
+
+.topbar-preload.is-error .topbar-preload-btn::after {
+  background: var(--danger);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--danger) 16%, transparent);
+}
+
+@keyframes preloadSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.topbar-preload-popover {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  z-index: 75;
+  width: min(320px, calc(100vw - 28px));
+  padding: 12px;
+  display: grid;
+  gap: 8px;
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  background: var(--glass-bg-strong);
+  color: var(--ink);
+  box-shadow: var(--glass-elev);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+  opacity: 0;
+  transform: translateY(-4px);
+  pointer-events: none;
+  transition: opacity 0.16s ease, transform 0.16s ease;
+}
+
+.topbar-preload:hover .topbar-preload-popover,
+.topbar-preload:focus-within .topbar-preload-popover,
+.topbar-preload.is-open .topbar-preload-popover {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.topbar-preload-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: var(--text-sm);
+  line-height: 1.2;
+}
+
+.topbar-preload-head b,
+.topbar-preload-head span {
+  white-space: nowrap;
+}
+
+.topbar-preload-line {
+  color: var(--ink-soft);
+  font-size: var(--text-xs);
+  line-height: 1.35;
+}
+
+.topbar-preload-line.is-muted {
+  color: var(--ink-muted);
+}
+
+.topbar-preload-meter {
+  height: 6px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--ink) 10%, transparent);
+}
+
+.topbar-preload-meter span {
+  display: block;
+  width: 0%;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--accent);
+  transition: width 0.2s ease;
+}
+
 /* быстрый переход + поиск */
 .quick {
   display: flex;
@@ -235,6 +353,28 @@ html[data-theme='sepia'] .brand-mark img {
 
   body[data-page-mode='mushaf'] .topbar-inner.is-mushaf .t-opt {
     display: inline-flex !important;
+  }
+
+  body[data-page-mode='mushaf'] .topbar-preload-popover {
+    position: fixed;
+    top: calc(env(safe-area-inset-top) + 68px);
+    right: auto;
+    left: 50vw;
+    width: min(300px, calc(100vw - 18px));
+    transform: translate(-50%, -4px);
+  }
+
+  body[data-page-mode='mushaf'] .topbar-preload:not(.is-open):hover .topbar-preload-popover,
+  body[data-page-mode='mushaf'] .topbar-preload:not(.is-open):focus-within .topbar-preload-popover {
+    opacity: 0;
+    transform: translate(-50%, -4px);
+    pointer-events: none;
+  }
+
+  body[data-page-mode='mushaf'] .topbar-preload:hover .topbar-preload-popover,
+  body[data-page-mode='mushaf'] .topbar-preload:focus-within .topbar-preload-popover,
+  body[data-page-mode='mushaf'] .topbar-preload.is-open .topbar-preload-popover {
+    transform: translate(-50%, 0);
   }
 }
 @media (max-width: 560px) {

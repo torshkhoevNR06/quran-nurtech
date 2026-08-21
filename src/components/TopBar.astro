@@ -35,6 +35,32 @@ const showQuick = true;
 
       <TopBarBookmarks />
 
+      {isMushaf && (
+        <div class="topbar-preload" data-mushaf-preload-indicator hidden>
+          <button
+            type="button"
+            class="icon-btn topbar-preload-btn"
+            data-mushaf-preload-popover-toggle
+            aria-label="Статус подгрузки мусхафа"
+            aria-expanded="false"
+            aria-controls="mushaf-preload-popover"
+            title="Статус подгрузки"
+            set:html={icons.download}
+          />
+          <div class="topbar-preload-popover" id="mushaf-preload-popover" role="status">
+            <div class="topbar-preload-head">
+              <b data-mushaf-preload-top-title>Подгрузка мусхафа</b>
+              <span data-mushaf-preload-top-percent>0%</span>
+            </div>
+            <div class="topbar-preload-line" data-mushaf-preload-top-detail>Подготовка...</div>
+            <div class="topbar-preload-line is-muted" data-mushaf-preload-top-size>Считаем объём</div>
+            <div class="topbar-preload-meter" aria-hidden="true">
+              <span data-mushaf-preload-top-bar></span>
+            </div>
+          </div>
+        </div>
+      )}
+
       <TopBarContinue isReader={isReader} />
     </div>
   </div>
