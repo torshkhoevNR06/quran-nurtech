@@ -18,6 +18,7 @@ body.mushaf-immersive .drawer-backdrop,
 body.mushaf-immersive .mobile-tabbar,
 body.mushaf-immersive .mushaf-bottom,
 body.mushaf-immersive .mushaf-zoom-fab,
+body.mushaf-immersive .mushaf-mobile-controls,
 body.mushaf-immersive .mushaf-toolbar {
   display: none !important;
 }

@@ -108,6 +108,7 @@
   --sys-material-strong: rgba(255, 255, 255, 0.92);
   --sys-label: #1d1d1f;
   --sys-secondary-label: rgba(60, 60, 67, 0.72);
+  --ink-muted: rgba(60, 60, 67, 0.58);
   --sys-tertiary-label: rgba(60, 60, 67, 0.48);
   --sys-quaternary-label: rgba(60, 60, 67, 0.28);
   --sys-separator: rgba(60, 60, 67, 0.18);
@@ -157,7 +158,7 @@
   --accent-soft: color-mix(in srgb, var(--sys-accent) 11%, transparent);
   --glass-bg: var(--sys-material);
   --glass-bg-strong: var(--sys-material-strong);
-  --glass-border: rgba(255, 255, 255, 0.54);
+  --glass-border: rgba(60, 60, 67, 0.18);
   --glass-active: var(--sys-fill-strong);
   --glass-shadow: rgba(0, 0, 0, 0.12);
   --glass-spec: rgba(255, 255, 255, 0.7);
@@ -195,6 +196,7 @@
   --sys-material-strong: rgba(28, 32, 39, 0.94);
   --sys-label: rgba(245, 247, 250, 0.94);
   --sys-secondary-label: rgba(235, 240, 247, 0.68);
+  --ink-muted: rgba(235, 240, 247, 0.56);
   --sys-tertiary-label: rgba(235, 240, 247, 0.42);
   --sys-quaternary-label: rgba(235, 240, 247, 0.24);
   --sys-separator: rgba(235, 240, 247, 0.12);
@@ -226,6 +228,7 @@
   --sys-material-strong: rgba(255, 248, 236, 0.94);
   --sys-label: #30291f;
   --sys-secondary-label: rgba(63, 52, 38, 0.72);
+  --ink-muted: rgba(63, 52, 38, 0.58);
   --sys-tertiary-label: rgba(63, 52, 38, 0.46);
   --sys-quaternary-label: rgba(63, 52, 38, 0.25);
   --sys-separator: rgba(90, 70, 44, 0.15);
@@ -233,6 +236,7 @@
   --sys-fill-strong: rgba(90, 70, 44, 0.16);
   --sys-fill-vibrant: rgba(90, 70, 44, 0.22);
   --sys-accent: #786b58;
+  --glass-border: rgba(90, 70, 44, 0.18);
   --mushaf-paper: #fbf5e8;
   --mushaf-ink: #241f18;
   --mushaf-paper-line: #ded0b7;

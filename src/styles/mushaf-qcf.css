@@ -164,7 +164,7 @@
 .qcf-word {
   display: inline-block;
   flex: none;
-  font-family: var(--mushaf-page-font), var(--ar), serif;
+  font-family: var(--mushaf-page-font), var(--mushaf-page-font-fallback, var(--font-arabic-ui)), serif;
   line-height: 1;
   speak: none;
   -webkit-font-smoothing: antialiased;

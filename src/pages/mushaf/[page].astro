@@ -6,6 +6,7 @@ import {
   BASMALA,
   getMushafMeta,
   getMushafPage,
+  getMushafPagePrimarySurah,
   getMushafSurah,
   mushafTajweedFontFamily,
   mushafTajweedFontCss,
@@ -95,8 +96,14 @@ const completeShortSurahSections = starts
   .filter(Boolean) as Array<{ surah: number; first: number; last: number; lines: Set<number> }>;
 const compactSection = !isCompactStandalonePage && completeShortSurahSections.length === 1 ? completeShortSurahSections[0] : null;
 const collapseTrailingEmptyLines = !isCompactStandalonePage && !compactSection && firstOccupiedLine === 1 && lastOccupiedLine < 15;
-const visibleLineCount = collapseTrailingEmptyLines ? lastOccupiedLine : 16 - firstOccupiedLine;
-const slots = Array.from({ length: collapseTrailingEmptyLines ? lastOccupiedLine : 15 }, (_, i) => i + 1);
+const renderedFirstLine = isCompactStandalonePage ? 1 : firstOccupiedLine;
+const renderedLastLine = collapseTrailingEmptyLines ? lastOccupiedLine : 15;
+const visibleLineCount = isCompactStandalonePage
+  ? 15
+  : Math.max(1, renderedLastLine - renderedFirstLine + 1);
+const slots = isCompactStandalonePage
+  ? Array.from({ length: 15 }, (_, i) => i + 1)
+  : Array.from({ length: visibleLineCount }, (_, i) => renderedFirstLine + i);
 const lineNumbers = page.lines.map((line) => line.n).sort((a, b) => a - b);
 const centeredLines = new Set(
   lineNumbers.filter((lineNumber, i) => {
@@ -112,10 +119,77 @@ const surahLabel = starts.length
 const fontCss = mushafTajweedFontCss(pageNum);
 const fontFamily = mushafTajweedFontFamily(pageNum);
 const fontAssets = mushafTajweedFontAssets(pageNum);
-const skeletonLines = ['62%', '78%', '70%', '84%', '74%', '88%', '80%', '86%', '76%', '82%', '68%', '78%'];
+const skeletonKind = isCompactStandalonePage ? 'compact' : compactSection ? 'section' : 'dense';
+const getSkeletonKindForPage = (n: number) => {
+  const item = getMushafPage(n);
+  const itemStarts = item.starts || [];
+  const itemDecorationByLine = new Map<number, { type: 'surah' | 'basmala'; surah: number }>();
+  for (const start of itemStarts) {
+    if (start.s === 1 || start.s === 9) {
+      itemDecorationByLine.set(Math.max(1, start.line - 1), { type: 'surah', surah: start.s });
+    } else {
+      itemDecorationByLine.set(Math.max(1, start.line - 2), { type: 'surah', surah: start.s });
+      itemDecorationByLine.set(Math.max(1, start.line - 1), { type: 'basmala', surah: start.s });
+    }
+  }
+  const itemOccupiedLineNumbers = [...item.lines.map((line) => line.n), ...itemDecorationByLine.keys()];
+  const itemFirstOccupiedLine = itemOccupiedLineNumbers.length ? Math.min(...itemOccupiedLineNumbers) : 1;
+  const itemLastOccupiedLine = itemOccupiedLineNumbers.length ? Math.max(...itemOccupiedLineNumbers) : 15;
+  const itemOccupiedLineSpan = Math.max(1, itemLastOccupiedLine - itemFirstOccupiedLine + 1);
+  const itemAyahKeys = item.lines.flatMap((line) => line.w.map((word) => word.k));
+  const itemSurahNumbers = Array.from(new Set(itemAyahKeys.map((key) => Number(key.split(':')[0]))));
+  const itemOnlySurah = itemSurahNumbers.length === 1 ? itemSurahNumbers[0] : null;
+  const itemStandalone =
+    !!itemOnlySurah &&
+    itemStarts.some((start) => start.s === itemOnlySurah) &&
+    itemOccupiedLineSpan <= 10;
+  if (itemStandalone) return 'compact';
+
+  const itemLineSurahs = new Map(
+    item.lines.map((line) => [line.n, Array.from(new Set(line.w.map((word) => Number(word.k.split(':')[0]))))])
+  );
+  const itemHasSurah = (lineNumber: number, surahNumber: number) => itemLineSurahs.get(lineNumber)?.includes(surahNumber) ?? false;
+  const sections = itemStarts
+    .map((start) => {
+      const ayahNumbers = item.lines.flatMap((line) =>
+        line.n >= start.line
+          ? line.w.filter((word) => Number(word.k.split(':')[0]) === start.s).map((word) => Number(word.k.split(':')[1]))
+          : []
+      );
+      const surahLineNumbers = item.lines.filter((line) => line.n >= start.line && itemHasSurah(line.n, start.s)).map((line) => line.n);
+      const surahAyahCount = surahCounts.get(start.s) ?? 0;
+      if (
+        !surahAyahCount ||
+        surahAyahCount > 12 ||
+        !ayahNumbers.length ||
+        !surahLineNumbers.length ||
+        Math.min(...ayahNumbers) !== 1 ||
+        Math.max(...ayahNumbers) !== surahAyahCount
+      ) {
+        return null;
+      }
+      return start.s;
+    })
+    .filter(Boolean);
+  return sections.length === 1 ? 'section' : 'dense';
+};
+const skeletonCache = globalThis as typeof globalThis & {
+  __quranNurtechMushafSkeletonKindByPage?: Record<string, string>;
+};
+const skeletonKindByPage =
+  skeletonCache.__quranNurtechMushafSkeletonKindByPage ??
+  (skeletonCache.__quranNurtechMushafSkeletonKindByPage = Object.fromEntries(
+    Array.from({ length: MUSHAF_TOTAL_PAGES }, (_, i) => [String(i + 1), getSkeletonKindForPage(i + 1)])
+  ));
+const skeletonLines =
+  skeletonKind === 'compact'
+    ? ['48%', '58%', '64%', '52%', '44%', '56%']
+    : skeletonKind === 'section'
+      ? ['50%', '66%', '58%', '72%', '54%', '60%', '46%', '64%', '52%']
+      : ['92%', '88%', '94%', '86%', '91%', '89%', '95%', '87%', '93%', '90%', '84%', '92%', '88%', '96%', '82%'];
 
 // навигация по сурам/джузам: текущие сура и джуз для предвыбора + список джузов→страниц
-const currentSurah = starts[0]?.s ?? Number(page.lines[0]?.w[0]?.k.split(':')[0]) ?? 1;
+const currentSurah = getMushafPagePrimarySurah(page);
 const currentJuz = meta.pageJuz[String(pageNum)] ?? null;
 const juzList = Array.from({ length: 30 }, (_, i) => i + 1).map((n) => ({
   n,
@@ -125,6 +199,7 @@ const juzList = Array.from({ length: 30 }, (_, i) => i + 1).map((n) => ({
 
 <Base {title} {description} wide pageMode="mushaf">
   <style is:inline set:html={fontCss}></style>
+  <script id="mushaf-skeleton-meta" type="application/json" set:html={JSON.stringify(skeletonKindByPage)}></script>
 
   <div class="mushaf-reader">
     <nav class="mushaf-toolbar container" aria-label="Навигация по мусхафу">
@@ -165,9 +240,9 @@ const juzList = Array.from({ length: 30 }, (_, i) => i + 1).map((n) => ({
       </div>
 
       <button type="button" class="icon-btn" data-mushaf-ayah-jump aria-label="Перейти к аяту" title="Перейти к аяту" set:html={icons.search}></button>
-      <button type="button" class="icon-btn" data-mushaf-style-cycle aria-label="Сменить стиль мусхафа" title="Стиль страницы" set:html={icons.compare}></button>
-      <button type="button" class="icon-btn" data-mushaf-tajweed-toggle aria-pressed="true" aria-label="Таджвид вкл/выкл" title="Таджвид" set:html={icons.theme}></button>
-      <a class="icon-btn" data-mushaf-continue href={`/mushaf/${pageNum}`} aria-label="Продолжить чтение" title="Продолжить" set:html={icons.continue}></a>
+      <button type="button" class="icon-btn" data-mushaf-style-cycle aria-label="Сменить цветовую тему мусхафа" title="Цветовая тема мусхафа" set:html={icons.compare}></button>
+      <button type="button" class="icon-btn" data-mushaf-tajweed-toggle aria-pressed="true" aria-label="Таджвид вкл/выкл" title="Таджвид" set:html={icons.tajweed}></button>
+      <a class="icon-btn" data-mushaf-continue href={`/surah/${currentSurah}`} aria-label="Открыть текущую суру" title="Открыть суру" set:html={icons.continue}></a>
 
       <div class="mushaf-zoom" aria-label="Масштаб страницы">
         <button type="button" class="icon-btn mushaf-zoom-btn" data-mushaf-zoom-step="-10" aria-label="Уменьшить масштаб" title="Уменьшить" set:html={icons.minus}></button>
@@ -201,6 +276,69 @@ const juzList = Array.from({ length: 30 }, (_, i) => i + 1).map((n) => ({
       <button type="button" class="icon-btn" data-mushaf-zoom-step="-10" aria-label="Уменьшить масштаб" title="Уменьшить" set:html={icons.minus}></button>
     </div>
 
+    <div class="mushaf-mobile-controls" data-mushaf-mobile-controls aria-label="Действия мусхафа">
+      <div class="mushaf-mobile-menu" id="mushaf-mobile-menu" data-mushaf-mobile-menu aria-hidden="true">
+        <div class="mushaf-mobile-menu-card">
+          <div class="mushaf-mobile-page-actions" aria-label="Переключение страниц">
+            <a class={`mushaf-mobile-page-btn ${prevPage ? '' : 'disabled'}`} data-mushaf-mobile-prev href={prevPage ? `/mushaf/${prevPage}` : undefined} aria-label="Предыдущая страница" title="Предыдущая страница" set:html={icons.arrowLeft} />
+            <form class="mushaf-jump mushaf-mobile-jump" action="/mushaf/1" data-mushaf-jump>
+              <input name="page" type="number" inputmode="numeric" min="1" max={MUSHAF_TOTAL_PAGES} value={pageNum} aria-label="Номер страницы" />
+              <span>/ {MUSHAF_TOTAL_PAGES}</span>
+            </form>
+            <a class={`mushaf-mobile-page-btn ${nextPage ? '' : 'disabled'}`} data-mushaf-mobile-next href={nextPage ? `/mushaf/${nextPage}` : undefined} aria-label="Следующая страница" title="Следующая страница" set:html={icons.arrowRight} />
+          </div>
+
+          <div class="mushaf-mobile-selects">
+            <select class="mushaf-nav-sel" data-mushaf-goto aria-label="Перейти к суре">
+              <option value="">Сура…</option>
+              {
+                meta.suraPages.map((s) => (
+                  <option value={s.p} selected={s.n === currentSurah ? true : undefined}>
+                    {s.n}. {s.nr}
+                  </option>
+                ))
+              }
+            </select>
+            <select class="mushaf-nav-sel" data-mushaf-goto aria-label="Перейти к джузу">
+              <option value="">Джуз…</option>
+              {
+                juzList.map((j) => (
+                  <option value={j.p} selected={j.n === currentJuz ? true : undefined}>
+                    Джуз {j.n}
+                  </option>
+                ))
+              }
+            </select>
+          </div>
+
+          <div class="mushaf-mobile-action-list">
+            <button type="button" class="mushaf-mobile-action" data-mushaf-ayah-jump aria-label="Перейти к аяту">
+              <span class="mushaf-mobile-action-icon" set:html={icons.search}></span><span class="mushaf-mobile-action-label">Перейти к аяту</span>
+            </button>
+            <button type="button" class="mushaf-mobile-action" data-mushaf-style-cycle aria-label="Сменить цветовую тему мусхафа">
+              <span class="mushaf-mobile-action-icon" set:html={icons.compare}></span><span class="mushaf-mobile-action-label">Цветовая тема</span>
+            </button>
+            <button type="button" class="mushaf-mobile-action" data-mushaf-tajweed-toggle aria-pressed="true" aria-label="Таджвид вкл/выкл">
+              <span class="mushaf-mobile-action-icon" set:html={icons.tajweed}></span><span class="mushaf-mobile-action-label">Таджвид</span>
+            </button>
+            <a class="mushaf-mobile-action" data-mushaf-continue href={`/surah/${currentSurah}`} aria-label="Открыть текущую суру">
+              <span class="mushaf-mobile-action-icon" set:html={icons.continue}></span><span class="mushaf-mobile-action-label">Продолжить</span>
+            </a>
+            <button type="button" class="mushaf-mobile-action" data-mushaf-immersive aria-label="Режим чтения на весь экран">
+              <span class="mushaf-mobile-action-icon mushaf-mobile-fullscreen-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3M16 3h3a2 2 0 0 1 2 2v3M8 21H5a2 2 0 0 1-2-2v-3M16 21h3a2 2 0 0 1 2-2v-3"/></svg></span><span class="mushaf-mobile-action-label">Во весь экран</span>
+            </button>
+            <button type="button" class="mushaf-mobile-action mushaf-mobile-action-preload" data-mushaf-preload-all aria-label="Подгрузить весь мусхаф и суры">
+              <span class="mushaf-mobile-action-icon" set:html={icons.download}></span><span class="mushaf-mobile-action-label">Подгрузить</span>
+            </button>
+          </div>
+        </div>
+      </div>
+      <button type="button" class="mushaf-mobile-fab" data-mushaf-mobile-toggle aria-expanded="false" aria-controls="mushaf-mobile-menu" aria-label="Открыть действия мусхафа" title="Действия мусхафа">
+        <span class="mushaf-mobile-fab-icon is-menu" set:html={icons.menu}></span>
+        <span class="mushaf-mobile-fab-icon is-close" set:html={icons.close}></span>
+      </button>
+    </div>
+
     <button type="button" class="mushaf-immersive-exit" data-mushaf-immersive aria-label="Выйти из режима чтения" title="Выйти (Esc)">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
     </button>
@@ -221,14 +359,16 @@ const juzList = Array.from({ length: 30 }, (_, i) => i + 1).map((n) => ({
         class="qcf-page is-font-loading"
         dir="rtl"
         data-mushaf-page={pageNum}
+        data-mushaf-current-surah={currentSurah}
         data-mushaf-font-url={fontAssets.colrUrl}
         data-mushaf-font-family={fontFamily}
         data-mushaf-compact={compactLineOffset > 0 ? '1' : '0'}
         data-mushaf-compact-section={compactSection ? String(compactSection.surah) : undefined}
+        data-mushaf-skeleton-kind={skeletonKind}
         data-mushaf-visible-lines={visibleLineCount}
         style={`--mushaf-visible-lines:${visibleLineCount};--mushaf-compact-offset:${compactLineOffset}`}
       >
-        <div class="mushaf-font-skeleton" aria-hidden="true">
+        <div class={`mushaf-font-skeleton is-${skeletonKind}`} aria-hidden="true" data-mushaf-skeleton-kind={skeletonKind}>
           <span class="mushaf-skeleton-title"></span>
           {skeletonLines.map((width) => <span class="mushaf-skeleton-line" style={`--skeleton-line-w:${width}`}></span>)}
         </div>
@@ -267,7 +407,6 @@ const juzList = Array.from({ length: 30 }, (_, i) => i + 1).map((n) => ({
                 {line?.w.map((word) => (
                   <span
                     class={`qcf-word ${word.e ? 'qcf-word-end' : ''}`}
-                    style={`font-family:'${fontFamily}'`}
                     data-ayah-key={word.k}
                     title={word.k}
                   >

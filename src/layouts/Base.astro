@@ -137,6 +137,12 @@ const tab = (name: 'home' | 'read' | 'mushaf' | 'search') => {
           var eff = t;
           if (t === 'system')
             eff = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+          if (/^\/mushaf\//.test(location.pathname)) {
+            var mushafStyle = localStorage.getItem('q_mushaf_style');
+            if (mushafStyle === 'dark') eff = 'dark';
+            else if (mushafStyle === 'paper') eff = 'sepia';
+            else if (mushafStyle === 'light') eff = 'light';
+          }
           document.documentElement.setAttribute('data-theme', eff);
           var r = JSON.parse(localStorage.getItem('q_read') || '{}');
           var el = document.documentElement.style;
@@ -172,7 +178,7 @@ const tab = (name: 'home' | 'read' | 'mushaf' | 'search') => {
             var vh = Math.max(360, window.innerHeight || 0);
             var mobile = vw <= 650;
             var availableWidth = vw - (mobile ? 56 : 88);
-            var availableHeight = vh - (mobile ? 152 : vw >= 900 ? 225 : 246);
+            var availableHeight = vh - (mobile ? 66 : vw >= 900 ? 225 : 246);
             var maxWidth = mobile ? 620 : 760;
             var pageWidth = Math.floor(Math.min(availableWidth, availableHeight * 0.704, maxWidth));
             pageWidth = Math.max(1, pageWidth);

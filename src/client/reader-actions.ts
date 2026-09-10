@@ -344,12 +344,14 @@ export function initAyahContextMenu({ player }: ReaderActionsDeps) {
     if (e.key === 'Escape') close();
   });
 
-  interface Row {
-    label: string;
-    icon?: string;
-    run?: () => void;
-    sep?: boolean;
-  }
+  type Row =
+    | {
+        label: string;
+        icon?: string;
+        run?: () => void;
+        sep?: false;
+      }
+    | { sep: true };
   const openAt = (x: number, y: number, el: Element) => {
     const [s, a] = el.getAttribute('data-ayah-key')!.split(':').map(Number);
     const rows: Row[] = [
@@ -651,9 +653,96 @@ export function initMushafAyahSheet({ player }: ReaderActionsDeps) {
     }
   };
 
+  // On touch screens a short tap controls the reader surface; opening the
+  // ayah sheet requires an intentional long press.
+  let pressTimer: number | null = null;
+  let pressPointerId: number | null = null;
+  let pressWord: HTMLElement | null = null;
+  let pressStartX = 0;
+  let pressStartY = 0;
+  let longPressed = false;
+  let suppressWordClickUntil = 0;
+  const isMobileMushaf = () =>
+    document.body.dataset.pageMode === 'mushaf' && window.matchMedia('(max-width: 650px)').matches;
+  const clearPress = () => {
+    if (pressTimer !== null) window.clearTimeout(pressTimer);
+    pressTimer = null;
+    pressPointerId = null;
+    pressWord = null;
+  };
+
+  document.addEventListener(
+    'pointerdown',
+    (event) => {
+      if (!isMobileMushaf() || !event.isPrimary || (event.pointerType === 'mouse' && event.button !== 0)) return;
+      const word = (event.target as Element | null)?.closest?.('.qcf-word[data-ayah-key]') as HTMLElement | null;
+      if (!word) return;
+      clearPress();
+      pressPointerId = event.pointerId;
+      pressWord = word;
+      pressStartX = event.clientX;
+      pressStartY = event.clientY;
+      longPressed = false;
+      pressTimer = window.setTimeout(() => {
+        if (!pressWord || pressPointerId !== event.pointerId) return;
+        const [s, a] = pressWord.getAttribute('data-ayah-key')!.split(':').map(Number);
+        longPressed = true;
+        suppressWordClickUntil = Date.now() + 700;
+        window.dispatchEvent(new CustomEvent('quran:mushaf-longpress'));
+        open(s, a);
+      }, 520);
+    },
+    true
+  );
+
+  document.addEventListener(
+    'pointermove',
+    (event) => {
+      if (pressPointerId !== event.pointerId || !pressWord) return;
+      if (Math.hypot(event.clientX - pressStartX, event.clientY - pressStartY) > 10) clearPress();
+    },
+    true
+  );
+
+  document.addEventListener(
+    'pointerup',
+    (event) => {
+      if (pressPointerId !== event.pointerId || !pressWord) return;
+      const wasLongPress = longPressed;
+      const word = pressWord;
+      clearPress();
+      if (wasLongPress) {
+        event.preventDefault();
+        event.stopPropagation();
+        return;
+      }
+      if (!isMobileMushaf()) return;
+      suppressWordClickUntil = Date.now() + 450;
+      event.preventDefault();
+      event.stopPropagation();
+      window.dispatchEvent(new CustomEvent('quran:mushaf-surface-tap', { detail: { word } }));
+    },
+    true
+  );
+
+  document.addEventListener(
+    'pointercancel',
+    (event) => {
+      if (pressPointerId === event.pointerId) clearPress();
+    },
+    true
+  );
+
   document.addEventListener('click', (event) => {
     const word = (event.target as Element | null)?.closest?.('.qcf-word[data-ayah-key]') as HTMLElement | null;
     if (!word) return;
+    if (isMobileMushaf()) {
+      if (Date.now() < suppressWordClickUntil) {
+        event.preventDefault();
+        event.stopImmediatePropagation();
+      }
+      return;
+    }
     event.preventDefault();
     const [s, a] = word.getAttribute('data-ayah-key')!.split(':').map(Number);
     open(s, a);

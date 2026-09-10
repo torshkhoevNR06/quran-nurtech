@@ -24,7 +24,9 @@ function applyTheme(t: string) {
         ? 'dark'
         : 'light'
       : t;
-  document.documentElement.setAttribute('data-theme', eff);
+  const mushafStyle = document.body?.dataset.pageMode === 'mushaf' ? localStorage.getItem('q_mushaf_style') : null;
+  const pageTheme = mushafStyle === 'dark' ? 'dark' : mushafStyle === 'paper' ? 'sepia' : mushafStyle === 'light' ? 'light' : eff;
+  document.documentElement.setAttribute('data-theme', pageTheme);
 }
 
 const stripBrackets = (s: string) =>

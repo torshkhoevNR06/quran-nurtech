@@ -19,6 +19,7 @@ export const icons = {
   menu: s('<path d="M3 6h18M3 12h18M3 18h18"/>'),
   settings: s('<path d="M4 6h10M18 6h2M4 12h2M10 12h10M4 18h6M14 18h6"/><circle cx="16" cy="6" r="2"/><circle cx="8" cy="12" r="2"/><circle cx="12" cy="18" r="2"/>'),
   theme: s('<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5L19 19M19 5l-1.5 1.5M6.5 17.5L5 19"/>'),
+  tajweed: s('<path d="M5 19 10.5 5h3L19 19M7.5 14h9"/>'),
   book: s('<path d="M4 5a2 2 0 0 1 2-2h6v18H6a2 2 0 0 0-2 2zM20 5a2 2 0 0 0-2-2h-6v18h6a2 2 0 0 1 2 2z"/>'),
   mushaf: s('<path d="M12 6.5c-1.9-1.4-4.5-2.2-7.5-2.2v10c3 0 5.6.8 7.5 2.2 1.9-1.4 4.5-2.2 7.5-2.2v-10c-3 0-5.6.8-7.5 2.2z"/><path d="M12 6.5v10"/><path d="M8 20l4-2.5 4 2.5"/>'),
   headphones: s('<path d="M4 14v-2a8 8 0 0 1 16 0v2"/><rect x="3" y="14" width="4" height="6" rx="1"/><rect x="17" y="14" width="4" height="6" rx="1"/>'),

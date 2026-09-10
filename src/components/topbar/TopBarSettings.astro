@@ -148,7 +148,9 @@ const themes = [
           ? 'dark'
           : 'light'
         : choice;
-    document.documentElement.setAttribute('data-theme', effective);
+    const mushafStyle = document.body?.dataset.pageMode === 'mushaf' ? localStorage.getItem('q_mushaf_style') : null;
+    const pageTheme = mushafStyle === 'dark' ? 'dark' : mushafStyle === 'paper' ? 'sepia' : mushafStyle === 'light' ? 'light' : effective;
+    document.documentElement.setAttribute('data-theme', pageTheme);
     document.querySelectorAll<HTMLButtonElement>('[data-theme-set]').forEach((button) => {
       const isActive = button.dataset.themeSet === choice;
       button.classList.toggle('on', isActive);
